@@ -1,0 +1,127 @@
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+$this->assign('info_count_total',$_SESSION['cart']->content_count);
+$this->assign('info_price_total',$_SESSION['cart']->content_total['formated']);
+{/php}
+{*php}__debug ($this->get_template_vars());{/php*}
+{*php}__debug ($_SESSION);{/php*}
+<div class="left-side {$page_action} {if $isMobile}no-right{/if}">
+	<ul class="checkoutnavigation" id="{$page_action}">
+		<li class="shipping">{if !$isMobile} 1. {/if}{txt key=CHECKOUT_ADDRESS}</li>
+		<li class="payment">{if !$isMobile}2. {/if}{txt key=CHECKOUT_PAYMENT}</li>
+		<li class="confirmation">{if !$isMobile}3. {/if}{txt key=CHECKOUT_CONFIRM}</li>
+		<li class="success">{if !$isMobile}4. {/if}{txt key=CHECKOUT_FINISHED}</li>
+	</ul>
+	{$message}
+
+	{if $page_action == shipping}
+	{include file="/xtCore/pages/checkout/subpage_shipping.html" type="tpl_include"}
+	{/if}
+
+	{if $page_action == payment}
+	{include file="/xtCore/pages/checkout/subpage_payment.html" type="tpl_include"}
+	{/if}
+
+	{if $page_action == confirmation}
+	{include file="/xtCore/pages/checkout/subpage_confirmation.html" type="tpl_include"}
+	{/if}
+
+	{if $page_action == pay}
+	{include file="/xtCore/pages/checkout/subpage_pay.html" type="tpl_include"}
+	{/if}
+
+	{if $page_action == pay_frame}
+	{include file="/xtCore/pages/checkout/subpage_pay_iframe.html" type="tpl_include"}
+	{/if}
+
+	{if $page_action == success}
+	{include file="/xtCore/pages/checkout/subpage_success.html" type="tpl_include"}
+	{/if}
+</div>
+{if !$isMobile}
+<div class="right-side">
+	{if $page_action == 'success'}
+	<div id="xt_bestseller_products" class="tabcontent clearfix">
+		{page name=xt_bestseller_products type=user order_by='rand()' tpl_type='product_listing'}
+	</div>
+	{/if}
+
+	{*php}__debug ($this->get_template_vars('payment_info'));{/php*}
+
+	{if $page_action == payment || $page_action == confirmation || $page_action == pay || $page_action == pay_frame || $page_action == shipping}
+	<h2>{txt key=TEXT_CART}</h2>
+	<div class="right-box clearfix">
+		<p>
+			{txt key=TEXT_ARTICLE}: {$info_count_total}<br />
+			{txt key=TEXT_SUB_TOTAL}: {$info_price_total}
+		</p>
+		<a class="underline" href="{link page=cart conn=SSL}">{txt key=TEXT_EDIT}</a>
+	</div>
+	<h2>{txt key=TEXT_SHIPPING_ADDRESS_2}</h2>
+	<div class="right-box clearfix">
+		<p>
+			{if $shipping_address.customers_company} {$shipping_address.customers_company}<br />{/if}
+			{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}<br />
+			{$shipping_address.customers_street_address}<br />
+			{if $shipping_address.customers_suburb} {$shipping_address.customers_suburb}<br />{/if}
+			{$shipping_address.customers_postcode} {$shipping_address.customers_city}<br />
+			{$shipping_address.customers_country}
+		</p>
+		<a class="underline" href="{link page=checkout paction=shipping conn=SSL}">{txt key=TEXT_EDIT}</a>
+	</div>
+	{/if}
+
+	{if $page_action == payment || $page_action == confirmation || $page_action == pay || $page_action == pay_frame || $page_action == shipping}
+	<h2>{txt key=TEXT_SHIPPING_METHOD}</h2>
+	<div class="right-box clearfix">
+		{foreach name=aussen item=sdata from=$shipping_data}
+			{$sdata.shipping}
+		{/foreach}
+	</div>
+	{/if}
+
+	{if $page_action == payment || $page_action == confirmation || $page_action == pay || $page_action == pay_frame }
+	<h2>{txt key=TEXT_PAYMENT_ADDRESS}</h2>
+	<div class="right-box clearfix">
+		<p>
+		{if $payment_address.customers_company} {$payment_address.customers_company}<br />{/if}
+		{$payment_address.customers_firstname} {$payment_address.customers_lastname}<br />
+		{$payment_address.customers_street_address}<br />
+		{if $payment_address.customers_suburb} {$payment_address.customers_suburb}<br />{/if}
+		{$payment_address.customers_postcode} {$payment_address.customers_city}<br />
+		{$payment_address.customers_country}<br />
+		</p>
+		<a class="underline" href="{link page=checkout paction=payment conn=SSL}">{txt key=TEXT_EDIT}</a>
+	</div>
+	{/if}
+
+	{if $page_action == payment || $page_action == confirmation || $page_action == pay || $page_action == pay_frame}
+		{if $payment_info.payment_name}
+		<h2>{txt key=TEXT_PAYMENT_METHOD}</h2>
+		<div class="right-box clearfix">
+			{if $payment_info.payment_name == 'Lastschrift'}
+			<p>{txt key=TEXT_PAYMENT_DID}
+			{else}
+			<p>{$payment_info.payment_name}</p>
+			{/if}
+			<a class="underline" href="{link page='checkout' paction=payment conn=SSL}">{txt key=TEXT_EDIT}</a>
+		</div>
+		{/if}
+	{/if}
+
+	{if $page_action == payment || $page_action == confirmation || $page_action == pay || $page_action == pay_frame || $page_action == shipping}
+	<div class="sub-box">
+		<h4>{txt key=QUESTION_ORDER}</h4>
+		<p class="text">{txt key=QUESTION_ORDER_TEXT}</p>
+		<p class="number">{txt key=HOTLINE}</p>
+	</div>
+	{/if}
+
+</div>
+{/if}
+<div class="clearfix"></div>
+
+{if $page_action == success}
+{include file="/xtCore/pages/checkout/subpage_success_bottom.html" type="tpl_include"}
+{/if}

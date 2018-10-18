@@ -1,0 +1,26 @@
+{assign var="page_action" value="amazon_group_permission"}
+
+
+{if $login_type==2}
+	
+	<div class="clearfix">
+
+            <a href="{link page='customer' paction='login' conn=SSL}" class="btn btn-default pull-left">
+                <i class="fa fa-chevron-left"></i>
+                {txt key=BUTTON_REGISTER}
+            </a>
+          
+             <a style="margin-left: 10px;" href="{link page='customer' paction='login' conn=SSL}" class="btn btn-success pull-left">
+                <i class="fa fa-sign-in"></i>
+                {txt key=BUTTON_LOGIN}
+            </a>
+
+    </div>
+    
+{elseif $login_type==3}
+
+	{form type=form name=continue action='checkout' link_params='page_action=shipping&m_checkout=1' method=post conn=SSL}
+               <p class="left">{css_button text=$login_btn type='form'}</p>
+    {form type=formend} 
+
+{/if}

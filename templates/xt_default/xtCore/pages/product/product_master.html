@@ -1,0 +1,29 @@
+<h1>{$products_name}</h1><div id="productinfowrap">	{if $products_image!=''}	<div id="productinfoimages">		<a href="{img img=$products_image type=m_popup path_only=true}" class="thickbox">{img img=$products_image type=m_info alt=$products_name}</a>	</div>	{/if}  	{if $products_image!=''}<div id="productinfopricewithimages">{else}<div id="productinfopricewithoutimages">{/if}		<div id="productinfoprice">				{if $products_fsk18=='1'}<div class="hrlightgrey"></div><img src="media/images/icon/usk18.gif" alt="" style="cursor:default" />{/if}			<div class="hrlightgrey"></div>		</div>	</div>
+</div>
+<div id="productinfodetail">
+	{if $products_description !=''}
+		<div id="productinfo_desc">
+			{$products_description}
+		</div>
+	{/if}
+	{if $more_images !=''}
+		{foreach name=aussen item=img_data from=$more_images}
+		<a href="{img img=$img_data.file type=m_popup path_only=true}" class="thickbox">{img img=$img_data.file type=m_thumb alt=$products_name}</a>
+		{/foreach}
+	{/if}
+	
+	{if $media_files !=''}
+	<ul>
+		{foreach name=aussen item=file_data from=$media_files}
+		<li>{img img=$file_data.icon type=w_media_filetypes alt=$file_data.file} {$file_data.file}</li>
+		{/foreach}
+	</ul>
+	{/if}	
+	
+</div>	
+	<div class="hrproductpreview"></div>
+	{hook key=product_info_tpl_before_cart}
+
+	{hook key=product_info_tpl_cart}
+<div style="clear:both;"></div><br />
+{hook key=product_info_tpl}

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_LAST_CHANGE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Letzte änderung]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Letzte änderung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_LAST_UPDATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Letztes update]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Letztes update]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SERVICE_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PROTECTED_SHOPS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Protected Shops]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Protected Shops]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PROTECTED_SHOPS_IMPORT_DOCUMENTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Dokumenttypen aktualisieren]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Dokumenttypen aktualisieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PROTECTED_SHOPS_UPDATE_DOCUMENTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Dokumente aktualisieren]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Dokumente aktualisieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PROTECTED_ACTIVE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activated]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Für Mandant aktiviert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PROTECTED_SHOPS_SHOP_ID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shop ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Shop ID]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

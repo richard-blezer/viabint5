@@ -1,0 +1,24 @@
+{$message}
+
+<h2>{txt key=AFFILIATE_INVENTORY}</h2>
+
+<div class="aff-links">
+<a href="http://www.viabiona.com/de/affiliate_summary.html">Affiliate-Konto übersicht</a>
+<a href="http://www.viabiona.com/de/affiliate_account.html">Affiliate-Konto bearbeiten</a>
+<a href="http://www.viabiona.com/de/affiliate_payment.html">Affiliate-Auszahlungen</a>
+<a href="http://www.viabiona.com/de/affiliate_clicks.html">Affiliate-Кlicks</a>
+<a href="http://www.viabiona.com/de/affiliate_sales.html">Affiliate-Verkäufe</a>
+<a href="http://www.viabiona.com/de/affiliate_inventory.html?type=i">Werbemittel</a>
+<a href="http://www.viabiona.com/de/affiliate_account/logout.html">Logout</a>
+</div>
+
+<a style="border: 1px outset black; background: gray; margin: 5px; padding: 5px; color: white; text-decoration: none;" href="index.php?page=affiliate_inventory&type=i">Banner</a>&nbsp;<a style="border: 1px outset black; background: gray; margin: 5px; padding: 5px; color: white; text-decoration: none;" href="index.php?page=affiliate_inventory&type=h">HTML-Links</a>&nbsp;<a style="border: 1px outset black; background: gray; margin: 5px; padding: 5px; color: white; text-decoration: none;" href="index.php?page=affiliate_inventory&type=t">Textlinks</a>
+<div class="highlightbox">
+{foreach name=inv item=inventory from=$inventories}
+<h3>{$inventory.title}</h3>
+{$inventory.code}<br />
+<textarea cols="90" rows="5">{$inventory.code}</textarea><br />
+<hr>
+</br>
+{/foreach}
+</div>

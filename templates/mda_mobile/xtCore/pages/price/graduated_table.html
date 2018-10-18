@@ -1,0 +1,20 @@
+{if $GRADUATED_PRICES}
+<h3>{txt key=TEXT_GRADUATED_PRICES}</h3>
+<table class="tabledetails" width="100%" border="0" cellspacing="0">
+	<thead>
+		<tr>
+			<td>{txt key=TEXT_QTY}</td>
+			<td>{txt key=TEXT_SINGLE_PRICE}</td>
+			<td>{txt key=TEXT_GRADUATED_SAVING}</td>
+		</tr>
+	</thead>
+
+{foreach name=aussen item=prices from=$GRADUATED_PRICES}
+	<tr class="{cycle values="contentrow1,contentrow2"}">
+		<td>{$prices.QTY}</td>
+		<td>{$prices.PRICE.formated}</td>
+		<td>{if $prices.saving gt 0}-{$prices.saving} %{/if}</td> 
+	</tr>
+{/foreach}
+</table>
+{/if}

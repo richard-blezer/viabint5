@@ -1,0 +1,71 @@
+
+
+Lizenzvereinbarung
+
+Software, Module, Plugin der Firma Shop-Support24 Frank Schneider ist keine freie Software, die unter der Lesser General Public License (LGPL) veröffentlicht wurde. Sie dürfen die Software im Rahmen der Lizenzbedigungen benutzen,
+jedoch nicht weitergeben und bearbeiten. Beachten Sie, dass es keinerlei Haftung oder Garantieansprüche gibt.
+  Software, Module, Plugin der Firma Shop-Support24 Frank Schneider gilt nachfolgende Endbenutzer-Lizenzvereinbarung, kurz "EULA" (engl. End User License Agreement).
+ 
+Lizenzvereinbarung (EULA) der Firma
+Shop-Support24 Frank Schneider
+ Alte Dorfstrasse 23
+ 06712 Salsitz
+  mit Stand vom 01.07.2014.
+
+
+1.Vereinbarungsgegenstand 
+Gegenstand der Vereinbarung ist die zum Download bzw. per E-Mail bereitgestellte Software. 
+Die Software wird nicht verkauft, sondern lizenziert zum Zwecke der Nutzung.  
+
+2. Umfang der Vereinbarung 
+Shop-Support24 Frank Schneider gewährt dem Lizenznehmer im Rahmen dieser Lizenzvereinbarung unter Berücksichtigung aller vertraglichen Vereinbarunge das Nutzungsrecht der Software, umfasst den Betrieb der Software, das ausschließlich auf dem System, das vom Kunden beim Kauf der Lizenz durch Angabe der Domainadresse definiert wurde.  
+
+3. Besondere Beschränkungen 
+Es wird ausdrücklich darauf hingewiesen, dass die Software Shop-Support24 Frank Schneider nicht unter der GNU/GPL oder der LGPL steht. Lediglich einige Code-Bibliotheken unterliegen gesonderter Lizenzierung durch den jeweiligen Urheberrechtsinhaber. 
+Die Software von Shop-Support24 Frank Schneider wird durch Urheberrechtsgesetze und internationale sowie europäische Copyrightverträge und Konventionen geschützt.  
+Alle Rechtsansprüche, Besitzrechte und geistige Eigentumsrechte an der Software von Shop-Support24 Frank Schneider sowie alle Kopien derselben stehen ausschließlich im Eigentum des Lizenzgebers. 
+Dies gilt ferner auch für alle Titel, Programmiercodes, Dialoge, Konzepte sowie alle damit im Zusammenhang stehenden Dokumentationen. 
+Ausgenommen hiervon sind die zuvor genannten Codebibliotheken, welche im jeweiligen Fall, schutzrechtlich durch die im Original beigefügte Lizenz geregelt sind. 
+Das geistige Eigentum an diesen Codebibliotheken bleibt ausschließlich dem jeweiligen Urheber vorbehalten.   Der Lizenznehmer darf die Software nicht anders als in dieser Lizenzvereinbarung anwenden, benutzen oder kopieren. 
+Dem Lizenznehmer ist es untersagt, die Software oder das dazugehörige schriftliche Material an einen Dritten zu übergeben, zu vermieten, zu verleihen, zu überlassen, zu übertragen, zu vervielfältigen, einem Dritten zugänglich zu machen, oder die Software von Shop-Support24 Frank Schneider abzuändern, zu übersetzen, zurückzuentwickeln, zu dekompilieren oder zu deassemblieren,  Werke zu erstellen oder das schriftliche Material zu vervielfältigen, das Material abzuändern oder anhand des schriftlichen Materials Werke zu erstellen. Ausgenommen hiervon ist die zur Bearbeitung, Konfiguration, Umgestaltung, Anpassung sowie Erweiterung nötige Bereitstellung an Dritte, für deren Verstöße im Sinne dieser Vereinbarung in jedem Fall der Lizenznehmer haftet.  Für die notwendigen Arbeiten zur Anpassung der Software von Shop-Support24 an die jeweiligen Bedürfnisse des lizenzierten Internetauftrittes (domaingebunden) gestattet der Lizenzgeber die Installation auf WAMP oder XAMP oder ähnlichen lokalen Webumgebungen zur Offline-Bearbeitung. Eine Herausgabe der Software von Shop-Support24  an Dritte zur Bearbeitung, auch in Teilen bewirkt das volle Haftungsrisiko bei Verstößen gegen diese Lizenzvereinbarung. Ausdrücklich wird dem Lizenznehmer ein Verkauf an Dritte untersagt, wenn nicht zuvor eine schriftliche Vereinbarung mit dem Lizenzgeber, hinsichtlich einer Zusammenarbeit, abgeschlossen wurde. Diese bedarf der Schriftform.  Der Quellcode darf durch den Lizenznehmer nicht komplett oder in Teilen für eigene neue Modulentwicklungen als Basis verwendet oder die Funktionsweise als Grundlage für die Entwicklung einer gleichgelagerten Software kopiert werden.
+
+   4. Verbot der Vervielfältigung 
+Die Software der Firma Shop-Support24 Frank Schneider inklusive aller mit dem Download verbundenen Dateien, sind urheberrechtlich geschützt. 
+Das lizenzierte Software darf nur kommerziell unter einer Domain auf einem Webserver installiert und betrieben werden. 
+Bei der Verwendung der Software ist für jede weitere Domain eine weitere Lizenz notwendig.  
+
+5. Laufzeit und Beendigung 
+Die Lizenzvereinbarung beginnt mit dem Download der Software bzw. dem Kauf der Software gilt unbefristet.  Erst nach vollständiger Bezahlung der Software erwirbt der Lizenznehmer die in dieser Vereinbarung beschriebenen Nutzungsrechte. 
+Bis zur endgültigen Bezahlung bleibt das Eigentum bei Shop-Support24 Frank Schneider dem Lizenzgeber vorbehalten. Die Kündigung aus wichtigem Grund bleibt den Parteien weiterhin vorbehalten.   Die Lizenzvereinbarung wird allerdings hinfällig, sobald der Lizenznehmer gegen eine dieser Vereinbarungen oder Bedingungen verstößt. 
+Bei Verstoß gegen die vorgenannten Vereinbarungen oder Bedingungen, ist der Lizenznehmer verpflichtet, unverzüglich für die Vernichtung sämtlicher, seit Lizenzannahme, angefertigten Kopien Sorge zu tragen. Die unten genannten Haftungs- und Garantiebeschränkungen bleiben davon jedoch unberührt. 
+Ausgenommen hiervon sind, wie bereits oben unter 3. dargestellt, die dort erwähnten Codebibliotheken.  
+
+6. Regelung zu Mängeln  
+Die Software muss individuell konfiguriert und angepaßt werden. Als Basis dient die Grundinstallation der Software. Aufgrund der erforderlichen Kenntnisse für die Installation, die Inbetriebnahme sowie des Betriebes einer derartigen Webanwendung und der dafür erforderlichen Qualifikation, wird vom Lizenzgeber keinerlei Gewährleistung für auftretende Mängel übernommen, wenn der Lizenznehmer die Installation selbst vornimmt. 
+Ohne eine weitergehende Konfiguration und Anpassung an den erforderlichen Zweck. 
+
+7. Haftung 
+Die vollständige uneingeschränkte Haftung geht mit der Installation der Software auf denjenigen über, der die Software installiert hat und benutzt. Auf ausdrücklichen Wunsch kann eine Installation durch den Lizenzgeber erfolgen, so dass eine einwandfreie Installation gewährleistet wird.  
+Die Haftung ist ausgeschlossen, wenn der Quellcode und dadurch im weiteren Sinne die Funktionalität vom Lizenznehmer oder von einem durch den Lizenznehmer beauftragten Dritten verändert wurde.  
+Für die Richtigkeit und Vollständigkeit von Angaben über Zahlungs- und Abrechnungssysteme von Drittanbietern haftet der Lizenzgeber nicht. Ferner kann auch für Funktion, Design oder andere Eigenschaften von Drittanbietern keinerlei Gewähr übernommen werden.  
+Hinsichtlich implementierter Schnittstellen von Drittanbietern zu solchen Systemen gilt, dass diese lediglich den Datenaustausch und die Datenübermittlung nach Vorgaben der jeweiligen Anbieter leisten sollen, so dass Haftung ausgeschlossen ist.  
+In den Wirkungs- und Verantwortungsbereich des Lizenzgebers gehören ausdrücklich nicht die auf Anbieterseiten oder bei Partnern ablaufenden Funktionen, so dass auch hier eine Haftung des Lizenzgebers ausgeschlossen ist.  
+Die Haftung für Datenverlust wird auf den typischen Wiederherstellungsaufwand beschränkt, der bei regelmäßiger und gefahrentsprechender Anfertigung von Sicherungskopien eingetreten wäre.  
+
+8. Vertragsstrafe 
+Bei Verstoss des Lizenznehmers gegen einen Punkt dieser EULA, ist eine Vertragsstrafe in Höhe von 50.000,- EUR für jeden Einzelverstoss an den Lizenzgeber zu leisten.  
+
+9. Sonstiges 
+Gegenstand dieser Lizenzvereinbarung sind nicht die Installation, die Beratung oder die Schulung bezüglich der Software von Shop-Support24 Frank Schneider. 
+Hierzu kann auf Wunsch des Lizenznehmers eine gesonderte Vereinbarung mit dem Lizenzgeber getroffen werden. Die Herausgabe von Updates, deren technische und inhaltliche Gestaltung sowie die Terminierung obliegt alleine dem Lizenzgeber.  
+Der Lizenznehmer hat keinen Anspruch auf Weiterentwicklung der Software von Shop-Support24 Frank Schneider. Die Weiterentwicklung und Pflege der Software ist alleinige Entscheidung des Lizenzgebers.  
+Der Lizenzgeber ist berechtigt nach Belieben stichprobenartige Überprüfungen der eingegangenen Lizenzbedingungen durchzuführen. 
+Hierbei wird ausschließlich die hinterlegte Domain hinsichtlich dieser Lizenz überprüft.  
+
+10. Anwendbares Recht, Erfüllungsort und Gerichtstand 
+Für alle Streitigkeiten aus dieser Vereinbarung gilt ausschließlich das Recht der Bundesrepublik Deutschland. Bei Kaufleuten im Sinne des Handelsrechts wird Scharbeutz als Erfüllungsort und Gerichtsstand vereinbart.  
+
+11. Schlussbestimmungen 
+Dieser Lizenzvertrag ist abschließend. Er ersetzt jede andere Mitteilung oder Aussagen in Werbeunterlagen und Dokumentationen. Mündliche Nebenabreden bestehen nicht. Weiter bedürfen Änderungen und Ergänzungen grundsätzlich der Schriftform. 
+Die Schriftform ist auch durch Telefaxschreiben oder E-Mail gewahrt.   Sollten eine oder mehrere Bestimmungen dieser Lizenzvereinbarung unwirksam sein oder werden, berührt dies nicht die übrigen Bestimmungen dieser Vereinbarung. 
+Die unwirksame Regelung ist durch eine wirksame zu ersetzen, die dem rechtlichen und wirtschaftlichen Willen der Vertragspartei am nächsten kommt.

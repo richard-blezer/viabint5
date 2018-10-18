@@ -1,0 +1,235 @@
+    <div data-role="header">
+        <h1>{$products_name}</h1>
+    </div>
+    
+    <div class="xtm-product" data-role="content">
+        
+        {if $date_available!=''}
+            <div data-role="header"> 
+                <ul class="info_info">
+                    <li class="infoInfo">{txt key=TEXT_PRODUCT_AVAILABLE} {$date_available|date_format:"%A, %B %e, %Y"}</li>
+                </ul>
+                {if $message}
+                    {$message}                
+                {/if}
+            </div>
+        {/if}
+
+        {if $products_image!=''}          
+                
+            <!-- Place somewhere in the <body> of your page -->
+            <div class="images flexslider">
+                <ul class="slides">
+                    <li>
+                        <table><tr><td>
+                            {if $products_image != 'product:noimage.gif'}
+                                <a href="#photo-main-screen" data-rel="popup">
+                                    {img img=$products_image type=m_mobile_islider alt=$products_name|escape:"html"}
+                                </a>
+                            {else}
+                                <a href="#">
+                                    <img src="{$tpl_path}/img/no_image.png" alt="{txt key=TEXT_NO_IMAGE}">
+                                </a>
+                            {/if}                                
+                        </td></tr></table>
+                    </li>
+                    {if $more_images !=''}
+                        {foreach name=aussen item=img_data from=$more_images}
+                        <li>
+                            <table><tr><td>
+                                <a href="#photo-{$img_data.data.id}-screen" data-rel="popup">
+                                    {img img=$img_data.file type=m_mobile_islider alt=$products_name}
+                                </a>
+                            </td></tr></table>
+                        </li>
+                        {/foreach}
+                    {/if}
+                </ul>
+            </div>
+            
+            {if $products_image != 'product:noimage.gif'}
+                <div id="photo-main-screen" class="xtm-popup-image" data-corners="false" data-theme="d" data-overlay-theme="a" data-role="popup" data-shadow="true" data-transition="flip" data-position-to="window">
+                    <a class="ui-btn-right" data-iconpos="notext" data-icon="delete" data-theme="e" data-role="button" data-rel="back" href="#" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Close"></a>
+                    {img img=$products_image type=m_mobile_popup alt=$products_name|escape:"html"}
+                </div>
+            {/if}            
+            {if $more_images !=''}
+                {foreach name=aussen item=img_data from=$more_images}    
+                    <div id="photo-{$img_data.data.id}-screen" class="xtm-popup-photo" data-corners="false" data-theme="d" data-overlay-theme="a" data-role="popup" data-shadow="true" data-transition="flip" data-position-to="window">
+                        <a class="ui-btn-right" data-iconpos="notext" data-icon="delete" data-theme="e" data-role="button" data-rel="back" href="#" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Close"></a>
+                        {img img=$img_data.file type=m_mobile_popup alt=$products_name}
+                    </div>
+
+                {/foreach}
+            {/if}            
+        {/if}
+        
+        
+        <div class="detail">
+             <table border="0">  
+                {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+                <tr>
+                    <td class="left" style="padding-top:8px;">{txt key=TEXT_PRICE}</td>
+                    <td class="right">
+                        <span class="xtm-price">{$products_price.formated}</span><br />
+                        <span class="shippinginfo">{$products_tax_info.tax_desc}</span><br />
+                        {if $base_price && !$group_price}          
+                        <span class="xtm-base-price">{$base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$base_price.vpe.name}</span>
+                        {/if}
+                    </td>
+                </tr>
+                {/if}
+
+                {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+                {if $link_priceinquiry}
+                <tr>
+                    <td class="left"></td>
+                    <td class="right">   
+                        <span><a href="{$link_priceinquiry}">{txt key=TEXT_XT_PRICEINQUIRY_ASK}</a></span>
+                    </td>
+                </tr>
+                {/if}
+                {/if}
+
+                {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+                <tr>
+                    <td class="left">
+                        {txt key=TEXT_SHIPPING_COSTS}
+                    </td>
+                    <td class="right">
+                        <span class="taxandshippinginfo">{if $products_shipping_link}<a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</span>
+                    </td>
+                </tr>
+                {/if}
+
+
+                {if $products_weight > 0}
+                <tr>
+                    <td class="left">
+                        <span class="taxandshippinginfo">{txt key=TEXT_PRODUCTS_WEIGHT}</span>
+                    </td>
+                    <td class="right">
+                         <span class="taxandshippinginfo">{$products_weight|number_format:2:",":"."} KG</span>
+                    </td>
+                </tr>
+                {/if}
+
+
+                <tr>
+                    <td class="left">
+                        <span class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}{if $shipping_status}&nbsp;{$shipping_status}{/if}</span>
+                    </td>
+                    <td class="right">
+                        {if $stock_image}
+                        <span class="stockimage">{img img=$stock_image.image type=t_img_stockrules alt=$stock_image.name}</span>
+                        {else}
+                        <span class="stockimagetext">{$stock_image.name}</span>
+                        {/if}
+                    </td>
+                </tr>
+
+                {if $review_stars_rating}
+                    <tr>
+                        <td class="left">    
+                            {txt key=TEXT_XT_REVIEWS_INFO}
+                        </td>
+                        <td class="right">
+                            <div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$review_stars_rating}%"></div></div>
+                            <p class="reviews_text"><a href="{$link_reviews_list}">{if $products_rating_count}{$products_rating_count}{else}0{/if} {txt key=TEXT_XT_REVIEWS_INFO}</a></p>
+                            <p class="reviews_text"><a href="{$link_reviews_write}" rel="nofollow">{txt key=TEXT_XT_REVIEWS_WRITE}</a></p>
+                        </td>
+                    </tr>
+                {/if}
+
+
+                {if $products_discount!=''}
+                <tr>
+                    <td class="left">{txt key=TEXT_DISCOUNT}</td>
+                    <td class="right">
+                        {$products_discount}
+                    </td>
+                </tr>
+                {/if}
+
+                {if $products_model!=''}
+                <tr>
+                    <td class="left">{txt key=TEXT_PRODUCTS_MODEL}</td>
+                    <td class="right">
+                        {$products_model}
+                    </td>
+                </tr>
+                {/if}
+
+            </table>
+
+        </div>
+        
+        {*<a href="{$link_reviews_list}">{txt key=TEXT_XT_REVIEWS_INFO}</a> | <a href="{$link_reviews_write}" rel="nofollow">{txt key=TEXT_XT_REVIEWS_WRITE}</a>*}            
+
+
+        {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+            {price_table}
+        {/if}            
+        
+        {hook key=product_info_tpl_before_cart}
+
+
+        {form type=form name=product action='dynamic' link_params=getParams method=post}
+            {form type=hidden name=action value=add_product}
+            {form type=hidden name=product value=$products_id}
+
+            {$products_information}
+
+            <br /><br />
+
+            {if $allow_add_cart eq 'true'}
+
+                {if $products_fsk18=='1'}
+                    <ul class="info_error">
+                        <li class="infoError">{txt key=TEXT_PRODUCTS_FSK18_NOTE}</li>
+                    </ul>
+                {/if}
+                <div class="ui-grid-b xtm-qty">
+                    <div class="ui-block-a"><a class="xtm-qty-minus" data-role="button" data-inline="true"><div class="xtm-icon-16 xtm-icon-minus"></div></a></div>
+                    <div class="ui-block-b"><input class="xtm-qty" type="number" name="qty" value="1" /></div>
+                    <div class="ui-block-c"><a class="xtm-qty-plus" data-role="button" data-inline="true"><div class="xtm-icon-16 xtm-icon-plus"></div></a></div>                
+                </div>
+
+                <input type="submit" value="{$smarty.const.BUTTON_ADD_CART}" />                        
+
+
+                <br />
+            {/if}
+		 {form type=formend} 
+            {hook key=product_info_tpl_cart}
+           
+		{if $products_master_flag == 1 OR  $products_master_model != ''}	
+			<div class="box">
+				{hook key=product_info_tpl_options}
+			</div><!-- .box -->
+			{/if}
+		
+       
+        
+        {if $products_description !=''}
+            <div data-role="collapsible" data-inset="false" data-theme="c">
+                <h2>{txt key=TEXT_PRODUCTS_DESCRIPTION}</h2>
+                <div data-role="content">
+                    <p>{$products_description}</p>
+                </div>
+            </div>
+        {/if}
+
+        {if $products_master_flag == 1}
+        {hook key=product_info_tpl_productlist}
+        {/if}
+
+        {if $media_files !=''}
+            {include file="$selected_template/xtCore/pages/files/product_public_files.html"}
+        {/if}	
+
+        {hook key=product_info_tpl}
+
+        <br />
+        
+    </div>

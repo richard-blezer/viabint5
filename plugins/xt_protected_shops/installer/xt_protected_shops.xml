@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>Protected Shops - Schutzpaket</title>
+<version>1.0.3</version>
+<code>xt_protected_shops</code>
+<url>http://www.xt-commerce.com</url>
+<type>law</type>
+<developer>xt:Commerce</developer>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=294]]></marketplace_link>
+<icon>ps80px.png</icon>
+<db_install><![CDATA[
+$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'xt_protected_shops', '../plugins/xt_protected_shops/images/icon.png', '&plugin=xt_protected_shops', 'adminHandler.php', '4020', 'config', 'I', 'W');");
+
+$db->Execute("
+ CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_plg_protected_shops (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `store_id` int(11) DEFAULT '0',
+  `document` varchar(50) DEFAULT NULL,
+  `last_change` datetime DEFAULT NULL,
+  `last_update` datetime DEFAULT NULL,
+  `content_id` int(11) DEFAULT '0',
+  `service_status` int(1) DEFAULT '0',
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+");
+
+$db->Execute("INSERT INTO ".TABLE_CONFIGURATION." (`config_key`, `config_value`, `group_id`, `sort_order`, `last_modified`, `date_added`, `type`, `url`) VALUES ('_SYSTEM_PROTECTED_LAST_IMPORT', '".time()."', 18, 9, '".$db->BindTimeStamp(time())."', '".$db->BindTimeStamp(time())."', '', '');");
+
+
+
+]]></db_install>
+<db_uninstall><![CDATA[
+$db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text = 'xt_protected_shops'");
+$db->Execute("DELETE FROM ".TABLE_CONFIGURATION." WHERE config_key = '_SYSTEM_PROTECTED_LAST_IMPORT'");
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_plg_protected_shops");
+]]></db_uninstall>
+<plugin_code>
+    <code>
+        <hook>page_registry.php:bottom</hook>
+        <phpcode><![CDATA[
+					define('PAGE_PROTECTED_SHOPS', _SRV_WEB_PLUGINS.'xt_protected_shops/pages/page.xt_protected_shops.php');
+					define('TABLE_PROTECTED_SHOPS', DB_PREFIX . '_plg_protected_shops');
+			]]></phpcode>
+        <order>1</order>
+        <active>1</active>
+    </code>
+    <code>
+        <hook>module_content.php:content_top</hook>
+        <phpcode><![CDATA[
+include _SRV_WEBROOT.'plugins/xt_protected_shops/hooks/hook.module_content_content_top.php';
+]]></phpcode>
+        <order>1</order>
+        <active>1</active>
+    </code>
+    <code>
+        <hook>row_actions.php:actions</hook>
+        <phpcode><![CDATA[
+include _SRV_WEBROOT.'plugins/xt_protected_shops/hooks/hook.row_actions.php_actions.php';
+]]></phpcode>
+        <order>1</order>
+        <active>1</active>
+    </code>
+</plugin_code>
+
+<configuration>
+    <config>
+        <key>XT_PROTECTED_ACTIVE</key>
+        <type>dropdown</type>
+        <url>conf_truefalse</url>
+        <value>true</value>
+        <de>
+            <title>Für Mandant aktiviert</title>
+        </de>
+        <en>
+            <title>Activated</title>
+        </en>
+        <es>
+            <title>Activated</title>
+        </es>
+    </config>
+
+  <config>
+<key>XT_PROTECTED_SHOPS_SHOP_ID</key>
+<type>textfield</type>
+<value></value>
+<de>
+<title>Shop ID</title>
+</de>
+<en>
+<title>Shop ID</title>
+</en>
+<es>
+<title>Shop ID</title>
+</es>
+</config>
+
+    </configuration>
+</xtcommerceplugin>

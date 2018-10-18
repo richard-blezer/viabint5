@@ -1,0 +1,19 @@
+<div>Sie sind hier:</div>
+<ul>
+{foreach key=key name=aussen item=breadcrumb from=$top_navigation}
+	
+	<li class="item-{$key}{if $top_navigation|@count == $key+1} last{/if}">
+		
+		{if $top_navigation|$key == 2}
+			<a class="pathway" href="{$breadcrumb.url}">{$breadcrumb.name|escape:"html"}</a>
+		{else}
+			{if $top_navigation|@count == $key+1}
+			<a class="pathway" href="{$breadcrumb.url}">{$breadcrumb.name|escape:"html"}</a>
+			{else}
+			<a class="pathway" href="{$breadcrumb.url}">{$breadcrumb.name|escape:"html"}</a>
+			{/if}
+		{/if}		
+	</li>
+	
+{/foreach}
+</ul>

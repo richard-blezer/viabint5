@@ -1,0 +1,620 @@
+<h1>{txt key=TEXT_ORDERS}</h1>
+
+<div class="text">
+	<br />
+	<b>{txt key=TEXT_ORDER_ID}:</b> {$order_data.orders_id}&nbsp;&nbsp;({$order_data.date_purchased})
+	<b>{txt key=TEXT_ORDERS_STATUS}:</b> {$order_data.orders_status} &nbsp;&nbsp; 
+	<b>{txt key=TEXT_last_modified}:</b> {$order_data.last_modified}
+	<b>{txt key=TEXT_IP_ADDRESS}:</b> {$order_data.customers_ip}
+	<br />
+	<br />
+</div>
+
+<table width="100%">
+	<thead>
+		<tr>
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_BILLING_ADDRESS}:</th>
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_DELIVERY_ADDRESS}:</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			    <p class="billingbg address">
+				{if $order_data.billing_company} {$order_data.billing_company}<br />{/if}
+				{$order_data.billing_firstname} {$order_data.billing_lastname}<br />
+				{$order_data.billing_street_address}<br />
+				{if $order_data.billing_suburb} {$order_data.billing_suburb}<br />{/if}
+				{$order_data.billing_postcode} {$order_data.billing_city}<br />
+				{$order_data.billing_country}<br />
+				</p>				
+			</td>
+			<td>
+			    <p class="deliverybg address">
+				{if $order_data.delivery_company} {$order_data.delivery_company}<br />{/if}
+				{$order_data.delivery_firstname} {$order_data.delivery_lastname}<br />
+				{$order_data.delivery_street_address}<br />
+				{if $order_data.delivery_suburb} {$order_data.delivery_suburb}<br />{/if}
+				{$order_data.delivery_postcode} {$order_data.delivery_city}<br />
+				{$order_data.delivery_country}<br />
+				</p>			
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<br />
+<br />
+
+<table width="100%" border="0" cellspacing="0" cellpadding="6">
+	<thead>
+		<tr>
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_CUSTOMER_DETAILS}</th>
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_ORDER_INFOS}</th>
+		</tr>
+	</thead>  
+	<tbody>
+		<tr>
+			<td width="50%" class="text">
+				<table width="100%" border="0" cellspacing="0" cellpadding="2">
+					<tbody>
+                		{if $order_customer.customers_dob}
+						<tr>
+				  			<td class="left">{txt key=TEXT_CUSTOMERS_DOB}:</td>
+							<td class="left">{$order_customer.customers_dob} <span {if $order_customer.customers_age < 18}class="warning"{/if}>({$order_customer.customers_age} {txt key=TEXT_YEARS})</span></td>
+							<td width="10%"></td>
+						</tr>
+						{/if}	  				    	  
+						<tr>
+							<td class="left">{txt key=TEXT_customers_email_address}:</td>
+							<td class="left">{$order_data.customers_email_address}</td>
+							<td></td>
+						</tr> 
+						{if $order_data.delivery_phone}
+						<tr>
+							<td class="left">{txt key=TEXT_PHONE}:</td>
+							<td class="left">{$order_data.delivery_phone}</td>
+							<td></td>
+						</tr> 
+						{/if}
+						{if $order_data.customers_cid}
+						<tr>
+							<td class="left">{txt key=TEXT_customers_cid}:</td>
+							<td class="left">{$order_data.customers_cid}</td>
+							<td></td>
+						</tr>
+						{/if}
+						{if $order_data.customers_vat_id}
+						<tr>
+							<td class="left">{txt key=TEXT_customers_vat_id}:</td>
+							<td class="left">{$order_data.customers_vat_id}</td>
+							<td></td>
+						</tr>	  
+						{/if}
+						<tr>
+							<td class="left">{txt key=TEXT_payment_code}:</td>
+							<td class="left">{$order_data.payment_code}</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td class="left">{txt key=TEXT_shipping_code}:</td>
+							<td class="left">{$order_data.shipping_code}</td>
+							<td></td>
+						</tr>	  
+					</tbody>
+				</table>
+			</td>
+
+			<td width="50%" class="text">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tbody>
+						{foreach name=aussen item=info from=$order_data.order_info_options}
+						<tr>
+							<td width="20%" class="left">{$info.text}:</td>
+							<td width="30%" class="left">{$info.value}</td>
+							<td></td>
+						</tr> 
+						{/foreach}
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>	
+
+<br />
+<br />
+
+<table class="a_order" width="100%" border="0" cellspacing="0" cellpadding="6">
+	<thead>
+		<tr>
+			<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_SELECTION}</th>
+			<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_QUANTITY}</th>
+			<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_SHIPPED}</th>
+			{*<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_PAYED}</th>*}
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_PRODUCTS_QUANTITY}</th>
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_PRODUCTS_NAME}</th>
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_PRODUCTS_MODEL}</th>
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_PRODUCTS_SINGLEPRICE}</th>
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_PRODUCTS_DISCOUNT}</th>
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_PRODUCTS_FINALPRICE}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{foreach name=aussen item=data from=$order_products}
+		<tr>
+			<td class="left"><input type="checkbox" name="product_selection[]" value="{$data.orders_products_id}" /></td>
+			<td class="left"><input type="text" name="product_quantity[{$data.orders_products_id}]" style="width:25px;" /></td>
+			<td class="left"><div name="billsafe_shipped[{$data.orders_products_id}]">{$data.billsafe_shipped}</div></td>
+			{*<td class="left"><div name="billsafe_payed[{$data.orders_products_id}]">{$data.billsafe_payed}</div></td>*}
+			<td class="left"><div name="products_quantity[{$data.orders_products_id}]">{$data.products_quantity}</div></td>
+			<td class="left">{$data.products_name}</td>
+			<td class="left">{$data.products_model}</td>
+			<td class="right">{$data.products_price.formated}</td>
+			<td class="right">{if $data.products_discount>0}{$data.products_discount} %{else}0 %{/if}</td>
+			<td class="right">{$data.products_final_price.formated}</td>
+		</tr>
+		{$data.products_information.content_admin}
+		{/foreach}	 
+	</tbody>
+</table>
+
+<table class="a_order" width="100%">
+	<tbody>
+		<tr>
+			<td class="none"></td>
+			<td width="250" class="tdtotal">{txt key=TEXT_PRODUCT_TOTAL}:</td>
+			<td width="150" class="tdtotal">{$order_total.product_total.formated}</td>
+		</tr>
+		{foreach name=aussen item=sub_data from=$order_total_data}
+		<tr>
+			<td class="none"></td>
+			<td width="250" class="tdtotal">{if $sub_data.orders_total_key == 'xt_coupon' || $sub_data.orders_total_key == 'voucher'}<input type="checkbox" name="voucher_selection[]" value="{$sub_data.orders_total_id}" {if $sub_data.orders_total_quantity == 0}disabled="disabled"{/if} />{/if} {$sub_data.orders_total_name}:</td>
+			<td width="150" class="tdtotal">{$sub_data.orders_total_price.formated}</td>
+		</tr>		            
+		{/foreach}
+		{foreach name=aussen item=tax_data from=$order_total.total_tax}
+		<tr>
+			<td class="none"></td>
+			<td width="250" class="tdtotal">{txt key=TEXT_PRODUCT_TAX} {$tax_data.tax_key}%:</td>
+			<td width="150" class="tdtotal">{$tax_data.tax_value.formated}</td>
+		</tr>		            
+		{/foreach}	
+		<tr>
+			<td class="none"></td>
+			<td width="250" class="tdtotal">{txt key=TEXT_TOTAL}:</td>
+			<td width="150" class="tdtotal">{$order_total.total.formated}</td>
+			<input type="hidden" id="order_total_amount_{$order_data.orders_id}" value="{$order_total.total.plain}" />
+		</tr>		            	            
+	</tbody>
+</table>
+<br /><br />
+        <table style="border: 3px solid; border-color:  #329804; background-color: #CFFAAF;" width="100%"><tr><td>
+        <img src="../plugins/vt_billsafe/images/billsafe.jpg" /><br />
+<button id="reportShipment_{$order_data.orders_id}">{txt key=VT_BILLSAFE_SUBMIT_SHIPPING}</button>
+<button id="paymentInstruction_{$order_data.orders_id}">{txt key=VT_BILLSAFE_CREATE_INVOICE}</button>
+<button id="reportReversal_{$order_data.orders_id}">{txt key=VT_BILLSAFE_SUBMIT_REVERSAL}</button>
+<button id="logCouponReversal_{$order_data.orders_id}">{txt key=VT_BILLSAFE_SUBMIT_COUPON_REVERSAL}</button>
+<br /><br />
+{if $billsafe_log.status != 'false'}
+<table class="a_order" width="100%" border="0" cellspacing="0" cellpadding="6">
+	<thead>
+		<tr>
+			<th class="x-panel-header x-unselectable">ID</th>
+			<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_SELECTION}</th>
+			<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_QUANTITY}</th>
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_PRODUCTS_NAME}</th>
+			<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_QUANTITY}</th>
+			<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_LOG_TYPE}</th>
+			<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_LOG_DATE}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{foreach name=aussen item=data from=$billsafe_log}
+		<tr>
+			<td class="left"><div>{$data.log_id}</div></td>
+			<td class="left"><input type="checkbox" name="log_selection[]" value="{$data.log_id}" {if $data.log_type!='shipping' || ($data.log_type=='shipping' && $data.products_quantity <= $data.shipping_retourned)}disabled="disabled"{/if} /></td>
+			<td class="left">{if $data.log_type=='shipping' && $data.products_quantity > $data.shipping_retourned}<input type="text" name="log_input_quantity[{$data.log_id}]" style="width:25px;" />{/if}</td>
+			<td class="left"><div>{if $data.log_type=='retoure'}ID: {/if}{$data.products_name}</div></td>
+			<td class="left"><div name="log_quantity[{$data.log_id}]">{$data.products_quantity}</div></td>
+			<td class="left"><div>{$data.log_text}</div></td>
+			<td class="left"><div>{$data.log_date}</div></td>
+			{if $data.log_type=='shipping'}<input type="hidden" name="shipping_retourned[{$data.log_id}]" value="{$data.shipping_retourned}" />{/if}
+			<input type="hidden" name="log_type[{$data.log_id}]" value="{$data.log_type}" />
+		</tr>
+		{/foreach}	 
+	</tbody>
+</table>
+<br /><br />
+<button id="logRetoure_{$order_data.orders_id}">{txt key=VT_BILLSAFE_SUBMIT_RETOURE}</button>
+<br /><br />
+{/if}
+<table class="a_order" border="0" cellspacing="0" cellpadding="6">
+	<thead>
+		<tr>
+			<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_PAYED_DATE}</th>
+			<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_PAYED_AMOUNT}</th>
+			<th class="x-panel-header x-unselectable"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="left"><input id="payed_date_{$order_data.orders_id}" class="date-picker" style="width:85px; margin-left:10px;" /></td>
+			<td class="left"><input type="text" id="payed_amount_{$order_data.orders_id}" style="width:85px; margin-left:10px;" /></td>
+			<td class="left"><button id="reportDirectPayment_{$order_data.orders_id}">{txt key=VT_BILLSAFE_SUBMIT_DIRECTPAYMENT}</button></td>
+		</tr>
+	</tbody>
+</table>
+<br /><br />
+<table class="a_order" border="0" cellspacing="0" cellpadding="6">
+	<thead>
+		<tr>
+			<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_PAYED_AMOUNT}</th>
+			<th class="x-panel-header x-unselectable">{txt key=VT_BILLSAFE_PAYED_TAX}</th>
+			<th class="x-panel-header x-unselectable"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="left"><input type="text" id="voucher_amount_{$order_data.orders_id}" style="width:85px; margin-left:10px;" /></td>
+			<td class="left">{html_options id="voucher_tax_"|cat:$order_data.orders_id name=taxes options=$taxes selected=0}</td>
+			<td class="left"><button id="sendVoucher_{$order_data.orders_id}">{txt key=VT_BILLSAFE_SUBMIT_COUPON}</button></td>
+		</tr>
+	</tbody>
+</table>
+<br /><br />
+<a href="https://client.billsafe.de/" target="_blank">BILLSAFE Händlerportal</a>
+<br /><br />
+        </td></tr></table>
+{literal}
+<style>
+   .dp-choose-date{
+       background-image: url(images/icons/calendar.png)!important;
+   }
+</style>
+<script>
+	// datepicker for calendar
+	$("input.date-picker").datePicker(); 
+
+	// button to report shipped articles
+	$("#reportShipment_{/literal}{$order_data.orders_id}{literal}").click(function(){
+		products = new Array();
+		prod_quantity = new Array();
+		error = false;
+
+		$("input[name='product_selection[]']:checked").each(function(i){
+			billsafe_shipped = parseFloat($("div[name='billsafe_shipped["+this.value+"]']").html());
+			input_shipped = parseFloat($("input[name='product_quantity["+this.value+"]']").val());
+			products_quantity = parseFloat($("div[name='products_quantity["+this.value+"]']").html());
+
+			if(isNaN(input_shipped)) {
+				if(products_quantity-billsafe_shipped==0) {
+					error = true;
+				}
+			} else {
+				if(billsafe_shipped+input_shipped>products_quantity) {
+					error = true;
+				}
+			}
+			
+			products[i] = this.value;
+			prod_quantity[i] = this.value+'_'+$("input[name='product_quantity["+this.value+"]']").val();
+		});
+
+		if(error == true) {
+			alert("{/literal}{$smarty.const.VT_BILLSAFE_ERROR_QUANTITY}{literal}");
+		} else {
+			$.post (
+				'adminHandler.php?plugin=vt_billsafe&load_section=SoapApi&pg=reportShipment', 
+				{'products[]':products, 'orders_id':'{/literal}{$order_data.orders_id}{literal}', 'products_quantity[]': prod_quantity}, 
+				function(data){
+					if(data.ack == "OK") {
+						alert("{/literal}{$smarty.const.VT_BILLSAFE_ACTION_COMPLETE}{literal}");
+
+						contentTabs.getActiveTab().load({
+    						url: "{/literal}{php} echo $_SERVER['REQUEST_URI']; {/php}{literal}",
+					    	text: "Loading...",
+						});
+					} else if(data.ack == "ERROR") {
+						if(is_array(data.errorList)) {
+							for (var i=0; i < data.errorList.length; i++)
+								alert(data.errorList[i].message);
+						} else {
+							alert(data.errorList.message);
+						}
+					}
+				}, 
+				"json"
+			);
+		}
+	});
+
+	$("#paymentInstruction_{/literal}{$order_data.orders_id}{literal}").mouseover(function(){
+		var products = '';
+		var prod_quantity = '';
+		var error = false;
+		$(this).attr('error', 'false');
+
+		$("input[name='product_selection[]']:checked").each(function(i){
+			billsafe_payed = parseFloat($("div[name='billsafe_payed["+this.value+"]']").html());
+			input_payed = parseFloat($("input[name='product_quantity["+this.value+"]']").val());
+			products_quantity = parseFloat($("div[name='products_quantity["+this.value+"]']").html());
+
+			if(isNaN(input_payed)) {
+				if(products_quantity-billsafe_payed==0) {
+					error=true;
+				}
+			} else {
+				if(billsafe_payed+input_payed>products_quantity) {
+					error=true;
+				}
+			}
+
+			products += this.value+'_';
+			prod_quantity += this.value+'_'+$("input[name='product_quantity["+this.value+"]']").val()+'|';
+		});
+
+		var orders_id = {/literal}{$order_data.orders_id}{literal};
+
+		if(error==true) {
+			$(this).attr('error', 'true');
+		}
+
+		$(this).attr('href', 'adminHandler.php?plugin=vt_billsafe&load_section=SoapApi&pg=paymentInstruction&orders_id='+orders_id+'&products='+products+'&products_quantity='+prod_quantity);
+	}).click(function(){
+		if($(this).attr("error") == 'true') {
+			alert("{/literal}{$smarty.const.VT_BILLSAFE_ERROR_QUANTITY}{literal}");
+		} else {
+			window.open ($(this).attr("href"), "activate_payment_win");
+
+			setTimeout("tabReload()", 2000);
+		}
+	});
+
+	function tabReload() {
+		contentTabs.getActiveTab().load({
+			url: "{/literal}{php} echo $_SERVER['REQUEST_URI']; {/php}{literal}",
+	    	text: "Loading...",
+		});
+	}
+
+	$("#reportReversal_{/literal}{$order_data.orders_id}{literal}").click(function(){
+		products = new Array();
+		prod_quantity = new Array();
+		error = false;
+		error2 = true;
+
+		$("input[name='product_selection[]']:checked").each(function(i){
+			billsafe_shipped = parseFloat($("div[name='billsafe_shipped["+this.value+"]']").html());
+			input_reversal = parseFloat($("input[name='product_quantity["+this.value+"]']").val());
+			products_quantity = parseFloat($("div[name='products_quantity["+this.value+"]']").html());
+			error2 = false;
+
+			if(isNaN(input_reversal)) {
+				if(products_quantity-billsafe_shipped==0) {
+					error = true;
+				}
+			} else {
+				if(billsafe_shipped+input_reversal>products_quantity) {
+					error = true;
+				}
+			}
+			
+			products[i] = this.value;
+			prod_quantity[i] = this.value+'_'+$("input[name='product_quantity["+this.value+"]']").val();
+		});
+
+		if(error == true) {
+			alert("{/literal}{$smarty.const.VT_BILLSAFE_ERROR_QUANTITY}{literal}");
+		} else if(error2 == true) {
+			alert("{/literal}{$smarty.const.VT_BILLSAFE_ERROR_NO_PRODUCT_SELECTED}{literal}");
+		} else {
+			$.post (
+				'adminHandler.php?plugin=vt_billsafe&load_section=SoapApi&pg=reportReversal', 
+				{'products[]':products, 'orders_id':'{/literal}{$order_data.orders_id}{literal}', 'products_quantity[]': prod_quantity}, 
+				function(data){
+					if(data.ack == "OK") {
+						alert("{/literal}{$smarty.const.VT_BILLSAFE_ACTION_COMPLETE}{literal}");
+
+						contentTabs.getActiveTab().load({
+    						url: "{/literal}{php} echo $_SERVER['REQUEST_URI']; {/php}{literal}",
+					    	text: "Loading...",
+						});
+					} else if(data.ack == "ERROR") {
+						if(is_array(data.errorList)) {
+							for (var i=0; i < data.errorList.length; i++)
+								alert(data.errorList[i].message);
+						} else {
+							alert(data.errorList.message);
+						}
+					}
+				}, 
+				"json"
+			);
+		}
+	});
+
+	$("#reportDirectPayment_{/literal}{$order_data.orders_id}{literal}").click(function(){
+		$.post (
+			'adminHandler.php?plugin=vt_billsafe&load_section=SoapApi&pg=reportDirectPayment', 
+			{'orders_id':{/literal}{$order_data.orders_id}{literal}, 'payed_date':document.getElementById('payed_date_{/literal}{$order_data.orders_id}{literal}').value, 'payed_amount':document.getElementById('payed_amount_{/literal}{$order_data.orders_id}{literal}').value, 'currency_code':'{/literal}{$order_data.currency_code}{literal}'}, 
+
+			function(data){
+				if(data.ack == "OK") {
+					alert("{/literal}{$smarty.const.VT_BILLSAFE_ACTION_COMPLETE}{literal}");
+
+					contentTabs.getActiveTab().load({
+    					url: "{/literal}{php} echo $_SERVER['REQUEST_URI']; {/php}{literal}",
+					    text: "Loading...",
+					});
+				} else if(data.ack == "ERROR") {
+					if(is_array(data.errorList)) {
+							for (var i=0; i < data.errorList.length; i++)
+								alert(data.errorList[i].message);
+						} else {
+							alert(data.errorList.message);
+						}
+				}
+			}, 
+			"json"
+		);
+	});
+
+	$("#sendVoucher_{/literal}{$order_data.orders_id}{literal}").click(function(){
+		order_amount = parseFloat(document.getElementById('order_total_amount_{/literal}{$order_data.orders_id}{literal}').value);
+		voucher_amount = parseFloat(document.getElementById('voucher_amount_{/literal}{$order_data.orders_id}{literal}').value);
+		error = false;
+
+		if(order_amount<voucher_amount) {
+			error = true;
+		}
+
+		if(error == true || voucher_amount == 0 || isNaN(voucher_amount)) {
+			alert("{/literal}{$smarty.const.VT_BILLSAFE_ERROR_AMOUNT}{literal}");
+		} else {
+			$.post (
+				'adminHandler.php?plugin=vt_billsafe&load_section=SoapApi&pg=sendVoucher', 
+				{'orders_id':{/literal}{$order_data.orders_id}{literal}, 'voucher_amount':document.getElementById('voucher_amount_{/literal}{$order_data.orders_id}{literal}').value, 'voucher_tax':document.getElementById('voucher_tax_{/literal}{$order_data.orders_id}{literal}').value, 'currency_code':'{/literal}{$order_data.currency_code}{literal}'}, 
+
+				function(data){
+					if(data.ack == "OK") {
+						alert("{/literal}{$smarty.const.VT_BILLSAFE_ACTION_COMPLETE}{literal}");
+
+						contentTabs.getActiveTab().load({
+    						url: "{/literal}{php} echo $_SERVER['REQUEST_URI']; {/php}{literal}",
+						    text: "Loading...",
+						});
+					} else if(data.ack == "ERROR") {
+						if(is_array(data.errorList)) {
+							for (var i=0; i < data.errorList.length; i++)
+								alert(data.errorList[i].message);
+						} else {
+							alert(data.errorList.message);
+						}
+					}
+				}, 
+				"json"
+			);
+		}
+	});
+
+	// report retoured articles
+	$("#logRetoure_{/literal}{$order_data.orders_id}{literal}").click(function(){
+		products = new Array();
+		prod_quantity = new Array();
+		error = false;
+		error2 = false;
+		error3=true;
+
+		$("input[name='log_selection[]']:checked").each(function(i){
+			error3 = false;
+
+			if($("input[name='log_type["+this.value+"]']").val()!='shipping') {
+				error2 = true;
+			} else {
+				fake_qty = 0;
+				input_quantity = parseFloat($("input[name='log_input_quantity["+this.value+"]']").val());
+				shipping_retourned = parseFloat($("input[name='shipping_retourned["+this.value+"]']").val());
+				log_quantity = parseFloat($("div[name='log_quantity["+this.value+"]']").html());
+
+				if(isNaN(input_quantity)) {
+					if(log_quantity-shipping_retourned==0) {
+						error = true;
+					}
+				} else {
+					if(shipping_retourned+input_quantity>log_quantity) {
+						error = true;
+					}
+				}
+
+				products[i] = this.value;
+
+				if(isNaN(input_quantity)) {
+					fake_qty = log_quantity-shipping_retourned;
+					prod_quantity[i] = this.value+'_'+fake_qty;
+				} else {
+					prod_quantity[i] = this.value+'_'+$("input[name='log_input_quantity["+this.value+"]']").val();
+				}
+			}
+		});
+
+		if(error == true) {
+			alert("{/literal}{$smarty.const.VT_BILLSAFE_ERROR_QUANTITY}{literal}");
+		} else if(error2==true) {
+			alert("{/literal}{$smarty.const.VT_BILLSAFE_ERROR_TYPE}{literal}");
+		} else if(error3==true) {
+			alert("{/literal}{$smarty.const.VT_BILLSAFE_ERROR_NO_PRODUCT_SELECTED}{literal}");
+		} else {
+			$.post (
+				'adminHandler.php?plugin=vt_billsafe&load_section=SoapApi&pg=logReportRetoure', 
+				{'products[]':products, 'orders_id':'{/literal}{$order_data.orders_id}{literal}', 'products_quantity[]': prod_quantity}, 
+				function(data){
+					if(data.ack == "OK") {
+						alert("{/literal}{$smarty.const.VT_BILLSAFE_ACTION_COMPLETE}{literal}");
+
+						contentTabs.getActiveTab().load({
+    						url: "{/literal}{php} echo $_SERVER['REQUEST_URI']; {/php}{literal}",
+					    	text: "Loading...",
+						});
+					} else if(data.ack == "ERROR") {
+						if(is_array(data.errorList)) {
+							for (var i=0; i < data.errorList.length; i++)
+								alert(data.errorList[i].message);
+						} else {
+							alert(data.errorList.message);
+						}
+					}
+				}, 
+				"json"
+			);
+		}
+	});
+
+	$("#logCouponReversal_{/literal}{$order_data.orders_id}{literal}").click(function(){
+		products = new Array();
+		prod_quantity = new Array();
+		error = true;
+
+		$("input[name='voucher_selection[]']:checked").each(function(i){
+			error = false;
+
+			products[i] = this.value;
+		});
+
+		if(error == true) {
+			alert("{/literal}{$smarty.const.VT_BILLSAFE_ERROR_NO_COUPON_SELECTED}{literal}");
+		} else {
+			$.post (
+				'adminHandler.php?plugin=vt_billsafe&load_section=SoapApi&pg=reversalVoucher', 
+				{'products[]':products, 'orders_id':'{/literal}{$order_data.orders_id}{literal}', 'products_quantity[]': prod_quantity}, 
+				function(data){
+					if(data.ack == "OK") {
+						alert("{/literal}{$smarty.const.VT_BILLSAFE_ACTION_COMPLETE}{literal}");
+
+						contentTabs.getActiveTab().load({
+   							url: "{/literal}{php} echo $_SERVER['REQUEST_URI']; {/php}{literal}",
+					    	text: "Loading...",
+						});
+					} else if(data.ack == "ERROR") {
+						if(is_array(data.errorList)) {
+							for (var i=0; i < data.errorList.length; i++)
+								alert(data.errorList[i].message);
+						} else {
+							alert(data.errorList.message);
+						}
+					}
+				}, 
+				"json"
+			);
+		}
+	});
+
+	function is_array(value) {
+		if (typeof value === 'object' && value && value instanceof Array) {
+			return true;
+		}
+
+		return false;
+	}
+</script>
+{/literal}

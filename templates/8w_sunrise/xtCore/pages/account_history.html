@@ -1,0 +1,22 @@
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+
+<div class="left-side {if $isMobile}no-right{/if}">
+	<h1>{txt key=TEXT_PAGE_TITLE_ACCOUNT_HISTORY}</h1>
+	{include file="$selected_template/xtCore/pages/order_history_block.html"}
+	<div id="NAVIGATION">
+		<div class="COUNT">{$count}</div>
+		<div class="PAGES">{$pages}</div>
+	</div>
+	<div style="clear:both"></div>
+	<p class="prev"><a class="return-button" href="{link page='customer' conn=SSL}"><span>{txt key=BUTTON_BACK}</span></a></p>
+</div>
+{if !$isMobile}
+<div class="right-side boxes">
+  {box name=xt_viabiona_cms type=user tpl=box_our_service.html}
+  {box name=xt_viabiona_cms type=user tpl=box_payment_methods.html}
+</div>
+{/if}
+<div class="clearfix"></div>

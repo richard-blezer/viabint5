@@ -1,0 +1,42 @@
+{$javascript}<div id="popupWarenkorbBackground"></div>
+<div  id="popupWarenkorb">
+	
+    <div  >
+     	
+       <h3 class="Warenkorbinfo">Produkt wurde Ihrem Warenkorb hinzugef&uuml;gt</h3>
+	 
+{php} $row = 0; {/php}	 
+{foreach name=aussen item=data from=$cart_data} 
+ 
+{if $cart_content.products_id == $data.products_id}
+
+ 
+<div class="artikelbox">
+		
+			<div class="bild">
+{img img=$data.products_image type=m_popup class=productImageBorder width=100 alt=$data.products_name}</div>
+			
+			<strong class="produktname">{$data.products_name}</strong>
+			
+			<span class="artikelnummer">{$data.products_model}</span>
+			
+			<strong class="artikelpreis">{$data.products_price.formated}</strong>
+			
+			<span class="artikelmenge">Anzahl:  {$data.products_quantity}</span>
+		</div>  
+	
+{/if}
+ 
+  {/foreach}
+
+
+	 
+
+		<div class="clickdiv"><a href="#" class="toProduct">Weiter einkaufen</a></div>
+		<!--<div class="clickdiv" ><a href="{link page='checkout' paction='shipping' conn=SSL}">Zur Kasse</a></div>-->
+		<div class="clickdiv2" ><a href="{link page='cart' conn=SSL}">Warenkorb &amp; Kasse</a></div>
+	 
+       <div style="clear: both;"></div>
+ 
+   </div>
+</div> 

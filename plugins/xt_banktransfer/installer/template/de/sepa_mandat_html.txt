@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+            {literal}
+                body { font-family: Helvetica; font-size: 12px; color: #434343; }
+                #wrapper{ width: 100%; /* height: 500px; */ margin: 1em; padding: 2em 0; /*border: 1px solid #000;*/ }
+                .heading, .dates, .bankdetails .total_table{ clear: both; display: block; height: auto; min-height: 100px; padding: 2em 0.5em 0.5em 0.5em; width: auto; }
+                .table-item { clear: both; display: block; height: auto; width: auto; }
+                .total{width:70px;text-align:right;}
+                .border_bottom{border-bottom: 0.1em solid #434343;}
+		div.data { display: block; margin: 0.5em; }
+                ul { list-style: none inside none; margin: 0; padding: 0;}
+                li { margin: 0; padding: 0; line-height: 1.4em; font-size: 1.1em; }
+		li .name{width:100px;text-align: left;}
+		li .value{width:70px;text-align: right;}
+                li strong{ font-size: 1.3em; line-height: 2em; color: #000000; }
+                .left { float: left; }
+                .right { float: right;}
+                .alignr {text-align: right;}
+                table{ width: 100%; padding: 0.5em; margin-top: 2em; border-collapse: collapse; margin-bottom: 2em;}
+                thead, tfoot { font-weight: bold; font-size: 1.3em; line-height: 1.5em; background: #F9F9F9; border-bottom: 2px solid #000000; color: #000000; }
+                #footer { position: fixed; bottom: 0; width: 100%; height: 5em; }
+                #footer tr td { padding: 0; line-height: 1.5em;}
+                #footer tr.last td { border-bottom: none; }
+		.clear{clear:both;}
+            {/literal}
+        </style>
+    </head>
+    <body>
+        <!------------------------------------------------- START FOOTER ------------------------------------------------->
+        <div id="footer">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>{$data.shopUrl}</td>
+                        <td class="alignr">Issued using <a href="http://www.xt-commerce.com">xt:Commerce</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!------------------------------------------------- END FOOTER ------------------------------------------------->
+        <div id="wrapper">
+<h1>SEPA- Lastschrift - Mandat (Ermächtigung)</h1>
+<p>Gläubiger-Identifikationsnummer: {$data.merchant_id}</p>
+<p>Mandatsrefernz: {$data.orders_id}</p>
+<h1>Zahlungsempfänger</h1>
+<p>
+{$data.company_name}</br>
+{$data.company_address}
+</p>
+<hr>
+<p>Ich ermächtige/ Wir ermächtigen {$data.company_name} Zahlungen von meinem/
+unserem Konto mittels SEPA - Lastschrift einzuziehen. Zugleich weise ich mein/ unser
+Kreditinstitut an, die von der {$data.company_name} auf mein/ unser Konto gezogenen
+SEPA – Lastschriften einzulösen.<br /><br />
+Ich kann/ Wir können innerhalb von acht Wochen, beginnend mit dem Belastungsdatum, die
+Erstattung des belasteten Betrages verlangen. Es gelten dabei die mit meinem/ unserem
+Kreditinstitut vereinbarten Bedingungen.</p>
+<h1>Zahlungspflichtiger</h1>
+<table border="0" cellpadding="15" cellspacing="15">
+<tr>
+<td width="80">Name:</td>
+<td class="border_bottom">{$data.name}</td>
+</tr>
+<tr>
+<td width="80">Adresse:</td>
+<td class="border_bottom">{$data.adresse}</td>
+</tr>
+<tr>
+<td width="80">IBAN:</td>
+<td class="border_bottom">{$data.iban}</td>
+</tr>
+<tr>
+<td width="80">BIC:</td>
+<td class="border_bottom">{$data.bic}</td>
+</tr>
+<tr>
+<td colspan="2"></td>
+</tr>
+<tr>
+<td width="80"></td>
+<td class="border_bottom"></td>
+</tr>
+<tr>
+<td width="80"></td>
+<td>Datum, Ort und Unterschrift</td>
+</tr>
+</table>
+
+            <div styel="clear: both;"></div>
+        </div>
+    </body>
+</html>

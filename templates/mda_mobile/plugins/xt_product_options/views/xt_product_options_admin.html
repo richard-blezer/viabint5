@@ -1,0 +1,32 @@
+{if is_array($options)}
+
+{cycle name=row values="contentrow1,contentrow2" assign=rowclass print=false}
+
+{foreach name=aussen item=info from=$options}
+
+	<tr class="{$rowclass}">
+		<td class="right" valign="top"></td>
+		<td class="left" valign="top">
+		{if $group_name != $info.option_group_name}
+			<h3>
+				{$info.option_group_name}:
+			</h3>
+		{/if}
+							
+		</td>
+		<td class="right" valign="top"></td>
+		<td class="right" valign="top"></td>
+		<td class="right" valign="top"></td>
+		<td class="right" valign="top"></td>
+	</tr>
+
+	{foreach name=aussen item=idata from=$info.content}
+	<tr class="{$rowclass}">
+		<td class="right" valign="top"></td>
+		{$idata}
+		<td class="right" valign="top"></td>
+		<td class="right" valign="top"></td>
+	</tr>
+	{/foreach}
+{/foreach}
+{/if}

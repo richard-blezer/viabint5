@@ -1,0 +1,60 @@
+
+    <div data-role="header"> 
+        <h1>{txt key=text_search}</h1>
+    </div>
+
+    {$message}
+
+    <div class="pSearchContent" data-role="content">
+        
+        {form type=form name=search action='dynamic' link_params=getParams method=get}
+            {form type=hidden name=page value=search}
+            
+            {hook key=search_tpl}
+            
+            <div data-role="header" data-theme="c">
+                <h3>{txt key=text_search_keywords}</h3>
+            </div>
+            
+            <ul data-role="listview" data-theme="c">
+                <li><input type="search" name="keywords" value="" /></li>
+            </ul>
+            <br />
+            
+            <div data-role="header" data-theme="c">
+                <h3>Filter</h3>
+            </div>
+
+            <div data-role="collapsible-set">
+                {if $cat_data}
+                <div data-role="collapsible" data-theme="c">
+                    <h3>{txt key=text_search_categories}</h3>
+                    <div aria-hidden="true">
+                        {form type=select name=cat default=$default_cat value=$cat_data}
+                        <label><input type="checkbox" name="subkat" {if $checked_subcat eq 'checked'}checked="checked"{/if} /> {txt key=text_search_subcategories} </label>
+                    </div>
+                </div>
+                {/if}
+                {if $mnf_data|@count gt 1}
+                <div data-role="collapsible" data-theme="c">
+                    <h3>{txt key=text_search_mnf}</h3>
+                    <div aria-hidden="true">
+                        {form type=select name=mnf default=$default_mnf value=$mnf_data}
+
+                    </div>
+                </div>
+                {/if}
+                <div data-role="collapsible" data-theme="c">
+                    <h3>{txt key=text_search_desc}</h3>
+                    <div aria-hidden="true">
+                        <div data-role="controlgroup">
+                        <label><input type="checkbox" name="sdesc" {if $checked_sdesc eq 'checked'}checked="checked"{/if} /> {txt key=text_search_sdesc} </label>
+                        <label><input type="checkbox" name="desc" {if $checked_desc eq 'checked'}checked="checked"{/if} /> {txt key=text_search_desc} </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <button type='submit'>{$smarty.const.BUTTON_SEARCH}</button>
+        {form type=formend}
+    </div>

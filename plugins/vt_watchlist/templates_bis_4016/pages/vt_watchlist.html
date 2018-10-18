@@ -1,0 +1,91 @@
+<h1>{txt key=TEXT_VT_WATCHLIST_TOP}</h1>
+
+<!-- Watchlist Settings START-->
+{if $vt_watchlist_settings}
+{form type=form name=settings action='dynamic' link_params=getParams method=post}
+{form type=hidden name=action value=vt_watchlist_save_settings}
+
+<table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="6">
+    <tr class="headerrow">
+        <td class="left">{txt key=TEXT_VT_WATCHLIST_SETTINGS}</td>
+        <td class="right"></td>
+    </tr>
+    {foreach name=aussen item=w_settings from=$vt_watchlist_settings}
+    <tr class="{cycle values="contentrow1,contentrow2"}">
+  	<td class="left">{$w_settings.field} {$w_settings.text}</td>
+   	<td class="right"></td>
+    </tr>
+    {/foreach}
+</table>
+<div  class="float_right"><p>{button text=$smarty.const.BUTTON_VT_WATCHLIST_SAVE_SETTINGS file='button_vt_watchlist_save_settings.gif' type='form' btn_template='tpl_button_2.gif' space_left='25'}</p></div>
+<div class="clearBoth"></div>
+<br>
+<br>
+<br>
+<br>
+
+
+{form type=formend}
+{/if}
+<!-- Watchlist Settings ENDE-->
+
+
+
+<!-- Watchlist Groups START -->
+<table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="6">
+    <tr class="headerrow">
+        <td class="left">
+            {txt key=TEXT_VT_WATCHLIST_GROUPS} {if $show_edit_link == true} ({txt key=TEXT_VT_WATCHLIST_EDIT_GROUPS}) {/if}
+        </td>
+        <td class="right"></td>
+    </tr>
+    <tr class="{cycle values="contentrow1,contentrow2"}">
+  	<td class="left">
+            <a href="{link page='vt_watchlist' params_exclude='gID' conn='SSL'}">{txt key=TEXT_VT_ALL_GROUPS}</a>
+   	</td>
+   	<td class="right"></td>
+    </tr>
+    {foreach name=aussen item=g_data from=$vt_watchlist_groups}
+    {if $g_data.id}
+    <tr class="{cycle values="contentrow1,contentrow2"}">
+        <td class="left">
+            <a class="{if $g_data.aktiv}wl_active{else}wl_inactiv{/if}" href="{link page='vt_watchlist' params='gID' params_value=$g_data.id params_exclude='gID' conn='SSL'}">{if $g_data.id}{$g_data.text}{else}{txt key=TEXT_VT_WATCHLIST_NOGROUP}{/if}</a> ({$g_data.count})
+        </td>
+        <td class="right">
+            <a class="thickbox" href="{link page='vt_watchlist_edit_group_popup' params='action=edit_vt_watchlist&vt_gID' params_value=$g_data.id params_exclude='gID' conn='SSL'}">{img img=page_edit.png type=mi class=productImageBorder}</a>
+            {if $g_data.count == 0}&nbsp; <a href="{link page='vt_watchlist' params='action=delete_vt_watchlist_group&vt_gID' params_value=$g_data.id params_exclude='gID' conn='SSL'}">{img img=page_delete.png type=mi class=productImageBorder}</a>{/if}
+        </td>
+    </tr>
+    {/if}
+    {/foreach}
+</table>
+<div class="clearBoth"></div>
+<br />
+<!-- Watchlist Groups ENDE-->
+
+
+{$message}
+
+
+
+<!-- Watchlist Products START -->
+
+{if $show_vt_watchlist_content == true}
+    {form type=form name=product action='dynamic' link_params=getParams method=post}
+    {form type=hidden name=action value=vt_watchlist_multi_add_product}
+
+    {foreach name=aussadassen item=groupproducts from=$vt_watchlist_data}
+        {$groupproducts}
+    {/foreach}
+
+    <div class="float_right">
+        <p>
+            {button text=$smarty.const.BUTTON_VT_WATCHLIST_SAVE_PRODUCTS file='button_vt_watchlist_save_products.gif' type='form' btn_template='tpl_button_2.gif' space_left='25' params='name="update_vt_watchlist"'}
+            {button text=$smarty.const.BUTTON_MULTI_ADD_VT_CART file='button_vt_multi_in_cart.gif' type='form' btn_template='tpl_button_2.gif' space_left='25'}
+        </p>
+    </div>
+
+    {form type=formend}
+{/if}
+
+<!-- Watchlist Products ENDE -->

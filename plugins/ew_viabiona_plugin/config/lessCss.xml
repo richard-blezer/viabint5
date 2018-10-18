@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf8"?>
+<less>
+    <config>
+        <parseLess>false</parseLess>
+        <useLessCache>true</useLessCache>
+        <compressCss>false</compressCss>
+        <parsePluginSettings>false</parsePluginSettings>
+        <memoryLimitInMegabyte>256</memoryLimitInMegabyte>
+        <maxExecutionTimeInSeconds>300</maxExecutionTimeInSeconds>
+    </config>
+    <files>
+        <path>
+            <absoluteServerPath>EW_VIABIONA_PLUGIN_ROOT_DIR/assets/init.less</absoluteServerPath>
+            <relativePathFromOutputFile>../EW_VIABIONA_PLUGIN_RELATIVE_DIR/assets/</relativePathFromOutputFile>
+        </path>
+        <path>
+            <absoluteServerPath>EW_VIABIONA_PLUGIN_ROOT_DIR/assets/components/bootstrap/less/bootstrap.less</absoluteServerPath>
+            <relativePathFromOutputFile>../EW_VIABIONA_PLUGIN_RELATIVE_DIR/assets/components/bootstrap/less/</relativePathFromOutputFile>
+        </path>
+        <path>
+            <absoluteServerPath>EW_VIABIONA_PLUGIN_ROOT_DIR/assets/components/animate-me.less/animate-me.dev.less</absoluteServerPath>
+            <relativePathFromOutputFile>../EW_VIABIONA_PLUGIN_RELATIVE_DIR/assets/components/animate-me.less/</relativePathFromOutputFile>
+        </path>
+        <path>
+            <absoluteServerPath>EW_VIABIONA_TEMPLATE_ROOT_DIR/css/helper.less</absoluteServerPath>
+            <relativePathFromOutputFile>../EW_VIABIONA_TEMPLATE_RELATIVE_DIR/css/</relativePathFromOutputFile>
+        </path>
+        <path>
+            <absoluteServerPath>EW_VIABIONA_TEMPLATE_ROOT_DIR/css/template.less</absoluteServerPath>
+            <relativePathFromOutputFile>../EW_VIABIONA_TEMPLATE_RELATIVE_DIR/css/</relativePathFromOutputFile>
+        </path>
+    </files>
+</less>

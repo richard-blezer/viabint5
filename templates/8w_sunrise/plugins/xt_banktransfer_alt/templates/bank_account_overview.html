@@ -1,0 +1,29 @@
+<h1>{txt key=TEXT_XT_BANKTRANSFER_ACCOUNTS}</h1>{$message}
+<br />
+<br />
+{if $account_count >0}
+<div class="highlightbox">
+{foreach name=aussen item=account from=$account_data.data}
+    <div class="box">
+        <p>
+<strong>
+{$account.banktransfer_owner} <br />
+{$account.banktransfer_bank_name} <br />
+</strong>
+{$account.banktransfer_iban} <br />
+{$account.banktransfer_bic} <br />
+</p>
+        <p class="right bold">
+            <span><a href="{link page='bank_account' paction=edit_account params=acID params_value=$account.account_id conn=SSL}">{css_button text=$smarty.const.BUTTON_EDIT}</a></span>
+            <span><a href="{link page='bank_account' paction=delete_account params=acID params_value=$account.account_id conn=SSL}">{css_button text=$smarty.const.BUTTON_DELETE}</a></span>
+        </p>
+        </div>
+{/foreach}
+</div>
+<div id="NAVIGATION">
+  <div class="COUNT">{$count}</div>
+  <div class="PAGES">{$pages}</div>
+</div>
+{/if}
+<div style="clear:both"></div>
+<p><a class="button float-left" href="{link page='bank_account' paction=edit_account conn=SSL}">{txt key=BUTTON_ADD_ACCOUNT}</a></p>

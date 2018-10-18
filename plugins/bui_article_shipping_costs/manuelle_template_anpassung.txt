@@ -1,0 +1,9 @@
+/templates/<Ihr Template>/xtCore/pages/product/product.html
+
+<p class="taxandshippinginfo">{$products_tax_info.tax_desc}
+	{if $products_shipping_link && $products_shipping_costs_temp==''}
+		<a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>
+	{else}
+		{hook key=product_info_tpl_shipping_link}
+	{/if}
+</p>

@@ -1,0 +1,102 @@
+<h2>{txt key=TEXT_EDIT_ADDRESS}</h2>
+
+{if $adType eq 'shipping'}
+	<a href="{link page='checkout' paction=shipping conn=SSL}" data-role="button" data-icon="back">{txt key=BUTTON_BACK}</a>
+{/if}
+{if $adType eq 'payment'}
+	<a href="{link page='checkout' paction=payment conn=SSL}" data-role="button" data-icon="back">{txt key=BUTTON_BACK}</a>
+{/if}
+{if !$adType}
+	<a href="{link page='customer' paction=address_overview conn=SSL}" data-role="button" data-icon="back">{txt key=BUTTON_BACK}</a>
+{/if}
+
+{form type=form name=edit_address action='dynamic' link_params='page_action=edit_address' method=post conn=SSL}
+{form type=hidden name=action value=edit_address}
+
+{if $address_book_id}
+	{form type=hidden name=address_book_id value=$address_book_id}
+{/if}
+
+{$message}
+
+<div data-role="fieldcontain">
+	<h3>{txt key=TEXT_PERSONAL}</h3>
+
+	{if $show_gender eq 1}
+		<label for="customers_gender">{txt key=TEXT_GENDER} *</label>
+		{form type=select id=customers_gender name=customers_gender value=$gender_data default=$customers_gender}<br/>
+	{/if}
+
+	{if $show_company eq 1}
+		<label for="customers_company">{txt key=TEXT_COMPANY_NAME}</label>
+		{form type=text id=customers_company name=customers_company value=$customers_company}<br/>
+				
+		<label for="customers_company_2">{txt key=TEXT_COMPANY_NAME_2}</label>
+		{form type=text id=customers_company_2 name=customers_company_2 value=$customers_company_2}<br/>
+				
+		<label for="customers_company_3">{txt key=TEXT_COMPANY_NAME_3}</label>
+		{form type=text id=customers_company_3 name=customers_company_3 value=$customers_company_3}<br/>
+	{/if}
+	
+	<label for="customers_firstname">{txt key=TEXT_FIRSTNAME} *</label>
+	{form type=text id=customers_firstname name=customers_firstname value=$customers_firstname}<br/>
+			
+	<label for="customers_lastname">{txt key=TEXT_LASTNAME} *</label>
+	{form type=text id=customers_lastname name=customers_lastname value=$customers_lastname}<br/>
+			
+	{if $show_birthdate eq 1}
+	<label for="customers_dob">{txt key=TEXT_BIRTHDATE} *</label>
+	{form type=text id=customers_dob name=customers_dob value=$customers_dob}
+	<p><small>{txt key=TEXT_BIRTHDATE_INFO}</small></p>
+	{/if}
+</div>
+
+<div data-role="fieldcontain">
+	<h3>{txt key=TEXT_ADDRESS}</h3>
+	
+	<label for="customers_street_address">{txt key=TEXT_STREET} *</label>
+	{form type=text id=customers_street_address name=customers_street_address value=$customers_street_address}<br/>
+			
+	{if $show_suburb eq 1}
+	<label for="customers_suburb">{txt key=TEXT_SUBURB}</label>
+	{form type=text id=customers_suburb name=customers_suburb value=$customers_suburb}<br/>
+	{/if}
+			
+	<label for="customers_postcode">{txt key=TEXT_CODE} *</label>
+	{form type=text id=customers_postcode name=customers_postcode value=$customers_postcode}<br/>
+		
+	<label for="customers_city">{txt key=TEXT_CITY} *</label>
+	{form type=text id=customers_city name=customers_city value=$customers_city}<br/>
+			
+	<label for="customers_country_code">{txt key=TEXT_COUNTRY} *</label>
+	{form type=select id=customers_country_code name=customers_country_code value=$country_data default=$selected_country}
+</div>
+
+
+<div data-role="fieldcontain">
+	<h3>{txt key=TEXT_CONTACT}</h3>
+	
+	<label for="customers_phone">{txt key=TEXT_PHONE} </label>
+	{form type=text id=customers_phone name=customers_phone value=$customers_phone}<br/>
+			
+	<label for="customers_fax">{txt key=TEXT_FAX} </label>
+	{form type=text id=customers_fax name=customers_fax value=$customers_fax}  
+</div>
+
+{if $adType}
+	{form type=hidden name=address_class value=$adType}
+	{form type=hidden name=adType value=$adType}
+{else}
+
+<div data-role="fieldcontain">
+	<h3>{txt key=TEXT_ADDRESS_TYPE}</h3>
+	
+	<label for="address_class">{txt key=TEXT_ADDRESS_TYPE} *</label>
+	{form type=select id=address_class name=address_class value=$address_type default=$address_class}
+	{form type=hidden name=old_address_class value=$old_address_class}
+</div>
+{/if}
+
+<input type="submit" value="{txt key=BUTTON_NEXT}" />
+<p>{txt key=TEXT_MUST}</p>
+{form type=formend}

@@ -1,0 +1,27 @@
+licCompany: Viabiona Ltd. T.a.v. Boekhouding
+licFirstName: 
+licLastName: 
+licEmail: a.deprez@bataviabv.com
+licCountryIso2: NL
+licCreated: 2015-10-08 12:00:00
+licKey: 486536-566928-03e2da-762810-cf888a-49
+
+LICENSEKEY: f1a4371a5a768dd975ca76416997d878
+LICENSETYPE: 1
+UPDATESUNTIL: 2016-10-07
+
+------ LICENSE FILE DATA -------
+916T8978GETxZEHozNY1XGYlCJkKwFJx
+DpCugpkIkMqJtdnvqEz1bpYhiqUycV5l
+wM7l55pmdei6Wy9QloA5WlQtqMDLpQEg
+IaNWLzvujTf4Rj3SDhhHaINMBQ7HsiDU
+h64GyEaSa0CyqqwOII8FEVLs3I9YeI0G
+0VaxWjKiesmG/y3y/iy5hYhrfS2bidji
+8/03XuBML8/TFjW71IEqZYS4zOrKFe8K
+JHYDMzVI1ApimQQGYFFDHyfB3JNhO//J
+GI9P3NHzL6H6xoAqSKnAX/exYpVqf/vy
+a4aiqon68kcAC58ho12rEtufikkQDTsu
+KN9OFhjijuLoQ3CF5R+75dGletMGA3+d
+44FOPZtH/8ErSBHx0cd5W8pxD51pqXAx
+AR9Zh71bLRtZj2k7Dha5T3==
+--------------------------------

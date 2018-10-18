@@ -1,0 +1,1 @@
+{"guenstiger":{"requiredfields":{"ItemId":true,"ItemName":true,"Price":true,"ItemDescription":true,"ItemUrl":true,"ManufacturerName":true,"ModelNumber":true,"EAN":false,"ImageUrl":false,"ShippingCost":false,"ShippingTime":false,"ItemWeight":false}}}

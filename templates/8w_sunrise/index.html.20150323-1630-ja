@@ -1,0 +1,578 @@
+<!--sv_verify-b6ece356ad8630b801c4686c4e31e0c8 -->
+{*php}__debug($_SESSION);{/php*}
+
+
+{php}
+$_SESSION['isMobile'] = true;
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+
+{*php}__debug ($this->get_template_vars('isMobile'));{/php*}
+
+{*}
+<div style="position: fixed; width: 150px; height: 20px; background: #F00; left:0; top:0; z-index:9999">DEVELOPMENT</div>
+{*}
+<div id="sitewrap" class="row {$page}-wrap{if $smarty.get.page_action} {$smarty.get.page_action}-action{/if}{if $is_old_ie} old-msie{/if}{if $is_old_ie6} ie6{/if}">
+{hook key=index_tpl_include}
+{if !$tpl_cod}
+    <div id="plugin-error">
+        <ul class="info_error" style="color:Red;width:66%;margin:15px auto;">
+            <li class="infoError"><strong>ERROR:</strong> Plugin is required. Please, read your template instructions.</li>
+        </ul>
+    </div>
+{/if}
+    {if !$isMobile}
+    <div id="top-about">
+        <div class="inner" id="info-items">
+            <ul class="sub-left">
+                {if $content_sunrise_topmenu}
+                    {foreach name=aussen key=key item=box_data from=$content_sunrise_topmenu}
+                        <li class="item-{$key}{if $box_data.active} active{/if} other-childs">
+                            <a href="{$box_data.link}"><span>{$box_data.title|escape:"html"}</span></a>
+                        </li>
+                    {/foreach}
+                {/if}
+                {content block_id=15 levels=nested}
+                {foreach name=aussen item=box_data from=$_content_15}
+                    <li {if $page == 'customer' && $smarty.get.page_action == ''} active{/if}><a href="{$box_data.link}">{$box_data.title}</a></li>
+                {/foreach}
+                {box name=currency}
+                {*box name=language*}        
+            </ul>
+            <ul class="sub-right">
+                {if $registered_customer}
+                <li class="customer{if $page == 'customer' && $smarty.get.page_action == ''} active{/if}"><a href="{link page='customer' conn=SSL}">{txt key=TEXT_ACCOUNT}</a></li>
+                {else}
+                <li class="customer{if $page == 'customer' && $smarty.get.page_action == ''} active{/if}"><a href="{link page='customer' paction='login' conn=SSL}">{txt key=TEXT_NEW_CUSTOMER_REGISTER}</a></li>
+                {/if}
+                {if $registered_customer}
+                    <li class="customer {if $page == 'customer' && $smarty.get.page_action == 'logoff'} active{/if}"><a href="{link page='customer' paction='logoff' conn=SSL}">{txt key=TEXT_LOGOFF}</a></li>
+                {else}
+                    <li class="login-link customer {if $page == 'customer' && $smarty.get.page_action == 'login'} active{/if}"><a href="{link page='customer' paction='login' conn=SSL}" id="show-login-box">{txt key=TEXT_LOGIN}</a>
+                        {box name=loginbox}
+                    </li>
+                {/if}
+                {box name=bui_watchlist type=user}
+                {box name=xt_viabiona_cms type=user tpl=box_cart_top.html}
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    {/if}
+                
+    <div id="header" class="clearfix">
+        <div id="header-top" class="clearfix inner">
+            <div id="logo">
+                <a href="{link page='index'}" title="{txt key=TEXT_HOME}{if !$store_name} - {$smarty.const._STORE_NAME|escape:'html'}{else}{$store_name|escape:'html'}{/if}">
+                    <img src="{$tpl_url_path}img/{if !$isMobile}top_logo.png{else}top_logo_mobile.svg{/if}" alt="{txt key=TEXT_HOME}{if !$store_name} - {$smarty.const._STORE_NAME|escape:'html'}{else}{$store_name|escape:'html'}{/if}" />
+                </a>
+            </div>
+            {if !$isMobile}
+            <div id="contact-wrap">
+                <div class="icon"></div>
+                <div class="text">
+                    <span class="top">{txt key=TEXT_QUESTION}</span>
+                    <span class="middle">{txt key=TEXT_PHONE_NUMBER}</span>
+                    <span class="last">{txt key=TEXT_FREE_ADVICE}</span>
+                </div>
+            </div>
+            {/if}
+            {if $isMobile}
+                <ul>
+                {box name=currency}
+                {if $registered_customer}
+                <li class="intern-link"><a href="{link page='customer' conn=SSL}"></a></li>
+                {else}
+                <li class="login-link"><a href="#"></a></li>
+                {/if}
+                <li class="cart"><a href="#"></a></li>
+                {box name=xt_viabiona_cms type=user tpl=box_cart_top.html}
+                </ul>
+            {/if}
+            {if $page != 'checkout'}
+            <div id="infowrap" {if $isMobile}style="display:none"{/if}>
+                <div class="header-stuff clearfix">
+                    {box name=cart}
+                </div>
+            </div>
+            {/if}
+            {if !$registered_customer && $isMobile}
+                {box name=loginbox}
+            {/if}
+        </div><!-- #header-top -->
+        
+        <div id="topmenuwrap" class="nav-menu clearfix {if $isMobile}mobileMenu{/if}">
+            <div class="inner">
+                <div class="topmenu-list">
+                    <ul class="clearfix">
+                        <li class="home{if $page == 'index'} active{/if}">
+                            <a href="{link page='index'}"><span>{txt key=TEXT_HOME}</span></a>
+                        </li>
+                        {if !$isMobile}
+                        <li class="{if $top_navigation.1.name == 'Aktionsware'}active{/if}">
+                            <a href="{link page='Aktionsware'}"><span>{txt key=TEXT_HEADING_SPECIAL_PRODUCTS}</span></a>
+                        </li>
+                        <li class="layerPage {if $top_navigation.1.name == 'Themen'}active{/if}" id="cat1">
+                            <a href="#"><span>{txt key=TEXT_CAT_BOX_THEMEN}</span></a>
+                            <ul class="layerPageFrame">
+                                {box name=xt_viabiona_cms type=user tpl=box_cat2.html}
+                            </ul>
+                        </li>
+                        <li class="layerPage {if $top_navigation.1.name == 'Personengruppen'}active{/if}" id="cat2">
+                            <a href="#"><span>{txt key=TEXT_GROUPS_OF_PEOPLE}</span></a>
+                            <ul class="layerPageFrame">
+                                {box name=xt_viabiona_cms type=user tpl=box_cat1.html}
+                            </ul>
+                        </li>
+                        {else}
+                            <li class="layerPage {if $top_navigation.1.name == 'Themen'}active{/if}" id="cat3">
+                                <a href="{link page='themen'}"><span>{txt key=TEXT_CAT_BOX_INDIKATIONEN}</span></a>
+                            </li>
+                            <li id="search">
+                            {box name=search htmlonly=1}
+                            </li>
+                        {/if}
+                    </ul>
+                </div>
+                {if $isMobile}
+                <ul class="layerPageFrame">
+                    {box name=xt_viabiona_cms type=user tpl=box_cat3.html}
+                </ul>
+                {/if}
+                {if !$isMobile}
+                <div id="search">
+                    {box name=search htmlonly=1}
+                </div>
+                {/if}
+            </div>
+        </div>
+        
+        <!-- #topmenuwrap -->        
+        {if $page == 'categories' || $page == 'categorie' || $page == 'index' || $page == 'product' || $page == 'xt_special_products' || $page == 'xt_new_products' || $page == 'xt_bestseller_products' || $page == 'xt_upcoming_products'}        
+            <div id="catnav" class="box" style="display:none">
+                <div class="txt">
+                    <div id="dropdownmenu" class="clearfix mylovely">                        
+                        {$special_nav}                            
+                    </div>
+                </div>
+            </div>
+            {/if}
+                    
+        {if $check_ie_version}{$check_ie_version}{/if}
+    </div><!-- #header -->
+    <div id="container-frame">
+        <div id="container" class="inner">
+                <div id="contentwrap" class="clearfix">
+                    {if !$isMobile}
+                    <div id="breadcrumb">
+                        {include file="/xtCore/pages/navigation/breadcrumb.html" type="tpl_include"} 
+                    </div>
+                    {/if}
+                    {if $page != 'checkout' && !$isMobile}
+                    {if $page == 'categories' OR $page == 'categorie' OR $page == 'index' OR $page == 'search'}
+                    <div id="sidebar">
+                        <div class="sidebar-inner clearfix">
+
+                    {/if}
+                        {if $page == 'categories' OR $page == 'categorie' OR $page == 'index' OR $page == 'search'}
+                            <div id="nav">
+                            {box name=xt_viabiona_cms type=user tpl=box_cat_main.html}                       
+                            </div>
+                        {/if}                                        
+                        {box name=sidebartop}
+                        {if $content_sunrise_sidebar}
+                            {foreach name=aussen key=key item=box_data from=$content_sunrise_sidebar}
+                                {if $box_data.content_body_short && $box_data.title}
+                                    <div id="content-{$box_data.content_id}" class="box item-{$key} dynamic lang-{$box_data.language_code}">
+                                        <div class="headline">
+                                            {if $box_data.content_body|regex_replace:'/^<br />$/is':''}
+                                                <h2><a href="{$box_data.link}" title="{txt key=TEXT_8WORKS_SUNRISE_READ_MORE}...">{$box_data.title|escape:"html"}</a></h2>
+                                            {else}
+                                                <h2>{$box_data.title|escape:"html"}</h2>
+                                            {/if}
+                                        </div>
+                                        <div class="txt">
+                                            <div class="txt-inner">
+                                                <p class="short-txt">{$box_data.content_body_short}{if $box_data.content_body|regex_replace:'/^<br />$/is':''} <a class="more" href="{$box_data.link}" title="{txt key=TEXT_8WORKS_SUNRISE_READ_MORE}...">[{txt key=TEXT_8WORKS_SUNRISE_READ_MORE}]</a>{/if}</p>
+                                            </div>
+                                        </div>
+                                        <div class="box-bottom"></div>
+                                    </div>
+                                {/if}
+                            {/foreach}
+                            {box name=xt_special_products type=user order_by='rand()'}
+                        {/if}
+                        {box name=sidebarbottom}
+                    
+                    {if $page == 'categories' OR $page == 'categorie' OR $page == 'index' OR $page == 'search'}
+                        </div>
+                            
+                            {content cont_id=32 is_id=false}
+                            {$_content_32.content_body}
+                            
+                            {box tpl=box_affiliatebox.html}
+                            
+                            {if $page == 'categories' OR $page == 'categorie' OR $page == 'index'}
+                            <div class="shop-auskunft">
+                                <script type="text/javascript">
+     var sa_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+     document.write(unescape("%3Cscript src='" + sa_protocol + "apps.shopauskunft.de/seal/3c41c025693eb406cfa97efb460ade02.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>    
+                            </div>
+                            
+<!--                            <div class="fb-like" data-href="https://www.facebook.com/ViaBiona" data-width="180" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>-->
+                            <!--Facebook-->
+                            <div class="facebookbox">
+                                    <a  href="http://facebook.com/viabiona" target="_blank">Viabiona auf Facebook</a>                                       
+
+                     
+                                    <a href="http://facebook.com/viabiona" target="_blank"><img src="/templates/8w_sunrise/img/Ilove.png" /> </a> 
+
+                                        <div class="fb-like" data-href="http://facebook.com/viabiona" data-send="false" data-layout="box_count" data-width="100" data-show-faces="false"></div>
+
+                            </div>
+                            
+                                {if $page == 'index'}                        
+                                <div class="left-banners">
+                                
+                                    <a href="http://jmnf.org" target="_blank" class="jmnf"></a>
+                                    <a href="http://vitaminwiki.net" target="_blank" class="vitawiki"></a>
+                                    <a href="https://de-de.facebook.com/photo.php?fbid=566323290097754&set=a.351945224868896.80820.183701248359962&type=1&theater" target="_blank" class="sportf"></a>
+
+                                    <a href="http://www.vitaminangels.org" target="_blank" class="vitaminangels last-child"></a>
+                                </div>
+                                {/if}
+
+                            {/if}    
+                    </div>            
+                    <!-- #sidebar -->
+                    {/if}
+                    {/if}
+                    <div id="maincontent" class="{if $page == 'index'}index{elseif $page == 'categories' OR $page == 'categorie' OR $page == 'search'}categories-home{elseif $page == 'product'}product{elseif $page == 'bui_watchlist'}columns-2{else}detail{/if}{if $page == 'checkout'} checkout{/if}">
+                        <div class="maincontent-inner">
+                            <div id="default-content">
+                                {if $top_navigation.1.name == 'Themen' && $top_navigation|@count == 2}
+                                <div class="categorie-sub-page">
+                                    {content block_id=27}
+                                    {if $_content_27|count >0}
+                                        {foreach key=keyn name=aussen item=box_data from=$_content_27}
+                                            <h1>{$box_data.content_title}</h1>
+                                            <h2>{$box_data.content_heading}</h2>
+                                            <p>{$box_data.content_body}</p>
+                                            {*php}print_r ($this->get_template_vars('box_data'));{/php*}
+                                        {/foreach}
+                                    {/if}
+                                    <ul class="menu-categorie-sub-page" id="themen">
+                                        {box name=xt_viabiona_cms type=user tpl=box_cat2.html}
+                                    
+                                </div>
+                                {/if}
+                                {if $top_navigation.1.name == 'Personengruppen' && $top_navigation|@count == 2}
+                                <div class="categorie-sub-page">
+                                    {content block_id=28}
+                                    {if $_content_28|count >0}
+                                        {foreach key=keyn name=aussen item=box_data from=$_content_28}
+                                            <h1>{$box_data.content_title}</h1>
+                                            <h2>{$box_data.content_heading}</h2>
+                                            <p>{$box_data.content_body}</p>
+                                            {*php}print_r ($this->get_template_vars('box_data'));{/php*}
+                                        {/foreach}
+                                    {/if}
+                                    <ul class="menu-categorie-sub-page" id="personengruppen">
+                                        {box name=xt_viabiona_cms type=user tpl=box_cat1.html}
+                                    
+                                </div>
+                                {/if}
+                                {if $page == 'categorie'}                                
+                                    {box name=xt_new_products type=user order_by='rand()'}
+                                    {*box name=xt_bestseller_products type=user*}
+                                    {*<!-- UPCOMING PRODUCTS BOX INFO:
+                                       darf nicht angezeigt werden, wenn $_GET['sorting'] in URL gesetzt!
+                                       Der Fehler tritt zum Beispiel beim Kategoriefilter "price" auf.
+                                       
+                                       xt_upcoming_products.V.1.0.1, VEYTON.4.0.14
+                                    -->*}
+                                    {if !$smarty.get.sorting}{box name=xt_upcoming_products type=user order_by='rand()'}{/if}
+                                {/if}
+                                {$content}
+                                {if $page == index}
+                                    {*php}print_r ($this->get_template_vars());{/php*}
+                                <div class="slider-wrapper">
+                                    {if !$isMobile}
+                                        {content block_id=20}
+                                        {if $_content_20|count >0}
+                                            {foreach key=keyn name=aussen item=box_data from=$_content_20}
+                                                <div class="slider-line" id="slider_{$keyn}" {if $keyn > 0}style="display:none"{/if}>
+                                                        {$box_data.content_body}
+                                                    <div class="img">
+                                                        <img src="/media/images/org/{$box_data.content_image}" />
+                                                    </div>
+                                                </div>
+                                            {/foreach}
+                                            {if !$isMobile}
+                                                <ul class="link-line">
+                                                {foreach key=keyn name=aussen item=box_data from=$_content_20}
+                                                    <li id="link_{$keyn}">
+                                                        <span></span>
+                                                        <a href="#" onclick="changeBtn({$keyn}, true); return false;">{$box_data.content_heading}</a>
+                                                    </li>
+                                                {/foreach}
+                                                </ul>
+                                            {else}
+                                                <a href="#" class="slider-arrow left"></a>
+                                                <ul class="link-line">
+                                                {foreach key=keyn name=aussen item=box_data from=$_content_20}
+                                                    <li id="link_{$keyn}">
+                                                        <a href="#" onclick="changeBtn({$keyn}, true); return false;"></a>
+                                                    </li>
+                                                {/foreach}
+                                                </ul>
+                                                <a href="#" class="slider-arrow right"></a>
+                                            {/if}
+                                        {/if}
+                                    {else}
+                                        {content block_id=31}
+                                        {if $_content_31|count >0}
+                                            {foreach key=keyn name=aussen item=box_data from=$_content_31}
+                                                <div class="slider-line" id="slider_{$keyn}" {if $keyn > 0}style="display:none"{/if}>
+                                                        {$box_data.content_body}
+<!--                                                    <div class="img">
+                                                        <img src="/media/images/org/{$box_data.content_image}" />
+                                                    </div>-->
+                                                </div>
+                                            {/foreach}
+                                            {if !$isMobile}
+                                                <ul class="link-line">
+                                                {foreach key=keyn name=aussen item=box_data from=$_content_31}
+                                                    <li id="link_{$keyn}">
+                                                        <span></span>
+                                                        <a href="#" onclick="changeBtn({$keyn}, true); return false;">{$box_data.content_heading}</a>
+                                                    </li>
+                                                {/foreach}
+                                                </ul>
+                                            {else}
+                                                <a href="#" class="slider-arrow left"></a>
+                                                <ul class="link-line">
+                                                {foreach key=keyn name=aussen item=box_data from=$_content_31}
+                                                    <li id="link_{$keyn}">
+                                                        <a href="#" onclick="changeBtn({$keyn}, true); return false;"></a>
+                                                    </li>
+                                                {/foreach}
+                                                </ul>
+                                                <a href="#" class="slider-arrow right"></a>
+                                            {/if}
+                                        {/if}
+                                    {/if}
+                                </div>
+                                {if !$isMobile}
+                                <div class="teaser-home">
+                                    {content block_id=21}
+                                    {if $_content_21|count >0}
+                                        {foreach key=keyn name=aussen item=box_data from=$_content_21}
+                                            {$box_data.content_body}
+                                            <div class="img">
+                                                <img src="/media/images/org/{$box_data.content_image}" />
+                                            </div>
+                                        {/foreach}
+                                    {/if}
+                                </div>
+                                {/if}
+                                <div class="products-home">
+                                    {page name=xt_startpage_products type=user order_by='p.products_startpage_sort' tpl_type='product_listing'}
+                                </div>
+                                {content block_id=23}
+                                    {if $_content_23|count >0 && !$isMobile}
+                                    <div class="page-end-teaser clearfix">
+                                        {foreach key=keyn name=aussen item=box_data from=$_content_23}
+                                            {if $box_data.content_link != ''}
+                                            <a class="small-teaser-box {$box_data.content_cbox_class}" id="small-teaser_{$keyn}" href="{$box_data.content_link}">
+                                                <span class="text">
+                                                    {if $box_data.content_heading != ''}
+                                                    <h6>{$box_data.content_heading}</h6>
+                                                    {/if}
+                                                    <p>{$box_data.content_body}</p>
+                                                </span>
+                                                <span class="img">
+                                                    <img src="/media/images/org/{$box_data.content_image}" />
+                                                </span>
+                                            </a>
+                                            {else}
+                                            <div class="small-teaser-box" id="small-teaser_{$keyn}">
+                                                <div class="text">
+                                                    {if $box_data.content_heading != ''}
+                                                    <h6>{$box_data.content_heading}</h6>
+                                                    {/if}
+                                                    <p>{$box_data.content_body}</p>
+                                                </div>
+                                                <div class="img">
+                                                    <img src="/media/images/org/{$box_data.content_image}" />
+                                                </div>
+                                            </div>
+                                            {/if}
+                                        {/foreach}
+                                    </div>
+                                    {/if}
+                                {/if}
+                            </div>
+                        </div>
+                    </div><!-- #maincontent -->
+                </div><!-- #contentwrap -->
+        </div><!-- #container -->
+    </div>
+    <div id="footer">
+        <div id="footer-content" class="inner clearfix">
+            <div class="left-side">
+                {if !$isMobile}
+                <div class="first-col col info">
+                    {content block_id=6 levels=nested}
+                    {if $_content_6}
+                        <div class="col-inner">
+                            <h2>{txt key=TEXT_FOOTER_TITLE1}</h2>
+                            <ul>
+                            {foreach name=aussen item=box_data from=$_content_6}
+                                <li class="link-{$key}"><a href="{$box_data.link}">{$box_data.title}</a></li>
+                            {/foreach}
+                            </ul>
+                        </div>
+                    {/if}
+                </div>
+                <div class="second-col col faq">
+                    {content block_id=14 levels=nested}
+                    {if $_content_14}
+                        <div class="col-inner">
+                            <h2>{txt key=TEXT_FOOTER_TITLE3}</h2>
+                            <ul>
+                            {foreach name=aussen item=box_data from=$_content_14}
+                                <li class="link-{$key}"><a href="{$box_data.link}">{$box_data.title}</a></li>
+                            {/foreach}
+                            </ul>
+                        </div>
+                    {/if}
+                </div>
+                <div class="third-col col">
+                    {content block_id=13 levels=nested}
+                    {if $_content_13}
+                        <div class="col-inner">
+                            <h2>{txt key=TEXT_FOOTER_TITLE2}</h2>
+                            <ul>
+                            {foreach name=aussen item=box_data from=$_content_13}
+                                <li class="link-{$key}"><a href="{$box_data.link}">{$box_data.title}</a></li>
+                            {/foreach}
+                            <li><a href="http://viabiona.com/pages/partner/" target="_blank">Affiliate-Programm</a></li>
+                            <li><a href="http://viabiona-partnernetz.com" target="_blank">Netzwerk für Therapeuten</a></li>
+                            <li><a href="http://www.viabiona-diaet.com" target="_blank">Viabiona Diät</a></li>
+                            </ul>
+                        </div>
+                    {/if}
+                </div>
+                {else}
+                <div class="first-col col info">
+                    {content block_id=29 levels=nested}
+                    {if $_content_29}
+                        <div class="col-inner">
+                            <ul>
+                            {foreach name=aussen item=box_data from=$_content_29}
+                                <li class="link-{$key}"><a href="{$box_data.link}">{$box_data.title}</a></li>
+                            {/foreach}
+                            </ul>
+                        </div>
+                    {/if}
+                </div>
+                <div class="first-col col info">
+                    {content block_id=30 levels=nested}
+                    {if $_content_30}
+                        <div class="col-inner">
+                            <ul>
+                            {foreach name=aussen item=box_data from=$_content_30}
+                                <li class="link-{$key}"><a href="{$box_data.link}">{$box_data.title}</a></li>
+                            {/foreach}
+                            </ul>
+                        </div>
+                    {/if}
+                </div>
+                {/if}
+                <div class="clearfix"></div>
+                <div class="col-inner shipping">
+                    <h2>{txt key=TEXT_FOOTER_TITLE5}</h2>
+                    <p>
+                        <img src="{$tpl_url_path}img/footer_dhl.png" alt="dhl" title="DHL" />
+                    </p>
+                </div>
+            </div>
+            {if !$isMobile}
+            <div class="right-side">
+                <div class="big-col col">
+                    <div class="col-inner">
+                        <h2>{txt key=TEXT_FOOTER_TITLE4}</h2>
+                        <div >
+                            <p><a href="https://www.facebook.com/ViaBiona" target="_blank"><img src="{$tpl_url_path}img/facebook.png" alt="facebook" title="Facebook" /></a></p>
+                            <p><a href="https://plus.google.com/u/0/b/110121236683601855282/110121236683601855282/posts" target="_blank"><img src="{$tpl_url_path}img/googleplus.png" alt="Google Plus" title="Google Plus" /></a></p>
+                            <p><a href="http://twitter.com/viabiona" target="_blank"><img src="{$tpl_url_path}img/twitter.png" alt="Twitter" title="Twitter" /></a></p>
+                            <p><a href="http://www.youtube.com/viabiona" target="_blank"><img src="{$tpl_url_path}img/youtube.png" alt="youtube" title="YouTube" /></a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="fourth-col col">
+                    <div class="col-inner">
+                        {box name=xt_viabiona_cms type=user tpl=box_payment_methods.html}
+                        {box name=trusted_shops_ratings}
+                        {box name=trusted_shops_seal}
+                        {box name=trusted_shops_video}
+                    </div>
+                </div>
+                {*}
+                <div class="img-col col">
+                    <div class="col-inner">
+                        <p>
+                            <a href="http://www.vitaminangels.org" target="_blank"><img src="{$tpl_url_path}img/{txt key=TEXT_FOOTER_IMG}" alt="{txt key=TEXT_FOOTER_IMG}" title="Vitamin Angels" /></a>
+                        </p>
+                    </div>
+                </div>
+                {*}
+            </div>
+            {/if}
+<!--<div class="clearfix"></div>-->
+        </div>
+[<copyright>]
+    </div><!-- #footer -->
+{hook key=index_footer_tpl}
+</div>
+
+<!-- Google Code for Via Biona neu -->
+<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1069044595;
+var google_conversion_label = "MaH6CLXp_AQQ86bh_QM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1069044595/?value=0&amp;label=MaH6CLXp_AQQ86bh_QM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+
+<!-- #sitewrap 8w_sunrise_javascripthere -->
+
+
+<img src="cronjob.php" width="1" height="1" alt="" />
+
+{literal}
+<div id="fb-root"></div>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1&appId=468785616481177";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+/* ]]> */
+</script>
+{/literal}

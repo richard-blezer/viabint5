@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_LAST_VIEWED_PRODUCTS_MAX_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Max. Number of Products]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Max. Produktanzahl]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_LAST_VIEWED_PRODUCTS_TITEL</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Last viewed Products]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zuletzt gesehene Produkte]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

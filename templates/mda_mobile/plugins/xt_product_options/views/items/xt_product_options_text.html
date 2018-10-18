@@ -1,0 +1,44 @@
+
+{if is_array($options)}
+
+	{foreach name=aussen item=info from=$options}
+
+			<td class="left" valign="top">
+
+					<h4>{$info.option_value_name}:</h4> {$info.option_value_value}		
+				
+			</td>
+		{if $info.pagetype == 'orderview'}
+			<td class="right" valign="top"> </td>
+		{/if}	
+		{if $info.pagetype == 'admin'}
+			<td class="right" valign="top"> </td>
+		{/if}		
+		{if $info.pagetype == 'mail'}
+			<td class="right" valign="top"> </td>
+		{/if}		
+			<td class="{if $info.pagetype == 'checkout'}left{else}right{/if}" valign="top">
+			
+				{if $info.option_value_value } 
+					{if is_array($info.option_price_array) && $info.option_p_prefix && $info.option_calc_type == "multi"} 
+						{$info.option_p_prefix} {$info.option_price_array.formated}			
+					{/if}		
+				{/if}
+				{if $info.option_value_discount_array.plain > 0 && $info.option_value_d_prefix && $info.option_calc_type == "multi"}
+						{$info.option_value_d_prefix} {$info.option_value_discount_array.formated}	
+				{/if}					
+			</td>
+		{if $info.pagetype == 'admin'}
+			<td class="right" valign="top"> </td>
+		{/if}			
+			<td class="right" valign="top">
+	
+				{if is_array($info.option_price_array) && $info.option_p_prefix && $info.option_calc_type == "single"} 
+					{$info.option_p_prefix} {$info.option_price_array.formated}			
+				{/if}
+				{if $info.option_value_discount_array.plain > 0 && $info.option_value_d_prefix && $info.option_calc_type == "single"}
+						{$info.option_value_d_prefix} {$info.option_value_discount_array.formated}	
+				{/if}				
+			</td>
+	{/foreach}
+{/if}

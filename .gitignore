@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/dataSources.local.xml
+.idea/inspectionProfiles/
+.idea/workspace.xml
+/plugin_cache/
+/templates_c/
+/cache/

@@ -1,0 +1,78 @@
+<h2>{$product_data.products_name}</h2>
+
+<div id="productinfowrap">
+	{if $product_data.products_image!=''}
+	<div id="productinfoimages">
+		<ul class="gallery">
+			<li>{img img=$product_data.products_image url=`$smarty.const._SRV_WEB`media/images/info/ alt=$product_data.products_name}</li>
+		</ul>
+	</div>
+	{/if}
+	
+  	{if $product_data.products_image!=''}<div id="productinfopricewithimages">{else}<div id="productinfopricewithoutimages">{/if}
+		<div id="productinfoprice">
+			{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}<p class="productprice">{$product_data.products_price.formated}</p>
+			<p class="taxandshippinginfo">{$product_data.products_tax_info.tax_desc}{if $product_data.products_shipping_link}<a href="{$product_data.products_shipping_link}" target="_blank">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</p>
+			{/if}
+			{if $product_data.shipping_status}<p class="shippingtime">{#text_shippingtime#}&nbsp;{$product_data.shipping_status}</p>{/if}
+			
+			<!--{if $product_data.stock_image}
+			{assign var='sp1' value='templates/'|cat:$selected_template}
+			{assign var='stock_path' value=$sp1|cat:'/img/stockrules/'}
+			<p class="stockimage">{img img=$product_data.stock_image.image url=$stock_path}</p>
+			<p class="stockimagetext">{$product_data.stock_image.name}</p>
+			{/if}-->
+			
+			{if $product_data.review_stars_rating}
+			<div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$review_stars_rating}%"></div></div>
+			{if $product_data.products_rating_count}{$product_data.products_rating_count}{else}0{/if} 
+				<a href="{$link_reviews_list}">{txt key=TEXT_XT_REVIEWS_INFO}</a>
+				<a href="{$link_reviews_write}" rel="nofollow" data-role="button" data-icon="mda_mobile_edit">{txt key=TEXT_XT_REVIEWS_WRITE}</a>
+			{/if}
+			
+			{if $product_data.base_price}{$product_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$product_data.base_price.vpe.name}{/if}
+			{if $product_data.products_discount!=''}{$product_data.products_discount}{/if}
+			{if $product_data.products_fsk18=='true'}<img src="{$tpl_path}img/fsk18.gif" alt="" style="cursor:default" />{/if}
+			{if $product_data.products_model!=''}{txt key=TEXT_PRODUCTS_MODEL}: {$product_data.products_model}{/if}
+			{if $product_data.products_url != ''}{$product_data.products_url}{/if}
+			
+			<a href="{$product_data.products_link}" data-role="button">{txt key=BUTTON_TO_ARTICLE}</a>
+		</div>
+	</div>
+
+	{if $product_data.allow_add_cart eq 'true'}
+	{form type=form name=product action='dynamic' link_params=getParams method=post}
+	{form type=hidden name=action value=add_product}
+	{form type=hidden name=product value=$product_data.products_id}
+	<div class="addtobasket">
+		<label for="qty">{txt key=TEXT_QTY}</label>
+  		{form type=text id=qty name=qty value=1}
+    		<input type="submit" value="{txt key=BUTTON_ADD_CART}" />
+	</div>
+	{form type=formend}
+	{/if}
+</div>
+
+
+<h3>{txt key=TEXT_XT_REVIEWS_HEADING_REVIEWS}</h3>
+{if $reviews_data}
+	<div id="NAVIGATION">
+		<div class="COUNT">{$NAVIGATION_COUNT}</div>
+		<div class="PAGES">{$NAVIGATION_PAGES}</div>
+	</div>
+	
+
+	{foreach name=aussen item=module_data from=$reviews_data} 
+	<div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$module_data.review_rating}%"></div></div>
+	<p>
+		<b>{$module_data.review_title}</b> , {$module_data.review_date}<br/>
+		{$module_data.review_text}<br/>
+		<small>{txt key=TEXT_XT_REVIEWS_EDITOR}: {$module_data.review_editor}</small>
+	{/foreach} 
+	
+	<div id="NAVIGATION">
+		<div class="COUNT">{$NAVIGATION_COUNT}</div>
+		<div class="PAGES">{$NAVIGATION_PAGES}</div>
+	</div>
+{/if}
+{$message}

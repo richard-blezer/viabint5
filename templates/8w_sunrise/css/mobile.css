@@ -1,0 +1,1037 @@
+body .row .inner,
+body #footer-content.inner .left-side,
+body .index .maincontent-inner,
+body #maincontent,
+body .products-listing .panel,
+body form .left-line,
+body form .line > div,
+body form .right-line {
+    width: 100% !important;
+}
+
+input {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+ul.ui-autocomplete {
+    left: 0 !important;
+    width: 100%;
+}
+
+body #sitewrap {
+    padding-top: 0;
+}
+
+body #header {
+    height: auto;
+}
+
+body #header #header-top {
+    height: 50px;
+    border-top: 1px solid #E6E6E6;
+}
+
+body #header #logo {
+    width: 40%;
+    margin: 12px 0 0 10px;
+}
+
+body #header #logo a img {
+    max-width: 100%;
+}
+
+body #header-top ul {
+    display: block;
+    float: right;
+    margin: 7px 5px 0 0;
+}
+
+body #header-top ul li {
+    position: relative;
+    list-style: none;
+    float: left;
+    margin-left: 5px;
+}
+
+body li.currency select {
+    width: 67px;
+}
+
+body li.currency span.select {
+    height: 35px;
+    width: 65px;
+    line-height: 33px;
+    background-position: 50px 14px;
+    top: 0;
+}
+
+body #header-top ul li.intern-link,
+body #header-top ul li.login-link,
+body #header-top ul li#cart-top {
+    display: block;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #E6E6E6;
+    /* Für WebKit (Safari, Chrome, etc.) */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e6e6e6));
+    /* Für Mozilla/Gecko (Firefox etc) */
+    background: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    /* aktueller W3C working draft */
+    background: linear-gradient(top, #ffffff, #e6e6e6);
+    /* Für Internet Explorer 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ffffff, endColorstr=#e6e6e6);
+    zoom: 1;
+    /* Für Internet Explorer 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ffffff, endColorstr=#e6e6e6)";
+}
+
+body #header-top ul li.intern-link a,
+body #header-top ul li.login-link a,
+body #header-top ul li#cart-top a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+body #header-top ul li.intern-link a {
+    background: url('../img/icon_mobile_intern.png');
+}
+
+body #header-top ul li.login-link a {
+    background: url('../img/icon_mobile_login.png');
+}
+
+body #header-top ul li#cart-top a {
+    background: url('../img/icon_mobile_cart.png');
+}
+
+body li#cart-top a span {
+    position: absolute;
+    right: -7px;
+    top: -5px;
+    background-color: #CC0033;
+    line-height: 17px;
+}
+
+body #topmenuwrap .topmenu-list {
+    width: auto;
+    float: none;
+}
+
+body #topmenuwrap .topmenu-list > ul > li {
+    background: none;
+    height: 35px;
+    padding-right: 0;
+}
+
+body #footer-content.inner .left-side .col {
+    width: 50%;
+}
+
+body #footer-content .col-inner {
+    width: 100%;
+}
+
+.topmenu-list form {
+
+}
+
+body .slider-line .img img,
+body .teaser-home .img img {
+    width: 100%;
+}
+
+body .products-listing .product-box {
+    width: 50%;
+    padding-right: 0;
+}
+
+.product-box h5 {
+    height: 87px;
+    line-height: 18px;
+    margin: 0 0 5px;
+}
+
+h5 {
+    margin-bottom: 10px
+}
+
+body #header #search,
+body #header #search .searchfield,
+body #header #search .search-text {
+    width: auto;
+}
+
+#header #search {
+
+    margin-right: 10px;
+}
+
+body .categories-home h1,
+body #default-content h1 {
+
+    font-size: 26px;
+    line-height: 28px;
+    margin-top: 12px;
+    padding: 0;
+}
+
+body #default-content .slider-wrapper h1 {
+    font-size: 30px;
+    line-height: normal;
+    color: #666666;
+}
+
+.slidertext h1,
+.slidertext h3,
+.slidertext .text {
+    z-index: 1;
+}
+
+body .slider-line .img {
+    z-index: 0;
+}
+
+body #default-content .slider-wrapper h1:nth-child(2),
+body #default-content .slider-wrapper .text .link a.video {
+    display: none !important;
+}
+
+body #default-content .slider-wrapper h3 {
+    font-size: 14px;
+    line-height: 16px;
+}
+
+@media only screen and (min-width: 568px) {
+    body #default-content .slider-wrapper h1 {
+        font-size: 50px;
+        line-height: normal;
+    }
+
+    body #default-content .slider-wrapper h3 {
+        font-size: 24px;
+        line-height: normal;
+    }
+}
+
+/*
+body #default-content .slider-wrapper .text{
+    left: 2% !important;
+    top: 70% !important;
+}
+*/
+body .slider-line .text p,
+body .teaser-home .text p {
+    display: none;
+}
+
+/*
+body #topmenuwrap > .inner > ul.layerPageFrame > li > a{
+    padding: 0 15%;
+}
+*/
+body #topmenuwrap > .inner > ul.layerPageFrame {
+    position: absolute;
+    display: none;
+    top: 88px;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+body #topmenuwrap > .inner > ul.layerPageFrame > li {
+    width: 50%;
+    height: 30px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f3f3f3));
+    /* Für Mozilla/Gecko (Firefox etc) */
+    background: -moz-linear-gradient(top, #ffffff, #f3f3f3);
+    /* aktueller W3C working draft */
+    background: linear-gradient(top, #ffffff, #f3f3f3);
+    /* Für Internet Explorer 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ffffff, endColorstr=#f3f3f3);
+    zoom: 1;
+    /* Für Internet Explorer 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ffffff, endColorstr=#f3f3f3)";
+    float: left;
+    list-style: none;
+}
+
+body #topmenuwrap > .inner > ul.layerPageFrame > li.last {
+    width: 100%;
+}
+
+body #topmenuwrap > .inner > ul.layerPageFrame > li > a {
+    height: 100%;
+}
+
+body #topmenuwrap > .inner > ul.layerPageFrame > li:hover,
+body #topmenuwrap > .inner > ul.layerPageFrame > li.active {
+    background: #18A1BE;
+}
+
+body #topmenuwrap > .inner > ul.layerPageFrame > li:hover a,
+body #topmenuwrap > .inner > ul.layerPageFrame > li.active a {
+    color: #FFF;
+}
+
+body #topmenuwrap > .inner > ul.layerPageFrame > li > a span.text {
+    line-height: 30px;
+    padding: 0 0 0 10px;
+    font-family: helvetica_rm;
+}
+
+body #topmenuwrap .topmenu-list > ul > li > a {
+    padding: 0 10px;
+    display: block;
+}
+
+body .slider-wrapper {
+    overflow: visible;
+    margin-bottom: 35px;
+}
+
+body .slider-wrapper .link-line {
+    height: 30px;
+    padding-top: 8px;
+    border-bottom: 0;
+    bottom: -35px;
+}
+
+body .slider-wrapper .link-line li {
+    display: inline-block;
+    width: auto;
+    float: none;
+    padding: 0 4px;
+}
+
+body .slider-wrapper .link-line li a {
+    width: 24px;
+    height: 24px;
+    background: url('../img/dot_inactive_mobile.svg');
+}
+
+body .slider-wrapper .link-line li.active a {
+    background: url('../img/dot_active_mobile.svg');
+}
+
+body #breadcrumb,
+#footer .left-side,
+#footer-content .col-inner.shipping,
+body #default-content .left-side,
+body #default-content .right-side,
+body #default-content .right-text,
+body #productinfodetail,
+body #cart .article-line .price,
+body #cart .headline > div,
+body #cart .subtotal > div,
+body #cart .sub-total-price > div,
+body .box.free-article .text,
+body #cart .article-line .price-box .price .productNewPrice,
+body .categories-home h1,
+body #default-content h1,
+body .checkout .shipping-line .right-shipping,
+body .detail.checkout .coupon.hookpoint,
+body .detail.checkout .text-comment,
+body .detail.checkout .second.subarea,
+body .detail.checkout #checkout-buttons,
+body #layer-login.returning-customer,
+body #layer-login.returning-customer form .line > div input,
+body #productinfoprice,
+body .box.rating .text,
+body .success-step.bottom ul.text li,
+body #contact div.highlightbox,
+body table.border-table {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a.slider-arrow {
+    position: absolute;
+    bottom: -26px;
+    width: 12px;
+    height: 19px;
+    display: block;
+    z-index: 999;
+}
+
+a.slider-arrow.left {
+    left: 12px;
+    background: url('../img/arrow_left_mobile.svg');
+}
+
+a.slider-arrow.right {
+    right: 12px;
+    background: url('../img/arrow_right_mobile.svg');
+}
+
+body #default-content .left-side {
+    width: 45%;
+    padding-left: 12px;
+}
+
+body #default-content .left-side.no-right {
+    width: 100%;
+    padding-right: 12px;
+}
+
+body #default-content .left-side.full,
+body #default-content .left-side.confirmation.no-right,
+body #default-content .left-side.success.no-right {
+    width: 100%;
+    padding: 0;
+}
+
+body #default-content .left-side.cartMain {
+    width: 100%;
+    padding-left: 0;
+}
+
+body #default-content .left-side.cartMain a.btn {
+    margin-left: 12px;
+}
+
+body #default-content .left-side.cartMain a.checkout-link {
+    margin-right: 12px;
+}
+
+body #cart .sub-total-price div {
+    padding: 0;
+}
+
+body #default-content .right-side {
+    width: 55%;
+    margin: 0;
+    padding-right: 12px;
+}
+
+body #default-content .left-header {
+    width: 100%;
+}
+
+body #default-content .left-header #products-image a img {
+    max-width: 100%;
+    height: auto !important;
+}
+
+/*
+body #productsdetail-page{
+    padding: 0 12px;
+}
+*/
+
+body .product-wrap #default-content h1 {
+    font-size: 32px;
+    line-height: 35px;
+    padding-left: 12px;
+    margin-top: 12px
+}
+
+body #breadcrumb {
+    padding-left: 12px;
+}
+
+body #default-content .right-text {
+    width: 100%;
+    border-top: 1px solid #E6E6E6;
+    margin-top: 15px;
+    padding: 15px 12px 0;
+}
+
+body #productinfodetail {
+    padding: 0 12px;
+}
+
+body #productsdetail-page ul.tab-container {
+    border: none;
+    height: auto;
+}
+
+body .box.rating .bullet, body #productsdetail-page .bullet {
+    background: url("../img/campaign_bullet.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    bottom: auto;
+    height: 104px;
+    top: 0;
+    width: 104px;
+}
+
+body #productsdetail-page .box.free-article .bullet p {
+    top: 25px;
+}
+
+body #productsdetail-page ul.tab-container li {
+    border: none;
+    width: 100%;
+    /* Für WebKit (Safari, Chrome, etc.) */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e6e6e6));
+    /* Für Mozilla/Gecko (Firefox etc) */
+    background: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    /* aktueller W3C working draft */
+    background: linear-gradient(top, #ffffff, #e6e6e6);
+    /* Für Internet Explorer 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ffffff, endColorstr=#e6e6e6);
+    zoom: 1;
+    /* Für Internet Explorer 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ffffff, endColorstr=#e6e6e6)";
+}
+
+body #productsdetail-page ul.tab-container li:hover,
+body #productsdetail-page ul.tab-container li.active {
+    background: #18A1BE;
+    margin: 0;
+    height: auto;
+}
+
+body #productsdetail-page ul.tab-container li a {
+    font-size: 14px;
+}
+
+#spar-abo {
+    display: none;
+}
+
+body .cart-frame {
+    border: none;
+    padding: 0;
+}
+
+body .cart-frame .top {
+    background: none;
+    float: left;
+}
+
+body .cart-frame .createprice {
+    float: left;
+    margin-left: 10px;
+}
+
+body .cart-frame .createprice div.bigprice > span.productNewPrice {
+    border: none;
+}
+
+body .cart-product input#addToBasket {
+    background: #18A1BE;
+    padding: 0;
+}
+
+body .cart-frame .createprice div.bigprice span.productOldPrice {
+    position: absolute;
+    left: 7px;
+    top: 26px;
+}
+
+body .cart-frame .createprice div.bigprice span.productOldPrice > span {
+    margin-left: 0;
+}
+
+body .cart-frame .createprice div.bigprice > span.productNewPrice {
+    font-size: 24px;
+    padding: 0 0 0 20px;
+    line-height: 30px;
+}
+
+body .bigprice .productNewPrice span {
+    position: absolute;
+    left: 6px;
+    font-size: 14px;
+    bottom: 4px;
+
+}
+
+body #cart .article-line > .image-text {
+    width: 70%;
+}
+
+body #cart .article-line .price-box {
+    width: 30%;
+}
+
+body #cart-top {
+    display: block !important;
+}
+
+body #cart .headline .article {
+    width: 50%;
+    padding-left: 12px;
+}
+
+body #cart .headline .piece {
+    width: 20%;
+}
+
+body #cart .headline .price {
+    width: 22%;
+}
+
+body #cart .headline .total-price {
+    width: 30%;
+    padding-right: 6px;
+}
+
+body #cart .article-line .inner-image-text {
+    border-right: 0;
+}
+
+body #wishlist .article-line .image,
+body #cart .article-line .image {
+    width: 30%;
+}
+
+body #wishlist .article-line .image img,
+body #cart .article-line .image img {
+    width: 100%;
+    height: auto;
+    max-width: 90px;
+}
+
+body #wishlist .article-line .text,
+body #cart .article-line .text {
+    width: 70%;
+}
+
+body #cart .article-line > .price,
+body #cart .article-line .total-price {
+    width: 100%;
+}
+
+body #cart .article-line .price {
+    width: 100%;
+    padding-right: 6px;
+}
+
+body #wishlist .headline > div,
+body #cart .headline > div {
+    height: 25px;
+}
+
+body #cart .subtotal .middle {
+    width: 70%;
+}
+
+body #cart .subtotal .right {
+    width: 30%;
+}
+
+body #cart .subtotal .right {
+    padding-right: 6px;
+}
+
+body .box.free-article .text {
+    width: 100%;
+}
+
+body #cart .sub-total-price .text {
+    width: 69%;
+    padding-top: 2px;
+}
+
+body #cart .sub-total-price .price {
+    width: 25%;
+}
+
+body #cart .article-line .price-box > .price {
+    width: 50%;
+}
+
+body .box.free-article {
+    height: auto;
+}
+
+body .box.rating .bullet,
+body #productsdetail-page .bullet {
+    bottom: auto;
+    top: -7px;
+}
+
+body .box.free-article .text {
+    padding-left: 12px;
+}
+
+body form .left-line,
+body form .line {
+    clear: both;
+}
+
+body #default-content .left-side.success.no-right h1,
+body #default-content .left-side.success.no-right h2,
+body #default-content .left-side.success.no-right h3,
+body #default-content .success-step h2 {
+    margin-left: 12px;
+}
+
+body #default-content .left-side.success.no-right .image-text h2 {
+    margin-left: 0;
+}
+
+body ul.checkoutnavigation {
+    margin-top: 12px;
+    width: 100%;
+    border: 1px solid #E6E6E6;
+    /* Für WebKit (Safari, Chrome, etc.) */
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e6e6e6));
+    /* Für Mozilla/Gecko (Firefox etc) */
+    background: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    /* aktueller W3C working draft */
+    background: linear-gradient(top, #ffffff, #e6e6e6);
+    /* Für Internet Explorer 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ffffff, endColorstr=#e6e6e6);
+    zoom: 1;
+    /* Für Internet Explorer 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#ffffff, endColorstr=#e6e6e6)";
+}
+
+body ul#confirmation.checkoutnavigation {
+    margin-top: 12px;
+}
+
+/*body #default-content .left-side.success.no-right ul#confirmation{
+    margin-left: 12px;
+    margin-right: 12px;
+}*/
+
+body ul.checkoutnavigation li {
+    color: #000 !important;
+    font-size: 10px;
+}
+
+body ul#shipping.checkoutnavigation li.shipping,
+body ul#payment.checkoutnavigation li.payment,
+body ul#confirmation.checkoutnavigation li.confirmation,
+body ul#success.checkoutnavigation li.success {
+    color: #CC0033 !important;
+}
+
+body .checkout .shipping-line .right-shipping {
+    float: none;
+    width: 100%;
+    padding-left: 10px;
+}
+
+body .detail.checkout .confirmation #checkout-buttons .right {
+    float: none;
+}
+
+body .detail.checkout .coupon.hookpoint,
+body .detail.checkout .text-comment,
+body .detail.checkout .second.subarea,
+body .detail.checkout .confirmation #checkout-buttons {
+    padding: 0 12px;
+}
+
+body .detail.checkout .confirmation .first h1 {
+    padding-left: 12px !important;
+}
+
+/* body .detail.checkout #checkout-buttons */
+
+body .text-comment textarea {
+    padding: 0;
+    width: 100%;
+}
+
+body .product-box p.price {
+    float: right;
+}
+
+body .coupon form input[type="text"],
+body .coupon form input[type="submit"] {
+    margin-left: 0;
+}
+
+body .coupon form input[type="submit"] {
+    width: 222px;
+    margin-top: 0;
+    line-height: 22px;
+}
+
+body #layer-login.returning-customer {
+    z-index: 999;
+    top: 52px;
+    left: 0;
+    width: 100%;
+}
+
+body #layer-login.returning-customer form .left-line .line p {
+    width: 20%;
+    float: left;
+}
+
+body #layer-login.returning-customer form .left-line .line div {
+    float: left;
+    width: 75% !important;
+}
+
+body #layer-login.returning-customer form .line > div input {
+    width: 100%;
+}
+
+body #layer-login.returning-customer form a.lost-password {
+    display: block;
+}
+
+body .history-block {
+    width: 100%;
+    overflow-x: auto;
+}
+
+body #productinfoprice {
+    width: 100%;
+    padding: 0 12px;
+    margin-top: 10px;
+}
+
+body .cart-product p {
+    margin: 0;
+}
+
+body #number-of-items {
+    position: relative;
+    background: none;
+}
+
+body #number-of-items select {
+    width: 100%;
+}
+
+body #number-of-items span.select {
+    width: 51px;
+    background-position: 35px 11px;
+}
+
+body #cart .sub-total-price .discount-text {
+    font-size: 12px;
+    width: 69%;
+    padding-top: 5px;
+}
+
+body .box.rating .text {
+    width: 100%;
+    padding: 0 12px;
+    float: none;
+}
+
+body .box.rating .bullet {
+    display: none;
+}
+
+body #default-content .box.rating .text h2,
+body #default-content .box.rating .text h3 {
+    margin-left: 0;
+}
+
+body #default-content .box.rating .text h2 {
+    line-height: 22px;
+}
+
+body #default-content .box.rating .text h3 {
+    line-height: 15px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+body .success-step.bottom ul.text {
+    margin-left: 28px;
+}
+
+body .success-step.bottom ul.text li {
+    display: list-item;
+    list-style: disc outside none;
+    padding: 0 12px;
+    text-align: left;
+    width: 100%;
+}
+
+body #cart .article-line .piece {
+    width: 100%;
+    /*    margin-left: 12px;*/
+}
+
+body #cart .subtotal .middle div.missing-total {
+    font-size: 10px;
+}
+
+body #cart .sub-total-price .price span.productNewPrice span {
+    font-size: 10px;
+}
+
+body #cart .sub-total-price span.chf {
+    left: -8px;
+    font-size: 10px;
+    top: -1px;
+}
+
+.cart-frame .createprice div.bigprice > span.productNewPrice.chfNew {
+    padding-left: 27px !important;
+}
+
+span.productNewPrice.chfNew span.chf {
+    bottom: 3px !important;
+}
+
+body div.returning-customer a.lost-password {
+    margin: 0;
+}
+
+body #cboxLoadedContent {
+    /*padding: 10px;*/
+    padding: 0;
+}
+
+body #cboxContent #cboxClose {
+    display: none;
+}
+
+body #ajax-cart-insert {
+    display: none !important;
+}
+
+body #contact div.highlightbox {
+    padding: 5px;
+}
+
+body #contact div.highlightbox input[type="text"],
+body .form-box input[type="text"] {
+    width: 82%;
+}
+
+body #contact div.highlightbox textarea {
+    width: 85%;
+}
+
+body .form-box small {
+    display: block;
+}
+
+body .order-info .outer-box {
+    width: 100%;
+    margin-left: 0;
+}
+
+body .order-info .top {
+    padding: 0 12px;
+}
+
+body .order-info p.prev {
+    padding-left: 12px;
+}
+
+body #bank-data #checkout-buttons .left {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+body .checkout-wrap .check-payment input,
+body .checkout-wrap .check-payment label {
+    position: relative;
+}
+
+body .check-payment input[type="checkbox"] {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 15px;
+}
+
+body span.agb {
+    display: block;
+    line-height: 16px;
+    margin-left: 22px;
+}
+
+input[type="radio"] {
+    -webkit-appearance: radio !important;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: checkbox !important;
+}
+
+body table.border-table {
+    width: 100%;
+}
+
+body table.border-table table.sub-bank tr.top.titles,
+body table.border-table table.sub-bank tr.input-fields {
+    display: block;
+    float: left;
+    width: 50%;
+    height: auto;
+}
+
+body table.border-table table.sub-bank tr.top.titles td,
+body table.border-table table.sub-bank tr.input-fields td {
+    display: block;
+    float: left;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 5px;
+}
+
+body table.border-table table.sub-bank tr.input-fields td input {
+    width: 100%;
+    padding: 0;
+}
+
+body table.border-table tr.bank-line {
+    height: 85px;
+}
+
+body table.paymentblock tr.banktransfer td.first {
+    display: block;
+    width: 100%;
+}
+
+body table.paymentblock tr.banktransfer td.second {
+    display: block;
+    padding-left: 17px;
+    width: 100%;
+}
+
+body table.paymentblock tr.banktransfer td.third {
+    display: block;
+    padding-left: 17px;
+    width: 100%;
+}
+
+body table.paymentblock tr.banktransfer td.last {
+    display: block;
+    width: 100%;
+    padding-left: 17px;
+}
+
+body .text-comment h3 {
+    font-size: 14px;
+    line-height: 17px;
+    margin: 5px 0;
+    width: 100%;
+}
+
+body #topmenuwrap .topmenu-list > ul > li#cat3:hover > a,
+body #topmenuwrap .topmenu-list > ul > li#cat3 > a:focus,
+body #topmenuwrap .topmenu-list > ul > li#cat3.active > a,
+body #topmenuwrap .topmenu-list > ul > li#cat3.sfHover > a {
+    background: none;
+}
+
+body #topmenuwrap .topmenu-list > ul > li#cat3:hover > a span,
+body #topmenuwrap .topmenu-list > ul > li#cat3 > a:focus span,
+body #topmenuwrap .topmenu-list > ul > li#cat3.active > a span,
+body #topmenuwrap .topmenu-list > ul > li#cat3.sfHover > a span {
+    color: #666666;
+}
+
+body #topmenuwrap .topmenu-list > ul > li#cat3.active {
+    background: #18A1BE;
+}
+
+body #topmenuwrap .topmenu-list > ul > li#cat3.active > a > span {
+    color: #FFFFFF;
+}
+

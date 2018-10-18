@@ -1,0 +1,12 @@
+body {
+	font: 12px sans-serif;
+	padding: 5px 5px 0 5px;
+}
+body.magna.veyton {
+	padding-right:10px;
+	padding-left:10px;
+}
+
+a:link {
+	color: #000000;
+}

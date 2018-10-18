@@ -1,0 +1,27 @@
+<div class="sidebar-box">
+	{if $_show_more_link == true}
+	{if $smarty.const.ACTIVATE_XT_NEW_PRODUCTS_PAGE eq 'true'}
+	<p class="headline"><a href="{link page='xt_new_products' conn=SSL}">{txt key=TEXT_HEADING_NEW_PRODUCTS}</a></p>
+	{else}
+	<p class="headline">{txt key=TEXT_HEADING_NEW_PRODUCTS}</p>
+	{/if}
+	{else}
+	<p class="headline">{txt key=TEXT_HEADING_NEW_PRODUCTS}</p>
+	{/if}
+	<div class="box">
+		{foreach name=aussen item=new_products_data from=$_new_products}
+		{if $new_products_data.products_image == 'product:noimage.gif'}
+		<p class="product-image"><a href="{$new_products_data.products_link}"><img src="{$tpl_url_path}img/no_image.png" alt="{$new_products_data.products_name}" /></a></p>
+		{else}
+		<p class="product-image"><a href="{$new_products_data.products_link}">{img img=$new_products_data.products_image type=m_sidebar class=productImageBorder alt=$new_products_data.products_name}</a></p>
+		{/if}
+		<p class="product-name"><a href="{$new_products_data.products_link}">{$new_products_data.products_name}</a></p>
+		<p class="product-price">{$new_products_data.products_price.formated}</p>
+		{if $new_products_data.products_shipping_link}
+		<p class="product-tax-shipping">{$new_products_data.products_tax_info.tax_desc}&nbsp;<a href="{$new_products_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+		{else}
+		<p class="product-tax-shipping">{$new_products_data.products_tax_info.tax_desc}&nbsp;{txt key=TEXT_EXCL_SHIPPING}</p>
+		{/if}
+		{/foreach}
+	</div><!-- .box -->
+</div><!-- .sidebar-box -->

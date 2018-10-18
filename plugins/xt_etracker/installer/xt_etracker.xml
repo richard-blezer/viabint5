@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>eTracker</title>
+<version>1.0.0</version>
+<code>xt_etracker</code>
+<url>http://www.xt-commerce.com</url>
+<description>eTracker plugin</description>
+<type>marketing</type>
+<icon>logo.png</icon>
+<plugin_code>
+<code>
+<hook>index_footer_tpl</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_etracker/hooks/index_footer_tpl.php'; 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+<configuration>
+<config>
+<key>XT_ETRACKER_SECURECODE</key>
+<type>input</type>
+<value></value>
+<de>
+<title>Sicherheitscode</title>
+</de>
+<en>
+<title>Security Code</title>
+</en>
+</config>
+<config>
+<key>XT_ETRACKER_ACTIVATED</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Aktivieren eTracker</title>
+</de>
+<en>
+<title>Activate eTracker</title>
+</en>
+</config>
+<config>
+<key>XT_ETRACKER_NOSCRIPT</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Aktivieren eTracker-Noscript</title>
+</de>
+<en>
+<title>Activate eTracker-Noscript</title>
+</en>
+</config>
+<config>
+<key>XT_ETRACKER_SSL</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Aktivieren SSL</title>
+</de>
+<en>
+<title>Activate SSL</title>
+</en>
+</config>
+<config>
+<key>XT_ETRACKER_AKTIVATE_CART</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Warenkorbanalyse aktivieren</title>
+</de>
+<en>
+<title>activate Cart Analyse</title>
+</en>
+</config>
+<config>
+<key>XT_ETRACKER_AREAS</key>
+<value>Privatkunden</value>
+<type>input</type>
+<de>
+<title>Bereiche</title>
+</de>
+<en>
+<title>Areas</title>
+</en>
+</config>
+<config>
+<key>XT_ETRACKER_TARGET</key>
+<value>mein Ziel</value>
+<type>input</type>
+<de>
+<title>Website-Ziele</title>
+</de>
+<en>
+<title>Target</title>
+</en>
+</config>
+</configuration>
+</xtcommerceplugin>

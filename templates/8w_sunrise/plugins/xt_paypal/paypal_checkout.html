@@ -1,0 +1,25 @@
+<table class="paymentblock" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr class="top">
+	  	{if $payment_hidden == true}
+	  		{form type=hidden name=selected_payment value=$payment_code}
+	  	{else}			
+		  	{if $payment_code==$payment_selected}
+		  	<td class="header" width="10px">{form type=radio name=selected_payment value=$payment_code checked=true}</td>
+		  	{else}
+		  	<td class="header" width="10px">{form type=radio name=selected_payment value=$payment_code}</td>
+		  	{/if}
+		{/if}  
+  	<td class="header">
+  		<span class="title">{$payment_name}</span>
+  		<a href="#" onclick="javascript:window.open('https://www.paypal.com/de/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside','olcwhatispaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=500');">
+		{if $payment_icon} {img img=$payment_icon type=w_media_payment}{else}<img  src="https://www.paypal.com/de_DE/DE/i/logo/lockbox_100x31.gif" border="0" alt="PayPal-Bezahlmethoden-Logo">{/if}
+		</a>
+  	</td>
+    <td class="header" align="right">{$payment_price.formated}</td>
+  </tr>
+  {if $payment_desc}
+  <tr class="border">
+  	<td colspan="3" class="main desc">{$payment_desc}</td>
+  </tr>
+  {/if}
+</table>

@@ -1,0 +1,10 @@
+<div data-role="collapsible" data-collapsed="true" id="categorymenu" data-content-theme="d">
+	<h3>{txt key=TEXT_BOX_TITLE_CATEGORIES}</h3>
+	<ul data-role="listview" data-inset="true">
+{foreach name=aussen item=module_data from=$_categories}
+	<li class="level{$module_data.level}{if $module_data.active} active{/if}">
+<a href="{$module_data.categories_link}" title="{$module_data.categories_heading_title}">
+	{img img=$module_data.categories_image type=m_category_thumb alt=$module_date.categories_name|escape:"html"}<h3>{$module_data.categories_name}</h3><p>{$module_data.categories_heading_title}</p></a></li>
+{/foreach}
+</ul>
+</div>

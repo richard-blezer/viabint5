@@ -1,0 +1,23 @@
+{if $CURRENCY == 'EUR'}
+<span class="productOldPrice eurOld">
+	<span>
+		<span class="eur">&euro;</span>
+		{$OLD_PRICE.plain|string_format:"%.2f"|replace:".":","}
+	</span>
+</span>
+<span class="productNewPrice eurNew">
+	<span class="eur">&euro;</span>
+	{$SPECIAL_PRICE.plain|string_format:"%.2f"|replace:".":","}
+</span>
+{elseif $CURRENCY == 'CHF'}
+<span class="productOldPrice chfOld">
+	<span>
+		<span class="chf">CHF</span>
+		{$OLD_PRICE.plain|string_format:"%.2f"|replace:".":","}
+	</span>
+</span>
+<span class="productNewPrice chfNew">
+	<span class="chf">CHF</span>
+	{$SPECIAL_PRICE.plain|string_format:"%.2f"|replace:".":","}
+</span>
+{/if}

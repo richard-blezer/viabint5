@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+  <title>MdA Load Mobile Template</title>
+  <version>1.0.0</version>
+  <code>mda_load_mobile_template</code>
+  <url>http://www.mda.ch</url>
+  <icon>mda.png</icon>
+  <description>This Plugin detects if a client is accessing the shop with a client device and redirects to the selected template optimized for mobile display</description>
+  <type>frontend</type>
+
+  <plugin_code>
+    <code>
+      <hook>page_registry.php:bottom</hook>
+      <title>load class</title>
+      <phpcode><![CDATA[
+      // my own classes
+      //require(_SRV_WEBROOT.'plugins/mda_load_mobile_template/classes/mda/class.Debugger.php');
+      require(_SRV_WEBROOT.'plugins/mda_load_mobile_template/classes/mda/class.MobileDetector.php');
+      ]]></phpcode>
+      <order>1</order>
+      <active>1</active>
+    </code>
+    <code>
+      <hook>class.customers_status.php:customers_status_top</hook>
+      <title>Main</title>
+      <phpcode><![CDATA[
+        if(MobileDetector::is_mobile()&&!defined('_STORE_TEMPLATE'))
+        {
+            define('_STORE_TEMPLATE',MDA_MOBILE_TEMPLATE);
+        }
+      ]]></phpcode>
+      <order>1</order>
+      <active>1</active>
+    </code>
+  </plugin_code>
+  <configuration>
+    <config>
+      <key>MDA_MOBILE_TEMPLATE</key>
+      <type>dropdown</type>
+      <url>templateSets</url>
+      <value></value>
+      <de>
+        <title>Mobile Template</title>
+        <description>Template für Mobile Endgeraete</description>
+      </de>
+      <en>
+        <title>Mobile Template</title>
+        <description>Template for mobile devices</description>
+      </en>
+    </config>
+  </configuration>
+</xtcommerceplugin>

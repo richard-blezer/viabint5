@@ -1,0 +1,22 @@
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+	    <thead>
+		    <tr>
+      		    <th colspan="2" class="left">{txt key=TEXT_FILE}</th>
+      		    <th class="right">{txt key=TEXT_SIZE}</th>
+    	    </tr>
+        </thead>
+        <tbody>
+  		    {foreach name=aussen item=file_data from=$media_files}
+    	    <tr class="{cycle values="odd,even"} cursor-pointer">
+    		    <td class="text-muted text-small">{if $file_data.icon}{img img=$file_data.icon type=w_media_filetypes alt=$file_data.file}{/if}</td>
+    		    <td>
+    			    <strong><a href="{$file_data.download_url|escape:'html'}" rel="nofollow" target="_blank"><i class="fa fa-download"></i> {if $file_data.media_name}{$file_data.media_name}{else}{$file_data.file}{/if}</a></strong>
+   				    {if $file_data.media_description}{$file_data.media_description}{/if}
+    		    </td>
+    		    <td class="right">{$file_data.media_size|fsize_format:"MB"}</td>
+  		    </tr>
+  		    {/foreach}
+	    </tbody>
+    </table>
+</div>

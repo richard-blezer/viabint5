@@ -1,0 +1,50 @@
+<h1>{txt key=TEXT_VT_SSA_GROUPS_TITLE}</h1>
+<p>
+    {txt key=TEXT_VT_SSA_GROUPS_PAGE_DESC}
+</p>
+<div style="clear:both;"></div>
+{$message}
+<div style="clear:both;"></div>
+
+<div class="hrproductpreview"></div>
+{foreach name=aussen item=group_data from=$groups}
+<table class="productPreview" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    {if $group_data.ssag_image != ''}
+        <td class="productPreviewImage">
+            <a href="{$group_data.ssag_link}">
+                {img img=$group_data.ssag_image hover=true id=$group_data.ssag_id type=m_thumb class=productImageBorder alt=$group_data.ssag_name|escape:"html"}
+            </a>
+        </td>
+    {/if}
+    <td class="productPreviewContent">
+        <div class="float_left">
+            <h2><a href="{$group_data.ssag_link}">{$group_data.ssag_name}</a></h2>
+            {if $group_data.ssag_short_desc}
+                <p>{$group_data.ssag_short_desc}</p>
+            {/if}
+        </div>   
+	<div class="float_right">		
+            <p class="price float_right">{$group_data.ssap_price.formated}</p>
+            <div style="clear:both;"></div>
+            {if $group_data.ssag_tax_info.tax_desc}
+                <p class="taxandshippinginfo float_right">
+                    {$group_data.ssag_tax_info.tax_desc}<br />
+                </p>
+            {/if}
+            <div style="clear:both;"></div>
+            {if $group_data.ssag_shipping_link}
+                <p class="taxandshippinginfo float_right">
+                    <a href="{$module_data.ssag_shipping_link}" target="_blank" rel="nofollow">
+                        {txt key=TEXT_EXCL_SHIPPING} {if $module_data.ssag_shipping_group_name} ({$module_data.ssag_shipping_group_name}) {/if}
+                    </a>
+                </p>
+            {/if}
+            <div style="clear:both;"></div>
+            <div class="float_right"><a href="{$group_data.ssag_link}">{button text=$smarty.const.TEXT_VT_SSA_SHOW_PRODUCTS file='button_vt_ssa_show_products.gif' btn_template='tpl_button_2.gif' space_left='25'}</a></div>                    
+        </div>        
+    </td>
+  </tr>
+</table>
+<div class="hrproductpreview"></div>
+{/foreach}

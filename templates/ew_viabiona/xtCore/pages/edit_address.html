@@ -1,0 +1,181 @@
+<div id="edit-adress">
+	<h1>{txt key=TEXT_EDIT_ADDRESS}</h1>
+	{form type=form name=edit_address action='dynamic' link_params='page_action=edit_address' method=post conn=SSL}
+	{form type=hidden name=action value=edit_address}
+	{if $address_book_id}{form type=hidden name=address_book_id value=$address_book_id}{/if}
+	{$message}
+
+    <div class="well">
+
+        {hook key=account_tpl_edit_address_center}
+
+        <fieldset>
+            <legend>{txt key=TEXT_PERSONAL}</legend>
+            {if $show_gender eq 1}
+            <div class="form-group">
+                <label for="customers_gender">{txt key=TEXT_GENDER}*</label>
+                {form class="form-control" type=select name=customers_gender value=$gender_data default=$customers_gender}
+            </div>
+            {/if}
+            {if $show_company eq 1}
+            <div class="form-group">
+                <label for="customers_company">{txt key=TEXT_COMPANY_NAME}{if _STORE_COMPANY_MIN_LENGTH > 0}*{/if}</label>
+                {form id=customers_company type=text name=customers_company value=$customers_company}
+            </div>
+            <div class="form-group">
+                <label for="customers_company_2">{txt key=TEXT_COMPANY_NAME_2}</label>
+                {form id=customers_company_2 type=text name=customers_company_2 value=$customers_company_2}
+            </div>
+            <div class="form-group">
+                <label for="customers_company_3">{txt key=TEXT_COMPANY_NAME_3}</label>
+                {form id=customers_company_3 type=text name=customers_company_3 value=$customers_company_3}
+            </div>
+            {/if}
+            <div class="form-group">
+                <label for="customers_firstname">{txt key=TEXT_FIRSTNAME}*</label>
+                {form id=customers_firstname type=text name=customers_firstname value=$customers_firstname}
+            </div>
+            <div class="form-group">
+                <label for="customers_lastname">{txt key=TEXT_LASTNAME}*</label>
+                {form id=customers_lastname type=text name=customers_lastname value=$customers_lastname}
+            </div>
+            {if $show_birthdate eq 1}
+            <div class="form-group">
+                <label for="customers_dob">{txt key=TEXT_BIRTHDATE}*</label>
+                {form params='placeholder="TT.MM.JJJJ"' id=customers_dob type=text name=customers_dob value=$customers_dob}
+            </div>
+            {/if}
+        </fieldset>
+
+        <fieldset>
+            <legend>{txt key=TEXT_ADDRESS}</legend>
+            <div class="form-group">
+                <label for="customers_street_address">{txt key=TEXT_STREET}*</label>
+                {form id=customers_street_address type=text name=customers_street_address value=$customers_street_address}
+            </div>
+            {if $show_suburb eq 1}
+            <div class="form-group">
+                <label for="customers_suburb">{txt key=TEXT_SUBURB}</label>
+                {form id=customers_suburb type=text name=customers_suburb value=$customers_suburb}
+            </div>
+            {/if}
+            <div class="form-group">
+                <label for="customers_postcode">{txt key=TEXT_CODE}*</label>
+                {form id=customers_postcode type=text name=customers_postcode value=$customers_postcode}
+            </div>
+            <div class="form-group">
+                <label for="customers_city">{txt key=TEXT_CITY}*</label>
+                {form id=customers_city type=text name=customers_city value=$customers_city}
+            </div>
+            <div class="form-group">
+                <label for="customers_country_code">{txt key=TEXT_COUNTRY}*</label>
+                <div id='countries'>{form type=select name=customers_country_code value=$country_data default=$selected_country}</div><!-- #countries -->
+            </div>
+            {if $show_federal_states eq 1}
+            <div id="federals"></div>
+            {/if}
+            {if $show_state eq 1}
+            <div class="form-group">
+                <label for="customers_zone_code">{txt key=TEXT_STATE}</label>
+                {form type=select name=customers_zone_code value=$customers_zone_code default=$selected_zone}
+            </div>
+            {/if}
+            {if $show_county eq 1}
+            <div class="form-group">
+                <label for="">{txt key=TEXT_COUNTY}</label>
+                {$INPUT_COUNTY}
+            </div>
+            {/if}
+        </fieldset>
+
+        <fieldset>
+            <legend>{txt key=TEXT_CONTACT}</legend>
+            <div class="form-group">
+                <label for="customers_phone">{txt key=TEXT_PHONE}{if _STORE_TELEPHONE_MIN_LENGTH > 0}*{/if}</label>
+                {form id=customers_phone type=text name=customers_phone value=$customers_phone}
+            </div>
+            <div class="form-group">
+                <label for="customers_mobile_phone">{txt key=TEXT_MOBILE_PHONE}{if _STORE_MOBILE_PHONE_MIN_LENGTH > 0}*{/if}</label>
+                {form id=customers_mobile_phone type=text name=customers_mobile_phone value=$customers_mobile_phone}
+            </div>
+            <div class="form-group">
+                <label for="customers_fax">{txt key=TEXT_FAX}{if _STORE_FAX_MIN_LENGTH > 0}*{/if}</label>
+                {form id=customers_fax type=text name=customers_fax value=$customers_fax}
+            </div>
+        </fieldset>
+
+    </div>
+
+	{if $adType}
+	    {form type=hidden name=address_class value=$adType}
+	    {form type=hidden name=adType value=$adType}
+	{else}
+        <div class="well">
+            <div class="form-group">
+                <label for="old_address_class">{txt key=TEXT_ADDRESS_TYPE}</label>
+                {form id=old_address_class type=hidden name=old_address_class value=$old_address_class}
+                {form class="form-control" type=select name=address_class value=$address_type default=$address_class}
+            </div>
+        </div>
+	{/if}
+
+    <p class="required pull-left">{txt key=TEXT_MUST}</p>
+
+    <div class="form-submit pull-right text-right">
+        <p>
+            {if $adType eq 'shipping'}
+                <a href="{link page='checkout' paction=shipping conn=SSL}" class="btn btn-default">{txt key=BUTTON_BACK}</a>
+            {/if}
+            {if $adType eq 'payment'}
+                <a href="{link page='checkout' paction=payment conn=SSL}" class="btn btn-default">{txt key=BUTTON_BACK}</a>
+            {/if}
+            {if !$adType}
+                <a href="{link page='customer' paction=address_overview conn=SSL}" class="btn btn-default">{txt key=BUTTON_BACK}</a>
+            {/if}
+
+            <button type="submit" class="btn btn-primary preloader">
+                {txt key=BUTTON_NEXT}
+            </button>
+        </p>
+    </div>
+
+	{form type=formend}
+
+	<div style="display:none;">
+		{foreach item='federal_states' from=$country_data}
+ 		{if $federal_states.federal_states}
+ 			<div class="form-group {$federal_states.id}">
+    			<label for="ustomers_federal_state_code">{txt key=TEXT_FEDERAL_STATES}*</label>
+    			{form params='id="customers_federal_state_code"' class="form-control" type=select name=customers_federal_state_code value=$federal_states.federal_states default=$customers_federal_state_code}
+  			</div>
+  		{/if}
+		{/foreach}
+	</div>
+
+	{literal}
+	<script type="text/javascript">
+ 		$(document).ready(function(){
+ 			$('#countries').change(function(){
+ 				var selected_country = $('#countries option:selected').val();
+				if($('.'+selected_country).length != 0){
+ 					$('#federals').html($('.'+selected_country).html());
+ 				} else {
+ 					$('#federals').html('');
+ 				}
+                
+                //update bootstrap-select
+                $("#federals select, #countries select").attr('data-live-search', 'true').selectpicker('render');
+ 			});
+ 			var selected_country = $('#countries option:selected').val();
+			if($('.'+selected_country).length != 0){
+ 				$('#federals').html($('.'+selected_country).html());
+ 			} else {
+ 				$('#federals').html('');
+ 			}
+            
+            //update bootstrap-select
+            $("#federals select, #countries select").attr('data-live-search', 'true').selectpicker('render');
+ 		});
+	</script>
+	{/literal}
+</div><!-- #edit-adress -->

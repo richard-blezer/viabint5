@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_PRODUCTS_CANONICAL_MASTER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Canonical tag for Slaves]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Canonical Tag für Slaves]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_CANONICAL_APPLY_TO_ALL_SLAVES_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Use Master Url for all Slaves]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Master URL bei Slaves verwenden]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

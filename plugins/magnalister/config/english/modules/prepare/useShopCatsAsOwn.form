@@ -1,0 +1,18 @@
+{
+    "prepare": {
+        "fields": {
+            "useShopCats": {
+                "label": "Own categories",
+                "key": "_#_platform_#_.catmatch.ownshopcats",
+                "type": "checkbox",
+                "desc": "In order to upload to _#_platformName_#_ in categories similar to your shop categories, please activate this function.<br \/>\n\t\t\t\t\t\t The categories will be uploaded the way they are in the shop each time a product upload is performed.",
+                "values": {
+                    "val": "Upload your own shop categories as categories on _#_platformName_#_"
+                },
+                "default": {
+                    "val": true
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+   
+<p class="sub-total">{txt key=TEXT_COUPON_PRICE_BEFORE_DISCOUNT}<span class="float-right">{$coupon_total_before_discount}</span></p>
+	<span class="float-left"><b>{txt key=TEXT_COUPON_AKTIV}:</b></span><span class="float-right">{$coupon_amount}</span>
+	<br /><span class="float-left"><b>"{if $arr_coupon.coupon_token_code != ''}{$arr_coupon.coupon_token_code}{else}{$arr_coupon.coupon_code}{/if}"</b></span>
+	<br /><a class="float-left underline" href="{$remove_coupon_link}">{txt key=TEXT_COUPON_REMOVE}</a>
+	<br />
+	

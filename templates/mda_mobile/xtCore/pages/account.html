@@ -1,0 +1,29 @@
+<h2>{txt key=TEXT_PAGE_TITLE_ACCOUNT}</h2>
+{$message}
+{if $registered_customer != true}
+<h3>{txt key=TEXT_ACCOUNT_TITLE_WELCOME}</h3>
+<p>{txt key=TEXT_ACCOUNT_WELCOME}</p>
+<a href="{link page='customer' paction='login' conn=SSL}" data-role=button>{txt key=TEXT_ACCOUNT_LOGIN}</a>
+{/if}
+<h3>{txt key=TEXT_ACCOUNT_TITLE}</h3><ul data-role="listview" data-inset="true">	<li><a href="{link page='customer' paction=edit_customer conn=SSL}">{txt key=TEXT_ACCOUNT_EDIT}</a></li>	<li><a href="{link page='customer' paction=address_overview conn=SSL}">{txt key=TEXT_ACCOUNT_ADRESSBOOK}</a></li>
+	{hook key=account_tpl_account_data}</ul>
+<p><br/></p>
+
+
+{hook key=account_tpl_module_data}
+
+{if $download_flag == true}
+<h3>{txt key=TEXT_ACCOUNT_DOWNLOADS}</h3>	
+	<a href="{link page='customer' paction=download_overview conn=SSL}" data-role="button" data-icon="gear">{txt key=TEXT_ACCOUNT_DOWNLOADS_MORE}</a>
+	</td>
+  </tr>
+</table>
+{/if}
+{if $order_data}
+<h3>{txt key=TEXT_ACCOUNT_ORDERS}</h3>
+{include file="/xtCore/pages/order_history_block.html" type="tpl_include"}
+<a href="{link page='customer' paction=order_overview conn=SSL}" data-role="button">{txt key=TEXT_ACCOUNT_ALL_ORDERS}</a></p>
+
+{/if}
+
+{hook key=account_tpl_module_data_bottom}

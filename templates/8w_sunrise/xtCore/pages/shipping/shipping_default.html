@@ -1,0 +1,7 @@
+{form type=hidden name=selected_shipping value=$shipping_code}
+<p>{$shipping_name} {$shipping_price.formated}</p>
+{if $shipping_desc}
+  <p class="small">
+  {$shipping_desc}
+  </p>
+{/if}

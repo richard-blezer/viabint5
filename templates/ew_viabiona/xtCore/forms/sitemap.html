@@ -1,0 +1,25 @@
+<div id="sitemap">
+	<h1>{$data.content_heading}</h1>
+    {if $file}<div class="textstyles">{$file}</div>{else}<div class="textstyles">{$data.content_body}</div>{/if}
+	{foreach name=aussen item=module_data from=$_data_categories}
+	{if $smarty.foreach.aussen.first}
+	<div class="sitemap-row">
+		{/if}
+		<ul>
+            <li class="sitemap-headline">
+                <p class="headline"><a class="text-primary" href="{$module_data.link}">{$module_data.title}</a></p>
+                <ul>
+                {foreach key=key_data item=item_data from=$module_data.sub}
+                    <li class="level1"><a href="{$item_data.link}">{$item_data.title}</a></li>
+                {/foreach}
+                </ul>
+            </li>
+		</ul>
+	{if $smarty.foreach.aussen.iteration % 3 == 0 && $smarty.foreach.aussen.last == false}
+	</div><!-- .sitemap-row -->
+	<div class="sitemap-row">
+	{elseif $smarty.foreach.aussen.last}
+	</div><!-- .sitemap-row -->
+	{/if}
+	{/foreach}
+</div><!-- #sitemap -->

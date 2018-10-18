@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_CACHE_TYPE_DESC</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Zu bereinigender Cache/Tabelle]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zu bereinigender Cache/Tabelle]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_CLEANCACHE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Cache]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Cache]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_CLEANCACHE_LOGS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Cache empty log]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Cache entleeren log]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_CLEANCACHE_TYPES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Cache empty]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Cache entleeren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_CACHE_DELETED</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Cache deleted]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Cache gelöscht]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

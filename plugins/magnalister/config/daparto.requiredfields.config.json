@@ -1,0 +1,1 @@
+{"daparto":{"requiredfields":{"ItemId":false,"ItemName":false,"Price":true,"ItemDescription":false,"ItemUrl":true,"ManufacturerName":true,"ModelNumber":true,"EAN":false,"ImageUrl":true,"ShippingCost":true,"ShippingTime":false,"ItemWeight":false,"DapartoUsage":true,"DapartoCondition":true,"DapartoExchange":false,"DapartoTecDoc":true}}}

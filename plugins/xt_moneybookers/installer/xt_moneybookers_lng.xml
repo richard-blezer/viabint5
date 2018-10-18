@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_AMX_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Amex]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Amex aktivieren]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用Amex]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_DID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Creditcard]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Lastschrift aktivieren]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用信用卡]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_DIN_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Diners]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Diners aktivieren]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用大來卡]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_GCB_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Creditcard]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Carte Bleue aktivieren]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用信用卡]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_GIR_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Creditcard]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Giropay aktivieren (DE)]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用信用卡]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_IDL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate iDeal]]></value>
+	</en>
+	<de>
+		<value><![CDATA[iDeal aktivieren (NL)]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用iDeal]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_MAE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Creditcard]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Maestro aktivieren (UK,ES,AT)]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用信用卡]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_MSC_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Mastercard]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Mastercard aktivieren]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用Mastercard]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_NPY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Creditcard]]></value>
+	</en>
+	<de>
+		<value><![CDATA[EPS (netpay) aktivieren (AT)]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用信用卡]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_OBT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Onlineüberweisung]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Onlineüberweisung aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_PAYOLUTION_INS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate payment by installments]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ratenzahlung aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_PAYOLUTION_INVOICE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate purchase on account]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungskauf aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_SFT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Creditcard]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sofoerüberweisung aktivieren]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用信用卡]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_VSA_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Visa]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Visa aktivieren]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用Visa]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ACTIVATE_WLT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate moneybookers wallet]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Moneybookers aktivieren]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用moneybookers電子錢包]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_CANCELED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Canceled]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - Abgelehnt]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[訂單狀態 - 取消]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_EMAILID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[E-Mail Address]]></value>
+	</en>
+	<de>
+		<value><![CDATA[E-Mail Adresse]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[E-Mail電郵地址]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_MERCHANT_ID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Merchant ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Händler ID]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[商家編號]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_MERCHANT_SECRET_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Secret-Phrase]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geheimwort]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[安全詞組]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_NOTIFICATION_EMAIL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[E-Mail Address (notification after successful payment)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[E-Mail Adresse (Benachrichtigung nach erfolgreicher Zahlung)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_ORDER_STATUS_NEW_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[New Order Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[New Order Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_PENDING_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Pending]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - In Bearbeitung]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[訂單狀態 - 等候處理]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_PROCESSED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Completed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - Erfolgreich]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[訂單狀態 - 完成]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MONEYBOOKERS_WPF_REDIRECT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate WPF]]></value>
+	</en>
+	<de>
+		<value><![CDATA[WPF aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYMENT_PINS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Payment by installments]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ratenzahlung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYMENT_PINV</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Purchase on account]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungskauf]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TXT_MONEYBOOKERS_PAYOLUTION</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Skrill (Payolution)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Skrill (Payolution)]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

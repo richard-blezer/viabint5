@@ -1,0 +1,12 @@
+{if $hasMobile eq 'true'}
+{if $mobile_active and $smarty.session.isMobile neq 'true'}
+<a href="{$link}" rel="nofollow">
+    {txt key=TEXT_MOBILE_SWITCH_LINK}
+</a>
+{/if}
+{/if}
+{if $smarty.session.isMobile eq 'true'}
+<a href="{$link}" rel="nofollow">
+    {txt key=TEXT_MOBILE_DESKTOP_SWITCH_LINK}
+</a>
+{/if}

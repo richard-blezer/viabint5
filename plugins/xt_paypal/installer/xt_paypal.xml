@@ -1,0 +1,1164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<title>PayPal + PayPal Express</title>
+	<version>2.7.0</version>
+	<code>xt_paypal</code>
+	<url>http://www.xt-commerce.com</url>
+	<description>PayPal Zahlungsmodul</description>
+	<icon>PayPal-Express.gif</icon> 
+	<developer>xt:Commerce</developer>
+<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=917719]]></documentation_link>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=358]]></marketplace_link>
+	<type>payment</type>
+	<payment>
+		<payment_code>xt_paypal</payment_code>
+		<payment_dir>xt_paypal</payment_dir>
+		<payment_icon>paypal.png</payment_icon>
+		<payment_tpl></payment_tpl>
+		<de>
+			<title>PayPal</title>
+			<description></description>
+		</de>
+		<en>
+			<title>PayPal</title>
+			<description></description>
+		</en>
+		<es>
+			<title>PayPal</title>
+			<description></description>
+		</es>
+        <bp>
+            <title>PayPal</title>
+            <description></description>
+        </bp>
+	</payment>
+	<db_install>
+        include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/db_install.php';
+    </db_install>
+	<db_uninstall>
+        include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/db_uninstall.php';
+    </db_uninstall>
+	
+	<minimumupdateversion>2.0.2</minimumupdateversion>
+	<db_update>
+		<update>
+			<version>2.0.2</version>
+			<to_version>2.1.0</to_version>
+			<code><![CDATA[
+			
+				$rs = $db->Execute("SELECT * FROM ".TABLE_CONFIGURATION." WHERE config_key='_SYSTEM_VERSION'");
+				$shop_version = $rs->fields['config_value'];
+				$shop_version  = str_replace('.','',$shop_version);
+
+				if($shop_version > 4015){
+					$db->Execute("UPDATE " . TABLE_ADMIN_NAVIGATION . " SET TYPE='G' WHERE text='payment' AND type='I'");
+					$db->Execute("INSERT INTO " . TABLE_ADMIN_NAVIGATION . " (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'paypal_transactions', 'images/icons/money_euro.png', '&plugin=xt_paypal', 'adminHandler.php', '4000', 'payment', 'I', 'W');");
+					$db->Execute("INSERT INTO " . TABLE_ADMIN_NAVIGATION . " (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'paypal_refunds', 'images/icons/money_euro.png', '&plugin=xt_paypal', 'adminHandler.php', '4000', 'payment', 'I', 'W');");
+				}
+
+				if($shop_version < 4100){
+					$cols = $db->MetaColumns(TABLE_ORDERS);
+					if(!array_key_exists('AUTHORIZATION_ID', $cols)){
+						$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD COLUMN `authorization_id` VARCHAR(255) NOT NULL DEFAULT ''");
+						$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD COLUMN `authorization_amount` DECIMAL(15,4) NULL AFTER `authorization_id`, ADD COLUMN `authorization_expire` DATETIME NULL AFTER `authorization_amount`");
+					}
+				}
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.1.0</version>
+			<to_version>2.1.1</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.1.1</version>
+			<to_version>2.1.4</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.1.4</version>
+			<to_version>2.1.5</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.1.5</version>
+			<to_version>2.1.6</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>		
+		<update>
+			<version>2.1.6</version>
+			<to_version>2.1.7</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.1.7</version>
+			<to_version>2.1.8</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>		
+		<update>
+			<version>2.1.8</version>
+			<to_version>2.1.9</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.1.9</version>
+			<to_version>2.2.0</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.2.0</version>
+			<to_version>2.3.0</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.3.0</version>
+			<to_version>2.3.1</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>	
+		<update>
+			<version>2.3.1</version>
+			<to_version>2.3.2</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>	
+		<update>
+			<version>2.3.2</version>
+			<to_version>2.4.0</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.4.0</version>
+			<to_version>2.4.1</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>		
+		<update>
+			<version>2.4.1</version>
+			<to_version>2.4.2</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.4.2</version>
+			<to_version>2.4.3</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.4.3</version>
+			<to_version>2.5.0</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.5.0</version>
+			<to_version>2.6.0</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.6.0</version>
+			<to_version>2.6.1</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.6.1</version>
+			<to_version>2.7.0</to_version>
+			<code><![CDATA[include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/installer/updates/2.6.1_2.7.0.php';
+				]]>
+			</code>
+		</update>
+	</db_update>
+    <plugin_code>
+		<code>
+			<hook>cart_tpl_form_paypal</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/cart_tpl_form.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>form_handler.php:data_array_bottom</hook>
+			<phpcode><![CDATA[
+            include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/form_handler_php_data_array_bottom.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>	
+		
+		<code>
+			<hook>module_checkout.php:checkout_first</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/module_checkout_php_checkout_first.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>			
+		
+		<code>
+			<hook>class.customer.php:_buildCustomerAddressData_top</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/class_customer_php__buildCustomerAddressData_top.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>			
+		
+		<code>
+			<hook>class.payment.php:_buildData_filter</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/class_payment_php__buildData_filter.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>			
+		
+		<code>
+			<hook>page_registry.php:bottom</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/page_registry_php_bottom.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>			
+	
+		<code>
+			<hook>class.checkout.php:_selectShipping_tpl_data</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/class_checkout_php__selectShipping_tpl_data.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>	
+	
+		<code>
+			<hook>module_checkout.php:checkout_bottom</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/module_checkout_php_checkout_bottom.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>		
+	
+		<code>
+			<hook>module_checkout.php:checkout_page_actions</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/module_checkout_php_checkout_page_actions.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>		
+	
+		<code>
+			<hook>module_checkout.php:checkout_selections</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/module_checkout_php_checkout_selections.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>	
+	
+		<code>
+			<hook>module_checkout.php:checkout_shipping_bottom</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/module_checkout_php_checkout_shipping_bottom.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>		
+	
+		<code>
+			<hook>module_checkout.php:checkout_payment_bottom</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/module_checkout_php_checkout_payment_bottom.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>		
+
+		<code>
+			<hook>form_handler.php:select_address_bottom</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/form_handler_php_select_address_bottom.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>		
+		
+		<code>
+			<hook>module_cart.php:tpl_data</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/module_cart_php_tpl_data.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>			
+
+		<code>
+			<hook>javascript.php:bottom</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/module_cart_php_tpl_data.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>			
+		
+		<code>
+			<hook>styles.php:bottom</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/styles_php_bottom.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>	
+        <code>
+			<hook>adminDB_DataRead:getTableData_where_filter</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/adminDB_DataRead_getTableData_where_filter.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>show_panel:filter_class</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/show_panel_filter_class.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+        <code>
+			<hook>show_panel:to_filter</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/show_panel_to_filter.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+        <code>
+			<hook>css_admin.php:css</hook>
+			<phpcode>
+				<![CDATA[
+				echo ".xt_paypal_refunds {background-image: url("._SYSTEM_BASE_URL."/"._SRV_WEB_PLUGINS."xt_paypal/images/arrow_undo.png) !important;}";
+				]]>
+			</phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+        <code>
+            <hook>admin_dropdown.php:dropdown</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/admin_dropdown.phpdropdown.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		<code>
+			<hook>module_checkout.php:checkout_process_check</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/module_checkout.php_checkout_process_check.php';
+			]]></phpcode>
+			<order>99</order>
+			<active>1</active>
+		</code>
+
+		<code>
+			<hook>checkout_tpl_info</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/checkout_tpl_info.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+        <code>
+            <hook>order_edit.php:getMemoPanel_button_add</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_paypal/hooks/order_edit_php_getMemoPanel_button_add.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		<code>
+			<hook>class.payment.php:_getParams_top</hook>
+			<phpcode><![CDATA[
+            include _SRV_WEBROOT . _SRV_WEB_PLUGINS. 'xt_paypal/hooks/class.payment.php__getParams_top.php';
+        ]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+
+	</plugin_code>
+	<configuration_payment>
+		<config>
+			<key>MODE</key>
+			<value>live</value>
+			<type>dropdown</type>
+			<url>status_sandbox</url>
+			<de>
+				<title>Testmodus (Sandbox)</title>
+			</de>
+			<en>
+				<title>Testmode (Sandbox)</title>
+			</en>
+			<es>
+				<title>Modo de prueba (Sandbox)</title>
+			</es>
+            <bp>
+                <title>Testmode (Sandbox)</title>
+            </bp>
+		</config>
+		<config>
+			<key>EXPRESS</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>PayPal Express aktivieren</title>
+			</de>
+			<en>
+				<title>Activate PayPal Express</title>
+			</en>
+			<es>
+				<title>Activar PayPal Express</title>
+			</es>
+            <bp>
+                <title>Ativar PayPal Express</title>
+            </bp>
+		</config>			
+		<config>
+			<key>API_USER</key>
+			<value></value>
+			<type>textfield</type>
+			<de>
+				<title>PayPal-API-Benutzer (Live)</title>
+			</de>
+			<en>
+				<title>PayPal-API-User (Live)</title>
+			</en>
+			<es>
+				<title>PayPal-API-User (Live)</title>
+			</es>
+            <bp>
+                <title>PayPal-API-Usuário (Live)</title>
+            </bp>
+		</config>
+		<config>
+			<key>API_PWD</key>
+			<type>textfield</type>
+			<de>
+				<title>PayPal-API-Passwort (Live)</title>
+			</de>
+			<en>
+				<title>PayPal-API-Password (Live)</title>
+			</en>
+			<es>
+				<title>PayPal-API-Password (Live)</title>
+			</es>
+            <bp>
+                <title>PayPal-API-Senha (Live)</title>
+            </bp>
+		</config>
+		<config>
+			<key>API_SIGNATURE</key>
+			<type>textfield</type>
+			<de>
+				<title>PayPal-API-Signatur (Live)</title>
+			</de>
+			<en>
+				<title>PayPal-API-Signature (Live)</title>
+			</en>
+			<es>
+				<title>PayPal-API-Signature (Live)</title>
+			</es>
+            <bp>
+                <title>PayPal-API-Assinatura (Live)</title>
+            </bp>
+		</config>
+		<config>
+			<key>API_SANDBOX_USER</key>
+			<type>textfield</type>
+			<value></value>
+			<de>
+				<title>PayPal-API-Benutzer (Sandbox)</title>
+			</de>
+			<en>
+				<title>PayPal-API-User (Sandbox)</title>
+			</en>
+			<es>
+				<title>PayPal-API-User (Sandbox)</title>
+			</es>
+            <bp>
+                <title>PayPal-API-User (Sandbox)</title>
+            </bp>
+		</config>
+		<config>
+			<key>API_SANDBOX_PWD</key>
+			<type>textfield</type>
+			<de>
+				<title>PayPal-API-Passwort (Sandbox)</title>
+			</de>
+			<en>
+				<title>PayPal-API-Password (Sandbox)</title>
+			</en>
+			<es>
+				<title>PayPal-API-Password (Sandbox)</title>
+			</es>
+            <bp>
+                <title>PayPal-API-Usuário (Sandbox)</title>
+            </bp>
+		</config>
+		<config>
+			<key>API_SANDBOX_SIGNATURE</key>
+			<type>textfield</type>
+			<de>
+				<title>PayPal-API-Signatur (Sandbox)</title>
+			</de>
+			<en>
+				<title>PayPal-API-Signature (Sandbox)</title>
+			</en>
+			<es>
+				<title>PayPal-API-Signature (Sandbox)</title>
+			</es>
+            <bp>
+                <title>PayPal-API-Assinatura (Sandbox)</title>
+            </bp>
+		</config>
+		<config>
+			<key>ORDER_STATUS_COMPLETED</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+            <value>23</value>
+			<de>
+				<title>Bestellstatus  - Zahlung abgeschlossen</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Completed</title>
+			</en>
+			<es>
+				<title>Estado del pedido - Finalizado</title>
+			</es>
+            <bp>
+                <title>Status dos pedidos - Completo</title>
+            </bp>
+		</config>
+		<config>
+			<key>ORDER_STATUS_DENIED</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+            <value>32</value>
+			<de>
+				<title>Bestellstatus  - Abgelehnt</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Denied</title>
+			</en>
+			<es>
+				<title>Estado del pedido - cancelar</title>
+			</es>
+            <bp>
+                <title>Status dos pedidos - Negado</title>
+            </bp>
+		</config>
+		<config>
+			<key>ORDER_STATUS_FAILED</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+            <value>32</value>
+			<de>
+				<title>Bestellstatus  - Fehler</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Failed</title>
+			</en>
+			<es>
+				<title>Estado del pedido - rechazado</title>
+			</es>
+            <bp>
+                <title>Status dos pedidos - Falha</title>
+            </bp>
+		</config>
+		<config>
+			<key>ORDER_STATUS_REFUNDED</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+            <value>32</value>
+			<de>
+				<title>Bestellstatus  - Zurückgezahlt</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Refunded</title>
+			</en>
+			<es>
+				<title>Estado del pedido - Pago devuelto</title>
+			</es>
+            <bp>
+                <title>Status dos pedidos - Reembolsado</title>
+            </bp>
+		</config>
+		<config>
+			<key>ORDER_STATUS_REVERSED</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+            <value>17</value>
+			<de>
+				<title>Bestellstatus  - Storniert</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Reversed</title>
+			</en>
+			<es>
+				<title>Estado del pedido - cancelar</title>
+			</es>
+            <bp>
+                <title>Status dos pedidos - Revertido</title>
+            </bp>
+		</config>
+		<config>
+			<key>ORDER_STATUS_PENDING</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+            <value>17</value>
+			<de>
+				<title>Bestellstatus  - In Bearbeitung</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Pending</title>
+			</en>
+			<es>
+				<title>Estado del pedido - En progreso</title>
+			</es>
+            <bp>
+                <title>Status dos pedidos - Pendente</title>
+            </bp>
+		</config>
+		<config>
+			<key>LOGO</key>
+			<type>textfield</type>
+			<url></url>
+			<de>
+				<title>Logo URL für PayPal Zahlungsseite (Größe: 190x60px Nur über https aufrufbar !!!)</title>
+			</de>
+			<en>
+				<title>Logo URL for PayPal Page (Size: 190x60px only https request !!!)</title>
+			</en>
+			<es>
+				<title>URL de logotipo para la página de pago de PayPal (tamaño:190x60px ¡¡¡Sólo accesible a través de https!!!)</title>
+			</es>
+            <bp>
+                <title>Logo URL da Página PayPal (Tamanho: 190x60px somente pedido https !!!)</title>
+            </bp>
+		</config>	
+		<config>
+			<key>BORDER_COLOR</key>
+			<type>textfield</type>
+			<url></url>
+			<de>
+				<title>Farbe für Paypal Seite (Format: FF0000)</title>
+			</de>
+			<en>
+				<title>Color for Paypal Page (Format: FF0000)</title>
+			</en>
+			<es>
+				<title>Color para el sitio de PayPal (Formato:FF0000)</title>
+			</es>
+            <bp>
+                <title>Cor da Página Paypal (Formato: FF0000)</title>
+            </bp>
+		</config>	
+		<config>
+			<key>ACCOUNT_MAIL</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Sende Email wenn Account generiert wird.</title>
+			</de>
+			<en>
+				<title>send account mail</title>
+			</en>
+			<es>
+				<title>Enviar correo electrónico si la cuenta se genera.</title>
+			</es>
+            <bp>
+                <title>enviar e-mail da conta</title>
+            </bp>
+		</config>
+
+        <config>
+            <key>PAYMENT_TYPE_ORDER</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Kundenkonto sofort belasten</title>
+            </de>
+            <en>
+                <title>Capture money immediately</title>
+            </en>
+            <es>
+                <title>Capture money immediately</title>
+            </es>
+            <bp>
+                <title>Capture money immediately</title>
+            </bp>
+        </config>
+
+		<config>
+			<key>CORRECTION</key>
+			<value>true</value>
+			<type>hidden</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Automatische Korrektur.</title>
+			</de>
+			<en>
+				<title>automatic correction</title>
+			</en>
+			<es>
+				<title>Corrección automática</title>
+			</es>
+            <bp>
+                <title>correção automática</title>
+            </bp>
+		</config>	
+		<config>
+			<key>SSL_VERSION</key>
+			<value>autodetect</value>
+			<type>dropdown</type>
+			<url>xt_paypal_ssl_version</url>
+			<de>
+				<title>SSL Version</title>
+			</de>
+			<en>
+				<title>SSL Version</title>
+			</en>
+			<es>
+				<title>SSL Version</title>
+			</es>
+            <bp>
+                <title>SSL Version</title>
+            </bp>
+		</config>	
+		<config>
+			<key>CIPHER_LIST</key>
+			<value>autodetect</value>
+			<type>dropdown</type>
+			<url>xt_paypal_cipher_list</url>
+			<de>
+				<title>Cipher list</title>
+			</de>
+			<en>
+				<title>Cipher list</title>
+			</en>
+			<es>
+				<title>Cipher list</title>
+			</es>
+            <bp>
+                <title>Cipher list</title>
+            </bp>
+		</config>	
+		<config>
+			<key>SEND_STATUS_MAIL_ON_IPN</key>
+			<type>status</type>
+			<value>0</value>
+			<de>
+				<title>Status-E-Mail versenden bei IPN</title>
+			</de>
+			<en>
+				<title>Send status email on IPN</title>
+			</en>
+			<es>
+				<title>Send status email on IPN</title>
+			</es>
+			<bp>
+				<title>Send status email on IPN</title>
+			</bp>
+		</config>
+	</configuration_payment>
+	<language_content>
+		<phrase>
+			<key>TEXT_PAYPAL_PAYMENT</key>
+			<class>admin</class>
+			<de>
+				<value>Zahlungsweise</value>
+			</de>
+			<en>
+				<value>Payment</value>
+			</en>
+			<es>
+				<value>Modalidades de pago</value>
+			</es>
+            <bp>
+                <value>Pagamento</value>
+            </bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_PAYPAL_EXPRESS</key>
+			<class>store</class>
+			<de>
+				<value>PayPal Express Checkout</value>
+			</de>
+			<en>
+				<value>PayPal Express Checkout</value>
+			</en>
+			<es>
+				<value>PayPal Express Checkout</value>
+			</es>
+            <bp>
+                <value>Ativar PayPal Express</value>
+            </bp>
+		</phrase>
+        <phrase>
+            <key>TEXT_CHECKOUT_PAYPAL_CONFIRMATION_DESC</key>
+            <class>store</class>
+            <de>
+                <value>Bitte prüfen Sie alle Angaben und klicken Sie auf (Bestellung bestätigen)</value>
+            </de>
+            <en>
+                <value>Please check all informations and click on (confirm order)</value>
+            </en>
+            <es>
+                <value>Por favor, revise toda la información y haga clic en (confirmar pedido)</value>
+            </es>
+            <bp>
+                <value>Por favor verifique todas as informações e clique em (confirmar pedido)</value>
+            </bp>
+        </phrase>  
+        <phrase>
+            <key>TEXT_PAYPAL_PAYMENT</key>
+            <class>store</class>
+            <de>
+                <value>Zahlungsweise</value>
+            </de>
+            <en>
+                <value>Paymentmethod</value>
+            </en>
+            <es>
+                <value>Modalidades de pago</value>
+            </es>
+            <bp>
+                <value>Pagamento</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_GET_FUNDS_ASK</key>
+            <class>admin</class>
+            <de>
+                <value>Bestellsumme vom PayPal Konto einziehen?</value>
+            </de>
+            <en>
+                <value>Capture order amount from PayPal Account?</value>
+            </en>
+            <es>
+                <value>Capture order amount from PayPal Account?</value>
+            </es>
+            <bp>
+                <value>Capture order amount from PayPal Account?</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_PAYMENT_CORRECTION_PRODUCT_NAME</key>
+            <class>store</class>
+            <de>
+                <value>Korrektur</value>
+            </de>
+            <en>
+                <value>Correction</value>
+            </en>
+            <es>
+                <value>Corrección</value>
+            </es>
+            <bp>
+                <value>Corrección</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_PAYMENT_CORRECTION_PRODUCT_NUMBER</key>
+            <class>store</class>
+            <de>
+                <value>Handling</value>
+            </de>
+            <en>
+                <value>Handling</value>
+            </en>
+            <es>
+                <value>Handling</value>
+            </es>
+            <bp>
+                <value>Handling</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>XT_PAYPAL_TEXT_EXPRESS_CART</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[<small>Wenn Sie auf <b>Express-Kauf mit PayPal</b> klicken, werden Sie automatisch zu PayPal weitergeleitet. Dort können Sie sich mit Ihrer PayPal-Email anmelden und die Zahlung freigeben. Sie kommen danach zurück in den Shop, wo Sie den Kauf dann endgültig abschließen können.</small>]]></value>
+            </de>
+            <en>
+                <value><![CDATA[<small>If you push the button <b>Express-Buy with PayPal</b> you will be automatically forwarded to PayPal. Login with your PayPal account and authorise your payment. After authorizing your payment you come back to the shop and finalize your purchase.</small>]]></value>
+            </en>
+            <es>
+                <value><![CDATA[Si hace clic en <b>Compra express con PayPal</b>, será redirigido automáticamente a PayPal. Allí se puede registrar con su correo electrónico de PayPal y liberar el pago.A continuación regresa a la tienda, donde puede finalmente completar la compra.]]></value>
+            </es>
+            <bp>
+                <value><![CDATA[<small>Se você pressionar o botão <b>Express-Buy with PayPal</b> você será automaticamente encaminhado para PayPal. Faça login em sua conta PayPal e autorize seu pagamento. Depois de autorizar seu pagamento, volte para loja e finalize sua compra.</small>]]></value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_REFUNDS_TYPE</key>
+            <class>admin</class>
+            <de>
+                <value>Refund Typ</value>
+            </de>
+            <en>
+                <value>Refund type</value>
+            </en>
+            <es>
+                <value>Refund type</value>
+            </es>
+            <bp>
+                <value>Tipo de reembolso</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_CALLBACK_LOG_ID</key>
+            <class>admin</class>
+            <de>
+                <value>Callback ID</value>
+            </de>
+            <en>
+                <value>Callback ID</value>
+            </en>
+            <es>
+                <value>Callback ID</value>
+            </es>
+            <bp>
+                <value>Callback ID</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_CALLBACK_DATA</key>
+            <class>admin</class>
+            <de>
+                <value>Callback Data</value>
+            </de>
+            <en>
+                <value>Callback Data</value>
+            </en>
+            <es>
+                <value>Callback Data</value>
+            </es>
+            <bp>
+                <value>Callback Data</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_REFUNDED</key>
+            <class>admin</class>
+            <de>
+                <value>Refunded</value>
+            </de>
+            <en>
+                <value>Refunded</value>
+            </en>
+            <es>
+                <value>Refunded</value>
+            </es>
+            <bp>
+                <value>Reembolsado</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_REFUNDS_ID</key>
+            <class>admin</class>
+            <de>
+                <value>Refund_id</value>
+            </de>
+            <en>
+                <value>Refund_id</value>
+            </en>
+            <es>
+                <value>Refund_id</value>
+            </es>
+            <bp>
+                <value>ID do reembolso</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_REFUND_MEMO</key>
+            <class>admin</class>
+            <de>
+                <value>Bemerkung</value>
+            </de>
+            <en>
+                <value>Memo</value>
+            </en>
+            <es>
+                <value>Memo</value>
+            </es>
+            <bp>
+                <value>Memo</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_REFUNDS_TYPE_FULL</key>
+            <class>admin</class>
+            <de>
+                <value>Full</value>
+            </de>
+            <en>
+                <value>Full</value>
+            </en>
+            <es>
+                <value>Full</value>
+            </es>
+            <bp>
+                <value>Completo</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_REFUNDS_TYPE_PARTIAL</key>
+            <class>admin</class>
+            <de>
+                <value>Partial</value>
+            </de>
+            <en>
+                <value>Partial</value>
+            </en>
+            <es>
+                <value>Partial</value>
+            </es>
+            <bp>
+                <value>Parcial</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_TRANSACTIONS</key>
+            <class>admin</class>
+            <de>
+                <value>Paypal Transactions</value>
+            </de>
+            <en>
+                <value>Paypal Transactions</value>
+            </en>
+            <es>
+                <value>Paypal Transactions</value>
+            </es>
+            <bp>
+                <value>Transações Paypal</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_REFUNDS</key>
+            <class>admin</class>
+            <de>
+                <value>Paypal Refunds</value>
+            </de>
+            <en>
+                <value>Paypal Refunds</value>
+            </en>
+            <es>
+                <value>Paypal Refunds</value>
+            </es>
+            <bp>
+                <value>Reembolsos Paypal</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_PAYPAL_REFUNDS</key>
+            <class>admin</class>
+            <de>
+                <value>Paypal Refunds</value>
+            </de>
+            <en>
+                <value>Paypal Refunds</value>
+            </en>
+            <es>
+                <value>Paypal Refunds</value>
+            </es>
+            <bp>
+                <value>Reembolsos Paypal</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>BUTTON_CAPTURE_PAYPAL_FUNDS</key>
+            <class>admin</class>
+            <de>
+                <value>Betrag von PayPal einziehen</value>
+            </de>
+            <en>
+                <value>Capture amount from PayPal</value>
+            </en>
+            <es>
+                <value>Capture amount from PayPal</value>
+            </es>
+            <bp>
+                <value>Capture amount from PayPal</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CAPTURE_ERROR</key>
+            <class>admin</class>
+            <de>
+                <value>Fehler:</value>
+            </de>
+            <en>
+                <value>Error:</value>
+            </en>
+            <es>
+                <value>Error:</value>
+            </es>
+            <bp>
+                <value>Error:</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYPAL_CAPTURE_SUCCESS</key>
+            <class>admin</class>
+            <de>
+                <value>Betrag erfolgreich eingezogen</value>
+            </de>
+            <en>
+                <value>Capture of amount was successfull</value>
+            </en>
+            <es>
+                <value>Capture of amount was successfull</value>
+            </es>
+            <bp>
+                <value>Capture of amount was successfull</value>
+            </bp>
+        </phrase>
+	</language_content>
+</xtcommerceplugin>

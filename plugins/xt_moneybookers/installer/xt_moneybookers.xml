@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Moneybookers.com</title>
+    <version>1.0.7</version>
+    <code>xt_moneybookers</code>
+    <url>http://www.xt-commerce.com</url>
+    <description>Moneybookers Zahlungsmodul</description>
+    <icon>skrill_checkout_de_logo.gif</icon>
+<developer>xt:Commerce</developer>
+<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/display/MANUAL/Anmeldung+bei+Moneybookers]]></documentation_link>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=353]]></marketplace_link>	
+    <type>payment</type>
+    <payment>
+        <payment_code>xt_moneybookers</payment_code>
+        <payment_dir>xt_moneybookers</payment_dir>
+        <payment_icon></payment_icon>
+        <payment_tpl>moneybookers.html</payment_tpl>
+        <de>
+            <title>Sicher bezahlen über Skrill (Moneybookers)</title>
+            <description></description>
+        </de>
+        <en>
+            <title>Sicher bezahlen über Skrill (Moneybookers)</title>
+            <description></description>
+        </en>
+        <es>
+            <title>Pagos seguros a través de Skrill (Moneybookers)</title>
+            <description></description>
+        </es>
+    </payment>
+    <db_install><![CDATA[
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 24, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 25, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 26, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 27, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 28, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 29, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 30, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 31, '', 0, 10000.00, 0, 1);");
+]]></db_install>
+    <configuration_payment>
+        <!-- 1.0.2 -->
+        <config>
+            <key>NOTIFICATION_EMAIL</key>
+            <type>textfield</type>
+            <value></value>
+            <sort_order>1</sort_order>
+            <de>
+                <title>E-Mail Adresse (Benachrichtigung nach erfolgreicher Zahlung)</title>
+            </de>
+            <en>
+                <title>E-Mail Address (notification after successful payment)</title>
+            </en>
+            <es>
+                <title>Dirección de correo electrónico (notificación después de un pago exitoso)</title>
+            </es>
+        </config>
+        <!-- 1.0.2 END -->
+        <config>
+            <key>EMAILID</key>
+            <type>textfield</type>
+            <value></value>
+            <sort_order>1</sort_order>
+            <de>
+                <title>E-Mail Adresse</title>
+            </de>
+            <en>
+                <title>E-Mail Address</title>
+            </en>
+            <es>
+                <title>Dirección de correo electrónico</title>
+            </es>
+        </config>
+        <config>
+            <key>MERCHANT_ID</key>
+            <type>textfield</type>
+            <sort_order>2</sort_order>
+            <de>
+                <title>Händler ID</title>
+            </de>
+            <en>
+                <title>Merchant ID</title>
+            </en>
+            <es>
+                <title>ID de comerciante</title>
+            </es>
+        </config>
+        <config>
+            <key>MERCHANT_SECRET</key>
+            <type>textfield</type>
+            <sort_order>3</sort_order>
+            <de>
+                <title>Geheimwort</title>
+            </de>
+            <en>
+                <title>Secret-Phrase</title>
+            </en>
+            <es>
+                <title>Palabra secreta</title>
+            </es>
+        </config>
+        <config>
+            <key>PROCESSED</key>
+            <type>dropdown</type>
+            <sort_order>4</sort_order>
+            <url>status:order_status</url>
+            <de>
+                <title>Bestellstatus - Erfolgreich</title>
+            </de>
+            <en>
+                <title>Ordersstatus - Completed</title>
+            </en>
+            <es>
+                <title>Estado del pedido - Finalizado</title>
+            </es>
+        </config>
+        <config>
+            <key>CANCELED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <sort_order>4</sort_order>
+            <de>
+                <title>Bestellstatus - Abgelehnt</title>
+            </de>
+            <en>
+                <title>Ordersstatus - Canceled</title>
+            </en>
+            <es>
+                <title>Estado del pedido - cancelar</title>
+            </es>
+        </config>
+        <config>
+            <key>PENDING</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <sort_order>4</sort_order>
+            <de>
+                <title>Bestellstatus - In Bearbeitung</title>
+            </de>
+            <en>
+                <title>Ordersstatus - Pending</title>
+            </en>
+            <es>
+                <title>Estado del pedido - En progreso</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_MSC</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>Mastercard aktivieren</title>
+            </de>
+            <en>
+                <title>Activate Mastercard</title>
+            </en>
+            <es>
+                <title>Activar Mastercard</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_VSA</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>Visa aktivieren</title>
+            </de>
+            <en>
+                <title>Activate Visa</title>
+            </en>
+            <es>
+                <title>Activar Visa</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_AMX</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>Amex aktivieren</title>
+            </de>
+            <en>
+                <title>Activate Amex</title>
+            </en>
+            <es>
+                <title>Activar Amex</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_DIN</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>Diners aktivieren</title>
+            </de>
+            <en>
+                <title>Activate Diners</title>
+            </en>
+            <es>
+                <title>Activar Diners</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_DID</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>Lastschrift aktivieren</title>
+            </de>
+            <en>
+                <title>Activate Creditcard</title>
+            </en>
+            <es>
+                <title>Activar Creditcard</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_SFT</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>Sofoerüberweisung aktivieren</title>
+            </de>
+            <en>
+                <title>Activate Creditcard</title>
+            </en>
+            <es>
+                <title>Activar Creditcard</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_GIR</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>Giropay aktivieren (DE)</title>
+            </de>
+            <en>
+                <title>Activate Creditcard</title>
+            </en>
+            <es>
+                <title>Activar Creditcard</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_NPY</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>EPS (netpay) aktivieren (AT)</title>
+            </de>
+            <en>
+                <title>Activate Creditcard</title>
+            </en>
+            <es>
+                <title>Activar Creditcard</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_MAE</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>Maestro aktivieren (UK,ES,AT)</title>
+            </de>
+            <en>
+                <title>Activate Creditcard</title>
+            </en>
+            <es>
+                <title>Activar Creditcard</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_GCB</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>Carte Bleue aktivieren</title>
+            </de>
+            <en>
+                <title>Activate Creditcard</title>
+            </en>
+            <es>
+                <title>Activar Creditcard</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_IDL</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>iDeal aktivieren (NL)</title>
+            </de>
+            <en>
+                <title>Activate iDeal</title>
+            </en>
+            <es>
+                <title>Activar iDeal</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_WLT</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>Moneybookers aktivieren</title>
+            </de>
+            <en>
+                <title>Activate moneybookers wallet</title>
+            </en>
+            <es>
+                <title>Activar moneybookers wallet</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_OBT</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>5</sort_order>
+            <de>
+                <title>Onlineüberweisung aktivieren</title>
+            </de>
+            <en>
+                <title>Activate Onlineüberweisung</title>
+            </en>
+            <es>
+                <title>Activar Onlineüberweisung</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_PAYOLUTION_INVOICE</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>7</sort_order>
+            <de>
+                <title>Rechnungskauf aktivieren</title>
+            </de>
+            <en>
+                <title>Activate purchase on account</title>
+            </en>
+            <es>
+                <title>Activar Factura</title>
+            </es>
+        </config>
+        <config>
+            <key>ACTIVATE_PAYOLUTION_INS</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>8</sort_order>
+            <de>
+                <title>Ratenzahlung aktivieren</title>
+            </de>
+            <en>
+                <title>Activate payment by installments</title>
+            </en>
+            <es>
+                <title>Activar pago a plazos</title>
+            </es>
+        </config>
+        <config>
+            <key>WPF_REDIRECT</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>9</sort_order>
+            <de>
+                <title>WPF aktivieren</title>
+            </de>
+            <en>
+                <title>Activate WPF</title>
+            </en>
+            <es>
+                <title>Activar WPF</title>
+            </es>
+        </config>
+    </configuration_payment>
+    <language_content>
+        <phrase>
+            <key>TXT_MONEYBOOKERS_PAYOLUTION</key>
+            <class>both</class>
+            <de>
+                <value>Skrill (Payolution)</value>
+            </de>
+            <en>
+                <value>Skrill (Payolution)</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYMENT_PINV</key>
+            <class>both</class>
+            <de>
+                <value>Rechnungskauf</value>
+            </de>
+            <en>
+                <value>Purchase on account</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PAYMENT_PINS</key>
+            <class>both</class>
+            <de>
+                <value>Ratenzahlung</value>
+            </de>
+            <en>
+                <value>Payment by installments</value>
+            </en>
+        </phrase>
+    </language_content>
+</xtcommerceplugin> 

@@ -1,0 +1,102 @@
+<div id="adress-book">
+	<h1>{txt key=TEXT_PAGE_TITLE_ADDRESS_BOOK}</h1>
+	{$message}
+	<p>{txt key=TEXT_ADDRESS_BOOK_INFO}</p>
+
+    {php}
+        $addresses_data = $this->get_template_vars('addresses_data');
+        $sortedAddresses = array();
+        if (is_array($addresses_data)) {
+            foreach ($addresses_data as $a) {
+                if (!isset($sortedAddresses[$a['address_class']])) {
+                    $sortedAddresses[$a['address_class']] = array();
+                }
+                $sortedAddresses[$a['address_class']][] = $a;
+            }
+            if (!empty($sortedAddresses)) {
+                ksort($sortedAddresses);
+                $this->assign('sortedAddresses', $sortedAddresses);
+            }
+        }
+    {/php}
+
+    {if $sortedAddresses}
+        {foreach name=aussen key=class item=classAddresses from=$sortedAddresses}
+            <h3>
+                {if $class == 'payment'}
+                    {txt key=TEXT_PAYMENT_ADDRESS}
+                {elseif $class == 'shipping'}
+                    {txt key=TEXT_SHIPPING_ADDRESS}
+                {else}
+                    {txt key=TEXT_DEFAULT_ADDRESS}
+                {/if}
+            </h3>
+            {foreach name=innen item=addresses from=$classAddresses}
+                <div class="address well clearfix">
+                    {if $addresses.allow_change == true}
+                        <p class="pull-right btn-group">
+                            <a class="btn btn-default" href="{link page='customer' paction=edit_address params=abID params_value=$addresses.address_book_id' conn=SSL}">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                {txt key=BUTTON_EDIT}
+                            </a>
+                            <a class="btn btn-danger" href="{link page='customer' paction=delete_address params=abID params_value=$addresses.address_book_id' conn=SSL}">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                {txt key=BUTTON_DELETE}
+                            </a>
+                        </p>
+                    {/if}
+                    {if $addresses.customers_company}
+                        <strong>{$addresses.customers_company}</strong><br />
+                    {/if}
+                    <strong>{$addresses.customers_firstname} {$addresses.customers_lastname}</strong><br />
+                    {$addresses.customers_street_address}<br />
+                    {if $addresses.customers_suburb}{$addresses.customers_suburb}<br />{/if}
+                    {$addresses.customers_postcode} {$addresses.customers_city}<br />
+                    {if $addresses.customers_zone}{$addresses.customers_zone}<br />{/if}
+                    {$addresses.customers_country}
+                </div>
+            {/foreach}
+        {/foreach}
+    {else}
+        {foreach name=aussen item=addresses from=$addresses_data}
+            <div class="address well clearfix">
+                {if $addresses.allow_change == true}
+                    <p class="pull-right btn-group">
+                        <a class="btn btn-default" href="{link page='customer' paction=edit_address params=abID params_value=$addresses.address_book_id' conn=SSL}">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            {txt key=BUTTON_EDIT}
+                        </a>
+                        <a class="btn btn-danger" href="{link page='customer' paction=delete_address params=abID params_value=$addresses.address_book_id' conn=SSL}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            {txt key=BUTTON_DELETE}
+                        </a>
+                    </p>
+                {/if}
+                {if $addresses.customers_company}
+                    <strong>{$addresses.customers_company}</strong><br />
+                {/if}
+                <strong>{$addresses.customers_firstname} {$addresses.customers_lastname}</strong><br />
+                {$addresses.customers_street_address}<br />
+                {if $addresses.customers_suburb}{$addresses.customers_suburb}<br />{/if}
+                {$addresses.customers_postcode} {$addresses.customers_city}<br />
+                {if $addresses.customers_zone}{$addresses.customers_zone}<br />{/if}
+                {$addresses.customers_country}
+            </div>
+        {/foreach}
+    {/if}
+
+    <p class="pull-left text-muted">{$address_count} / {$address_max_count} {txt key=TEXT_POSSIBLE_ENTRIES}</p>
+
+	<p class="pull-right">
+        <a class="btn btn-default" href="{link page='customer' conn=SSL}">
+            {txt key=BUTTON_BACK}
+        </a>
+		{if $add_new_address eq 1}
+		    <a class="btn btn-success" href="{link page='customer' paction=edit_address' conn=SSL}">
+                <span class="glyphicon glyphicon-plus"></span>
+                {txt key=BUTTON_ADD_ADDRESS}
+            </a>
+		{/if}
+	</p>
+    <div class="clearfix"></div>
+</div><!-- #adress-book -->

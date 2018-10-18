@@ -1,0 +1,25 @@
+<h1>{txt key=TEXT_PAGE_TITLE_ACCOUNT_HISTORY}</h1>
+
+{if $pages}
+    <div class="row products-sort-pages bottom">
+        <div class="col-sm-2">
+            <a href="{link page='customer' conn=SSL}">{css_button text=$smarty.const.BUTTON_BACK}</a>
+        </div>
+        <div class="col-sm-10 navigation-pages text-right">
+            {$pages}
+        </div><!-- .navigation-pages -->
+    </div><!-- .products-sort-pages -->
+{/if}
+
+{include file="$selected_template/xtCore/pages/order_history_block.html"}
+
+{if $pages}
+    <div class="row products-sort-pages bottom">
+        <div class="col-sm-2">
+            <a href="{link page='customer' conn=SSL}">{css_button text=$smarty.const.BUTTON_BACK}</a>
+        </div>
+        <div class="col-sm-10 navigation-pages text-right">
+            {$pages}
+        </div><!-- .navigation-pages -->
+    </div><!-- .products-sort-pages -->
+{/if}

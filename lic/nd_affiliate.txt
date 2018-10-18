@@ -1,0 +1,32 @@
+Customer: xt:Commerce GmbH
+LICENSEKEY: f1a4371a5a768dd975ca76416997d878
+OrderNumber: 54314
+Project: nd_affiliate - Plugin
+Support: xtc@netz-designer.de
+Expires: 11 Jan 2026
+created: 2012-05-04 15:10:12
+maxVersion: 159
+
+------ LICENSE FILE DATA -------
+34089X13c1zsi4ZdinwU3yIhXlLR4zzK
+S+Av1L0XpdAM9rUwyX0vHJhzGi3+WZvJ
+nl6V2rKWSLoetpL/+njmKSfnHKcaklDn
+3BOdOx9oYbNjQef4bfJaQ6BHHYL8MeTd
+4vXifDxzRIFEw9sF52/yOdbV+cq22pj8
+ffFFmoK/ribY7frnOqHbiNfy0ya9ysLa
+rcpPxGWIJF2dr/a0mKSUHxzkIycVjWA4
+qN99Z898kZC/RoMw+ujL5u+OZWCpzxdZ
+D2HpbyWkxG4YQgsA8hIh+8eQ6vHnfBGO
+9YEmYe4/WGLog/gLabStAHxgdLJ7Jzfs
+fU8q+5zqtE9/EBR6A/CW0dd2QzoQ5N1y
+os2XKyJu+uBBZ0YmDwJemrWErwEdIsgk
+NA5+aLHJ8wqnrODJIci9wN04orN0huf3
++laLLLNh5rDZkVf2v/3ynDSa0AGJ9zrp
+PLjtAX/4Qpvb79JIxS1h61MnO6/4EiFb
+GVYsLsZm8KKWTFf6jl5bT2XmSSqvxG5I
+sNYMyKBR2zZ48Vde16ySSgoubmIZM4tK
+Od82gXSCa2Gw5y0Nuwg/O3Z6TTy+tqIH
+AjnYimnD00qzmLUiOT31rs6a1YLh4+cR
+GMmRnXfc054kuMQR3Pv9TReUIn4ZjK8j
+Dl0irkMrazwm8fn0i1QqjwOZbFdO+1==
+--------------------------------

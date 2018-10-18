@@ -1,0 +1,118 @@
+<div data-role="collapsible" data-content-theme="c">
+    <h3>{$payment_name}</h3>
+    {img img=moneybookers_checkout.png url=`$smarty.const._SRV_WEB`plugins/xt_moneybookers/images/}
+                <br/> 
+                {if $payment_desc} {$payment_desc}<br/> {/if}
+                 {$payment_price.formated}
+<!--<div class="ui-radio">
+    <label class="ui-btn ui-btn-up-c" data-theme="c">
+        <span class="ui-btn-inner" aria-hidden="true">
+            <span class="ui-btn-text">
+                <strong>{$payment_name}</strong>
+                {img img=moneybookers_checkout.png url=`$smarty.const._SRV_WEB`plugins/xt_moneybookers/images/}
+                <br/> 
+                {if $payment_desc} {$payment_desc}<br/> {/if}
+                 {$payment_price.formated}
+            </span>
+            <span class="ui-icon ui-icon-radio-off ui-icon-shadow"></span>
+        </span>
+    </label>
+</div>-->
+  
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_MSC eq 'true'}
+  <label for="{$payment_code}:MSC">
+			<strong>{txt key=TEXT_PAYMENT_MSC}</strong>
+            {img img=mastercard_small.jpg url=`$smarty.const._SRV_WEB`media/payment/}
+  </label>
+  {form type=radio name=selected_payment id=$payment_code:MSC value=$payment_code:MSC}
+  {/if}
+  
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_VSA eq 'true'}
+  <label for="{$payment_code}:VSA">
+			<strong>{txt key=TEXT_PAYMENT_VSA}</strong>
+            {img img=visa_small.jpg url=`$smarty.const._SRV_WEB`media/payment/}
+  </label>
+  {form type=radio name=selected_payment value=$payment_code:VSA id=$payment_code:VSA}
+  {/if}
+  
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_AMX eq 'true'}
+  <label for="{$payment_code}:AMX">
+			<strong>{txt key=TEXT_PAYMENT_AMX}</strong>
+            {img img=amex_small.jpg url=`$smarty.const._SRV_WEB`media/payment/}
+  </label>
+  {form type=radio name=selected_payment value=$payment_code:AMX id=$payment_code:AMX}
+  {/if}
+  
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_IDL eq 'true'}
+  {if $payment_country_code eq 'NL'}
+  <label for="{$payment_code}:IDL">
+			<strong>{txt key=TEXT_PAYMENT_IDL}</strong>
+            {img img=ideal_small.jpg url=`$smarty.const._SRV_WEB`media/payment/}
+  </label>
+  {form type=radio name=selected_payment value=$payment_code:IDL id=$payment_code:IDL}
+  {/if}
+  {/if}
+  
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_DID eq 'true'}
+  <label for="{$payment_code}:DID">
+			<strong>{txt key=TEXT_PAYMENT_DID}</strong>
+            {img img=elv_small.jpg url=`$smarty.const._SRV_WEB`media/payment/}
+  </label>
+  {form type=radio name=selected_payment value=$payment_code:DID id=$payment_code:DID}  
+  {/if}
+  
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_GIR eq 'true'}
+  {if $payment_country_code eq 'DE'}
+  <label for="{$payment_code}:GIR">
+			<strong>{txt key=TEXT_PAYMENT_GIR}</strong>
+            {img img=giropay_small.jpg url=`$smarty.const._SRV_WEB`media/payment/}
+  </label>
+  {form type=radio name=selected_payment value=$payment_code:GIR id=$payment_code:GIR}
+  {/if}
+  {/if}
+  
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_NPY eq 'true'}
+  {if $payment_country_code eq 'AT'}
+  <label for="{$payment_code}:NPY">
+			<strong>{txt key=TEXT_PAYMENT_NPY}</strong>
+            {img img=eps_small.gif url=`$smarty.const._SRV_WEB`media/payment/}
+  </label>
+  {form type=radio name=selected_payment value=$payment_code:NPY id=$payment_code:NPY}
+  {/if}
+  {/if}
+  
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_SFT eq 'true'}
+  <label for="{$payment_code}:SFT">
+			<strong>{txt key=TEXT_PAYMENT_SFT}</strong>
+            {img img=sofortueberweisung_small.gif url=`$smarty.const._SRV_WEB`media/payment/}
+  </label>
+  {form type=radio name=selected_payment value=$payment_code:SFT id=$payment_code:SFT}
+  {/if}
+  
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_GCB eq 'true'}
+  <label for="{$payment_code}:GCB">
+			<strong>{txt key=TEXT_PAYMENT_GCB}</strong>
+            {img img=carte_bleue_small.png url=`$smarty.const._SRV_WEB`media/payment/}
+  </label>
+  {form type=radio name=selected_payment value=$payment_code:GCB id=$payment_code:GCB}
+  {/if}
+  
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_MAE eq 'true'}
+  <label for="{$payment_code}:MAE">
+			<strong>{txt key=TEXT_PAYMENT_MAE}</strong>
+            {img img=maestro_small.jpg url=`$smarty.const._SRV_WEB`media/payment/}
+  </label>
+  {form type=radio name=selected_payment value=$payment_code:MAE id=$payment_code:MAE}
+  {/if}
+  
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_OBT eq 'true'}
+  {if $payment_country_code eq 'DE' or $payment_country_code eq 'UK'}
+  <label for="{$payment_code}:OBT">
+			<strong>{txt key=TEXT_PAYMENT_OBT}</strong>
+            {img img=CheckoutBanner_small_DE.jpg url=`$smarty.const._SRV_WEB`plugins/xt_moneybookers/images/}
+            {$payment_price.formated}
+  </label>
+  {form type=radio name=selected_payment value=$payment_code:OBT id=$payment_code:OBT}
+  {/if}
+  {/if}
+</div>

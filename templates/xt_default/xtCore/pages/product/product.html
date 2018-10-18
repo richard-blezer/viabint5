@@ -1,0 +1,94 @@
+<h1>{$products_name}</h1>
+{socialbookmark url=$products_link title=$products_name}
+
+{if $date_available!=''}
+<ul class="info_info">
+	<li class="infoInfo">{txt key=TEXT_PRODUCT_AVAILABLE} {$date_available|date_format:"%A, %B %e, %Y"}</li>
+</ul>
+<br />
+{/if}
+
+<div id="productinfowrap">
+	{if $products_image!=''}
+	<div id="productinfoimages">
+		<a href="{img img=$products_image type=m_popup path_only=true}" class="thickbox" rel="prod_gallery">{img img=$products_image type=m_info alt=$products_name|escape:"html"}</a>
+	</div>
+	{/if}
+  	{if $products_image!=''}<div id="productinfopricewithimages">{else}<div id="productinfopricewithoutimages">{/if}
+		<div id="productinfoprice">
+			{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}<p class="productprice">{$products_price.formated}</p>
+			<p class="taxandshippinginfo">{$products_tax_info.tax_desc}{if $products_shipping_link}<a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</p>
+			{price_table}
+			{/if}
+			{if $products_weight > 0}<p class="taxandshippinginfo">{txt key=TEXT_PRODUCTS_WEIGHT}: {$products_weight|number_format:2:",":"."} KG</p>{/if}
+			{if $shipping_status}<p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$shipping_status}</p>{/if}
+			{if $stock_image}
+            <p class="stockimage">{img img=$stock_image.image type=t_img_stockrules alt=$stock_image.name}</p>
+			<p class="stockimagetext">{$stock_image.name}</p>
+			{/if}
+			{if $review_stars_rating}
+			<div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$review_stars_rating}%"></div></div>
+			<p class="reviews_text">{if $products_rating_count}{$products_rating_count}{else}0{/if} <a href="{$link_reviews_list}">{txt key=TEXT_XT_REVIEWS_INFO}</a> | <a href="{$link_reviews_write}" rel="nofollow">{txt key=TEXT_XT_REVIEWS_WRITE}</a></p>
+			{/if}
+			{if $base_price}<div class="hrlightgrey"></div>{$base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$base_price.vpe.name}{/if}
+			{if $products_discount!=''}<div class="hrlightgrey"></div>{$products_discount}{/if}
+			{if $products_model!=''}<div class="hrlightgrey"></div>{txt key=TEXT_PRODUCTS_MODEL}: {$products_model}{/if}
+			{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}{if $link_priceinquiry}<p><a href="{$link_priceinquiry}">{txt key=TEXT_XT_PRICEINQUIRY_ASK}</a></p>{/if}{/if}
+			<div class="hrlightgrey"></div>
+		</div>
+	</div>
+
+	{hook key=product_info_tpl_before_cart}
+	{if $allow_add_cart eq 'true'}
+	{form type=form name=product action='dynamic' link_params=getParams method=post}
+	{form type=hidden name=action value=add_product}
+	{form type=hidden name=product value=$products_id}
+	<div style="clear:both;"></div>
+    {if $products_fsk18=='1'}
+            <ul class="info_error">
+                <li class="infoError">{txt key=TEXT_PRODUCTS_FSK18_NOTE}</li>
+            </ul>
+    {/if}
+	<div class="addtobasket">
+	<table border="0" cellspacing="0" cellpadding="2">
+		<tr><td colspan="2">{$products_information}</td></tr>
+	
+	
+  		<tr>
+    		<td style="width:100%">{form type=text name=qty value=1 style='width:50px;'}</td>
+    		<td>{button text=$smarty.const.BUTTON_ADD_CART file='button_in_cart.gif' type='form' btn_template='tpl_button_2.gif' space_left='25'}</td>
+  		</tr>
+	</table>
+	</div>
+	{form type=formend}
+	{/if}
+	{hook key=product_info_tpl_cart}
+</div>
+<div style="clear:both;"></div>
+<br />
+<div id="productinfodetail">
+	{if $products_description !=''}
+		<div id="productinfo_desc">
+			<h2>{txt key=TEXT_PRODUCTS_DESCRIPTION}</h2>
+			{$products_description}
+		</div>
+	{/if}
+	{if $more_images !=''}
+		{foreach name=aussen item=img_data from=$more_images}
+		<a href="{img img=$img_data.file type=m_popup path_only=true}" class="thickbox" rel="prod_gallery">{img img=$img_data.file type=m_thumb alt=$products_name}</a>
+		{/foreach}
+	{/if}
+	{box name=xt_cliplister type=user}
+	{if $media_files !=''}
+	<br />
+	{include file="$selected_template/xtCore/pages/files/product_public_files.html"}
+	{/if}	
+	
+</div>
+{hook key=product_info_tpl}
+{if $_socialbookmarks}
+<br />
+<div id="socialbookmark">
+{$_socialbookmarks}
+</div>
+{/if}

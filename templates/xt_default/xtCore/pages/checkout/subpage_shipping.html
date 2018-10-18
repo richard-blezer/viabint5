@@ -1,0 +1,49 @@
+<h1>{txt key=TEXT_SHIPPING_ADDRESS}:</h1>
+<table width="100%" class="shipping_address">
+  <tr>
+    <td width="40%" valign="top">
+	<p>
+	{if $shipping_address.customers_company} {$shipping_address.customers_company}<br />{/if}
+	{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}<br />
+	{$shipping_address.customers_street_address}<br />
+	{if $shipping_address.customers_suburb} {$shipping_address.customers_suburb}<br />{/if}
+	{$shipping_address.customers_postcode} {$shipping_address.customers_city}<br />
+	{$shipping_address.customers_country}<br />
+	</p>
+	{if $shipping_address.allow_change == true}
+	<p><a href="{link page='customer' paction=edit_address params='adType=shipping&abID' params_value=$shipping_address.address_book_id conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>
+	{/if}
+	</td>
+	<td width="60%">
+	{if $shipping_address.allow_change == true}
+	<p><strong>{txt key=TEXT_SELECT_SHIPPING_ADDRESS}:</strong></p>
+	{form type=form name=shipping_address action='dynamic' link_params='page_action=shipping' method=post conn=SSL}
+	{form type=select name=adID value=$address_data params='onChange="this.form.submit();"'}
+	{form type=hidden name=adType value=shipping}
+	{form type=hidden name=action value=select_address}
+	{form type=formend}
+	{if $add_new_address eq 1}
+	<p>{txt key=TEXT_NEW_SHIPPING_ADDRESS}:</p>
+	<p><a href="{link page='customer' paction='edit_address' params='adType=shipping' conn=SSL}">{button text=$smarty.const.BUTTON_ADD_ADDRESS file='add_address.gif'}</a></p>
+	{/if}
+	{/if}
+	</td>
+	</tr>
+</table>
+<br />
+<h1>{txt key=TEXT_SELECT_SHIPPING}:</h1>
+{txt key=TEXT_SELECT_SHIPPING_DESC}
+<br />
+<br />
+{form type=form name=shipping action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=shipping}
+
+{foreach name=aussen item=sdata from=$shipping_data}
+{$sdata.shipping}
+{/foreach}
+
+{hook key=checkout_tpl_shipping}
+
+
+<p>{button text=$smarty.const.BUTTON_NEXT file='next.gif' type='form'}</p>
+{form type=formend}

@@ -1,0 +1,366 @@
+
+.settings {
+	background-image: url(../images/icons/folder_wrench.png) !important;
+}
+
+.settings_store {
+	background-image: url(../images/icons/folder_brick.png) !important;
+}
+
+.order {
+	background-image: url(../images/icons/basket.png) !important;
+}
+
+.nav {
+	background-image: url(../images/icons/folder_go.png) !important;
+}
+
+.activate {
+	background-image: url(../images/icons/lightbulb.png) !important;
+}
+
+
+.deactivate {
+	background-image: url(../images/icons/lightbulb_off.png) !important;
+}
+
+.cart {
+	background-image: url(../images/icons/cart.png) !important;
+}
+
+.management {
+	background-image: url(../images/icons/page_white_paste.png) !important;
+}
+
+.add {
+	background-image: url(../images/icons/disk_multiple.png) !important;
+}
+
+.upd {
+	background-image: url(../images/icons/disk.png) !important;
+}
+
+.cancel {
+	background-image: url(../images/icons/cancel.png) !important;
+}
+
+.delete,.deletePlugin {
+	background-image: url(../images/icons/delete.png) !important;
+}
+
+.edit {
+	background-image: url(../images/icons/page_edit.png) !important;
+}
+
+.copy {
+	background-image: url(../images/icons/page_copy.png) !important;
+}
+
+.folder_add {
+	background-image: url(../images/icons/folder_add.png) !important;
+}
+
+.folder_delete {
+	background-image: url(../images/icons/folder_delete.png) !important;
+}
+
+.folder_edit {
+	background-image: url(../images/icons/folder_edit.png) !important;
+}
+
+.brick_link, .custom_Link_Define{
+	background-image: url(../images/icons/brick_link.png) !important;
+}
+
+.brick_edit, .edit_custom_link{
+	background-image: url(../images/icons/brick_edit.png) !important;
+}
+
+
+.brick_add {
+	background-image: url(../images/icons/brick_add.png) !important;
+}
+
+.brick_delete {
+	background-image: url(../images/icons/brick_delete.png) !important;
+}
+
+.product_add {
+	background-image: url(../images/icons/brick_add.png) !important;
+}
+
+.layout{
+	background-image: url(../images/icons/layout.png) !important;
+}
+.link_go {
+	background-image: url(../images/icons/link_go.png) !important;
+}
+
+
+.run_export {
+	background-image: url(../images/icons/rss_go.png) !important;
+}
+
+.export_categories{
+    background-image: url(../images/icons/application_side_tree.png) !important;
+}
+
+.export_manufacturers{
+    background-image: url(../images/icons/wrench.png) !important;
+}
+
+.reload {
+	background-image: url(../images/icons/arrow_refresh.png) !important;
+}
+
+.install_plugin {
+	background-image: url(../images/icons/plugin_go.png) !important;
+}
+
+.update_plugin {
+	background-image: url(../images/icons/plugin_go.png) !important;
+}
+
+.export_language {
+	background-image: url(../images/icons/world_go.png) !important;
+}
+
+.update_translations {
+	background-image: url(../images/icons/world_go.png) !important;
+}
+
+.config_plugin {
+	background-image: url(../images/icons/plugin.png) !important;
+}
+
+.config_seo{
+	background-image: url(../images/icons/lightning.png) !important;
+}
+
+.export_nottranslated {
+    background-image: url(../images/icons/world_link.png) !important;
+}
+
+.seo_processing {
+    background-image: url(../images/icons/arrow_refresh_small.png) !important;
+}
+
+.start {
+	background-image: url(../images/icons/control_play_blue.png) !important;
+}
+
+.system {
+	background-image: url(../images/icons/monitor.png) !important;
+}
+
+.partner {
+    background-image: url(../images/icons/user_suit.png) !important;
+}
+    
+.delete_order {
+	background-image: url(../images/icons/delete.png) !important;
+}
+
+.products_cross_selling , .blog_message_cross_selling {
+	background-image: url(../images/icons/chart_organisation.png) !important;
+}
+
+.products_to_attributes {
+	background-image: url(../images/icons/database_link.png) !important;
+}
+
+.more_categories {
+	background-image: url(../images/icons/application_side_tree.png) !important;
+}
+
+.products_media {
+	background-image: url(../images/icons/compress.png) !important;
+}
+
+.products_stats {
+	background-image: url(../images/icons/chart_pie.png) !important;
+}
+
+.email_media {
+    background-image: url(../images/icons/compress.png) !important;
+}
+
+.products_special_price {
+	background-image: url(../images/icons/money_add.png) !important;
+}
+
+.shipping_price {
+	background-image: url(../images/icons/money_add.png) !important;
+}
+
+.payment_price {
+	background-image: url(../images/icons/money_add.png) !important;
+}
+
+.products_group_price {
+	background-image: url(../images/icons/group_add.png) !important;
+}
+
+.move_product {
+	background-image: url(../images/icons/folder_go.png) !important;
+}
+
+.image_imageupload {
+	background-image: url(../images/icons/camera_go.png) !important;
+}
+
+.image_fileupload {
+	background-image: url(../images/icons/drive_go.png) !important;
+}
+
+.plugin_hookpoints {
+	background-image: url(../images/icons/brick_add.png) !important;
+}
+
+.documentation_link {
+	background-image: url(../images/icons/folder.png) !important;
+}
+
+.marketplace_link {
+	background-image: url(../images/icons/money.png) !important;
+}
+
+.statusTrue {
+	background-image: url(../images/icons/lightbulb.png) !important;
+}
+
+.statusFalse {
+	background-image: url(../images/icons/lightbulb_off.png) !important;
+}
+
+.getselected {
+	background-image: url(../images/icons/accept.png) !important;
+}
+
+.save {
+	background-image: url(../images/icons/disk_multiple.png) !important;
+}
+
+.acl_group_permissions {
+	background-image: url(../images/icons/key_add.png) !important;
+}
+
+.coupon_categories {
+    background-image: url(../images/icons/folder.png) !important;
+}
+
+.coupon_products {
+    background-image: url(../images/icons/application_side_tree.png) !important;
+}
+
+.customer_prices {
+    background-image: url(../images/icons/user_add.png) !important;
+}
+
+.coupon_customer {
+    background-image: url(../images/icons/group.png) !important;
+}
+
+
+.coupon_token_im_export {
+    background-image: url(../images/icons/arrow_inout.png) !important;
+}
+
+.coupon_token_generate {
+    background-image: url(../images/icons/cog.png) !important;
+}
+
+.sort_up {
+    background-image: url(../images/icons/bullet_arrow_up.png) !important;
+}
+
+.sort_down {
+    background-image: url(../images/icons/bullet_arrow_down.png) !important;
+}
+
+.image_processing {
+    background-image: url(../images/icons/arrow_refresh_small.png) !important;
+}
+
+.multi_move {
+    background-image: url(../images/icons/page_go.png) !important;
+}
+
+.multi_link {
+    background-image: url(../images/icons/page_link.png) !important;
+}
+
+.multi_copy {
+    background-image: url(../images/icons/page_copy.png) !important;
+}
+
+.address {
+	background-image: url(../images/icons/application_view_list.png) !important;
+}
+
+.orders {
+	background-image: url(../images/icons/basket.png) !important;
+}
+
+.products_serials {
+	background-image: url(../images/icons/application_key.png) !important;
+}
+
+.allRights {
+	background-image: url(../images/icons/key_go.png) !important;
+}
+
+.allRightsDel {
+	background-image: url(../images/icons/key_delete.png) !important;
+}
+.addons {
+    background-image: url(../images/icons/database_add.png) !important;
+}
+
+/* order_edit */
+.SHOW_PRODUCT {
+    background-image: url("../images/icons/world.png") !important;
+}
+.NEW_ORDER {
+    background-image: url("../images/icons/basket_add.png") !important;
+}
+
+.ORDER_EDIT_ADD_ITEM {
+    background-image: url("../images/icons/add.png") !important;
+}
+
+.ORDER_EDIT_CALCULATE_GRADUATED {
+    background-image: url("../images/icons/calculator.png") !important;
+}
+
+.ORDER_EDIT_REMOVE_ITEM {
+    background-image: url("../images/icons/delete.png") !important;
+}
+
+.ORDER_EDIT_UPDATE_ITEM {
+    background-image: url("../images/icons/disk.png") !important;
+}
+
+.ORDER_EDIT_SAVE_COUPON {
+    background-image: url("../images/icons/money_euro_save.png") !important;
+}
+
+.ORDER_EDIT_REMOVE_COUPON {
+    background-image: url("../images/icons/money_euro_delete.png") !important;
+}
+
+.ORDER_EDIT_APPLY_NEW_ADDRESS {
+    background-image: url("../images/icons/vcard_add.png") !important;
+}
+.ORDER_EDIT_APPLY_EDITED_ADDRESS {
+    background-image: url("../images/icons/vcard_edit.png") !important;
+}
+.ORDER_EDIT_APPLY_EXISTING_ADDRESS {
+    background-image: url("../images/icons/disk.png") !important;
+}
+.ORDER_EDIT_APPLY_PAYMENT_SHIPPING {
+    background-image: url("../images/icons/disk.png") !important;
+}
+.cron_log {
+    background-image: url("../images/icons/date_magnify.png") !important;
+}

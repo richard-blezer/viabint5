@@ -1,0 +1,127 @@
+   
+<div data-role="page" data-theme="a">
+    
+    <div id="xtm-header-bar" data-role="header" data-position="fixed">
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <table>
+                    <tr>
+                        <td style="vertical-align:center;">
+                            <a href="{link page=index}"><img src="{$tpl_path}img/top_logo.png" alt="{$store_name}" /></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ui-block-b">
+                <div class="container">
+                    <a href="{link page='search' conn=SSL}" data-role="button" data-inline="true">
+                        <div class="xtm-icon-32 xtm-icon-search"></div>
+                    </a>                 
+                </div>
+                {box name=cart}
+            </div>
+        </div>
+    </div>
+
+    <div id="xtm-content" data-role="content" data-theme="b" data-content-theme="b">
+        {$content}
+        <br />
+    </div>
+
+    <div id="xtm-footer" data-role="header">
+        [<copyright>]
+            
+            <div id="switch-button">
+                {box name=mobile}
+            </div>
+                
+            {hook key=index_footer_tpl}
+                   
+    </div>
+    
+    <div id="xtm-footer-bar" data-role="footer" data-position="fixed">
+        <table>
+            <tr>
+                <td>
+                    <a href="{link page='index' conn=SSL}" data-role="button" data-inline="true">
+                        <div class="xtm-icon-32 xtm-icon-home"></div>
+                    </a>               
+                </td>
+                <td>
+                    <a href="{link page='customer' conn=SSL}" data-role="button" data-inline="true">
+                        <div class="xtm-icon-32 xtm-icon-customer"></div>
+                    </a>        
+                </td>
+                <td>
+                    <a href="#page-information-popup" data-role="button" data-rel="popup" data-inline="true">
+                        <div class="xtm-icon-32 xtm-icon-info2"></div>
+                    </a>                             
+                </td>
+                {if $account == true}
+                    {if !$registered_customer}
+                        <td>
+                            <a href="{link page='customer' paction='login' conn=SSL}" data-role="button" data-inline="true">
+                                <div class="xtm-icon-32 xtm-icon-login"></div>
+                            </a>               
+                        </td>
+                    {else}
+                        <td>
+                            <a href="{link page='customer' paction='logoff' conn=SSL}" data-role="button" data-inline="true">
+                                <div class="xtm-icon-32 xtm-icon-logoff2"></div>
+                            </a>                                                 
+                        </td>
+                    {/if}
+                {/if}
+                {if $language_count > 1 ||  $currency_count > 1}
+                <td>
+                    <a href="#page-settings-popup" data-role="button" data-rel="popup" data-inline="true" data-theme="a">
+                        <div class="xtm-icon-32 xtm-icon-settings"></div>
+                    </a>        
+                </td>
+                {/if}
+            </tr>
+        </table>
+
+    </div><!-- /footer -->
+
+
+    <div id="page-settings-popup" data-role="popup" data-shadow="true" data-overlay-theme="a">
+        <ul data-role="listview"  data-inset="true">
+            <li data-role="list-divider">Einstellungen</li>
+            {if $language_count > 1}
+                <li data-icon="false"><a href="#page-settings-language-popup" data-rel="popup" data-position-to="window">{txt key=TEXT_LANGUAGE}</a></li>
+            {/if}
+            {if $currency_count > 1}
+                <li data-icon="false"><a href="#page-settings-currency-popup" data-rel="popup" data-position-to="window" >{txt key=TEXT_CURRENCY}</a></li>
+            {/if}
+        </ul> 
+    </div>
+    
+    
+    <div id="page-settings-language-popup" data-role="popup" data-shadow="true" data-overlay-theme="a">
+        {box name=language}
+    </div>
+
+    <div id="page-settings-currency-popup" data-role="popup" data-shadow="true" data-overlay-theme="a">
+        {box name=currency}
+    </div>
+    
+    
+        <div id="page-information-popup" data-role="popup" data-shadow="true" data-overlay-theme="a">
+        <ul data-role="listview"  data-inset="true">
+            <li data-role="list-divider">{txt key=TEXT_INFO}</li>
+            {content block_id=7 levels=nested}
+            {if $_content_7|count > 0}
+                {foreach name=aussen item=box_data from=$_content_7}
+                    <li data-icon="false"><a href="{$box_data.link}">{$box_data.title}</a></li>
+                {/foreach}
+            {/if}
+        </ul> 
+    </div>
+    
+    
+</div>
+
+
+
+

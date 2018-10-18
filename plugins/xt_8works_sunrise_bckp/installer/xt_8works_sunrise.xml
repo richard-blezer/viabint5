@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+
+	<title>Plugin für 8w_sunrise</title>
+	<version>1.3.1</version>
+	<code>xt_8works_sunrise</code>
+	<url>http://www.8works.de</url>
+	<description>8works Template</description>
+	<type>8works</type>
+	<icon>logo.gif</icon>
+	
+	<db_install><![CDATA[
+		require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_8works_sunrise/functions/install.php';
+		
+		/**
+		 * ja_update_core_plugin($plugin_code,$hook,$template)
+		 */
+		
+		//hide xt_master_slave
+			ja_update_core_plugin("xt_master_slave","product_info_tpl","8w_sunrise");
+		
+		/**
+		 * ja_add_image_types($folder,$class,$width,$height)
+		 */
+		
+		//m_thumb
+			ja_add_image_types('sunrise-thumb', 'default', 163, 163);
+		//m_info
+			ja_add_image_types('sunrise-info', 'default', 298, 298);
+		//m_popup
+			ja_add_image_types('sunrise-popup', 'default', 500, 500);
+		//m_icon
+			ja_add_image_types('sunrise-icon', 'default', 48, 48);
+		//new
+			ja_add_image_types('sunrise-startpage', 'default', 143, 143);
+			ja_add_image_types('sunrise-sidebar', 'default', 60, 60);
+			ja_add_image_types('sunrise-sub-listing', 'category', 163, 163);
+		
+	]]></db_install>
+	<db_uninstall><![CDATA[
+		require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_8works_sunrise/functions/uninstall.php';
+		
+		/**
+		 * ja_remove_image_types($folder)
+		 */
+		
+		//m_thumb
+			ja_remove_image_types('sunrise-thumb');
+		//m_info
+			ja_remove_image_types('sunrise-info');
+		//m_popup
+			ja_remove_image_types('sunrise-popup');
+		//m_icon
+			ja_remove_image_types('sunrise-icon');
+		//new
+			ja_remove_image_types('sunrise-startpage');
+			ja_remove_image_types('sunrise-sidebar');
+			ja_remove_image_types('sunrise-sub-listing');
+		
+	]]></db_uninstall>
+	
+	<plugin_code>
+		<!-- module_index:index_content -->
+		<code>
+			<hook>module_index:index_content</hook>
+			<phpcode><![CDATA[
+			if (isset($xtPlugin->active_modules['xt_8works_sunrise']) && _STORE_TEMPLATE == '8w_sunrise') {
+				$file = _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_8works_sunrise/hooks/module_index_index_content.php';
+				if (file_exists($file)) require_once $file;
+			}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<!-- page_registry.php:bottom -->
+		<code>
+			<hook>page_registry.php:bottom</hook>
+			<phpcode><![CDATA[
+				define('PAGE_CATEGORIES',_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_8works_sunrise/pages/categories.php');
+				$file = _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_8works_sunrise/classes/class.sunrise.php';
+				if (file_exists($file)) require_once $file;
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<!-- javascripts -->
+		<code>
+			<hook>styles.php:bottom</hook>
+			<phpcode><![CDATA[
+			if (isset($xtPlugin->active_modules['xt_8works_sunrise']) && _STORE_TEMPLATE == '8w_sunrise') {
+				$js = new sunrise();
+				echo $js->javascript_include('8w_sunrise','xt_8works_sunrise');
+			}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<!-- index_tpl_include -->
+		<code>
+			<hook>index_tpl_include</hook>
+			<phpcode><![CDATA[
+			if (isset($xtPlugin->active_modules['xt_8works_sunrise']) && _STORE_TEMPLATE == '8w_sunrise') {
+				$f = _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_8works_sunrise/hooks/index_tpl_include.php';
+				if (file_exists($f))
+				require_once $f;
+			}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<!-- product_tpl_include -->
+		<code>
+			<hook>product_tpl_include</hook>
+			<phpcode><![CDATA[
+			if (isset($xtPlugin->active_modules['xt_8works_sunrise']) && _STORE_TEMPLATE == '8w_sunrise') {
+				$f = _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_8works_sunrise/hooks/product_tpl_include.php';
+				if (file_exists($f))
+				require_once $f;
+			}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<!-- xt_master_slave -->
+		<code>
+			<hook>sunrise_master_slave</hook>
+			<phpcode><![CDATA[
+			if (isset($xtPlugin->active_modules['xt_8works_sunrise']) && _STORE_TEMPLATE == '8w_sunrise') {
+				if(XT_MASTER_SLAVE_ACTIVE == 'true'){
+					global $current_product_id;
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_master_slave/classes/class.xt_master_slave_products.php';
+					$xt_ms = new master_slave_products();
+					$xt_ms->setProductID($current_product_id);
+					
+					if (!$_GET['action']['select_ms'] && !$_POST['action']['select_ms']) {
+						$xt_ms->unsetFilter();
+					} elseif (is_array($_POST['id'])) {
+						$xt_ms->setFilter($_POST['id']);
+					}
+
+					$xt_ms->getMasterSlave();
+					echo $xt_ms->productOptions;
+					//echo $xt_ms->showProductList; //executes the listing, not recommended in the right column!
+				}
+			}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<!-- display_php_doctype -->
+		<code>
+			<hook>display.php:doctype</hook>
+			<phpcode><![CDATA[
+			if (isset($xtPlugin->active_modules['xt_8works_sunrise']) && _STORE_TEMPLATE == '8w_sunrise') {
+				$f = _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_8works_sunrise/hooks/display_php_doctype.php';
+				if (file_exists($f))
+				require_once $f;
+			}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+        <!-- display_php_content_bottom -->
+        <code>
+            <hook>display.php:content_bottom</hook>
+            <phpcode><![CDATA[
+            if (isset($xtPlugin->active_modules['xt_8works_sunrise']) && _STORE_TEMPLATE == '8w_sunrise') {
+                $f = _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_8works_sunrise/hooks/display_php_content_bottom.php';
+                if (file_exists($f))
+                require_once $f;
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+	</plugin_code>
+	
+	<configuration>
+        <config>
+            <key>XT_8WORKS_SUNRISE_CACHEMODE</key>
+            <value>false</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Redakteur-Modus: <![CDATA[<br /><small>In diesem Modus wird der Cache bei <span style=color:red>jedem Seitenaufruf neu generiert</span>!<hr /><a href=../index.php?admin_delete_cache=1 target=_blank style=color:green;font-weight:bold title=cache reload>ALTERNATIV HIER KLICKEN</a>, um den Cache nur einmalig neu zu generieren!<hr /></small></label><label style=display:none>]]></title>
+            </de>
+        </config>
+		<config>
+			<key>XT_8WORKS_SUNRISE_JQUERY</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>8works jQuery de-/aktivieren</title>
+			</de>
+		</config>
+		<config>
+			<key>XT_8WORKS_SUNRISE_JQUERY_PLUGINS</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>8works jQuery-Plugins de-/aktivieren</title>
+			</de>
+		</config>
+		<config>
+			<key>XT_8WORKS_SUNRISE_JSS</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>8works javascript-init de-/aktivieren</title>
+			</de>
+		</config>
+		<config>
+			<key>XT_8WORKS_SUNRISE_CATEGORY_LEVEL</key>
+			<value>4</value>
+			<de>
+				<title>Tiefe beim anzeigen der Kategorieverschachtelung</title>
+			</de>
+		</config>
+		<config>
+			<key>XT_8WORKS_SUNRISE_SHOW_MSIE_ALERT</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Zeige Updatehinweis bei Internet Explorer 5, 6, 7</title>
+			</de>
+		</config>
+        <config>
+            <key>XT_8WORKS_SUNRISE_PARSE_TIME</key>
+            <value>false</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Performance-Info anzeigen</title>
+            </de>
+        </config>
+	</configuration>
+	
+	<language_content>
+		<phrase>
+			<key>TEXT_XT_8WORKS_DELETE_CACHE</key>
+			<class>admin</class>
+			<de>
+				<value>Cache</value>
+			</de>
+			<en>
+				<value>Cache</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_TEASER_STATUS</key>
+			<class>admin</class>
+			<de>
+				<value>Auf Startseite anzeigen</value>
+			</de>
+			<en>
+				<value>Show on startpage</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_TEASER_SORT</key>
+			<class>admin</class>
+			<de>
+				<value>Reihenfolge auf Startseite</value>
+			</de>
+			<en>
+				<value>Startpage sorting</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_READ_MORE</key>
+			<class>store</class>
+			<de>
+				<value>mehr</value>
+			</de>
+			<en>
+				<value>more</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_REJECT</key>
+			<class>store</class>
+			<de>
+				<value>Ablehnen</value>
+			</de>
+			<en>
+				<value>reject</value>
+			</en>
+		</phrase>
+		
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_MSIE_ALERT_1</key>
+			<class>store</class>
+			<de>
+				<value>Für das beste Nutzungserlebnis mit unserem Shop sollten Sie Ihren </value>
+			</de>
+			<en>
+				<value>For the best user experience with our shop, you should update your </value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_MSIE_ALERT_2</key>
+			<class>store</class>
+			<de>
+				<value>aktualisieren, oder informieren Sie sich über Alternativen bei </value>
+			</de>
+			<en>
+				<value>, or find out about alternatives at </value>
+			</en>
+		</phrase>
+		
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_INFO</key>
+			<class>store</class>
+			<de>
+				<value>Information:</value>
+			</de>
+			<en>
+				<value>Information:</value>
+			</en>
+		</phrase>		
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_PRODUCTS</key>
+			<class>store</class>
+			<de>
+				<value>Produkte</value>
+			</de>
+			<en>
+				<value>Products</value>
+			</en>
+		</phrase>		
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_CATEGORIES_OVERVIEW</key>
+			<class>store</class>
+			<de>
+				<value>Alle Kategorien ansehen</value>
+			</de>
+			<en>
+				<value>See all categories</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_UEBERSICHT</key>
+			<class>store</class>
+			<de>
+				<value>Übersicht</value>
+			</de>
+			<en>
+				<value>Overview</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_FAQ</key>
+			<class>store</class>
+			<de>
+				<value>Fragen und Antworten</value>
+			</de>
+			<en>
+				<value>Questions and Answers</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_SERVICE</key>
+			<class>store</class>
+			<de>
+				<value>Service</value>
+			</de>
+			<en>
+				<value>Service</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_SEARCH_TXT</key>
+			<class>store</class>
+			<de>
+				<value>Suchbegriff eingeben</value>
+			</de>
+			<en>
+				<value>Enter a search term</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_SELECT_MANUFACTURERS</key>
+			<class>store</class>
+			<de>
+				<value>- Hersteller wählen -</value>
+			</de>
+			<en>
+				<value>- Select manufacturer -</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>BUTTON_8WORKS_CONTINUE_SHOPPING</key>
+			<class>store</class>
+			<de>
+				<value>Einkauf fortsetzen</value>
+			</de>
+			<en>
+				<value>Continue shopping</value>
+			</en>
+		</phrase>
+		<!-- startpage slider text -->
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_SLIDER_SPP</key>
+			<class>store</class>
+			<de>
+				<value>Empfehlungen</value>
+			</de>
+			<en>
+				<value>Recommendations</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_SLIDER_NP</key>
+			<class>store</class>
+			<de>
+				<value>Neuheiten</value>
+			</de>
+			<en>
+				<value>Recently</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_SLIDER_BP</key>
+			<class>store</class>
+			<de>
+				<value>Bestseller</value>
+			</de>
+			<en>
+				<value>Bestseller</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_8WORKS_SUNRISE_SLIDER_SP</key>
+			<class>store</class>
+			<de>
+				<value>Preiskracher</value>
+			</de>
+			<en>
+				<value>Special</value>
+			</en>
+		</phrase>
+        <phrase>
+            <key>TEXT_8WORKS_SUNRISE_SLIDER_UP</key>
+            <class>store</class>
+            <de>
+                <value>Demnächst</value>
+            </de>
+            <en>
+                <value>Soon</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_8WORKS_SUNRISE_NO_RESULT</key>
+            <class>store</class>
+            <de>
+                <value>Für diesen Filter gibt es momentan keine Ergebnisse.</value>
+            </de>
+            <en>
+                <value>For this filter, there are no results.</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_8WORKS_CACHE_RELOAD_SUCCESS</key>
+            <class>both</class>
+            <de>
+                <value>Der Cache wurde erfolgreich gelöscht. Sie können den Reiter <![CDATA[<span>Cache</span>]]> nun schließen.</value>
+            </de>
+            <en>
+                <value>The cache was deleted successfully. You can now close the tab <![CDATA[<span>Cache</span>]]>.</value>
+            </en>
+        </phrase>
+	</language_content>
+	
+</xtcommerceplugin>

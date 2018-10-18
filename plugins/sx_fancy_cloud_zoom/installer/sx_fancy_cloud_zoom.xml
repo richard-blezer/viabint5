@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xtcommerceplugin>
+	<title>Fancy Cloud Zoom</title>
+	<version>1.0.6</version>
+	<code>sx_fancy_cloud_zoom</code>
+	<url>http://www.shopx.de</url>
+	<description>Cloud Zoom for xt:Commerce 4</description>
+<developer>xt:Commerce</developer>
+<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=23822464]]></documentation_link>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=4134]]></marketplace_link>
+	<type>extension</type>
+	<icon>sx_fancy_cloud_zoom.png</icon>
+
+    <minimumupdateversion>1.0.0</minimumupdateversion>
+
+    <db_update>
+        <update>
+            <version>1.0.0</version>
+            <to_version>1.0.1</to_version>
+            <code><![CDATA[
+                    ]]>
+            </code>
+        </update>
+       <update>
+            <version>1.0.1</version>
+            <to_version>1.0.2</to_version>
+            <code><![CDATA[
+                    ]]>
+            </code>
+        </update>		
+       <update>
+            <version>1.0.2</version>
+            <to_version>1.0.3</to_version>
+            <code><![CDATA[
+                    ]]>
+            </code>
+        </update>
+		<update>
+            <version>1.0.3</version>
+            <to_version>1.0.4</to_version>
+            <code><![CDATA[
+                    ]]>
+            </code>
+        </update>
+        <update>
+            <version>1.0.4</version>
+            <to_version>1.0.5</to_version>
+            <code><![CDATA[
+                    ]]>
+            </code>
+        </update>
+        <update>
+            <version>1.0.5</version>
+            <to_version>1.0.6</to_version>
+            <code><![CDATA[
+                    ]]>
+            </code>
+        </update>
+    </db_update>
+
+	<plugin_code>
+		<code>
+			<hook>javascript.php:bottom</hook>
+			<phpcode><![CDATA[
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'sx_fancy_cloud_zoom/hooks/javascript.php_bottom.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+
+        <code>
+            <hook>module_product.php:default_tpl_data</hook>
+            <phpcode><![CDATA[
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'sx_fancy_cloud_zoom/hooks/module_product.php_default_tpl_data.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+	</plugin_code>
+
+	<configuration>
+
+        <config>
+            <key>SX_FANCY_CLOUD_ZOOM_ENABLED</key>
+            <value>1</value>
+            <type>status</type>
+            <sort_order>0</sort_order>
+
+            <de>
+                <title><![CDATA[Aktiviert für Mandanten]]></title>
+            </de>
+            <en>
+                <title><![CDATA[activated for store]]></title>
+            </en>
+        </config>
+
+        <config>
+            <key>SX_FANCY_CLOUD_ZOOM_CZ_ENABLED</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <sort_order>10</sort_order>
+            <de>
+                <title>CloudZoom aktiviert</title>
+            </de>
+            <en>
+                <title>CloudZoom activated</title>
+            </en>
+            <fr>
+                <title>CloudZoom activated</title>
+            </fr>
+        </config>
+
+        <config>
+            <key>SX_FANCY_CLOUD_ZOOM_FB_ENABLED</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <sort_order>20</sort_order>
+            <de>
+                <title>FancyBox aktiviert</title>
+            </de>
+            <en>
+                <title>FancyBox aktivated</title>
+            </en>
+            <fr>
+                <title>FancyBox aktivated</title>
+            </fr>
+        </config>
+
+        <config>
+            <key>SX_FANCY_CLOUD_ZOOM_CZ_ENABLED_ON_MOBILE</key>
+            <value>false</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <sort_order>30</sort_order>
+            <de>
+                <title>CloudZoom für Mobile aktiviert</title>
+            </de>
+            <en>
+                <title>CloudZoom for mobil activated</title>
+            </en>
+            <fr>
+                <title>CloudZoom for mobil activated</title>
+            </fr>
+        </config>
+
+        <config>
+            <key>SX_FANCY_CLOUD_ZOOM_FB_ENABLED_ON_MOBILE</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <sort_order>40</sort_order>
+            <de>
+                <title>FancyBox für Mobile aktiviert</title>
+            </de>
+            <en>
+                <title>FancyBox for mobil aktivated</title>
+            </en>
+            <fr>
+                <title>FancyBox for mobil aktivated</title>
+            </fr>
+        </config>
+
+    </configuration>
+
+</xtcommerceplugin>

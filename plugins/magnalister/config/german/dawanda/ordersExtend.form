@@ -1,0 +1,14 @@
+{
+    "orders": {
+        "headline": "Bestellimport",
+        "fields": {
+            "defaultpayment": {
+                "values": {
+                    "textfield": "Aus Textfeld",
+                    "copy": "_#_platformName_#_ Zahlart &uuml;bernehmen"
+                },
+                "default": "copy"
+            }
+        }
+    }
+}

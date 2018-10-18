@@ -1,0 +1,10 @@
+<h1>{$data.content_heading}</h1>
+{if $subdata.subcontent}
+<h3>{#heading_sub_content#}</h3>
+<p>{foreach name=aussen item=module_data from=$subdata.subcontent}
+<a href="{$module_data.link}">{$module_data.title}</a>,
+{/foreach}
+</p>
+{/if}
+<p>{if $file}{$file}{else}{$data.content_body}{/if}</p>
+<p>{$BUTTON_CONTINUE}</p>

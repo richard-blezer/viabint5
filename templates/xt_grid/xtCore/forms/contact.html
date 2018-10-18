@@ -1,0 +1,51 @@
+<div id="contact">
+	<h1>{txt key=TEXT_CONTACT_PAGE}</h1>
+	{$message}
+    {if $show_form eq 'true'}
+        {if $file}<div class="textstyles">{$file}</div>{else}<div class="textstyles">{$data.content_body}</div>{/if}
+        <div class="box">
+            <p>{txt key=TEXT_CONTACT_INTRO}</p>
+            {form type=form name=login action='dynamic' link_params=getParams method=post conn=SSL}
+            {form type=hidden name=action value=send}
+
+            <label for="email_address">{txt key=TEXT_EMAIL}*</label>
+            {form id=email_address type=text name=email_address params='maxlength="40"' value=$email_address}
+
+            <label for="firstname">{txt key=TEXT_FIRSTNAME}*</label>
+            {form id=firstname type=text name=firstname params='maxlength="40"' value=$firstname}
+
+            <label for="lastname">{txt key=TEXT_LASTNAME}*</label>
+            {form id=lastname type=text name=lastname params='maxlength="40"' value=$lastname}
+
+            <label for="company">{txt key=TEXT_COMPANY}</label>
+            {form id=company type=text name=company params='maxlength="40"' value=$company}
+
+            <label for="telefone">{txt key=TEXT_PHONE}</label>
+            {form id=telefone type=text name=telefone params='maxlength="32"' value=$telefone}
+
+			<label for="mobile_phone">{txt key=TEXT_MOBILE_PHONE}</label>
+            {form id=mobile_phone type=text name=mobile_phone params='maxlength="32"' value=$mobile_phone}
+			
+            <label for="order_id">{txt key=TEXT_ORDER_NUMBER}</label>
+            {form id=order_id type=text name=order_id params='maxlength="40"' value=$order_id}
+
+            <label for="customer_message">{txt key=TEXT_MESSAGE}</label>
+            {form id=customer_message type=textarea name=customer_message params='cols="50" rows="15"' value=$customer_message}
+
+            {if $logged_in eq 'false'}
+            {if $recaptcha eq 'true'}
+            {$captcha_link}
+            {else}
+            <p id="captcha-img">
+                <img src="{$captcha_link}" alt="{txt key=TEXT_CAPTCHA}"/>
+            </p>
+            <label for="captcha_code">{txt key=TEXT_CAPTCHA}*</label>
+            {form id=captcha_code type=text name=captcha params='maxlength="30"'}
+            {/if}     
+            {/if}
+            <p class="right">{css_button text=$smarty.const.BUTTON_SUBMIT type='form'}</p>
+            {form type=formend}
+            <p>{txt key=TEXT_MUST}</p>
+        </div><!-- .box -->
+   {/if}     
+</div><!-- #contact -->

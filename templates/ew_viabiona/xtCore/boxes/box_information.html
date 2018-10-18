@@ -1,0 +1,11 @@
+{content block_id=7 levels=nested}
+{if $_content_7|count > 0}
+<div class="sidebar-box">
+    <p class="headline">{txt key=TEXT_INFO}</p>
+    <ul>
+        {foreach name=aussen item=box_data from=$_content_7}
+        <li class="level{$box_data.level}{if $box_data.active} active{/if}"><a href="{$box_data.link}" {if $page != 'index' && $box_data.content_hook gt 0} rel="nofollow"{/if}>{$box_data.title}</a></li>
+        {/foreach}
+    </ul>
+</div><!-- .sidebar-box -->
+{/if}

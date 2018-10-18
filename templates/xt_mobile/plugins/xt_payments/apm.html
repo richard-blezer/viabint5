@@ -1,0 +1,106 @@
+<ul data-role="listview" data-inset="true" id="payment_list">
+{foreach key=k item=apm from=$apms}
+	<li data-theme="c">
+		<div data-role="controlgroup" class="control-group-selector">
+			<label>
+				{if $apm->APMCode==$payment_selected}
+					{form type=radio id="apmSelector_"|cat:$k name=selected_payment value="xt_payments:"|cat:$apm->APMCode checked=true}
+				{else}
+					{form type=radio id="apmSelector_"|cat:$k name=selected_payment value="xt_payments:"|cat:$apm->APMCode}
+				{/if}  
+				
+				<div style="float:left;padding-top: 15px;">{$apm->APMName}</div>
+				
+				<div style="float:right;min-height: 50px;"><img src="{$apm->URLLogoSmall}" title="{$apm->APMName}" alt="{$apm->APMName}"/></div>
+				
+				{if $payment_desc}
+					<a href="#popupBasic" data-rel="popup">
+						<span class="ui-li-desc">    
+							{$payment_desc}
+						</span>
+					</a>
+				{/if}
+			</label>
+		</div>
+		{if $apm AND $apm->correlations|@count gt 0}
+		{assign var=idx value=0}
+		{foreach item=correlation from=$apm->correlations}
+		
+			{if $correlation->ControlType == $correlation->AvailableControlTypes.select && is_array($correlation->SelectOptions)}
+				<div id="correlationFields_{$k}" style="display:none;" class="payment-correlations">
+					<p>
+						{$correlation->FieldCaption} : 
+						<select name="paymentCorrelation_{$apm->APMCode}_{$idx}" id="paymentCorrelationField_{$k}_{$idx}">
+							{foreach item=dropdown from=$correlation->SelectOptions}
+								<option value="{$dropdown.key}">{$dropdown.value}</option>
+							{/foreach}
+						</select>
+					</p>
+				</div>
+			{else}
+				<div id="correlationFields_{$k}" style="display:none;" class="payment-correlations">
+					<p>
+						<div><span id="paymentCorrelationErrMsg_{$k}_{$idx}" class="error apm-error" >{$correlation->ValidationMessage}</span></div>
+						<input id="paymentCorrelationField_{$k}_{$idx}" type="text" name="paymentCorrelation_{$apm->APMCode}_{$idx}" title="{$correlation->FieldCaption}" />
+					</p>
+					<script>
+						arrPaymentCorrelationCaption['{$k}_{$idx}']  = "{$correlation->FieldCaption}";
+						arrPaymentCorrelationRegex['{$k}_{$idx}']  = new RegExp(/{$correlation->ValidationRegex}/);
+						arrPaymentCorrelationErrMsg['{$k}_{$idx}'] = "{$correlation->ValidationMessage}";
+					</script>
+				</div>
+			{/if}
+		{assign var=idx value=$idx+1}
+		{/foreach}
+		{/if}
+		
+		<div id="formButton_{$k}" class="float-right" style="display:none;margin:-10px 0 15px 0;">
+			{css_button class='button-next' text=$smarty.const.BUTTON_NEXT type='form'}
+		</div><div style="clear:both;height:0px;"></div>
+	</li>
+{/foreach}
+</ul>
+<!--
+
+<div class="box box-white box-hover">
+    <div class="payment">
+        <p class="bold">
+            <input id="apmSelector_{$k}" type="radio" name="selected_payment" value="xt_payments:{$apm->APMCode}"> {$apm->APMName} <span class="float-right"><img src="{$apm->URLLogoSmall}" title="{$apm->APMName}" alt="{$apm->APMName}"/></span>
+        </p>
+    </div>
+    {if $apm AND $apm->correlations|@count gt 0}
+    {assign var=idx value=0}
+    {foreach item=correlation from=$apm->correlations}
+	
+		{if $correlation->ControlType == $correlation->AvailableControlTypes.select && is_array($correlation->SelectOptions)}
+			<div id="correlationFields_{$k}" style="display:none;" class="payment-correlations">
+				<p>
+					{$correlation->FieldCaption} : 
+					<select name="paymentCorrelation_{$apm->APMCode}_{$idx}" id="paymentCorrelationField_{$k}_{$idx}">
+						{foreach item=dropdown from=$correlation->SelectOptions}
+							<option value="{$dropdown.key}">{$dropdown.value}</option>
+						{/foreach}
+					</select>
+				</p>
+			</div>
+		{else}
+			<div id="correlationFields_{$k}" style="display:none;" class="payment-correlations">
+				<p>
+					<input id="paymentCorrelationField_{$k}_{$idx}" type="text" name="paymentCorrelation_{$apm->APMCode}_{$idx}" title="{$correlation->FieldCaption}" />
+					<span id="paymentCorrelationErrMsg_{$k}_{$idx}" class="error apm-error" >{$correlation->ValidationMessage}</span>
+				</p>
+				<script>
+					arrPaymentCorrelationCaption['{$k}_{$idx}']  = "{$correlation->FieldCaption}";
+					arrPaymentCorrelationRegex['{$k}_{$idx}']  = new RegExp(/{$correlation->ValidationRegex}/);
+					arrPaymentCorrelationErrMsg['{$k}_{$idx}'] = "{$correlation->ValidationMessage}";
+				</script>
+			</div>
+		{/if}
+    {assign var=idx value=$idx+1}
+    {/foreach}
+    {/if}
+</div>
+<div id="formButton_{$k}" class="float-right" style="display:none;margin:-10px 0 15px 0;">
+    {css_button class='button-next' text=$smarty.const.BUTTON_NEXT type='form'}
+</div><div style="clear:both;height:0px;"></div>
+-->

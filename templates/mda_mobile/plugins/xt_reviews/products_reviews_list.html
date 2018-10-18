@@ -1,0 +1,9 @@
+<h2>{txt key=TEXT_XT_REVIEWS_HEADING_REVIEWS}</h2>
+
+{foreach name=aussen item=module_data from=$reviews_data} 
+	<p>
+		<b>{$module_data.review_title}</b>, {$module_data.review_date}<br/>
+		{$module_data.review_text}<br/>
+		<small>{txt key=TEXT_XT_REVIEWS_EDITOR}: {$module_data.review_editor}</small>
+	</p>
+{/foreach} 

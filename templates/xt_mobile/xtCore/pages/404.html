@@ -1,0 +1,12 @@
+<h1>{txt key=TEXT_PAGE_NOT_FOUND}</h1>
+<p>{txt key=TEXT_PAGE_NOT_FOUND_INTRO}</p>
+{content block_id=10 levels=nested}
+{if $_content_10|count > 0}
+{foreach name=aussen item=box_data from=$_content_10}
+<a href="{$box_data.link}">{$box_data.title}</a>
+<br />{$box_data.content_body}
+<br />
+{/foreach}
+<br />
+{/if}
+{include file="/xtCore/pages/search.html" type="tpl_include"}

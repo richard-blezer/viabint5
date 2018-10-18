@@ -1,0 +1,181 @@
+<div id="product">
+	<div id="product-infos">
+		<div class="box">
+			<h1>{$products_name}</h1>
+			{if $date_available!=''}
+			<p class="box info">{txt key=TEXT_PRODUCT_AVAILABLE} {$date_available|date_format:"%A, %B %e, %Y"}</p>
+			{/if}
+			{if $allow_add_cart eq 'true'}
+				{if $products_fsk18 == '1'}
+    				<p class="box error">{txt key=TEXT_PRODUCTS_FSK18_NOTE}</p>
+    			{/if}
+    		{/if}
+			{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}
+				<p class="product-price">{$products_price.formated}</p>
+				{if $base_price && !$group_price}
+					<p class="product-base-price">{$base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$base_price.vpe.name}</p>
+				{/if}
+				
+				{if $products_shipping_link}
+					<p class="product-tax-shipping">{$products_tax_info.tax_desc} <a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+				{else}
+					<p class="product-tax-shipping">{$products_tax_info.tax_desc} {txt key=TEXT_EXCL_SHIPPING}</p>
+				{/if}
+				
+				{price_table}
+			{/if}
+			
+			{if $products_model!=''}
+				<p class="product-model">{txt key=TEXT_PRODUCTS_MODEL} <span class="bold">{$products_model}</span></p>
+			{/if}
+			
+			{if $products_weight > 0}
+				<p class="product-weight">{txt key=TEXT_PRODUCTS_WEIGHT} {$products_weight|number_format:2:",":"."} KG</p>
+			{/if}
+
+			{if $stock_image}
+				<p class="product-stock-image">{img img=$stock_image.image type=t_img_stockrules}</p>
+				<p class="product-stock-name">{$stock_image.name}</p>
+			{/if}
+			{if $shipping_status}
+				<p class="product-shipping-status">{txt key=TEXT_SHIPPING_STATUS} {$shipping_status}</p>
+			{/if}
+			{if $products_discount!=''}
+				<p class="product-discount">{$products_discount}</p>
+			{/if}
+
+			{hook key=product_info_tpl_before_cart}
+		
+			{if $allow_add_cart eq 'true'}
+				{form type=form name=product action='dynamic' link_params=getParams method=post}
+				{form type=hidden name=action value=add_product}
+				{form type=hidden name=product value=$products_id}
+				{$products_information}
+				<p class="add-to-cart">{form type=text name=qty value=1} {css_button text=$smarty.const.BUTTON_ADD_CART type='form'}</p>
+				{form type=formend}
+			{/if}
+	
+			{hook key=product_info_tpl_cart}
+		</div><!-- .box -->
+	
+		{if $products_master_flag == 1 OR  $products_master_model != ''}	
+		<div class="box">
+			{hook key=product_info_tpl_options}
+		</div><!-- .box -->
+		{/if}
+	</div><!-- #product-infos -->
+	<div id="product-images">
+		<div class="box">
+			{if $products_image == 'product:noimage.gif'}
+			<p class="product-image center"><img src="{$tpl_url_path}img/no_image.png" alt="{$products_name|escape:"html"}" /></p>
+			{else}
+			<p class="product-image"><a href="{img img=$products_image type=m_org path_only=true}" class="cloud-zoom" id="zoom" rel="adjustX: 28, adjustY:-10, zoomWidth: 350">{img img=$products_image type=m_info alt=$products_name|escape:"html" width=auto height=auto}</a></p>
+			{/if}
+		</div><!-- .box -->
+		{if $more_images !=''}
+		<div class="more-images">
+			<p class="more-images-item"><span><a href='{img img=$products_image type=m_org path_only=true}' class='cloud-zoom-gallery' rel="useZoom: 'zoom', smallImage: '{img img=$products_image type=m_info path_only=false}'"><img src="{img img=$products_image type=m_thumb alt=$products_name path_only=false}" alt="{$products_name|escape:"html"}" /></a></span></p>
+			{foreach name=aussen item=img_data from=$more_images}
+				<p class="more-images-item"><span><a href='{img img=$img_data.file type=m_org path_only=true}' class='cloud-zoom-gallery' rel="useZoom: 'zoom', smallImage: '{img img=$img_data.file type=m_info path_only=true}'"><img src="{img img=$img_data.file type=m_thumb path_only=true}" alt="{$products_name|escape:"html"}" /></a></span></p>
+			{/foreach}
+		</div><!-- .more-images -->
+		{/if}
+	</div><!-- #product-images -->
+	<div id="tabs">
+		<ul class="tabs">
+		{if $products_description !=''}
+			<li><a href="javascript:void(0);" rel="#description">{txt key=TEXT_PRODUCTS_DESCRIPTION}</a></li>
+		{/if}
+		
+		{if $products_master_flag == 1}	
+			<li><a href="javascript:void(0);" rel="#productlist">{txt key=TEXT_PRODUCT_OPTIONS}</a></li>
+		{/if}
+		
+		{if $review_stars_rating}
+        <li><a href="javascript:void(0);" rel="#reviews">{if $products_rating_count}{$products_rating_count}{else}0{/if} {txt key=TEXT_XT_REVIEWS_INFO}</a></li>
+		{/if}
+		
+		{if $media_files !=''}
+			<li><a href="javascript:void(0);" rel="#files">{txt key=TEXT_DOWNLOADS}</a></li>
+		{/if}
+		</ul>
+		
+		{if $products_description !=''}
+		<div id="description" class="ptabs textstyles">
+			<p class="headline">{$products_name}</p>
+			<p>{$products_description}</p>
+		</div><!-- #description -->
+		{/if}
+		
+		{if $products_master_flag == 1}	
+		<div id="productlist" class="ptabs">
+			{hook key=product_info_tpl_productlist}
+		</div><!-- #productlist -->
+		{/if}
+		
+        <div id="reviews"  class="ptabs">
+            <p class="headline">{txt key=TEXT_XT_REVIEWS_RATING_DESC}</p>
+
+            {$message}
+
+            {form type=form name=write_review action='dynamic' link_params=getParams method=post}
+            {form type=hidden name=action value=add_review}
+            {form type=hidden name=page value='reviews'}
+            {form type=hidden name=paction value='write'}
+            {form type=hidden name=products_id value=$products_id}
+
+            <label for="review_rating">1. {txt key=TEXT_XT_REVIEWS_RATE_DESC}</label>
+            {form params='id="review_rating"' type=select name=review_rating value=$rating default=$review_rating}
+
+            <label for="review_title">2. {txt key=TEXT_XT_REVIEWS_TITLE_DESC}</label>
+            {form id=review_title type=text name=review_title size=60 value=$review_title}
+
+            <label for="review_text">3. {txt key=TEXT_XT_REVIEWS_TEXT_DESC}</label>
+            {form id=review_text type=textarea name=review_text cols=60 rows=10 default=$review_text}
+
+            <p class="right">{css_button text=$smarty.const.BUTTON_SAVE type='form'}
+            <a href="javascript:history.back();" class="button">{txt key=BUTTON_BACK}</a></p>
+            {form type=formend}
+        </div><!-- .box .clear -->
+
+        {if $media_files !=''}
+		<div id="files">
+			{include file="$selected_template/xtCore/pages/files/product_public_files.html"}
+		</div><!-- #files -->
+		{/if}
+	</div><!-- #tabs -->
+
+</div><!-- #product -->
+{literal} 
+<script language="javascript"> 
+$(document).ready(function(){
+	$('ul.tabs').each(function(){
+    var $active, $content, $links = $(this).find('a');
+	
+	$links.first().removeClass('active');		
+    $($links.first().attr('rel')).hide();
+    
+    $('a[rel^="#reviews"]').addClass('active');
+    $($('a[rel^="#reviews"]').attr('rel')).show();
+    
+    $active = $('a[rel^="#reviews"]');
+    $content = $($active.attr('rel'));
+    $(this).on('click', 'a', function(e){
+						
+			$active.removeClass('active');
+			$content.hide();
+						
+			$active = $(this);
+			$content = $($(this).attr('rel'));
+
+			$active.addClass('active');
+			$content.show();
+			
+			e.preventDefault();
+		});
+        
+});
+    
+});
+</script> 
+{/literal}

@@ -1,0 +1,88 @@
+<div id="cart">
+	<h1>{txt key=TEXT_CART}</h1>
+	{if $show_cart_content == true}
+	{$message}
+	{form type=form name=cart action='dynamic' link_params=getParams method=post conn=SSL}
+	{form type=hidden name=action value=update_product}
+	<table>
+		<thead>
+ 			<tr>
+    			<th colspan="2" class="left">{txt key=TEXT_ARTICLE}</th>
+    			<th width="100" class="center">{txt key=TEXT_REMOVE}</th>
+    			<th width="100" class="right">{txt key=TEXT_SINGLE_PRICE}</th>
+    			<th width="100" class="right">{txt key=TEXT_QTY}</th>
+    			<th width="100" class="right">{txt key=TEXT_TOTAL_PRICE}</th>
+  			</tr>
+  		</thead>
+  		<tfoot>
+  			<tr>
+        <td colspan="3">
+        </td>
+    			<td id="total" colspan="3">
+					{hook key=cart_total_top}
+	    			<p class="sub-total">{txt key=TEXT_SUB_TOTAL}<span class="float-right">{$cart_total}</span></p>
+	    			{hook key=cart_total_tpl}
+	    			{foreach name=aussen item=tax_data from=$cart_tax}
+	    			<p>{txt key=TEXT_TAX} {$tax_data.tax_key}%<span class="float-right">{$tax_data.tax_value.formated|replace:"*":""}</span></p>
+	    			{/foreach}
+	    			{if $discount}<p>{txt key=TEXT_DISCOUNT_MADE}<span class="float-right">{$discount.formated}</span></p>{/if}
+    				{if $shipping_link}<p class="shipping-link"><a href="{$shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>{/if}
+    				{if $cart_total_weight > 0}<p class="right">{txt key=TEXT_PRODUCTS_WEIGHT}: {$cart_total_weight|number_format:2:",":"."} kg</p>{/if}
+    				{hook key=cart_total_bottom}
+    			</td>
+  			</tr>
+  		</tfoot>
+  		<tbody>
+  			{foreach name=aussen item=data from=$cart_data}
+  			<tr>
+  				<td width="100">
+  					<div class="box box-hover">
+  						{if $data.products_image == 'product:noimage.gif'}
+						<p class="center"><a href="{$data.products_link}"><img src="{$tpl_url_path}img/no_image.png" alt="{$new_products_data.products_name}" /></a></p>
+						{else}
+  						<p class="center"><a href="{$data.products_link}">{img img=$data.products_image type=m_thumb alt=$data.products_name}</a></p>
+  						{/if}
+  					</div>
+  				</td>
+   				<td>
+					<p class="product-name"><a href="{$data.products_link}">{$data.products_name}</a></p>
+					{hook key=cart_bundle}
+					{if $data.products_information}<p>{$data.products_information|replace:'<tr class="contentrow1">':''|replace:'<tr class="contentrow2">':''|replace:'<td>':''|replace:'<td class="left" colspan="4">':''|replace:'</td>':''|replace:'</tr>':''}</p>{/if}
+					{if $data.products_model!=''}<p>{txt key=TEXT_PRODUCTS_MODEL} {$data.products_model}</p>{/if}
+					{if $data.products_weight > 0}<p>{txt key=TEXT_PRODUCTS_WEIGHT} {$data.products_weight|number_format:2:",":"."} kg</p>{/if}
+					{if $data.shipping_status}<p>{txt key=TEXT_SHIPPING_STATUS} {$data.shipping_status}</p>{/if}
+					<p class="del-product"></p>
+				</td>
+				<td class="center">{form type=hidden name=products_key[] value=$data.products_key}{form type=checkbox name=cart_delete[] value=$data.products_key}</td>
+    			<td><p class="product-price">
+					{if $data._cart_discount}
+						<p>{$data.products_price.formated}</p>
+						<p class="price-old">{$data._original_products_price.formated}</p>
+                        <p>(-{$data._cart_discount|number_format:2:",":"."} %)</p>
+						{else}
+						{$data.products_price.formated}
+					{/if}
+				</p></td>
+     			<td class="right">{form type=text name=qty[] value=$data.products_quantity style='width:30px;'}</td>
+    			<td><p class="final-price">{$data.products_final_price.formated}</p></td>
+  			</tr>
+  			{/foreach}
+  		</tbody>
+	</table>
+	<p>
+		<span class="float-left"><a href="javascript:history.back();" class="button">{txt key=BUTTON_BACK}</a></span>
+		<span>{css_button text=$smarty.const.BUTTON_UPDATE type='form'}</span>
+        {hook key=cart_tpl_form_paypal}
+        <span class="float-right"><a class="button" href="{link page='checkout' paction='shipping' conn=SSL}">{txt key=BUTTON_CHECKOUT}</a></span>
+	</p>
+ 
+	{hook key=cart_tpl_form}
+	{form type=formend}
+	{else}
+	{$message}
+	<p><a href="javascript:history.back();" class="button">{txt key=BUTTON_BACK}</a></p>
+	{/if}
+	{box name=shipping_cost}
+	{hook key=cart_bottom}
+	 
+</div><!-- #cart -->

@@ -1,0 +1,55 @@
+
+    <div class="product-reviews-list">
+
+        {if $reviews_data|@count == 0}
+            <div class="alert alert-warning">{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}</div>
+        {/if}
+
+       
+        {if $reviews_data|@count != 0}
+
+            {foreach name=aussen item=module_data from=$reviews_data}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col col-sm-3">
+                                <div class="product-reviews">
+                                    <div class="reviews_rating_light">
+                                        <div class="reviews_rating_dark" style="width:{$module_data.review_rating}%"></div>
+                                    </div>
+                                </div>
+                                <p class="review-editor text-small text-muted">{txt key=TEXT_XT_REVIEWS_EDITOR} {$module_data.review_editor} {txt key=TEXT_ON} {$module_data.review_date|date_format:"%d.%m.%Y"}</p>
+                            </div>
+                            <div class="col col-sm-9">
+                                <p class="review-title headline">{$module_data.review_title}</p>
+                                <p class="review-text">{$module_data.review_text}</p>
+                                {if $module_data.admin_comment}
+                                    <hr />
+                                    <div class="text-muted text-small">
+                                        <p class="review-editor"><i class="fa fa-reply"></i>{if $store_domain} <b>{$store_domain}:</b>{/if}</p>
+                                        {$module_data.admin_comment}
+                                    </div>
+                                {/if}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {/foreach}
+
+        {/if}
+
+        <p class="text-right review-btns">
+            <span class="btn-group">
+                {if $show_reviews_button eq 'true'}
+                    <a href="{$link_reviews_list}" class="btn btn-default" rel="nofollow">{txt key=TEXT_XT_REVIEWS_SHOW}</a>
+                {else}
+                    <a href="{$products_link}" class="btn btn-default" role="button">{txt key=BUTTON_BACK}</a>
+                {/if}
+                <a href="{$link_reviews_write}" class="btn btn-primary" rel="nofollow">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    {txt key=TEXT_XT_REVIEWS_WRITE}
+                </a>
+            </span>
+        </p>
+
+    </div>

@@ -1,0 +1,103 @@
+<nav id="debugbar" class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <div class="container-fluid">
+
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#debug-bar-bottom">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">
+                <i class="fa fa-bug"></i><span class="hidden-xs"> {$template}</span>
+            </a>
+            <div class="navbar-text navbar-right responsive-info cursor-help visible-xs" title="Responsive Information">
+                <span class="visible-xs"><span class="badge bp">XS</span> <span class="badge current-width">Current@</span></span>
+                <span class="visible-sm"><span class="badge bp">SM</span> <span class="badge current-width">Current@</span></span>
+                <span class="visible-md"><span class="badge bp">MD</span> <span class="badge current-width">Current@</span></span>
+                <span class="visible-lg"><span class="badge bp">LG</span> <span class="badge current-width">Current@</span></span>
+            </div>
+        </div>
+
+        <div class="navbar-text navbar-right responsive-info cursor-help hidden-xs" title="Responsive Information">
+            <span class="visible-xs"><i class="fa fa-code"></i> <span class="hidden-sm">Responsive breakpoint </span><span class="badge bp">XS</span> <span class="badge current-width">Current@</span></span>
+            <span class="visible-sm"><i class="fa fa-code"></i> <span class="hidden-sm">Responsive breakpoint </span><span class="badge bp">SM</span> <span class="badge current-width">Current@</span></span>
+            <span class="visible-md"><i class="fa fa-code"></i> <span class="hidden-sm">Responsive breakpoint </span><span class="badge bp">MD</span> <span class="badge current-width">Current@</span></span>
+            <span class="visible-lg"><i class="fa fa-code"></i> <span class="hidden-sm">Responsive breakpoint </span><span class="badge bp">LG</span> <span class="badge current-width">Current@</span></span>
+        </div>
+
+        <div id="debug-bar-bottom" class="collapse navbar-collapse cursor-help">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-info-circle"></i> Infos <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="navbar-text" title="Request IP (Your IP)"><span class="glyphicon glyphicon-user"></span> <strong>My IP</strong><br /><code>{$request_ip}</code></li>
+                        <li class="navbar-text" title="Remote IP (Server IP)"><span class="glyphicon glyphicon-info-sign"></span> <strong>Server IP</strong><br /><code>{$response_ip}</code></li>
+                        <li class="navbar-text" title="User Agent"><span class="glyphicon glyphicon-globe"></span> <strong>User Agent</strong><br /><code>{php} echo htmlspecialchars($_SERVER ['HTTP_USER_AGENT'], ENT_QUOTES); {/php}</code></li>
+                        <li class="navbar-text" title="Session cache">
+                            {if $session_cache}
+                                <i class="fa fa-cogs"></i> UserCache On
+                            {else}
+                                <i class="fa fa-cogs" style="color:#FE5C09;"></i>  UserCache Off
+                            {/if}
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" title="System Cache">
+                        {if $sys_cache}
+                            {if $clear_cache}
+                                <i class="fa fa-cogs" style="color:yellow;"></i> Cache On (autorefreshed)
+                            {else}
+                                <i class="fa fa-cogs"></i> Cache On ({$sys_cache_lifetime})
+                            {/if}
+                        {else}
+                            <i class="fa fa-cogs" style="color:#FE5C09;"></i>  Cache Off
+                        {/if}
+                    </a>
+                </li>
+                <li><a href="javascript:void(0);" title="Server Parse Time"><i class="fa fa-line-chart"></i> {$parse_time}s</a></li>
+                <li class="load-time" ><a href="javascript:void(0);" title="Browser Load Time"><i class="fa fa-tachometer"></i></a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+
+    </div><!-- /.container-fluid -->
+</nav>
+
+<script src="{$pluginRootUrl}assets/components/bootlint/dist/browser/bootlint.js"></script>
+
+{literal}
+<script type="text/javascript">
+/* <![CDATA[ */
+/**
+* Debug BAR
+*/
+var debugBarSelector = jQuery("#debugbar");
+if (debugBarSelector.length != 0) {
+    jQuery("body").addClass('debug-mode-enabled');
+
+    //get browser width
+    jQuery(window).bind('load resize orientationchange', function() {
+        var windowWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+        debugBarSelector.find(".current-width").text('@' + windowWidth + 'px');
+    });
+
+    //page load time
+    jQuery(window).load(function () {
+        var afterPageLoadTime = ((new Date()).getTime() - pageLoadTime) / 1000;
+        debugBarSelector.find(".load-time a").append(' ' + afterPageLoadTime + 's');
+    });
+}
+
+/**
+ * Bootstrap linter
+ */
+if (typeof bootlint != 'undefined') {
+    bootlint.showLintReportForCurrentDocument([], {
+        'hasProblems' : false,
+        'problemFree' : false
+    });
+}
+/* ]]> */
+</script>
+{/literal}

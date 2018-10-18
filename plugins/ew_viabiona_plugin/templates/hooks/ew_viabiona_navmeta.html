@@ -1,0 +1,41 @@
+{if $data}
+    {foreach key=key item=item from=$data}
+        <li class="cid-{$item.id} meta-infotext">
+            {if $item.link}
+                <a href="{$item.link}">
+                    <i class="fa fa-chevron-circle-right"></i>
+                    {$item.heading}
+                </a>
+            {else}
+                {if $item.orgData.content_body_short|strip_tags|trim != ''}
+                    <a href="{$item.orgData.link}" title="&gt; {txt key=TEXT_MORE_DETAILS}" data-toggle="modal" data-target="#infoModal-modalIdSuffix-{$key}" data-remote="false">
+                        <i class="fa fa-chevron-circle-right"></i>
+                        {$item.heading}
+                    </a>
+                    <div id="infoModal-modalIdSuffix-{$key}" class="modal fade" tabindex="-1" role="dialog" aria-hidden="false">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                    <p class="h3 modal-title">{$item.heading}</p>
+                                </div>
+                                <div class="modal-body">
+                                    {$item.orgData.content_body_short}
+                                        {if $item.orgData.content_body|strip_tags|trim != ''}
+                                        <hr />
+                                        <a href="{$item.orgData.link}" class="btn btn-sm btn-primary">{txt key=TEXT_MORE_DETAILS}</a>
+                                    {/if}
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- #infoModal-{$modalIdSuffix}-{$key} -->
+                {else}
+                    <i class="fa fa-info-circle"></i> {$item.heading}
+                {/if}
+            {/if}
+        </li>
+    {/foreach}
+{/if}

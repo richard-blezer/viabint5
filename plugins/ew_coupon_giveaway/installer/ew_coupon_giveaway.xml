@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+
+    <title>Gratisartikel für Gutscheine</title>
+    <version>1.0.0</version>
+    <code>ew_coupon_giveaway</code>
+    <url>http://www.8works.de</url>
+    <developer>8works</developer>
+    <description>Kunde erhält durch die Eingabe eines Gutschein-Codes Gratisartikel, welche je Gutschein vom Shopbetreiber festgelegt werden können. Je Gutschein sind ein oder mehrere Gratisartikel möglich. Die Standard-Funktionen des Gutschein bleiben erhalten (Rabatt, etc.).</description>
+    <type>marketing</type>
+    <icon>logo.gif</icon>
+    <minimumupdateversion>1.0.0</minimumupdateversion>
+    <require_license_file>false</require_license_file>
+    <marketplace_link>http://8shop.de/</marketplace_link>
+    <license_file>ew_coupon_giveaway.txt</license_file>
+
+    <required_plugins>
+        <plugin>xt_coupons</plugin>
+    </required_plugins>
+
+    <db_install><![CDATA[
+        $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_coupon_giveaway/functions/install.php';
+        if (file_exists($f)) {
+            require_once $f;
+        }
+    ]]></db_install>
+    <db_uninstall><![CDATA[
+        $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_coupon_giveaway/functions/uninstall.php';
+        if (file_exists($f)) {
+            require_once $f;
+        }
+    ]]></db_uninstall>
+
+    <plugin_code>
+        <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode><![CDATA[
+                if (isset($xtPlugin->active_modules['ew_coupon_giveaway'])) {
+                    $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_coupon_giveaway/hooks/page_registry.php_bottom.php';
+                    if (file_exists($f)) {
+                        require $f;
+                    }
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.cart.php:_addCart_top</hook>
+            <phpcode><![CDATA[
+            if (ew_coupon_giveaway::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_coupon_giveaway/hooks/class.cart.php_addCart_top.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.cart.php:_deleteContent_top</hook>
+            <phpcode><![CDATA[
+            if (ew_coupon_giveaway::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_coupon_giveaway/hooks/class.cart.php_deleteContent_top.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:getProductData_top</hook>
+            <phpcode><![CDATA[
+            if (ew_coupon_giveaway::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_coupon_giveaway/hooks/class.product.php_getProductData_top.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:getProductData_bottom</hook>
+            <phpcode><![CDATA[
+            if (ew_coupon_giveaway::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_coupon_giveaway/hooks/class.product.php_getProductData_bottom.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:_getPrice_afterProductsPrice</hook>
+            <phpcode><![CDATA[
+            if (ew_coupon_giveaway::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_coupon_giveaway/hooks/class.product.php_getPrice_afterProductsPrice.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.cart.php:_updateCart_top</hook>
+            <phpcode><![CDATA[
+            if (ew_coupon_giveaway::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_coupon_giveaway/hooks/class.cart.php_updateCart_top.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.cart.php:_refresh_top</hook>
+            <phpcode><![CDATA[
+            $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_coupon_giveaway/hooks/class.cart.php_refresh_top.php';
+            if (file_exists($f)) {
+                require $f;
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+
+    <configuration>
+        <config>
+            <key>CONFIG_EW_COUPON_GIVEAWAY_STATUS</key>
+            <sort_order>10</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Für diesen Mandanten aktivieren</title>
+            </de>
+            <en>
+                <title>Activate</title>
+            </en>
+            <bp>
+                <title>Activate</title>
+            </bp>
+        </config>
+    </configuration>
+
+    <language_content>
+        <phrase>
+            <key>TEXT_EW_COUPON_GIVEAWAY_PRODMODELS</key>
+            <class>admin</class>
+            <de>
+                <value>Gratisartikelnummern (Komma getrennt)</value>
+            </de>
+            <en>
+                <value>Free product model numbers (comma sparated)</value>
+            </en>
+            <bp>
+                <value>Free product model numbers (comma sparated)</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_COUPON_GIVEAWAY_PRODUCTS_NAME</key>
+            <class>store</class>
+            <de>
+                <value>Gratisprodukt "%s"</value>
+            </de>
+            <en>
+                <value>Free product "%s"</value>
+            </en>
+            <bp>
+                <value>Free product "%s"</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_COUPON_GIVEAWAY_PRODUCT_ADDED</key>
+            <class>store</class>
+            <de>
+                <value>Das Gratisprodukt "%s" wurde Ihrem Warenkorb kostenlos hinzugefügt.</value>
+            </de>
+            <en>
+                <value>The free product "%s" was added to your cart.</value>
+            </en>
+            <bp>
+                <value>The free product "%s" was added to your cart.</value>
+            </bp>
+        </phrase>
+    </language_content>
+
+</xtcommerceplugin>

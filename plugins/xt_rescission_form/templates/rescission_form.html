@@ -1,0 +1,154 @@
+<div id="contact">
+	<h1>{txt key=TEXT_RESCISSION_FORM}</h1>
+	{$message}
+    {if $show_form eq 'true'}
+        <div class="box" id="rescission_form">
+            <p>{txt key=TEXT_RESCISSION_FORM_INTRO}</p>
+            {form type=form name=login action='dynamic' link_params=getParams method=post conn=SSL}
+            {form type=hidden name=action value=send}
+
+            <label for="product_numbers" style="clear:both">{txt key=TEXT_PRODUCT_NUMBERS}*</label>
+            {form id=product_numbers type=textarea name=product_numbers params='cols="50" rows="15"' value=$product_numbers}
+            
+            <label for="order_date" style="clear:both">{txt key=TEXT_ORDER_DATE}*</label>
+            {form id=order_date type=text name=order_date params='maxlength="40"' value=$order_date}
+            
+            <label for="recieved_date" style="clear:both">{txt key=TEXT_RECIEVED_DATE}</label>
+            {form id=recieved_date type=text name=recieved_date params='maxlength="40"' value=$recieved_date}
+            
+            <p class="headline">{$smarty.const.TEXT_HEADING_CUSTOMER_NAME}</p>
+            <label for="gender">{txt key=TEXT_GENDER}*</label>
+			<select id="gender" name="gender" style="float:right">
+				<option value="{txt key=TEXT_MALE}">{txt key=TEXT_MALE}</option>
+				<option value="{txt key=TEXT_FEMALE}">{txt key=TEXT_FEMALE}</option>
+			</select>
+			
+ 			<label for="firstname"style="clear:both">{txt key=TEXT_FIRSTNAME}*</label>
+            {form id=firstname type=text name=firstname params='maxlength="40"' value=$firstname}
+
+            <label for="lastname">{txt key=TEXT_LASTNAME}*</label>
+            {form id=lastname type=text name=lastname params='maxlength="40"' value=$lastname}
+            
+            <p class="headline">{$smarty.const.TEXT_HEADING_CUSTOMER_ADDRESS}</p>
+            <label for="street">{txt key=TEXT_STREET}*</label>
+            {form id=street type=text name=street params='maxlength="40"' value=$street}
+            
+            <label for="city">{txt key=TEXT_CITY}*</label>
+            {form id=city type=text name=city params='maxlength="40"' value=$city}
+            
+             <label for="country">{txt key=TEXT_COUNTRY}*</label>
+             {form params='id="country" style="float:right""' type=select name=country value=$country_data default=$smarty.const._STORE_COUNTRY}
+            
+            <label for="email_address">{txt key=TEXT_EMAIL}*</label>
+            {form id=email_address type=text name=email_address params='maxlength="40"' value=$email_address}
+
+            <label for="client_number">{txt key=TEXT_CLIENT_NUMBER}{if $smarty.const.XT_RESCISSION_FORM_CLIENT_NO_REQUIRED=='true'}*{/if}</label>
+            {form id=client_number type=text name=client_number params='maxlength="40"' value=$client_number}
+
+            <label for="invoice_number">{txt key=TEXT_INVOICE_NUMBER}{if $smarty.const.XT_RESCISSION_FORM_INVOICE_NO_REQUIRED=='true'}*{/if}</label>
+            {form id=invoice_number type=text name=invoice_number params='maxlength="40"' value=$invoice_number}
+			
+            <label for="customer_message" style="clear:both">{txt key=TEXT_MESSAGE}</label>
+            {form id=customer_message type=textarea name=customer_message params='cols="50" rows="15"' value=$customer_message}
+            
+            <label for="revocation_date" style="clear:both">{txt key=TEXT_REVOCATION_DATE}*</label>
+            {form id=revocation_date type=text name=revocation_date params='maxlength="40"' value=$revocation_date}
+			
+            {if $recaptcha eq 'true'}
+            {$captcha_link}
+            {else}
+            <p id="captcha-img">
+                <img src="{$captcha_link}" alt="{txt key=TEXT_CAPTCHA}"/>
+            </p>
+            <label for="captcha_code">{txt key=TEXT_CAPTCHA}*</label>
+            {form id=captcha_code type=text name=captcha params='maxlength="30"'}
+            {/if}
+            <p class="right">{css_button text=$smarty.const.BUTTON_SUBMIT type='form'}</p>
+            {form type=formend}
+            <p>{txt key=TEXT_MUST}</p>
+        </div><!-- .box -->
+        {literal}
+			<script type="text/javascript">
+ 				$(document).ready(function(){
+					var translations = {{/literal}
+                    	    previousMonth : '{$smarty.const.TEXT_PREVIOUS_MONTH}',
+                    	    nextMonth     : '{$smarty.const.TEXT_NEXT_MONTH}',
+                    	    months        : [
+                    	                     '{$smarty.const.TEXT_MONTH_JANUARY}',
+                    	                     '{$smarty.const.TEXT_MONTH_FEBRUARY}',
+                    	                     '{$smarty.const.TEXT_MONTH_MARCH}',
+                    	                     '{$smarty.const.TEXT_MONTH_APRIL}',
+                    	                     '{$smarty.const.TEXT_MONTH_MAY}',
+                    	                     '{$smarty.const.TEXT_MONTH_JUNE}',
+                    	                     '{$smarty.const.TEXT_MONTH_JULY}',
+                    	                     '{$smarty.const.TEXT_MONTH_AUGUST}',
+                    	                     '{$smarty.const.TEXT_MONTH_SEPTEMBER}',
+                    	                     '{$smarty.const.TEXT_MONTH_OCTOBER}',
+                    	                     '{$smarty.const.TEXT_MONTH_NOVEMBER}',
+                    	                     '{$smarty.const.TEXT_MONTH_DECEMBER}'
+                    	                     ],
+                    	    weekdays      : [
+                    	                     '{$smarty.const.TEXT_DAY_SUNDAY}',
+                    	                     '{$smarty.const.TEXT_DAY_MONDAY}',
+                    	                     '{$smarty.const.TEXT_DAY_TUESDAY}',
+                    	                     '{$smarty.const.TEXT_DAY_WEDNESDAY}',
+                    	                     '{$smarty.const.TEXT_DAY_THURSDAY}',
+                    	                     '{$smarty.const.TEXT_DAY_FRIDAY}',
+                    	                     '{$smarty.const.TEXT_DAY_SATURDAY}'
+                    	                     ],
+                    	    weekdaysShort : [
+											'{$smarty.const.TEXT_SHORT_DAY_SUNDAY}',
+											'{$smarty.const.TEXT_SHORT_DAY_MONDAY}',
+											'{$smarty.const.TEXT_SHORT_DAY_TUESDAY}',
+											'{$smarty.const.TEXT_SHORT_DAY_WEDNESDAY}',
+											'{$smarty.const.TEXT_SHORT_DAY_THURSDAY}',
+											'{$smarty.const.TEXT_SHORT_DAY_FRIDAY}',
+											'{$smarty.const.TEXT_SHORT_DAY_SATURDAY}'
+                    	                     ]
+                    	{literal}
+                    };
+                    
+				if ($('#order_date').length) {
+					var picker = new Pikaday({
+							field: $('#order_date')[0],
+                            firstDay: 1,
+                            yearRange: [2000,2100],
+                            minDate: new Date('2000-01-01'),
+                            maxDate: new Date('2100-12-31'),
+                            format: 'DD.MM.YYYY',
+                            i18n: translations
+					});
+				}
+				
+				if ($('#recieved_date').length) {
+					var picker = new Pikaday({
+							field: $('#recieved_date')[0],
+                            firstDay: 1,
+                            yearRange: [2000,2100],
+                            minDate: new Date('2000-01-01'),
+                            maxDate: new Date('2100-12-31'),
+                            format: 'DD.MM.YYYY',
+                            i18n: translations
+					});
+				}
+				
+				if ($('#revocation_date').length) {
+					var today = new Date();
+					var yesterday = new Date(today.getTime() - (24 * 60 * 60 * 1000));
+					var picker = new Pikaday({
+							field: $('#revocation_date')[0],
+                            firstDay: 1,
+                            yearRange: [2000,2100],
+                            minDate: yesterday,
+                            maxDate: new Date('2100-12-31'),
+                            defaultDate: new Date(),
+                            setDefaultDate: new Date(),
+                            format: 'DD.MM.YYYY',
+                            i18n: translations
+					});
+				}
+ 			});
+ 		</script> 
+		{/literal}
+   {/if}
+</div><!-- #contact -->

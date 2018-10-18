@@ -1,0 +1,63 @@
+{* <!-- /**************************************
+ * Please overwrite this file in your
+ * template folder, if you would change
+ * the code!
+ *
+ * Otherwise the earth might disappear
+ * in a large black hole. We'll blame you!
+ **************************************/ --> *}
+
+<div id="all-categories">
+	<h1>{txt key=TEXT_8WORKS_SUNRISE_CATEGORIES_OVERVIEW}</h1>
+	{foreach key=key1 item=cat1 from=$categories_array}
+	
+		{if ($key1+1)%2 != 0}
+			<div class="panel clearfix">
+		{/if}
+
+		<div class="maincat{if ($key1+1)%2 != 0} first{/if}">
+			<h2 id="c-{$cat1.categories_id}"><a href="{$cat1.categories_link}">{$cat1.categories_name}</a></h2>
+			{if $cat1.sub}
+				<table width="100%" class="tabledetails" cellspacing="0" cellpadding="0" border="0">
+					{foreach key=key2 item=cat2 from=$cat1.sub}
+						<tr class="headrow-{$key2+1} headerrow">
+							<td colspan="2">
+								<h3 id="c-{$cat2.categories_id}"><a href="{$cat2.categories_link}">{$cat2.categories_name}</a></h3>
+							</td>
+						</tr>
+						{if $cat2.sub}
+							{foreach key=key3 item=cat3 from=$cat2.sub}
+								{if ($key3+1)%2 != 0}
+									<tr class="subrow-{$key3+1} {cycle values='contentrow1,contentrow2'}">
+								{/if}
+								<td{if ($key3+1)%2 != 0 && $key3+1 == $cat2.sub|@count} colspan="2"{/if}>
+									<h4 id="c-{$cat3.categories_id}"><a href="{$cat3.categories_link}">{$cat3.categories_name}</a></h4>
+									{if $cat3.sub}
+										<!--<ul>
+											{foreach key=key4 item=cat4 from=$cat3.sub}
+												<li><a href="{$cat4.categories_link}">{$cat4.categories_name}</a></li>
+											{/foreach}
+										</ul>-->
+										{foreach key=key4 item=cat4 from=$cat3.sub}
+											<a href="{$cat4.categories_link}">{$cat4.categories_name}</a>|
+										{/foreach}
+									{/if}
+								</td>
+								{if ($key3+1)%2 == 0 || $key3+1 == $cat2.sub|@count}
+									</tr>
+								{/if}
+							{/foreach}
+						{/if}
+					{/foreach}
+				</table>
+			{/if}
+		</div>
+		
+		{if ($key1+1)%2 == 0 || $key1+1 == $categories_array|@count}
+			</div><!-- .panel -->
+		{/if}
+		
+	{/foreach}
+</div>
+
+{*$html_list*}

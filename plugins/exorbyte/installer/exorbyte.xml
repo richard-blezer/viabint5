@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>exorbyte Commerce Search</title>
+<version>1.0.0</version>
+<code>exorbyte</code>
+<url>http://commerce.exorbyte.de</url>
+<description>exorbyte Commerce Search</description>
+<type>search</type>
+<icon>exorbyte_ecs_logo.png</icon> 
+<db_install><![CDATA[
+$db->Execute("
+INSERT INTO ".TABLE_FEED." (	`feed_language_code`,	`feed_store_id`,	`feed_title`, `feed_type`,	`feed_header`, 
+	`feed_body`, `feed_footer`,	`feed_mail`,	`feed_mail_flag`,	`feed_mail_header`,	`feed_mail_body`,	`feed_ftp_flag`, 
+	`feed_ftp_server`, `feed_ftp_user`,	`feed_ftp_password`,	`feed_ftp_dir`,	`feed_ftp_passiv`,	`feed_filename`, 
+	`feed_filetype`, `feed_save`,	`feed_browser`,	`feed_print_browser`,	`feed_p_currency_code`,	`feed_p_customers_status`, 
+	`feed_p_campaign`, `feed_manufacturer`,	`feed_o_customers_status`,	`feed_o_orders_status`,	`feed_date_range_orders`, 
+	`feed_date_from_orders`, `feed_date_to_orders`,	`feed_post_flag`,	`feed_post_server`,	`feed_post_field`, 
+	`feed_pw_flag`, `feed_pw_user`,	`feed_pw_pass`,	`feed_p_slave`
+  ) VALUES (	'de',	1,	'exorbyte',	1,	'aid;name;link;price;brand;shop_cat;ean;desc;image;dlv_time;alias',
+	'\{\$data.products_model\};\{\$data.products_name\};\{\$data.products_link\};\{\$data.products_price.plain|string_format:\"%.2f\"\};\{\$data.manufacturers_name\};\{\$data.category_tree|replace:''=>'':''>''};\{\$data.products_ean\};\{\$data.products_description_clean\};\{\$data.products_image_info\};\{if \$data.products_shippingtime == 6 \}1-2 Tag\{/if\}\{if \$data.products_shippingtime == 7 \}3-4 Tage\{/if\}\{if \$data.products_shippingtime == 8 \}1 Woche\{/if\};\{\$data.products_keywords\}',
+	'',	'',	0,	'',	'',	0,	'',	'',	'',	'',	0,	'exorbyte',	'.csv',	1,	0,	0,	'EUR',	0,	'',	0,	0,
+	0,	0,	'0000-00-00 00:00:00',	'0000-00-00 00:00:00',	0,	'',	'',	0,	'',	'',	0);");
+	
+$db->Execute("
+CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_exorbyte_ecs (
+  project_id int(11) NOT NULL,
+  project_key varchar(32) NOT NULL,
+  customer_id varchar(64) NOT NULL,
+  secure_key varchar(128) NOT NULL,
+  project_name varchar(255) NOT NULL
+) ENGINE=MyISAM;
+");
+]]></db_install>
+<db_uninstall><![CDATA[
+$db->Execute("
+	DELETE  FROM ".TABLE_FEED." WHERE `feed_title` = 'exorbyte';
+");
+]]></db_uninstall>
+<plugin_code>
+<code>
+<hook>display.php:content_head</hook>
+<phpcode><![CDATA[
+    define('TABLE_EXORBYTE', DB_PREFIX.'_exorbyte_ecs');
+    define('PATH_EXORBYTE_PLUGIN', _SRV_WEBROOT._SRV_WEB_PLUGINS.'exorbyte');
+    include PATH_EXORBYTE_PLUGIN.'/classes/exorbyte_search.php';
+    include PATH_EXORBYTE_PLUGIN.'/classes/exorbyte_views.php';
+    $rSetting=new ecos_registration;
+    $rView=new ecos_view;
+       $rs_all=$db->getAll("SELECT * FROM ".TABLE_EXORBYTE);
+       if(is_array($rs_all[0])) {$rs=$rs_all[0];}
+       else {$rs=$rs_all;}
+       $rSetting->aData['c_id']=$rs['customer_id'];
+       $rSetting->aData['secure_key']=$rs['secure_key'];
+       $rSetting->aData['project_name']=$rs['project_name'];
+       $rSetting->aData['project_id']=$rs['project_id'];
+       echo $rSetting->show_script($rView);
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>class.plugin.php:setPluginConfig</hook>
+<phpcode><![CDATA[
+define('TABLE_EXORBYTE', DB_PREFIX.'_exorbyte_ecs');
+define('PATH_EXORBYTE_PLUGIN', _SRV_WEBROOT._SRV_WEB_PLUGINS.'exorbyte');
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'exorbyte/hooks/class.plugin.phpsetPluginConfig.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+
+
+
+<configuration>
+  <config>
+<key>EXORBYTE_AKTIVIEREN</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>exorbyte commerce search aktivieren</title>
+</de>
+<en>
+<title>Activate exorbyte commerce search</title>
+</en>
+</config>
+
+
+<config>
+<key>EXORBYTE_ARTIKEL_EXPORT</key>
+<value>/export/exorbyte.csv</value>
+<de>
+<title>Exportdatei</title>
+</de>
+<en>
+<title>Export file</title>
+</en>
+</config>
+
+<config>
+<key>EXORBYTE_STATUS_MESSAGE</key>
+<type>textarea</type>
+<value>not installed!</value>
+<de>
+<title>Status</title>
+</de>
+<en>
+<title>Status</title>
+</en>
+</config>
+
+<config>
+<key>EXORBYTE_PASSWORD</key>
+<value></value>
+<de>
+<title>Passwort: Bitte hinterlegen Sie hier einmalig Ihr Passwort zur Anmeldung auf der Management Konsole. Dort können Sie bei Bedarf weitere Verfeinerungen der Suche vornehmen.(management.exorbyte.com/de). Als Email-Adresse ist dort bereits Ihre xt-Admin Emailadresse hinterlegt.</title>
+</de>
+<en>
+<title>exorbyte password: (Please enter inital password.)</title>
+</en>
+</config>
+
+
+
+</configuration>
+
+</xtcommerceplugin>

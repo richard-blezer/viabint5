@@ -1,0 +1,14 @@
+Hallo, {if $customer->customers_id}{$customer->customer_default_address.customers_firstname} {$customer->customer_default_address.customers_lastname},{/if}
+
+Nachfolgend finden Sie Links zur Sendungsverfolgung Ihrer Bestellung.
+
+{foreach item=tracking_info from=$tracking_infos}
+{$tracking_info.shipper_name} <a href="{$tracking_info.shipper_tracking_url}">{$tracking_info.tracking_code}</a>\n
+{/foreach}
+
+
+Die Links zur Sendungsverfolgung finden Sie ebenso in Ihrem Kundenkonto unter {$_system_base_url}{$lang}/customer
+
+
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_html}

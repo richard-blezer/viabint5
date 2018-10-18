@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<title>Privacy Check</title>
+	<version>1.0.3</version>
+	<code>xt_privacycheck</code>
+	<url>http://www.xt-commerce.com</url>
+	<developer>xt:Commerce</developer>
+<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=917631]]></documentation_link>
+	<type>law</type>
+	<plugin_code>
+		<code>
+			<hook>module_customer.php:post_data</hook>
+			<phpcode><![CDATA[
+				$privacy = $_content->getHookContent('2');
+					if (isset($privacy['content_id'])) {
+						$privacy_content_data =  $_content->getHookContent($privacy['content_id'], 'true');
+						$privacy_link = $xtLink->_link(array('page'=>'content', 'params'=>'coID='.$privacy_content_data['content_id'],'seo_url' => $privacy_content_data['url_text']));
+						$customer_tpl_data = array_merge($customer_tpl_data,array('show_privacy'=> XT_PRIVACYCHECK_SHOW == 'true' ? 1:0,'privacy_link'=>$privacy_link,'show_privacy_type'=> XT_PRIVACYCHECK_TYPE == 'true' ? 1:0));
+					}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.customer.php:_CustomerData_check</hook>
+			<phpcode><![CDATA[
+				if (XT_PRIVACYCHECK_SHOW=='true' && XT_PRIVACYCHECK_TYPE=='true') {
+					$this->_checkMatch($form_data['privacy'], '1', TEXT_PRIVACY_CHECK_ERROR);
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code>
+	
+	<language_content>
+		<phrase>
+			<key>TEXT_PRIVACY_CHECK_ERROR</key>
+			<class>store</class>
+			<de>
+				<value>Bitte akzeptieren Sie unsere Datenschutzerklärung.</value>
+			</de>
+			<en>
+				<value>Please accept our privacy policy.</value>
+			</en>
+			<es>
+				<value>Por favor, acepte nuestra declaración de privacidad.</value>
+			</es>
+            <bp>
+                <value>Por favor aceite a nossa política de privacidade</value>
+            </bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRIVACY_TEXT</key>
+			<class>store</class>
+			<de>
+				<value>Datenschutzerklärung</value>
+			</de>
+			<en>
+				<value>Privacy policy</value>
+			</en>
+			<es>
+				<value>Declaración de privacidad</value>
+			</es>
+            <bp>
+                <value>Política de privacidade</value>
+            </bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRIVACY_TEXT_INFO</key>
+			<class>store</class>
+			<de>
+				<value>Bitte lesen Sie unsere</value>
+			</de>
+			<en>
+				<value>Please read our</value>
+			</en>
+			<es>
+				<value>Por favor, lea nuestra</value>
+			</es>
+            <bp>
+                <value>Por favor leia nossa política de privacidade</value>
+            </bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_DOT</key>
+			<class>store</class>
+			<de>
+				<value>.</value>
+			</de>
+			<en>
+				<value>.</value>
+			</en>
+			<es>
+				<value>.</value>
+			</es>
+            <bp>
+                <value>Loja.</value>
+            </bp>
+		</phrase>
+	</language_content>
+	<configuration>
+		<config>
+			<key>XT_PRIVACYCHECK_SHOW</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Aktivieren</title>
+			</de>
+			<en>
+				<title>Activate</title>
+			</en>
+			<es>
+				<title>Activar</title>
+			</es>
+            <bp>
+                <title>Ativar</title>
+            </bp>
+		</config>
+		<config>
+			<key>XT_PRIVACYCHECK_TYPE</key>
+			<value>false</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Bestätigung erforderlich</title>
+			</de>
+			<en>
+				<title>Must be accepted</title>
+			</en>
+			<es>
+				<title>Confirmación necesaria</title>
+			</es>
+            <bp>
+                <title>Deve ser aceito</title>
+            </bp>
+		</config>
+	</configuration>
+</xtcommerceplugin> 

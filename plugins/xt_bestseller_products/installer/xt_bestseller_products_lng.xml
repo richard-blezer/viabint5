@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>ACTIVATE_XT_BESTSELLER_PRODUCTS_BOX_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate box]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[启用区块]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Box aktivieren]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Activate box]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Activer boîte]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Attiva Cestino]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ブロックを有効にする]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Winkelmandje activeren]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Uaktywnij pole]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Активировать бокс]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>ACTIVATE_XT_BESTSELLER_PRODUCTS_PAGE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Page]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[启用页面]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Seite aktivieren]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Activate Page]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Activer page]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Attiva Pagina]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ページを有効にする]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Pagina activeren]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Uaktywnij stronę]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Активировать страницу]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>XT_BESTSELLER_PRODUCTS_BOX_LIMIT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Max. article in Box]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[区块内商品数 - 最大值]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Artikel in Box]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Max. article in Box]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nombre maxi d'articles dans la boîte]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Articoli massimi nel Cestino]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ブロック内の商品数 - 最大値]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal artikelen in winkelmandje]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Max. artykułów w polu]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число продуктов в боксе]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>XT_BESTSELLER_PRODUCTS_CACHE_HOURS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Caching time (hours)]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[快取时间(小时)]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Cache Zeit (Stunden)]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Caching time (hours)]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Mise en cache (heures)]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[tempo di attesa (ore)]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[キャッシュ時間（時間）]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Cache tijd (uren)]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[buforowanie czasu (godziny)]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Временной сache (часы)]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>XT_BESTSELLER_PRODUCTS_CATEGORY_DEPENDS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[in depends on category]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kategoriebezogen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_BESTSELLER_PRODUCTS_MASTER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Masters + Normal]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Masters + Normal]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_BESTSELLER_PRODUCTS_NOTHING</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Normal]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Normal]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_BESTSELLER_PRODUCTS_PAGE_LIMIT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Max. article]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[商品数 - 最大值]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Artikel]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Max. article]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nombre maxi d'articles]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Articoli massimi]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[商品数 - 最大値]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal artikelen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Max. artykułów]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число продуктов]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>XT_BESTSELLER_PRODUCTS_PAGE_TPL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[样板]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Template]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Template]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Template]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Template]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[テンプレート]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Template]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Wzór]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Шаблон]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>XT_BESTSELLER_PRODUCTS_SHOW_TYPE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Products to show]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Produktauswahl]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_BESTSELLER_PRODUCTS_SLAVE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Slaves + Normal]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Slaves + Normal]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_BESTSELLER_PRODUCTS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Our top products]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[本店畅销商品]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Unsere Top Artikel]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Our top products]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nos meilleurs articles]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[I nostri prodotti top]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[当店の人気商品]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Onze top artikelen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Nasze główne produkty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Наши ТОП товары]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_HEADING_BESTSELLER_PRODUCTS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Top products]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[畅销商品]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Top Artikel]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Top products]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Meilleurs articles]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Prodotti Top]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[人気商品]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Top artikel]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Główne produkty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[ТОП товары]]></value>
+	</ru>
+</phrase>
+</language_content>
+</xtcommerceplugin>

@@ -1,0 +1,55 @@
+<div class="hidden-xs">
+    {hook key=ew_viabiona_nav position=default}
+</div>
+
+{*box name=xt_blog_latest_comments limit=5*}
+{*box name=xt_blog box_type=featured_messages limit=5*}
+
+{if $data}
+    <div id="sidebar-content" class="panel-group">
+        {foreach name=carousel key=key item=item from=$data}
+            <div class="panel panel-warning cid-{$item.id} item-{$key}">
+                <div class="panel-heading">
+                    <p class="panel-title">
+                        {if $item.short_content}
+                            <a data-toggle="collapse" data-parent="#sidebar-content" href="#sidebar-content-collapse-{$key}">
+                                <i class="fa fa-info-circle"></i>
+                                {$item.title}
+                            </a>
+                        {else}
+                            {if $item.link}
+                                <a href="{$item.link}">
+                                    <span class="glyphicon glyphicon-link"></span>
+                                    {$item.title}
+                                </a>
+                            {else}
+                                <span class="glyphicon glyphicon-pushpin"></span>
+                                {$item.title}
+                            {/if}
+                        {/if}
+                    </p>
+                </div>
+                {if $item.short_content}
+                    <div id="sidebar-content-collapse-{$key}" class="panel-collapse collapse{if $key == 0} in{/if}">
+                        <div class="panel-body">
+                            {$item.short_content}
+                        </div>
+                        {if $item.link}
+                        	<div class="panel-footer text-center">
+                            	<a href="{$item.link}" class="btn btn-block btn-default">{txt key=TEXT_MORE_DETAILS}</a>
+                          	</div>
+                        {/if}
+                    </div>
+                {/if}
+            </div>
+        {/foreach}
+    </div>
+{/if}
+
+{if !$is_index}
+    <div id="sidebar-products">
+        {box name=xt_bestseller_products type=user}
+        {box name=xt_new_products type=user order_by='p.last_modified DESC'}
+        {box name=xt_upcoming_products type=user order_by='p.date_available'}
+    </div>
+{/if}

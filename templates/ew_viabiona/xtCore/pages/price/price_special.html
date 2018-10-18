@@ -1,0 +1,3 @@
+<span class="price-new"><i class="fa fa-tag price-tag"></i> {$SPECIAL_PRICE.formated}</span>
+<span class="price-old text-muted">{txt key=TEXT_RRP} {$OLD_PRICE.formated}</span>
+<span class="price-discount hidden">-{math equation="round(100-y/x*100,0)" x=$OLD_PRICE.plain y=$SPECIAL_PRICE.plain}%</span>

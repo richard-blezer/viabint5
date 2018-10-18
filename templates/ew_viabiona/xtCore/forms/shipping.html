@@ -1,0 +1,62 @@
+<div id="shipping">
+	<h1>{$data.content_heading}</h1>
+	{$message}
+	{if $file}<p>{$file}</p>{else}<div class="textstyles">{$data.content_body}</div>{/if}
+	<div class="well">
+		{form class="form-inline" type=form name=shipping action='dynamic' link_params=getParams method=post role="form"}
+		{form type=hidden name=action value=query}
+		<p>{txt key=TEXT_SHIPPING_INTRO}</p>
+        <div class="form-group">
+		    <label>{txt key=TEXT_COUNTRY}:&nbsp;</label>
+		    {if $sel_country}
+		        {form type=select name=shipping_destination value=$country_data default=$sel_country params='onchange="this.form.submit();"'}
+		    {else}
+		        {form type=select name=shipping_destination value=$country_data default=$smarty.const._STORE_COUNTRY params='onchange="this.form.submit();"'}
+		    {/if}
+        </div>
+		{form type=formend}
+	</div><!-- .box -->
+
+	{if $shipping_data}
+  		{foreach item=shipping_values from=$shipping_data}
+		<p class="h3">{$shipping_values.shipping_name}</p>
+		<p>{$shipping_values.shipping_desc}</p>
+		<table class="table table-responsive table-striped table-bordered">
+			<thead>
+				<tr>
+      				<td>{txt key=TEXT_RANGE_STAFFEL}</td>
+      				<td class="right">{txt key=TEXT_TOTAL_PRICE}  {if $shipping_values.shipping_type eq 'item'}{txt key=TEXT_TYPE_PER_ITEM}{/if}</td>
+				</tr>
+			</thead>
+			<tbody>
+				{foreach name=shipping item=costs from=$shipping_values.costs}
+    			<tr class="{cycle values="odd,even"}">
+    				<td class="left">
+    					{if $costs.shipping_type_value_from neq '0'}
+    					{txt key=TEXT_RANGE_FROM} {$costs.shipping_type_value_from|strip_tags|trim}
+    					{/if}
+    				{txt key=TEXT_RANGE_TO}
+   					{$costs.shipping_type_value_to|strip_tags|trim}
+    				{if $shipping_values.shipping_type eq 'weight'}KG{/if}
+    				{if $shipping_values.shipping_type eq 'item'}{txt key=TEXT_TYPE_ITEM}{/if}
+   					</td>
+    				<td class="right">{$costs.shipping_price}</td>
+  				</tr>
+  				{if $smarty.foreach.shipping.last eq true}
+ 				<tr class="{cycle values="odd,even"}">
+      				<td class="left">
+    					{txt key=TEXT_RANGE_FROM}
+    					{$costs.shipping_type_value_to|strip_tags|trim}
+    					{if $shipping_values.shipping_type eq 'weight'}KG{/if}
+   			 			{if $shipping_values.shipping_type eq 'item'}{txt key=TEXT_TYPE_ITEM}{/if}
+    				</td>
+    				<td class="right">{txt key=TEXT_INFO_NO_SHIPPING}</td>
+  				</tr>
+ 				{/if}
+				{/foreach}
+			</tbody>
+  		</table>
+ 		{/foreach}
+	{/if}
+	<p><a href="javascript:history.back();" class="button">{txt key=BUTTON_BACK}</a></p>
+</div><!-- #shipping -->

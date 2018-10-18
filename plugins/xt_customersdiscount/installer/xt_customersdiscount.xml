@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+		<title>Customers discount</title>
+		<version>1.0.7</version>
+		<code>xt_customersdiscount</code>
+
+		<url>http://www.xt-commerce.com</url>
+		<description>Discount module for customers groups and single customers</description>
+		<type>marketing</type>
+		<developer>xt:Commerce</developer>
+        <documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=917632]]></documentation_link>
+		<icon>xt-commerce_logo.jpg</icon>
+
+		<minimumupdateversion>1.0.4</minimumupdateversion>
+		<db_update>
+			<update>
+				<version>1.0.4</version>
+				<to_version>1.0.5</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+			<update>
+				<version>1.0.5</version>
+				<to_version>1.0.6</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+            <update>
+                <version>1.0.6</version>
+                <to_version>1.0.7</to_version>
+                <code><![CDATA[
+					]]>
+                </code>
+            </update>
+        </db_update>
+		<db_install><![CDATA[
+			if (!$this->_FieldExists('customers_status_discount_flag',TABLE_CUSTOMERS_STATUS)) 
+				$db->Execute("ALTER TABLE ".TABLE_CUSTOMERS_STATUS." ADD `customers_status_discount_flag` INT( 1 ) NOT NULL DEFAULT '0';");
+			
+			if (!$this->_FieldExists('customers_discount',TABLE_CUSTOMERS_STATUS)) 
+				$db->Execute("ALTER TABLE ".TABLE_CUSTOMERS_STATUS." ADD `customers_discount` VARCHAR( 64 ) NOT NULL;");
+			
+			if (!$this->_FieldExists('group_discount_allowed',TABLE_PRODUCTS)) 
+				$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD `group_discount_allowed` INT( 1 ) NOT NULL DEFAULT '1';");
+		]]></db_install>
+		<db_uninstall><![CDATA[
+			$db->Execute("ALTER TABLE ".TABLE_CUSTOMERS_STATUS."
+  					DROP `customers_status_discount_flag`,
+  					DROP `customers_discount`;");
+			
+			if ($this->_FieldExists('group_discount_allowed',TABLE_PRODUCTS)) 
+				$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." DROP `group_discount_allowed`");
+		]]></db_uninstall>
+		<plugin_code>
+			<code>
+				<hook>module_cart.php:tpl_data</hook>
+				<phpcode><![CDATA[ include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_customersdiscount/hooks/module_cart.php_tpl_data.php';]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.cart.php:_getContent_top</hook>
+				<phpcode><![CDATA[ include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_customersdiscount/hooks/class.cart.php__getContent_top.php';]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.cart.php:_getContent_data</hook>
+				<phpcode><![CDATA[ include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_customersdiscount/hooks/class.cart.php__getContent_data.php'; ]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.product.php:_getPrice_bottom</hook>
+				<phpcode><![CDATA[ include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_customersdiscount/hooks/class.product.php_getPrice_bottom.php'; ]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.customers_status.php:_getParams</hook>
+				<phpcode><![CDATA[ include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_customersdiscount/hooks/class.customers_status.php__getParams.php';]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.product.php:_get_data</hook>
+				<phpcode><![CDATA[ include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_customersdiscount/hooks/class.product.php__get_data.php';]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+		</plugin_code>
+		<language_content>
+			<phrase>
+				<key>TEXT_CUSTOMERS_STATUS_DISCOUNT_FLAG</key>
+				<class>admin</class>
+				<de>
+					<value>Rabatt auf Produkte</value>
+				</de>
+				<en>
+					<value>Discount on products</value>
+				</en>
+				<es>
+					<value>Descuento sobre productos</value>
+				</es>
+				<bp>
+					<value>Desconto sobre produtos</value>
+				</bp>
+			</phrase>
+			<phrase>
+				<key>TEXT_CUSTOMERS_STATUS_DISCOUNT</key>
+				<class>admin</class>
+				<de>
+					<value>Rabattstaffeln</value>
+				</de>
+				<en>
+					<value>Discountlevels</value>
+				</en>
+				<es>
+					<value>Escala de descuentos</value>
+				</es>
+				<bp>
+					<value>Escala do produtos</value>
+				</bp>
+			</phrase>
+			<phrase>
+				<key>TEXT_CUSTOMERS_DISCOUNT_FLAG</key>
+				<class>admin</class>
+				<de>
+					<value>Rabatt auf Produkte</value>
+				</de>
+				<en>
+					<value>Discount on products</value>
+				</en>
+				<es>
+					<value>Descuento sobre productos</value>
+				</es>
+				<bp>
+					<value>Desconto sobre produtos</value>
+				</bp>
+			</phrase>
+			<phrase>
+				<key>TEXT_CUSTOMERS_DISCOUNT</key>
+				<class>admin</class>
+				<de>
+					<value>Rabattstaffeln</value>
+				</de>
+				<en>
+					<value>Discountlevels</value>
+				</en>
+				<es>
+					<value>Escala de descuentos</value>
+				</es>
+				<bp>
+					<value>Escala do descontos</value>
+				</bp>
+			</phrase>
+			<phrase>
+				<key>TEXT_GROUP_DISCOUNT_ALLOWED</key>
+				<class>admin</class>
+				<de>
+					<value>Kundengruppenrabatt</value>
+				</de>
+				<en>
+					<value>Customersstatus discount</value>
+				</en>
+				<es>
+					<value>Descuento de grupo de clientes</value>
+				</es>
+				<bp>
+					<value>Desconto para o grupo de clientes</value>
+				</bp>
+			</phrase>
+		</language_content>
+	</xtcommerceplugin> 

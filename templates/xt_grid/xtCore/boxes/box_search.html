@@ -1,0 +1,22 @@
+{php}
+$value = TEXT_ENTER_SEARCH_TERM;
+$onfocus = "if(this.value == '".$value."') this.value='';";
+$onblur = "if (this.value=='') this.value='".$value."';";
+
+$this->assign('value', $value);
+$this->assign('onfocus', $onfocus);
+$this->assign('onblur', $onblur);
+{/php}
+<div id="box-search">
+	{form type=form name=search_box action='search' link_params=getParams method=get conn=SSL}
+	{form type=hidden name=page value=search}
+	{form type=hidden name=page_action value=query}
+	{form type=hidden name=desc value="on"}
+	{form type=hidden name=sdesc value="on"}
+	<div id="box-search-box">
+		{form type=text name=keywords value=$value onfocus=$onfocus onblur=$onblur}
+		{css_button text=$smarty.const.BUTTON_SEARCH type='form'}
+	</div><!-- #box-search-box -->
+	{form type=formend}
+	<p id="box-search-advanced-search"><a href="{link page='search'}">{txt key=TEXT_ADVANCED_SEARCH}</a></p><!-- #box-search-advanced-search -->
+</div><!-- #box-search -->

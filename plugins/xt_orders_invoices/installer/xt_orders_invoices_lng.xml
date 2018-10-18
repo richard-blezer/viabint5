@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_BUTTONS_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_CAPTION</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Caption]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Beschriftung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_DELIVERY_NOTE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Delivery note]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Lieferschein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_DOCUMENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Document]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Dokument]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_EMAIL_RECIPIENTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Recipients]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Empfänger]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_EMAIL_SEND</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Send]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Senden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_CURRENCY</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Currency]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Währung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_DUE_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Due Date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Fälligkeitsdatum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_FULLNAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Customer name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kundenname]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungs-Id]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_ISSUED_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Issue Date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ausstellungsdatum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_NUMBER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungs-Nr.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_NUMBER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungsnummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_PAID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Paid status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bezahlstatus]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_PAYMENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Payment Ref#]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlungsreferenz]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_PREFIX</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice number prefix]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungsnr. Prefix]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_SENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Email sent]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Email gesendet]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_SENT_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Date Sent]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gesendet Datum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_SEPARATE_NUMBER_ASSIGNMENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Separate number assignment]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Eigener Nummernkreis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_START_ID_GLOBAL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Start ID global ]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Erste Rechnungsnummer global]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_START_ID_SHOP</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Start ID shop ]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Erste Rechnungsnummer Shop]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_TOTAL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Amount]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Betrag]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_TOTAL_FORMATTED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Total]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gesamt Summe]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRINT_BUTTON_TEMPLATE_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template type]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorlagentyp]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRINT_BUTTON_TPL_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template type]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorlagentyp]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_STORE_ORDERS_INVOICES_ANCHOR</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Date anchor]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Anfangsdatum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_STORE_ORDERS_INVOICES_BANK</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Bank Details]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bankinformationen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_STORE_ORDERS_INVOICES_DAYS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Delta Days]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlungszeitraum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_STORE_ORDERS_INVOICES_MERCHANT_ADDRESS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Merchant Address]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Händler-Adresse]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_STORE_ORDERS_INVOICES_MERCHANT_VAT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Merchant VAT#]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Händler-Mehrwertsteuer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TEMPLATE_BODY</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice Template]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungsvorlage]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TEMPLATE_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template id]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungstemplate-ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TEMPLATE_NAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungstemplate-Name]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TEMPLATE_PDF_OUT_NAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PDF Filename]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PDF Dateiname]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TEMPLATE_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template type]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorlagentyp]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TEMPLATE_USE_BE_LNG</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Use backend language]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Backend-Sprache verwenden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TMPL_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template type]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorlagentyp]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TOTAL_WEIGHT_NET_INVOICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Total weight, net]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gesamtgewicht, Netto]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[invoices]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_BANKDETAILS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Bankdetails]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bankverbindung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_COMMENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Comments]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kommentar]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_COMMENTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Comments]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kommentar]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_COUPON</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gutschein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_CUSTOMERS_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Customer]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kundennummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Issued Invoice]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungsdatum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_DUE_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Due Invoice]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Fällig am]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_FROM</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[From]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Von]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_ISSUED_WITH</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice issued using]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnung erstellt mit]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_NUMBER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungsnummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_ORDERED_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Order Date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestelldatum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_ORDER_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Order]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellnummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_PAGE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Page]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Seite]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_PAYMENT_COST</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Paymentcost]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlungsgebühr]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_PRINT_DUMMY</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Preview with dummy data]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorschau mit Dummy-Daten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_PRODUCTS_DISCOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Discount]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rabatt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_PRODUCTS_MODEL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Item ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Artikelnr.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_PRODUCTS_NAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Item Name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Artikelname]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_PRODUCTS_PRICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Unit Price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Einzelpreis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_PRODUCTS_QUANTITY</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Quantity]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Menge]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_PRODUCTS_TOTAL_PRICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Total Price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gesamtpreis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_SHIPPING</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shippingcost]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versandkosten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_SHIPPING_COST</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipping]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versandkosten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_SUBTOTAL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Subtotal]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zwischensumme]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_TEMPLATES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PDF-Templates]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PDF-Templates]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_TO</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[To]]></value>
+	</en>
+	<de>
+		<value><![CDATA[An]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_TOTAL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Total]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gesamtsumme]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_TOTAL_NET</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Total, net]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gesamtsumme, Netto]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_VAT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[VAT]]></value>
+	</en>
+	<de>
+		<value><![CDATA[USt.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_INVOICES_VAT_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[VAT]]></value>
+	</en>
+	<de>
+		<value><![CDATA[USt-ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PRINT_BUTTONS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Print buttons]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Druck-Buttons]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PRINT_ORDER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[print order data]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestelldaten drucken]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_ANCHOR_ORDER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Order Date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestelldatum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_ANCHOR_SHIPMENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipment Date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versanddatum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_BUTTON_EMAIL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Send invoice]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnung senden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_BUTTON_ISSUE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Issue invoice]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnung erstellen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_BUTTON_ISSUE_WITH_COMMENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice with]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnung mit Kommentar]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_CONFIRM_CANCEL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Do you want to cancel invoice?]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Möchten Sie die Rechnung stornieren?]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_ERROR_CANT_CHANGE_TEMPLATE_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template type cant be changed. Plugin xt_orders_invoices needs at least one template of this type.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorlagentyp kann nicht geändert werden. Das Plugin xt_orders_invoices benötigt mindestens eine Vorlage dieses Typs.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_ERROR_CANT_DELETE_LAST_TEMPLATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template type cant deleted. Plugin xt_orders_invoices needs at least one template of this type.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorlage kann nicht gelöscht werden. Das Plugin xt_orders_invoices benötigt mindestens eine Vorlage dieses Typs.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_TEMPLATES_TEXT_MISSED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice template is missing, please check your settings]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungstemplate fehlt, bitte überprüfen Sie Ihre Einstellungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_TEXT_CANCEL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Cancel invoice]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnung stornieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_TEXT_CANCELED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice has been canceled]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnung wurde storniert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_TEXT_EDIT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Edit invoice]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnung bearbeiten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_TEXT_EMAIL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Configure email]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Email Konfigurieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_TEXT_SETTINGS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice Definitions]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungs-Definitionen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_TEXT_START_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Set invoices start ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Erste Rechnungsnummer festlegen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICES_TEXT_VIEW</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[View PDF]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PDF anzeigen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICE_AUTO_SEND_ORDERS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Send invoices on status change]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungen automatisch versenden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICE_FILENAME_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PDF Filename]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PDF Dateiname]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICE_PREFIX_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice number prefix]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungsnr. Präfix]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICE_SEPARATE_NUMBER_ASSIGNMENT_LAST_USED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Hidden flag needed to restart separation, stores an integer identifying the last used number; 0 if not yet initialized]]></value>
+	</en>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICE_SEPARATE_NUMBER_ASSIGNMENT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Separate number assignment]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Eigener Nummernkreis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ORDERS_INVOICE_STATUS_GENERATE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus for invoice generation]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus für Rechnungserzeugung]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

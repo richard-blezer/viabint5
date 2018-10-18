@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_RECAPTCHA_PRIVATEKEY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Privatekey]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geheimer Schlüssel]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_RECAPTCHA_PUBLICKEY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Publickey]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Websiteschlüssel]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_RECAPTCHA_THEME_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Theme]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Theme]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_RECAPTCHA_CHECK_FAILED</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Captcha failed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Captcha fehlgeschlagen]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

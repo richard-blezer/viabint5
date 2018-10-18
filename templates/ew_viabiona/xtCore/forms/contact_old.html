@@ -1,0 +1,108 @@
+<div id="contact">
+    {$message}
+    {if $show_form eq 'true'}
+        <p class="alert alert-info"><i class="fa fa-info-circle"></i> {txt key=TEXT_CONTACT_INTRO}</p>
+    {/if}
+    {include file="/ew_viabiona/xtCore/pages/content.html"}
+    {if $show_form eq 'true'}
+        {form class="form-horizontal" type=form name=login action='dynamic' link_params=getParams method=post conn=SSL role="form"}
+        {form type=hidden name=action value=send}
+        <fieldset>
+            <legend>{txt key=TEXT_CONTACT_PAGE}</legend>
+            <div class="form-group">
+                <label class="col-sm-3" for="email_address">{txt key=TEXT_EMAIL}*</label>
+                <div class="col-sm-9">
+                {form id=email_address type=text name=email_address params='maxlength="40"' value=$email_address}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="firstname">{txt key=TEXT_FIRSTNAME}*</label>
+                <div class="col-sm-9">
+                {form id=firstname type=text name=firstname params='maxlength="40"' value=$firstname}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3" for="lastname">{txt key=TEXT_LASTNAME}*</label>
+                <div class="col-sm-9">
+                {form id=lastname type=text name=lastname params='maxlength="40"' value=$lastname}
+                </div>
+            </div>
+
+            <!--
+                        <div class="form-group">
+                            <label class="col-sm-3 hidden" for="company">{txt key=TEXT_COMPANY}</label>
+                            <div class="col-sm-9">
+                            {form id=company type=hidden name=company params='maxlength="40"' value=$company}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3" for="telefone">{txt key=TEXT_PHONE}</label>
+                            <div class="col-sm-9">
+                            {form id=telefone type=text name=telefone params='maxlength="32"' value=$telefone}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3" for="mobile_phone">{txt key=TEXT_MOBILE_PHONE}</label>
+                            <div class="col-sm-9">
+                            {form id=mobile_phone type=text name=mobile_phone params='maxlength="32"' value=$mobile_phone}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3" for="order_id">{txt key=TEXT_ORDER_NUMBER}</label>
+                            <div class="col-sm-9">
+                            {form id=order_id type=text name=order_id params='maxlength="40"' value=$order_id}
+                            </div>
+                        </div>
+
+                          -->
+            <div class="form-group">
+                <label class="col-sm-3" for="customer_message">{txt key=TEXT_MESSAGE}</label>
+                <div class="col-sm-9">
+                {form class="form-control" id=customer_message type=textarea name=customer_message params='cols="50" rows="15"' value=$customer_message}
+                </div>
+            </div>
+
+            <!--{if $logged_in eq 'false'}-->
+            <!--{if $recaptcha eq 'true'}-->
+                <!--<div class="form-group">-->
+                    <!--<label class="col-sm-3" for="captcha_code">{txt key=TEXT_CAPTCHA}*</label>-->
+                    <!--<div class="col-sm-9">-->
+                        <!--{$captcha_link}-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--{else}-->
+                <!--<div class="form-group">-->
+                    <!--<label class="col-sm-3" for="captcha_code">{txt key=TEXT_CAPTCHA}*</label>-->
+                    <!--<div class="col-sm-9">-->
+                        <!--<p id="captcha-img"><img src="{$captcha_link}" alt="{txt key=TEXT_CAPTCHA}" class="img-responsive img-thumbnail" /></p>-->
+                        <!--{form id=captcha_code type=text name=captcha params='maxlength="30"'}-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--{/if}-->
+            <!--{/if}-->
+
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3">
+                <div class="g-recaptcha" data-sitekey="6Le_nXIUAAAAAAnMwNu7RplNoFIUNpooHWYXLtf9"></div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-9 col-sm-offset-3">
+                    <p>
+                        <button type="submit" class="btn btn-primary preloader">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            {txt key=BUTTON_SUBMIT}
+                        </button>
+                    </p>
+                    <p class="required">{txt key=TEXT_MUST}</p>
+                </div>
+            </div>
+
+        </fieldset>
+        {form type=formend}
+
+   {/if}
+</div><!-- #contact -->

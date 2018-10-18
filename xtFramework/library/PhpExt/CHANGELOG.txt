@@ -1,0 +1,30 @@
+=CHANGELOG= 
+
+==0.8.2== 
+2008-04-08
+---------------------------------------
+- No more support for PHP4
+- Complete refactor to comply with Zend Framework PHP Coding Standard 
+  (http://framework.zend.com/manual/en/coding-standard.html) 
+	- Class naming: i.e.: class renamed from ExtJsonStore to PhpExt_Data_JsonStore. 
+	  See API documentation.
+	- Scopes.  Methods like getConfigParams are no longer publicly visible.
+	- Constructors.  Should not affected library usage except for user extensions;
+	- Class Constants: Constants declared with define() where moved to class contants.  
+	  See API documentation.     
+- Strict Standard compliant.
+- Complete PHPDoc for classes, getters and setters
+- Panel, TabPanel and Window where moved from PhpExt/Panels to PhpExt/ to reflect the namespace
+- Strong typed collections added: ComponentCollection, ListenerCollection, ButtonCollection, 
+  ToolConfigObjectCollection, FieldObjectCollection, ColumnConfigObjectCollection, 
+  BaseItemCollection (Menu), IToolbarCollection  
+- Layouts changed to use strong typed objects for layout config and layout data for the items 
+  of the container.
+- Panel tools support
+- SplitButton added
+- Examples updated to comply with the new coding standard
+
+==0.8.1== 
+2008-03-04
+---------------------------------------
+Initial version

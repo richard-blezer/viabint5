@@ -1,0 +1,20 @@
+<h2>Downloads</h2>
+<table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="4">
+	<tr class="headerrow">
+      <td class="left" width="20"></td>
+      <td class="left">{txt key=TEXT_FILE}</td>
+      <td class="right">{txt key=TEXT_SIZE}</td>
+      <td class="right" width="20"></td>
+    </tr>
+  {foreach name=aussen item=file_data from=$media_files}
+    <tr class="{cycle values="contentrow1,contentrow2"}">
+    <td>{img img=$file_data.icon type=w_media_filetypes alt=$file_data.file}</td>
+    <td><strong>{$file_data.file}</strong>
+    {if $file_data.media_name}<br />{$file_data.media_name}{/if}
+    {if $file_data.media_description}<br />{$file_data.media_description}{/if}
+    </td>
+    <td  class="right">{$file_data.media_size|fsize_format:"MB"}</td>
+	<td  class="right"><a href="{$file_data.download_url}" rel="nofollow">{img img=disk.png type=w_media_icons}</a></td>
+  </tr>
+  {/foreach}
+</table>

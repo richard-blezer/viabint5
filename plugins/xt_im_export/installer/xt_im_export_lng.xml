@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>EI_ALLOWED_PRIMARY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Primary Key]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Primary Key]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>EI_ALLOWED_SECONDARY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Secondary Key]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Secondary Key]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_EI_CAT_TREE_DELIMITER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Seperator (Categorytree)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Trennzeichen (Kategoriepfaad)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_EI_DELIMITER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Seperator]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[分隔符号]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Trennzeichen]]></value>
+	</de>
+	<es>
+		<value><![CDATA[seperator]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[séparateur]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[separatore]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[セパレータ]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Scheidingsteken]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[rozdzielacz]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Разделитель]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[分隔符號]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_EI_ENCLOSURE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Enclosure]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Texttrenner]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_EI_FILENAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Filename]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[档案名称]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Dateiname]]></value>
+	</de>
+	<es>
+		<value><![CDATA[filename]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[nom de fichier]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[nomde del file]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ファイル名]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Bestandsnaam]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[nazwa pliku]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Название файла]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[檔案名稱]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_EI_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[ID]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[ID]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[ID]]></value>
+	</de>
+	<es>
+		<value><![CDATA[ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[ID]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ID]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[ID]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[ИД]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[ID]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_EI_LANGUAGE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Depending on language]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[依据语言]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Sprachabh&amp;auml;ngig]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Depending und language]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[En fonction de la langue]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Dipendente dalla lingua]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[言語で場合によること]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Taalafhankelijk]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Zależność i język]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Зависит от языка]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[依據語言]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_EI_LIMIT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[records limit]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[记录笔数限制]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Datens&amp;auml;tze pro Durchgang]]></value>
+	</de>
+	<es>
+		<value><![CDATA[records limit]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[limite d'enregistrements]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[limite delle registrazioni]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[レコードの制限]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Database-items per keer]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[limit zapisów]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Записей за ход]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[記錄筆數限制]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_EI_PRICE_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Price incl. Tax]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bruttopreise]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_EI_STORE_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Store ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Store ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_EI_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Description]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[描述]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Beschreibung]]></value>
+	</de>
+	<es>
+		<value><![CDATA[description]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[description]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[descrizione]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[説明]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Beschrijving]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[opis]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Описание]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[描述]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_EI_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Import/Export]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[汇入 / 汇出]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Import/Export]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Import Export]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Importer Exporter]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Importa Esporta]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[インポート/エクスポート]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Import Export]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Import Eksport]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Импорт Экспорт]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[匯入 / 匯出]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_EI_TYPE_MATCH</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Primary Key]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[主键]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Prim&amp;auml;rschl&amp;uuml;ssel]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Primrssel]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[primary key]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[risultato]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[主キー]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Primary key]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Primrssel]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Главный ключ]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[主鍵]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_EI_TYPE_MATCH_2</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Secondary Key]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sekund&amp;auml;rschl&amp;uuml;ssel]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_EI_TYPE_SPEC</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Type]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[类型]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Typ]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Type]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Type]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Tipo]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[タイプ]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Type]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Typ]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Тип]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[類型]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_ERROR_MESSAGE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Fehler]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Fehler]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_IMPORT_EXPORT_LOG</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Log]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Log]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_IM_EXPORT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Import/Export]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[汇入 / 汇出]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Import/Export]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Import Export]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Importer Exporter]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Importa Esporta]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[インポート/エクスポート]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Import Export]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Import Eksport]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Импорт Экспорт]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[匯入 / 匯出]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_MISSING_STORE_ID</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Store ID is missing in the imported file, the store ID stated in the import profile will be used.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Shop ID nicht gefunden in Importdatei, es wird die Shop ID des Importprofils verwendet. ]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_WRONG_STORE_ID</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Import profile has diffrent store ID than the one in imported file]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Die Store ID stimmt nicht mit der ID aus dem Importprofil überein.]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

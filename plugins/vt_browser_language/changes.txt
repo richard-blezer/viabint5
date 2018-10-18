@@ -1,0 +1,2 @@
+4.2.05
+* Behebt das Problem, dass beim Aufruf auf eine 404 Seite geleitet wird (in einigen Browsern)

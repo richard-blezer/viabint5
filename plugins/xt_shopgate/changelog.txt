@@ -1,0 +1,220 @@
+'''Deutsch'''
+
+'''Version 2.3.0'''
+* hookpoint styles.php:bottom entfernt
+* nutzt die Shopgate Library 2.3.3
+
+'''Version 2.1.16'''
+* Problem im Export in der Methode: _getRelatedShopItems() behoben
+
+'''Version 2.1.15'''
+* Problem bei deaktiviertem Modul "xt_master_slave" im Export behoben
+
+'''Version 2.1.14'''
+* Problem mit Pfandmodul xt_sperrgut behoben
+* Beim Produktexport ist es nun möglich eine Kombination aus der Artikelbeschreibung und der Kurzbeschreibung zu verwenden. Einstellbar über die Konfigurationsseite.
+* nutzt die Shopgate Library 2.1.29
+
+'''Version 2.1.13'''
+* Fehler behoben, der beim set_shipping_completed cronjob zu einem timeout führte, wenn keine id für den Bestellstatus "versendet" in der Shopgate Konfiguration hinterlegt war
+* nutzt die Shopgate Library 2.1.26
+* Unterstützung der neuen Version 4.1.00 
+
+'''Version 2.1.12'''
+* nutzt die Shopgate Library 2.1.25
+* Die Methode updateOrder() wirft keine Fehlermeldung mehr, wenn die Bezahlung nach dem Versand eingeht und der Versand nicht blockiert war
+* Der Cron für den Job "set_shipping_completed" prüft nun auch in der Bestellstatus-Historie, ob die Bestellung auf Versendet markiert wurde
+* Problem mit Modul von Bui Hinsche behoben
+
+'''Version 2.1.11'''
+* nutzt die Shopgate Library 2.1.23
+* exportiert SEO Urls für Kategorien und Produkte
+
+'''Version 2.1.10'''
+* nutzt die Shopgate Library 2.1.21
+* Ungenutzte Einstellungsfelder entfernt
+* JS-Header wird im <head> HTML-Tag eingebunden
+* <link rel="alternate" ...> HTML-Tag wird nun eingebunden
+
+'''Version 2.1.9'''
+* der "Hack", dass man den CNAME zum Deaktivieren als "0" speichern kann (da leere Eingabefelder in Veyton < 4.0.15 nicht erlaubt sind), funktioniert jetzt wieder
+
+'''Version 2.1.8'''
+* Bestellungen, die bereits als versendet bei Shopgate markiert wurden, werden beim Cronjob nun auch korrekt in der Datenbank aktualisiert
+
+'''Version 2.1.7'''
+* Bei nicht aktivierten Ländern in Veyton wird eine Exception beim Import der Bestellungen geworfen
+
+'''Version 2.1.6'''
+* es findet jetzt eine Versionsüberprüfung für das "Options- und Freitext"-Plugins der BuI Hinsche GmbH statt
+* AfterBuy-Modul von pimpmyxt wird jetzt untertsützt (xt_pimpmyxt)
+* nutzt die Shopgate Library 2.1.17
+
+'''Version 2.1.5'''
+* nutzt die Shopgate Library 2.1.13
+* Kompatibilitätsprobleme zwischen verschiedenen PHP-Versionen behoben
+
+'''Version 2.1.4'''
+* Probleme beim Produktexport behoben
+* nutzt die Shopgate Library 2.1.6
+
+'''Version 2.1.3'''
+* ein Fehler in der Shopgate Library wurde behoben
+* nutzt die Shopgate Library 2.1.3
+
+'''Version 2.1.2'''
+* Request- und Debug-Protokolle werden jetzt für jeden Multistore getrennt geführt
+
+'''Version 2.1.1'''
+* Inkompatibilitätsproblem mit PHP < 5.3 behoben
+* nutzt die Shopgate Library 2.1.1
+
+'''Version 2.1.0'''
+* Bestellungen auf Rechnung, bei denen die Rechnung bereits durch Shopgate oder einen Drittanbieter (z.B. Klarna or BillSAFE) versendet wird, erhalten den entsprechenden Kommentar, dass in diesem Fall keine weitere Rechnung durch den Händler versendet werden '''darf'''
+* nutzt die Shopgate Library 2.1.0
+
+'''Version 2.0.31'''
+* Fehler beim Export von Eltern/Kind-Produkten behoben
+
+'''Version 2.0.30'''
+* Integration des [http://www.bui-hinsche.de/onlineshop/xt-commerce-veyton/plugins/38/options-und-freitext-plugin "Options- und Freitext"-Plugins] ab Version 2.4.0<br />Mit freundlicher Unterstützung durch die ''Business und Internetagentur Hinsche GmbH''.
+
+'''Version 2.0.29'''
+* Fehler bei der Berechnung der Payment-Gebühren und Sperrgutzuschläge behoben
+
+'''Version 2.0.28'''
+* nutzt die Shopgate Library 2.0.34
+* Installation: Fügt einen neuen Status "Versand blockiert (Shopgate)" hinzu und setzt diesen als Standardwert
+
+'''Version 2.0.27'''
+* Fehlerbehebung: Der Lagerbestand wurde nicht heruntergezählt
+
+'''Version 2.0.26'''
+* Unterstützung für das Modul ''xt_sperrgut''
+
+'''Version 2.0.25'''
+* Staffelpreis für ein Produkt im Export berücksichtigen
+
+'''Version 2.0.24'''
+* nutzt die Shopgate Library 2.0.29 (Bugfixes und Vorbereitung für Produkt-Eingabefelder)
+
+'''Version 2.0.23'''
+* changelog.txt hinzugefügt
+
+'''Version 2.0.22'''
+* nutzt die Shopgate Library 2.0.26
+* unterstützt die Einstellung "Auf Tablets weiterleiten (ja/nein)"
+* unterstützt Remote-Cronjobs über die Shopgate Plugin API
+* Remote-Cronjob für die Synchronisierung des Bestellstatus bei Shopgate
+
+
+'''English'''
+
+'''Version 2.3.0'''
+* removed hookpoint styles.php:bottom
+* uses Shopgate Library 2.3.3
+
+'''Version 2.1.16'''
+* fixed issue with export in method _getRelatedShopItems()
+
+'''Version 2.1.15'''
+* fixed issue with module "xt_master_slave" in export
+
+'''Version 2.1.14'''
+* it is now possible to choose a combination of the products description and the short description on the Shopgate settings page
+* uses Shopgate Library 2.1.29
+* fixed issue with module xt_sperrgut
+
+'''Version 2.1.13'''
+* fixed an issue that caused a timeout while processing the set_shipping_completed cronjob without having an orders status id set in the Shopgate configuration
+* uses Shopgate Library 2.1.26
+* support new version 4.1.00
+
+'''Version 2.1.12'''
+* uses Shopgate Library 2.1.25
+* method updateOrder() doesn't throw an exception anymore if payment is done after shipping and shipping was not blocked by Shopgate
+* the cron for the job "set_shipping_completed" now also checks the orders status history to get all shipped orders
+* fixed issue for Bui Hinsche module
+
+'''Version 2.1.11'''
+* uses Shopgate Library 2.1.23
+* export seo urls for categories and products
+
+'''Version 2.1.10'''
+* uses Shopgate Library 2.1.21
+* unused configuration fields removed
+* js header output in <head> HTML tag
+* <link rel="alternate" ...> HTML tag output in <head>
+
+'''Version 2.1.9'''
+* re-enabled/fixed the "hack" that allowed to save "0" for the CNAME in order to deactivate it (since empty input fields are not allowed in Veyton < 4.0.15)
+
+'''Version 2.1.8'''
+* orders that are marked as shipped at shopgate will now be updated correctly while executing the cronjob
+
+'''Version 2.1.7'''
+* for not active countries an exception will be thrown at the import of orders
+
+'''Version 2.1.6'''
+* now checking for the version of the "Options- und Freitextplugin" from the BuI Hinsche GmbH
+* Support for AfterBuy module of pimpmyxt (xt_pimpmyxt)
+* uses Shopgate Library 2.1.17
+
+'''Version 2.1.5'''
+* uses Shopgate Library 2.1.13
+* fixed incompatibility issues between different PHP versions
+
+'''Version 2.1.4'''
+* fixed issues in products export
+* uses Shopgate Library 2.1.6
+
+'''Version 2.1.3'''
+* fixed an error concerning Shopgate Library
+* uses Shopgate Library 2.1.3
+
+'''Version 2.1.2'''
+* request and debug log are now separately saved for every multi store
+
+'''Version 2.1.1'''
+* fixed incompatibility issue with PHP < 5.3
+* uses Shopgate Library 2.1.1
+
+'''Version 2.1.0'''
+* Bestellungen auf Rechnung, bei denen die Rechnung bereits durch Shopgate oder einen dritten Dienstleister versendet wird, erhalten den entsprechenden Kommentar, dass in diesem Fall keine weitere Rechnung durch den Händler versendet werden '''darf'''.
+* the flag is_customer_invoice_blocked is now checked and inserts an information comment to the order status on invoice payments
+* purchases on account that are handled by Shopgate or a third party organization (e.g. Klarna or BillSAFE) are provided with a comment to clarify that a merchant '''must not''' send an invoice on his own.
+* uses Shopgate Library 2.1.0
+
+'''Version 2.0.31'''
+* bugfix export parent/child products
+
+'''Version 2.0.30'''
+* integration of the [http://www.bui-hinsche.de/onlineshop/xt-commerce-veyton/plugins/38/options-und-freitext-plugin "Options- und Freitext" plugin] in versions from 2.4.0 up<br />With the friendly assistance of ''Business und Internetagentur Hinsche GmbH''.
+
+'''Version 2.0.29'''
+* fixed calculation of payment fees and fees for bulky goods
+
+'''Version 2.0.28'''
+* uses Shopgate Library 2.0.34
+* installation: add a new status "Shipping blocked (Shopgate)" and set is as default
+
+'''Version 2.0.27'''
+* Bugfix: The stock was not decremented
+
+'''Version 2.0.26'''
+* Support for ''xt_sperrgut'' module
+
+'''Version 2.0.25'''
+* Export block price for one prouct
+
+'''Version 2.0.24'''
+* uses Shopgate Library 2.0.29 (bugfixes and preparation for item input fields)
+
+'''Version 2.0.23'''
+* added changelog.txt
+
+'''Version 2.0.22'''
+* uses Shopgate Library 2.0.26
+* supports the "Redirect to tablets (yes/no)" setting
+* supports remote cron jobs via Shopgate Plugin API
+* remote cron job for synchronization of order status at Shopgate

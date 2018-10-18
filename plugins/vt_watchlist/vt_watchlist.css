@@ -1,0 +1,24 @@
+/* 
+    Document   : vt_watchlist.css
+    Created on : 11.04.2013, 10:43:14
+    Author     : rl
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root 									{display: block;}
+
+a.add_to_watchlist span.button:hover 	{text-decoration:none !important;}
+a.add_to_watchlist 						{display: block; text-decoration: none !important;}
+
+h2.watchlist-head						{font-size:18px; font-weight:900;}
+h3.watchlist-title						{font-size:14px; font-weight:900;}
+
+a.watchlist-image						{display:block; float:left; margin:0 10px 0 0;}		
+
+.float_right							{float:right;}	
+.boxcartbody							{margin-bottom:20px;}
+.clearboth								{clear: both;}	
+
+a.add_to_watchlist						{display:block; text-align:right; margin:11px 0;}
+a.add_to_watchlist img					{background: -moz-linear-gradient(center top , #FFAE4B 0%, #FF7B00) repeat scroll 0 0 transparent; border: 1px solid #FF7B00; border-radius: 5px 5px 5px 5px; color: #FFFFFF; margin: 5px 2px 5px 0; padding: 11px 20px;}

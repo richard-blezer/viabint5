@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<title>Google Merchant Export</title>
+	<version>1.1.0</version>
+	<code>vt_google_merchant</code>
+	<url>http://www.bui-hinsche.de</url>
+	<description>Google Merchant Export</description>
+	<icon>bui.png</icon>
+	<type>marketing</type>
+	<db_install><![CDATA[
+            require_once (_SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_google_merchant/classes/class.plugin_install.php');
+            $vtgm = new plugin_install();
+            $vtgm->installPlugin();
+	]]></db_install>
+	<db_uninstall><![CDATA[
+            require_once (_SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_google_merchant/classes/class.plugin_install.php');
+            $vtgm = new plugin_install();
+            $vtgm->uninstallPlugin();
+	]]></db_uninstall>
+	<plugin_code>
+		<code>
+			<hook>admin_main.php:bottom</hook>
+			<phpcode><![CDATA[
+				include_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_google_merchant/hooks/admin_main_bottom.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>cronjob.php:main</hook>
+			<phpcode><![CDATA[
+				include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_google_merchant/hooks/cronjob_main.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>row_actions.php:actions</hook>
+			<phpcode><![CDATA[
+				include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_google_merchant/hooks/row_actions.php_actions.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>admin_dropdown.php:dropdown</hook>
+			<phpcode><![CDATA[
+				global $xtPlugin;
+
+				if($xtPlugin->active_modules['vt_google_merchant'] == true){
+					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_google_merchant/hooks/admin_dropdown.php_dropdown.php';
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code>
+	<configuration>
+		<config>
+			<key>VT_GOOGLE_MERCHANT_ACTIVE</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Status</title>
+				<description></description>
+			</de>
+			<en>
+				<title>State</title>
+				<description></description>
+			</en>
+		</config>
+	</configuration>
+	<language_content>
+		<phrase>
+			<key>TEXT_VT_GOOGLE_MERCHANT_EDITOR</key>
+			<class>admin</class>
+			<de>
+				<value>Google Merchant</value>
+			</de>
+			<en>
+				<value>Google Merchant</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>HEADING_VT_GOOGLE_MERCHANT_EDITOR</key>
+			<class>admin</class>
+			<de>
+				<value>Google Merchant</value>
+			</de>
+			<en>
+				<value>Google Merchant</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GM_ID</key>
+			<class>admin</class>
+			<de>
+				<value>ID</value>
+			</de>
+			<en>
+				<value>ID</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GM_LANG_CODE</key>
+			<class>admin</class>
+			<de>
+				<value>Sprache</value>
+			</de>
+			<en>
+				<value>Language</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GM_FILE</key>
+			<class>admin</class>
+			<de>
+				<value>Dateiname</value>
+			</de>
+			<en>
+				<value>Filename</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GM_CUSTOMERS_STATUS</key>
+			<class>admin</class>
+			<de>
+				<value>Kundengruppe</value>
+			</de>
+			<en>
+				<value>Customers Status</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GM_STORE_ID</key>
+			<class>admin</class>
+			<de>
+				<value>Shop</value>
+			</de>
+			<en>
+				<value>Store</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_DO_GM_EXPORT</key>
+			<class>admin</class>
+			<de>
+				<value>Google Merchant Export</value>
+			</de>
+			<en>
+				<value>Google Merchant Export</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_gm_cat_id</key>
+			<class>admin</class>
+			<de>
+				<value>Kategorieeinschränkung</value>
+			</de>
+			<en>
+				<value>Category Permission</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_gm_catdesc</key>
+			<class>admin</class>
+			<de>
+				<value>Google Kategorie</value>
+			</de>
+			<en>
+				<value>Google Category</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_gm_shipping_country_data</key>
+			<class>admin</class>
+			<de>
+				<value>Länder Versandkosten (de;at;ch....)</value>
+			</de>
+			<en>
+				<value>Country Shipping Costs (de;at;ch....)</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_gm_title</key>
+			<class>admin</class>
+			<de>
+				<value>Titel</value>
+			</de>
+			<en>
+				<value>Title</value>
+			</en>
+		</phrase>	
+		<phrase>
+			<key>TEXT_gm_desc</key>
+			<class>admin</class>
+			<de>
+				<value>Beschreibung</value>
+			</de>
+			<en>
+				<value>Description</value>
+			</en>
+		</phrase>	
+		<phrase>
+			<key>TEXT_gm_link</key>
+			<class>admin</class>
+			<de>
+				<value>Shop Link</value>
+			</de>
+			<en>
+				<value>Shop Link</value>
+			</en>
+		</phrase>	
+		<phrase>
+			<key>TEXT_GM_CURRENCY_CODE</key>
+			<class>admin</class>
+			<de>
+				<value>Währung</value>
+			</de>
+			<en>
+				<value>Currency</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GM_EXPORT_LIMIT</key>
+			<class>admin</class>
+			<de>
+				<value>Artikelanzahl pro Exportschritt</value>
+			</de>
+			<en>
+				<value>Number of articles per export step</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GM_AVAILABILITY_SOURCE</key>
+			<class>admin</class>
+			<de>
+				<value>Bezugsnahme der Verfügbarkeit</value>
+			</de>
+			<en>
+				<value>reference for availability</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GM_AVAILABILITY_ASSIGNMENT</key>
+			<class>admin</class>
+			<de>
+				<value>Zuordnung für die Verfügbarkeit</value>
+			</de>
+			<en>
+				<value>assignment for the availability</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_AVAILABILITY_SOURCE_SHIPPINGTIME</key>
+			<class>admin</class>
+			<de>
+				<value>Versandzeit</value>
+			</de>
+			<en>
+				<value>shipping time</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_AVAILABILITY_SOURCE_STOCKRULES</key>
+			<class>admin</class>
+			<de>
+				<value>Lagerampel</value>
+			</de>
+			<en>
+				<value>stock rule</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GM_MS_COLOR</key>
+			<class>admin</class>
+			<de>
+				<value>Produktvariation: Farbe</value>
+			</de>
+			<en>
+				<value>product variation: Color</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GM_MS_MATERIAL</key>
+			<class>admin</class>
+			<de>
+				<value>Produktvariation: Material</value>
+			</de>
+			<en>
+				<value>product variation: Material</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GM_MS_PATTERN</key>
+			<class>admin</class>
+			<de>
+				<value>Produktvariation: Muster</value>
+			</de>
+			<en>
+				<value>product variation: Pattern</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GM_MS_SIZE</key>
+			<class>admin</class>
+			<de>
+				<value>Produktvariation: Größe</value>
+			</de>
+			<en>
+				<value>product variation: Size</value>
+			</en>
+		</phrase>
+	</language_content>
+</xtcommerceplugin> 

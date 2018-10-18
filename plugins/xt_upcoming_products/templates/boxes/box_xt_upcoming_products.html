@@ -1,0 +1,11 @@
+{if $_show_more_link == true}
+<h2 class="boxheader"><a href="{link page='xt_upcoming_products' conn=SSL}">{txt key=TEXT_HEADING_UPCOMING_PRODUCTS}</a></h2>
+{else}
+<h2 class="boxheader">{txt key=TEXT_HEADING_UPCOMING_PRODUCTS}</h2>
+{/if}
+<div class="boxbody">
+	{foreach name=aussen item=upcoming_products_data from=$_upcoming_products}
+	{if $upcoming_products_data.products_image!=''}<p class="center"><a href="{$upcoming_products_data.products_link}">{img img=$upcoming_products_data.products_image type=m_thumb class=productImageBorder alt=$upcoming_products_data.products_name}</a></p>{/if}
+	<p class="center"><a href="{$upcoming_products_data.products_link}"><strong>{$upcoming_products_data.products_name}</strong></a><br />{$upcoming_products_data.products_price.formated}</p>
+	{/foreach}
+</div>

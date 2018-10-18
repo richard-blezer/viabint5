@@ -1,0 +1,29 @@
+{if $_categories}
+    <div class="top-categories">
+        <div class="row">
+            <div class="col col-lg-12 col-1">
+                <p class="breaking-headline">{txt key=TEXT_EW_VIABIONA_TOPCATEGORIES}</p>
+            </div>
+        </div>
+        <div class="listing">
+            <div class="row">
+                {foreach key=k name=a item=module_data from=$_categories}
+                    <div class="col col-md-3 col-xs-6">
+                        <div class="section panel panel-default panel-shadow" onclick="document.location.href='{$module_data.categories_link}'" style="cursor:pointer;">
+                            <span class="image">
+                                {if $module_data.categories_image}
+                                    <a href="{$module_data.categories_link}" class="vertical-helper image-link">{img img=$module_data.categories_image type=m_ew-viabiona-category-thumb class="productImageBorder img-responsive" alt=$module_data.categories_name|escape:"html"}</a>
+                                {else}
+                                    <a href="{$module_data.categories_link}" class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="productImageBorder img-responsive" alt=$module_data.categories_name|escape:"html"}</a>
+                                {/if}
+                            </span>
+                            <div class="panel-body text-center">
+                                <span class="title text-word-wrap"><a href="{$module_data.categories_link}">{$module_data.categories_name}</a></span>
+                            </div>
+                        </div>
+                    </div>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+{/if}

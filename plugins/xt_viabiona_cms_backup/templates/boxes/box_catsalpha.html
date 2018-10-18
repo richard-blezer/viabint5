@@ -1,0 +1,6 @@
+<h2 class="boxheader">alphabetisch</h2>
+<ul id="categorymenu">
+{foreach name=aussen item=module_data from=$alpha}
+	<li class="level{$module_data.level}{if $module_data.active} active{/if}"><a href="{$module_data.categories_link}" title="{$module_data.categories_heading_title}">{$module_data.categories_name}</a></li>
+{/foreach}
+</ul>

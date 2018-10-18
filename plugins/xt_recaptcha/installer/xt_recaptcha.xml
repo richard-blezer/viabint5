@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+
+    <code>xt_recaptcha</code>
+    <version>5.1.1</version>
+    <type>google</type>
+
+    <minimum_store_version>5.1.0</minimum_store_version>
+
+    <developer>xt:Commerce</developer>
+    <url>http://www.xt-commerce.com</url>
+
+    <marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=6593]]></marketplace_link>
+    <documentation_link>
+        <![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=2555952]]></documentation_link>
+
+    <title>Google reCAPTCHA</title>
+    <icon>xt_recaptcha.gif</icon>
+
+    <plugin_code>
+        <code>
+            <hook>module_customer.php:page_password_reset_captcha_top</hook>
+            <phpcode><![CDATA[
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_recaptcha/hooks/module_customer_php_page_password_reset_captcha_top.php';
+				]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_customer.php:page_password_reset_captcha_validator</hook>
+            <phpcode><![CDATA[
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_recaptcha/hooks/module_customer_php_page_password_reset_captcha_validator.php';
+				]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_customer.php:page_password_reset_captcha_show</hook>
+            <phpcode><![CDATA[
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_recaptcha/hooks/module_customer_php_page_password_reset_captcha_show.php';
+				]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>forms:contact_captcha_validator</hook>
+            <phpcode><![CDATA[
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_recaptcha/hooks/forms_contact_captcha_validator.php';
+				]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>forms:contact_captcha_show</hook>
+            <phpcode><![CDATA[
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_recaptcha/hooks/forms_contact_captcha_show.php';
+				]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>display.php:after_minify_serve_footer</hook>
+            <phpcode><![CDATA[
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_recaptcha/hooks/display.php_after_minify_serve_footer.php';
+				]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>generic_recaptcha_validator</hook>
+            <phpcode><![CDATA[
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_recaptcha/hooks/generic_recaptcha_validator.php';
+				]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>generic_recaptcha_show</hook>
+            <phpcode><![CDATA[
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_recaptcha/hooks/generic_recaptcha_show.php';
+				]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.plugin_installed.php:_setStatus_top</hook>
+            <phpcode><![CDATA[
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_recaptcha/hooks/class.plugin_installed.php__setStatus_top.php';
+				]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.plugin.php:DeletePlugin_top</hook>
+            <phpcode><![CDATA[
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_recaptcha/hooks/class.plugin.php_DeletePlugin_top.php';
+				]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+    <configuration>
+        <config>
+            <key>XT_RECAPTCHA_PUBLICKEY</key>
+            <type>textfield</type>
+            <value/>
+            <de>
+                <title>Websiteschlüssel</title>
+                <description>You got this from the signup page</description>
+            </de>
+            <en>
+                <title>Public key</title>
+                <description>You got this from the signup page</description>
+            </en>
+        </config>
+        <config>
+            <key>XT_RECAPTCHA_PRIVATEKEY</key>
+            <type>textfield</type>
+            <value/>
+            <de>
+                <title>Geheimer Schlüssel</title>
+                <description>You got this from the signup page</description>
+            </de>
+            <en>
+                <title>Private key</title>
+                <description>You got this from the signup page</description>
+            </en>
+        </config>
+        <config>
+            <key>XT_RECAPTCHA_THEME</key>
+            <type>textfield</type>
+            <value>light</value>
+            <de>
+                <title>Theme v2</title>
+                <description>You got this from the signup page</description>
+            </de>
+            <en>
+                <title>Theme v2</title>
+                <description>You got this from the signup page</description>
+            </en>
+        </config>
+        <config>
+            <key>XT_RECAPTCHA_SIZE</key>
+            <type>textfield</type>
+            <value>normal</value>
+            <de>
+                <title>Größe v2</title>
+                <description>You got this from the signup page</description>
+            </de>
+            <en>
+                <title>Size v2</title>
+                <description>You got this from the signup page</description>
+            </en>
+        </config>
+        <config>
+            <key>XT_RECAPTCHA_INVISIBLE</key>
+            <sort_order>-1</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Unsichtbares Captcha verwenden?</title>
+            </de>
+            <en>
+                <title>Use invisible captcha?</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_RECAPTCHA_SETTINGS_INFO</key>
+            <sort_order>100</sort_order>
+            <type>admininfo</type>
+            <value>Die Schlüssel für Recpatcha v2 und unsichtbares Recaptcha unterscheiden sich. Die Schlüssel erhalten
+                Sie unter https://www.google.com/recaptcha --- Keys for Recpatcha v2 and Invisible Recaptcha differ.
+                Keys are available at https://www.google.com/recaptcha
+            </value>
+            <de>
+                <title>Hinweis</title>
+            </de>
+            <en>
+                <title>Info</title>
+            </en>
+        </config>
+    </configuration>
+</xtcommerceplugin>

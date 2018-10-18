@@ -1,0 +1,21 @@
+<li id="watchlist" class="no-cart">
+	<a href="{link page='bui_watchlist' conn=SSL}">{txt key=TEXT_BUI_WATCHLIST_TOP} <span class="{if $bui_watchlist_count == 0}null{/if}">{if $bui_watchlist_count > 0 }{$bui_watchlist_count}{else}0{/if}</span></a>
+	{*if $show_cart_content == true}
+		{txt key=TEXT_BUI_WATCHLIST_TOP} {$bui_watchlist_count}
+	{/if*}
+<div class="layer" style="display:none">
+	<span class="arrow"></span>
+	<div class="headline clearfix">
+		<div class="left">{txt key=TEXT_ARTICLE}</div>
+		<div class="right">{txt key=TEXT_PRICE}</div>
+	</div>
+	<div class="article clearfix">
+	{foreach name=aussen item=data from=$bui_watchlist_data}
+	<div class="left">{$data.products_name}{*$data.products_information*}</div>
+    {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $data.products_price.formated neq ''}
+	<div class="right">{$data.products_price.formated}</div>
+    {/if}
+	{/foreach}
+	</div>
+</div>
+</li>

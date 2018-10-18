@@ -1,0 +1,73 @@
+Hallo {$order_data.delivery_firstname} {$order_data.delivery_lastname},
+
+Dies ist nur ein Standardtext welchen Sie im Administrationsbereich unter "Inhalte->E-Mail-Manager" ändern können.
+
+Ihre Daten nochmals zur Kontrolle:
+------------------------------------------------------------------------------------------------------------
+{txt key=TEXT_ORDER_NUMBER}: {$order_data.orders_id}
+{txt key=TEXT_ORDER_DATE}: {$order_data.date_purchased}
+
+{txt key=TEXT_SHIPPING_ADDRESS}
+{if $order_data.delivery_company}{$order_data.delivery_company}{/if}
+{$order_data.delivery_firstname} {$order_data.delivery_lastname}
+{$order_data.delivery_street_address}
+{if $order_data.delivery_suburb} {$order_data.delivery_suburb}{/if} 
+{$order_data.delivery_postcode} {$order_data.delivery_city}
+{if $order_data.delivery_state}{$order_data.delivery_state}{/if}
+{$order_data.delivery_country}
+
+{txt key=TEXT_PAYMENT_ADDRESS}
+{if $order_data.billing_company} {$order_data.billing_company}{/if} 
+{$order_data.billing_firstname} {$order_data.billing_lastname}
+{$order_data.billing_street_address}
+{if $order_data.billing_suburb} {$order_data.billing_suburb}{/if}
+{$order_data.billing_postcode} {$order_data.billing_city}
+{if $order_data.billing_state}{$order_data.billing_state}{/if}
+{$order_data.billing_country}
+
+{if $payment_info}
+{txt key=TEXT_PAYMENT_INFOS}
+{$payment_info}
+{/if}	
+------------------------------------------------------------------------------------------------------------
+
+{*Dies ist zum Anzeigen der Bundles*} 
+{assign var=ssag_bundle_head value=''}
+{foreach name=aussen item=order_values from=$order_products}
+    {if $order_values.ssag_bundle_id && $ssag_bundle_head != $order_values.ssag_bundle_id}
+        {assign var=ssag_bundle_head value=$order_values.ssag_bundle_id}
+                1.00 x {$order_values.ssa_group.ssag_name} {$order_values.ssag_bundle} = {$order_values.ssa_group.ssap_price.formated}
+        {if $order_values.ssa_group.ssag_short_desc}
+                {$order_values.ssa_group.ssag_short_desc}
+        {/if}
+    {/if}
+    {if $order_values.ssag_bundle_id && $ssag_bundle_head == $order_values.ssag_bundle_id}
+        {$order_values.products_name} 
+    {/if}
+{/foreach}
+  
+  
+{*Dies ist zum Anzeigen der Normalen Artikel*}
+{foreach name=aussen item=order_values from=$order_products}
+    {if !$order_values.ssag_bundle}
+{$order_values.products_quantity} x {$order_values.products_name} = {$order_values.products_final_price.formated}
+{$order_values.products_information.txt_content}
+    {/if}
+{/foreach} 
+
+{*foreach name=aussen item=order_values from=$order_products}
+{$order_values.products_quantity} x {$order_values.products_name} = {$order_values.products_final_price.formated}
+{$order_values.products_information.txt_content}
+{/foreach*}
+
+{txt key=TEXT_SUB_TOTAL}: {$total.product_total.formated}
+{foreach name=aussen item=order_total_values from=$order_total_data}
+{$order_total_values.orders_total_name}:{$order_total_values.orders_total_price.formated}
+{/foreach} 
+{foreach name=aussen item=tax_data from=$total.total_tax}
+{txt key=TEXT_TAX} {$tax_data.tax_key}%:{$tax_data.tax_value.formated}
+{/foreach}
+{txt key=TEXT_TOTAL}: {$total.total.formated}
+
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

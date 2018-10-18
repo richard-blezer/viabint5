@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+		<title>Google Product Categories</title>
+		<version>1.0.6</version>
+		<code>xt_google_product_categories</code>
+		<url>http://www.xt-commerce.com</url>
+		<description>Google Product Categories plugin</description>
+		<type>marketing</type>
+		<developer>xt:Commerce</developer>
+		<documentation_link></documentation_link>
+		<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=356]]></marketplace_link>
+		<icon>logo_admin.gif</icon>
+		<db_install><![CDATA[
+			if (!$this->_FieldExists('google_product_cat',DB_PREFIX.'_products')) 
+			$db->Execute("ALTER TABLE `".DB_PREFIX."_products` ADD `google_product_cat` VARCHAR( 255 ) NOT NULL;");
+			                                
+			if (!$this->_FieldExists('google_product_cat',DB_PREFIX.'_categories')) 
+			$db->Execute("ALTER TABLE `".DB_PREFIX."_categories` ADD `google_product_cat` VARCHAR( 255 ) NOT NULL;");
+		]]></db_install>
+		<db_uninstall><![CDATA[
+			if ($this->_FieldExists('google_product_cat',TABLE_PRODUCTS)){ 
+			$db->Execute("ALTER TABLE `".DB_PREFIX."_products` DROP `google_product_cat`;");
+			}                                
+			if ($this->_FieldExists('google_product_cat',TABLE_CATEGORIES)){ 
+			$db->Execute("ALTER TABLE `".DB_PREFIX."_categories` DROP `google_product_cat`;");
+			}
+		]]></db_uninstall> 
+		<plugin_code>
+			<code>
+				<hook>class.product.php:_getParams_panelSettings</hook>
+				<phpcode><![CDATA[
+					require _SRV_WEBROOT.'plugins/xt_google_product_categories/hooks/class_product_php__getParams_panelSettings.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.category.php:_getParams_bottom</hook>
+				<phpcode><![CDATA[
+					require _SRV_WEBROOT.'plugins/xt_google_product_categories/hooks/class_category_php__getParams_bottom.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.category.php:_getParams_header</hook>
+				<phpcode><![CDATA[
+					require _SRV_WEBROOT.'plugins/xt_google_product_categories/hooks/class_category_php__getParams_header.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.product.php:_get_data</hook>
+				<phpcode><![CDATA[
+					require _SRV_WEBROOT.'plugins/xt_google_product_categories/hooks/class_product_php__get_data.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>admin_dropdown.php:dropdown</hook>
+				<phpcode><![CDATA[
+					include _SRV_WEBROOT.'plugins/xt_google_product_categories/hooks/admin_dropdown_phpdropdown.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.export.php:__extractData_category</hook>
+				<phpcode><![CDATA[
+					include _SRV_WEBROOT.'plugins/xt_google_product_categories/hooks/class_export_php__extractData_category.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+		</plugin_code>
+		<configuration>
+			<config>
+				<key>XT_GOOGLE_PRODUCT_CATEGORIES_CAT</key>
+				<type>dropdown</type>
+				<url>google_categories</url>
+				<value></value>
+				<de>
+					<title>Standard-Kategorie</title>
+				</de>
+				<en>
+					<title>Default-Catageory</title>
+				</en>
+				<bp>
+					<title>Categoria padrão</title>
+				</bp>
+			</config>
+			<config>
+				<key>XT_GOOGLE_PRODUCT_CATEGORIES_LANG</key>
+				<type>dropdown</type>
+				<url>language_codes</url>
+				<value>de</value>
+				<de>
+					<title>Sprache</title>
+				</de>
+				<en>
+					<title>Language</title>
+				</en>
+				<bp>
+					<title>Linguagem</title>
+				</bp>
+			</config>
+			<config>
+				<key>XT_GOOGLE_PRODUCT_CATEGORIES_LENGTH_DROPDOWN</key>
+				<value>450</value>
+				<type>textfield</type>
+				<de>
+					<title>Länge von Dropdown</title>
+				</de>
+				<en>
+					<title>Length of Dropdown</title>
+				</en>
+				<bp>
+					<title>Comprimento do decente</title>
+				</bp>
+			</config>
+		</configuration>
+</xtcommerceplugin>

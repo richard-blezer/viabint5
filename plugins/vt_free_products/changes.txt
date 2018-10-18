@@ -1,0 +1,69 @@
+4.02.16
+* Bugfix: Statusabfrage im Warenkorb hat gefehlt, so haben deaktivierte 
+Gratisartikel weiter im Warenkorb gelegen
+* Update: Zum Updaten auf die neue Version des Plugin folgen
+Sie der Update-Anleitung "vt_free_products_update.pdf" im Ordner "doc" des Plugins
+
+4.02.15
+* Bugfix: Sollte bei einem angelegten Gratis-Artikel folgende
+Daten fehlen, wird dieser im Frontend nicht angezeigt: Bedingungen, Lagerbestand, Bestellmenge
+* Update: Zum Updaten auf die neue Version des Plugin folgen
+Sie der Update-Anleitung "vt_free_products_update.pdf" im Ordner "doc" des Plugins
+
+4.02.14
+* Logik für Blackbit Plugin bb_dealproducts angepasst
+  - Dealartikel können keine Gratisartikel auslösen
+    oder es dürfen generell keine Gratisartikel im Warenkorb sein
+    wenn Dealartikel im Warenkorb liegen (einstellbar durch Konfigurationswert)
+* Update: Zum Updaten auf die neue Version des Plugin folgen
+Sie der Update-Anleitung "vt_free_products_update.pdf" im Ordner "doc" des Plugins
+
+4.02.13
+* Verwendbarkeit der Bedingung nach PLZ-Bereich der Versandadresse angepasst (siehe Doku)
+* Bugfix: Wenn ein Gratis-artikel mit PLZ-Bereich als Bedingung im Warenkorb lag, konnte dieser
+als einziger, ohne andere Artikel, bestellt werden
+* Update: Zum Updaten auf die neue Version des Plugin folgen
+Sie der Update-Anleitung "vt_free_products_update.pdf" im Ordner "doc" des Plugins
+
+4.02.12
+* Add: Es können nun Gratis-Artikel mit der Bedingung nach PLZ-Bereich der Versandadresse
+angelegt werden
+* Update: Zum Updaten auf die neue Version des Plugin folgen
+Sie der Update-Anleitung "vt_free_products_update.pdf" im Ordner "doc" des Plugins
+
+
+4.02.11
+* Anpassung an Blackbit Plugin bb_dealproducts
+  - Wenn deals im Warenkorb liegen sind keine Gratisartikel erlaubt
+  
+
+4.02.10
+* Umbau der Hookpoints zum Verbessern der Performance
+* Update: Zum Updaten auf die neue Version des Plugin folgen
+Sie der Update-Anleitung "vt_free_products_update.pdf" im Ordner "doc" des Plugins 
+
+
+2.0.7
+* Bugfix: Fehler bei der Prüfungen von Bedingungen behoben wenn z.B. nach mehere
+            Herstellern geprüft wird
+* Add: Hinweis in der Dokumentation hizugefügt, wie sich das Zusammenspiel von
+        z.B. Kateogrie-Bedinungen und Hersteller-Bedingenung verhält
+
+2.0.6
+* Bugfix: Fehler bei der Prüfung von Bedingungen nach Herstellern
+
+2.0.5
+* Kleine Bugfix, $obj war undefiniert in 2 Datein (class.vt_free_products.php & class.vt_fee_products_dep.php)
+
+2.0.2
+* Add: Permission-Info-Text bei den Berechtigungs-Reitern beim Anlegen eines Gratis-Artikels, wie bei Kategorien usw. im Admin
+
+2.0.1
+* Anzeige der Gratis-Artikel als Box bzw. auf einer Seite ala "Neue Artikel"
+* Anzeige der Gratis-Artikel-Bedingungen im Produkt-Listing (einstellbar über Konfigurations-Punkt)
+* Anzeige der Gratis-Artikel-Bedingungen auf Artikel-Detail-Seite (einstellbar über Konfigurations-Punkt)
+
+
+2.0.0
+* Neue überarbeitete Version des Plugins 
+* LICENSING System 1.2

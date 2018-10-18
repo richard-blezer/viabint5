@@ -1,0 +1,134 @@
+{php}
+	$ID  = XT_CLIPLISTER_ID;
+	$KEY = XT_CLIPLISTER_KEY;
+    #==============================================================================
+    # �nderungen nur in diesem Bereich vornehmen!
+    define('CUST_ID', $ID);                    # Kundennummer
+	define('CUST_KEY', $KEY);                     # Crypt-Key
+	#==============================================================================
+
+	define('CLSERVER','http://mycliplister.com/cliplister/');
+    define('REQ_BASE_EMBD',CLSERVER . "play/" . CUST_ID . "/");
+    define('REQ_BASE_PBTN',CLSERVER . "playBtn/" . CUST_ID . "/");
+
+	define('tagPbtn','<iframe id="clipBtn__PRODUKT_" style="Z-INDEX: 999;" scrolling="no" width="34px" height="34px" scrolling="no" frameborder="0" src="_URL_"></iframe>');
+
+    define('tagHidden','<iframe id="cliplister__PRODUKT_"  frameborder="0"  vspace="0"  hspace="0"  marginwidth="0"  marginheight="0" '
+						.' style="Z-INDEX: 999;  visibility:hidden; width:_WIDTH_px; height:_HEIGHT_px; " scrolling="no" '
+                        .'name="_URL_" ></iframe>');
+
+    define('tagNotHidden','<iframe onload="cliplister()" id="cliplister__PRODUKT_"  frameborder="0"  vspace="0"  hspace="0"  marginwidth="0"  marginheight="0" '
+						.' scrolling="no" style="Z-INDEX: 999;  visibility:visible; width:_WIDTH_px; height:_HEIGHT_px;"'
+                        .' src="_URL_" ></iframe>');
+
+function encrypt($request)
+{
+	$iv = 'c1191573-clip-07';
+	$td = mcrypt_module_open("rijndael-128", "", "cbc", $iv);
+	mcrypt_generic_init($td, CUST_KEY, $iv );
+	$result = bin2hex(mcrypt_generic($td, $request));
+	mcrypt_generic_deinit($td);
+	mcrypt_module_close($td);
+
+	return "1".$result;
+}
+
+
+
+function cliplister($productKey,$prodKeyType=0,$quality=75,$fsk=16,$lang="##",$refId="")
+{
+	if( !isset($prodKeyType) )
+		$prodKeyType=0;
+
+	if( !isset($quality) )
+		$quality=75;
+
+	if( isset($refId) )
+		$refId = str_replace('-','&ndash;',$refId);
+
+	$seqNum = substr(microtime(),2,5);
+
+
+
+    $reqString = REQ_BASE_PBTN . encrypt($seqNum . "-" . time() . "-" . $productKey . "-" . $prodKeyType . "-" . $quality . "-" . $fsk . "-" .$lang . "-" . $refId );
+
+	$html = str_replace("_URL_",$reqString,tagPbtn);
+	$html = str_replace("_PRODUKT_",$productKey,$html);
+
+
+	return $html;
+
+}
+
+function cliplisterEmbed($productKey,$prodKeyType=0,$width=320,$height=260,$quality=75,$hidden=0,$indirect=0,$fsk=16,$lang="##",$refId="")
+{
+	if( !isset($prodKeyType) )
+		$prodKeyType=0;
+
+	if( !isset($quality) )
+		$quality=75;
+
+	if( $hidden==0) {
+		$html = tagNotHidden;
+	} else {
+		$html = tagHidden;
+	}
+
+	if( isset($refId) )
+		$refId = str_replace('-','&ndash;',$refId);
+
+
+	$seqNum = substr(microtime(),2,5);
+
+    $reqString = REQ_BASE_EMBD . encrypt($seqNum . "-" . time() . "-" . $productKey . "-" . $prodKeyType . "-" . $quality . "-" . $fsk . "-" .$lang."-".$refId );
+
+	if( $indirect!=0 ) {
+		$reqString = $reqString . "/ind";
+	}
+	$html = str_replace("_URL_",$reqString,$html);
+	$html = str_replace("_WIDTH_",$width,$html);
+	$html = str_replace("_HEIGHT_",$height,$html);
+	$html = str_replace("_PRODUKT_",$productKey,$html);
+
+	return $html;
+}
+
+echo '
+  <script language="javascript" type="text/javascript">
+  // <!--
+	function clHandleFrame(iframe)
+	{
+		if( iframe.id.substr(0,10)=="cliplister") {
+			var test = new Image();
+			test.onload = function() {
+				if (test.width<2) {
+					iframe.style.height="0";
+					iframe.style.width="0";
+					iframe.style.visibility="hidden";
+				}
+			}
+			var s = iframe.src.replace(/\/ind/g,"");
+			test.src = s.replace(/playBtn/g,"play")+"/cx";
+		}
+	}
+
+	function cliplister()
+	{
+		var iframes = document.getElementsByTagName("iframe");
+		var i;
+		for(i=0;i<iframes.length;i++) {
+			clHandleFrame(iframes[i]);
+		}
+	}
+  // -->
+  </script>';
+
+{/php}
+
+<h2>{txt key=TEXT_HEADING_CLIPLISTER}</h2>
+{php}
+if (XT_CLIPLISTER_EMBED == 'true')
+  echo cliplisterEmbed(EAN_Cliplister,"0","320","260",75,0,XT_CLIPLISTER_INDIRECT,XT_CLIPLISTER_FSK,"##"); 	// EMBEDDED QVGA
+else
+ echo cliplister(EAN_Cliplister,"0","75",XT_CLIPLISTER_FSK,"##"); 	// EMBEDDED QVGA
+{/php}

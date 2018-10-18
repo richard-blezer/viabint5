@@ -1,0 +1,18 @@
+<div class="mobile-switch">
+    {if $hasMobile eq 'true'}
+        {if $mobile_active and $smarty.session.isMobile neq 'true'}
+        <p>
+            <a href="{$link}" rel="nofollow" class="btn btn-sm btn-default">
+                <i class="fa fa-mobile"></i> <br />{txt key=TEXT_MOBILE_SWITCH_LINK}
+            </a>
+        </p>
+        {/if}
+    {/if}
+    {if $smarty.session.isMobile eq 'true'}
+        <p>
+            <a href="{$link}" rel="nofollow" class="btn btn-sm btn-default">
+                <i class="fa fa-desktop"></i> <br />{txt key=TEXT_MOBILE_DESKTOP_SWITCH_LINK}
+            </a>
+        </p>
+    {/if}
+</div>

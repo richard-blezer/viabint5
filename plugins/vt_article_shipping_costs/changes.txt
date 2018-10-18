@@ -1,0 +1,242 @@
+4.03.11
+* Add: Berechnung-Grundlage "scale" hinzugefügt. Greift nur wenn Versandgruppen-Plugin nicht
+verwendet wird, da dort auch "scale" verwendet wird
+
+* Add: Wenn alte Plugin-Version 4.03.10 ist, kann die Plugin-Update-Funktion von XT verwendet
+werden
+ 
+
+4.03.10
+* Bugfix: Fehler behoben, das Sortierung der Versandarten im Module-Modus nicht richtig beibehalten wurde
+
+4.03.09
+* kleinen Workaround eingebaut wenn Plugin im Singel-Modus und zusammen mit Master/Salve
+eingesetzt wird
+
+* $order_data.shipping_name in der SendOrder-Mail wird nun korrekt befüllt
+
+
+4.03.08
+* kleinere Bugfixes
+
+
+4.03.07
+* Bugfix: Problem mit PayPal-Express behoben
+
+* Update:
+    + Folgen Sie der Anleitung in der "vt_article_shipping_costs_update.pdf" im Ordner "doc" unter dem
+    Punkt "Update-Anleitung Version 4.03.06 auf Version 4.03.07"
+
+4.03.06
+* Change: Workaround-HookPoint "class.checkout.php:_getShipping" aus der Install-XML entfernt, da es sonst zu Problemen bei
+der Installation kommen kann
+
+* Update:
+    + Folgen Sie der Anleitung in der "vt_article_shipping_costs_update.pdf" im Ordner "doc" unter dem
+    Punkt "Update-Anleitung Version 4.03.05 auf Version 4.03.06"
+
+
+4.03.05
+* Add: Neuer Einstellungspunkt "Berücksichtige alle Artikel im Warenkorb beim Ermitteln der Kosten für die einzelnen Versandkosten-Module" für Versandkosten-Typ "Module".
+- Diese Einstellung nimmt Einfluss auf die Ermittlung der Kosten bie den einzelnen Versand-Modulen!!
+- Standard-Wert: "true" bzw. "ja"
+- Wenn diese Einstellung auf "false" steht, dann werden nur Artikel im Warenkorb, bei der Ermittlung der Kosten der einzelnen
+Versand-Module, berücksichtigt, welche das entsprechende Versand-Modul entweder über die Einstellung "Standard-Versandart wenn keine Versandart zugewiesen"
+oder über den Menü-Punkt "Versandkosten-Module zuweisen", beim Bearbeiten des Artikels im Admin-Bereich, zugewiesen bekommen haben.
+- Steht diese Einstellung auf "true", dann werden alle Artikel im Warenkorb, bei der Ermittlung der Kosten der einzelnen Versand-Module, berücksichtigt.
+
+* Update:
+    + Folgen Sie der Anleitung in der "vt_article_shipping_costs_update.pdf" im Ordner "doc" unter dem
+    Punkt "Update-Anleitung Version 4.03.04 auf Version 4.03.05"
+
+
+4.03.04
+* Add: Neuer Einstellungspunkt "Standard-Versandart beim Artikel anzeigen" für Versandkosten-Typ "Module".
+- Diese Einstellung hat auf die Plugin-Funkton im Checkout und im Artikel-Export keinen Einfluss!
+- Wenn diese Einstellung auf "false" steht, dann werden nur bei Artikel mit explizit zugewiesenen Versandarten
+diese angezeigt.
+- Steht diese Einstellung auf "true", dann werden auch bei den Artikeln ohne explizit zugewiesenen Versandarten,
+die Versandarten angezeigt, die bei "Standard-Versandart wenn keine Versandart zugewiesen" angeben wurden.
+
+* Update:
+    + Folgen Sie der Anleitung in der "vt_article_shipping_costs_update.pdf" im Ordner "doc" unter dem
+    Punkt "Update-Anleitung Version 4.03.03 auf Version 4.03.04"
+    
+
+4.03.03
+* Bugfix: Kompatibilität mit xt:Commerce 4 Version 4.1.10 hergestellt
+
+* Update:
+    + Folgen Sie der Anleitung in der "vt_article_shipping_costs_update.pdf" im Ordner "doc" unter dem
+    Punkt "Update-Anleitung Version 4.03.02 auf Version 4.03.03"
+
+
+4.03.02
+* Bugfix: Problem, dass bei Verwendung von PayPayl-Express die Versandart nicht korrekt
+übermittelt wurde, behoben.
+
+* Bugfix: Umbau der HookPoints um Performance zu verbessern.
+
+* Update:
+    + Folgen Sie der Anleitung in der "vt_article_shipping_costs_update.pdf" im Ordner "doc" unter dem
+    Punkt "Update-Anleitung Version 4.03.01 auf Version 4.03.02"
+
+
+4.03.01
+* Bugfix: Falls nach Zuweisung der Versandarten zu den Artikel, bei einer dieser
+der Versand-Code geändert wurde, wurde diese Änderung nicht mit an die Versandkosten-
+Zuweisung beim Artikel übermittelt. Dadurch ging die Versandkosten-Zuordnung verloren.
+
+* Update:
+    + Folgen Sie der Anleitung in der "vt_article_shipping_costs_update.pdf" im Ordner "doc" unter dem
+    Punkt "Update-Anleitung Version 4.03.00 auf Version 4.03.01"
+
+
+4.03.00
+* Plugin grundlegend überarbeitet um Performance und interne Plugin-Routine zu
+verbessern
+
+
+4.02.15
+* Bufix: Wenn mehrer Versandarten die gleiche Sortierung hatten, haben
+sich diese gegenseitig überschrieben
+
+* Bugfix: Performance-Bug in der Plugin-Routine während der Verwendung des Export-Managers behoben
+
+* Update:
+    + Erstellen Sie eine Sicherung der Shop-Datenbank
+    + Erstellen Sie eine Sicherung der alten Plugin-Dateien
+    + Überschreiben Sie die alten Plugin-Dateien mit den neuen Plugin-Dateien
+
+
+4.2.14
+* Bugfix: Kompatibilität mit xt:Commerce 4 Version 4.1.00 hergestellt
+
+* Update:
+    + Erstellen Sie eine Sicherung der Shop-Datenbank
+    + Erstellen Sie eine Sicherung der alten Plugin-Dateien
+    + Überschreiben Sie die alten Plugin-Dateien mit den neuen Plugin-Dateien
+    + Achtung! Punkt "Änderungen beim Update des Plugins auf die Version 4.2.14" in Plugin-Anleitung beachten
+
+
+4.2.13
+* Add: Einstellung "Versandart immer anzeigen?" bei den Versandarten im Admin-Bereich kann nun auch mit
+dem Versandkosten-Typ "module" eingesetzt werden
+
+* Update:
+    + Erstellen Sie eine Sicherung der Shop-Datenbank
+    + Erstellen Sie eine Sicherung der alten Plugin-Dateien
+    + Überschreiben Sie die alten Plugin-Dateien mit den neuen Plugin-Dateien
+
+
+4.2.12
+* Bugfix: Plugin-Routine / Plugin-Logik angepasst 
+
+* Bugfix: Anscheinend wurde bei nicht-deutschen Kunden die class.vt_article_shipping_costs_shipping.php Datei nicht required.
+	konnte Fehler nicht nachvollziehen aber laut Kunden-Feedback war danach das Problem gelöst.
+
+* Update:
+    + Erstellen Sie eine Sicherung der Shop-Datenbank
+    + Erstellen Sie eine Sicherung der alten Plugin-Dateien
+    + Überschreiben Sie die alten Plugin-Dateien mit den neuen Plugin-Dateien
+
+
+2.1.1
+* Bugfix: Performance der Plugin-Routine während der Verwendung des Export-Managers verbessert
+
+* Add: Export-Variablen für den Export-Manager beim Versandkosten-Typ "single" in die Anleitung aufgenommen
+
+* Update:
+    + Erstellen Sie eine Sicherung der Shop-Datenbank
+    + Erstellen Sie eine Sicherung der alten Plugin-Dateien
+    + Überschreiben Sie die alten Plugin-Dateien mit den neuen Plugin-Dateien
+
+
+2.1.0
+* Bugfix: Wenn das Plugin zusammen mit dem "Warenkorbinfo und Tooltip"-Plugin und "Veyton Versandkosten im Warenkorb"-Plugin
+eingesetzt wird, wurde der Warenkorbtooltip fehlerhaft angezeigt
+
+* Update:
+    + unter den Hookpoints des Artikelversandkosten-Plugins den Hook "store_main.php:bottom" suchen und bearbeiten
+    + im Feld "Hookpoint" den Wert "page_registry.php:bottom" eintragen
+
+
+2.0.9
+* Versandkosten-Typ "single":
+    + beim Bearbeiten einer Versandart im Admin-Bereich -> Es ist nun möglich, 
+        einzustellen ob bei der Ermittlung des Versandpreises nur normale Artikel
+        berücksichtigt werden sollen oder auch Artikel mit individuellen Versandkosten
+        => "Artikel mit individuellen Versandkosten berücksichtigen? (ja/nein)"
+
+* Update:
+    + Datenbank: ALTER TABLE `xt_shipping` ADD `shipping_include_single_asc_flag` TINYINT( 1 ) NULL DEFAULT '0';
+    + Sprachvariable: 
+            - Sprache -> deutsch
+            - Schlüssel -> TEXT_SHIPPING_INCLUDE_SINGLE_ASC_FLAG
+            - Text -> Artikel mit individuellen Versandkosten berücksichtigen? (ja/nein)
+            - Klasse -> admin
+    + Sicherung der Alten Plugin-Dateien erstellen
+    + Alte Plugin-Dateien mit den Neuen Plugin-Dateien überschreiben
+
+
+2.0.8
+* Versandkosten-Typ "module": Wenn sich nur Artikel im Warenkorb befinden, die keine Versandart
+zugewiesen haben sondern diese über die Einstellung "Standard-Versandart wenn keine Versandart zugewiesen" erhalten,
+GREIFEN die Einstellungen "Verwende Versandkosten-Modul bevorzugt" und
+"Verwende Versandkosten-Modul mit den höchsten Kosten und Preis 0,- im Checkout" NUN NICHT MEHR
+
+
+2.0.7
+* Fehler behoben, bei Verwendung mit dem Versandkosten-Typ "single" wurden die
+Versandkosten bei Artikel, die diese über die normale Shop-Funktionalität
+berechnet bekommen haben, falsch ermittelt
+
+
+2.0.6
+* Fehler behoben, dass, bei Verwendung mit dem Versandkosten-Typ "module", eine
+oder mehrere leere Versandarten im Bestellvorgang/Checkout angezeigt werden
+* Fehler behoben, Versandpreis wurde teilweise falsch oder gar nicht  ermittelt wenn der Versandkosten-Typ
+"module" verwendet wird
+
+
+2.0.5
+* interene Plugin-Routine bei Versandkosten-Typ "module" optimiert
+* Fehler bei der Einstellung "Zeige nur Versandkosten-Module im Checkout die allen
+Artikel zugewiesen sind (nur für Versandkosten-Typ 'module')" behoben -> diese wurde nicht richtig
+berücksichtigt
+* fehlerhafte Verweise auf alten Plugin-Code korrigiert
+
+
+2.0.4
+* Fehler im Zusammenhang mit der Einstellung "individuelle Versandkosten einberechnen (ja/nein)" bei der
+Versandart und der eingestellten Steuerklasse bei Versandart und Plugin behoben. Hinweis in der Doku
+hinterlegt
+
+
+2.0.3
+* Fehler in der Installations- bzw. Deinstallations-Routine behoben
+
+
+2.0.2
+* neue bzw. angepasste Funktionen
++ Versandkosten-Typ "single"
+- Es ist nun möglich, dass Artikel mit individuellen Versandkosten, die über das Plugin
+generiert werden, gleichzeitig mit Artikel zu bestellen deren Versandkosten über
+die normale Shop-Funktionalität generiert werden.
+Die jeweiligen Versandkosten werden dabei zusammengerechnet und es kann eingestellt
+werden, dass bei einer Versandart "Selbstabholung" die individuellen Versandkosten
+nicht mit einberechnet werden, jedoch bei einer Versandart "DHL" mit einberechnet
+werden.
+Dem Kunden wird hierbei eine Info-Meldung (einstellbar ob an oder aus) angezeigt,
+der ihn darauf hinweist, dass individuelle Versandkosten einberechnet werden.
+
++ Versandkosten-Typ "module"
+-> Die Standard-Versandart(en) die verwendet wird, für Artikel denen keine
+eigene Versandart zugewiesen wurde arbeitet nun richtig mit den Einstellungen
+für diesen Versandkosten-Typ zusammen.
+
+
+2.0.0 
+* überarbeitete Version Plugins
+* gefixte und abgeänderte Funktionsweise
+* ausführliche Dokumentation erstellt

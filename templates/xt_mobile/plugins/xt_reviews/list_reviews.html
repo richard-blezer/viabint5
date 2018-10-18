@@ -1,0 +1,235 @@
+
+<div data-role="header"> 
+    <h1>{$product_data.products_name}</h1>
+</div>
+    
+<div class="xtm-product" data-role="content">
+    
+    {if $product_data.date_available!=''}
+        <div data-role="header"> 
+            <ul class="info_info">
+                <li class="infoInfo">{txt key=TEXT_PRODUCT_AVAILABLE} {$product_data.date_available|date_format:"%A, %B %e, %Y"}</li>
+            </ul>
+            {if $message}
+                {$message}                
+            {/if}
+        </div>
+    {/if}
+
+    {if $product_data.products_image!=''}          
+
+        <!-- Place somewhere in the <body> of your page -->
+        <div class="images flexslider">
+            <ul class="slides">
+                <li>
+                    <table><tr><td>
+                        {if $product_data.products_image != 'product:noimage.gif'}
+                            <a href="#photo-main-screen" data-rel="popup">
+                                {img img=$product_data.products_image type=m_mobile_islider alt=$product_data.products_name|escape:"html"}
+                            </a>
+                        {else}
+                            <a href="#">
+                                <img src="{$tpl_url_path}/img/no_image.png" alt="{txt key=TEXT_NO_IMAGE}">
+                            </a>
+                        {/if}                                
+                    </td></tr></table>
+                </li>
+                {if $product_data.more_images !=''}
+                    {foreach name=aussen item=img_data from=$product_data.more_images}
+                    <li>
+                        <table><tr><td>
+                            <a href="#photo-{$product_data.img_data.data.id}-screen" data-rel="popup">
+                                {img img=$product_data.img_data.file type=m_mobile_islider alt=$product_data.products_name}
+                            </a>
+                        </td></tr></table>
+                    </li>
+                    {/foreach}
+                {/if}
+            </ul>
+        </div>
+
+        {if $product_data.products_image != 'product:noimage.gif'}
+            <div id="photo-main-screen" class="xtm-popup-image" data-corners="false" data-theme="d" data-overlay-theme="a" data-role="popup" data-shadow="true" data-transition="flip" data-position-to="window">
+                <a class="ui-btn-right" data-iconpos="notext" data-icon="delete" data-theme="e" data-role="button" data-rel="back" href="#" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Close"></a>
+                {img img=$product_data.products_image type=m_mobile_popup alt=$product_data.products_name|escape:"html"}
+            </div>
+        {/if}            
+        {if $product_data.more_images !=''}
+            {foreach name=aussen item=img_data from=$product_data.more_images}    
+                <div id="photo-{$product_data.img_data.data.id}-screen" class="xtm-popup-photo" data-corners="false" data-theme="d" data-overlay-theme="a" data-role="popup" data-shadow="true" data-transition="flip" data-position-to="window">
+                    <a class="ui-btn-right" data-iconpos="notext" data-icon="delete" data-theme="e" data-role="button" data-rel="back" href="#" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Close"></a>
+                    {img img=$product_data.img_data.file type=m_mobile_popup alt=$product_data.products_name}
+                </div>
+
+            {/foreach}
+        {/if}            
+    {/if}
+        
+        
+    <div class="detail">
+            <table border="0">  
+            {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+            <tr>
+                <td class="left" style="padding-top:8px;">{txt key=TEXT_XT_MOBILE_PRICE}</td>
+                <td class="right">
+                    <span class="xtm-price">{$product_data.products_price.formated}</span><br />
+                    <span class="shippinginfo">{$product_data.products_tax_info.tax_desc}</span><br />
+                    {if $product_data.base_price && !$product_data.group_price}          
+                    <span class="xtm-base-price">{$product_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$product_data.base_price.vpe.name}</span>
+                    {/if}
+                </td>
+            </tr>
+            {/if}
+
+            {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+            {if $product_data.link_priceinquiry}
+            <tr>
+                <td class="left"></td>
+                <td class="right">   
+                    <span><a href="{$product_data.link_priceinquiry}">{txt key=TEXT_XT_PRICEINQUIRY_ASK}</a></span>
+                </td>
+            </tr>
+            {/if}
+            {/if}
+
+            {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+            <tr>
+                <td class="left">
+                    {txt key=TEXT_XT_MOBILE_SHIPPING}
+                </td>
+                <td class="right">
+                    <span class="taxandshippinginfo">{if $product_data.products_shipping_link}<a href="{$product_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</span>
+                </td>
+            </tr>
+            {/if}
+
+
+            {if $product_data.products_weight > 0}
+            <tr>
+                <td class="left">
+                    <span class="taxandshippinginfo">{txt key=TEXT_PRODUCTS_WEIGHT}</span>
+                </td>
+                <td class="right">
+                        <span class="taxandshippinginfo">{$product_data.products_weight|number_format:2:",":"."} KG</span>
+                </td>
+            </tr>
+            {/if}
+
+
+            <tr>
+                <td class="left">
+                    <span class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}{if $product_data.shipping_status}&nbsp;{$product_data.shipping_status}{/if}</span>
+                </td>
+                <td class="right">
+                    {if $product_data.stock_image}
+                    <span class="stockimage">{img img=$product_data.stock_image.image type=t_img_stockrules alt=$product_data.stock_image.name}</span>
+                    {else}
+                    <span class="stockimagetext">{$product_data.stock_image.name}</span>
+                    {/if}
+                </td>
+            </tr>
+
+            {if $product_data.review_stars_rating}
+                <tr>
+                    <td class="left">    
+                        {txt key=TEXT_XT_REVIEWS_INFO}
+                    </td>
+                    <td class="right">
+                        <div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$product_data.review_stars_rating}%"></div></div>
+                        <p class="reviews_text"><a href="{$link_reviews_list}">{if $product_data.products_rating_count}{$product_data.products_rating_count}{else}0{/if} {txt key=TEXT_XT_REVIEWS_INFO}</a></p>
+                        <p class="reviews_text"><a href="{$link_reviews_write}" rel="nofollow">{txt key=TEXT_XT_REVIEWS_WRITE}</a></p>
+                    </td>
+                </tr>
+            {/if}
+
+
+            {if $product_data.products_discount!=''}
+            <tr>
+                <td class="left">{txt key=TEXT_DISCOUNT}</td>
+                <td class="right">
+                    {$product_data.products_discount}
+                </td>
+            </tr>
+            {/if}
+
+            {if $product_data.products_model!=''}
+            <tr>
+                <td class="left">{txt key=TEXT_PRODUCTS_MODEL}</td>
+                <td class="right">
+                    {$product_data.products_model}
+                </td>
+            </tr>
+            {/if}
+
+        </table>
+
+    </div>
+    
+    
+    {form type=form name=product action='dynamic' link_params=getParams method=post}
+        {form type=hidden name=action value=add_product}
+        {form type=hidden name=product value=$product_data.products_id}
+
+        {if $allow_add_cart eq 'true'}
+
+            {if $product_data.products_fsk18=='1'}
+                <ul class="info_error">
+                    <li class="infoError">{txt key=TEXT_PRODUCTS_FSK18_NOTE}</li>
+                </ul>
+            {/if}
+            <div class="ui-grid-b xtm-qty">
+                <div class="ui-block-a"><a class="xtm-qty-minus" data-role="button" data-inline="true"><div class="xtm-icon-16 xtm-icon-minus"></div></a></div>
+                <div class="ui-block-b"><input class="xtm-qty" type="number" name="qty" value="1" /></div>
+                <div class="ui-block-c"><a class="xtm-qty-plus" data-role="button" data-inline="true"><div class="xtm-icon-16 xtm-icon-plus"></div></a></div>                
+            </div>
+
+            <input type="submit" value="{$smarty.const.BUTTON_ADD_CART}" />                        
+
+
+            <br />
+        {/if}
+
+        {hook key=product_info_tpl_cart}
+
+    {form type=formend} 
+</div>
+<div style="clear:both;"></div>
+
+<div data-role="header"> 
+    <h1>{txt key=TEXT_XT_REVIEWS_HEADING_REVIEWS}</h1>
+</div>
+
+<div data-role="content">
+    {if $reviews_data}
+        <div id="NAVIGATION">
+            <div class="COUNT">{$NAVIGATION_COUNT}</div>
+            <div class="PAGES">{$NAVIGATION_PAGES}</div>
+        </div>
+        <div style="clear:both;"></div>
+        {foreach name=aussen item=module_data from=$reviews_data} 
+            <table width="100%" class="reviewlist">
+                <tr> 
+                    <td><div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$module_data.review_rating}%"></div></div></td>
+                </tr>
+                <tr>
+                    <td><b>{$module_data.review_title}</b> , {$module_data.review_date}</td>
+                </tr>
+                <tr> 
+                    <td>{$module_data.review_text}</td>
+                </tr>
+                <tr>
+                    <td>{txt key=TEXT_XT_REVIEWS_EDITOR}: {$module_data.review_editor}</td>
+                </tr>
+            </table>
+            <div class="hrlightgrey"></div>
+            <br />
+        {/foreach} 
+        <div id="NAVIGATION">
+            <div class="COUNT">{$NAVIGATION_COUNT}</div>
+            <div class="PAGES">{$NAVIGATION_PAGES}</div>
+        </div>
+    {else}    
+        {$message}
+    {/if}
+</div>
+

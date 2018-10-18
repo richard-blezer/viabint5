@@ -1,0 +1,26 @@
+<table class="paymentblock" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr>
+  	<td class="header" width="10">
+  	{if $payment_hidden == true}
+  		{form type=hidden name=selected_payment value=$payment_code}
+  	{else}
+	  	{if $payment_code==$payment_selected}
+	  	{form type=radio name=selected_payment value=$payment_code checked=true}
+	  	{else}
+	  	{form type=radio name=selected_payment value=$payment_code}
+	  	{/if}
+  	{/if}
+  	</td>
+  	<td class="header"><strong>{$payment_name}</strong></td>
+  	{if $payment_icon}
+    <td class="header"><strong>{img img=$payment_icon type=w_media_payment}</strong></td>
+    {/if}
+    <td class="header" align="right">{$payment_price.formated}</td>
+  </tr>
+  {if $payment_desc}
+  <tr>
+  	<td colspan="3" class="main">{$payment_desc}</td>
+  </tr>
+  {/if}
+</table>
+<br />

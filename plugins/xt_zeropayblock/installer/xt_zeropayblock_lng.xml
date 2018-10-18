@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_ZEROPAYBLOCK_LIST_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[comma separated Payment Codes (e.g. xt_paypal)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[durch Komma getrennte Zahlungsart Codes (z.B. xt_paypal)]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

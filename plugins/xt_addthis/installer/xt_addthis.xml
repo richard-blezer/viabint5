@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+<title>AddThis Social Bookmarks</title>
+<version>1.0.2</version>
+<code>xt_addthis</code>
+<url>http://www.xt-commerce.com</url>
+<type>marketing</type>
+<developer>xt:Commerce</developer>
+    <plugin_code>
+    <code>
+        <hook>products_images_tpl</hook>
+        <phpcode><![CDATA[
+        echo file_get_contents(_SRV_WEBROOT.'plugins/xt_addthis/template/product_info.html');
+]]></phpcode>
+        <order>1</order>
+        <active>1</active>
+    </code>
+    </plugin_code>
+</xtcommerceplugin>

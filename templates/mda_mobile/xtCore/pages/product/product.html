@@ -1,0 +1,105 @@
+<h2>{$products_name}</h2>
+{socialbookmark url=$products_link title=$products_name}
+
+{if $date_available!=''}
+	<p>{txt key=TEXT_PRODUCT_AVAILABLE} {$date_available|date_format:"%A, %B %e, %Y"}</p>
+{/if}
+
+<div id="productinfowrap">
+	{if $products_image!=''}
+	<div id="productinfoimages">
+		<ul class="gallery">
+			<li><a href="{img img=$products_image url=`$smarty.const._SRV_WEB`media/images/popup/ path_only=true}" rel="external">{img img=$products_image url=`$smarty.const._SRV_WEB`media/images/info/ alt=$products_name|escape:"html"}</a></li>
+			{if $more_images !=''}
+				{foreach name=aussen item=img_data from=$more_images}
+				<li><a href="{img img=$img_data.file url=`$smarty.const._SRV_WEB`media/images/popup/ path_only=true}" rel="external">{img img=$img_data.file url=`$smarty.const._SRV_WEB`media/images/thumb/ alt=$products_name|escape:"html"}</a></li>
+				{/foreach}
+			{/if}
+		</ul>
+	</div>
+	{/if}
+  	{if $products_image!=''}
+		<div id="productinfopricewithimages">{else}<div id="productinfopricewithoutimages">
+	{/if}
+		<div id="productinfoprice">
+			{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}<p class="productprice"><strong>{$products_price.formated}</strong></p>
+			<p class="taxandshippinginfo">{$products_tax_info.tax_desc}{if $products_shipping_link}<br/><a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</p>
+			{price_table}
+			{/if}
+			{if $products_weight > 0}<p class="taxandshippinginfo">{txt key=TEXT_PRODUCTS_WEIGHT}: {$products_weight|number_format:2:",":"."} KG</p>{/if}
+			{if $shipping_status}<p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$shipping_status}</p>{/if}
+			{if $stock_image}
+				{assign var='stock_path' value=$tpl_path|cat:'img/stockrules/'}
+				<p class="stockimage">{img img=$stock_image.image url=$stock_path alt=$stock_image.name}</p>
+				<p class="stockimagetext">{$stock_image.name}</p>
+			{/if}
+			{if $base_price}<div class="hrlightgrey"></div>{$base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$base_price.vpe.name}{/if}
+			{if $products_discount!=''}<div class="hrlightgrey"></div>{$products_discount}{/if}
+			{if $products_model!=''}<div class="hrlightgrey"></div>{txt key=TEXT_PRODUCTS_MODEL}: {$products_model}{/if}
+			{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}{if $link_priceinquiry}<p><a href="{$link_priceinquiry}">{txt key=TEXT_XT_PRICEINQUIRY_ASK}</a></p>{/if}{/if}
+		</div>
+	</div>
+
+	{hook key=product_info_tpl_before_cart}
+	{if $allow_add_cart eq 'true'}
+	{form type=form name=product action='dynamic' link_params=getParams method=post}
+	{form type=hidden name=action value=add_product}
+	{form type=hidden name=product value=$products_id}
+
+	{if $products_fsk18=='1'}
+            <ul class="info_error">
+                <li class="infoError">{txt key=TEXT_PRODUCTS_FSK18_NOTE}</li>
+            </ul>
+	{/if}
+	<div data-role="fieldcontain">
+		{$products_information}
+		<label for="qty">{txt key=TEXT_QTY}</label>
+  		{form type=text id=qty name=qty value=1}
+		<input type="submit" value="{txt key=BUTTON_ADD_CART}" />
+	</div>
+	{form type=formend}
+	{/if}
+	{hook key=product_info_tpl_cart}
+</div>
+
+{if $review_stars_rating}
+	<br/><br/>
+	<div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$review_stars_rating}%"></div></div>
+	{if $products_rating_count}{$products_rating_count}{else}0{/if} <a href="{$link_reviews_list}">{txt key=TEXT_XT_REVIEWS_INFO}</a>
+	<a href="{$link_reviews_write}" rel="nofollow" data-role="button" data-icon="mda_mobile_edit">{txt key=TEXT_XT_REVIEWS_WRITE}</a>
+{/if}
+
+<div id="productinfodetail">
+	{if $products_description !=''}
+		<div id="productinfo_desc">
+			<h2>{txt key=TEXT_PRODUCTS_DESCRIPTION}</h2>
+			{$products_description}
+		</div>
+	{/if}
+	{box name=xt_cliplister type=user}
+	{if $media_files !=''}
+	<br />
+	{include file="$selected_template/xtCore/pages/files/product_public_files.html"}
+	{/if}	
+	
+</div>
+
+{hook key=product_info_tpl}
+{if $_socialbookmarks}
+<br />
+<div id="socialbookmark">
+{$_socialbookmarks}
+</div>
+{/if}
+
+{literal}
+<script type="text/javascript">
+	(function(window, $, PhotoSwipe){
+		$(document).ready(function(){
+			var options = {};
+			$("ul.gallery a").photoSwipe(options);
+		});
+	}
+	(window, window.jQuery, window.Code.PhotoSwipe));
+</script>
+{/literal}

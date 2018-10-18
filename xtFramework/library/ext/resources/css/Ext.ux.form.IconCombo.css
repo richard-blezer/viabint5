@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+.x-icon-combo-icon {
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    width: 18px;
+    height: 14px;
+    padding-right:3px;
+}
+
+.x-icon-combo-input {
+    padding-left: 28px;
+}
+.x-form-field-wrap .x-icon-combo-icon {
+    top: 3px;
+    left: 6px;
+}			

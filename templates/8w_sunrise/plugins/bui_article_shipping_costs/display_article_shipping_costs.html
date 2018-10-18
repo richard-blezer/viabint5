@@ -1,0 +1,17 @@
+{if $LISTING=='true'}
+	{if $SHIPPING_FREE == 1}
+		{txt key=TEXT_PRODUCTS_SHIPPING_COSTS_FREE}<br />
+	{else}
+		{if $PRICE.plain > 0}
+			{* txt key=TEXT_PRODUCTS_SHIPPING_COSTS_EXCL *}{$PRICE.formated|replace:"price":"_price"}&nbsp;{txt key=TEXT_PRODUCTS_SHIPPING_COSTS}<br />
+		{/if}	
+	{/if}
+{else}
+	{if $SHIPPING_FREE == 1}
+		{txt key=TEXT_PRODUCTS_SHIPPING_COSTS_FREE}
+	{else}
+		{if $PRICE}
+			{* txt key=TEXT_PRODUCTS_SHIPPING_COSTS_EXCL *}{$PRICE.formated}&nbsp;{txt key=TEXT_PRODUCTS_SHIPPING_COSTS}
+		{/if}	
+	{/if}
+{/if}

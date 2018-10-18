@@ -1,0 +1,5 @@
+4.01.04
+* Kompatibilität zu Versandkosten im Warenkorb Plugin (v.4.02.01) hergestellt
+
+4.01.05
+* Kompatibilität zu Produktconfigurator hergestellt

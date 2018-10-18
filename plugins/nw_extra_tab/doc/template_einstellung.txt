@@ -1,0 +1,65 @@
+Uploaden des ausgepackten ordners nw_extra_tab zu:
+
+ /ROOT/plugins
+
+
+Im Shop template (ew_viabiona) müssen folgende Änderungen durchgeführt werden:
+
+In ew_viabiona/xtCore/pages/product/product.html werden die Hookpionts für das plugin hinzugefügt.
+
+{if $products_master_flag == 1 && $smarty.const._PLUGIN_MASTER_SLAVE_SHOW_SLAVE_LIST == 'true'}
+                    <div id="pcontent-part-productlist" class="pcontent-part"
+                        data-orientation-nav-url="{$products_link}#pcontent-part-productlist"
+                        data-orientation-nav-classes="move"
+                        data-orientation-nav-icon="<i class='fa fa-wrench'></i>"
+                        data-orientation-nav-label="{txt key=TEXT_PRODUCT_OPTIONS}"
+                    >
+                        <p class="breaking-headline">{txt key=TEXT_PRODUCT_OPTIONS}</p>
+                        <div id="productlist" class="textstyles">
+                            {hook key=product_info_tpl_productlist}
+                        </div>
+                    </div>
+                {/if}
+
+                /* einfügen hier */
+               {hook key=product_info_tpl_tab_headline_versand}
+               {hook key=product_info_tpl_tab_box_versand}
+                /* ende einfügen hier */
+
+                <div class="hidden-xs">
+                    {hook key=product_info_tpl}
+                </div>
+
+zeile 54 uw. 204 uw. ändern
+
+ 				{if $products_shipping_link}
+                                    <p class="product-tax-shipping">{$products_tax_info.tax_desc}<br /><a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+                                {else}
+                                    <p class="product-tax-shipping">{$products_tax_info.tax_desc}<br />{txt key=TEXT_EXCL_SHIPPING}</p>
+                                {/if}
+
+ zu:
+
+ 				{if $products_shipping_link}
+                                <p class="product-tax-shipping">{$products_tax_info.tax_desc}<br /><a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+                             {else}
+                                <p class="product-tax-shipping">{$products_tax_info.tax_desc}<br /><a href="{$products_link}#versand-info" title="Versicherter Versand (DHL) nach Deutschland, Österreich, Schweiz, Frankreich, Großbritannien: 4,95 EUR">
+                                <i class="fa fa-truck" aria-hidden="true"> </i>{txt key=TEXT_EXCL_SHIPPING}</a></p>
+                	         {/if}
+
+
+
+xtAdmin content anlegen.
+
+Inhalte content  > neu content:
+
+status				:   an
+content position 	:   8 (resiccion)
+SLL					:   an
+TEXT				:   <p>
+						Versicherter Versand (DHL) nach Deutschland, Österreich, Schweiz, Frankreich, Großbritannien: € 4,95</p>
+						<p>Ab einem Warenwert von € 125,- <strong>keine Versandkosten</strong> und <strong>GRATIS</strong> eine Monatsversorgung<br />
+						<a href="de/stoffgruppen/vitalstoffe-saefte/resooxtra.html" target="_blank">Resorptions-Verstärkers Resooxtra (Artikelnr. 5400)</a>
+						</p>
+Kurtext 			: Versicherter Versand (DHL) nach Deutschland, Österreich, Schweiz, Frankreich, Großbritannien: € 4,95
+Suma URL			: de/versandkosten-info

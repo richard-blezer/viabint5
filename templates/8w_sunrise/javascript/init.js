@@ -1,0 +1,678 @@
+$(window).resize(function(event) {
+	if ($('#topmenuwrap').hasClass('mobileMenu')) {
+		setMobileNavi();
+		setMobileSlider();
+	}
+});		
+
+$(window).load(function() {
+    setTimeout(function(){
+            setCategoryTeaser();
+        },1000);
+        
+
+});
+
+function setCategoryTeaser() {
+    if ($('.category-top-info')) {
+         var lHeight = $('.category-top-info .left-info').outerHeight();
+         var rHeight = $('.category-top-info .right-info').outerHeight();
+         var nHeight = lHeight;
+         if (rHeight > lHeight) {
+             nHeight = rHeight;
+         }
+         $('.category-top-info .left-info').css('height', nHeight+4+'px');
+         $('.category-top-info .right-info').css('height', nHeight+'px');
+    }
+}
+
+//$(window).load(function() {
+//
+//	setTimeout(function(){
+//			setCategoryTeaser();
+//		},1000)
+//	
+//	function setCategoryTeaser() {
+//	if ($('.category-top-info')) {
+//		 var lHeight = $('.category-top-info .left-info').outerHeight();
+//		 var rHeight = $('.category-top-info .right-info').outerHeight();
+//		 var nHeight = lHeight;
+//		 if (rHeight > lHeight) {
+//		 	nHeight = rHeight;
+//		 }
+//		 $('.category-top-info .left-info').css('height', nHeight+4+'px');
+//		 $('.category-top-info .right-info').css('height', nHeight+'px');
+//	}
+//}
+//
+//	
+//});
+
+
+$(document).ready(function(){ //jQuery init
+
+	/**************************************
+	 * Don't change anything from here on
+	 * if you don't know what you're doing.
+	 * Otherwise the earth might disappear
+	 * in a large black hole. We'll blame you!
+	 **************************************/
+	 if ($('#topmenuwrap').hasClass('mobileMenu')) {
+	 	setMobileNavi();
+	 	setMobileSlider();
+	}
+	/**
+	 * MSIE ALERT
+	 */
+	$('#msie-alert button').click(function(){
+		setzeKeks('MSIE_V_ALERT',12);
+		$("#msie-alert").slideUp();
+	});
+
+	/**
+	 * BROKEN IMAGES
+	 */
+	$('.products-listing img, #productinfowrap .main-image img, #sidebar .product-image img').one('error',function(){
+		$("#productinfowrap .main-image a").removeAttr('href');
+		width = $(this).parent().width();
+		height = $(this).parent().height();
+		if (height < width) {
+			height = width;
+		}
+		$(this).wrap('<div style="width:' + width + 'px; height:' + height + 'px;" class="broken-img"></div>').remove();
+	});
+	$('#sub-listing img').one('error',function(){
+		width = 163;
+		height = 70;
+		$(this).wrap('<div style="width:' + width + 'px; height:' + height + 'px;" class="broken-img"></div>').remove();
+	});
+
+
+	/**
+	 * SLIDE TOGGLE
+	 */
+	$(".box .more-products, #xt-reviews-list .more-products").hide();
+	var slideButtons = '.box .show-more a, #xt-reviews-list .show-more a';
+	$(slideButtons).prepend('<span></span>');
+	$(slideButtons).click(function(){
+		$(this).parent().parent().find(".more-products").slideToggle(1000,'easeOutBack');
+		$(this).find('span').fadeOut().toggleClass('open').fadeIn();
+	});
+	
+	/**
+	 * CLOUD ZOOM FIX
+	 */
+	var initIMG = '.cloud-zoom img';
+	var smallInitIMG = '.more-images #image-0';
+	var galleryIMG = '.cloud-zoom-gallery';
+	$(smallInitIMG).hide();
+    $(galleryIMG).click(
+        function() {
+			$(initIMG).removeAttr('width').removeAttr('height');
+			$(galleryIMG).removeClass('active');
+			$(this).addClass('active');
+			$(smallInitIMG).fadeIn();
+        }
+    );
+
+	function openSunriseBox() {
+		$('#show-hide-box').slideDown();
+		$("#infowrap").removeClass("closed").addClass("open");
+		$("#header").css('z-index','2');
+		$("#container").css('z-index','1');
+		sunriseBoxStatus = 'open';
+	}
+	function closeSunriseBox() {
+		$('#show-hide-box').slideUp();
+		$("#infowrap").removeClass("open").addClass("closed");
+		$("#header").removeAttr('style');
+		$('#login-overlay').remove();
+		sunriseBoxStatus = 'closed';
+	}
+	
+	/**
+	 * NUMBER OF ITEMS +/-
+	 */
+	$("#number-of-items .input-buttons").show();
+	$("#number-of-items .input-buttons .plus").click(function(){
+		currentVal = parseInt($("#number-of-items .input-nr input").val());
+		newVal = currentVal+1;
+		if (newVal >= 1) {
+			$("#number-of-items .input-nr input").attr('value',newVal);
+		}
+	});
+	$("#number-of-items .input-buttons .minus").click(function(){
+		currentVal = parseInt($("#number-of-items .input-nr input").val());
+		newVal = currentVal-1;
+		if (newVal >= 1) {
+			$("#number-of-items .input-nr input").attr('value',newVal);
+		}
+	});
+	 
+	/**
+	 * CART AUTO-REMOVE
+	 */
+	$(".cart-wrap .remove .i").hide();
+	$(".cart-wrap .remove .b").show().click(function(){
+		$(this).parent().find(".i").attr('checked', true);
+		$(".warenkorb-formular").submit();
+	});
+
+	$('form#payment-data').submit(function(event) {
+		error = false;
+		if ($('input[value="xt_banktransfer"]').is(':checked') && $('input#addBankData').is(':checked')) {
+			$('.showInput input[type="text"]').each(function(index, el) {
+				if ($.trim($(this).val()) == '') {
+					$('td#'+$(this).attr('name')).css('color', '#F00');
+					error = true;
+				}		
+			});
+		}
+		if (error == false) {
+			return true;
+		} else {
+			return false;
+		}
+	});
+
+	$('.showInput input[type="text"]').focus(function(event) {
+		$('td#'+$(this).attr('name')).css('color', '');
+	});
+
+	$('#cat3 a').click(function(event) {
+		//$(this).toggleClass('active');
+		//console.log($(this).is(':active'));
+
+	});
+
+}); //jQuery end
+
+
+
+/**
+	RELAUNCH: NEW JS
+**/
+	
+$(document).ready(function(){
+	animateShowBoxes(1);
+
+	$('#cat3').on('click', function(event) {
+		event.preventDefault();
+		var e = $(this);
+		$('ul.layerPageFrame').fadeToggle('fast', function() {
+			if ($(this).is(':visible')) {
+				$(e).addClass('active');
+			} else {
+				$(e).removeClass('active');
+			}
+		});
+		/* Act on the event */
+	});
+
+	if (!$('#topmenuwrap').hasClass('mobileMenu')) {
+	$(".cbox").colorbox({transition:"none", opacity:0.5});
+	} else {
+		$(".cbox").colorbox({transition:"none", opacity:0.5, innerWidth: "100%"});
+	}
+	$(".video").colorbox({iframe:true, innerWidth:853, innerHeight:480, opacity:0.5, title: 'Weitere Kunden-Videos ansehen: <a href="http://youtube.com/Viabiona" target="_blank">youtube.com/Viabiona</a>'});
+
+	 $('#vorteile-box').tooltip({ items: "img[alt]",
+        content: function () { return $(this).attr("alt") } 
+    });
+
+	$('li#watchlist a').hover(function() {
+		if ($(this).find('span').html() > 0) {
+			$('li#watchlist .layer').show();
+			$('#cart-top .layer').hide();
+		}
+	}, function() {
+		$('li#watchlist .layer').hide();
+	});
+
+	$('#infowrap .header-stuff').hover(function() {
+		$('#cart-box .cart-layer').show();
+		var h = $('#cart-box .cart-layer').outerHeight() + $(this).outerHeight();
+		$('.header-stuff').css('height', h+'px');
+	}, function() {
+		$('#cart-box .cart-layer').hide();
+		$(this).css('height', '');
+	});
+
+	$('#ajax-cart-insert').html('');
+	$('.cart-layer-frame').clone().appendTo($('#ajax-cart-insert'));
+
+	$('#cart-box').bind("DOMSubtreeModified",function(){
+
+		$('#ajax-cart-insert').html('');
+		$('.cart-layer-frame').clone().appendTo($('#ajax-cart-insert'));
+		var itemCount = $('#cart-box .full-cart h4 > span > span').html();
+		if (typeof(itemCount) != 'undefined') {
+			$('#cart-top > a > span').html(itemCount);
+			$('#cart-top > a > span').removeClass('null');
+		}
+	});
+
+	$('#cart-top .cart-layer-frame').live("mouseleave", function(event) {
+		$('#cart-top .cart-layer').hide();
+	});
+
+	$('ul.tab-container li a').click(function(e) {
+		e.preventDefault();
+		var id = $(this).parent('li').attr('id').split('_');
+		$('ul.tab-container li').removeClass('active');
+		$(this).parent('li').addClass('active');
+		$('#productinfodetail .tab-frame').hide();
+		$('#productinfodetail .tab-frame#frame_'+id[1]).show();
+	});
+
+	$('.productslider a#arrowLeft').click(function(e) {
+		e.preventDefault();
+		left_slide();
+	});
+
+	$('.productslider a#arrowRight').click(function(e) {
+		e.preventDefault();
+		right_slide();
+	});
+
+	$(window).scroll(function() {
+		setCartTop();
+	});
+
+	setCartTop();
+
+	$('.login-action input:radio').change(function(event) {
+		$('.highlightbox').hide();
+		$('form input').css('color', '');
+		$('form input[type="text"]').val('');
+		$('form input[type="password"]').val('');
+		$('.required-text').css('color', '');
+		$('#'+$(this).val()).show();
+	});
+
+	$('select').each(function(){
+        var title = $(this).attr('title');
+        if( $('option:selected', this).val() != ''  ) title = $('option:selected',this).text();
+        $(this)
+            .css({'z-index':10,'opacity':0,'-khtml-appearance':'none'})
+            .after('<span class="select">' + title + '</span>')
+            .change(function(){
+                val = $('option:selected',this).text();
+                $(this).next().text(val);
+           	})
+    });
+
+    $('#returning form, #new form, #guest form').submit(function(event) {
+    	error = 0;
+    	$.each($(this).find('input'), function () {
+    		if ($(this).hasClass('required')) {
+	    		if ($(this).attr('type') == 'checkbox') {
+	    			if (!($(this).is(':checked'))) {
+	    				error = 1;
+	    				$(this).next().css('color', '#F00');
+	    			}
+	    		}
+	    		if ($(this).attr('type') == 'text' || $(this).attr('type') == 'password') {
+	    			if ($.trim($(this).val()) == '' || $.trim($(this).val()) == 'Pflichtfeld') {
+	    				$(this).val('Pflichtfeld');
+	    				$(this).css('color', '#F00');
+	    				error = 1;
+	    			}
+	    		}
+	    	}
+    	});
+    	if (error == 1) {
+    		return false;
+    	} else {
+    		return true;
+    	}
+    });
+
+    $('form input').focus(function(event) {
+    	if ($.trim($(this).val()) == 'Pflichtfeld') {
+    		$(this).val('');
+    		$(this).css('color', '');
+    	}
+    	if ($(this).attr('type') == 'checkbox') {
+			if ($(this).attr('name') == 'required') {
+				$(this).next().css('color', '');
+			}
+		}
+    });
+
+	$('#wishlist a.btn-add-to-cart').click(function(e) {
+		e.preventDefault();
+		$('input[name="'+$(this).attr('id')+'"]').val('1');
+		$('#wishlist form').submit();
+	});
+
+	$('#wishlist a.btn-add-all-to-cart').click(function(e) {
+		e.preventDefault();
+		$('input.add-to-cart').val('1');
+		$('form#add-all-to-wishlist').submit();
+	});
+
+	$('select[name="qty[]"]').change(function(event) {
+		$('form.warenkorb-formular').submit();
+	});	
+
+	$('form.warenkorb-formular a.delete').click(function(e) {
+		e.preventDefault();
+		$(this).next('input').attr('checked', true);
+		$('form.warenkorb-formular').submit();
+	});
+
+
+	 $("input[name='adID']").change(function() {
+	 	$('form#change_billing_address').submit();
+	 });
+
+	 $('.paymentblock input[type="radio"]').click(function(event) {
+	 	if (typeof($('input.select-banktransfer:checked').val()) != 'undefined') {
+	 		$('tr.banktransfer').show();
+	 	} else {
+	 		$('tr.banktransfer').hide();
+	 	}
+	 });
+
+     $('#show-login-box').click(function(event) {
+         event.preventDefault();
+         $('#layer-login').toggle();
+     });
+
+	 if (!$('#topmenuwrap').hasClass('mobileMenu')) {
+		$('#header, #container, #footer, #container-frame').click(function(event) {
+		 	if ($('#layer-login').is(':visible') == true) {
+		 		$('#layer-login').hide();
+		 	}
+		});
+	} else {
+		$('#container, #footer, #container-frame, #header #logo, #header .currency').click(function(event) {
+		 	if ($('#layer-login').is(':visible') == true) {
+		 		$('#layer-login').hide();
+		 	}
+		});
+	}
+
+	 $('a.add-to-watchlist').click(function(event) {
+	 	event.preventDefault();
+	 	$('form#watchlist-'+$(this).attr('id').split('-')[1]).submit();
+	 });
+
+	 $('.check-payment input[type="checkbox"]').click(function(event) {
+	 	$(this).next().css('color', '');
+	 });
+
+	 $('.check-require').click(function(event) {
+	 	event.preventDefault();
+	 	
+	 	if ($('.check-payment input[type="checkbox"]').is(':checked') == true) {
+	 		$('form').submit();
+	 	} else {
+	 		$('.check-payment span').css('color', '#F00');
+	 	}
+	 });
+
+	 $('#addBankData').click(function(event) {
+	 	$('.showInput').show();
+	 });
+
+	 $('.dontshowBankData').click(function(event) {
+	 	$('.showInput').hide();
+	 });
+
+	$('.slider-arrow').on('click', function(event) {
+		event.preventDefault();
+		var id = $('.link-line li.active').attr('id').split('_')[1];
+		var size =$('.link-line li').size();
+		if ($(this).hasClass('left')) {
+			if (id == 0) {
+				id = size-1;
+			} else {
+				id--;
+			}
+		}
+		if ($(this).hasClass('right')) {
+			if (id == size-1) {
+				id = 0;
+			} else {
+				id++;
+			}
+		}
+		changeBtn(id, true);
+	});
+
+	setCategoryTeaser();
+});
+
+runAnim = false;
+firstRun= true;
+timer 	= 8000;
+
+
+
+function setBasketButton(form) {
+	var id = $(form).attr('id');
+	$('.form#form_'+id).hide();
+	$('span#neutral_'+id).show();
+}
+
+function animateShowBoxes(id) {
+	if (id < $('.slider-line').size()-1) {
+		id++;
+	} else {
+		id == 0;
+	}
+	iB = id;
+	active = false;
+	refreshBox = window.setInterval (function(){ showBoxMain(iB);}, timer);
+	if (firstRun == true) {
+		firstRun = false;
+		changeBtn('0', true);
+	}
+}
+
+function showBoxMain(id) {
+	changeBtn(iB, false);
+	if (iB == $('.slider-line').size()-1) {
+		iB = 0;
+		return;
+	}
+	iB++; 	
+	return;
+}
+
+function changeBtn(id, active) {
+	if( $(".slider-line").is(':animated') ) {
+	} else {
+		if (runAnim == false) {
+			if (active == true) {
+				clearInterval(refreshBox);
+			}
+			hideBox(id);
+			if (active == true) {
+				animateShowBoxes(id);
+			} else {
+				return;
+			}
+		}
+	}
+}
+
+function hideBox(id) {
+	hideBoxFrame(id);
+	$('#slider_'+id).fadeIn(500);
+	$('.link-line li#link_'+id).addClass('active');
+}
+
+function hideBoxFrame(id) {
+	for (var i = 0;  i < 5; i++) {
+		if (i != id) {
+			$('#slider_'+i).fadeOut(500);
+			$('.link-line li#link_'+i).removeClass('active');
+		}
+	}
+}
+
+function left_slide(){
+	if( $(".panel").is(':animated') ) {
+	} else {
+		var p = $(".panel").position();
+		if (p.left < 0) {
+			$("a#arrowRight").show();
+			$(".panel").animate({"left": "+=220px"}, "slow", "", function() {
+				if (p.left == -220) {
+					$("a#arrowLeft").hide();	
+				}
+			});
+		}
+	}
+}
+
+function right_slide(){
+	if( $(".panel").is(':animated') ) {
+	} else {
+		var p = $(".panel").position();
+		var s = $(".product-box").size();
+		var t = ((s * 220)-880)* -1;
+		if (p.left > t) {
+			$("a#arrowLeft").show();
+			$(".panel").animate({"left": "-=220px"}, "slow", "", function() {
+				if (p.left == (t+220)) {
+					$("a#arrowRight").hide();
+				}
+			});
+		} 
+	}
+}
+
+function setCartTop() {
+	if ($(window).scrollTop() > 100) {
+		$('li#cart-top').show();
+		$('li#watchlist').removeClass('no-cart');
+	} else {
+		$('li#cart-top').hide();	
+		$('li#watchlist').addClass('no-cart');
+	}
+}
+
+
+function checkContactValues(e){
+
+	if ($(e.TITLE).val() == 'Bitte waehlen') {
+		$(e.TITLE).next().css('color', '#F00');
+	}
+	
+	var error = 0;
+	if ($.trim(e.FNAME.value) == '' || $.trim(e.FNAME.value) == 'Bitte Vorname eintragen') {
+		$(e.FNAME).css('color', '#EE2461');
+		e.FNAME.value = 'Bitte Vorname eintragen';
+		error = 1;
+	}
+
+	var error = 0;
+	if ($.trim(e.LNAME.value) == '' || $.trim(e.LNAME.value) == 'Bitte Nachname eintragen') {
+		$(e.LNAME).css('color', '#EE2461');
+		e.LNAME.value = 'Bitte Nachname eintragen';
+		error = 1;
+	}
+
+	validEmail(e.EMAIL.value);
+	if ($.trim(e.EMAIL.value) == '' || $.trim(e.EMAIL.value) == 'E-Mail Adresse ist falsch') {
+		$(e.EMAIL).css('color', '#EE2461');
+		e.EMAIL.value = 'E-Mail Adresse ist falsch';
+		error = 1;
+	} else if (test == false) {
+		e.EMAIL.value = 'E-Mail Adresse ist falsch';
+		$(e.EMAIL).css('color', '#EE2461');
+		error = 1;
+	}
+
+	if ($(e.CHECK).is(':checked') != true) {
+		$(e.CHECK).next().css('color', '#F00');
+		error = 1;
+	}
+
+	if (error == 0) {
+		return true;
+	}
+	return false;
+}
+
+function validEmail(email) {
+	var strReg = "^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$";
+	var regex = new RegExp(strReg);
+	test = regex.test(email);
+  	return test;
+}
+
+function removeColor(e) {
+	$(e).css('color', '');
+}
+
+
+$(document).ready(function(){
+	$('input[name="FNAME"]').focus(function(event) {
+		if ($(this).val() == 'Bitte Vorname eintragen') {
+			$(this).val('');
+		}
+		removeColor($(this));
+	});
+	$('input[name="LNAME"]').focus(function(event) {
+		if ($(this).val() == 'Bitte Nachname eintragen') {
+			$(this).val('');
+		}
+		removeColor($(this));
+	});
+	$('input[name="EMAIL"]').focus(function(event) {
+		if ($(this).val() == 'E-Mail Adresse ist falsch') {
+			$(this).val('');
+		}
+		removeColor($(this));
+	});
+	$('input[name="CHECK"]').click(function(event) {
+		removeColor($(this).next());
+	});
+
+	$('select[name="TITLE"]').change(function(event) {
+		if ($(this).val() != 'Bitte waehlen') {
+			$(this).next().css('color', '');
+		}
+	});
+});
+
+function setMobileNavi() {
+	var searchWidth = $(window).outerWidth() - $('.topmenu-list li.home').outerWidth() - $('.topmenu-list li.layerPage').outerWidth() -52;
+	$('.searchfield').css('width', searchWidth+'px');
+}
+
+function setMobileSlider() {
+	//alert($(window).width());
+	var sliderHeight = $('.slider-line:visible .img').outerHeight();
+	$('.slider-wrapper').css('height', sliderHeight+'px');
+}
+
+
+function MM_findObj(n, d) { //v4.0
+var p,i,x; if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+
+function MM_validateForm() { //v4.0
+var i,p,q,nm,test,num,min,max,errors='',args=MM_validateForm.arguments;
+for (i=0; i<(args.length-2); i+=3) { test=args[i+2]; val=MM_findObj(args[i]);
+if (val) { nm=val.name; if ((val=val.value)!="") {
+if (test.indexOf('isEmail')!=-1) { p=val.indexOf('@');
+if (p<1 || p==(val.length-1)) errors+='- '+nm+' muss eine gьltige Email-Adresse enthalten.\n';
+} else if (test!='R') {
+if (isNaN(val)) errors+='- '+nm+' must contain a number.\n';
+if (test.indexOf('inRange') != -1) { p=test.indexOf(':');
+min=test.substring(8,p); max=test.substring(p+1);
+if (val<min || max<val) errors+='- '+nm+' must contain a number between '+min+' and '+max+'.\n';
+} } } else if (test.charAt(0) == 'R') errors += '- '+nm+' muss eingetragen werden.\n'; }
+} if (errors) alert('Fehler:\n'+errors);
+document.MM_returnValue = (errors == '');
+}

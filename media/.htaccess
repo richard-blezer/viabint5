@@ -1,0 +1,4 @@
+<Files ~ "(php\.ini|\.htaccess|\.php.?|\.pl|\.cgi)$">
+order deny,allow
+deny from all
+</Files>

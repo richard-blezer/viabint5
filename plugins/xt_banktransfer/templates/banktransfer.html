@@ -1,0 +1,54 @@
+<div class="box box-white box-hover">
+    <p class="payment-name">
+        <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code checked=true}</span> {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} {if $payment_icon}<span class="float-right">{img img=$payment_icon type=w_media_payment alt=$payment_name}</span>{/if}</p>
+    {if $payment_desc}<p class="payment-desc" style="padding-left:25px;">{$payment_desc}
+</p>{/if}
+<div class="payment-desc">
+    <table width="100%" border="0" cellspacing="0" cellpadding="6">
+        {if $account_list !=''}
+        <tr>
+            <td colspan="3" class="main">{txt key=TEXT_BANKTRANSFER_ACCOUNT_SELECT}:</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="main">{form type=select name=acID value=$account_list}</td>
+        </tr>
+        <tr>
+            <td colspan="3" class="main"><br />{txt key=TEXT_BANK_ACCOUNTS_NEW}<br></td>
+        </tr>
+        {/if}
+
+
+        <tr>
+            <td colspan class="main">{txt key=TEXT_BANKTRANSFER_OWNER}</td>
+            <td colspan="2" class="main">{form type=text name=banktransfer_owner value=$banktransfer_owner params='style="width:200px"'}</td>
+        </tr>
+
+        <tr>
+            <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BANK_NAME}</td>
+            <td colspan="2" class="main">{form type=text name=banktransfer_bank_name value=$banktransfer_bank_name params='style="width:200px"'}</td>
+        </tr>
+
+        <tr>
+            <td colspan class="main">{txt key=TEXT_BANKTRANSFER_IBAN}</td>
+            <td colspan="2" class="main">{form type=text name=banktransfer_iban value=$banktransfer_iban params='style="width:200px"'}</td>
+        </tr>
+        <tr>
+            <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BIC}</td>
+            <td colspan="2" class="main">{form type=text name=banktransfer_bic value=$banktransfer_bic params='style="width:200px"''}</td>
+        </tr>
+        <tr>
+            <td colspan class="main">{txt key=TEXT_BANKTRANSFER_SAVE_ACCOUNT}</td>
+            <td colspan="2" class="main">
+                {if $banktransfer_save eq 'on'}
+                {form type=checkbox name=banktransfer_save checked=true}
+                {else}
+                {form type=checkbox name=banktransfer_save}
+                {/if}
+                {txt key=TEXT_BANKTRANSFER_SAVE_ACCOUNT_DESC}</td>
+        </tr>
+    </table>
+</div>
+
+</div>
+
+

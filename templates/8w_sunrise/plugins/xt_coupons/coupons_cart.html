@@ -1,0 +1,7 @@
+<br />
+<h1>{txt key=TEXT_COUPON_HEADLINE}</h1>
+{form type=form name=process action='cart' method=post conn=SSL}
+{form type=hidden name=special value=coupon}
+{txt key=TEXT_COUPON_LABEL}: {form type=text name=coupon_code params='maxlength="20" size="20"'}<br />
+<p>{button text=$smarty.const.TEXT_COUPON_BUTTON file='_redeem.gif' type='form'}</p>
+{form type=formend}

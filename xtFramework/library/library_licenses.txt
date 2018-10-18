@@ -1,0 +1,66 @@
+xt:Commerce VEYTON - used libraries
+
+##
+ADOdb - Database Abstraction Library
+http://adodb.sourceforge.net/
+Version 5.0.4a
+License; LGPL,BSD
+
+
+##
+PHP Captcha
+http://www.ejeliot.com/pages/2
+License: BSD
+
+
+##
+Ext JS Library 2.0.2
+http://extjs.com/
+License: LGPL
+
+
+##
+jquery
+Version 1.8.6
+License: MIT
+
+Thickbox 3
+License: MIT
+
+moments.js
+License: MIT
+
+pikaday.js
+License: MIT
+
+##
+nuSOAP
+http://dietrich.ganx4.com/nusoap
+Version: 0.7.3
+License: LGPL
+
+##
+Open Flash Chart
+http://teethgrinder.co.uk/open-flash-chart/
+License: LGPL
+
+
+##
+PHP-Ext Open Source Project
+http://php-ext.googlecode.com
+Sergei Walter <sergeiw[at]gmail[dot]com>
+Copyright 2008 Sergei Walter
+License: LGPL
+
+##
+Smarty Template Engine
+Version: 2.6.18
+License: LGPL
+
+##
+PHP Twitter
+http://classes.verkoyen.eu/twitter
+Tijs Verkoyen <php-twitter@verkoyen.eu>
+Copyright (c) 2008, Tijs Verkoyen. All rights reserved.
+Version: 1.0.4
+License: BSD

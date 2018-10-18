@@ -1,0 +1,23 @@
+{if $_show_more_link == true}
+    <h2 class="boxheader"><a href="{link page='vt_free_products'}">{txt key=TEXT_HEADING_VT_FREE_PRODUCTS}</a></h2>
+{else}
+    <h2 class="boxheader">{txt key=TEXT_HEADING_VT_FREE_PRODUCTS}</h2>
+{/if}
+
+<div class="boxbody">
+    {foreach name=aussen item=free_products_data from=$_data}
+        {if $free_products_data.products_image!=''}
+            <p class="center">
+                <a href="{$free_products_data.products_link}">
+                    {img img=$free_products_data.products_image type=m_thumb class=productImageBorder alt=$free_products_data.products_name}
+                </a>
+            </p>
+        {/if}
+
+        <p class="center">
+            <a href="{$free_products_data.products_link}">
+                <strong>{$free_products_data.products_name}</strong>
+            </a>
+        </p>
+    {/foreach}
+</div>

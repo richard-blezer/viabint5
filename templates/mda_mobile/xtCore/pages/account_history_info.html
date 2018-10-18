@@ -1,0 +1,93 @@
+<h2>{txt key=TEXT_PAGE_TITLE_ACCOUNT_HISTORY_INFO}</h2>
+<!--<a href="{link page='customer' paction=order_overview conn=SSL}" data-role="button" data-icon="back">{txt key=BUTTON_BACK}</a>-->
+
+<div class="highlightbox">
+	<h3>{txt key=TEXT_ORDER_NUMBER}: {$order_data.orders_id}</h3>
+	<p>{txt key=TEXT_ORDER_DATE}: {$order_data.date_purchased}</p>
+
+	<strong>{txt key=TEXT_SHIPPING_ADDRESS}</strong>
+	<p>
+		{if $order_data.delivery_company} {$order_data.delivery_company}<br />{/if}
+		{$order_data.delivery_firstname} {$order_data.delivery_lastname}<br />
+		{$order_data.delivery_street_address}<br />
+		{if $order_data.delivery_suburb} {$order_data.delivery_suburb}<br />{/if}
+		{$order_data.delivery_postcode} {$order_data.delivery_city}<br />
+		{if $order_data.delivery_state}{$order_data.delivery_state} {/if}{$order_data.delivery_country}<br />
+	</p>
+
+	<strong>{txt key=TEXT_PAYMENT_ADDRESS}</strong>
+	<p>
+		{if $order_data.billing_company} {$order_data.billing_company}<br />{/if}
+		{$order_data.billing_firstname} {$order_data.billing_lastname}<br />
+		{$order_data.billing_street_address}<br />
+		{if $order_data.billing_suburb} {$order_data.billing_suburb}<br />{/if}
+		{$order_data.billing_postcode} {$order_data.billing_city}<br />
+		{if $order_data.billing_state}{$order_data.billing_state} {/if}{$order_data.billing_country}<br />
+	</p>
+
+	{if $order_data.shipping_method!=''}
+	<strong>{txt key=TEXT_SHIPPING_METHOD}</strong>
+	<p>{$order_data.shipping_method}</p>
+	{/if}
+
+	{if $order_data.payment_name}
+	<strong>{txt key=TEXT_PAYMENT_METHOD}</strong>
+	<p>{$order_data.payment_name}</p>
+	{/if}
+
+	{if $order_data.comments!=''}
+	<strong>{txt key=TEXT_ORDER_COMMENTS}</strong>
+	<p>{$order_data.comments}</p>
+	{/if}
+
+	{if $order_data.payment_info!=''}
+	<strong>{txt key=TEXT_PAYMENT_INFO}</strong>
+	<p>{$order_data.payment_info}</p>
+	{/if}
+
+	<strong>{txt key=TEXT_ORDER_STATUS_HISTORY}</strong>
+	{foreach name=aussen item=history_values from=$order_history}
+	<p>{$history_values.date_added} <b>{$history_values.status_name}</b> {if $history_values.customer_show_comment eq '1'}{$history_values.comments}{/if}</p>
+	{/foreach}
+	</div>
+
+	<strong>{txt key=TEXT_ARTICLE}</strong>
+
+	<table class="tabledetails" border="0" cellspacing="0">
+		<thead>
+		</thead>
+		<tbody>
+			{foreach name=aussen item=order_values from=$order_products}
+			<tr style="padding-bottom:10px;">	
+				<td class="left" colspan="4" style="">
+					<strong><a href="{$data.products_link}">{$order_values.products_name}</a></strong>
+				</td>
+			</tr>
+			<tr valign="top">
+				<td class="left">{txt key=TEXT_QTY}<br/>{$order_values.products_quantity}</td>
+				<td class="left">{txt key=TEXT_PRODUCTS_MODEL}<br/>{$order_values.products_model}</td>
+				<td class="right">{txt key=TEXT_SINGLE_PRICE}<br/>{$order_values.products_price.formated}</td>
+				<td class="right">{txt key=TEXT_TOTAL_PRICE}<br/>{$order_values.products_final_price.formated}</td>
+			</tr>
+			{/foreach}
+			{$order_values.products_information.content}
+		</tbody>
+		<tfoot>
+		<tr>
+			<td colspan="4" align="right" class="subtotal">
+				<div align="right">
+					<p>{txt key=TEXT_SUB_TOTAL}: {$total.product_total.formated}</p>
+					{foreach name=aussen item=order_total_values from=$order_total_data}
+						<p>{$order_total_values.orders_total_name}: {$order_total_values.orders_total_price.formated}</p>
+					{/foreach}
+					{foreach name=aussen item=tax_data from=$total.total_tax}
+						<p>{txt key=TEXT_TAX} {$tax_data.tax_key}%: {$tax_data.tax_value.formated}</p>
+					{/foreach}
+					<p>{txt key=TEXT_TOTAL}: {$total.total.formated}</p>
+				</div>
+			</td>
+		</tr>
+		</tfoot>
+	</table>
+
+{hook key=account_history_info_bottom}

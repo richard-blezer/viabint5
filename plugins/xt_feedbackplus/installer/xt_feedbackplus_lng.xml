@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_CAMPAIGNS_CATEGORIES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Feedback Plus Campaigns — Categories]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Feedback+ Kampagnen — Kategorien]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_CAMPAIGNS_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Feedback Plus Campaigns — Products]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Feedback+ Kampagnen — Produkte]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_CAMPAIGN_CREATION_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Creation Date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kampagne erstellt am]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_CAMPAIGN_CUSTOMER_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Customer Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kundengruppe]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_CAMPAIGN_EXPIRE_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Expire Date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kampagne endet am]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_CAMPAIGN_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Campaign ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kampagnen ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_CAMPAIGN_NAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Campaign Name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kampagnenname]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_CAMPAIGN_START_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Start Date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kampagne beginnt am]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_CAMPAIGN_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kampagnenstatus]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_COUPONS_GENERATOR_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon Generator]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Coupon Generator]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_COUPONS_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gutschein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_MAIL_CLASS_REMINDER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[E-Mail Template for review reminder]]></value>
+	</en>
+	<de>
+		<value><![CDATA[E-Mail Template für Bewertungsmail]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACKPLUS_MAIL_CLASS_SUCCESS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[E-Mail Template for voucher e-mail]]></value>
+	</en>
+	<de>
+		<value><![CDATA[E-Mail Template für Gutscheinmail]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FEEDBACK_ALLOWED_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Feedback+ activated]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Feedback+ aktiviert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_FEEDBACKPLUS_CAMPAIGNS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Feedback+ Campaigns]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Feedback+ Kampagnen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_FEEDBACKPLUS_TAB</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Feedback+]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Feedback+]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_FEEDBACKPLUS_DELAY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Days after Statuschange]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Tage nach Bestellstatusänderung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_FEEDBACKPLUS_MAILS_BATCH_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Mails per request]]></value>
+	</en>
+	<de>
+		<value><![CDATA[E-Mails pro Aufruf]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_FEEDBACKPLUS_ORDER_STATUS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Bestellstatus - Versand]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - Versand]]></value>
+	</de>
+</phrase>
+
+<phrase>
+	<key>TEXT_XT_FEEDBACKPLUS_ERROR_NOT_FOUND</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[The review link is out of date or it was allready used to review this order.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Der Bewertungslink ist nicht korrekt oder es wurde bereits eine Bewertung für diese Bestellung abgegeben.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_FEEDBACKPLUS_DOUBLE_REVIEW_MESSAGE</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Sorry, you have already reviewed this product.You can write a single product review per\n                    purchase.\n                ]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Für dieses Produkt haben Sie bereits eine Bewertung abgegeben. Pro Einkauf können Sie nur eine Bewertung vornehmen.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_FEEDBACKPLUS_REVIEW_SUBMIT_MESSAGE</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Thank you for submitting your review, once approved an e-mail message with your coupon details\n                    will sent to e-mail address.\n                ]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vielen Dank für Ihre Bewertung. Sobald diese überprüft wurde, senden wir Ihnen eine E-Mail mit\n                    Ihren Coupon-Details.]]></value>
+	</de>
+</phrase>
+        <phrase>
+            <key>TEXT_FEEDBACKPLUS_CAMPAIGN_TESTING</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Test mode (no delay after status change)]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Testmodus (keine Wartezeit nach Statusänderung)]]></value>
+            </de>
+        </phrase>
+
+</language_content>
+</xtcommerceplugin>

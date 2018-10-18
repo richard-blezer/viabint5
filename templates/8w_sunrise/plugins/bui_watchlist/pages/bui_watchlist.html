@@ -1,0 +1,101 @@
+{*php}print_r ($this->get_template_vars());{/php*}
+<div class="left-side" id="wishlist">
+  <h1>{txt key=TEXT_BUI_WATCHLIST_TOP}</h1>
+  {if $show_bui_watchlist_content == true}
+  {$message}
+  {/if}
+
+  {if $show_bui_watchlist_content == true}
+  {foreach name=aussen item=g_data from=$bui_watchlist_groups}
+  {/foreach}
+  <div class="headline clearfix">
+    <div class="article"><span>{txt key=TEXT_ARTICLE}</span></div>
+    <div class="price"><span>{txt key=TEXT_SINGLE_PRICE}</span></div>
+  </div>
+  {assign var="values" value=""}
+  {assign var="check" value="0"}
+  {foreach name=aussen item=data from=$bui_watchlist_data}
+  {*php}print_r ($this->get_template_vars('data'));{/php*}
+    <div class="article-line clearfix">
+      <div class="image-text">
+        <div class="image">
+        {if $data.products_image!=''}<a href="{$data.products_link}">{img img=$data.products_image type=m_wishlist class=productImageBorder alt=$data.products_name}</a>{/if}
+        </div>
+        <div class="text">
+          <h2><a href="{$data.products_link}">{$data.products_name}</a></h2>
+          <div>{$data.products_page_short_description_html}</div>
+          <div>{$data.product_itemcount}</div>
+          {*<div class="delivery">Sofort lieferbar</div>*}
+          <a href="{link page='bui_watchlist' params='action=delete_bui_watchlist&bui_pID' params_value=$data.products_key}" class="delete">{txt key=BUTTON_DELETE}</a>
+        </div>
+        {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $data.products_price.formated neq ''}
+        <div class="price">{$data.products_price.formated}</div>
+        {/if}
+      </div>
+      <div class="add">
+        <div class="form" id="form_{$data.products_id}" {if $data.is_in_cart == true} style="display:none"{/if}>
+          {form type=form name=product id=$data.products_id action='dynamic' link_params=getParams method=post}
+            {form type=hidden name=action value=add_product}
+            {form type=hidden name=product value=$data.products_id}
+            {form type=hidden name=qty value=1}
+            {button_text class="btn-submit" value=TEXT_VT_FREE_PRODUCTS_ADD_TO_CART params='id="addToBasket" name="addToBasket" onclick="setBasketButton(this.form); javascript: return ajaxtocartsend(this.form);"' type='form'}
+          {form type=formend}
+        </div>
+        <span class="btn-neutral" id="neutral_{$data.products_id}" {if $data.is_in_cart != true} style="display:none"{/if}>{txt key=TEXT_IS_IN_CART}</span>
+
+        {*<a href="#" class="btn btn-add-to-cart" id="{$data.checkbox_name}">{txt key=TEXT_VT_FREE_PRODUCTS_ADD_TO_CART}</a>*}
+      </div>
+      <div class="clearfix"></div>
+      {assign var="value" value=$data.products_key}
+      {if $check == '1'}
+        {assign var="values" value="$values,$value}
+      {else}
+        {assign var="values" value="$value}
+      {/if}
+      {assign var="check" value="1"}
+    </div>
+  {/foreach}
+  <div class="article-bottom clearfix">
+  <a href="/" class="btn">{txt key=BUTTON_8WORKS_CONTINUE_SHOPPING}</a>
+  {*}
+  <p>
+    <span>Teilen:</span>
+    <a href="#" class="icon-mail"></a>
+    <a href="#" class="icon-fb"></a>
+  </p>
+  {*}
+  <a href="{link page='bui_watchlist' params='action=delete_bui_watchlist&bui_pID' params_value=$values}" class="underline last">{txt key=TEXT_CLEAR_WISHLIST}</a>
+  {*<a href="{link page='bui_watchlist' params='action=delete_bui_watchlist&bui_pID' params_value=$values}" class="underline last btn-add-all-to-cart">{txt key=TEXT_ADD_ALL_TO_CART}</a>*}
+  </div>
+  {*form type=formend*}
+  {*$content_popup_link*}
+  {else}
+  {$message}
+  {/if}
+
+  {*form id="add-all-to-wishlist" type=form name=product action='dynamic' link_params=getParams method=post}
+    {foreach name=aussen item=data from=$bui_watchlist_data}
+      {form type=hidden name=action value=add_product}
+      {form type=hidden name=product[] value=$data.products_id}
+      {form type=hidden name=qty value=1}
+    {/foreach}
+  {form type=formend*}
+
+
+  {*form id="add-all-to-wishlist" type=form name=product action='dynamic' link_params=getParams method=post}
+  {foreach name=aussen item=data from=$bui_watchlist_data}
+      {form type=hidden name=$data.checkbox_name value="0" class="add-to-cart"}
+      {form type=hidden name=$data.key_name value=$data.products_key}
+      {form type=hidden name=$data.qty_name value="1"}
+  {/foreach}
+  {form type=hidden name=action value=bui_wishlist_multi_add_product}
+
+  {form type=formend*}
+
+</div>
+<div class="right-side">
+{box name=xt_viabiona_cms type=user tpl=box_our_service.html}
+{box name=xt_viabiona_cms type=user tpl=box_payment_methods.html}
+</div>
+<div class="clearfix"></div>
+

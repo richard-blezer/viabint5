@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+    <title>Artikelflag Neuer Artikel</title>
+    <version>1.0</version>
+    <code>shs_products_new_flag</code>
+    <url>http://www.shop-support24.de</url>
+    <description></description>
+    <type>core</type>
+    <icon>logo.png</icon>
+    <db_install><![CDATA[
+
+    ]]></db_install>
+    <db_uninstall><![CDATA[
+
+    ]]></db_uninstall>
+    <plugin_code>
+    <code>
+        <hook>class.product.php:BuildData_bottom</hook>
+        <phpcode><![CDATA[
+
+        if (SHS_PRODUCTS_NEW_FLAG_ACTIVE=='1') {
+           
+			$date =  mktime(1, 1, 1, date(m), date(d) - XT_NEW_PRODUCTS_PAGE_DAYS, date(Y));
+
+                           $this->data['flag_has_new']=0;
+
+			if (strtotime($this->data['date_added']) >= $date){
+                           $this->data['flag_has_new']=1;
+                        }
+           		
+
+        }
+        
+        ]]></phpcode>
+        <order>1</order>
+        <active>1</active>
+    </code>
+    </plugin_code>
+    <configuration>
+        <config>
+            <key>SHS_PRODUCTS_NEW_FLAG_ACTIVE</key>
+            <type>dropdown</type>
+            <url>status_truefalse</url>
+            <value>1</value>
+            <de>
+                <title>Aktivieren</title>
+            </de>
+        </config>
+    </configuration>
+    
+</xtcommerceplugin>

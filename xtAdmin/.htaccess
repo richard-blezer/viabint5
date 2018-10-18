@@ -1,0 +1,22 @@
+DirectoryIndex login.php
+
+#AuthType Basic
+#AuthName "Admin Access Control"
+#AuthUserFile /home/viabint3/public_html/xtAdmin/.htpasswd
+#<LIMIT GET POST PUT>
+order deny,allow
+#deny from all
+# whitelist IP Address
+# external Landgraaf
+allow from 213.125.9.218
+#external rack CH
+allow from 77.245.20.129
+#external AIC
+allow from 195.243.125.2
+allow from 80.219.161.181
+allow from 192.168.1.
+allow from 217.86.138.128
+#ext AIC2
+allow from 80.147.189.142
+#</LIMIT>
+

@@ -1,0 +1,41 @@
+ <div align="center">
+ <table width="50%"  border="0" cellpadding="0" cellspacing="0">
+{if $loggedin == 'false'}
+  {form type=form name=affiliate_login action='affiliate_account' link_params=getParams method=post}
+  {form type=hidden name=page_action value=login}
+  {form type=hidden name=link_target value=affiliate_summary}
+    <tr>
+      <td>{txt key=text_email}:</td>
+    </tr>
+	<tr>
+	  <td>{form type=text name=email maxlength='50' style='width:170px;'}</td>
+	</tr>
+	<tr>
+	  <td>{txt key=text_password}:</td>
+	</tr>
+	<tr>
+	  <td><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+	    <tr>
+	      <td>{form type=password name=password maxlength='30' style='width:80px;'}</td>
+	      <td>{button text=$smarty.const.BUTTON_LOGIN file='login.gif' type='form'}</td>
+	    </tr>
+	  </table></td>
+	</tr>
+	<tr>
+	  <td ><div class="hr"></div><a href="{link page='affiliate_account' paction='password_reset' conn=SSL}">{txt key=text_link_lostpassword}</a></td>
+    </tr>
+    <tr>
+	  <td ><a href="{link page='affiliate_account' conn=SSL}">{txt key=text_link_register}</a><div class="hr"></div></td>
+    </tr>
+  {form type=formend}
+{/if}
+
+  {foreach name=aussen item=link from=$_links}
+    <tr>
+      <td>
+        <a href="{$link.link}">{$link.text}</a><br />
+      </td>
+    </tr>
+  {/foreach}
+  </table>
+ </div>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+    <title>Versandkosten tab</title>
+    <version>1.2.0</version>
+    <code>nw_extra_tab</code>
+    <url>http://www.nxt-web.nl</url>
+    <description>Fügt Versandkosten Tabs auf die Produktinformationsseiten ein</description>
+    <type>template</type>
+    <icon>nextweb_logo.png</icon>
+    <plugin_code>
+        <code>
+            <hook>store_main.php:bottom</hook>
+            <phpcode><![CDATA[require _SRV_WEBROOT.'plugins/nw_extra_tab/classes/class.nw_extra_tab.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>product_info_tpl_tab_headline_versand</hook>
+            <phpcode>
+                <![CDATA[global $current_product_id;
+            $tabHead = new nw_extra_tab($current_product_id);
+            echo $tabHead->_showHead('versandkosten');
+            ]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>product_info_tpl_tab_box_versand</hook>
+            <phpcode><![CDATA[
+            global $current_product_id;
+            $tabBody = new nw_extra_tab($current_product_id);
+            echo $tabBody->_showBody('versandkosten');
+                ]]>
+                </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+    <configuration>
+        <config>
+            <key>NW_EXTRA_TAB_CONTENT_ID</key>
+            <value>12</value>
+            <de>
+                <title>Content ID</title>
+                <description></description>
+            </de>
+            <en>
+                <title>Content ID</title>
+                <description></description>
+            </en>
+        </config>
+    </configuration>
+    <language_content>
+        <phrase>
+            <key>TEXT_PRODUCTS_DESCRIPTION_HTML</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Extra Text für Versandkosten  ]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Extra Text for shippingcosts]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>NW_EXTRA_TAB_CONTENT_ID_TITLE</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Content ID]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Content ID]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_PRODUCTS_TABINFO</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Versandkosten Content ID (87)]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Shippingcost Content ID (87)]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Versandkosten]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Shipping cost]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>NW_EXTRA_TAB_HEAD_SHIPPING</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[Versand Info]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Shipping Info]]></value>
+            </en>
+        </phrase>
+
+    </language_content>
+
+    <db_install>
+        <![CDATA[
+    // überprüfen, ob Datenbank-Feld noch nicht vorhanden ist
+    if (!$this->_FieldExists('products_tabinfo',TABLE_PRODUCTS))
+    $db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD `products_tabinfo` INT( 1 ) NOT NULL DEFAULT '0';");
+
+    if (!$this->_FieldExists('products_description',TABLE_PRODUCTS))
+    $db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD `products_description_html` INT( 1 ) NOT NULL DEFAULT '0';");
+
+    ]]></db_install>
+        <db_uninstall><![CDATA[
+    // überprüfen, ob Datenbank-Feld vorhanden
+    if ($this->_FieldExists('products_tabinfo',TABLE_PRODUCTS))
+    $db->Execute("ALTER TABLE ".TABLE_PRODUCTS." DROP `products_tabinfo`");
+
+     if ($this->_FieldExists('products_description',TABLE_PRODUCTS))
+    $db->Execute("ALTER TABLE ".TABLE_PRODUCTS." DROP `products_description_html`");
+    ]]></db_uninstall>
+
+</xtcommerceplugin>

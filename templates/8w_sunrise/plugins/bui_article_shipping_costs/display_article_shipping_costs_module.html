@@ -1,0 +1,17 @@
+{if $SHIPPING_DATA}
+	{if $SHIPPING_LINK && $LISTING!='true'}<a href="{$SHIPPING_LINK}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a><br />{/if}
+		{if $LISTING!='true'}
+			{txt key=TEXT_PRODUCTS_SHIPPING_COSTS_POSSIBLE_MODULES}
+			<ul class="bui_article_shipping_costs_module_list taxandshippinginfo">			
+				{foreach name=shipping_names_list item=data from=$NAMES}
+					<li>{$data}</li>
+				{/foreach}
+			</ul><br />
+		{else}			
+			{txt key=TEXT_PRODUCTS_SHIPPING_COSTS_POSSIBLE_MODULES}&nbsp;{$NAMES_STR}<br />
+		{/if}				
+{else}
+	{if $LISTING!='true'}
+		{if $SHIPPING_LINK}<a href="{$SHIPPING_LINK}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}
+	{/if}
+{/if}

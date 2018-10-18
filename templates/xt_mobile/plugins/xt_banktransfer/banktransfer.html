@@ -1,0 +1,105 @@
+
+    <li data-role="divider" data-theme="c">  
+        {$payment_name}
+    </li>
+    
+    <li data-theme="c">
+        <div data-role="controlgroup">
+            <label>
+                {if $payment_hidden == true}
+                        {form type=radio name=selected_payment value=$payment_code checked=true}
+                {else}
+
+                    {if $payment_code==$payment_selected}
+                        {form type=radio name=selected_payment value=$payment_code checked=true}
+                    {else}
+                        {form type=radio name=selected_payment value=$payment_code}
+                    {/if}
+
+                {/if}
+
+                <span class="ui-li-heading">
+                    <span class="floatRright">{$payment_price.formated}</span>
+                    <span class="floatLeft"><strong>{$payment_name}</strong></span>
+                </span>
+
+
+                {if $payment_icon}
+                    {img img=$payment_icon type=w_media_payment}
+                {/if}
+
+                {if $payment_desc}
+                    <a href="#popupBasic" data-rel="popup">
+                        <p class="ui-li-desc">    
+                            {$payment_desc|truncate:30}
+                        </p>
+                    </a>
+                {/if}
+            </label>
+
+            <ul data-role="listview" data-theme="c">
+                {if $account_list !=''}
+                    <li>
+                        <label>
+                            {txt key=TEXT_BANKTRANSFER_ACCOUNT_SELECT}:
+                            {form type=select name=acID value=$account_list}
+                        </label>
+                    </li>
+                    <li data-role="divider" data-theme="c">
+                        <p class="xtm-payment-desc">{txt key=TEXT_BANK_ACCOUNTS_NEW}</p>
+                    </li>                    
+                {/if}
+
+                <li>
+                    <label>
+                        {txt key=TEXT_BANKTRANSFER_OWNER}
+                        {form type=text name=banktransfer_owner value=$banktransfer_owner}
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        {txt key=TEXT_BANKTRANSFER_BANK_NAME}
+                        {form type=text name=banktransfer_bank_name value=$banktransfer_bank_name}
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        {txt key=TEXT_BANKTRANSFER_BLZ}
+                        {form type=number name=banktransfer_blz value=$banktransfer_blz}
+                    </label>
+                </li>
+                <li>
+                    <label>                        
+                        {txt key=TEXT_BANKTRANSFER_NUMBER}
+                        {form type=number name=banktransfer_number value=$banktransfer_number}
+                    </label>
+                </li>
+                <li>
+                    <label>                        
+                        {txt key=TEXT_BANKTRANSFER_IBAN}
+                        {form type=text name=banktransfer_iban value=$banktransfer_iban}
+                    </label>
+                </li>
+                <li>
+                    <label>                        
+                        {txt key=TEXT_BANKTRANSFER_BIC}
+                        {form type=text name=banktransfer_bic value=$banktransfer_bic}
+                    </label>
+                </li>
+                <li data-theme="c">
+                    <label>                        
+                        {form type=checkbox name=banktransfer_save}
+                        {txt key=TEXT_BANKTRANSFER_SAVE_ACCOUNT}
+                    </label>
+                    <br />
+                    <p> {txt key=TEXT_BANKTRANSFER_SAVE_ACCOUNT_DESC}</p>
+                </li>
+
+            </ul>
+        </div>
+
+        <div data-role="popup" id="popupBasic">
+            <p>{$payment_desc}<p>     
+        </div>
+        
+    </li>

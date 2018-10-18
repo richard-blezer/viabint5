@@ -1,0 +1,12 @@
+dhl;DHL;http://nolp.dhl.de/nextt-online-public/set_identcodes.do?lang=de&idc=[TRACKING_CODE]
+dpd;DPD;https://extranet.dpd.de/cgi-bin/delistrack?typ=1&lang=de&pknr=[TRACKING_CODE]
+fedex;FedEx;https://www.fedex.com/fedextrack/?tracknumbers=[TRACKING_CODE]
+gls;GLS;https://gls-group.eu/DE/de/paketverfolgung?txtAction=71000&match=[TRACKING_CODE]
+go;GO!;https://order.general-overnight.com/ax4/control/customer_service?hash=&land=de&shId=[TRACKING_CODE]
+hermes;Hermes;https://www.myhermes.de/wps/portal/paket/SISYR?auftragsNummer=[TRACKING_CODE]
+iloxx;iloxx;https://www.iloxx.de/net/popup/trackpop.aspx?id=[TRACKING_CODE]
+postoe;Post Österreich;http://www.post.at/sendungsverfolgung.php?pnum1=[TRACKING_CODE]
+postch;Post Schweiz;http://www.post.ch/swisspost-tracking?formattedParcelCodes=[TRACKING_CODE]
+tnt;TNT;http://www.tnt.de/servlet/Tracking?cons=[TRACKING_CODE]
+ups;UPS;http://wwwapps.ups.com/WebTracking/processRequest?HTMLVersion=5.0&Requester=NES&AgreeToTermsAndConditions=yes&loc=de_DE&tracknum=[TRACKING_CODE]
+schenker;Schenker;http://ebusiness.dbschenker.com/SMPNG/resource/v1/QuickTrack?refNumber=[TRACKING_CODE]&refType=ff

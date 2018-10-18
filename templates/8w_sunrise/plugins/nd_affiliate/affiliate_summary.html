@@ -1,0 +1,91 @@
+{$message}
+
+<h2>{txt key=AFFILIATE_SUMMARY}</h2>
+
+<div class="aff-links">
+<a href="http://www.viabiona.com/de/affiliate_summary.html">Affiliate-Konto übersicht</a>
+<a href="http://www.viabiona.com/de/affiliate_account.html">Affiliate-Konto bearbeiten</a>
+<a href="http://www.viabiona.com/de/affiliate_payment.html">Affiliate-Auszahlungen</a>
+<a href="http://www.viabiona.com/de/affiliate_clicks.html">Affiliate-Кlicks</a>
+<a href="http://www.viabiona.com/de/affiliate_sales.html">Affiliate-Verkäufe</a>
+<a href="http://www.viabiona.com/de/affiliate_inventory.html?type=i">Werbemittel</a>
+<a href="http://www.viabiona.com/de/affiliate_account/logout.html">Logout</a>
+</div>
+
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">
+  <tr>
+    <td><table width="90%" cellpadding="2" cellspacing="2">
+      <tr >
+        <td>{txt key=AFFILIATE_TEXT_IMPRESSIONS}: </td>
+        <td>{$impressions_total}</td>
+      </tr>
+      <tr >
+        <td>{txt key=AFFILIATE_TEXT_CLICKS}: </td>
+        <td>{$clicks_total}</td>
+      </tr>
+      <tr >
+        <td>{txt key=AFFILIATE_TEXT_SALES_NUMBERS}: </td>
+        <td>{$sales_total.total_numbers}</td>
+      </tr>
+      <tr >
+        <td>{txt key=AFFILIATE_TEXT_SALES_TOTAL}: </td>
+        <td>{$sales_total.total}</td>
+      </tr>
+      <tr >
+        <td>{txt key=AFFILIATE_TEXT_AVERAGE}: </td>
+        <td>{$average}</td>
+      </tr>
+      <tr >
+        <td>{txt key=AFFILIATE_TEXT_CONVERSION}: </td>
+        <td>{$conversion}</td>
+      </tr>
+      <tr >
+        <td>{txt key=AFFILIATE_TEXT_SALES_PROVISION}: </td>
+        <td>{$sales_total.provision}</td>
+      </tr>
+      <tr>
+        <td>{txt key=AFFILIATE_TEXT_AVERAGE_PERCENTAGE}: </td>
+        <td>{$average_percentage}</td>
+      </tr>
+      {if $show_leads == 'true'}
+      <tr>
+        <td>{txt key=AFFILIATE_TEXT_LEADS_PROVISION}: </td>
+        <td>{$leads_total.provision}</td>
+      </tr>
+      <tr>
+        <td>{txt key=AFFILIATE_TEXT_LEADS_NUMBERS}: </td>
+        <td>{$leads_total.total_numbers}</td>
+      </tr>
+      {/if}
+    </table></td>
+  </tr>
+  {foreach name=tiers item=tier from=$tier_sales_total}
+  {if $tier.total_numbers > 0}
+  <tr>
+    <td><hr /></td>
+  </tr>
+  <tr>
+    <td><table width="90%" cellpadding="2" cellspacing="2">
+      <tr>
+        <td>{txt key=AFFILIATE_TEXT_LEVEL_SUFFIX}: {$tier.level}</td>
+        <td>{txt key=AFFILIATE_TEXT_SALES_TOTAL}: {$tier.total}</td>
+        <td>{txt key=AFFILIATE_TEXT_SALES_NUMBERS}: {$tier.total_numbers}</td>
+        <td>{txt key=AFFILIATE_TEXT_SALES_PROVISION}: {$tier.provision}</td>
+      </tr>
+    </table></td>
+  </tr>
+  {/if}
+  {/foreach}
+  {if $show_subaffiliate_tree == 'true'}
+  <tr>
+    <td><hr /></td>
+  </tr>
+  <tr>
+    <td>
+      {$subaffiliate_tree}
+    </td>
+  </tr>
+  {/if}
+</table>
+</div>

@@ -1,0 +1,5 @@
+{if $show_next_button eq 'true'}
+<h1>{txt key=TEXT_PAGE_TITLE_CHECKOUT_SUCCESS}</h1>
+<p>{txt key=TEXT_CHECKOUT_SUCCESS_DESC}</p>
+<p><a href="{link page='index' conn=NOSSL}">{button text=$smarty.const.BUTTON_NEXT file='next.gif'}</a></p>{/if}
+{hook key=checkout_success_tpl}

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>Product Serials</title>
+<version>1.0.4</version>
+<code>xt_serials</code>
+<url>http://www.xt-commerce.com</url>
+<description>Product Serials for download Files</description>
+<type>products</type>
+<developer>xt:Commerce</developer>
+<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/display/MANUAL/Seriennummernverwaltung]]></documentation_link>
+<icon>xt-commerce_logo.jpg</icon>
+<db_install><![CDATA[
+if (!$this->_FieldExists('products_serials',TABLE_PRODUCTS)) 
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD `products_serials` INT( 1 ) NOT NULL DEFAULT '0';");
+]]></db_install>
+<db_uninstall><![CDATA[
+if ($this->_FieldExists('products_serials',TABLE_PRODUCTS)) 
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." DROP `products_serials`");
+]]></db_uninstall>
+<plugin_code>
+<code>
+<hook>class.product.php:_getParams_row_actions</hook>
+<phpcode><![CDATA[
+$rowActions[] = array('iconCls' => 'products_serials', 'qtipIndex' => 'qtip1', 'tooltip' => TEXT_PRODUCTS_SERIALS);
+if ($this->url_data['edit_id'])
+$js = "var edit_id = ".$this->url_data['edit_id']."; var edit_name = '".htmlentities($products_model)."';";
+else
+$js = "var edit_id = record.id; var edit_name=record.get('products_model');";
+$js .= "addTab('adminHandler.php?load_section=product_serials&plugin=xt_serials&pg=overview&products_id='+edit_id,'".TEXT_PRODUCTS_SERIALS." ('+edit_name+')', 'product_serials'+edit_id)";
+
+$rowActionsFunctions['products_serials'] = $js;
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>css_admin.php:css</hook>
+<phpcode><![CDATA[
+echo '.products_serials {background-image: url(images/icons/database_table.png) !important;}';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>page_registry.php:bottom</hook>
+<phpcode><![CDATA[
+include (_SRV_WEBROOT.'plugins/xt_serials/classes/class.product_serials.php');
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>class.product.php:_delete_bottom</hook>
+<phpcode><![CDATA[
+$db->Execute("DELETE FROM " . TABLE_PRODUCTS_SERIAL . " WHERE products_id = ? and orders_id='0' and orders_products_id='0'", array($id));
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>class.order.php:_updateOrderStatus_top</hook>
+<phpcode><![CDATA[
+$serials = new product_serials();
+if ($system_status->values['order_status'][$status]['data']['enable_download']=='1') {
+	$serials->assignSerials($this->oID);
+}
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>order_edit.php:getProductsTemplate_top</hook>
+<phpcode><![CDATA[
+$serials = new product_serials();
+$extras .=$serials->getSerialsAdmin($this->oID);
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>account_history_info_bottom</hook>
+<phpcode><![CDATA[
+$serials = new product_serials();
+$serials->getSerialsFrontend((int)$_GET['oid']);
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+<configuration>
+<config>
+<key>XT_SERIALS_WARNING_MIN</key>
+<value>200</value>
+<de>
+<title>Mindestbestand Warnung</title>
+</de>
+<en>
+<title>Stock warning trigger</title>
+</en>
+<es>
+<title>Advertencia de existencia mínima</title>
+</es>
+<bp>
+<title>Advertencia de existencia mínima</title>
+</bp>
+</config>
+</configuration>
+</xtcommerceplugin>

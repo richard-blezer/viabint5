@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>ACTIVATE_XT_RESCISSION_FORM_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Form]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_RESCISSION_FORM_CLIENT_NO_REQUIRED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Clinet No. Required]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kundennummer erforderlich]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_RESCISSION_FORM_INVOICE_NO_REQUIRED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invoice No. Required]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungsnummer erforderlich]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_RESCISSION_FORM_LINK_SORT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Sorting]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Reihenfolge]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_RESCISSION_FORM_SHOW_IN_CONTENT_BLOCK_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Show in menu]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Anzeige in Menü]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_RESCISSION_FORM_USE_SSL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Use SSL]]></value>
+	</en>
+	<de>
+		<value><![CDATA[SSL verwenden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>ERROR_CITY_EMPTY</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please enter valid City]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte geben Sie ein Stadt an]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>ERROR_CLIENT_NUMBER</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please enter valid Client No.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte geben Sie eine Kundennummer ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>ERROR_COUNTRY</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please enter valid Country]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Please enter valid Country]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>ERROR_GENDER_EMPTY</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please select gender]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Please select gender]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>ERROR_INVOICE_NUMBER</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please enter valid invoice number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte geben Sie eine Rechnungsnummer ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>ERROR_ORDER_DATE_EMPTY</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please enter valid order date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte geben Sie ein gültiges Bestelldatum an]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>ERROR_PRODUCT_NUMBERS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please enter product nummber(s)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte geben Sie Artikelnummer(n) ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>ERROR_REVOCATION_DATE_EMPTY</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please enter valid revocation date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Please enter valid revocation date]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>ERROR_STREET_EMPTY</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please enter valid street]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte geben Sie eine Straße an]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>RESCISSION_FORM_EMAIL_SENT</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Your request was successfully submitted]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ihre Anfrage wurde erfolgreich übermittelt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_CLIENT_NUMBER</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Client-No.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kundennummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HEADING_CUSTOMER_ADDRESS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Address of person / consumer (s)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Anschrift des/der Verbraucher(s)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HEADING_CUSTOMER_NAME</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Name of person / consumer (s)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Name des/der Verbraucher(s)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_NUMBER</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Invoice No.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungs-Nr.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_INVOICE_NUMBER</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Invoice No.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungsnummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRODUCT_NUMBERS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Product nummber(s)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Artikelnummer(n)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_RECIEVED_DATE</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Recieved date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Erhalten am]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_RESCISSION_FORM</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Rescission Form]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Widerrufsformular]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_RESCISSION_FORM_INTRO</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[If you want to cancel the order, then please fill the form below and send it to us.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte das nachfolgende Formular aus und senden Sie es uns zu.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_RESCISSION_FORM_REVOCATION</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[I/we hereby cancel the contract that I/we have concluded for the purchase of the following goods/services:]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hiermit widerrufe(n) ich/wir den von mir/uns abgeschlossenen Vertrag über den Kauf der folgenden Waren / die Erbringung der folgenden Dienstleistung:]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_REVOCATION_DATE</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Revocation date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Widerrufsdatum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_RESCISSION_FORM_LINK_TITILE</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Rescission Form]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Widerrufsformular]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

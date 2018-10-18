@@ -1,0 +1,1263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>HEADING_XT_MASTER_SLAVE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Master / Slave Attributes]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[主/配件 属性]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Master / Slave Eigenschaften]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Master / Slave Attributes]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Attributs Maître / Esclave]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Attributi Primario / Secondario]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[主な／部品属性]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Master/slave eigenschappen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Główny / Podrzędny Atrybuty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Master / Slave параметры]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[主/配件 屬性]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTES_DESC</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Description]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[描述]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Beschreibung]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Description]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Description]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Descrizione]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[説明]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Beschrijving]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Opis]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Описание]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTES_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[ID]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[ID]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[ID]]></value>
+	</de>
+	<es>
+		<value><![CDATA[ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[ID]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ID]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[ID]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Идентификация]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTES_IMAGE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Image]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[图片]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bild]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Image]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Image]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Immagine]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ピクチャー]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Afbeelding]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Obraz]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Изображение]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTES_MODEL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Model]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[型号]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Model]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Model]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Modèle]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Modello]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[型番]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Model]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Model]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Модель]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTES_NAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Name]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[名称]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Name]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Name]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nom]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Nome]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[名称]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Naam]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Nazwa]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Имя]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTES_PARENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Parent Category]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[上层分类]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[übergeordnete Kategorie]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Parent Category]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Catégorie parente]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Categoria Parent]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[上のカテゴリ]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Bovengeschikte categorie]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kategoria Rodzic]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Вышестоящая категория]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTES_PARENT_NAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Parent Category]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[上层分类]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[übergeordnete Kategorie]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Parent Category]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Catégorie parente]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Categoria Parent]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[上のカテゴリ]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Bovengeschikte categorie]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kategoria Rodzic]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Вышестоящая категория]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTES_TEMPLATES_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Template]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTE_1</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Attribute 1]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Attribut 1]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTE_2</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Attribute 2]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Attribut 2]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTE_3</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Attribute 3]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Attribut 3]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTE_4</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Attribute 4]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Attribut 4]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ATTRIBUTE_5</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Attribute 5]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Attribut 5]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_DUPLICATE_SLAVES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[For some of your selection of attributes, slave products have already been generated. These products will be ignored in the next step. If you want to re-generate these slaves, delete the existing slave products first. There are already slaves for the following attributes:]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Für einige der Ausgewählen Attribute wurden bereits Slave-Produkte generiert, diese Produkte werden im nächsten Schritt ignoriert. Wenn Sie diese Slaves neu generieren wollen, löschen Sie die bereits existierenden Slaveprodukte zuerst. Es existieren bereits Slaves für folgende Attribute:]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FILTER_MASTER_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Master products]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Master Artikel]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FILTER_MASTER_SLAVE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Master/Slave]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Master/Slave]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FILTER_MASTER_SLAVE_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Master and Slave products]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Master und Slave Artikel]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_FILTER_SLAVE_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Slave products]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Slave Artikel]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_GENERATE_SLAVES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Generate slaves]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Slaves generieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_GENERATE_SLAVES_LIST</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Slave products list]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Slave-Produkte Liste]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_GENERATE_SLAVES_NO_MASTER_PRODUCT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Product should be set as \"master product\" to generate slaves]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Es können nur Slaves für ein Master-Produkt generiert werden. Aktivieren Sie ggf. die Option \"Master Artikel ja / nein\".]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_GENERATE_SLAVES_NO_PRODUCTS_MODEL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Please set \"product model\" for the product]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte wählen Sie eine \"Artikelnummer\" für das Master-Produkt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_GENERATE_SLAVES_STEP_1</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Select attributes]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Attribute auswählen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_GENERATE_SLAVES_STEP_2</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Variations preview ]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Varianten Vorschau]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_GENERATE_SLAVES_STEP_3</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Finish]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Fertigstellen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_MASTER_SLAVE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Master/Slave]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Master/Slave]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_MASTER_SLAVE_GENERATE_SLAVE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Generate Master/Slave]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Generiere Master/Slave]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_MASTER_SLAVE_GENERATE_SLAVE_LIST</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Slaves list]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Slaves Liste]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_MASTER_SLAVE_NO_ITEMS_SELECTED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[No items selected on the previuos step. Would you like to proceed?]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sie haben keines der Vorschau-Produkte zum generieren ausgewählt. Wollen Sie wirklich fortfahren?]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_MASTER_SLAVE_UNSAVED_DATA</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[You have some unsaved product data. Would you like to proceed without saving?]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sie haben einige nicht gespeicherten Produktdaten. Wollen Sie wirklich fortfahren, ohne zu speichern?]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_MS_NEXT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Next]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Weiter]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_NEXT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Next]]></value>
+	</en>
+	<bp>
+		<value><![CDATA[>]]></value>
+	</bp>
+	<cn>
+		<value><![CDATA[>]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Weiter]]></value>
+	</de>
+	<es>
+		<value><![CDATA[>]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[>]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[>]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[>]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[>]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[>]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[>]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_NEXT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Next]]></value>
+	</en>
+	<bp>
+		<value><![CDATA[>]]></value>
+	</bp>
+	<cn>
+		<value><![CDATA[>]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[>]]></value>
+	</de>
+	<es>
+		<value><![CDATA[>]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[>]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[>]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[>]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[>]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[>]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[>]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_PRODUCTS_IMAGE_FROM_MASTER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Force load Master Image]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bild von Master-Artikel verwenden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRODUCTS_MASTER_FLAG</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Master Product true / false]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[主商品 开启/关闭]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Master Artikel ja / nein]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Master Product true / false]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Article Maître vrai / faux]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Prodotto Primario vero / falso]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[主な商品 オン/オフ]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Master artikel ja / nein]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Produkt Główny prawda / fałsz]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Master продукт да / нет]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_PRODUCTS_MASTER_SLAVE_ORDER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Slave sorting]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Slave Reihenfolge]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRODUCTS_OPTION_LIST_TEMPLATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template for list of Slave Products]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[样板—配件商品列表]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Template für Liste der SlaveArtikel]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Template for list of Slave Products]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Template pour liste d'articles Esclaves]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Template per la lista dei prodotti Secondari]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[テンプレート - 部品リスト]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Template voor slave-artikellijst]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Wzór dla listy produktów podrzędnych]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Шаблон для списка Slave]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_PRODUCTS_OPTION_MASTER_PRICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Master price view]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Master Preis anzeige]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRODUCTS_TO_ATTRIBUTES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Products Attributes]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[商品属性]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Artikel Eigenschaften]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Products Attributes]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Attributs articles]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Attributi del prodotto]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[商品属性]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Artikel eigenschappen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Atrybuty Produktów]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Свойства продукта]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_MASTER_SLAVE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Master / Slave]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[主/配件]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Master / Slave]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Master / Slave]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Maître / Esclave]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Primario / Secondario]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[主な/部品]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Master/slave]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Główny / Podrzędny]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Master / Slave]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_ACTIVE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[状态]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Status]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[État]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Stato]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[状態]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Status]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Status]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Статус]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[狀態]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_AUTOPRICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[auto price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Auto Preis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_CONF_SHOW_RESET_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Show Cancel button]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zeige Aufheben-Knopf]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_FILTERLIST_ON_SELECTION_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Update Slavelist on selection]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Slave-Liste Filtern nach auswahl]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_FILTER_ACTIVE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate filter]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Filter aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_FILTER_SORT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Sort Order Filter]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Reihenfolge Filter aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_INHERIT_ASSIGNED_MASTER_IMAGES_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Inherit assigned master images]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bilder bei Generierung vererben]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_LOAD_MASTER_IMAGE_IN_SLAVE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Load Master Image in Slave]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Lade Master Bild in Slaves]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_MASTERPRICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Master price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Master Preis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_MASTER_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Master products]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Master products]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_NOPRICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[no price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[kein Preis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_RANGEPRICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Price range]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Preisspanne]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_SHOP_SEARCH_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Products in Shop Search]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Produkte in der Shop Suche]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_SLAVE_ORDER_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Slave sorting in list]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Slave Reihenfolge in Listen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_SLAVE_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Slave products]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Slave products]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_STAY_IN_MASTER_FALSE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[false]]></value>
+	</en>
+	<de>
+		<value><![CDATA[false]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_STAY_IN_MASTER_PLUS_AJAX</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Master + Ajax]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Master + Ajax]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_STAY_IN_MASTER_TRUE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[true]]></value>
+	</en>
+	<de>
+		<value><![CDATA[true]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_SUM_SLAVE_QUANTITY_FOR_GRADUATED_PRICE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Sum slaves quantity for graduated price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Staffelpreis auf alle Slaves anwenden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>_PLUGIN_MASTER_SLAVE_REDIRECT_TO_SLAVE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Master to slave redirect]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[重新导向至商品配件页面]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Weiterleitung auf Slaveartikel]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Redirect to Slaveproducts]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Rediriger vers articles esclaves]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Redirigi ai prodotti Secondari]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[再び商品の部品のページへ方向を誘導します]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Forward naar slaveartikel]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Przekieruj do produktów podrzędnych]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Передача на Slave-значение]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[重新導向至商品配件頁面]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>_PLUGIN_MASTER_SLAVE_SHOW_MAX_PRODUCTS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Slaveproducts List]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[商品配件列表]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Slaveartikel Liste]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Slaveproducts List]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Liste articles Esclaves]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Lista dei prodotti Secondari]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[商品の部品のリスト]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Slaveartikel lijst]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Lista Produktów Podrzędnych]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Список Slave-значений]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[商品配件列表]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>_PLUGIN_MASTER_SLAVE_SHOW_OPTIONS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Show Option Selection]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[显示选项选择]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzeige Optionsauswahl]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Show Option Selection]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Afficher les options]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Mostra Opzione Selezione]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[表示オプションを選択する]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Weergave optiekeuze]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Pokaż Opcję Selekcji]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Показать доступные опции]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[顯示選項選擇]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>_PLUGIN_MASTER_SLAVE_SHOW_SLAVE_LIST_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Show List with Slaveproducts]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[显示商品配件列表]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzeige Slaveartikel Liste]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Show List with Slaveproducts]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Afficher la liste avec articles Esclaves]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Mostra la lista con i prodotti Secondari]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[商品の部品のリストを表示]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Weergeven slave-artikellijst]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Pokaż liste z produktami podrzędnymi]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Показать список Slave-значений]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[顯示商品配件列表]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>_PLUGIN_MASTER_SLAVE_SHOW_SLAVE_PRODUCTS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Show Slaveproducts]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[显示商品配件]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzeige Slaveartikel]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Show Slaveproducts]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Afficher les articles Esclaves]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Mostra i prodotti Secondari]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[商品部品を表示]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Weergeven slave-artikel]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Pokaż Podrzędne Produkty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Показать Slave-значения]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[顯示商品配件]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>_PLUGIN_MASTER_SLAVE_SHOW_SLAVE_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Show Slaveproducts]]></value>
+	</en>
+</phrase>
+<phrase>
+	<key>TEXT_MOB_OPTIONS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Products options]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Produktoptionen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_NO_SELECTION</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[please select]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[请选择]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[bitte wählen]]></value>
+	</de>
+	<es>
+		<value><![CDATA[please select]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[veuillez sélectionner]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Scegli]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[選択してください]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[uitkiezen aub]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Proszę zaznacz]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Пожалуйста, выберите]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_OPTION_NOT_SELECTED</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[<ul class="info"><li>Please select an option first.</li></ul>]]></value>
+	</en>
+	<de>
+		<value><![CDATA[<ul class="info"><li>Bitte wählen Sie eine Option.</li></ul>]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_MASTER_SLAVE_NO_STOCK</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Out of stock]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zur Zeit leider nicht verfügbar.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_FROM</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[from]]></value>
+	</en>
+	<de>
+		<value><![CDATA[ab]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_TEXT_LINK_TO_MASTER</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Back to master article]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zurück zum Masterartikel]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_MASTER_SLAVE_TEXT_RESET_OPTIONS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Cancel selection]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Auswahl aufheben]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

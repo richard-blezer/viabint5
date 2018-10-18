@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_ADMIN_COMMENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Admin\'s comment]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kommentar von admin]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_REVIEW_SOURCE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Source]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Quelle]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_ALLOW_GUEST_REVIEWS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Allow guest reviews]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gastbewertungen erlauben]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_REVIEWS_ALL_REVIEWS_PAGE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[all reviews page]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Alle Bewertungen Seite]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_REVIEWS_AUTO_ACTIVATE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[enable automatic]]></value>
+	</en>
+	<de>
+		<value><![CDATA[automatischen freischalten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_REVIEWS_MASTER_SLAVE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Display Reviews in Master-Slave]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Anzeige bei Master-Slave-Produkten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_REVIEWS_MAX_DISPLAY_PRODUCTS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Max. reviews]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[评论 - 最大长度]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Bewertungen]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Max. reviews]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nombre d'évaluations]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Recensioni massime]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[コメント- 最大の長さ]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal beoordelingen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Max. przeglądów]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число рецензий]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[評論 - 最大長度]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_REVIEWS_NOTIFY_ADMIN_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[notify admin for new review]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Benachrichtigung bei neuer Bewertung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_REVIEWS_PRODUCT_ON_ALL_REVIEWS_PAGE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Productdaten on reviews page]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Produktdaten auf Bewertungen Seite]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HEADING_WRITE_REVIEW</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Write your own review]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[撰写你的评论]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Schreiben Sie Ihre eigene Bewertung]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Write your own review]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Écrivez votre critique]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Scrivi la tua recensione]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[あなたのコメントを書く]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Schrijf uw eigen beoordeling]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Napisz własną recenzję]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Пожалуйста, напишите свой отзыв]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_TOP_RATED_PRODUCTS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Top rated products]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Am besten bewertete Produkte]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_EDITOR</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Wrote by]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[评论人：]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Geschrieben von]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Wrote by]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Écrit par]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Scritta da]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[投稿者：]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Geschreven van]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Napisane przez]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Автор]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_ERROR_LOGIN</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please login to write a review]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[请登入会员以撰写评论]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Um eine Bewertung zu schreiben müssen Sie angemeldet sein.]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Please login to write a review]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Ouvrez une session pour écrire une critique.]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Effettua il login per recensire il prodotto]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[会員登録すると、コメントを書いてください。]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Om een beoordeling te schrijven moet u aangemeld zijn.]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Proszę się zalogować aby napisać recenzje]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Для того, чтобы написать рецензию, Вы должны быть авторизованы.]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_HEADING_REVIEWS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Reviews]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[评论]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bewertungen]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Reviews]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Critiques]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Recensioni]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[コメント]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Beoordelingen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Recenzje]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Рецензии]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_INFO</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Review(s)]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[评论内容]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bewertung(en)]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Review(s)]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Critique(s)]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Recensioni]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[コメント内容]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Beoordeling(en)]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[recenzja(e)]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Рецензии]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_NO_REVIEWS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[There are no reviews for this product]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[本商品尚未有任何评论]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Zu diesem Artikel existieren noch keine Bewertungen]]></value>
+	</de>
+	<es>
+		<value><![CDATA[There are no reviews for this product]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Il existe pas de critiques pour cet article]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Non ci sono recensioni per questo prodotto]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[商品のはまだコメントをしている]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Voor dit artikel bestaan nog geen beoordelingen.]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Nie ma żadnych recenzji dla tego produktu]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Пока нет рецензий]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_PRODUCT</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Product]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[商品]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Produkt]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Product]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Article]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Prodotto]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[商品]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Product]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Produkt]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Продукт]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_RATE_DESC</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Your rating]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[你的评价]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Ihre Bewertung]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Your rating]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Votre avis]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[La tua valutazione]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[あなたの評価]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Uw beoordeling]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Twoja ocena]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Ваша оценка]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_RATING_DESC</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Rate this article with 1 to 5 stars (5 stars ]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[评价文章 - 1至5颗星（5颗星\=最好的评价）]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bewerten Sie dieses Produkt auf einer Skala von 1 bis 5, wobei 5 die beste Bewertung darstellt.]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Rate this article with 1 to 5 stars (5 stars \= best rating)]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Veuillez évaluer ce produit sur une échelle de 1 à 5. 5 est la meilleure note.]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Valuta questo articolo da 1 a 5 stelle (5 stelle \= ottimo)]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[文章を評価する - 1 -5星（5星\=最も良い評価）]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Beoordel dit produkt naar een scale van 1 tot 5, waarbij 5 de beste beoordeling is.]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Oceń ten artykuł od 1 do 5 gwiazdek (5 gwiazdek = najlepsza ocena)]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Оцените этот продукт по пятибалльной шкале, где \"5\" - лучшая оценка.]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_SHOW</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[reviews]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bewertungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_SUCCESS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[review saved]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bewertung gespeichert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_TEXT_DESC</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Text of your review]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Text Ihrer Bewertung]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Text of your review]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Texte de votre critique]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Testo della tua recensione]]></value>
+	</it>
+	<nl>
+		<value><![CDATA[Tekst uw beoordeling]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Tekst twojej recenzji]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Текст рецензии]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_TITLE_DESC</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Title of your review]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[你的评论标题]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Titel Ihrer Bewertung]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Title of your review]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Titre de votre critique]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Titolo della tua recensione]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[あなたの評価の見出し]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Titel van uw beoordeling]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Tytuł twojej recenzji ]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Заголовок рецензии]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_REVIEWS_WRITE</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Write a review]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[撰写评论]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bewertung schreiben]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Write a review]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Écrire une critique]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Scrivi una recensione]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[コメントを書く]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Beoordeling schrijven]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Napisz recenzje]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Написать рецензию]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>XT_REVIEWS_ADD_SUCCESS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Thank you for your review!]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[感谢你提供宝贵的建议!]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Vielen Dank für Ihre Bewertung!]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Thank you for your review!]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Merci pour votre critique!]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Grazie per la tua recensione!]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[貴重なアドバイスを提供していただき、ありがとうございます！]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Hartelijk dank voor uw beoordeling!]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Dziękujemy za Twoją recenzję!]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Благодарим за Вашу рецензию!]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[感謝你提供寶貴的建議!]]></value>
+	</tw>
+</phrase>
+</language_content>
+</xtcommerceplugin>

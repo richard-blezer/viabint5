@@ -1,0 +1,32 @@
+<h1>{txt key=TEXT_PAGE_TITLE_ADDRESS_BOOK}</h1>
+{$message}
+<p><a href="{link page='customer' conn=SSL}">{button text=$smarty.const.BUTTON_BACK file='back.gif'}</a></p><p>{txt key=TEXT_ADDRESS_BOOK_INFO}</p>
+<br />
+<div class="highlightbox">
+{foreach name=aussen item=addresses from=$addresses_data}
+<p>
+<strong>
+{if $addresses.customers_company} {$addresses.customers_company} <br />{/if}
+{$addresses.customers_firstname} {$addresses.customers_lastname} <br />
+</strong>
+{$addresses.customers_street_address} <br />
+{if $addresses.customers_suburb} {$addresses.customers_suburb} <br />{/if}
+{$addresses.customers_postcode} {$addresses.customers_city} <br />
+{if $addresses.customers_zone} {$addresses.customers_zone} <br />{/if}
+{$addresses.customers_country} <br />
+</p>
+{if $addresses.allow_change == true}
+<p>
+<a href="{link page='customer' paction=edit_address params=abID params_value=$addresses.address_book_id' conn=SSL}">{button text=$smarty.const.BUTTON_EDIT file='edit.gif'}</a>
+&nbsp;
+<a href="{link page='customer' paction=delete_address params=abID params_value=$addresses.address_book_id' conn=SSL}">{button text=$smarty.const.BUTTON_DELETE file='delete.gif'}</a>
+</p>
+{/if}
+<div class="hr"></div>
+{/foreach}
+</div>
+<br />
+<p><small>{$address_count} / {$address_max_count} {txt key=TEXT_POSSIBLE_ENTRIES}</small></p>
+{if $add_new_address eq 1}
+<p><a href="{link page='customer' paction=edit_address' conn=SSL}">{button text=$smarty.const.BUTTON_ADD_ADDRESS file='add_address.gif'}</a></p>
+{/if}

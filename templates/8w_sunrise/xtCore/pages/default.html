@@ -1,0 +1,62 @@
+{if $content_status == 1}
+	<div class="index-content user-content">
+		<p>{$text}</p>
+	</div>
+{/if}
+
+{*
+{if $teaser_data}
+	{$teaser_data}
+{/if}
+
+{if $plugin && $plugin.all && $plugin.all != 0}
+	<div id="productslider" class="productslider tabmenu clearfix">
+		<div class="tabs-wrapper">
+			<ul class="tabs">
+				{if $plugin.xt_startpage_products.check}
+					<li{if $plugin.xt_startpage_products.first} class="first-child"{/if}><a href="#xt_startpage_products" title=""><span>{txt key=TEXT_8WORKS_SUNRISE_SLIDER_SPP}</span></a></li>
+				{/if}
+				{if $plugin.xt_new_products.check}
+					<li{if $plugin.xt_new_products.first} class="first-child"{/if}><a href="#xt_new_products" title=""><span>{txt key=TEXT_8WORKS_SUNRISE_SLIDER_NP}</span></a></li>
+				{/if}
+				{if $plugin.xt_bestseller_products.check}
+					<li{if $plugin.xt_bestseller_products.first} class="first-child"{/if}><a href="#xt_bestseller_products" title=""><span>{txt key=TEXT_8WORKS_SUNRISE_SLIDER_BP}</span></a></li>
+				{/if}
+				{if $plugin.xt_special_products.check}
+					<li{if $plugin.xt_special_products.first} class="first-child"{/if}><a href="#xt_special_products" title=""><span>{txt key=TEXT_HEADING_SPECIAL_PRODUCTS}</span></a></li>
+				{/if}
+				{if $plugin.xt_upcoming_products.check}
+					<li{if $plugin.xt_upcoming_products.first} class="first-child"{/if}><a href="#xt_upcoming_products" title=""><span>{txt key=TEXT_8WORKS_SUNRISE_SLIDER_UP}</span></a></li>
+				{/if}
+			</ul>
+		</div>
+		<div class="tab-container">
+			{if $plugin.xt_startpage_products.check}
+				<div id="xt_startpage_products" class="tabcontent clearfix">
+					{page name=xt_startpage_products type=user order_by='rand()' tpl_type='product_listing'}
+				</div>
+			{/if}
+			{if $plugin.xt_new_products.check}
+				<div id="xt_new_products" class="tabcontent clearfix">
+					{page name=xt_new_products type=user order_by='rand()' tpl_type='product_listing'}
+				</div>
+			{/if}
+			{if $plugin.xt_bestseller_products.check}
+				<div id="xt_bestseller_products" class="tabcontent clearfix">
+					{page name=xt_bestseller_products type=user order_by='rand()' tpl_type='product_listing'}
+				</div>
+			{/if}
+			{if $plugin.xt_special_products.check}
+				<div id="xt_special_products" class="tabcontent clearfix">
+					{page name=xt_special_products type=user order_by='rand()' tpl_type='product_listing'}
+				</div>
+			{/if}
+			{if $plugin.xt_upcoming_products.check}
+				<div id="xt_upcoming_products" class="tabcontent clearfix">
+					{page name=xt_upcoming_products type=user order_by='p.date_available' tpl_type='product_listing'}
+				</div>
+			{/if}
+		</div>
+	</div>
+{/if}
+*}

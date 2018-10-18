@@ -1,0 +1,87 @@
+<div data-role="header">
+    <h1>{$data.content_heading}</h1>
+</div>
+
+{$message}
+
+<p>
+    {if $file}
+        {$file}
+    {else}
+        {$data.content_body}
+    {/if}
+</p>
+
+<div>
+    {form type=form name=shipping action='dynamic' link_params=getParams method=post}
+        {form type=hidden name=action value=query}
+        <p>{txt key=TEXT_SHIPPING_INTRO}</p>
+        <table width="100" border="0" cellspacing="4" cellpadding="0">
+            <tr>
+                <td style="white-space:nowrap;"><strong>{txt key=TEXT_COUNTRY}</strong> </td>
+                <td>
+                    {if $sel_country} 
+                        {form type=select name=shipping_destination value=$country_data default=$sel_country}
+                    {else}
+                        {form type=select name=shipping_destination value=$country_data default=$smarty.const._STORE_COUNTRY}
+                    {/if}
+                </td>
+            </tr>
+        </table>
+        <button type="submit">{$smarty.const.BUTTON_SHOW}</button>
+    {form type=formend}
+</div>
+
+
+{if $shipping_data}
+    <br />
+    {foreach item=shipping_values from=$shipping_data}
+        <div data-role="header" data-theme="c">
+            <h2>{$shipping_values.shipping_name}</h2>
+        </div>
+        <div data-role="content">  
+            <table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="4">
+                <tr class="headerrow">
+                    <td class="left">{txt key=TEXT_RANGE_STAFFEL}</td>
+                    <td class="right">{txt key=TEXT_TOTAL_PRICE}  {if $shipping_values.shipping_type eq 'item'}{txt key=TEXT_TYPE_PER_ITEM}{/if}</td>
+                </tr>
+                {foreach name=shipping item=costs from=$shipping_values.costs}
+                <tr class="{cycle values="contentrow1,contentrow2"}">
+                    <td class="left">
+                        {if $costs.shipping_type_value_from neq '0'}
+                        {txt key=TEXT_RANGE_FROM}
+                        {$costs.shipping_type_value_from} 
+                        {/if} 
+                        {txt key=TEXT_RANGE_TO}
+                        {$costs.shipping_type_value_to}
+                        {if $shipping_values.shipping_type eq 'weight'}
+                        KG
+                        {/if}
+                        {if $shipping_values.shipping_type eq 'item'}
+                        {txt key=TEXT_TYPE_ITEM}
+                        {/if}
+                    </td>
+                    <td class="right">{$costs.shipping_price}</td> 
+                </tr>
+                {if $smarty.foreach.shipping.last eq true}
+                <tr class="contentrow1">
+                    <td class="left">
+                        {txt key=TEXT_RANGE_FROM}
+                        {$costs.shipping_type_value_to}
+                        {if $shipping_values.shipping_type eq 'weight'}
+                        KG
+                        {/if}
+                        {if $shipping_values.shipping_type eq 'item'}
+                        {txt key=TEXT_TYPE_ITEM}
+                        {/if}
+                    </td>
+                    <td class="right">{txt key=TEXT_INFO_NO_SHIPPING}</td> 
+                </tr>
+                {/if}
+
+                {/foreach}
+            </table>
+        </div>
+    {/foreach}
+{/if}
+{hook key=form_shipping_bottom}

@@ -1,0 +1,9 @@
+
+{if !empty($tracking_infos)}
+<div class="box">
+    <p class="headline">{txt key=TEXT_TRACKING}</p>
+    {foreach item=tracking_info from=$tracking_infos}
+        {$tracking_info.shipper_name} <a target="_blank" href="{$tracking_info.shipper_tracking_url}">{$tracking_info.tracking_code}</a><br />
+    {/foreach}
+</div>
+{/if}

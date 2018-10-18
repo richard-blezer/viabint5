@@ -1,0 +1,22 @@
+<p class="headline">Trusted Shops K&auml;uferschutz</p>
+<div class="box">
+	<div class="float-left" style="margin-right:20px;">
+		<form name="formSiegel" method="post" action="https://www.trustedshops.com/shop/certificate.php" target="_blank"> 
+			<input type="image" src="plugins/xt_trusted_shops/images/trustedshops_m.png" title="Klicken Sie auf das G&uuml;tesiegel, um die G&uuml;ltigkeit zu pr&uuml;fen!" />
+			<input name="shop_id" type="hidden" value="{$shop_id}" /> 
+		</form> 
+	</div><!-- .float-left -->
+	<div>
+		<p>Als zus&auml;tzlichen Service bieten wir Ihnen den Trusted Shops K&auml;uferschutz an. Wir &uuml;bernehmen alle Kosten dieser Garantie, Sie m&uuml;ssen sich lediglich anmelden.</p>
+	</div>
+	<div>
+		<form id="formTShops" name="formTShops" method="post" action="https://www.trustedshops.com/shop/protection.php" target="_blank"> 
+			<input type="hidden" name="_charset_" value="" /> 
+			<input name="shop_id" type="hidden" value="{$shop_id}" /> 
+			{foreach from=$_form_fields key=k item=v}
+			<input name="{$k}" type="hidden" value="{$v}" /> 
+			{/foreach}
+			<input type="submit" id="btnProtect" name="btnProtect" value="Anmeldung zum Trusted Shops K&auml;uferschutz" />
+		</form>
+	</div>
+</div><!-- .box -->

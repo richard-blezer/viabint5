@@ -1,0 +1,41 @@
+<h2>{txt key=TEXT_CONTACT_PAGE}</h2>
+{$message}
+
+<p>{if $file}{$file}{else}{$data.content_body}{/if}</p>
+
+{form type=form name=login action='dynamic' link_params=getParams method=post}
+{form type=hidden name=action value=send}
+	
+<p>{txt key=TEXT_CONTACT_INTRO}</p>
+
+<div data-role="fieldcontain">
+	<label for="email_address">{txt key=TEXT_EMAIL} *</label>
+	{form type=text id=email_address name=email_address params='maxlength="40" size="40"' value=$email_address}<br/>
+        
+	<label for="firstname">{txt key=TEXT_FIRSTNAME} *</label>
+	{form type=text id=firstname name=firstname params='maxlength="40" size="40"' value=$firstname}<br/>
+	
+	<label for="lastname">{txt key=TEXT_LASTNAME} *</label>
+	{form type=text id=lastname name=lastname params='maxlength="40" size="40"' value=$lastname}<br/>
+	
+	<label for="company">{txt key=TEXT_COMPANY}</label>
+	{form type=text id=company name=company params='maxlength="40" size="40"' value=$company}<br/>
+	
+	<label for="order_id">{txt key=TEXT_ORDER_NUMBER}</label>
+	{form type=text id=order_id name=order_id params='maxlength="40" size="40"' value=$order_id}<br/>
+	
+	<label for="customer_message">{txt key=TEXT_MESSAGE}</label>
+	{form type=textarea id=customer_message name=customer_message params='cols="40" rows="8"' value=$customer_message}<br/>
+         
+	{if $logged_in eq 'false'}
+		{txt key=TEXT_CAPTCHA}
+		<img src="{$captcha_link}" /><br/><br/>
+		   
+		<label for="captcha">{txt key=text_captcha}</label>
+		{form type=text id=captcha name=captcha params='maxlength="30"'}<br/>
+        {/if}
+</div>
+<input type="submit" value="{txt key=BUTTON_SUBMIT}" />
+{form type=formend}
+
+<p>{txt key=TEXT_MUST}</p>

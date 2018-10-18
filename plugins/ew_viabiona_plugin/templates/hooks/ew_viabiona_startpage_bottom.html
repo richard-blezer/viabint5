@@ -1,0 +1,120 @@
+{if (($plugin_status.xt_new_products == 'true' && $smarty.const.ACTIVATE_XT_NEW_PRODUCTS_PAGE == 'true') ||
+    ($plugin_status.xt_bestseller_products == 'true' && $smarty.const.ACTIVATE_XT_BESTSELLER_PRODUCTS_PAGE == 'true') ||
+    ($plugin_status.xt_special_products == 'true' && $smarty.const.ACTIVATE_XT_SPECIAL_PRODUCTS_PAGE == 'true') ||
+    ($plugin_status.xt_upcoming_products == 'true' && $smarty.const.ACTIVATE_XT_UPCOMING_PRODUCTS_PAGE == 'true'))}
+
+    {assign var="isActiveHeading" value="false"}
+    {assign var="isActiveBody" value="false"}
+
+    <div id="startpage-bottom">
+        <div id="startpage-tabsystem" class="hidden-xs hidden-sm">
+            <ul id="startpage-tabs" class="nav nav-tabs wow fadeInRight" role="tablist">
+                {if $plugin_status.xt_new_products == 'true' && $smarty.const.ACTIVATE_XT_NEW_PRODUCTS_PAGE == 'true'}
+                    <li class="tabs{if $isActiveHeading != 'true'} active{assign var="isActiveHeading" value="true"}{/if}"><a href="#tab_newproducts" aria-controls="tab_newproducts" role="tab" data-toggle="tab" class="startpage-tablink">{txt key=TEXT_HEADING_NEW_PRODUCTS}</a></li>
+                {/if}
+                {if $plugin_status.xt_bestseller_products == 'true' && $smarty.const.ACTIVATE_XT_BESTSELLER_PRODUCTS_PAGE == 'true'}
+                    <li class="tabs{if $isActiveHeading != 'true'} active{assign var="isActiveHeading" value="true"}{/if}"><a href="#tab_bestseller" aria-controls="tab_bestseller" role="tab" data-toggle="tab" class="startpage-tablink">{txt key=TEXT_HEADING_BESTSELLER_PRODUCTS}</a></li>
+                {/if}
+                {if $plugin_status.xt_special_products == 'true' && $smarty.const.ACTIVATE_XT_SPECIAL_PRODUCTS_PAGE == 'true'}
+                    <li class="tabs{if $isActiveHeading != 'true'} active{assign var="isActiveHeading" value="true"}{/if}"><a href="#tab_specialproducts" aria-controls="tab_specialproducts" role="tab" data-toggle="tab" class="startpage-tablink">{txt key=TEXT_SPECIAL_PRODUCTS}</a></li>
+                {/if}
+                {if $plugin_status.xt_upcoming_products == 'true' && $smarty.const.ACTIVATE_XT_UPCOMING_PRODUCTS_PAGE == 'true'}
+                    <li class="tabs{if $isActiveHeading != 'true'} active{assign var="isActiveHeading" value="true"}{/if}"><a href="#tab_upcomingproducts" aria-controls="tab_upcomingproducts" role="tab" data-toggle="tab" class="startpage-tablink">{txt key=TEXT_HEADING_UPCOMING_PRODUCTS}</a></li>
+                {/if}
+            </ul>
+            <div class="nav-tabs-hr"></div>
+            <div id="startpage-tabscontent" class="tab-content wow fadeInRight">
+                {if $plugin_status.xt_new_products == 'true' && $smarty.const.ACTIVATE_XT_NEW_PRODUCTS_PAGE == 'true'}
+                    <div role="tabpanel" class="tab-pane fade{if $isActiveBody != 'true'} in active{assign var="isActiveBody" value="true"}{/if}" id="tab_newproducts">
+                        {page name=xt_new_products type=user order_by='p.last_modified DESC' tpl_type='product_listing' tpl='product_listing_slider.html'}
+                    </div>
+                {/if}
+                {if $plugin_status.xt_bestseller_products == 'true' && $smarty.const.ACTIVATE_XT_BESTSELLER_PRODUCTS_PAGE == 'true'}
+                    <div role="tabpanel" class="tab-pane fade{if $isActiveBody != 'true'} in active{assign var="isActiveBody" value="true"}{/if}" id="tab_bestseller">
+                        {page name=xt_bestseller_products type=user tpl_type='product_listing' tpl='product_listing_slider.html'}
+                    </div>
+                {/if}
+                {if $plugin_status.xt_special_products == 'true' && $smarty.const.ACTIVATE_XT_SPECIAL_PRODUCTS_PAGE == 'true'}
+                    <div role="tabpanel" class="tab-pane fade{if $isActiveBody != 'true'} in active{assign var="isActiveBody" value="true"}{/if}" id="tab_specialproducts">
+                        {page name=xt_special_products type=user order_by='p.products_id' tpl_type='product_listing' tpl='product_listing_slider.html'}
+                    </div>
+                {/if}
+                {if $plugin_status.xt_upcoming_products == 'true' && $smarty.const.ACTIVATE_XT_UPCOMING_PRODUCTS_PAGE == 'true'}
+                    <div role="tabpanel" class="tab-pane fade{if $isActiveBody != 'true'} in active{assign var="isActiveBody" value="true"}{/if}" id="tab_upcomingproducts">
+                        {page name=xt_upcoming_products type=user order_by='p.date_available' tpl_type='product_listing' tpl='product_listing_slider.html'}
+                    </div>
+                {/if}
+            </div>
+        </div>
+
+        <div id="startpage-tabsystem-mobile" class="hidden-sm hidden-md hidden-lg">
+            {if $plugin_status.xt_new_products == 'true' && $smarty.const.ACTIVATE_XT_NEW_PRODUCTS_PAGE == 'true'}
+                <div class="wow fadeInRight">
+                    <p class="breaking-headline">{txt key=TEXT_HEADING_NEW_PRODUCTS}</p>
+                    <div id="tab_newproducts_mobile">
+                        {page name=xt_new_products type=user order_by='p.last_modified DESC' tpl_type='product_listing' tpl='product_listing_slider_xs.html'}
+                    </div>
+                </div>
+            {/if}
+            {if $plugin_status.xt_bestseller_products == 'true' && $smarty.const.ACTIVATE_XT_BESTSELLER_PRODUCTS_PAGE == 'true'}
+                <div class="wow fadeInRight">
+                    <p class="breaking-headline">{txt key=TEXT_HEADING_BESTSELLER_PRODUCTS}</p>
+                    <div id="tab_bestseller_mobile">
+                        {page name=xt_bestseller_products type=user tpl_type='product_listing' tpl='product_listing_slider_xs.html'}
+                    </div>
+                </div>
+            {/if}
+            {if $plugin_status.xt_special_products == 'true' && $smarty.const.ACTIVATE_XT_SPECIAL_PRODUCTS_PAGE == 'true'}
+                <div class="wow fadeInRight">
+                    <p class="breaking-headline">{txt key=TEXT_SPECIAL_PRODUCTS}</p>
+                    <div id="tab_specialproducts_mobile">
+                        {page name=xt_special_products type=user order_by='p.products_id' tpl_type='product_listing' tpl='product_listing_slider_xs.html'}
+                    </div>
+                </div>
+            {/if}
+            {if $plugin_status.xt_upcoming_products == 'true' && $smarty.const.ACTIVATE_XT_UPCOMING_PRODUCTS_PAGE == 'true'}
+                <div class="wow fadeInRight">
+                    <p class="breaking-headline">{txt key=TEXT_HEADING_UPCOMING_PRODUCTS}</p>
+                    <div id="tab_upcomingproducts_mobile">
+                        {page name=xt_upcoming_products type=user order_by='p.date_available' tpl_type='product_listing' tpl='product_listing_slider_xs.html'}
+                    </div>
+                </div>
+            {/if}
+        </div>
+
+        <div id="startpage-tabsystem-mobile-sm" class="hidden-xs hidden-md hidden-lg">
+            {if $plugin_status.xt_new_products == 'true' && $smarty.const.ACTIVATE_XT_NEW_PRODUCTS_PAGE == 'true'}
+                <div class="wow fadeInRight">
+                    <p class="breaking-headline">{txt key=TEXT_HEADING_NEW_PRODUCTS}</p>
+                    <div id="tab_newproducts_mobile_sm">
+                        {page name=xt_new_products type=user order_by='p.last_modified DESC' tpl_type='product_listing' tpl='product_listing_slider_sm.html'}
+                    </div>
+                </div>
+            {/if}
+            {if $plugin_status.xt_bestseller_products == 'true' && $smarty.const.ACTIVATE_XT_BESTSELLER_PRODUCTS_PAGE == 'true'}
+                <div class="wow fadeInRight">
+                    <p class="breaking-headline">{txt key=TEXT_HEADING_BESTSELLER_PRODUCTS}</p>
+                    <div id="tab_bestseller_mobile_sm">
+                        {page name=xt_bestseller_products type=user tpl_type='product_listing' tpl='product_listing_slider_sm.html'}
+                    </div>
+                </div>
+            {/if}
+            {if $plugin_status.xt_special_products == 'true' && $smarty.const.ACTIVATE_XT_SPECIAL_PRODUCTS_PAGE == 'true'}
+                <div class="wow fadeInRight">
+                    <p class="breaking-headline">{txt key=TEXT_SPECIAL_PRODUCTS}</p>
+                    <div id="tab_specialproducts_mobile_sm">
+                        {page name=xt_special_products type=user order_by='p.products_id' tpl_type='product_listing' tpl='product_listing_slider_sm.html'}
+                    </div>
+                </div>
+            {/if}
+            {if $plugin_status.xt_upcoming_products == 'true' && $smarty.const.ACTIVATE_XT_UPCOMING_PRODUCTS_PAGE == 'true'}
+                <div class="wow fadeInRight">
+                    <p class="breaking-headline">{txt key=TEXT_HEADING_UPCOMING_PRODUCTS}</p>
+                    <div id="tab_upcomingproducts_mobile_sm">
+                        {page name=xt_upcoming_products type=user order_by='p.date_available' tpl_type='product_listing' tpl='product_listing_slider_sm.html'}
+                    </div>
+                </div>
+            {/if}
+        </div>
+    </div>
+{/if}

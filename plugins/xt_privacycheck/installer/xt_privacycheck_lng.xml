@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_PRIVACYCHECK_SHOW_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Aktivieren]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_PRIVACYCHECK_TYPE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Must be accepted]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestätigung erforderlich]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_DOT</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRIVACY_CHECK_ERROR</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please accept our privacy policy.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte akzeptieren Sie unsere Datenschutzerklärung.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRIVACY_TEXT</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Privacy policy]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Datenschutzerklärung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRIVACY_TEXT_INFO</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please read our]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte lesen Sie unsere]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

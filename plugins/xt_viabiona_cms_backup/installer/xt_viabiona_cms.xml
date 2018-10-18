@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf8"?>
+
+<!--
+ ##########################################################################
+ #                       xt:Commerce VEYTON 4.0 Shopsoftware              #
+ # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+ #                                                                        #
+ # Copyright 2012 xt:Commerce GmbH. All Rights Reserved.                  #
+ # This file may not be redistributed in whole or significant part.       #
+ # Content of this file is Protected By International Copyright Laws.     #
+ #                                                                        #
+ # ~~~~~~ xt:Commerce VEYTON 4.0 Shopsoftware IS NOT FREE SOFTWARE ~~~~~~~#
+ #                                                                        #
+ #                    http://www.xt-commerce.com                          # 
+ #                                                                        #
+ # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+ #                                                                        #
+ # @copyright xt:Commerce GmbH, www.xt-commerce.com                       #
+ # viabiona CMS-Plugin, version 1.0.0, developer : Michael Garbs          #
+ #                                                                        #
+ # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+ #                                                                        #
+ # xt:Commerce GmbH, Eduard Bodem Gasse 6, 6020 Innsbruck, Austria        #
+ #                                                                        # 
+ #                     helpdesk@xt-commerce.com                           #
+ #                                                                        #
+ ##########################################################################
+ -->
+
+<xtcommerceplugin>
+<title>Viabiona CMS</title>
+<version>1.0.0</version>
+<code>xt_viabiona_cms</code>
+<url>http://www.xt-commerce.com</url>
+<description>CMS module for loading html files instead of category descriptions and content page bodies.</description>
+<type>core</type>
+<db_install><![CDATA[
+if (!$this->_FieldExists('cms_cat_path',TABLE_CATEGORIES_DESCRIPTION)) 
+$db->Execute("ALTER TABLE ".TABLE_CATEGORIES_DESCRIPTION." ADD `cms_cat_path` VARCHAR( 255 ) DEFAULT NULL;");
+if (!$this->_FieldExists('cms_showcatinfooter_status',TABLE_CATEGORIES)) 
+$db->Execute("ALTER TABLE ".TABLE_CATEGORIES." ADD `cms_showcatinfooter_status` INT ( 1 ) DEFAULT 0;");
+if (!$this->_FieldExists('cms_con_path',TABLE_CONTENT_ELEMENTS)) 
+$db->Execute("ALTER TABLE ".TABLE_CONTENT_ELEMENTS." ADD `cms_con_path` VARCHAR( 255 ) DEFAULT NULL;");
+if (!$this->_FieldExists('cms_showprodinfooter_status',TABLE_PRODUCTS)) 
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD `cms_showprodinfooter_status` INT ( 1 ) DEFAULT 0;");
+]]></db_install>
+<db_uninstall><![CDATA[
+$db->Execute("ALTER TABLE ".TABLE_CATEGORIES_DESCRIPTION." DROP `cms_cat_path`;");
+$db->Execute("ALTER TABLE ".TABLE_CATEGORIES." DROP `cms_showcatinfooter_status`;");
+$db->Execute("ALTER TABLE ".TABLE_CONTENT_ELEMENTS." DROP `cms_con_path`;");
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." DROP `cms_showprodinfooter_status`;");
+]]></db_uninstall>
+<plugin_code>
+
+<code>
+<hook>category:getCategoryData_bottom</hook>
+<phpcode><![CDATA[
+if ($data['cms_cat_path'] != '') $data['categories_description'] = file_get_contents($data['cms_cat_path']);
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>class.content:getHookContent_bottom</hook>
+<phpcode><![CDATA[
+if ($content_array['cms_con_path'] != '')  
+    {      
+       $content_array['content_body'] = file_get_contents($content_array['cms_con_path']);   
+       $content_array['text'] = file_get_contents($content_array['cms_con_path']);   
+       $content_array['content_popup_link'] = '';
+    }
+
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+</plugin_code>
+<language_content>
+
+<phrase>
+<key>TEXT_CMS_CAT_PATH</key>
+<class>admin</class>
+<de>
+<value>CMS: Pfad zur Datei </value>
+</de>
+<en>
+<value>CMS: path to file </value>
+</en>
+</phrase>
+
+<phrase>
+<key>TEXT_CMS_SHOWCATINFOOTER_STATUS</key>
+<class>admin</class>
+<de>
+<value>CMS: Kategorie im Footer anzeigen ? </value>
+</de>
+<en>
+<value>CMS: Show category in footer ? </value>
+</en>
+</phrase>
+
+<phrase>
+<key>TEXT_CMS_CON_PATH</key>
+<class>admin</class>
+<de>
+<value>CMS: Pfad zur Datei </value>
+</de>
+<en>
+<value>CMS: path to file </value>
+</en>
+</phrase>
+
+<phrase>
+<key>TEXT_CMS_SHOWPRODINFOOTER_STATUS</key>
+<class>admin</class>
+<de>
+<value>CMS: Produkt im Footer anzeigen ? </value>
+</de>
+<en>
+<value>CMS: Show product in footer ? </value>
+</en>
+</phrase>
+
+</language_content>
+</xtcommerceplugin> 

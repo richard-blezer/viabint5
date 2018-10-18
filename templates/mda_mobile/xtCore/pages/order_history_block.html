@@ -1,0 +1,51 @@
+<!-- Table based version-->
+
+<!--<table class="tabledetails" width="100%" border="0" cellspacing="0">
+	<tr class="headerrow">
+      <td class="left">{txt key=TEXT_ORDER_NUMBER}</td>
+      <td class="left">{txt key=TEXT_ORDER_DATE}</td>
+      <td class="left">{txt key=TEXT_ARTICLE}</td>
+      <td class="left">{txt key=TEXT_TOTAL}</td>
+	  <td class="right">{txt key=TEXT_ORDER_STATUS}</td>
+	  <td class="right"> </td>
+    </tr>
+  {foreach name=aussen item=data from=$order_data}
+    <tr class="{cycle values="contentrow1,contentrow2"}">
+    <td>{$data.order_data.orders_id}</td>
+    <td><strong>{$data.order_data.date_purchased}</strong></td>
+    <td>{$data.order_count}</td>
+    <td>{$data.order_total.total.formated}</td>
+	<td>{$data.order_data.orders_status}</td>
+	<td><a href="{link page='customer' paction=order_info params=oid params_value=$data.order_data.orders_id conn=SSL}" data-role="button" data-icon="search" data-iconpos="notext">{img img=magnifier.png url=`$smarty.const._SRV_WEB`media/icons/}</a></td>
+  </tr>
+  {/foreach}
+</table>-->
+
+
+<!-- Accordion --> 
+
+<div data-role="collapsible-set">
+	{foreach name=aussen item=data from=$order_data}
+	<div data-role="collapsible" data-collapsed="true" data-content-theme="d">
+		<h3>{$data.order_data.date_purchased}</h3>
+		<div class="ui-grid-a">
+			<div class="ui-block-a"><strong>{txt key=TEXT_ORDER_NUMBER}</strong></div>
+			<div class="ui-block-b">{$data.order_data.orders_id}</div>
+		</div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a"><strong>{txt key=TEXT_ARTICLE}</strong></div>
+			<div class="ui-block-b">{$data.order_count}</div>
+		</div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a"><strong>{txt key=TEXT_TOTAL}</strong></div>
+			<div class="ui-block-b">{$data.order_total.total.formated}</div>
+		</div>
+		<div class="ui-grid-a">
+			<div class="ui-block-a"><strong>{txt key=TEXT_ORDER_STATUS}</strong></div>
+			<div class="ui-block-b">{$data.order_data.orders_status}</div>
+		</div>
+		<a href="{link page='customer' paction=order_info params=oid params_value=$data.order_data.orders_id conn=SSL}" data-role="button" data-icon="search">{txt key=TEXT_PAGE_TITLE_ACCOUNT_HISTORY_INFO}</a>
+	</div>
+	{/foreach}
+</div>
+<p></p>

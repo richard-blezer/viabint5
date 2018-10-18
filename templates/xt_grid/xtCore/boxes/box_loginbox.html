@@ -1,0 +1,16 @@
+<div id="box-loginbox" class="sidebar-box">
+	<p class="headline">{txt key=TEXT_BOX_TITLE_LOGIN}</p>
+	{form type=form name=create_account action='customer' paction='login' link_params=getParams method=post conn=SSL}
+	{form type=hidden name=action value=login}
+	{form type=hidden name=link_target value=index}
+	
+	<label>{txt key=text_email}</label>
+	{form type=text name=email maxlength='50'}
+
+	<label>{txt key=text_password}</label>
+	{form type=password name=password maxlength='30'}
+
+	<p class="right"><a href="{link page='customer' paction='password_reset' conn=SSL}">{txt key=text_link_lostpassword}</a></p>
+	<p class="right">{css_button text=$smarty.const.BUTTON_LOGIN type='form'}</p>
+	{form type=formend}
+</div><!-- #box-loginbox .sidebar-box -->

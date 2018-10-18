@@ -1,0 +1,26 @@
+{include file="file:$_system_root_templates/email/email_top.html"}
+<!-- // Begin Content \\ -->
+<table class="email-content" cellpadding="0" cellspacing="0" width="660" style="font: 12px Arial, Helvetica, sans-serif;color: #484848;">
+	<tr>
+		<td>
+			<h1 style="font-size:14px;">Hello {$gender} {$customers_firstname} {$customers_lastname},</h1>
+			<p>We have received your cancellation and soon we will contact you</p>
+			<h2 style="font-size:12px;">The data you've submitted:</h2>
+
+			<p>{txt key=TEXT_ORDER_DATE}: {$order_date}</p>
+			<p>{txt key=TEXT_RECIEVED_DATE}: {$recieved_date}</p>
+			<p>{txt key=TEXT_STREET}: {$street}</p>
+			<p>{txt key=TEXT_CITY}: {$city}</p>
+			<p>{txt key=TEXT_COUNTRY}: {$country}</p>
+			<p>{txt key=TEXT_CLIENT_NUMBER}: {$client_number}</p>
+			<p>{txt key=TEXT_INVOICE_NUMBER}: {$invoice_number}</p>
+			<p>{txt key=TEXT_PRODUCT_NUMBERS}: {$product_numbers}</p>
+		    <p>{txt key=TEXT_MESSAGE}: {$message}</p>
+		    <p>{txt key=TEXT_REVOCATION_DATE}: {$revocation_date}</p>
+			
+            <p style="background: #FFE0E4; padding: 10px;"><b>Warning:</b> This e-mail address was given to us by a customer. If you have not registered, please reply to this e-mail.</p>
+		</td>
+	</tr>
+</table>
+<!-- // End Content \\ -->
+{include file="file:$_system_root_templates/email/email_bottom.html"}

@@ -1,0 +1,10 @@
+{foreach key=key name=aussen item=module_data from=$cat1}
+    <li class="level{$module_data.level}{if $module_data.active} active{/if}">
+        <a href="{$module_data.categories_link}" title="{$module_data.categories_heading_title}">
+            {if $module_data.categories_image != ''}
+        	<span class="img">{img img=$module_data.categories_image type=m_info class=productImageBorder}</span>
+            {/if}
+            <span class="text">{$module_data.categories_name}</span>
+        </a>
+    </li>
+{/foreach}

@@ -1,0 +1,536 @@
+/** 
+ * Admin Template for xt:Commerce 4
+ *
+ * default template v2.0.0
+ */
+ 
+/* html, body & typo --------------------------------------------------------------------- */ 
+
+html,body {
+	font: 12px "Arial", Helvetica, sans-serif;
+	height: 100%; 
+	background: #f6f6f6;
+	color: #484848;
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+	overflow: hidden;
+}
+
+h1 {
+	color: #fff;
+	font-weight: bold;
+	font-size: 20px;
+	padding-left:10px;
+	width: auto;
+	border-style:solid;
+	border-width: 0 0 2px 0;
+	border-color: #dd9502;
+	}
+	
+h2 {
+	color: #000; 
+	font-weight: bold;
+	font-size: 16px; 
+	margin: 15px 0 8px 0; 
+	padding: 0;
+}
+
+h3 {
+	font-size: 14px;
+	margin: 10px 0 10px 0;
+	font-weight: 600;
+}
+
+p {
+	margin: 5px;
+}
+
+.padding5px { 
+	padding: 5px
+}
+.padding10px {
+	padding: 10px
+}
+
+.floatright {
+	text-align:right;
+	float:right;
+}
+
+/* -------------------------------------------------------------------------------------- */ 
+
+
+/* login -------------------------------------------------------------------------------- */ 
+
+#login-error .error {
+	padding: 10px; 
+	margin: 20px;
+	border: 0 none;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.15);
+	-moz-box-shadow: inset 0 0 10px rgba(0,0,0,0.15);
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.15);
+	background: #f25d44;
+	background: -moz-linear-gradient(#f5a285, #f25d44);
+	background: -o-linear-gradient(#f5a285, #f25d44);
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f5a285), to(#f25d44));
+	background: -webkit-linear-gradient(#f5a285, #f25d44);
+	list-style: none;
+}
+
+#login {
+	width: 350px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -175px 0 0 -175px;
+}
+
+#login-box {
+	width: 360px;
+	height: 280px;
+	margin: 0 auto 20px auto;
+	background: #fff; 
+	color: #484848;
+	padding: 10px 0 10px 0;
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 0 15px rgba(0,0,0,0.15), inset 0 0 25px rgba(0,0,0,0.15);
+	-moz-box-shadow: 0 0 15px rgba(0,0,0,0.15), inset 0 0 25px rgba(0,0,0,0.15);
+	box-shadow: 0 0 15px rgba(0,0,0,0.15), inset 0 0 25px rgba(0,0,0,0.15);
+}
+
+#login-box #login-logo {
+		text-align: center;
+		padding: 20px 0 60px 0;	
+}
+
+#login-box label {
+    width: 100px;
+    display: block;
+    float: left;
+    height: 22px;
+    line-height: 22px;
+    text-align: right;
+    padding: 0 10px 0 0;
+}
+
+#login-box input[type="text"],
+#login-box input[type="password"] {
+	width: 200px;
+	margin: 0 0 8px 0;
+	padding: 5px;
+	outline: 0 none;
+	border: 1px solid #cdcdcd;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+	-moz-box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+	clear: right;
+}
+
+#login-box input[type="submit"] {
+	color: #fff;
+	padding: 11px 20px;
+	float: right;
+	margin: 10px 30px 0 0 ;
+	background: #ff7b00;
+	background: -moz-linear-gradient(top, #ffae4b 0%, #ff7b00);
+	background: -o-linear-gradient(#ffaf4b, #ff7b00);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffae4b), to(#ff7b00));
+	background: -webkit-linear-gradient(#ffaf4b, #ff7b00);
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #ff7b00;
+}
+
+#login-box input[type="submit"]:hover {
+    cursor: pointer;
+}
+
+#login-box a {
+	text-decoration: none;
+	color: #484848;
+	margin:0 0 0 113px;
+}
+
+#login-box a:hover {
+	text-decoration: underline;
+}
+
+
+#login-footer {
+	margin: 0 auto;
+	width: 350px;
+	text-align: center;
+}
+
+#login-footer a {
+	text-decoration: none;
+	color: #484848;
+}
+
+#login-footer a:hover {
+	text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------------------------- */ 
+
+/* clock & login time-------------------------------------------------------------------- */ 
+
+#clock_outer {
+	position: absolute;
+	top: 1px;
+	right: 5px;
+	width: 240px;
+	line-height: 24px;
+}
+
+#clock {
+	float: left;
+}
+
+#login-time {
+	text-align: right;
+	padding: 0;
+}
+
+/* -------------------------------------------------------------------------------------- */ 
+
+
+/* version notice ----------------------------------------------------------------------- */ 
+
+#version_notice_outer {
+	position: relative;
+	top: 30px;
+	left: 0px;
+	height: 20px;
+	width: 100%;
+	padding: 5px 0 0 5px;
+	background: #fff;
+	opacity:.30;filter: alpha(opacity=30);
+	-moz-opacity: 0.3;
+}
+
+#version_notice {
+	margin-top: 5px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 12px;
+	float: left;
+}
+
+/* -------------------------------------------------------------------------------------- */
+
+
+/* highlightbox ------------------------------------------------------------------------- */ 
+
+div.highlightbox {
+	padding: 15px;
+	background: #fff; 
+	overflow: scroll;
+}
+
+div.highlightbox h1 {
+	color: #be8100;
+	padding: 0 0 10px 0;
+	margin: 0; 
+	border: none;
+	font-size: 16px
+}
+
+/* -------------------------------------------------------------------------------------- */ 
+
+
+/* stack -------------------------------------------------------------------------------- */ 
+
+ul.stack {
+	padding: 5px
+}
+
+ul.stack li {}
+
+ul.stack li.success {
+	list-style: none;
+	padding: 5px 0 2px 20px;
+	background: url('../images/icons/accept.png') no-repeat 0 4px;
+}
+
+ul.stack li.error {
+	list-style :none; 
+	padding: 5px 0 2px 20px;
+	background: url('../images/icons/cross.png') no-repeat 0 4px;
+}
+
+ul.stack li.plugin_script_add {
+	list-style: none;
+	padding: 5px 0 2px 20px;
+	background: url('../images/icons/script_add.png') no-repeat 0 4px;
+}
+
+ul.stack li.plugin_config_add {
+	list-style: none;
+	padding: 5px 0 2px 20px;
+	background: url('../images/icons/cog_add.png') no-repeat 0 4px;
+}
+
+ul.stack li.plugin_payment_add {
+	list-style :none;
+	padding: 5px 0 2px 20px;
+	background: url('../images/icons/money_add.png') no-repeat 0 4px;
+}
+
+ul.stack li.plugin_lang_add {
+	list-style: none;
+	padding: 5px 0 2px 20px;
+	background: url('../images/icons/textfield_add.png') no-repeat 0 4px;
+}
+
+ul.stack li.plugin_payment_config_add {
+	list-style: none;
+	padding: 5px 0 2px 20px;
+	background: url('../images/icons/cog_add.png') no-repeat 0px 4px;
+}
+
+/* -------------------------------------------------------------------------------------- */ 
+
+
+/* order --------------------------------------------------------------------------------- */ 
+
+.ordertitle {
+	margin: 5px;
+	padding: 2px 5px;
+	background: #f2d09d;
+}
+
+
+.a_order h2{
+	margin: 10px 5px;
+}
+
+.a_order table ,
+.orderdetail table {
+	font-size: 12px;
+	margin: 10px 5px;
+	width: 99%;
+}
+
+.a_orderdetail th {
+	font-weight: 600;
+	background: #ddd;
+	border-top: 2px #dd9502 solid;
+	padding: 2px 5px;
+}
+
+.a_orderdetail td {
+	background: #e8e7d9;
+}
+
+.orderStatusHistory td {
+	border-bottom: 1px #ccc solid; 
+	padding: 2px;
+}
+.text,
+.deliverybg,
+.billingbg {
+	padding: 2px 5px;
+}
+.deliverybg {
+	background: url('../images/layout/delivery.gif') 100% 100% no-repeat;
+}
+
+.billingbg {
+	background: url('../images/layout/billing.gif') 100% 100% no-repeat;
+}
+
+.a_order tbody {}
+
+.a_order tbody td {
+	border-bottom: 1px #ccc solid;
+	padding: 2px 5px;
+}
+
+.a_order tbody td.none {
+	border: 0 none;
+}
+
+.a_order tbody td.right{
+	text-align: right;
+}
+
+.a_order tbody td.left{
+	text-align: left;
+}
+
+.a_order thead th {
+	font-weight: 600;
+	border-right: 1px #fff solid;
+	text-align: center;
+	padding: 2px 5px;
+}
+
+.a_order tbody tr, tbody tr th {}
+
+.a_order tfoot th, tfoot td {}
+
+.a_order tdtotal {
+	background: #e8e7d9;
+	border-right: 1px #fff solid;
+	border-top: 1px #fff solid;
+	text-align: right;
+	padding: 2px 5px;
+}
+
+.a_order tfoot th {
+	border: 0 none;
+}
+
+.a_order tfoot td {}
+
+
+/* -------------------------------------------------------------------------------------- */ 
+
+
+/* monitor ------------------------------------------------------------------------------ */ 
+
+table.monitor {
+	font-size: 11px;
+	background: #fff2cc;
+	border: 1px solid #da9401;
+}
+
+table.monitor tr td {
+	padding: 4px;
+}
+
+table.monitor tr.headerrow td {
+	background: #da9401;
+	color: #fff;
+	font-weight: bold;
+}
+
+table.monitor tr.headerrow td.left {
+	text-align: left;
+}
+
+table.monitor tr.headerrow td.center {
+	text-align:center;
+}
+
+table.monitor tr.headerrow td.right {
+	text-align:right;
+}
+
+/* -------------------------------------------------------------------------------------- */ 
+
+
+/* framework ---------------------------------------------------------------------------- */ 
+
+.ux-grid3-row-action-cell .x-grid3-cell-inner {
+	padding: 1px 0 0 0;
+}
+
+.ux-grid3-row-action-cell .x-grid3-cell-inner div {
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+
+ul.x-tab-strip-top {
+	background: #abadaf;
+	border-color: #777;
+	padding-top: 2px;
+}
+
+.x-date-picker, .x-date-picker table {
+	width: 200px;
+}
+
+.x-menu a.x-menu-item {
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+/* FF3 fix */
+.x-grid3 table {
+	table-layout: fixed;
+}
+
+.x-grid3-row-selected {
+    color: #000;
+}
+
+.ext-gecko.ext-mac .x-btn-text-icon .x-btn-center .x-btn-text {
+	padding-bottom: 1px;
+}
+
+/* IE fix for gridwidth*/
+.ext-ie .x-panel-body  {
+	width: 100%;
+}
+
+.ext-ie .x-column .x-panel-body {
+	float: left;
+	width: auto;
+}
+
+.ext-ie .x-column .x-panel-bwrap {
+	float: left;
+}
+
+.x-form-invalid, textarea.x-form-invalid {
+	background: #ce4c4c;
+	border: 1px solid #dd7870;
+}
+
+.form_info {
+	background: #fff !important;
+	border: 2px solid #3366ff !important;
+}
+
+.word_counter_fail {
+	margin-left: 205px;
+	width: 200px;
+	border: 1px solid #f00;
+}
+
+.word_counter_success {
+	margin-left: 205px;
+	border: 1px solid #0f3;
+	width: 200px;
+}
+
+.imagePreview{
+	float: left;
+	margin: 5px;
+}
+
+.warning {
+	color: #990000;
+}
+
+/* -------------------------------------------------------------------------------------- */ 
+.x-window-body { overflow: scroll; }
+
+/* order_edit */
+.price-old {
+    color: #F25D44;
+    display: block;
+    font-size:0.9em;
+    text-decoration: line-through;
+}
+.price-discount {
+    font-size:0.9em;
+    color: #8DBA2A;
+    display: block;
+}
+.price-new{ display: block; }
+
+.order_edit_error_box { margin:20px; padding:10px; border: solid #222222 1px; background-color: #dd7870;}

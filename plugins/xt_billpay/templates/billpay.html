@@ -1,0 +1,96 @@
+{if $payment_country_code eq 'DE'} 
+<img src="plugins/xt_billpay/images/billpay_frontend.png" />
+
+{if $smarty.const.XT_BILLPAY_SANDBOX eq 'true'}
+<ul class="info_warning">
+            <li class="infoWarning">Sie befinden sich im Testmodus f&uuml;r die Billpay-Zahlarten: <a href="http://www.billpay.de/haendler/integration-plugin" target="blank">Informationen zur Liveschaltung finden Sie hier</a></li>
+</ul>
+<br />
+{/if}
+
+{if $smarty.const.XT_BILLPAY_ACTIVATE_INVOICE eq 'true' and $smarty.session.billpay_hide_invoice neq 'true'} 
+<table class="paymentblock" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr>
+  	<td class="header" width="10">{form type=radio name=selected_payment value=$payment_code:INVOICE}</td>
+  	<td class="header"><strong>{$payment_name}</strong></td>
+    <td class="header" align="right">{$payment_price.formated}</td>
+  </tr>
+  
+  <tr>
+  <td colspan="3"> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr>
+    <td class="main"></td>
+    <td class="main">{form type=checkbox name=billpay_eula}&nbsp;&nbsp;&nbsp;<label for="billpay_eula">Hiermit bestätige ich die <a target="_blank" href="http://www.billpay.de/kunden/agb">AGB</a> und die <a target="_blank" href="http://www.billpay.de/kunden/agb#datenschutz">Datenschutzbestimmungen</a> der Billpay GmbH </label></td>
+  </tr>
+  {* check for date of birth *}
+  {if $smarty.session.customer->customer_payment_address.customers_dob eq ''}
+  <tr>
+    <td class="main"></td>                                                                                                        
+    <td class="main"><div style="margin-top: 10px; margin-bottom: 5px;">Bitte geben Sie Ihr Geburtsdatum ein</div></td>
+  </tr>
+  <tr>
+    <td class="main"></td>
+    <td class="main">Geburtsdatum: <select style="width: 60px;" name="billpay[dob][day]"><option value="00">---</option><option value="01">&nbsp;&nbsp;01&nbsp;&nbsp;</option><option value="02">&nbsp;&nbsp;02&nbsp;&nbsp;</option><option value="03">&nbsp;&nbsp;03&nbsp;&nbsp;</option><option value="04">&nbsp;&nbsp;04&nbsp;&nbsp;</option><option value="05">&nbsp;&nbsp;05&nbsp;&nbsp;</option><option value="06">&nbsp;&nbsp;06&nbsp;&nbsp;</option><option value="07">&nbsp;&nbsp;07&nbsp;&nbsp;</option><option value="08">&nbsp;&nbsp;08&nbsp;&nbsp;</option><option value="09">&nbsp;&nbsp;09&nbsp;&nbsp;</option><option value="10">&nbsp;&nbsp;10&nbsp;&nbsp;</option><option value="11">&nbsp;&nbsp;11&nbsp;&nbsp;</option><option value="12">&nbsp;&nbsp;12&nbsp;&nbsp;</option><option value="13">&nbsp;&nbsp;13&nbsp;&nbsp;</option><option value="14">&nbsp;&nbsp;14&nbsp;&nbsp;</option><option value="15">&nbsp;&nbsp;15&nbsp;&nbsp;</option><option value="16">&nbsp;&nbsp;16&nbsp;&nbsp;</option><option value="17">&nbsp;&nbsp;17&nbsp;&nbsp;</option><option value="18">&nbsp;&nbsp;18&nbsp;&nbsp;</option><option value="19">&nbsp;&nbsp;19&nbsp;&nbsp;</option><option value="20">&nbsp;&nbsp;20&nbsp;&nbsp;</option><option value="21">&nbsp;&nbsp;21&nbsp;&nbsp;</option><option value="22">&nbsp;&nbsp;22&nbsp;&nbsp;</option><option value="23">&nbsp;&nbsp;23&nbsp;&nbsp;</option><option value="24">&nbsp;&nbsp;24&nbsp;&nbsp;</option><option value="25">&nbsp;&nbsp;25&nbsp;&nbsp;</option><option value="26">&nbsp;&nbsp;26&nbsp;&nbsp;</option><option value="27">&nbsp;&nbsp;27&nbsp;&nbsp;</option><option value="28">&nbsp;&nbsp;28&nbsp;&nbsp;</option><option value="29">&nbsp;&nbsp;29&nbsp;&nbsp;</option><option value="30">&nbsp;&nbsp;30&nbsp;&nbsp;</option><option value="31">&nbsp;&nbsp;31&nbsp;&nbsp;</option></select>&nbsp;&nbsp;<select style="width: 60px;" name="billpay[dob][month]"><option value="00">---</option><option value="01">&nbsp;&nbsp;01&nbsp;&nbsp;</option><option value="02">&nbsp;&nbsp;02&nbsp;&nbsp;</option><option value="03">&nbsp;&nbsp;03&nbsp;&nbsp;</option><option value="04">&nbsp;&nbsp;04&nbsp;&nbsp;</option><option value="05">&nbsp;&nbsp;05&nbsp;&nbsp;</option><option value="06">&nbsp;&nbsp;06&nbsp;&nbsp;</option><option value="07">&nbsp;&nbsp;07&nbsp;&nbsp;</option><option value="08">&nbsp;&nbsp;08&nbsp;&nbsp;</option><option value="09">&nbsp;&nbsp;09&nbsp;&nbsp;</option><option value="10">&nbsp;&nbsp;10&nbsp;&nbsp;</option><option value="11">&nbsp;&nbsp;11&nbsp;&nbsp;</option><option value="12">&nbsp;&nbsp;12&nbsp;&nbsp;</option></select>&nbsp;&nbsp;<select style="width: 60px;" name="billpay[dob][year]"><option value="00">---</option><option value="1993">&nbsp;&nbsp;1993&nbsp;&nbsp;</option><option value="1992">&nbsp;&nbsp;1992&nbsp;&nbsp;</option><option value="1991">&nbsp;&nbsp;1991&nbsp;&nbsp;</option><option value="1990">&nbsp;&nbsp;1990&nbsp;&nbsp;</option><option value="1989">&nbsp;&nbsp;1989&nbsp;&nbsp;</option><option value="1988">&nbsp;&nbsp;1988&nbsp;&nbsp;</option><option value="1987">&nbsp;&nbsp;1987&nbsp;&nbsp;</option><option value="1986">&nbsp;&nbsp;1986&nbsp;&nbsp;</option><option value="1985">&nbsp;&nbsp;1985&nbsp;&nbsp;</option><option value="1984">&nbsp;&nbsp;1984&nbsp;&nbsp;</option><option value="1983">&nbsp;&nbsp;1983&nbsp;&nbsp;</option><option value="1982">&nbsp;&nbsp;1982&nbsp;&nbsp;</option><option value="1981">&nbsp;&nbsp;1981&nbsp;&nbsp;</option><option value="1980">&nbsp;&nbsp;1980&nbsp;&nbsp;</option><option value="1979">&nbsp;&nbsp;1979&nbsp;&nbsp;</option><option value="1978">&nbsp;&nbsp;1978&nbsp;&nbsp;</option><option value="1977">&nbsp;&nbsp;1977&nbsp;&nbsp;</option><option value="1976">&nbsp;&nbsp;1976&nbsp;&nbsp;</option><option value="1975">&nbsp;&nbsp;1975&nbsp;&nbsp;</option><option value="1974">&nbsp;&nbsp;1974&nbsp;&nbsp;</option><option value="1973">&nbsp;&nbsp;1973&nbsp;&nbsp;</option><option value="1972">&nbsp;&nbsp;1972&nbsp;&nbsp;</option><option value="1971">&nbsp;&nbsp;1971&nbsp;&nbsp;</option><option value="1970">&nbsp;&nbsp;1970&nbsp;&nbsp;</option><option value="1969">&nbsp;&nbsp;1969&nbsp;&nbsp;</option><option value="1968">&nbsp;&nbsp;1968&nbsp;&nbsp;</option><option value="1967">&nbsp;&nbsp;1967&nbsp;&nbsp;</option><option value="1966">&nbsp;&nbsp;1966&nbsp;&nbsp;</option><option value="1965">&nbsp;&nbsp;1965&nbsp;&nbsp;</option><option value="1964">&nbsp;&nbsp;1964&nbsp;&nbsp;</option><option value="1963">&nbsp;&nbsp;1963&nbsp;&nbsp;</option><option value="1962">&nbsp;&nbsp;1962&nbsp;&nbsp;</option><option value="1961">&nbsp;&nbsp;1961&nbsp;&nbsp;</option><option value="1960">&nbsp;&nbsp;1960&nbsp;&nbsp;</option><option value="1959">&nbsp;&nbsp;1959&nbsp;&nbsp;</option><option value="1958">&nbsp;&nbsp;1958&nbsp;&nbsp;</option><option value="1957">&nbsp;&nbsp;1957&nbsp;&nbsp;</option><option value="1956">&nbsp;&nbsp;1956&nbsp;&nbsp;</option><option value="1955">&nbsp;&nbsp;1955&nbsp;&nbsp;</option><option value="1954">&nbsp;&nbsp;1954&nbsp;&nbsp;</option><option value="1953">&nbsp;&nbsp;1953&nbsp;&nbsp;</option><option value="1952">&nbsp;&nbsp;1952&nbsp;&nbsp;</option><option value="1951">&nbsp;&nbsp;1951&nbsp;&nbsp;</option><option value="1950">&nbsp;&nbsp;1950&nbsp;&nbsp;</option><option value="1949">&nbsp;&nbsp;1949&nbsp;&nbsp;</option><option value="1948">&nbsp;&nbsp;1948&nbsp;&nbsp;</option><option value="1947">&nbsp;&nbsp;1947&nbsp;&nbsp;</option><option value="1946">&nbsp;&nbsp;1946&nbsp;&nbsp;</option><option value="1945">&nbsp;&nbsp;1945&nbsp;&nbsp;</option><option value="1944">&nbsp;&nbsp;1944&nbsp;&nbsp;</option><option value="1943">&nbsp;&nbsp;1943&nbsp;&nbsp;</option><option value="1942">&nbsp;&nbsp;1942&nbsp;&nbsp;</option><option value="1941">&nbsp;&nbsp;1941&nbsp;&nbsp;</option><option value="1940">&nbsp;&nbsp;1940&nbsp;&nbsp;</option><option value="1939">&nbsp;&nbsp;1939&nbsp;&nbsp;</option><option value="1938">&nbsp;&nbsp;1938&nbsp;&nbsp;</option><option value="1937">&nbsp;&nbsp;1937&nbsp;&nbsp;</option><option value="1936">&nbsp;&nbsp;1936&nbsp;&nbsp;</option><option value="1935">&nbsp;&nbsp;1935&nbsp;&nbsp;</option><option value="1934">&nbsp;&nbsp;1934&nbsp;&nbsp;</option><option value="1933">&nbsp;&nbsp;1933&nbsp;&nbsp;</option><option value="1932">&nbsp;&nbsp;1932&nbsp;&nbsp;</option><option value="1931">&nbsp;&nbsp;1931&nbsp;&nbsp;</option><option value="1930">&nbsp;&nbsp;1930&nbsp;&nbsp;</option><option value="1929">&nbsp;&nbsp;1929&nbsp;&nbsp;</option><option value="1928">&nbsp;&nbsp;1928&nbsp;&nbsp;</option><option value="1927">&nbsp;&nbsp;1927&nbsp;&nbsp;</option><option value="1926">&nbsp;&nbsp;1926&nbsp;&nbsp;</option><option value="1925">&nbsp;&nbsp;1925&nbsp;&nbsp;</option><option value="1924">&nbsp;&nbsp;1924&nbsp;&nbsp;</option><option value="1923">&nbsp;&nbsp;1923&nbsp;&nbsp;</option><option value="1922">&nbsp;&nbsp;1922&nbsp;&nbsp;</option><option value="1921">&nbsp;&nbsp;1921&nbsp;&nbsp;</option><option value="1920">&nbsp;&nbsp;1920&nbsp;&nbsp;</option><option value="1919">&nbsp;&nbsp;1919&nbsp;&nbsp;</option><option value="1918">&nbsp;&nbsp;1918&nbsp;&nbsp;</option><option value="1917">&nbsp;&nbsp;1917&nbsp;&nbsp;</option><option value="1916">&nbsp;&nbsp;1916&nbsp;&nbsp;</option><option value="1915">&nbsp;&nbsp;1915&nbsp;&nbsp;</option><option value="1914">&nbsp;&nbsp;1914&nbsp;&nbsp;</option><option value="1913">&nbsp;&nbsp;1913&nbsp;&nbsp;</option><option value="1912">&nbsp;&nbsp;1912&nbsp;&nbsp;</option><option value="1911">&nbsp;&nbsp;1911&nbsp;&nbsp;</option><option value="1910">&nbsp;&nbsp;1910&nbsp;&nbsp;</option></select></td>
+  </tr>
+  {/if}
+  </table>
+  </td>
+  </tr>
+</table>  
+{/if}
+
+<br />
+{if $smarty.const.XT_BILLPAY_ACTIVATE_ELV eq 'true' and $smarty.session.billpay_hide_directdebit neq 'true'} 
+<table class="paymentblock" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr>
+  	<td class="header" width="10">{form type=radio name=selected_payment value=$payment_code:DID}</td>
+  	<td class="header"><strong>{txt key=TEXT_PAYMENT_DID}</strong></td>
+    <td class="header" align="right">{$payment_price.formated}</td>
+  </tr>
+  
+  <tr>
+  <td colspan="3"> 
+  <table width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr>
+    <td class="main"></td>
+    <td class="main">{form type=checkbox name=billpay_eula_did}&nbsp;&nbsp;&nbsp;<label for="billpay_eula_did">Hiermit bestätige ich die <a target="_blank" href="http://www.billpay.de/kunden/agb">AGB</a> und die <a target="_blank" href="http://www.billpay.de/kunden/agb#datenschutz">Datenschutzbestimmungen</a> der Billpay GmbH </label></td>
+  </tr>
+  {* check for date of birth *}
+  {if $smarty.session.customer->customer_payment_address.customers_dob eq ''}
+  <tr>
+    <td class="main"></td>                                                                                                        
+    <td class="main"><div style="margin-top: 10px; margin-bottom: 5px;">Bitte geben Sie Ihr Geburtsdatum ein</div></td>
+  </tr>
+  <tr>
+    <td class="main"></td>
+    <td class="main">Geburtsdatum: <select style="width: 60px;" name="billpay_did[dob][day]"><option value="00">---</option><option value="01">&nbsp;&nbsp;01&nbsp;&nbsp;</option><option value="02">&nbsp;&nbsp;02&nbsp;&nbsp;</option><option value="03">&nbsp;&nbsp;03&nbsp;&nbsp;</option><option value="04">&nbsp;&nbsp;04&nbsp;&nbsp;</option><option value="05">&nbsp;&nbsp;05&nbsp;&nbsp;</option><option value="06">&nbsp;&nbsp;06&nbsp;&nbsp;</option><option value="07">&nbsp;&nbsp;07&nbsp;&nbsp;</option><option value="08">&nbsp;&nbsp;08&nbsp;&nbsp;</option><option value="09">&nbsp;&nbsp;09&nbsp;&nbsp;</option><option value="10">&nbsp;&nbsp;10&nbsp;&nbsp;</option><option value="11">&nbsp;&nbsp;11&nbsp;&nbsp;</option><option value="12">&nbsp;&nbsp;12&nbsp;&nbsp;</option><option value="13">&nbsp;&nbsp;13&nbsp;&nbsp;</option><option value="14">&nbsp;&nbsp;14&nbsp;&nbsp;</option><option value="15">&nbsp;&nbsp;15&nbsp;&nbsp;</option><option value="16">&nbsp;&nbsp;16&nbsp;&nbsp;</option><option value="17">&nbsp;&nbsp;17&nbsp;&nbsp;</option><option value="18">&nbsp;&nbsp;18&nbsp;&nbsp;</option><option value="19">&nbsp;&nbsp;19&nbsp;&nbsp;</option><option value="20">&nbsp;&nbsp;20&nbsp;&nbsp;</option><option value="21">&nbsp;&nbsp;21&nbsp;&nbsp;</option><option value="22">&nbsp;&nbsp;22&nbsp;&nbsp;</option><option value="23">&nbsp;&nbsp;23&nbsp;&nbsp;</option><option value="24">&nbsp;&nbsp;24&nbsp;&nbsp;</option><option value="25">&nbsp;&nbsp;25&nbsp;&nbsp;</option><option value="26">&nbsp;&nbsp;26&nbsp;&nbsp;</option><option value="27">&nbsp;&nbsp;27&nbsp;&nbsp;</option><option value="28">&nbsp;&nbsp;28&nbsp;&nbsp;</option><option value="29">&nbsp;&nbsp;29&nbsp;&nbsp;</option><option value="30">&nbsp;&nbsp;30&nbsp;&nbsp;</option><option value="31">&nbsp;&nbsp;31&nbsp;&nbsp;</option></select>&nbsp;&nbsp;<select style="width: 60px;" name="billpay_did[dob][month]"><option value="00">---</option><option value="01">&nbsp;&nbsp;01&nbsp;&nbsp;</option><option value="02">&nbsp;&nbsp;02&nbsp;&nbsp;</option><option value="03">&nbsp;&nbsp;03&nbsp;&nbsp;</option><option value="04">&nbsp;&nbsp;04&nbsp;&nbsp;</option><option value="05">&nbsp;&nbsp;05&nbsp;&nbsp;</option><option value="06">&nbsp;&nbsp;06&nbsp;&nbsp;</option><option value="07">&nbsp;&nbsp;07&nbsp;&nbsp;</option><option value="08">&nbsp;&nbsp;08&nbsp;&nbsp;</option><option value="09">&nbsp;&nbsp;09&nbsp;&nbsp;</option><option value="10">&nbsp;&nbsp;10&nbsp;&nbsp;</option><option value="11">&nbsp;&nbsp;11&nbsp;&nbsp;</option><option value="12">&nbsp;&nbsp;12&nbsp;&nbsp;</option></select>&nbsp;&nbsp;<select style="width: 60px;" name="billpay_did[dob][year]"><option value="00">---</option><option value="1993">&nbsp;&nbsp;1993&nbsp;&nbsp;</option><option value="1992">&nbsp;&nbsp;1992&nbsp;&nbsp;</option><option value="1991">&nbsp;&nbsp;1991&nbsp;&nbsp;</option><option value="1990">&nbsp;&nbsp;1990&nbsp;&nbsp;</option><option value="1989">&nbsp;&nbsp;1989&nbsp;&nbsp;</option><option value="1988">&nbsp;&nbsp;1988&nbsp;&nbsp;</option><option value="1987">&nbsp;&nbsp;1987&nbsp;&nbsp;</option><option value="1986">&nbsp;&nbsp;1986&nbsp;&nbsp;</option><option value="1985">&nbsp;&nbsp;1985&nbsp;&nbsp;</option><option value="1984">&nbsp;&nbsp;1984&nbsp;&nbsp;</option><option value="1983">&nbsp;&nbsp;1983&nbsp;&nbsp;</option><option value="1982">&nbsp;&nbsp;1982&nbsp;&nbsp;</option><option value="1981">&nbsp;&nbsp;1981&nbsp;&nbsp;</option><option value="1980">&nbsp;&nbsp;1980&nbsp;&nbsp;</option><option value="1979">&nbsp;&nbsp;1979&nbsp;&nbsp;</option><option value="1978">&nbsp;&nbsp;1978&nbsp;&nbsp;</option><option value="1977">&nbsp;&nbsp;1977&nbsp;&nbsp;</option><option value="1976">&nbsp;&nbsp;1976&nbsp;&nbsp;</option><option value="1975">&nbsp;&nbsp;1975&nbsp;&nbsp;</option><option value="1974">&nbsp;&nbsp;1974&nbsp;&nbsp;</option><option value="1973">&nbsp;&nbsp;1973&nbsp;&nbsp;</option><option value="1972">&nbsp;&nbsp;1972&nbsp;&nbsp;</option><option value="1971">&nbsp;&nbsp;1971&nbsp;&nbsp;</option><option value="1970">&nbsp;&nbsp;1970&nbsp;&nbsp;</option><option value="1969">&nbsp;&nbsp;1969&nbsp;&nbsp;</option><option value="1968">&nbsp;&nbsp;1968&nbsp;&nbsp;</option><option value="1967">&nbsp;&nbsp;1967&nbsp;&nbsp;</option><option value="1966">&nbsp;&nbsp;1966&nbsp;&nbsp;</option><option value="1965">&nbsp;&nbsp;1965&nbsp;&nbsp;</option><option value="1964">&nbsp;&nbsp;1964&nbsp;&nbsp;</option><option value="1963">&nbsp;&nbsp;1963&nbsp;&nbsp;</option><option value="1962">&nbsp;&nbsp;1962&nbsp;&nbsp;</option><option value="1961">&nbsp;&nbsp;1961&nbsp;&nbsp;</option><option value="1960">&nbsp;&nbsp;1960&nbsp;&nbsp;</option><option value="1959">&nbsp;&nbsp;1959&nbsp;&nbsp;</option><option value="1958">&nbsp;&nbsp;1958&nbsp;&nbsp;</option><option value="1957">&nbsp;&nbsp;1957&nbsp;&nbsp;</option><option value="1956">&nbsp;&nbsp;1956&nbsp;&nbsp;</option><option value="1955">&nbsp;&nbsp;1955&nbsp;&nbsp;</option><option value="1954">&nbsp;&nbsp;1954&nbsp;&nbsp;</option><option value="1953">&nbsp;&nbsp;1953&nbsp;&nbsp;</option><option value="1952">&nbsp;&nbsp;1952&nbsp;&nbsp;</option><option value="1951">&nbsp;&nbsp;1951&nbsp;&nbsp;</option><option value="1950">&nbsp;&nbsp;1950&nbsp;&nbsp;</option><option value="1949">&nbsp;&nbsp;1949&nbsp;&nbsp;</option><option value="1948">&nbsp;&nbsp;1948&nbsp;&nbsp;</option><option value="1947">&nbsp;&nbsp;1947&nbsp;&nbsp;</option><option value="1946">&nbsp;&nbsp;1946&nbsp;&nbsp;</option><option value="1945">&nbsp;&nbsp;1945&nbsp;&nbsp;</option><option value="1944">&nbsp;&nbsp;1944&nbsp;&nbsp;</option><option value="1943">&nbsp;&nbsp;1943&nbsp;&nbsp;</option><option value="1942">&nbsp;&nbsp;1942&nbsp;&nbsp;</option><option value="1941">&nbsp;&nbsp;1941&nbsp;&nbsp;</option><option value="1940">&nbsp;&nbsp;1940&nbsp;&nbsp;</option><option value="1939">&nbsp;&nbsp;1939&nbsp;&nbsp;</option><option value="1938">&nbsp;&nbsp;1938&nbsp;&nbsp;</option><option value="1937">&nbsp;&nbsp;1937&nbsp;&nbsp;</option><option value="1936">&nbsp;&nbsp;1936&nbsp;&nbsp;</option><option value="1935">&nbsp;&nbsp;1935&nbsp;&nbsp;</option><option value="1934">&nbsp;&nbsp;1934&nbsp;&nbsp;</option><option value="1933">&nbsp;&nbsp;1933&nbsp;&nbsp;</option><option value="1932">&nbsp;&nbsp;1932&nbsp;&nbsp;</option><option value="1931">&nbsp;&nbsp;1931&nbsp;&nbsp;</option><option value="1930">&nbsp;&nbsp;1930&nbsp;&nbsp;</option><option value="1929">&nbsp;&nbsp;1929&nbsp;&nbsp;</option><option value="1928">&nbsp;&nbsp;1928&nbsp;&nbsp;</option><option value="1927">&nbsp;&nbsp;1927&nbsp;&nbsp;</option><option value="1926">&nbsp;&nbsp;1926&nbsp;&nbsp;</option><option value="1925">&nbsp;&nbsp;1925&nbsp;&nbsp;</option><option value="1924">&nbsp;&nbsp;1924&nbsp;&nbsp;</option><option value="1923">&nbsp;&nbsp;1923&nbsp;&nbsp;</option><option value="1922">&nbsp;&nbsp;1922&nbsp;&nbsp;</option><option value="1921">&nbsp;&nbsp;1921&nbsp;&nbsp;</option><option value="1920">&nbsp;&nbsp;1920&nbsp;&nbsp;</option><option value="1919">&nbsp;&nbsp;1919&nbsp;&nbsp;</option><option value="1918">&nbsp;&nbsp;1918&nbsp;&nbsp;</option><option value="1917">&nbsp;&nbsp;1917&nbsp;&nbsp;</option><option value="1916">&nbsp;&nbsp;1916&nbsp;&nbsp;</option><option value="1915">&nbsp;&nbsp;1915&nbsp;&nbsp;</option><option value="1914">&nbsp;&nbsp;1914&nbsp;&nbsp;</option><option value="1913">&nbsp;&nbsp;1913&nbsp;&nbsp;</option><option value="1912">&nbsp;&nbsp;1912&nbsp;&nbsp;</option><option value="1911">&nbsp;&nbsp;1911&nbsp;&nbsp;</option><option value="1910">&nbsp;&nbsp;1910&nbsp;&nbsp;</option></select></td>
+  </tr>
+  {/if}
+  <tr>
+    <td class="main"></td>
+    <td class="main">
+    <table width="100%" border="0" cellspacing="0" cellpadding="6"> 
+    
+    <tr>
+        <td class="main" width="50">Kontoinhaber:</td>
+        <td class="main">{form type=text name=billpay_account_holder size=50}</td>
+    </tr>
+    <tr>
+        <td class="main" width="50">Kontonummer:</td>
+        <td class="main">{form type=text name=billpay_account_number size=50}</td>
+    </tr>
+    <tr>
+        <td class="main" width="50">Bankleitzahl:</td>
+        <td class="main">{form type=text name=billpay_account_blz size=30}</td>
+    </tr>
+    
+    </table>
+    </td>
+  </tr>
+  </table>
+  </td>
+  </tr>
+</table>  
+{/if}
+{/if}

@@ -1,0 +1,16 @@
+{if $_categories}
+    <div class="box-categories panel panel-default text-word-wrap{if $parent.active == 1} active{/if}">
+        <div class="panel-heading">
+            <p class="panel-title">
+                {if $parent}
+                    {$parent.categories_name}
+                {else}
+                    {txt key=TEXT_BOX_TITLE_CATEGORIES}
+                {/if}
+            </p>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            {$categories_list}
+        </ul>
+    </div>
+{/if}

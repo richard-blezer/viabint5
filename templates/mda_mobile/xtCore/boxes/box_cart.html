@@ -1,0 +1,29 @@
+<div data-role="collapsible" data-collapsed="true" id="cartbox" data-content-theme="d">
+	{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+
+	<h3 class="boxcartheader">{txt key=TEXT_CART}</h3>
+	<div class="boxcartbody">
+
+		{if $show_cart_content == true}
+			{foreach name=aussen item=data from=$cart_data}
+				<p>{$data.products_quantity}&nbsp;x&nbsp;<a href="{$data.products_link}">{$data.products_name|truncate:20:"...":true}</a></p>
+			{/foreach}
+
+			<p style="text-align:right">
+				{foreach name=aussen item=tax_data from=$cart_tax}
+					{txt key=TEXT_TAX} {$tax_data.tax_key}%: {$tax_data.tax_value.formated}<br />
+				{/foreach}
+				
+				<strong>{txt key=TEXT_SUB_TOTAL}:{$cart_total}</strong>
+				{if $shipping_link}<br /><a href="{$shipping_link}" target="_blank">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}
+				{if $cart_total_weight > 0}<br />({txt key=TEXT_PRODUCTS_WEIGHT}: {$cart_total_weight|number_format:2:",":"."} KG){/if}
+				
+			</p>
+			
+			<a href="{link page='cart' conn=SSL}" data-role="button" data-icon="mda_mobile_cart">{txt key=TEXT_CART}</a>
+		{else}
+			<p>{txt key=TEXT_EMPTY_CART}</p><a href="{link page='cart' conn=SSL}" data-role="button" data-icon="mda_mobile_cart" >{txt key=TEXT_CART}</a>
+		{/if}
+	</div>
+	{/if}
+</div>

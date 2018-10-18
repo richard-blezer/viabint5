@@ -1,0 +1,12 @@
+
+<div data-role="header">
+    <h1>{txt key=TEXT_PAGE_TITLE_CHECKOUT_SUCCESS}</h1>
+</div>
+
+<p>{txt key=TEXT_CHECKOUT_SUCCESS_DESC}</p>
+
+{if $show_next_button eq 'true'}
+    <a data-role="button" href="{link page='index' conn=NOSSL}">{txt key=BUTTON_NEXT}</a>
+{/if}
+
+{hook key=checkout_success_tpl}

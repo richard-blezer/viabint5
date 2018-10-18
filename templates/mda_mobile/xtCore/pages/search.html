@@ -1,0 +1,51 @@
+<h2>{txt key=text_search}</h2>
+{$message}
+{form type=form name=search action='dynamic' link_params=getParams method=get}
+{form type=hidden name=page value=search}
+{hook key=search_tpl}
+
+<div data-role="fieldcontain">
+    <label for="keywords">{txt key=text_search_keywords}</label>
+    {form type=text id=keywords name=keywords}
+</div>
+  {if $cat_data}
+
+  <div data-role="fieldcontain">
+	<label for="cat" class="select">{txt key=text_search_categories}</label>
+	{form type=select id=cat name=cat default=$default_cat value=$cat_data}
+	{if $checked_subcat eq 'checked'}
+		{form type=checkbox id=subcat name=subkat checked=$checked_subcat}
+	{else}
+		{form type=checkbox id=subcat name=subkat}
+	{/if} 
+	<label for="subcat" class="select">{txt key=text_search_subcategories}</label>
+  </div>
+  {/if}
+  
+  {if $mnf_data|@count gt 1}
+  <div data-role="fieldcontain">
+    <label for="mnf" class="select">{txt key=text_search_mnf}</label>
+    {form type=select id=mnf name=mnf default=$default_mnf value=$mnf_data}
+  </div>
+  {/if}
+
+
+<div data-role="fieldcontain">
+    <label for="sdesc" class="select">{txt key=text_search_sdesc}</label>
+    {if $checked_sdesc eq 'checked'}
+	{form type=checkbox id=sdesc name=sdesc checked=$checked_sdesc}
+    {else}
+	{form type=checkbox id=sdesc name=sdesc}
+    {/if}
+
+    <label for="desc" class="select">{txt key=text_search_desc}</label>
+    {if $checked_desc eq 'checked'}
+	{form type=checkbox id=desc name=desc checked=$checked_desc}
+    {else}
+	{form type=checkbox id=desc name=desc}
+    {/if}
+</div>
+
+<input type="submit" value="{txt key=BUTTON_SEARCH}" />
+
+{form type=formend}

@@ -1,0 +1,45 @@
+{if $payment_hidden == true}
+	<br/>
+	<ul data-role="listview">
+		<li>
+			{if $payment_icon}
+				{img img=$payment_icon url=`$smarty.const._SRV_WEB`media/payment/}
+			{/if}
+			<strong>{$payment_name}</strong> {$payment_price.formated}
+			{if $payment_desc}
+				<p>{$payment_desc}></p>
+			{/if}
+		</li>
+		
+	</ul>
+	<br/>
+	{form type=hidden name=selected_payment value=$payment_code}
+{else}
+	{if $payment_code==$payment_selected}
+		<label for="{$payment_code}">
+			<strong>{$payment_name}</strong>
+			{if $payment_desc}
+				<p>{$payment_desc}></p>
+			{/if}
+			
+			{if $payment_icon}
+				{img img=$payment_icon url=`$smarty.const._SRV_WEB`media/payment/}
+			{/if}
+			{$payment_price.formated}
+		</label>
+	  	{form type=radio id=$payment_code name=selected_payment value=$payment_code checked=true}
+	{else}
+		<label for="{$payment_code}">
+			<strong>{$payment_name}</strong>
+			{if $payment_desc}
+				<p>{$payment_desc}></p>
+			{/if}
+			
+			{if $payment_icon}
+				{img img=$payment_icon url=`$smarty.const._SRV_WEB`media/payment/}
+			{/if}
+			{$payment_price.formated}
+		</label>
+	  	{form type=radio id=$payment_code name=selected_payment value=$payment_code}
+	{/if}
+{/if}

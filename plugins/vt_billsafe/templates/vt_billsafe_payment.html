@@ -1,0 +1,52 @@
+{if $smarty.session.show_billsafe_INV eq '1'}
+{if $payment_hidden == true}
+<div class="box box-white box-hover">
+    <p class="payment-name">
+        <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code:INV}</span> {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} <span class="float-right"><img src="plugins/vt_billsafe/images/rechnung_billsafe.png"/></span></p>
+    <p class="payment-desc" style="padding-left:25px;">Kaufen Sie jetzt auf Rechnung und Begutachten Sie Ihre Einkäufe in Ruhe bevor Sie bezahlen</p>
+</div><!-- .box .box-white .box-hover -->
+{else}
+{if $payment_code == $payment_selected}
+<div class="box box-white box-hover">
+    <p class="payment-name">
+        <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code:INV checked=true}</span> {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} <span class="float-right"><img src="plugins/vt_billsafe/images/rechnung_billsafe.png"/></span></p>
+    <p class="payment-desc" style="padding-left:25px;">Kaufen Sie jetzt auf Rechnung und Begutachten Sie Ihre Einkäufe in Ruhe bevor Sie bezahlen</p>
+</div><!-- .box .box-white .box-hover -->
+{else}
+<div class="box box-white box-hover">
+    <p class="payment-name">
+        <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code:INV}</span> {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} <span class="float-right"><img src="plugins/vt_billsafe/images/rechnung_billsafe.png"/></span></p>
+    <p class="payment-desc" style="padding-left:25px;">Kaufen Sie jetzt auf Rechnung und Begutachten Sie Ihre Einkäufe in Ruhe bevor Sie bezahlen</p>
+</div><!-- .box .box-white .box-hover -->
+{/if}
+{/if}
+{/if}
+
+{if $smarty.session.show_billsafe_RAT eq '1'}
+{if $payment_hidden == true}
+<div class="box box-white box-hover">
+    <p class="payment-name">
+        <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code:RAT}</span> Ratenkauf {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} <span class="float-right"><img src="plugins/vt_billsafe/images/ratenkauf_billsafe.png"/></span></p>
+    <p class="payment-desc" style="padding-left:25px;">Kaufen Sie bequem und schnell in Raten ab <b>{$smarty.session.billsafe_installmentAmount} Euro/Monat</b></p>
+</div><!-- .box .box-white .box-hover -->
+{else}
+{if $payment_code == $payment_selected}
+<div class="box box-white box-hover">
+    <p class="payment-name">
+        <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code:RAT checked=true}</span> Ratenkauf {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} <span class="float-right"><img src="plugins/vt_billsafe/images/ratenkauf_billsafe.png"/></span></p>
+    <p class="payment-desc" style="padding-left:25px;">Kaufen Sie bequem und schnell in Raten ab <b>{$smarty.session.billsafe_installmentAmount} Euro/Monat</b></p>
+</div><!-- .box .box-white .box-hover -->
+{else}
+<div class="box box-white box-hover">
+    <p class="payment-name">
+        <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code:RAT}</span> Ratenkauf {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} <span class="float-right"><img src="plugins/vt_billsafe/images/ratenkauf_billsafe.png"/></span></p>
+    <p class="payment-desc" style="padding-left:25px;">Kaufen Sie bequem und schnell in Raten ab <b>{$smarty.session.billsafe_installmentAmount} Euro/Monat</b></p>
+</div><!-- .box .box-white .box-hover -->
+{/if}
+{/if}
+{/if}
+
+
+
+
+

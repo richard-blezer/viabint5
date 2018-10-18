@@ -1,0 +1,17 @@
+<div id="CheckoutModeAmazon">
+
+        {form type=form name=continue action='checkout' link_params='page_action=shipping&m_checkout=1' method=post conn=SSL}
+               <p class="left">{css_button text=$data.login_btn type='form'}</p>
+        {form type=formend} 
+
+</div>
+
+<div id="CheckoutModeNormal">
+    
+    <div class="AmazonPaymentBox">
+           <div id="AmazonPayButton"></div>
+    </div>
+    
+</div>
+
+ 

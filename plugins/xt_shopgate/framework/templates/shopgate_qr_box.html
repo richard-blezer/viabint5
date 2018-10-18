@@ -1,0 +1,34 @@
+<link rel="stylesheet" type="text/css" href="{$shopagte_template_path}/css/shopgate_qr_box.css" />
+
+<table id="shopgate_qr_banner" style="background-color: {$backgroundColor}; border-color: {$backgroundColor}; color: {$foregroundColor};">
+	<tr>
+		<td rowspan ="2" class="shopgate_qr_code">
+			<img src="{$shopgate_qr_code}" />
+		</td>
+		<td rowspan ="2" class="shopgate_bubble">
+			<div>
+				<ul style="color: {$foregroundColor};">
+				{if $has_own_app eq "1"}
+					<li style="color: {$foregroundColor};">1. <a href="{$shopgate_itunes_url}" target="_blank" style="color: {$foregroundColor};">Unsere</a> App installieren,</li>
+				{else}
+					<li style="color: {$foregroundColor};">1. <a href="{$shopgate_itunes_url}" target="_blank" style="color: {$foregroundColor};">Shopgate</a> App installieren,</li>
+				{/if}
+					<li style="color: {$foregroundColor};">2. diesen QR-Code scannen,</li>
+					<li style="color: {$foregroundColor};">3. mit einem Klick bestellen!</li>
+				</ul>
+			</div>
+		</td>
+		<td class="shopgate_store">
+			<a href="{$shopgate_itunes_url}" target="_blank">
+				<img src="{$shopagte_template_path}/images/app_store.png" />
+			</a>
+		</td>
+	</tr>
+	<tr>
+		<td class="shopgate_powered_by">
+			Powered by <a href="http://www.shopgate.com">Shopgate</a>
+		</td>
+	</tr>
+
+
+</table>

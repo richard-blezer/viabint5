@@ -1,0 +1,41 @@
+{foreach name=aussen item=module_data from=$product_listing}
+	<div data-role="collapsible" data-collapsed="true" data-content-theme="d">
+		<h3>{$module_data.products_name}</h3>
+		{if $module_data.products_id != $smarty.get.info}
+			
+					{if $module_data.products_image!=''}
+						<a href="{$module_data.products_link}">{img img=$module_data.products_image url=`$smarty.const._SRV_WEB`media/images/thumb/ alt=$module_data.products_name|escape:"html"}</a>
+						<a href="{$module_data.products_link}" data-role="button">{txt key=TEXT_PRODUCTS_DESCRIPTION}</a>
+					{/if}
+				
+			
+			
+			
+			
+			{if $module_data.products_short_description}<p>{$module_data.products_short_description}</p>{else}<p>{$module_data.products_description}</p>{/if}
+			{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+				<p class="price">{$module_data.products_price.formated}</p>
+				<p class="taxandshippinginfo">{$module_data.products_tax_info.tax_desc}{if $module_data.products_shipping_link}<a href="{$module_data.products_shipping_link}" target="_blank">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</p>
+				{if $module_data.base_price}<p class="vpe">{$module_data.base_price.price} {#text_per#} {$module_data.base_price.vpe.name}</p>{/if}
+			{/if}
+
+			{if $module_data.shipping_status}<p class="shippingtime">{#text_shippingtime#}&nbsp;{$module_data.shipping_status}</p>{/if}
+
+			{if $module_data.stock_image}
+				{assign var='sp1' value='/templates/'|cat:$selected_template}
+				{assign var='stock_path' value=$sp1|cat:'/img/stockrules/'}
+				<p class="stockimage">{img img=$module_data.stock_image.image url=$stock_path alt=$module_data.stock_image.name}</p>
+				<p class="stockimagetext">{$module_data.stock_image.name}</p>
+			{/if}
+			{if $module_data.allow_add_cart eq 'true'}
+				{form type=form name=product action='dynamic' link_params=getParams method=post}
+				{form type=hidden name=action value=add_product}
+				{form type=hidden name=product value=$module_data.products_id}
+				
+				{form type=text id=qty name=qty value=1}
+				<input type="submit" value="{txt key=BUTTON_ADD_CART}" />
+				{form type=formend}
+			{/if}
+		{/if}
+	</div>
+{/foreach}

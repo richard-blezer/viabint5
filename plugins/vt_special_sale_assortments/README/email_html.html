@@ -1,0 +1,128 @@
+<link href="{$_system_mail_css}" type="text/css" rel="stylesheet">
+<table cellpadding="0" cellspacing="0" class="email_container">
+	<tr>
+		<td colspan="3" class="email_toplogo">
+		<div class="email_toplogo"><img src="{$_system_logo_url}" /></div>
+		</td>
+	</tr>
+	<tr>
+		<td class="email_table_left_bg" valign="top">
+		<div class="email_table_left"></div>
+		</td>
+		<td class="email_table_center_bg" valign="top">
+		<div class="email_content">
+		<h1>Hallo {$order_data.delivery_firstname} {$order_data.delivery_lastname},</h1>
+		<p>
+		Dies ist nur ein Standardtext welchen Sie im Administrationsbereich
+		unter "Inhalte->E-Mail-Manager" ändern können.</p>
+		<br />
+		<h1>Ihre Daten nochmals zur Kontrolle:</h1>
+		<p>{txt key=TEXT_ORDER_NUMBER}: {$order_data.orders_id}</p>
+		<p>{txt key=TEXT_ORDER_DATE}: {$order_data.date_purchased}</p>
+		<h2>{txt key=TEXT_SHIPPING_ADDRESS}</h2>
+		<p>{if $order_data.delivery_company}
+		{$order_data.delivery_company}<br />
+		{/if} {$order_data.delivery_firstname} {$order_data.delivery_lastname}<br />
+		{$order_data.delivery_street_address}<br />
+		{if $order_data.delivery_suburb} {$order_data.delivery_suburb}<br />
+		{/if} {$order_data.delivery_postcode} {$order_data.delivery_city}<br />
+		{if $order_data.delivery_state}{$order_data.delivery_state}
+		{/if}{$order_data.delivery_country}<br />
+		</p>
+		<h2>{txt key=TEXT_PAYMENT_ADDRESS}</h2>
+		<p>{if $order_data.billing_company} {$order_data.billing_company}<br />
+		{/if} {$order_data.billing_firstname} {$order_data.billing_lastname}<br />
+		{$order_data.billing_street_address}<br />
+		{if $order_data.billing_suburb} {$order_data.billing_suburb}<br />
+		{/if} {$order_data.billing_postcode} {$order_data.billing_city}<br />
+		{if $order_data.billing_state}{$order_data.billing_state}
+		{/if}{$order_data.billing_country}<br />
+		</p>
+	{if $payment_info}<h2>{txt key=TEXT_PAYMENT_INFOS}</h2>
+		<p>{$payment_info}</p><br />{/if}	
+<table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="4">
+			<tr class="headerrow">
+				<td class="left">{txt key=TEXT_QTY}</td>
+				<td class="left">{txt key=TEXT_ARTICLE}</td>
+				<td class="left">{txt key=TEXT_PRODUCTS_MODEL}</td>
+				<td class="right">{txt key=TEXT_SINGLE_PRICE}</td>
+				<td class="right">{txt key=TEXT_TOTAL_PRICE}</td>
+			</tr>
+{*Dies ist zum Anzeigen der Bundles*} 
+{assign var=ssag_bundle_head value=''}
+{foreach name=aussen item=order_values from=$order_products}
+    {if $order_values.ssag_bundle_id && $ssag_bundle_head != $order_values.ssag_bundle_id}
+        {assign var=ssag_bundle_head value=$order_values.ssag_bundle_id}
+        {cycle assign=ssag_bundle_head_row name="bundle_cart" values="contentrow1,contentrow2" print=false}
+        <tr class="{$ssag_bundle_head_row}">
+            <td class="left">
+                1.00&nbsp;x
+            </td>
+            <td class="left"><strong>{$order_values.ssa_group.ssag_name} {$order_values.ssag_bundle}</strong></td>
+            <td class="right"></td>            
+            <td class="right">{$order_values.ssa_group.ssap_price.formated}</td>
+            <td class="right">{$order_values.ssa_group.ssap_price.formated}</td>
+        </tr>
+        {if $order_values.ssa_group.ssag_short_desc}
+        <tr class="{$ssag_bundle_head_row}">
+            <td> </td>
+            {*if $data.ssa_group.ssag_image}
+            <td>{img img=$order_values.ssa_group.ssag_image type=m_thumb alt=$order_values.ssa_group.ssag_name}</td>
+            <td class="left" colspan="2" valign="top">
+            {else*}    
+            <td class="left" colspan="3">
+            {*/if*}                
+                {$order_values.ssa_group.ssag_short_desc}
+            </td> 
+            <td></td>
+        </tr>
+        {/if}
+    {/if}
+    {if $order_values.ssag_bundle_id && $ssag_bundle_head == $order_values.ssag_bundle_id}
+        <tr class="{$ssag_bundle_head_row}">
+            <td class="left"></td>
+            <td class="left"><strong>{$order_values.products_name}</strong>
+            <td class="right">{$order_values.products_model}</td>                        
+            <td class="right"></td>
+            <td class="right"></td>
+        </tr>        
+    {/if}
+{/foreach}
+  
+  
+{*Dies ist zum Anzeigen der Normalen Artikel*}
+{foreach name=aussen item=order_values from=$order_products}
+    {if !$order_values.ssag_bundle}
+        <tr class="{if $ssag_bundle_head_row == 'contentrow1'}{cycle values="contentrow2,contentrow1"}{else}{cycle values="contentrow1,contentrow2"}{/if}">
+            <td class="left">{$order_values.products_quantity}&nbsp;x</td>
+            <td class="left"><strong>{$order_values.products_name}</strong></td>
+            <td class="left">{$order_values.products_model}</td>
+            <td class="right">{$order_values.products_price.formated}</td>
+            <td class="right">{$order_values.products_final_price.formated}</td>
+        </tr>
+        {$order_values.products_information.content}
+    {/if}
+{/foreach} 
+                <tr>
+                    <td colspan="5" align="right" class="subtotal">
+                    <div align="right">
+                    <p>{txt key=TEXT_SUB_TOTAL}: {$total.product_total.formated}</p>
+                    {foreach name=aussen item=order_total_values from=$order_total_data}
+                    <p>{$order_total_values.orders_total_name}:
+                    {$order_total_values.orders_total_price.formated}</p>
+                    {/foreach} {foreach name=aussen item=tax_data from=$total.total_tax}
+                    <p>{txt key=TEXT_TAX} {$tax_data.tax_key}%:
+                    {$tax_data.tax_value.formated}</p>
+                    {/foreach}
+                    <p>{txt key=TEXT_TOTAL}: {$total.total.formated}</p>
+                    </div>
+            </tr>
+        </table>
+        </div>
+        <div class="email_footer">{$_system_footer_html}</div>
+        </td>
+        <td class="email_table_right_bg" valign="top">
+        <div class="email_table_right"></div>
+        </td>
+    </tr>
+</table>

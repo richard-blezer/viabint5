@@ -1,0 +1,21 @@
+<div class="sidebar-box">
+    <p class="headline">{txt key=XT_LAST_VIEWED_PRODUCTS_TITEL}</p>
+    <div class="box">
+    {foreach name=aussen item=last_viewed_products_data from=$_last_viewed_products}
+        {if $last_viewed_products_data.products_image == 'product:noimage.gif'}
+            <p class="product-image"><a href="{$last_viewed_products_data.products_link}"><img src="{$tpl_url_path}img/no_image.png" alt="{$last_viewed_products_data.products_name}" /></a></p>
+        {else}
+            <p class="product-image"><a href="{$last_viewed_products_data.products_link}">{img img=$last_viewed_products_data.products_image type=m_sidebar class=productImageBorder alt=$last_viewed_products_data.products_name|escape:"html"}</a></p>
+        {/if}
+        
+        <p class="product-name"><a href="{$last_viewed_products_data.products_link}">{$last_viewed_products_data.products_name}</a></p>
+        
+        <p class="product-price">{$last_viewed_products_data.products_price.formated}</p>
+        {if $last_viewed_products_data.products_shipping_link}
+            <p class="product-tax-shipping">{$last_viewed_products_data.products_tax_info.tax_desc}&nbsp;<a href="{$last_viewed_products_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+        {else}
+            <p class="product-tax-shipping">{$last_viewed_products_data.products_tax_info.tax_desc}&nbsp;{txt key=TEXT_EXCL_SHIPPING}</p>
+        {/if}
+    {/foreach}  
+    </div><!-- .box -->
+</div><!-- .sidebar-box -->

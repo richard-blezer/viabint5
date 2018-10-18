@@ -1,0 +1,11 @@
+{if $data}
+
+    <div class="hook-footer-content">
+        <ul class="footer-list list-unstyled">
+            {foreach name=aussen item=box_data from=$data}
+            <li class="level{$box_data.level}{if $box_data.active} active{/if}"><a href="{$box_data.link}" {if $smarty.get.page != 'index' && $box_data.content_hook gt 0} rel="nofollow"{/if}>{$box_data.title}</a></li>
+            {/foreach}
+        </ul>
+    </div>
+
+{/if}

@@ -1,0 +1,19 @@
+{foreach name=aussen item=module_data from=$reviews_data}
+<div class="reviews_rating_light">
+	<div class="reviews_rating_dark" style="width:{$module_data.review_rating}%"></div><!-- .reviews_rating_dark -->
+</div><!-- .reviews_rating_light -->
+<p class="review-title">{$module_data.review_title}</p>
+<p class="review-text">{$module_data.review_text}</p>
+<p class="review-editor">{txt key=TEXT_XT_REVIEWS_EDITOR} {$module_data.review_editor} {txt key=TEXT_ON} {$module_data.review_date|date_format:"%d.%m.%Y"}</p>
+	{if $module_data.admin_comment}
+	<div style="margin-left: 20px;">
+		<p class="review-editor"><b>{$store_domain}:</b></p>
+		<p class="review-text">{$module_data.admin_comment}</p>
+	</div>
+	{/if}
+{/foreach}
+
+{if $show_reviews_button eq 'true' && $module_data}
+    <a href="{$link_reviews_list}" class="button" rel="nofollow">{txt key=TEXT_XT_REVIEWS_SHOW}</a>
+{/if}
+<p><a href="{$link_reviews_write}" class="button" rel="nofollow">{txt key=TEXT_XT_REVIEWS_WRITE}</a></p>

@@ -1,0 +1,50 @@
+<h1>{txt key=TEXT_CONTACT_PAGE}</h1>
+{$message}
+<p>{if $file}{$file}{else}{$data.content_body}{/if}</p>
+<div class="highlightbox">
+	{form type=form name=login action='dynamic' link_params=getParams method=post}
+	{form type=hidden name=action value=send}
+	<p>{txt key=TEXT_CONTACT_INTRO}</p>
+	<table width="100" border="0" cellspacing="4" cellpadding="0">
+         <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_EMAIL}</strong> </td>
+           <td>{form type=text name=email_address params='maxlength="40" size="40"' value=$email_address note=*}</td>
+         </tr>
+          <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_FIRSTNAME}</strong> </td>
+           <td>{form type=text name=firstname params='maxlength="40" size="40"' value=$firstname note=*}</td>
+         </tr>
+          <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_LASTNAME}</strong> </td>
+           <td>{form type=text name=lastname params='maxlength="40" size="40"' value=$lastname note=*}</td>
+         </tr>
+          <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_COMPANY}</strong> </td>
+           <td>{form type=text name=company params='maxlength="40" size="40"' value=$company}</td>
+         </tr>
+         <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_ORDER_NUMBER}</strong> </td>
+           <td>{form type=text name=order_id params='maxlength="40" size="40"' value=$order_id}</td>
+         </tr>
+         <tr>
+           <td style="white-space:nowrap; vertical-align:top;"><strong>{txt key=TEXT_MESSAGE}</strong></td>
+           <td>{form type=textarea name=customer_message params='cols="50" rows="15"' value=$customer_message}</td>
+         </tr>
+         {if $logged_in eq 'false'}
+         <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_CAPTCHA}:</strong> </td>
+           <td><img src="{$captcha_link}" /></td>
+         </tr>
+          <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_CAPTCHA}:</strong> </td>
+           <td>{form type=text name=captcha params='maxlength="30"'}</td>
+         </tr>
+         {/if}
+         <tr>
+           <td style="white-space:nowrap;">&nbsp;</td>
+           <td>{button text=$smarty.const.BUTTON_SUBMIT file='submit.gif' type='form'}</td>
+         </tr>
+       </table>
+	{form type=formend}
+</div>
+<p>{txt key=TEXT_MUST}</p>

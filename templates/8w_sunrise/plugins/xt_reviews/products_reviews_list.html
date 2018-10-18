@@ -1,0 +1,35 @@
+<div id="xt-reviews-list">
+
+	<h2>{txt key=TEXT_XT_REVIEWS_HEADING_REVIEWS} ({$reviews_data|@count})</h2>
+
+	{foreach key=key name=aussen item=module_data from=$reviews_data}
+	
+		{if $key == 0}
+			<div class="first-product">
+		{elseif $key == 1}
+			</div><!-- .first-product -->
+			<div class="more-products">
+		{/if}
+		
+		<div class="review-box r-{$key}">
+			<table class="reviewlist">
+				<tr>
+					<td class="stars"><div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$module_data.review_rating}%"></div></div></td>
+					<td class="headline"><span class="rev-title">{$module_data.review_title}</span><br />{$module_data.review_date}, {txt key=TEXT_XT_REVIEWS_EDITOR}: {$module_data.review_editor}</td>
+				</tr>
+				<tr>
+					<td colspan="2">{$module_data.review_text}</td>
+				</tr>
+			</table>
+		</div>
+		
+		{if $key+1 == $reviews_data|@count}
+			</div><!-- .more-products -->
+			<div class="show-more">
+				<a href="javascript:void(0);">{txt key=TEXT_8WORKS_SUNRISE_READ_MORE} {txt key=TEXT_XT_REVIEWS_HEADING_REVIEWS}</a>
+			</div>
+		{/if}
+		
+	{/foreach}
+	
+</div>

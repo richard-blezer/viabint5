@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Ship and Track</title>
+    <version>1.0.5</version>
+    <code>xt_ship_and_track</code>
+    <icon>logo_xt_hermes.png</icon>
+    <url>http://www.xt-commerce.com</url>
+    <description>parcel shipping and tracking</description>
+    <type>shipping</type>
+    <minimumupdateversion>1.0.1</minimumupdateversion>
+    <db_update>
+    <update>
+        <version>1.0.3</version>
+        <to_version>1.0.4</to_version>
+        <code><![CDATA[
+				]]>
+        </code>
+    </update>
+    <update>
+        <version>1.0.4</version>
+        <to_version>1.0.5</to_version>
+        <code><![CDATA[
+				]]>
+        </code>
+    </update>	
+    </db_update>
+    <db_install><![CDATA[
+        include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. '/xt_ship_and_track/installer/install.php';
+       ]]>
+    </db_install>
+
+    <db_uninstall><![CDATA[
+        include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. '/xt_ship_and_track/installer/uninstall.php';
+       ]]>
+    </db_uninstall>
+
+    <plugin_code>
+        <!-- #####################################  BACKEND HOOKS  -->
+
+        <!-- override ExtJsHandler  -->
+        <code>
+            <hook>adminHandler.php:_bottom</hook>
+            <phpcode><![CDATA[
+				include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_ship_and_track/hooks/adminHandler.php__bottom.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- Ansicht tracking in order_edit.php -->
+        <code>
+            <hook>order_edit.php:getProductsTemplate_top</hook>
+            <phpcode><![CDATA[
+            require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_ship_and_track/hooks/order_edit.php_getProductsTemplate_top.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- Add Tracking in order_edit.php -->
+        <code>
+            <hook>order_edit.php:display_data</hook>
+            <phpcode><![CDATA[
+            require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_ship_and_track/hooks/order_edit.php_display_data.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- eigenes template für account_history_info.html -->
+        <code>
+            <hook>module_customer.php:order_info_bottom</hook>
+            <phpcode><![CDATA[
+            require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_ship_and_track/hooks/module_customer.php_order_info_bottom.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- Kunden-Ansicht der trackings auf  de/customer/order_info?oid=417 -->
+        <code>
+            <hook>account_history_info_left</hook>
+            <phpcode><![CDATA[
+            require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_ship_and_track/hooks/account_history_info_left.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- dropdownData  -->
+        <code>
+            <hook>admin_dropdown.php:dropdown</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_ship_and_track/hooks/admin_dropdown.php_dropdown.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- überschreiben des (fehlerhaften?) standartverhaltens des xtmailer siehe Ticket WEN-660798 -->
+        <code>
+            <hook>xtMailer:getPermission</hook>
+            <phpcode><![CDATA[
+            require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_ship_and_track/hooks/xtMailer_getPermission.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- load additional admin styles -->
+        <code>
+            <hook>ejsadmin.php:css_styles</hook>
+            <phpcode>
+                <![CDATA[
+                    include_once(_SRV_WEBROOT.'plugins/xt_ship_and_track/hooks/ejsadmin.php__css_styles.php');
+                ]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- west menu -->
+        <code>
+            <hook>get_nodes.php:node</hook>
+            <phpcode>
+                <![CDATA[
+                    include_once(_SRV_WEBROOT.'plugins/xt_ship_and_track/hooks/get_nodes_php_node.php');
+                ]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+
+    </plugin_code>
+
+</xtcommerceplugin>
+
+

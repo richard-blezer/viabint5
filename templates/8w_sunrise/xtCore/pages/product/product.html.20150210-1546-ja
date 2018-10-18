@@ -1,0 +1,389 @@
+{*php}__debug ($this->get_template_vars());{/php*}
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+$this->assign('numbers', array(
+                                1 => '1',
+                                2 => '2',
+                                3 => '3',
+                                4 => '4',
+                                5 => '5',
+                                6 => '6',
+                                7 => '7',
+                                8 => '8',
+                                9 => '9',
+                                10 => '10',)
+                                );
+{/php}
+{hook key=product_tpl_include}
+<div id="productsdetail-page" class="{if $products_master_flag || $products_master_model}master-slave {/if}products-id-{$products_id}">
+	{socialbookmark url=$products_link title=$products_name}
+	{if $isMobile}
+	<h1>{$products_name}</h1>
+	{/if}
+	<div class="left-side">
+		<div class="left-header">
+			<div id="products-image">
+				{if $difference}
+				<div class="flag red"><span class="percent">-{$difference}%</span></div>
+				{/if}
+				<div class="main-image">
+					{if $products_image!=''}
+						<a id="image-init" href="{img img=$products_image type=m_org path_only=true}" class="cbox">
+							{img img=$products_image type=m_sunrise-info alt=$products_name|escape:"html"}
+						</a>
+					{else}
+						{img img=product:noimage.gif type=m_info alt=$products_name|escape:"html"}
+					{/if}
+				</div>
+			</div>
+			{*if $more_images !=''}
+				<div class="more-images">
+					{foreach key=key name=aussen item=img_data from=$more_images}<a id="image-{$key+1}" href="{img img=$img_data.file type=m_org path_only=true}"{if !$is_old_ie6} class="cloud-zoom-gallery" rel="useZoom:'image-init', smallImage: '{img img=$img_data.file type=m_sunrise-info path_only=true}'"{/if}>{img img=$img_data.file type=m_sunrise-icon alt=$products_name}</a>{/foreach}<a id="image-0" href="{img img=$products_image type=m_org path_only=true}"{if !$is_old_ie6} class="cloud-zoom-gallery" rel="useZoom:'image-init', smallImage: '{img img=$products_image type=m_sunrise-info path_only=true}'"{/if}>{img img=$products_image type=m_sunrise-icon alt=$products_name}</a>
+				</div>
+			{else}
+				<span>&nbsp;</span>
+			{/if*}
+		</div>
+		{if !$isMobile}
+		<div class="right-text">
+			{if !$isMobile}
+			<h1>{$products_name}</h1>
+			{/if}
+			{$products_short_description}
+			<div id="vorteile-box">
+			{if $product_description3_html !=''}
+			{$product_description3_html}
+			{/if}
+			</div>
+			<div class="clearfix"></div>
+			<p class="smallfont">{if $products_model!=''}<p class="infotext">{txt key=TEXT_PRODUCTS_MODEL}: {$products_model}</p>{/if}</p>
+			{if $products_discount!=''}<p class="infotext">{$products_discount}</p>{/if}
+			{if $difference_price}
+			<div class="bullet">
+		        <p><span>{txt key=TEXT_CAMPAIN_BULLET_ACTION}<br/><span class="currency">{$selected_currency_formated}</span> {$difference_price|string_format:"%.2f"|replace:".":","} {txt key=TEXT_CAMPAIN_BULLET_SAVE}</span><br />
+		        	{txt key=TEXT_CAMPAIN_BULLET_SHORT_TIME}</p>
+		    </div>
+		    {/if}
+		</div>
+		<div class="clearfix"></div>
+		{content block_id=25}
+		{if $_content_25|count >0}
+			<div id="spar-abo">
+				{foreach key=keyn name=aussen item=box_data from=$_content_25}
+					{$box_data.content_body}
+				{/foreach}
+			</div>
+		{/if}
+		{content cont_id=25 is_id=false}
+		<ul class="tab-container">
+			{if $products_description !=''}
+			<li class="active" id="tab_1"><a href="#">{txt key=TEXT_PRODUCTS_DESCRIPTION}</a></li>
+			{/if}
+			{if $product_description4_html !=''}
+			<li id="tab_2"><a href="#">{txt key=TEXT_PRODUCTS_DESCRIPTION4}</a></li>
+			{/if}
+			{if $product_description2_html !=''}
+			<li id="tab_3"><a href="#">{txt key=TEXT_PRODUCTS_DESCRIPTION3}</a></li>
+			{/if}
+			{if $_content_25.content_body !=''}
+			<li id="tab_4"><a href="#">{$_content_25.content_title}</a></li>
+			{/if}
+		</ul>
+		<div id="productinfodetail">
+			{if $products_description !=''}
+				<div id="productinfo_desc" class="user-content full-wide-product-info">
+					<div class="tab-frame" id="frame_1">
+					{if $products_description !=''}
+						{$products_description}
+					{/if}
+					</div>
+					<div class="tab-frame" id="frame_2" style="display:none">
+					{if $product_description4_html !=''}
+						{$product_description4_html}
+					{/if}
+					</div>
+					<div class="tab-frame" id="frame_3" style="display:none">
+					{if $product_description2_html !=''}
+						{$product_description2_html}
+					{/if}
+					</div>
+					<div class="tab-frame" id="frame_4" style="display:none">
+					{if $_content_25.content_body !=''}
+						{$_content_25.content_body}
+					{/if}
+					</div>
+				</div>
+			{/if}
+			{box name=xt_cliplister type=user}
+			{if $media_files !=''}
+				<br />
+				{include file="$selected_template/xtCore/pages/files/product_public_files.html"}
+			{/if}
+		</div>
+		{/if}
+	</div>
+	<div class="right-side">
+		{hook key=product_info_tpl_before_cart}
+		{if $allow_add_cart eq 'true'}
+			{form type=form name=product id=product action='dynamic' link_params=getParams method=post}
+			{form type=hidden name=action value=add_product}
+			{form type=hidden name=product value=$products_id}
+				<div class="cart-frame">
+					<div class="top {if !$isMobile}clearfix{/if}">
+						<div id="number-of-items" class="clearfix">
+							{if !$isMobile}
+				              <div class="input-nr">
+				              	{form type=text name=qty value=1}
+				              </div>
+				              <div class="input-buttons" style="display:none;">
+				                <div class="plus">+</div>
+				                <div class="minus">-</div>
+				              </div>
+			              	{else}
+			             		{html_options name=qty options=$numbers}
+			             	{/if}
+			            </div>
+			            {if !$isMobile}
+						<p class="item-count">{$product_itemcount}</p>
+						{/if}
+					</div>
+					<div class="createprice {if !$isMobile}clearfix{/if}">
+						<div class="bigprice">
+                            {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}
+                            {$products_price.formated}
+                            {/if}
+							{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' && !$isMobile}
+								<p class="taxandshippinginfo priceinfo">
+									{$products_tax_info.tax_desc},
+									{if $products_shipping_link}<a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}
+								</p>
+								{price_table}
+							{/if}
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="cart-product">
+						{if $isMobile}
+						<p class="stockimagetext taxandshippinginfo priceinfo">
+							{$products_tax_info.tax_desc},
+							{if $products_shipping_link}<a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}
+						</p>
+						<p class="stockimagetext">{$product_itemcount}</p>
+						{/if}
+					<div id="cart-area">
+						{*button text=$smarty.const.BUTTON_ADD_CART params='id="addToBasket" name="addToBasket" onclick="javascript: return ajaxtocartsend(this.form);"' type='form'*}
+	                    {*button text=$smarty.const.BUTTON_ADD_CART params='id="addToBasket" name="addToBasket" onclick="javascript: return ajaxtocartsend(this.form);"' type='form'*}
+	                    {button_text value=TEXT_VT_FREE_PRODUCTS_ADD_TO_CART params='id="addToBasket" name="addToBasket" onclick="javascript: return ajaxtocartsend(this.form);"' type='form'}
+	                    {if !$isMobile}
+	                    <div id="productinfoprice">						
+							<div>
+								
+							{if $stock_image}
+								<p class="stockimagetext">{txt key=TEXT_STOCK_NAME}: {$stock_image.name}</p>
+							{/if}
+							{if $shipping_status}<p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}:<br /><b>{$shipping_status}</b></p>{/if}
+							</div>
+							{content block_id=26}
+							{if $_content_26|count >0}
+								<div id="versand-info">
+									{foreach key=keyn name=aussen item=box_data from=$_content_26}
+										{$box_data.content_body}
+									{/foreach}
+									{if !$isMobile}
+									<p>{txt key=TEXT_HEALTHY_DISCOUNT}</p>
+									{/if}
+								</div>
+							{/if}
+						</div><!-- #productinfoprice -->
+						{/if}
+						<div class="addtobasket">
+							<table border="0" cellspacing="0" cellpadding="2" align="right">
+								{if $products_information}
+									<tr><td colspan="2">{$products_information}</td></tr>
+								{/if}
+								<tr>
+									<td class="qty-field">
+										
+									</td>
+									<td>
+	                                
+	                                
+	                               </td>
+								</tr>
+								<tr>
+									<td></td><td align="right">
+									
+									</td>
+								</tr>
+								<tr><td colspan="2" align="right">
+								
+								</td></tr>
+							</table>
+
+						</div>								
+					</div><!-- #cart-area -->
+				</div>
+			{form type=formend}
+		{/if}
+
+		{if !$isMobile}
+			{assign var="param" value="info=$products_id"}
+			{form type=form name=add_bui_watchlist action='bui_watchlist' method=post}
+			{form type=hidden name=action value=add_bui_watchlist}
+			{form type=hidden name=bui_pID value=$products_id}
+
+			{form type=hidden name=qty value=1}
+			{button_text class="btn-submit" value=BUTTON_ADD_BUI_WATCHLIST type='form'}
+
+			{form type=formend}
+		{/if}
+
+		{hook key=product_info_tpl_cart}
+        {if $products_master_flag == 1 OR  $products_master_model != ''}   
+        <div class="box">
+        	{hook key=product_info_tpl_options}
+        </div><!-- .box -->
+        {/if}
+	</div>
+	<div class="clearfix"></div>
+	 {if $isMobile}
+    <div id="productinfoprice">						
+		<div>
+			
+		{if $stock_image}
+			<p class="stockimagetext">{txt key=TEXT_STOCK_NAME}: {$stock_image.name}</p>
+		{/if}
+		{if $shipping_status}<p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}:<br /><b>{$shipping_status}</b></p>{/if}
+		</div>
+		{content block_id=26}
+		{if $_content_26|count >0}
+			<div id="versand-info">
+				{foreach key=keyn name=aussen item=box_data from=$_content_26}
+					{$box_data.content_body}
+				{/foreach}
+				{if !$isMobile}
+				<p>{txt key=TEXT_HEALTHY_DISCOUNT}</p>
+				{/if}
+			</div>
+		{/if}
+	</div><!-- #productinfoprice -->
+	{/if}
+	
+	{if $isMobile}
+	<div class="right-text">
+		{if !$isMobile}
+		<h1>{$products_name}</h1>
+		{/if}
+		{$products_short_description}
+		<div id="vorteile-box">
+		{if $product_description3_html !=''}
+		{$product_description3_html}
+		{/if}
+		</div>
+		<div class="clearfix"></div>
+		<p class="smallfont">{if $products_model!=''}<p class="infotext">{txt key=TEXT_PRODUCTS_MODEL}: {$products_model}</p>{/if}</p>
+		{if $products_discount!=''}<p class="infotext">{$products_discount}</p>{/if}
+	</div>
+	<div class="clearfix"></div>
+	{content block_id=25}
+	{if $_content_25|count >0}
+		<div id="spar-abo">
+			{foreach key=keyn name=aussen item=box_data from=$_content_25}
+				{$box_data.content_body}
+			{/foreach}
+		</div>
+	{/if}
+	{content cont_id=25 is_id=false}
+	<ul class="tab-container clearfix">
+		{if $products_description !=''}
+		<li class="active" id="tab_1"><a href="#">{txt key=TEXT_DESCRIPTION}</a></li>
+		{/if}
+		{if $product_description4_html !=''}
+		<li id="tab_2"><a href="#">{txt key=TEXT_PRODUCTS_DESCRIPTION4}</a></li>
+		{/if}
+		{if $product_description2_html !=''}
+		<li id="tab_3"><a href="#">{txt key=TEXT_PRODUCTS_DESCRIPTION3}</a></li>
+		{/if}
+		{if $_content_25.content_body !=''}
+		<li id="tab_4"><a href="#">{$_content_25.content_title}</a></li>
+		{/if}
+	</ul>
+	<div id="productinfodetail">
+		{if $products_description !=''}
+			<div id="productinfo_desc" class="user-content full-wide-product-info">
+				<div class="tab-frame" id="frame_1">
+				{if $products_description !=''}
+					{$products_description}
+				{/if}
+				</div>
+				<div class="tab-frame" id="frame_2" style="display:none">
+				{if $product_description4_html !=''}
+					{$product_description4_html}
+				{/if}
+				</div>
+				<div class="tab-frame" id="frame_3" style="display:none">
+				{if $product_description2_html !=''}
+					{$product_description2_html}
+				{/if}
+				</div>
+				<div class="tab-frame" id="frame_4" style="display:none">
+				{if $_content_25.content_body !=''}
+					{$_content_25.content_body}
+				{/if}
+				</div>
+			</div>
+		{/if}
+		{box name=xt_cliplister type=user}
+		{if $media_files !=''}
+			<br />
+			{include file="$selected_template/xtCore/pages/files/product_public_files.html"}
+		{/if}
+	</div>
+	{/if}
+
+
+	{if $date_available!=''}
+	<ul class="info_info">
+		<li class="infoInfo">{txt key=TEXT_PRODUCT_AVAILABLE} {$date_available|date_format:"%A, %B %e, %Y"}</li>
+	</ul>
+	{/if}
+	{if $products_fsk18=='1'}
+		<ul class="info_error">
+			<li class="infoError">{txt key=TEXT_PRODUCTS_FSK18_NOTE}</li>
+		</ul>
+	{/if}
+
+	{if !$isMobile}
+		{hook key=product_info_tpl}
+        {hook key=product_info_tpl_reviews}
+        {hook key=product_info_tpl_tab_headline}
+        {hook key=product_info_tpl_tab_box}
+   	{/if} 
+    {if $products_master_flag == 1}   
+    <div id="productlist" class="ptabs">
+        {hook key=product_info_tpl_productlist}
+    </div><!-- #productlist -->
+    {/if}
+
+    {*if $plugin.xt_bestseller_products.check}
+		<div id="xt_bestseller_products" class="tabcontent clearfix">
+			{page name=xt_bestseller_products type=user order_by='rand()' tpl_type='product_listing'}
+		</div>
+	{/if*}
+
+	{if $_socialbookmarks}
+		<div id="socialbookmark">
+			{$_socialbookmarks}
+		</div>
+	{/if}
+    
+    {hook key=products_images_tpl}
+    
+	{if $fp_prodinfo == true}
+		{if $fp_prodinfo_show != ''}
+			<div class="vt_free_products_info">{$fp_prodinfo_show}</div>
+		{/if}
+	{/if}
+</div>

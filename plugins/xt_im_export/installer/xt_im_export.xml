@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<title>Import / Export</title>
+	<version>1.0.13</version>
+	<code>xt_im_export</code>
+	<url>http://www.xt-commerce.com</url>
+	<description>Import / Export</description>
+	<icon>xt-commerce_logo.jpg</icon>
+	<developer>xt:Commerce</developer>
+	<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=917726]]></documentation_link>
+	<type>products</type>
+	<minimumupdateversion>1.0.6</minimumupdateversion>
+
+	<db_install><![CDATA[include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_im_export/installer/db_install.php';]]></db_install>
+
+	<db_uninstall><![CDATA[include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_im_export/installer/db_uninstall.php';]]></db_uninstall>
+
+	    <db_update>
+			<update>
+				<version>1.0.6</version>
+				<to_version>1.0.7</to_version>
+				<code><![CDATA[ require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_im_export/installer/updates/1.0.6-1.0.7.php';]]></code>
+			</update>
+			<update>
+				<version>1.0.7</version>
+				<to_version>1.0.8</to_version>
+				<code><![CDATA[ require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_im_export/installer/updates/1.0.7-1.0.8.php';]]></code>
+			</update>
+			<update>
+				<version>1.0.8</version>
+				<to_version>1.0.9</to_version>
+				<code><![CDATA[ require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_im_export/installer/updates/1.0.8-1.0.9.php';]]></code>
+			</update>
+			<update>
+				<version>1.0.9</version>
+				<to_version>1.0.10</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+            <update>
+                <version>1.0.10</version>
+                <to_version>1.0.11</to_version>
+                <code><![CDATA[
+                ]]></code>
+            </update>
+			<update>
+				<version>1.0.11</version>
+				<to_version>1.0.12</to_version>
+				<code><![CDATA[
+				]]></code>
+			</update>
+			<update>
+				<version>1.0.12</version>
+				<to_version>1.0.13</to_version>
+				<code><![CDATA[ require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_im_export/installer/updates/1.0.12-1.0.13.php';]]></code>
+			</update>
+        </db_update>
+	<plugin_code>
+		<code>
+			<hook>page_registry.php:bottom</hook>
+			<phpcode><![CDATA[include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_im_export/hooks/page_registry.php_bottom.php';]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>cronjob.php:main</hook>
+			<phpcode><![CDATA[include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_im_export/hooks/cronjob.php_main.php';]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>admin_dropdown.php:dropdown</hook>
+			<phpcode><![CDATA[include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_im_export/hooks/admin_dropdown.php_dropdown.php';]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>row_actions.php:actions</hook>
+			<phpcode>
+				 <![CDATA[ 
+				 	include (_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_im_export/hooks/row_actions.phpactions.php'); 
+				 ]]>
+			</phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code>
+	<configuration>
+		<config>
+			<key>EI_ALLOWED_PRIMARY</key>
+			<value>products_id,external_id,products_model,products_ean</value>
+			<type></type>
+			<url></url>
+			<de>
+				<title>Primary Key</title>
+				<description></description>
+			</de>
+			<en>
+				<title>Primary Key</title>
+				<description></description>
+			</en>
+			<es>
+				<title>Clave principal</title>
+				<description></description>
+			</es>
+			<bp>
+           <title>Chave principal</title>
+		   <description></description>
+           </bp>
+		</config>
+		<config>
+			<key>EI_ALLOWED_SECONDARY</key>
+			<value>manufacturers_id</value>
+			<type></type>
+			<url></url>
+			<de>
+				<title>Secondary Key</title>
+				<description></description>
+			</de>
+			<en>
+				<title>Secondary Key</title>
+				<description></description>
+			</en>
+			<es>
+				<title>Clave secundaria</title>
+				<description></description>
+			</es>
+			<bp>
+           <title>Chave secundaria</title>
+		   <description></description>
+           </bp>
+         
+		</config>		
+	</configuration>			
+	<language_content>
+		<phrase>
+			<key>TEXT_EI_PRICE_TYPE</key>
+			<class>admin</class>
+			<en>
+				<value>Price incl. Tax</value>
+			</en>
+			<de>
+				<value>Bruttopreise</value>
+			</de>
+			<es>
+				<value>Precios brutos</value>
+			</es>
+			<bp>
+				<value>Preços brutos</value>
+			</bp>
+		</phrase>	
+		<phrase>
+			<key>TEXT_EI_LANGUAGE</key>
+			<class>admin</class>
+			<en>
+				<value>Depending on language</value>
+			</en>
+			<de>
+				<value><![CDATA[Sprachabh&amp;auml;ngig]]></value>
+			</de>	
+			<es>
+				<value>Dependen del idioma</value>
+			</es>		
+            <bp>
+				<value>Dependendo do idioma</value>
+			</bp>			
+		</phrase>	
+		<phrase>
+			<key>TEXT_EI_TYPE_MATCH_2</key>
+			<class>admin</class>
+			<en>
+				<value>Secondary Key</value>
+			</en>
+			<de>
+				<value><![CDATA[Sekund&amp;auml;rschl&amp;uuml;ssel]]></value>
+			</de>
+			<es>
+				<value>Clave secundaria</value>
+			</es>			
+            <bp>
+           <value>Chave secundaria</value>
+           </bp>			
+		</phrase>	
+		<phrase>
+			<key>TEXT_EI_TYPE_MATCH</key>
+			<class>admin</class>
+			<en>
+				<value>Primary Key</value>
+			</en>
+			<de>
+				<value><![CDATA[Prim&amp;auml;rschl&amp;uuml;ssel]]></value>
+			</de>	
+			<es>
+				<value>Clave principal</value>
+			</es>		
+            <bp>
+           <value>Chave principal</value>
+           </bp>			
+		</phrase>	
+		<phrase>
+			<key>TEXT_EI_ENCLOSURE</key>
+			<class>admin</class>
+			<en>
+				<value>Enclosure</value>
+			</en>
+			<de>
+				<value>Texttrenner</value>
+			</de>
+			<es>
+				<value>Delimitador de texto</value>
+			</es>
+			<bp>
+           <value>Delimitador de texto</value>
+           </bp>	
+		</phrase>	
+		<phrase>
+			<key>TEXT_XT_IM_EXPORT</key>
+			<class>admin</class>
+			<en>
+				<value>Import/Export</value>
+			</en>
+			<de>
+				<value>Import/Export</value>
+			</de>
+			<es>
+				<value>ImportaciÃ³n/ExportaciÃ³n</value>
+			</es>				
+            <bp>
+           <value>Importar / Exportar</value>
+           </bp>			
+		</phrase>	
+		<phrase>
+			<key>TEXT_EI_FILENAME</key>
+			<class>admin</class>
+			<en>
+				<value>Filename</value>
+			</en>
+			<de>
+				<value>Dateiname</value>
+			</de>
+			<es>
+				<value>Nombre del archivo</value>
+			</es>			
+            <bp>
+           <value>Nome do arquivo</value>
+           </bp>			
+		</phrase>	
+		<phrase>
+			<key>TEXT_EI_LIMIT</key>
+			<class>admin</class>
+			<en>
+				<value>records limit</value>
+			</en>
+			<de>
+				<value><![CDATA[Datens&amp;auml;tze pro Durchgang]]></value>
+			</de>	
+			<es>
+				<value>Registros por pasada</value>
+			</es>		
+            <bp>
+           <value>Registro do processo</value>
+           </bp>			
+		</phrase>	
+		<phrase>
+			<key>TEXT_EI_DELIMITER</key>
+			<class>admin</class>
+			<en>
+				<value>Seperator</value>
+			</en>
+			<de>
+				<value>Trennzeichen</value>
+			</de>
+			<es>
+				<value>Delimitadores</value>
+			</es>			
+            <bp>
+           <value>Delimitadores</value>
+           </bp>			
+		</phrase>
+        <phrase>
+            <key>TEXT_EI_CAT_TREE_DELIMITER</key>
+            <class>admin</class>
+            <en>
+                <value>Seperator (Categorytree)</value>
+            </en>
+            <de>
+                <value>Trennzeichen (Kategoriepfaad)</value>
+            </de>
+            <es>
+                <value>Delimitadores (Categorytree)</value>
+            </es>
+            <bp>
+                <value>Delimitadores (Categorytree)</value>
+            </bp>
+        </phrase>
+		<phrase>
+			<key>TEXT_EI_TITLE</key>
+			<class>admin</class>
+			<en>
+				<value>Description</value>
+			</en>
+			<de>
+				<value>Beschreibung</value>
+			</de>
+			<es>
+				<value>DescripciÃ³n</value>
+			</es>			
+	        <bp>
+           <value>Descrição</value>
+           </bp>
+		</phrase>	
+		<phrase>
+			<key>TEXT_EI_TYPE_SPEC</key>
+			<class>admin</class>
+			<en>
+				<value>Type</value>
+			</en>
+			<de>
+				<value>Typ</value>
+			</de>	
+			<es>
+				<value>Tipo</value>
+			</es>		
+			<bp>
+           <value>Tipo</value>
+           </bp>
+		</phrase>	
+		<phrase>
+			<key>TEXT_EI_TYPE</key>
+			<class>admin</class>
+			<en>
+				<value>Import/Export</value>
+			</en>
+			<de>
+				<value>Import/Export</value>
+			</de>	
+			<es>
+				<value>ImportaciÃ³n/ExportaciÃ³n</value>
+			</es>			
+            <bp>
+           <value>importação/exportação</value>
+           </bp>			
+		</phrase>	
+		<phrase>
+			<key>TEXT_EI_ID</key>
+			<class>admin</class>
+			<en>
+				<value>ID</value>
+			</en>
+			<de>
+				<value>ID</value>
+			</de>
+			<es>
+				<value>ID</value>
+			</es>			
+            <bp>
+           <value>ID</value>
+           </bp>			
+		</phrase>
+        <phrase>
+            <key>TEXT_ERROR_MESSAGE</key>
+            <class>admin</class>
+            <en>
+                <value>Fehler</value>
+            </en>
+            <de>
+                <value>Fehler</value>
+            </de>
+            <es>
+                <value>Fehler</value>
+            </es>
+            <bp>
+                <value>Fehler</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_XT_IMPORT_EXPORT_LOG</key>
+            <class>admin</class>
+            <en>
+                <value>Log</value>
+            </en>
+            <de>
+                <value>Log</value>
+            </de>
+            <es>
+                <value>Log</value>
+            </es>
+            <bp>
+                <value>Log</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EI_STORE_ID</key>
+            <class>admin</class>
+            <en>
+                <value>Store ID</value>
+            </en>
+            <de>
+                <value>Store ID</value>
+            </de>
+            <es>
+                <value>Store ID</value>
+            </es>
+            <bp>
+                <value>Store ID</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_WRONG_STORE_ID</key>
+            <class>both</class>
+            <en>
+                <value>Import profile has different store ID than the one in imported file</value>
+            </en>
+            <de>
+                <value>Importprofil hat eine andere Shop ID als die Importdatei</value>
+            </de>
+            <es>
+                <value>Import profile has different store ID than the one in imported file</value>
+            </es>
+            <bp>
+                <value>Import profile has different store ID than the one in imported file</value>
+            </bp>
+        </phrase>
+         <phrase>
+            <key>TEXT_MISSING_STORE_ID</key>
+            <class>both</class>
+            <en>
+                <value>Store ID is missing in the imported file, the store ID stated in the import profile will be used.</value>
+            </en>
+            <de>
+                <value>Shop ID nicht gefunden in Importdatei, es wird die Shop ID des Importprofils verwendet.</value>
+            </de>
+            <es>
+                <value>Store ID is missing in the imported file, the store ID stated in the import profile will be used.</value>
+            </es>
+            <bp>
+                <value>Store ID is missing in the imported file, the store ID stated in the import profile will be used.</value>
+            </bp>
+        </phrase>
+
+    </language_content>
+</xtcommerceplugin>

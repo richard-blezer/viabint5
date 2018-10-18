@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xtcommerce_language>
+    <name>Polish</name>
+    <version>4.0.13.1</version>
+    <code>pl</code>
+    <image>pl.gif</image>
+    <sort_order>3</sort_order>
+    <language_charset>utf-8</language_charset>
+    <default_currency>EUR</default_currency>
+    <font>DejaVuSans-Bold.ttf</font>
+    <font_size>9</font_size>
+    <font_position>17</font_position>
+    <setlocale>pl_PL;pl-PL;pl</setlocale> 
+</xtcommerce_language>

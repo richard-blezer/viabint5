@@ -1,0 +1,62 @@
+{php}
+$value = TEXT_ENTER_SEARCH_TERM;
+$onfocus = "if(this.value == '".$value."') this.value='';";
+$onblur = "if (this.value=='') this.value='".$value."';";
+
+$this->assign('value', $value);
+$this->assign('onfocus', $onfocus);
+$this->assign('onblur', $onblur);
+{/php}
+<div id="search">
+	<h1>{txt key=text_search}</h1>
+	{$message}
+	{form type=form name=search action='dynamic' link_params=getParams method=get}
+	{form type=hidden name=page value=search}
+	{hook key=search_tpl}
+	<ul>
+		<li>
+   			{form id=keywords type=text name=keywords value=$value onfocus=$onfocus onblur=$onblur}
+		</li>
+ 		{if $cat_data}
+  		<li id="search-cat">
+    		<label for="cat">{txt key=text_search_categories}</label>
+    		{form params='id="cat"' type=select name=cat default=$default_cat value=$cat_data}
+    	</li>
+    	<li>
+    		<label for="subkat">&nbsp;</label>
+    		{if $checked_subcat eq 'checked'}
+     		{form id=subkat type=checkbox name=subkat checked=$checked_subcat} {txt key=text_search_subcategories}
+     		{else}
+     		{form id=subkat type=checkbox name=subkat} {txt key=text_search_subcategories}
+     		{/if} 
+		</li>
+		{/if}
+		{if $mnf_data|@count gt 1}
+  		<li id="search-mnf">
+    		<label for="mnf">{txt key=text_search_mnf}</label>
+   			{form params='id="mnf"' type=select name=mnf default=$default_mnf value=$mnf_data}
+   		</li>
+		{/if}
+		<li id="search-sdesc">	
+			<label for="sdesc">{txt key=text_search_sdesc}</label>
+			{if $checked_sdesc eq 'checked'}
+			{form id=sdesc type=checkbox name=sdesc checked=$checked_sdesc}
+    		{else}
+			{form id=sdesc type=checkbox name=sdesc}
+    		{/if}
+    	</li>
+		<li>
+			<label for="desc">{txt key=text_search_desc}</label>
+    		{if $checked_desc eq 'checked'}
+			{form id=desc type=checkbox name=desc checked=$checked_desc}
+    		{else}
+			{form id=desc type=checkbox name=desc}
+    		{/if}
+		</li>
+	</ul>
+	<p>
+		<span class="float-left"><a href="javascript:history.back();" class="button">{txt key=BUTTON_BACK}</a></span>
+		<span class="float-right">{css_button text=$smarty.const.BUTTON_SEARCH type='form'}</span>
+	</p>
+	{form type=formend}
+</div><!-- #search -->

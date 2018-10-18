@@ -1,0 +1,21 @@
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+	<div class="cart-inner clearfix">
+		<div class="cart-img">
+			<a href="{link page='cart' conn=SSL}" title="{txt key=TEXT_CART}" onClick="return (false);"><img src="{$tpl_url_path}img/box_shopping_basket.png" alt="{txt key=TEXT_CART}" /></a>
+		</div>
+		<div class="cart-content">
+		{if $show_cart_content == true}
+			<div class="full-cart">
+				<h4><a href="{link page='cart' conn=SSL}" onClick="return (false);">{txt key=TEXT_CART} <span>({$cart_data|@count}&nbsp;{txt key=TEXT_ARTICLE})</span></a></h4>
+				<p><span class="total">{txt key=TEXT_SUB_TOTAL}</span>: {$cart_total}</p>
+			</div>
+		{else}
+			<div class="empty-cart">
+				<h4><a href="{link page='cart' conn=SSL}" onClick="return (false);">{txt key=TEXT_CART}</a></h4>
+				<p>{txt key=TEXT_EMPTY_CART}</p>
+			</div>
+		{/if}
+		</div>
+	</div>
+{/if}

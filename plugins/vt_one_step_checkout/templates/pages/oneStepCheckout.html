@@ -1,0 +1,52 @@
+{if $page_action != success}
+<div id="oneStepCheckout">
+	<div id="leftcol">
+	<ul id="checkoutnavigation">
+	{if $cartType!='virtual'}
+		<li {if $page_action == shipping}class="active"{else}class="inactive"{/if} ><span class="title">{txt key=TEXT_SELECT_SHIPPING}</span><br /><span class="description">{txt key=TEXT_SELECT_SHIPPING_DESC}</span><div id="selectedShipping"></div></li>
+	{/if}	
+		<li {if $page_action == payment_}class="active"{else}class="inactive"{/if}><span class="title">{txt key=TEXT_SELECT_PAYMENT}</span><br /><span class="description">{txt key=TEXT_SELECT_PAYMENT_DESC}</span><div id="selectedPayment"></div></li>
+		<li {if $page_action == confirmation}class="active"{else}class="inactive"{/if}><span class="title">{txt key=TEXT_CONFIRMATION}</span><br /><span class="description">{txt key=TEXT_CONFIRMATION_DESC}</span><div id="selectedConfirmation"></div></li>
+		<li {if $page_action == success}class="active"{else}class="inactive"{/if}><span class="title">{txt key=TEXT_SUCCESS}</span><br /><span class="description">{txt key=TEXT_SUCCESS_DESC}</span></li>
+	</ul>
+	</div>
+	
+	<div id="content">
+	<div id="message">{$message}</div>
+
+	{if ($page_action == shipping || $page_action == payment || $page_action == confirmation) && $cartType!='virtual'}
+	<div id="subpage_shippingBlock">
+    {include file="checkout/subpage_shipping.html" type="tpl_include_root"}
+    </div>
+	{/if}
+	
+	{if $page_action == payment || $page_action == shipping || $page_action == confirmation}
+	<div id="subpage_paymentBlock">
+	{include file="checkout/subpage_payment.html" type="tpl_include_root"}
+	</div>
+	{/if}
+    <div class="clearboth"></div>
+	<div id="confirmationContent">
+	{if $page_action == payment || $page_action == shipping || $page_action == confirmation}
+	{include file="checkout/subpage_confirmation.html" type="tpl_include_root"}
+	{/if}
+	</div>
+	
+	{if $page_action == pay}
+	{include file="checkout/subpage_pay.html" type="tpl_include_root"}
+	{/if}
+	
+	{if $page_action == pay_frame}
+	{include file="checkout/subpage_pay_iframe.html" type="tpl_include_root"}
+	{/if}	
+	
+	{if $page_action == success}
+	{/if}
+	
+	</div>
+</div>
+{else}
+
+	{include file="checkout/subpage_success.html" type="tpl_include_root"}
+
+{/if}

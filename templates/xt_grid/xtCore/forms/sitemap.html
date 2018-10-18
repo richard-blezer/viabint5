@@ -1,0 +1,20 @@
+<div id="sitemap">
+	<h1>{$data.content_heading}</h1>
+	{foreach name=aussen item=module_data from=$_data_categories}
+	{if $smarty.foreach.aussen.first}
+	<div class="sitemap-row">
+		{/if}
+		<ul>
+			<li class="sitemap-headline"><a class="headline" href="{$module_data.link}">{$module_data.title}</a></li>
+			{foreach key=key_data item=item_data from=$module_data.sub}
+			<li class="level1"><a href="{$item_data.link}">{$item_data.title}</a></li>
+			{/foreach}
+		</ul>
+	{if $smarty.foreach.aussen.iteration % 3 == 0 && $smarty.foreach.aussen.last == false}
+	</div><!-- .sitemap-row -->
+	<div class="sitemap-row">
+	{elseif $smarty.foreach.aussen.last}
+	</div><!-- .sitemap-row -->
+	{/if}
+	{/foreach}
+</div><!-- #sitemap -->

@@ -1,0 +1,45 @@
+<h2>{txt key=TEXT_EDIT_ACCOUNT}</h2>
+<!--<a href="{link page='customer' conn=SSL}" data-role="button" data-icon="back">{txt key=BUTTON_BACK}</a>-->
+{form type=form name=edit_account action='dynamic' link_params='page_action=edit_customer' method=post conn=SSL}
+{form type=hidden name=action value=edit_account}
+{form type=hidden name=link_target value=customer}
+{form type=hidden name=password_required value=0}
+{form type=hidden name=privacy value=1}
+{$message}
+<div data-role="fieldcontain">
+	<h3>{txt key=TEXT_ACCOUNT_DATA}</h3>
+	<label for="customers_email_address">{txt key=TEXT_EMAIL} *</label>
+	{form type=text id=customers_email_address name=customers_email_address value=$customers_email_address}<br/>
+	
+	<label for="customers_email_address_confirm">{txt key=TEXT_EMAIL_CONFIRM} *</label>
+	{form type=text id=customers_email_address_confirm name=customers_email_address_confirm value=$customers_email_address_confirm}<br/>
+	
+	{if $show_company eq 1}
+		{if $show_vat eq 1}
+			<label for="customers_vat_id">{txt key=TEXT_VAT_ID}</label><br/>
+			{form type=text id=customers_vat_id name=customers_vat_id value=$customers_vat_id}
+			<p><small>{txt key=TEXT_VAT_INFO}</small></p>
+		{/if}
+	{/if}
+	
+	<label for="customers_default_language">{txt key=TEXT_DEFAULT_LANGUAGE}</label>
+	{form type=select id=customers_default_language name=customers_default_language value=$lang_data default=$selected_lang}<br/>
+	
+	<label for="customers_default_currency">{txt key=TEXT_DEFAULT_CURRENCY}</label>
+	{form type=select id=customers_default_currency name=customers_default_currency value=$currency_data default=$selected_curr}
+</div>
+<div data-role="fieldcontain">
+	<h3>{txt key=TEXT_PASSWORD}</h3>
+	<label for="customers_password_current">{txt key=TEXT_PASSWORD_CURRENT}</label>
+	{form type=password id=customers_password_current name=customers_password_current value=$customers_password_current}
+	<p><small>{txt key=TEXT_PASSWORD_INFO}</small></p>
+	
+	<label for="customers_password">{txt key=TEXT_PASSWORD_ENTRY}</label>
+	{form type=password id=customers_password name=customers_password value=$customers_password}
+	<p><small>{txt key=TEXT_PASSWORD_INFO}</small></p>
+	
+	<label for="customers_password_confirm">{txt key=TEXT_PASSWORD_ENTRY_CONFIRM}</label>
+	{form type=password id=customers_password_confirm name=customers_password_confirm value=$customers_password_confirm}
+	<p><small>{txt key=TEXT_PASSWORD_INFO}</small></p>
+</div>
+<input type="submit" value="{txt key=BUTTON_NEXT}" /><p>{txt key=TEXT_MUST}</p>{form type=formend}

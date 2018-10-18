@@ -1,0 +1,175 @@
+<div class="section panel panel-shadow panel-default {if $module_data.flag_has_specials == 1}panel-discount{/if}">
+    <div class="section-body panel-body">
+
+        {* <!-- LISTING V1 START --> *}
+        {if $listing_version == "v1"}
+            <p>
+                {if $module_data.products_image == 'product:noimage.gif'}
+                    <a href="{$module_data.products_link}" class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="image center product-image productImageBorder img-responsive" alt=$module_data.products_name|escape:"html"}</a>
+                    {if $module_data.flag_has_new=='1'}
+                        <img src="plugins/shs_products_new_flag/images/shs_icon_new.png" alt="{$module_data.products_name}" class="newflag" />
+                    {/if}
+                {else}
+                    <a href="{$module_data.products_link}" class="vertical-helper image-link">{img img=$module_data.products_image type=m_ew-viabiona-thumb class="image center product-image productImageBorder img-responsive" alt=$module_data.products_name|escape:"html"}</a>
+                    {if $module_data.flag_has_new=='1'}
+                        <img src="plugins/shs_products_new_flag/images/shs_icon_new.png" alt="{$module_data.products_name}" class="newflag" />
+                    {/if}
+                {/if}
+            </p>
+            <div class="panel-body-info text-center">
+
+                <p class="visible-xs text-center">
+                    <br />
+                    <a href="{$module_data.products_link}" title="{$module_data.products_name|escape:"html"}" class="preloader btn btn-sm btn-default" role="button">
+                    <span class="text-primary">{txt key=TEXT_MORE_DETAILS}</span>
+                    </a>
+                </p>
+
+                <div class="desc">
+                    <p class="title"><a href="{$module_data.products_link}"><strong>{$module_data.products_name}</strong></a></p>
+                    {if $module_data.products_page_short_description_html}
+                        <div class="product-page-short-description text-word-wrap text-small text-muted">
+                            {$module_data.products_page_short_description_html}
+                        </div>
+                        <br />
+                    {/if}
+                </div>
+
+                {if defined('CONFIG_EW_VIABIONA_PLUGIN_LISTING_NORATING') && $smarty.const.CONFIG_EW_VIABIONA_PLUGIN_LISTING_NORATING|trim == '1'}
+                    {if $module_data.shipping_status || $module_data.stock_image}
+                        <div class="shipping shipping-{$module_data.products_shippingtime}">
+                        {if $module_data.stock_image}<span class="stockimage popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_SHIPPING_STATUS}" data-content="{$module_data.stock_image.name}">{img img=$module_data.stock_image.image type=t_img_stockrules alt=$module_data.stock_image.name}</span>{/if}
+                        </div>
+                    {/if}
+                {else}
+                    {if $module_data.review_stars_rating}
+                        <div class="product-reviews cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_XT_REVIEWS_INFO}" data-content="{if $module_data.products_rating_count}{$module_data.products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO} {txt key=TEXT_EW_VIABIONA_POPOVER_RATING_AVERAGE} {$module_data.products_average_rating|string_format:'%.1f'} {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_VIABIONA_POPOVER_RATING_STAR}.{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}.{/if}" onclick="document.location.href='{$module_data.link_reviews_list}'">
+                            <div class="reviews_rating_light">
+                                <div class="reviews_rating_dark" style="width:{$module_data.review_stars_rating}%"></div>
+                            </div>
+                        </div>
+                    {/if}
+                {/if}
+                <!-- Add cart button -->
+                {if defined('CONFIG_EW_VIABIONA_PLUGIN_LISTING_CARTBUTTON') && $smarty.const.CONFIG_EW_VIABIONA_PLUGIN_LISTING_CARTBUTTON|trim == '1'}
+                {if $module_data.allow_add_cart eq 'true'}
+                {form type=form name=product action='dynamic' link_params=getParams method=post class="add2cart"}
+                {form type=hidden name=action value=add_product}
+                {form type=hidden name=product value=$module_data.products_id}
+                {form type=hidden name=qty value=1}
+                <button type="submit" class="btn btn-sm btn-primary pull-left preloader btn-cart-listing{if $smarty.get.page == 'cart'} no-ajax{/if}" title="{txt key=BUTTON_ADD_CART}" style="margin:0 10px 10px 0;" >
+                    <i class="fa fa-shopping-cart"></i>&nbsp;
+                    {txt key=BUTTON_ADD_CART}
+                </button>
+                {form type=formend}
+                {/if}
+                {/if}
+                <!-- end add cart button-->
+
+                <div class="bottom-line">
+                    {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+                        <p class="product-price{if $module_data.flag_has_specials != 1 && $smarty.get.page != 'product'} pull-right{/if} hidden-xs">{$module_data.products_price.formated}</p>
+                        <p class="product-price visible-xs">{$module_data.products_price.formated}</p>
+                    {/if}
+                    {if $smarty.get.page == 'product'}
+                        <br />
+                    {/if}
+                    <a href="{$module_data.products_link}" title="{$module_data.products_name|escape:"html"}" class="hidden-xs preloader btn btn-sm btn-default{if $module_data.flag_has_specials != 1 && $smarty.get.page != 'product'} pull-left{/if}" role="button">
+                        <span class="text-primary">{txt key=TEXT_MORE_DETAILS}</span>
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+
+                {if $module_data.date_available|trim != ""}
+                    <div class="product-date-available cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_INFO}" data-content="{txt key=TEXT_PRODUCT_AVAILABLE} {$module_data.date_available|date_format:"%A, %d.%m.%Y"}">
+                        <i class="fa fa-calendar"></i><span class="hidden-md hidden-lg">&nbsp;&nbsp;{$module_data.date_available|date_format:"%d.%m.%Y"}</span>
+                    </div>
+                {/if}
+
+            </div>
+        {/if}
+
+        {* <!-- LISTING V2 START --> *}
+        {if $listing_version == "v2"}
+            <div class="row panel-body-info">
+                <div class="col col-lg-3 col-md-4 col-sm-6">
+                    <p>
+                        {if !$module_data.products_image || $module_data.products_image == 'product:noimage.gif'}
+                            <a href="{$module_data.products_link}" class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="image center product-image productImageBorder img-responsive" alt=$module_data.products_name|escape:"html"}</a>
+                        {else}
+                            <a href="{$module_data.products_link}" class="vertical-helper image-link">{img img=$module_data.products_image type=m_ew-viabiona-thumb class="image center product-image productImageBorder img-responsive" alt=$module_data.products_name|escape:"html"}</a>
+                        {/if}
+                    </p>
+                </div>
+                <div class="col col-lg-9 col-md-8 col-sm-6">
+                    {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+                        <div class="pull-right">
+                            {if defined('CONFIG_EW_VIABIONA_PLUGIN_LISTING_FOOTERTAX') && $smarty.const.CONFIG_EW_VIABIONA_PLUGIN_LISTING_FOOTERTAX|trim == '1'}
+                            <p class="product-price">{$module_data.products_price.formated}*</p>
+                            {if $module_data.base_price}
+                            <p class="vpe">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</p>
+                            {/if}
+                            {else}
+                            <p class="product-price">{$module_data.products_price.formated}</p>
+                            {if $module_data.base_price}
+                            <p class="vpe">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</p>
+                            {/if}
+                            {if $module_data.products_shipping_link}
+                            <p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} <a href="{$module_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+                            {else}
+                            <p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} {txt key=TEXT_EXCL_SHIPPING}</p>
+                            {/if}
+                            {/if}
+                        </div>
+                    {/if}
+
+                    <div class="clearfix visible-xs"></div>
+
+                    <p class="title"><a href="{$module_data.products_link}"><strong>{$module_data.products_name}</strong></a></p>
+                    {if defined('CONFIG_EW_VIABIONA_PLUGIN_LISTING_NORATING') && $smarty.const.CONFIG_EW_VIABIONA_PLUGIN_LISTING_NORATING|trim == '1'}
+                        {if $module_data.shipping_status || $module_data.stock_image}
+                            <div class="shipping shipping-{$module_data.products_shippingtime}">
+                            {if $module_data.stock_image}<span class="stockimage popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_SHIPPING_STATUS}" data-content="{$module_data.stock_image.name}">{img img=$module_data.stock_image.image type=t_img_stockrules alt=$module_data.stock_image.name}</span>{/if}
+                            </div>
+                        {/if}
+                    {else}
+                        {if $module_data.review_stars_rating}
+                            <div class="product-reviews cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_XT_REVIEWS_INFO}" data-content="{if $module_data.products_rating_count}{$module_data.products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO} {txt key=TEXT_EW_VIABIONA_POPOVER_RATING_AVERAGE} {$module_data.products_average_rating|string_format:'%.1f'} {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_VIABIONA_POPOVER_RATING_STAR}.{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}.{/if}" onclick="document.location.href='{$module_data.link_reviews_list}'">
+                                <div class="reviews_rating_light">
+                                    <div class="reviews_rating_dark" style="width:{$module_data.review_stars_rating}%"></div>
+                                </div>
+                            </div>
+                        {/if}
+                    {/if}
+                    {if $module_data.products_short_description|strip_tags|trim != ''}
+                        <div class="desc desc-short{if $extended && $extended == '1'} hidden-xs{/if}">{$module_data.products_short_description}</div>
+                    {elseif $module_data.products_description|strip_tags|trim != ''}
+                        <div class="desc desc-long{if $extended && $extended == '1'} hidden-xs{/if}">{$module_data.products_description|strip_tags|truncate:140:'...'}</div>
+                    {/if}
+                    {if $module_data.date_available!=''}
+                        <br /><p class="box info"><i class="fa fa-calendar"></i>&nbsp;&nbsp;{txt key=TEXT_PRODUCT_AVAILABLE} {$module_data.date_available|date_format:"%A, %d.%m.%Y"}</p>
+                    {else}
+                        <br />
+                    {/if}
+                    {if defined('CONFIG_EW_VIABIONA_PLUGIN_LISTING_CARTBUTTON') && $smarty.const.CONFIG_EW_VIABIONA_PLUGIN_LISTING_CARTBUTTON|trim == '1'}
+                        {if $module_data.allow_add_cart eq 'true'}
+                            {form type=form name=product action='dynamic' link_params=getParams method=post class="add2cart"}
+                            {form type=hidden name=action value=add_product}
+                            {form type=hidden name=product value=$module_data.products_id}
+                            {form type=hidden name=qty value=1}
+                            <button type="submit" class="btn btn-sm btn-primary pull-right preloader btn-cart-listing{if $smarty.get.page == 'cart'} no-ajax{/if}" title="{txt key=BUTTON_ADD_CART}" style="margin-left: 1em;">
+                                <i class="fa fa-shopping-cart"></i>&nbsp;
+                                {txt key=BUTTON_ADD_CART}
+                            </button>
+                            {form type=formend}
+                        {/if}
+                    {/if}
+                    <a href="{$module_data.products_link}" title="{$module_data.products_name|escape:"html"}" class="btn preloader btn-sm btn-default pull-right" role="button">
+                        <i class="fa fa-info-circle text-primary"></i>
+                        <span class="text-primary">{txt key=TEXT_MORE_DETAILS}</span>
+                    </a>
+                </div>
+            </div>
+        {/if}
+    </div>
+</div>

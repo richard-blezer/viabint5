@@ -1,0 +1,24 @@
+<style>
+    {literal}
+    .ppp_test_connection_success { background-color: #05cc0d
+    }
+    .ppp_test_connection_warn    { background-color: #fcca43
+    }
+    .ppp_test_connection_error   { background-color: #d43f3a }
+    {/literal}
+</style>
+<div style="padding:20px;">
+
+    <p class="ppp_test_connection_{$result_class}" style="font-weight:bold; padding:5px;">
+        {if $curl_result}{$curl_result}<br />{/if}
+        {if $curl_http_code}HTTP Code: {$curl_http_code}<br />{/if}
+        {if $curl_error_no}Error no: {$curl_error_no}<br />{/if}
+        {if $curl_error_msg}Error message: {$curl_error_msg}<br />{/if}
+    </p>
+
+    <p><br/>curl debug:<br/>
+<pre>
+{$curl_out}
+</pre>
+    </p>
+</div>

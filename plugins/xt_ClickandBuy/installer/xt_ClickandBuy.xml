@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<title>ClickandBuy</title>
+	<version>1.0.3</version>
+	<code>xt_ClickandBuy</code>
+	<url>http://www.xt-commerce.com</url>
+	<description>ClickandBuy Zahlungsmodul</description>
+	<icon>logo_admin2.png</icon> 
+	<type>payment</type>
+	<payment>
+		<payment_code>xt_ClickandBuy</payment_code>
+		<payment_dir>xt_ClickandBuy</payment_dir>
+		<payment_icon></payment_icon>
+		<payment_tpl>ClickandBuyCheckout.html</payment_tpl>
+		<de>
+			<title>ClickandBuy</title>
+			<description></description>
+		</de>
+		<en>
+			<title>ClickandBuy</title>
+			<description></description>
+		</en>
+	</payment>
+	<db_install><![CDATA[
+	  $db->Execute ('create table if not exists ' . DB_PREFIX . '_plg_clickandbuy_ems (
+	   order_id int not null,
+	   crn int not null,
+	   event varchar (255) not null,
+	   created datetime,
+	   index (order_id)
+	  )');
+		$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 24, '', 0, 10000.00, 0, 1);");
+		$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 25, '', 0, 10000.00, 0, 1);");
+		$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 26, '', 0, 10000.00, 0, 1);");
+		$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 27, '', 0, 10000.00, 0, 1);");
+		$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 28, '', 0, 10000.00, 0, 1);");
+		$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 29, '', 0, 10000.00, 0, 1);");
+		$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 30, '', 0, 10000.00, 0, 1);");
+		$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 31, '', 0, 10000.00, 0, 1);");
+		
+		$__tmp = getTableFields (TABLE_ORDERS);
+    if (! isset ($__tmp['clickandbuy_bdrid'])) {
+		  $db->Execute ('alter table ' . TABLE_ORDERS . ' add  clickandbuy_bdrid BIGINT NULL DEFAULT NULL');
+		}
+	]]></db_install>
+	<plugin_code>
+		<code>
+			<hook>order_edit.php:getMemoPanel_button_add</hook>
+			<phpcode><![CDATA[
+if  ($this->order_data['order_data']['payment_code'] == 'xt_ClickandBuy') {
+require_once _SRV_WEBROOT . 'plugins/xt_ClickandBuy/classes/class.vt_cnb_order_edit.php';
+$cnb = new vt_cnb_order_edit();
+$cnb->addButton ($this, $Panel);
+}
+			]]></phpcode>
+		<order>0</order>
+		<active>1</active>
+		</code>
+	</plugin_code>
+	<configuration_payment>
+		<config>
+			<key>URL</key>
+			<value></value>
+			<type>text</type>
+			<de>
+				<title>Transaktions-URL</title>
+			</de>
+			<en>
+				<title>Transaction-URL</title>
+			</en>
+		</config>	
+		<config>
+			<key>STATUS</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Status</title>
+			</de>
+			<en>
+				<title>Status</title>
+			</en>
+		</config>	
+		<config>
+			<key>SELLER_ID</key>
+			<value></value>
+			<type>input</type>
+			<de>
+				<title>Seller ID</title>
+			</de>
+			<en>
+				<title>Seller ID</title>
+			</en>
+		</config>
+		<!--
+		<config>
+			<key>SELLER_NAME</key>
+			<value></value>
+			<type>input</type>
+			<de>
+				<title>Seller Name</title>
+			</de>
+			<en>
+				<title>Seller Name</title>
+			</en>
+		</config>
+		<config>
+			<key>PASSWD</key>
+			<value></value>
+			<type>input</type>
+			<de>
+				<title>Passwort</title>
+			</de>
+			<en>
+				<title>Password</title>
+			</en>
+		</config>
+		-->
+		<config>
+			<key>DYNKEY</key>
+			<value>0</value>
+			<type>input</type>
+			<de>
+				<title>Geheimschl&amp;uuml;ssel</title>
+			</de>
+			<en>
+				<title>Secret key</title>
+			</en>
+		</config><!--	
+		<config>
+			<key>WSDL</key>
+			<value>http://wsdl.eu.clickandbuy.com/TMI/1.4/TransactionManager_dotNET.wsdl</value>
+			<type>text</type>
+			<de>
+				<title>TMI Url (Punkt 3.5 in der Doku)</title>
+			</de>
+			<en>
+				<title>TMI Url</title>
+			</en>
+		</config>
+		-->
+		<config>
+			<key>WSDL_PASSWD</key>
+			<value></value>
+			<type>text</type>
+			<de>
+				<title>TMI Passwort</title>
+			</de>
+			<en>
+				<title>TMI password</title>
+			</en>
+		</config>
+		<!-- 
+		<config>
+			<key>CURRENCY</key>
+			<value>EUR</value>
+			<type>dropdown</type>
+			<url>currencies</url>
+			<de>
+				<title>W&amp;auml;hrung</title>
+			</de>
+			<en>
+				<title>Currency</title>
+			</en>
+		</config>
+		-->				
+		<config>
+			<key>ORDER_STATUS_COMPLETED</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+			<de>
+				<title>Bestellstatus  - Completed</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Completed</title>
+			</en>
+		</config>
+		<config>
+			<key>ORDER_STATUS_PENDING</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+			<de>
+				<title>Bestellstatus  - Pending</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Pending</title>
+			</en>
+		</config>		
+		<config>
+			<key>ORDER_STATUS_DENIED</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+			<de>
+				<title>Bestellstatus  - Denied</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Denied</title>
+			</en>
+		</config>			
+	</configuration_payment>
+		<language_content>
+		<phrase>
+			<key>TEXT_EMS_STATUS_BTN</key>
+			<class>admin</class>
+			<de>
+				<value>EMS Events</value>
+			</de>
+			<en>
+				<value>EMS Events</value>
+			</en>
+		</phrase>	
+		<phrase>
+			<key>TEXT_CRN</key>
+			<class>admin</class>
+			<de>
+				<value>CRN</value>
+			</de>
+			<en>
+				<value>CRN</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_EVENT</key>
+			<class>admin</class>
+			<de>
+				<value>Event</value>
+			</de>
+			<en>
+				<value>Event</value>
+			</en>
+		</phrase>
+		</language_content>
+</xtcommerceplugin>

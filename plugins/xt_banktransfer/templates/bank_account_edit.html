@@ -1,0 +1,29 @@
+<h1>{txt key=TEXT_XT_BANKTRANSFER_ACCOUNTS}</h1>
+{form type=form name=edit_bank_account action='dynamic' link_params='page_action=edit_account' method=post conn=SSL}
+{form type=hidden name=action value=edit_bank_account}
+{form type=hidden name=account_id value=$account_id}
+{$message}
+<div class="box">
+<h2>{txt key=TEXT_ACCOUNT_DATA}</h2><table width="100%" cellspacing="0" cellpadding="4">  <tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_OWNER}</td>
+    <td colspan="2" class="main">{form type=text name=banktransfer_owner value=$banktransfer_owner params='style="width:200px"'}</td>
+  </tr>
+
+  <tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BANK_NAME}</td>
+    <td colspan="2" class="main">{form type=text name=banktransfer_bank_name value=$banktransfer_bank_name params='style="width:200px"'}</td>
+  </tr>
+
+  <tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_IBAN}</td>
+    <td colspan="2" class="main">{form type=text name=banktransfer_iban value=$banktransfer_iban params='style="width:200px"'}</td>
+  </tr>
+  <tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BIC}</td>
+    <td colspan="2" class="main">{form type=text name=banktransfer_bic value=$banktransfer_bic params='style="width:200px"'}</td>
+  </tr>
+</table>
+{css_button text=$smarty.const.BUTTON_SAVE type='form'}
+{form type=formend}
+</div>
+<p><a href="javascript:history.back();" class="button">{txt key=BUTTON_BACK}</a></p>

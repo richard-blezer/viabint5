@@ -1,0 +1,21 @@
+.registrationError {
+	border: solid 2px #B22020;
+	background-color: #FFD6D6;
+	padding: 4px;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	width: auto;
+}
+
+.registrationSuccessContainer {
+	padding-left: 10px;
+}
+
+.registrationSuccessContainer .successLinks {
+	padding-top: 10px;
+	line-height: 1.5;
+}
+
+.registrationSuccessContainer .paddingTop10 {
+	padding-top: 10px;
+}

@@ -1,0 +1,20 @@
+{form type=form name=search_box action='search' link_params=getParams method=get}
+{form type=hidden name=page value=search}
+{form type=hidden name=page_action value=query}
+{form type=hidden name=desc value="on"}
+{form type=hidden name=sdesc value="on"}
+
+<div data-role="fieldcontain">
+	<label for="keywords">{txt key=text_search}:</label>
+	{form type=text id=keywords name=keywords}
+</div>
+
+<input type="submit" value="{txt key=BUTTON_SEARCH}" />
+<!--{button text=$smarty.const.BUTTON_QUICK_FIND file='button_quick_find.gif' type='form'}-->
+
+<hr />
+<a href="{link page='search'}" data-role="button">{txt key=text_advanced_search}</a>
+
+{form type=formend}
+
+<!--<a href="javascript:history.back();" data-rel="back" data-role="button" data-icon="back">{txt key=BUTTON_BACK}</a>-->

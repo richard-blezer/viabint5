@@ -1,0 +1,19 @@
+{if $_categories}
+    {foreach key=k name=a item=i from=$_categories}
+        <li id="cid-{$i.categories_id}" class="level-{$i.level} lang-{$language}{if $i.active == 1} active current{/if}{if $smarty.foreach.a.first} first{/if}{if $smarty.foreach.a.last} last{/if}{if $i.sub} dropdown{/if}">
+            <a class="dropdown-toggle ripple" href="{if $i.sub}javascript:void(0);{else}{$i.categories_link}{/if}"{if $i.sub} data-toggle="dropdown"{/if}>
+            	{$i.categories_name|escape:'html'}
+				{if $i.sub}
+					<b class="caret"></b>
+				{/if}
+            </a>
+            {if $i.sub}
+                <ul class="dropdown-menu">
+                    {foreach key=k1 name=a1 item=i1 from=$i.sub}
+                        <li><a href="{$i1.categories_link}" class="ripple">{$i1.categories_name|escape:'html'}</a></li>
+                    {/foreach}
+                </ul>
+            {/if}
+        </li>
+    {/foreach}
+{/if}

@@ -1,0 +1,43 @@
+<div data-role="header">
+    <h1>{txt key=TEXT_BANKTRANSFER_ACCOUNTS}</h1>
+</div>
+{$message}
+{form type=form name=edit_bank_account action='dynamic' link_params='page_action=edit_account' method=post conn=SSL}
+    {form type=hidden name=action value=edit_bank_account}
+    {form type=hidden name=account_id value=$account_id}
+    
+    <div data-role="header" data-theme="c">
+        <h2>{txt key=TEXT_ACCOUNT_DATA}</h2>
+    </div>
+    <table width="100%" cellspacing="0" cellpadding="4">  
+        <tr>
+            <td colspan class="main">{txt key=TEXT_BANKTRANSFER_OWNER}</td>
+            <td colspan="2" class="main">{form type=text name=banktransfer_owner value=$banktransfer_owner}</td>
+        </tr>
+
+        <tr>
+            <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BANK_NAME}</td>
+            <td colspan="2" class="main">{form type=text name=banktransfer_bank_name value=$banktransfer_bank_name}</td>
+        </tr>
+
+        <tr>
+            <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BLZ}</td>
+            <td colspan="2" class="main">{form type=number name=banktransfer_blz value=$banktransfer_blz}</td>
+        </tr>
+
+        <tr>
+              <td colspan class="main">{txt key=TEXT_BANKTRANSFER_NUMBER}</td>
+              <td colspan="2" class="main">{form type=number name=banktransfer_number value=$banktransfer_number}</td>
+        </tr>
+        <tr>
+              <td colspan class="main">{txt key=TEXT_BANKTRANSFER_IBAN}</td>
+              <td colspan="2" class="main">{form type=text name=banktransfer_iban value=$banktransfer_iban}</td>
+        </tr>
+        <tr>
+              <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BIC}</td>
+              <td colspan="2" class="main">{form type=text name=banktransfer_bic value=$banktransfer_bic}</td>
+        </tr>
+    </table>
+
+    <button type="submit">{txt key=BUTTON_SAVE}</button>
+{form type=formend}

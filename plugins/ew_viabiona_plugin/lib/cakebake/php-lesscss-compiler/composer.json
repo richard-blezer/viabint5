@@ -1,0 +1,24 @@
+{
+    "name": "cakebake/php-lesscss-compiler",
+    "description": "Compiles less code to css code",
+    "keywords": ["php", "less", "combine", "compile", "files", "stylesheet", "css"],
+    "homepage": "http://cakebake.de/",
+    "license": "LGPL-V3",
+    "type": "library",
+    "authors": [
+        {
+            "name": "cakebake (Jens A.)",
+            "email": "cakebake.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "oyejorge/less.php": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": { "cakebake\\lesscss\\": "src/" }
+    }
+}

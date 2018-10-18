@@ -1,0 +1,62 @@
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+
+<div class="left-side {if $isMobile}no-right{/if}" id="bank-data">
+  <h1>{txt key=TEXT_BANKTRANSFER_ACCOUNTS}</h1>
+  {form type=form name=edit_bank_account action='dynamic' link_params='page_action=edit_account' method=post conn=SSL}
+  {form type=hidden name=action value=edit_bank_account}
+  {form type=hidden name=account_id value=$account_id}
+  {$message}
+  <h2>{txt key=TEXT_ACCOUNT_DATA}</h2>
+  <div class="highlightbox">
+  <table width="100%" cellspacing="0" cellpadding="4" class="form-box">
+    <tr>
+      <td colspan class="main">{txt key=TEXT_BANKTRANSFER_OWNER}</td>
+      <td colspan="2" class="main">{form type=text name=banktransfer_owner value=$banktransfer_owner}</td>
+    </tr>
+
+    <tr>
+      <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BANK_NAME}</td>
+      <td colspan="2" class="main">{form type=text name=banktransfer_bank_name value=$banktransfer_bank_name}</td>
+    </tr>
+    {*}
+    <tr>
+      <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BLZ}</td>
+      <td colspan="2" class="main">{form type=text name=banktransfer_blz value=$banktransfer_blz}</td>
+    </tr>
+
+    <tr>
+      <td colspan class="main">{txt key=TEXT_BANKTRANSFER_NUMBER}</td>
+      <td colspan="2" class="main">{form type=text name=banktransfer_number value=$banktransfer_number}</td>
+    </tr>
+    {*}
+    <tr>
+      <td colspan class="main">{txt key=TEXT_BANKTRANSFER_IBAN}</td>
+      <td colspan="2" class="main">{form type=text name=banktransfer_iban value=$banktransfer_iban}</td>
+    </tr>
+    <tr>
+      <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BIC}</td>
+      <td colspan="2" class="main">{form type=text name=banktransfer_bic value=$banktransfer_bic}</td>
+    </tr>
+  </table>
+</div>
+
+  <div id="checkout-buttons" class="clearfix">
+    <div class="left">
+      <p class="prev"><a class="return-button" href="{link page='customer' conn=SSL}"><span>{txt key=BUTTON_BACK}</span></a></p>
+    </div>
+    <div class="right">
+      <p class="next">{button_text class="login-button" value=BUTTON_SAVE type='form'}</p>
+    </div>
+  </div>
+  {form type=formend}
+</div>
+{if !$isMobile}
+<div class="right-side boxes">
+  {box name=xt_viabiona_cms type=user tpl=box_our_service.html}
+  {box name=xt_viabiona_cms type=user tpl=box_payment_methods.html}
+</div>
+{/if}
+<div class="clearfix"></div>

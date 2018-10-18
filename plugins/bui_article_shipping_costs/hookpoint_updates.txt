@@ -1,0 +1,51 @@
+Zum Aktualisieren bzw. Hinzufügen der HookPoints beim Plugin-Update
+gehen Sie wie folgt vor:
+
+- Admin-Bereich des Shops
+
+- Inhalte -> Plugins -> installierte Plugins -> Artikel-Versandkosten
+
+- klicken Sie hier auf den Button "Hookpoints" um zur Übersicht der HookPoints des Plugins
+zu gelangen
+
+
+- HookPoint anlegen:
+
++ klicken Sie auf den Button "Neu"
+
++ Füllen Sie die entsprechenden Felder aus. Die Daten hierfür finden
+Sie in der Install-XML des Plugins
+
+
+- HookPoint aktualisieren:
+
++ bearbeiten Sie den entsprechenden HookPoint durch DoppelKlick oder Klick auf das
+Icons mit dem Bleistift
+=> Falls es sich um einen HookPoint handelt der gelöscht werden soll, betätigen
+Sie das rote Icon zum Löschen des HookPoints oder deaktivieren Sie diesen um ihn
+später wieder zu aktivieren falls er dennoch benötigt wird
+
++ fügen Sie den neuen Code des HookPoints im Feld "Code" ein und aktualisieren Sie,
+falls nötig, das Feld "Reihenfolge" und "Hook-Code Status"
+
+
+
+
+Version 1.2.5 -> 1.2.6
+------------------------
+
+- nachfolgende HookPoints sind hinzuzufügen:
+
+class.shipping.php:_calcPrice
+
+class.shipping.php:_filterItem_top
+
+class.shipping.php:_filterItem_bottom
+
+class.shipping.php:_filterPrice_top
+
+class.shipping.php:_filterPrice_bottom
+
+class.shipping.php:_filterWeight_top
+
+class.shipping.php:_filterWeight_bottom

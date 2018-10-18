@@ -1,0 +1,5 @@
+1.2.0:
+* Plugin optimiert: Hooks ausgelagert, Plugin Installer hinzugefügt für DB Install/Uninstall
+* Konfiguration erweitert um "SEO Link - Bundle Seite" - Shopbetreiber kann den Namen der Seite selbst bestimmen
+* Page hinzugefügt: Auflistung der Bundles
+* Page hinzugefügt: Auflistung der Produkte je Bundle

@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<title>Print Order</title>
+	<version>4.2.03</version>
+	<code>bui_print_order</code>
+	<url>http://www.bui-hinsche.de</url>
+	<description>Print Order im Admin- und Kunden-Bereich</description>
+	<icon>bui.png</icon>
+	<type>extension</type>
+
+
+
+	<db_install><![CDATA[
+		$db->Execute("
+			CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_plg_bui_print_order (
+  				po_id int(11) NOT NULL auto_increment,
+  				po_template text NOT NULL,
+  				po_admin_flag tinyint(1) NULL DEFAULT 0,
+  				po_customer_flag tinyint(1) NULL DEFAULT 0,
+  				PRIMARY KEY  (po_id)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+		");
+		
+		$db->Execute("
+			CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_plg_bui_print_order_desc (
+  				po_id int(11) NOT NULL,
+  				language_code char(2) NOT NULL,
+  				po_button_text text NOT NULL,
+  				PRIMARY KEY  (po_id,language_code)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		");
+
+		$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (text ,icon ,url_i ,url_d ,sortorder ,parent ,type ,navtype) VALUES ('bui_print_order', 'images/icons/application_form_edit.png', '&plugin=bui_print_order', 'adminHandler.php', '5000', 'contentroot', 'I', 'W');");
+	]]></db_install>
+
+
+
+	<db_uninstall><![CDATA[
+		$db->Execute("DROP TABLE ".DB_PREFIX."_plg_bui_print_order");
+		$db->Execute("DROP TABLE ".DB_PREFIX."_plg_bui_print_order_desc");
+		$db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text = 'bui_print_order'");
+	]]></db_uninstall>
+
+
+
+	<plugin_code>
+		<code>
+			<hook>admin_main.php:bottom</hook>
+			<phpcode><![CDATA[
+				define('TABLE_BUI_PRINT_ORDER', DB_PREFIX.'_plg_bui_print_order');
+				define('TABLE_BUI_PRINT_ORDER_DESC', DB_PREFIX.'_plg_bui_print_order_desc');
+
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_print_order/classes/class.bui_print_order.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>page_registry.php:bottom</hook>
+			<phpcode><![CDATA[
+				if(BUI_PRINT_ORDER_CUSTOMER_ACTIVE == 'true') {
+					define('TABLE_BUI_PRINT_ORDER', DB_PREFIX.'_plg_bui_print_order');
+					define('TABLE_BUI_PRINT_ORDER_DESC', DB_PREFIX.'_plg_bui_print_order_desc');
+					
+					define('PAGE_BUI_PRINT_ORDER_CUSTOMER', _SRV_WEB_PLUGINS.'bui_print_order/pages/bui_print_order_customer.php');
+				
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_print_order/classes/class.bui_print_order.php';
+					require_once _SRV_WEBROOT.'plugins/bui_print_order/classes/class.bui_print_order_tpl.php';
+					require_once _SRV_WEBROOT.'plugins/bui_print_order/classes/class.bui_print_order_display.php';
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>admin_dropdown.php:dropdown</hook>
+			<phpcode><![CDATA[
+				switch ($request['get']) {
+					case "bui_print_order_tpl":
+						require_once _SRV_WEBROOT.'plugins/bui_print_order/classes/class.bui_print_order_tpl.php';
+						$bui_po_tpl = new bui_print_order_tpl();
+						$result = $bui_po_tpl->_getList();
+						break;
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>index.php:tpl_data</hook>
+			<phpcode><![CDATA[
+				if (BUI_PRINT_ORDER_SHOW_POPUP == true) {
+                    $template->getTemplatePath($index_tpl, 'bui_print_order', '', 'plugin');
+                }
+
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>order_edit.php:getMemoPanel_button_add</hook>
+			<phpcode><![CDATA[
+				if(BUI_PRINT_ORDER_ADMIN_ACTIVE == 'true') 
+				{
+					require_once _SRV_WEBROOT.'plugins/bui_print_order/classes/class.bui_print_order_tpl.php';
+
+					$bui_po_tpl = new bui_print_order_tpl();
+					$_buttons = $bui_po_tpl->_getButtons('admin');
+
+					if(is_array($_buttons)) 
+					{
+				        foreach($_buttons as $key => $val) 
+				        {
+				            $js = "var edit_id = ".$this->oID.";";
+							$extF = new ExtFunctions();
+				            $js.= $extF->_RemoteWindow("TEXT_BUI_PRINT_ORDER","TEXT_BUI_PRINT_ORDER","adminHandler.php?load_section=bui_print_order_display&plugin=bui_print_order&pg=display&button_id=".$key."&oID='+edit_id+'", '', array(), 800, 600).' new_window.show();';
+
+							$tmpBtn = PhpExt_Button::createTextButton($val,
+							new PhpExt_Handler(PhpExt_Javascript::stm('window.open("adminHandler.php?load_section=bui_print_order_display&plugin=bui_print_order&pg=display&button_id=' . $key . '&oID=' . $this->oID . '")')));
+
+							$Panel->addButton($tmpBtn);
+					    }
+					}
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>	
+		<code>
+			<hook>print_order_buttons</hook>
+			<phpcode><![CDATA[
+				if(BUI_PRINT_ORDER_CUSTOMER_ACTIVE=='true'){
+					$bui_po_tpl = new bui_print_order_tpl();
+					$_buttons = $bui_po_tpl->_getButtons('customer');
+					
+					if(is_array($_buttons)) {
+						foreach($_buttons as $key => $val) {
+							$button_tpl=$bui_po_tpl->_getButtonTpl($params['oID'], $key, $val);
+							
+							echo $button_tpl;
+						}
+					}
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>print_order_buttons_after_order</hook>
+			<phpcode><![CDATA[
+				if(BUI_PRINT_ORDER_CUSTOMER_ACTIVE=='true'){
+					$bui_po_tpl = new bui_print_order_tpl();
+					$_buttons = $bui_po_tpl->_getButtons('customer');
+					
+					if(is_array($_buttons)) {
+						foreach($_buttons as $key => $val) {
+							$button_tpl=$bui_po_tpl->_getButtonTpl($_SESSION['success_order_id'], $key, $val);
+							
+							echo $button_tpl;
+						}
+					}
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>styles.php:bottom</hook>
+			<phpcode><![CDATA[
+					
+				echo '<link rel="stylesheet" type="text/css" href="'._SYSTEM_BASE_URL._SRV_WEB._SRV_WEB_PLUGINS.'bui_print_order/bui_print_order.css" />';
+				
+			]]></phpcode>
+		<order>0</order>
+		<active>1</active>
+		</code>
+	</plugin_code>
+
+
+
+	<configuration>
+		<config>
+			<key>BUI_PRINT_ORDER_CUSTOMER_ACTIVE</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Print Order f&amp;uuml;r Kunden</title>
+				<description>an / aus</description>
+			</de>
+			<en>
+				<title>Print Order for customer</title>
+				<description>on / off</description>
+			</en>
+		</config>
+		<config>
+			<key>BUI_PRINT_ORDER_ADMIN_ACTIVE</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Print Order f&amp;uuml;r Admin</title>
+				<description>an / aus</description>
+			</de>
+			<en>
+				<title>Print Order for admin</title>
+				<description>on / off</description>
+			</en>
+		</config>
+	</configuration>
+
+
+	
+	<language_content>
+		<phrase>
+			<key>TEXT_BUI_PRINT_ORDER</key>
+			<class>admin</class>
+			<de>
+				<value>Bestellung Drucken</value>
+			</de>
+			<en>
+				<value>Print Order</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PO_ID</key>
+			<class>admin</class>
+			<de>
+				<value>Button-ID</value>
+			</de>
+			<en>
+				<value>Button-ID</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PO_BUTTON_TEXT</key>
+			<class>admin</class>
+			<de>
+				<value>Button-Text</value>
+			</de>
+			<en>
+				<value>Button-Text</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PO_TEMPLATE</key>
+			<class>admin</class>
+			<de>
+				<value>Template-Vorlage</value>
+			</de>
+			<en>
+				<value>Template-Page</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PO_ADMIN_FLAG</key>
+			<class>admin</class>
+			<de>
+				<value>Button f&amp;uuml;r Admin (ja/nein)</value>
+			</de>
+			<en>
+				<value>Button for admin (yes/no)</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PO_CUSTOMER_FLAG</key>
+			<class>admin</class>
+			<de>
+				<value>Button f&amp;uuml;r Kunden (ja/nein)</value>
+			</de>
+			<en>
+				<value>Button for customer (yes/no)</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_ORDER_NUMBER</key>
+			<class>both</class>
+			<de>
+				<value>Bestellnummer</value>
+			</de>
+			<en>
+				<value>Order number</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_ORDER_ID</key>
+			<class>both</class>
+			<de>
+				<value>Bestellnummer</value>
+			</de>
+			<en>
+				<value>Order number</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_ORDERS_STATUS</key>
+			<class>both</class>
+			<de>
+				<value>Bestellstatus</value>
+			</de>
+			<en>
+				<value>Order status</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_ORDER_DATE</key>
+			<class>both</class>
+			<de>
+				<value>Bestelldatum</value>
+			</de>
+			<en>
+				<value>Order date</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_LAST_MODIFIED</key>
+			<class>both</class>
+			<de>
+				<value>Zuletzt ge&amp;auml;ndert</value>
+			</de>
+			<en>
+				<value>Last Modified</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_SHIPPING_ADDRESS</key>
+			<class>both</class>
+			<de>
+				<value>Lieferadresse</value>
+			</de>
+			<en>
+				<value>Shipping Address</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_DELIVERY_ADDRESS</key>
+			<class>both</class>
+			<de>
+				<value>Lieferadresse</value>
+			</de>
+			<en>
+				<value>Shipping Address</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_PAYMENT_ADDRESS</key>
+			<class>both</class>
+			<de>
+				<value>Rechnungsadresse</value>
+			</de>
+			<en>
+				<value>Billing Address</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_BILLING_ADDRESS</key>
+			<class>both</class>
+			<de>
+				<value>Rechnungsadresse</value>
+			</de>
+			<en>
+				<value>Billing Address</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_ORDER_COMMENTS</key>
+			<class>both</class>
+			<de>
+				<value>Bemerkungen</value>
+			</de>
+			<en>
+				<value>Comments</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_ORDER_STATUS_HISTORY</key>
+			<class>both</class>
+			<de>
+				<value>Bestellhistorie</value>
+			</de>
+			<en>
+				<value>Order history</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_QTY</key>
+			<class>both</class>
+			<de>
+				<value>Anzahl</value>
+			</de>
+			<en>
+				<value>Quantity</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_PRODUCTS_QUANTITY</key>
+			<class>both</class>
+			<de>
+				<value>Anzahl</value>
+			</de>
+			<en>
+				<value>Quantity</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_ARTICLE</key>
+			<class>both</class>
+			<de>
+				<value>Artikel</value>
+			</de>
+			<en>
+				<value>Product</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_PRODUCTS_NAME</key>
+			<class>both</class>
+			<de>
+				<value>Artikelname</value>
+			</de>
+			<en>
+				<value>Productsname</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_PRODUCTS_MODEL</key>
+			<class>both</class>
+			<de>
+				<value>Art.Nr.</value>
+			</de>
+			<en>
+				<value>Product.Nr.</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_SINGLE_PRICE</key>
+			<class>both</class>
+			<de>
+				<value>Einzelpreis</value>
+			</de>
+			<en>
+				<value>Single price</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_PRODUCTS_SINGLEPRICE</key>
+			<class>both</class>
+			<de>
+				<value>Einzelpreis</value>
+			</de>
+			<en>
+				<value>Single price</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_TOTAL_PRICE</key>
+			<class>both</class>
+			<de>
+				<value>Gesamtpreis</value>
+			</de>
+			<en>
+				<value>Total price</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_PRODUCTS_FINALPRICE</key>
+			<class>both</class>
+			<de>
+				<value>Gesamtpreis</value>
+			</de>
+			<en>
+				<value>Total price</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_SUB_TOTAL</key>
+			<class>both</class>
+			<de>
+				<value>Zwischensumme</value>
+			</de>
+			<en>
+				<value>Subtotal</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_PRODUCT_TOTAL</key>
+			<class>both</class>
+			<de>
+				<value>Zwischensumme</value>
+			</de>
+			<en>
+				<value>Subtotal</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_TAX</key>
+			<class>both</class>
+			<de>
+				<value>USt.</value>
+			</de>
+			<en>
+				<value>VAT.</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_PRODUCT_TAX</key>
+			<class>both</class>
+			<de>
+				<value>USt.</value>
+			</de>
+			<en>
+				<value>VAT.</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_TOTAL</key>
+			<class>both</class>
+			<de>
+				<value>Gesamtsumme</value>
+			</de>
+			<en>
+				<value>Total</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_ORDERS</key>
+			<class>both</class>
+			<de>
+				<value>Bestellungen</value>
+			</de>
+			<en>
+				<value>Orders</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_CUSTOMERS_EMAIL_ADDRESS</key>
+			<class>both</class>
+			<de>
+				<value>E-Mail Adresse</value>
+			</de>
+			<en>
+				<value>E-Mail address</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_CUSTOMERS_CID</key>
+			<class>both</class>
+			<de>
+				<value>Kunden-Nr.</value>
+			</de>
+			<en>
+				<value>Customer number</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_CUSTOMERS_VAT_ID</key>
+			<class>both</class>
+			<de>
+				<value>Kunden Ust.-ID</value>
+			</de>
+			<en>
+				<value>Customer VAT-ID</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_PAYMENT_CODE</key>
+			<class>both</class>
+			<de>
+				<value>Zahlungsart Code</value>
+			</de>
+			<en>
+				<value>Payment code</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_BPO_SHIPPING_CODE</key>
+			<class>both</class>
+			<de>
+				<value>Versand Code</value>
+			</de>
+			<en>
+				<value>shipping code</value>
+			</en>
+		</phrase>
+	</language_content>
+</xtcommerceplugin>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+	<title>Google Adwords Conversiontracking</title>
+	<version>1.0.7</version>
+	<code>xt_google_ct</code>
+	<url>http://www.xt-commerce.com</url>
+	<description></description>
+	<type>marketing</type>
+	<icon>xt-commerce_logo.jpg</icon>  
+<developer>xt:Commerce</developer>
+<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=31391777]]></documentation_link>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=369]]></marketplace_link>	
+	<plugin_code>
+		<code>
+			<hook>index_footer_tpl</hook>
+			<phpcode><![CDATA[
+				require _SRV_WEBROOT.'plugins/xt_google_ct/classes/class.xt_google_ct.php';
+					$gct = new xt_google_ct;
+					$gct->_getCode();
+				]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code>
+	<configuration>
+		<config>
+			<key>XT_GCT_ACTIVATE</key>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<value>true</value>
+			<de>
+				<title>Für Mandant aktivieren</title>
+			</de>
+			<en>
+				<title>activate for this store</title>
+			</en>
+		</config>                  
+		<config>
+			<key>XT_GCT_CUSTOMER_ID</key>
+			<value></value>
+			<de>
+				<title>Google Adwords Conversion ID</title>
+			</de>
+			<en>
+				<title>Google Adwords Conversion ID</title>
+			</en>
+		</config>
+		<config>
+			<key>XT_GCT_CONVERSION_LABEL</key>
+			<value>default</value>
+			<de>
+				<title>Conversion Label</title>
+			</de>
+			<en>
+				<title>Conversion Label</title>
+			</en>
+		</config>		
+	</configuration>
+</xtcommerceplugin>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_CUSTOM_REFERENCE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Custom reference for tracking]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Custom reference for tracking]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_CAMPAIGNTRACKING_STATUS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate tracking for campaigns]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kampagnen-tracking aktivieren]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

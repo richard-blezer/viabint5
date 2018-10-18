@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_SOFORTUEBERWEISUNG_ORDER_STATUS_NEW_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[New Order Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[New Order Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_SOFORTUEBERWEISUNG_PROJECT_ID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Project ID]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[方案 ID]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Projekt-Nr.]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Project ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID projet]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Identificativo (ID) Progetto]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[プログラム ID]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Project Nr.]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Projekt ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Номер проекта]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[方案ID]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_SOFORTUEBERWEISUNG_PROJECT_PASSWORD_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Project-Password]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[方案-密码]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Projekt-Passwort]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Project-Password]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Mot de passe projet]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Password del Progetto]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[プログラム-パスワード]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Product-wachtwoord]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Projekt-Hasło]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Пароль проекта]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[方案密碼]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_SOFORTUEBERWEISUNG_STATUS_ERROR_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Orderstatus - ERROR]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[订单状态 - ERROR]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bestellstatus - Fehler]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Orderstatus - ERROR]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[État commande - ERREUR]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Stato dell\'ordine - ERRORE]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[注文状況 - エラー]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Bestelstatus - Fout]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Status zamówienia - BŁĄD]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Ошибка статуса заказа]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[訂單狀態 - ERROR]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_SOFORTUEBERWEISUNG_STATUS_NOTIFY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Send statusmail]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[寄送邮件状态]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Statusmail senden]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Send statusmail]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Envoyer message d'état]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Spedire notifica via email]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[メールを送信する状態]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Statusmail versturen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Wyślij status mejlem]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Отправить статусное сообщение]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[寄送郵件狀態]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_SOFORTUEBERWEISUNG_STATUS_SUCCESS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Orderstatus - OK]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[订单状态 - OK]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bestellstatus - OK]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Orderstatus - OK]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[État commande - OK]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Stato dell\'ordine - OK]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[注文状況 - OK]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Bestelstatus - OK]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Status zamówienia - OK]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Статус заказа - ОК]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[訂單狀態 - OK]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_SOFORTUEBERWEISUNG_USER_ID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Customers-ID]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[会员-ID]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kunden-Nr.]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Customers-ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID clients]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Identificativo (ID) Clienti]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[メンバー-ID]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Klanten-Nr.]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Klientów-ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Номер клиента]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[客戶編號]]></value>
+	</tw>
+</phrase>
+</language_content>
+</xtcommerceplugin>

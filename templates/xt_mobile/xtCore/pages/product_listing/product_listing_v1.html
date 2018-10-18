@@ -1,0 +1,106 @@
+{$categories}
+
+{if $product_listing}
+        {if $heading_text}
+            <div data-role="header"> 
+                <h1>{$heading_text}</h1>
+            </div>
+        {/if}
+
+        {if $smarty.get.page == 'search'}
+            {* only for Search-listing *}
+            <div data-role="header"> 
+                <h1>{*txt key=TEXT_XT_MOBILE_SEARCH_LISTING_HEADER*}</h1>
+            </div>
+        {/if}        
+        
+        {if $PRODUCTS_DROPDOWN && $sort_dropdown.options && $MANUFACTURER_DROPDOWN}
+        <div class="filterbar" data-role="header"> 
+            <fieldset class="ViewFilter" data-role="controlgroup" data-type="horizontal">
+                {if $PRODUCTS_DROPDOWN}{$PRODUCTS_DROPDOWN}{/if}
+
+                {if $sort_dropdown.options}
+                    <div class="ViewFilterElement">
+                    {form type=form name=sort_dropdown action='dynamic' method=get}
+                        {if isset($current_manufacturer_id)}{form type=hidden name=page value='manufacturers'} {else} {form type=hidden name=page value='categorie'} {/if}
+                        {if isset($current_category_id)}{form type=hidden name=cat value=$current_category_id}{/if}
+                        {if isset($current_manufacturer_id)}{form type=hidden name=mnf value=$current_manufacturer_id}{/if}
+                        {form type=select name=sorting value=$sort_dropdown.options default=$sort_default onchange='this.form.submit();'}
+                    {form type=formend}
+                    </div>
+                {/if}
+
+                {if $MANUFACTURER_DROPDOWN}
+                    <div class="ViewFilterElement">
+                        {$MANUFACTURER_DROPDOWN}
+                    </div>
+                {/if}
+            </fieldset>
+            {*
+                <fieldset class="ViewSwitch" data-role="controlgroup" data-type="horizontal" > 
+                    <input type="radio" name="radio-choice-2" id="radio-choice-21" value="choice-1" checked="checked" />
+                    <label for="radio-choice-21"><span class="xt-icon xt-icon-gridview"></span></label>
+
+                    <input type="radio" name="radio-choice-2" id="radio-choice-22" value="choice-2"  />
+                    <label for="radio-choice-22"><span class="xt-icon xt-icon-listview"></span></label>
+                </fieldset>
+            *}
+ 
+        </div>
+        {/if}
+        
+        {if $manufacturer.MANUFACTURER.manufacturers_image}
+            {img img=$manufacturer.MANUFACTURER.manufacturers_image type=m_info}
+        {/if}
+
+        {if $manufacturer}
+            {$manufacturer.MANUFACTURER.manufacturers_description}
+        {/if}           
+        
+        {if $product_listing !=''}
+
+            <ul data-role="listview" class="xtm-product-list">
+                {foreach name=aussen item=module_data from=$product_listing}
+
+                <li class="xtm-product-list-element">
+                        <a href="{$module_data.products_link}">
+                            {if $module_data.products_image != 'product:noimage.gif'}
+                                {img img=$module_data.products_image type=m_mobile_thumb class='' alt=$module_data.products_name|escape:"html"}
+                            {else}
+                                <img src="{$tpl_url_path}/img/no_image.png" alt="{txt key=TEXT_NO_IMAGE}">
+                            {/if}
+                            <h2 class="ui-li-heading Name">{$module_data.products_name}</h2> 
+                            <span class="ui-li-desc">    
+                                <span class="Price">
+                                    {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+                                        <span class="xtm-price">
+                                            {$module_data.products_price.formated} 
+                                            {if $module_data.base_price}<br /><span class="xtm-base-price">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</span>{/if}
+                                            <br /><span class="taxInfo">{$module_data.products_tax_info.tax_desc}</span>
+                                            {if $module_data.products_shipping_link}<br /><span class="shippingInfo">{txt key=TEXT_EXCL_SHIPPING}</span>{/if}
+                                        </span>
+                                    {/if}
+                                    {if $module_data.shipping_status}<br />{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$module_data.shipping_status}{/if}
+                                </span>
+                                <span class="Stock">        
+                                    {if $module_data.stock_image}
+                                        {img img=$module_data.stock_image.image type=t_img_stockrules alt=$module_data.stock_image.name}
+                                        {*$module_data.stock_image.name*}
+                                    {/if}
+                                </span> 
+                            </span>
+                        </a>                            
+                    </li>
+
+                {/foreach}
+            </ul>  
+        {/if}
+    
+{/if}
+{$error_listing}
+
+
+<div data-role="content" >
+	<div>{$NAVIGATION_COUNT}</div>
+	<div    >{$NAVIGATION_PAGES}</div>
+</div>

@@ -1,0 +1,25 @@
+<div data-role="collapsible" data-inset="false" data-theme="c">
+
+    <h1>{txt key=TEXT_XT_REVIEWS_HEADING_REVIEWS}</h1>
+
+    <div data-role="content"> 
+        {foreach name=aussen item=module_data from=$reviews_data} 
+            <table width="100%" class="reviewlist">
+                <tr> 
+                    <td><div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$module_data.review_rating}%"></div></div></td>
+                </tr>
+                <tr>
+                    <td><b>{$module_data.review_title}</b> , {$module_data.review_date}</td>
+                </tr>
+                <tr> 
+                    <td>{$module_data.review_text}</td>
+                </tr>
+                <tr>
+                    <td>{txt key=TEXT_XT_REVIEWS_EDITOR}: {$module_data.review_editor}</td>
+                </tr>
+            </table>
+            <hr />
+            <br />
+        {/foreach} 
+    </div>
+</div>

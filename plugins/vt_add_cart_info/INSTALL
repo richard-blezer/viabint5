@@ -1,0 +1,55 @@
+damit das PLG ordnungsgemäß funktioniert musst in jeden formular in welchen ein
+ADD CART button ist, folgendes eingefügt werden:
+
+class='add2cart'
+
+Also wird aus 
+
+{form type=form name=product action='dynamic' link_params=getParams method=post}
+
+folgendes
+
+
+{form type=form name=product action='dynamic' class='add2cart' link_params=getParams method=post}
+
+
+################################################################################
+
+In der js.php des Templates muss eine neuere jQuery Version eingebunden werden,
+
+dazu die Zeile
+
+<script type="text/javascript" src="<?php echo _SYSTEM_BASE_URL . _SRV_WEB; ?>xtFramework/library/jquery/jquery-1.2.6.min.js"></script>
+
+durch folgendes erstzen
+
+<script type="text/javascript" src="<?php echo _SYSTEM_BASE_URL . _SRV_WEB . _SRV_WEB_PLUGINS; ?>vt_add_cart_info/javascript/jquery-1.6.1.js"></script>
+
+
+um die warenkorb box folgendes machen:
+
+<div id="bcb">
+
+...
+
+</div>
+
+################################################################################
+
+
+in xtFramework/classes/class.price.php Zeile 164 muss
+
+$price = $price*$currency->value_multiplicator;
+
+durch 
+
+$price = (double)$price*(double)$currency->value_multiplicator;
+
+
+ersetzt werden
+
+
+################################################################################
+Aufgrund dieser Anpassung ist es möglich das einige Plugins nicht mehr
+ordnungsgemäß funktinieren. Sollte es zu Problemen kommen schrieben Sie 
+bite an support@bui-hinsche.de

@@ -1,0 +1,229 @@
+{if $show_alternate_shipping_addess eq 1}
+<br />
+<br />
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">	  
+	  <tr>
+	    <td width="20">{form type=checkbox name=alternate_shipping_adress value=1}</td>
+	    <td>{txt key=TEXT_ALTERNATE_SHIPPING_ADDRESS}</td>
+	  </tr>
+</table>
+</div>
+
+<div style="display:none" id="alternate_shipping_adressBlock">
+<div class="COL48 left">
+<h2>{txt key=TEXT_PERSONAL}</h2>
+
+<table width="100%" cellspacing="0" cellpadding="4">
+	  {if $show_gender eq 1}
+	    <tr>
+	    <td width="180">{txt key=TEXT_GENDER}:</td>
+	    <td>{form type=select name=shipping_address[customers_gender] value=$gender_data default=$shipping_address.customers_gender note=*}</td>
+	  </tr>
+	  {/if}
+	  
+	  <tr>
+	    <td width="180">{txt key=TEXT_FIRSTNAME}:</td>
+	    <td>{form type=text name=shipping_address[customers_firstname] value=$shipping_address.customers_firstname note=*}</td>
+	  </tr>
+	  <tr>
+	    <td width="180">{txt key=TEXT_LASTNAME}:</td>
+	    <td>{form type=text name=shipping_address[customers_lastname] value=$shipping_address.customers_lastname note=*}</td>
+	  </tr>
+	  {if $show_birthdate eq 1}
+	  <tr>
+	    <td width="180">{txt key=TEXT_BIRTHDATE}:</td>
+	    <td>{form type=text name=shipping_address[customers_dob] value=$shipping_address.customers_dob note=*} {txt key=TEXT_BIRTHDATE_INFO}</td>
+	  </tr>
+	  {/if}
+
+
+</table>
+
+	{if $show_company eq 1}
+	<h2>{txt key=TEXT_COMPANY}:</h2>
+	<table width="100%" border="0" cellspacing="0" cellpadding="4">
+	  <tr>
+	    <td width="180">{txt key=TEXT_COMPANY_NAME}:</td>
+	    <td>{form type=text name=shipping_address[customers_company] value=$shipping_address.customers_company}</td>
+	  </tr>
+	  <tr>
+	    <td width="180">{txt key=TEXT_COMPANY_NAME_2}:</td>
+	    <td>{form type=text name=shipping_address[customers_company_2] value=$shipping_address.customers_company_2}</td>
+	  </tr>
+	  <tr>
+	    <td width="180">{txt key=TEXT_COMPANY_NAME_3}:</td>
+	    <td>{form type=text name=shipping_address[customers_company_3] value=$shipping_address.customers_company_3}</td>
+	  </tr>
+	  {if $show_vat eq 1}
+	  <tr>
+	     <td>{txt key=TEXT_VAT_ID}:</td>
+	     <td>{form type=text name=shipping_address[customers_vat_id] value=$shipping_address.customers_vat_id} {txt key=TEXT_VAT_INFO}</td>
+	  </tr>
+	  {/if}
+	</table>
+	{/if}	 
+
+</div>
+
+<div class="COL48">
+<h2>{txt key=TEXT_ADDRESS}</h2>
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+ <tr>
+	    <td width="180">{txt key=TEXT_STREET}:</td>
+	    <td>{form type=text name=shipping_address[customers_street_address] value=$shipping_address.customers_street_address note=*}</td>
+	  </tr>
+	  {if $show_suburb eq 1}
+	  <tr>
+	    <td width="180">{txt key=TEXT_SUBURB}:</td>
+	    <td>{form type=text name=shipping_address[customers_suburb] value=$shipping_address.customers_suburb}</td>
+	  </tr>
+	  {/if}
+	  <tr>
+	    <td width="180">{txt key=TEXT_CODE}:</td>
+	    <td>{form type=text name=shipping_address[customers_postcode] value=$shipping_address.customers_postcode note=*}</td>
+	  </tr>
+	  <tr>
+	    <td width="180">{txt key=TEXT_CITY}:</td>
+	    <td>{form type=text name=shipping_address[customers_city] value=$shipping_address.customers_city note=*}</td>
+	  </tr>
+	  <tr>
+	    <td width="180">{txt key=TEXT_COUNTRY}:</td>
+	    <td>{form type=select name=shipping_address[customers_country_code] value=$country_data default=$shipping_address.customers_country_code note=*}</td>
+	  </tr>
+</table>
+</div>
+<div class="COL48 left">
+<h2>{txt key=TEXT_CONTACT}</h2>
+	<table width="100%" border="0" cellspacing="0" cellpadding="4">
+	  <tr>
+	    <td width="180">{txt key=TEXT_PHONE}:</td>
+	    <td>{form type=text name=shipping_address[customers_phone] value=$shipping_address.customers_phone}</td>
+	  </tr>
+	  <tr>
+	    <td width="180">{txt key=TEXT_FAX}:</td>
+	    <td>{form type=text name=shipping_address[customers_fax] value=$shipping_address.customers_fax}</td>
+	  </tr>
+	</table>
+</div>
+
+
+{form type=hidden name=shipping_address[address_class] value='shipping'}
+</div>
+{/if}
+{if $show_alternate_payment_addess eq 1}
+<br />
+<br />
+
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">	  
+	  <tr>
+	    <td width="20">{form type=checkbox name=alternate_payment_adress value=1}</td>
+	    <td>{txt key=TEXT_ALTERNATE_PAYMENT_ADDRESS}</td>
+	  </tr>
+</table>
+</div>
+
+<div style="display:none" id="alternate_payment_adressBlock">
+<div class="COL48 left">
+<h2>{txt key=TEXT_PERSONAL}</h2>
+
+<table width="100%" cellspacing="0" cellpadding="4">
+	  {if $show_gender eq 1}
+	    <tr>
+	    <td width="180">{txt key=TEXT_GENDER}:</td>
+	    <td>{form type=select name=payment_address[customers_gender] value=$gender_data default=$payment_address.customers_gender note=*}</td>
+	  </tr>
+	  {/if}
+	  
+ 
+	  
+	  <tr>
+	    <td width="180">{txt key=TEXT_FIRSTNAME}:</td>
+	    <td>{form type=text name=payment_address[customers_firstname] value=$payment_address.customers_firstname note=*}</td>
+	  </tr>
+	  <tr>
+	    <td width="180">{txt key=TEXT_LASTNAME}:</td>
+	    <td>{form type=text name=payment_address[customers_lastname] value=$payment_address.customers_lastname note=*}</td>
+	  </tr>
+	  {if $show_birthdate eq 1}
+	  <tr>
+	    <td width="180">{txt key=TEXT_BIRTHDATE}:</td>
+	    <td>{form type=text name=payment_address[customers_dob] value=$payment_address.customers_dob note=*} {txt key=TEXT_BIRTHDATE_INFO}</td>
+	  </tr>
+	  {/if}
+
+
+</table>
+
+	{if $show_company eq 1}
+	<h2>{txt key=TEXT_COMPANY}:</h2>
+	<table width="100%" border="0" cellspacing="0" cellpadding="4">
+	  <tr>
+	    <td width="180">{txt key=TEXT_COMPANY_NAME}:</td>
+	    <td>{form type=text name=payment_address[customers_company] value=$payment_address.customers_company}</td>
+	  </tr>
+	  <tr>
+	    <td width="180">{txt key=TEXT_COMPANY_NAME_2}:</td>
+	    <td>{form type=text name=payment_address[customers_company_2] value=$payment_address.customers_company_2}</td>
+	  </tr>
+	  <tr>
+	    <td width="180">{txt key=TEXT_COMPANY_NAME_3}:</td>
+	    <td>{form type=text name=payment_address[customers_company_3] value=$payment_address.customers_company_3}</td>
+	  </tr>
+	  {if $show_vat eq 1}
+	  <tr>
+	     <td>{txt key=TEXT_VAT_ID}:</td>
+	     <td>{form type=text name=payment_address[customers_vat_id] value=$payment_address.customers_vat_id} {txt key=TEXT_VAT_INFO}</td>
+	  </tr>
+	  {/if}
+	</table>
+	{/if}	 
+
+</div>
+
+<div class="COL48">
+<h2>{txt key=TEXT_ADDRESS}</h2>
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+ <tr>
+	    <td width="180">{txt key=TEXT_STREET}:</td>
+	    <td>{form type=text name=payment_address[customers_street_address] value=$payment_address.customers_street_address note=*}</td>
+	  </tr>
+	  {if $show_suburb eq 1}
+	  <tr>
+	    <td width="180">{txt key=TEXT_SUBURB}:</td>
+	    <td>{form type=text name=payment_address[customers_suburb] value=$payment_address.customers_suburb}</td>
+	  </tr>
+	  {/if}
+	  <tr>
+	    <td width="180">{txt key=TEXT_CODE}:</td>
+	    <td>{form type=text name=payment_address[customers_postcode] value=$payment_address.customers_postcode note=*}</td>
+	  </tr>
+	  <tr>
+	    <td width="180">{txt key=TEXT_CITY}:</td>
+	    <td>{form type=text name=payment_address[customers_city] value=$payment_address.customers_city note=*}</td>
+	  </tr>
+	  <tr>
+	    <td width="180">{txt key=TEXT_COUNTRY}:</td>
+	    <td>{form type=select name=payment_address[customers_country_code] value=$country_data default=$payment_address.customers_country_code note=*}</td>
+	  </tr>
+</table>
+</div>
+<div class="COL48 left">
+<h2>{txt key=TEXT_CONTACT}</h2>
+	<table width="100%" border="0" cellspacing="0" cellpadding="4">
+	  <tr>
+	    <td width="180">{txt key=TEXT_PHONE}:</td>
+	    <td>{form type=text name=payment_address[customers_phone] value=$payment_address.customers_phone}</td>
+	  </tr>
+	  <tr>
+	    <td width="180">{txt key=TEXT_FAX}:</td>
+	    <td>{form type=text name=payment_address[customers_fax] value=$payment_address.customers_fax}</td>
+	  </tr>
+	</table>
+</div>
+
+
+{form type=hidden name=payment_address[address_class] value='payment'}
+</div>
+{/if}

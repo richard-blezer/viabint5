@@ -1,0 +1,40 @@
+{if $data}
+    <div class="startpage-seotext">
+        {foreach name=seotext key=key item=item from=$data}
+            <div class="row">
+                <div class="col col-lg-12">
+                    <div class="section panel panel-default panel-shadow {if $item.link} cursor-pointer{/if}" {if $item.link}onclick="document.location.href='{$item.link}'"{/if}>
+                        <span class="image">
+                            {if $item.image}
+                                {if $item.link}
+                                    <a href="{$item.link}" class="vertical-helper image-link ripple">{img img=$item.image type=m_org class="productImageBorder img-responsive" alt=$item.heading|escape:"html"}</a>
+                                {else}
+                                    <span class="vertical-helper image-link ripple">{img img=$item.image type=m_org class="productImageBorder img-responsive" alt=$item.heading|escape:"html"}</span>
+                                {/if}
+                            {/if}
+                        </span>
+                        {if $item.heading || $item.short_content}
+                        <div class="panel-body">
+                            {if $item.heading}
+                                <p class="breaking-headline">
+                                    {if $item.link}<a href="{$item.link}">{/if}
+                                    {$item.heading}
+                                    {if $item.link}</a>{/if}
+                                </p>
+                            {/if}
+                            {if $item.short_content}
+                                {$item.short_content}
+                            {/if}
+                            {if $item.link}
+                                <a href="{$item.link}" title="{$item.heading|escape:"html"}" class="btn btn-default" role="button">
+                                    <i class="fa fa-arrow-circle-right"></i> {txt key=TEXT_INFO}
+                                </a>
+                            {/if}
+                        </div>
+                        {/if}
+                    </div>
+                </div>
+            </div>
+        {/foreach}
+    </div>
+{/if}

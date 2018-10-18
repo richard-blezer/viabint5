@@ -1,0 +1,170 @@
+<h1>{txt key=TEXT_PAGE_TITLE_LOGIN}</h1>
+{$message}
+
+<div class="highlightbox">
+	<h1>{txt key=TEXT_RETURNING}</h1>
+	{form type=form name=login action='dynamic' link_params='page_action=login' method=post conn=SSL}
+	{form type=hidden name=action value=login}
+	{form type=hidden name=link_target value=index}
+	<p>{txt key=TEXT_TXT_RETURNING}</p>
+	<table width="100" border="0" cellspacing="4" cellpadding="0">
+         <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=text_email}</strong> </td>
+           <td>{form type=text name=email maxlength='50'}</td>
+           <td>&nbsp;</td>
+         </tr>
+         <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=text_password}</strong></td>
+           <td>{form type=password name=password maxlength='30'}</td>
+           <td>{button text=$smarty.const.BUTTON_LOGIN file='login.gif' type='form'}</td>
+         </tr>
+         <tr>
+           <td>&nbsp;</td>
+           <td colspan="2"><a href="{link page='customer' paction='password_reset' conn=SSL}">{txt key=text_link_lostpassword}</a></td>
+         </tr>
+       </table>
+	{form type=formend}
+</div>
+
+{form type=form name=create_account action='dynamic' link_params='page_action=login' method=post conn=SSL}
+{form type=hidden name=action value=add_customer}
+{form type=hidden name=page value='customer'}
+{form type=hidden name=default_address[address_class] value=default}
+<h1>{txt key=TEXT_NEW_CUSTOMER}</h1>
+
+
+<div class="highlightbox">
+<h2>{txt key=TEXT_PERSONAL}:</h2>
+<table width="100%" cellspacing="0" cellpadding="4">
+  {if $show_gender eq 1}
+    <tr>
+    <td>{txt key=TEXT_GENDER}:</td>
+    <td>{form type=select name=default_address[customers_gender] value=$gender_data default=$default_address.customers_gender note=*}</td>
+  </tr>
+  {/if}
+  <tr>
+    <td>{txt key=TEXT_FIRSTNAME}:</td>
+    <td>{form type=text name=default_address[customers_firstname] value=$default_address.customers_firstname note=*}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_LASTNAME}:</td>
+    <td>{form type=text name=default_address[customers_lastname] value=$default_address.customers_lastname note=*}</td>
+  </tr>
+  {if $show_birthdate eq 1}
+  <tr>
+    <td>{txt key=TEXT_BIRTHDATE}:</td>
+    <td>{form type=text name=default_address[customers_dob] value=$default_address.customers_dob note=*} {txt key=TEXT_BIRTHDATE_INFO}</td>
+  </tr>
+  {/if}
+  <tr>
+    <td>{txt key=TEXT_EMAIL}:</td>
+    <td>{form type=text name=cust_info[customers_email_address] value=$cust_info.customers_email_address note=*}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_EMAIL_CONFIRM}:</td>
+    <td>{form type=text name=cust_info[customers_email_address_confirm] value=$cust_info.customers_email_address_confirm note=*}</td>
+  </tr>
+</table>
+
+{if $show_company eq 1}
+<h2>{txt key=TEXT_COMPANY}:</h2>
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="120">{txt key=TEXT_COMPANY_NAME}:</td>
+    <td>{form type=text name=default_address[customers_company] value=$default_address.customers_company}</td>
+  </tr>
+  <tr>
+    <td width="120">{txt key=TEXT_COMPANY_NAME_2}:</td>
+    <td>{form type=text name=default_address[customers_company_2] value=$default_address.customers_company_2}</td>
+  </tr>
+  <tr>
+    <td width="120">{txt key=TEXT_COMPANY_NAME_3}:</td>
+    <td>{form type=text name=default_address[customers_company_3] value=$default_address.customers_company_3}</td>
+  </tr>
+  {if $show_vat eq 1}
+  <tr>
+     <td>{txt key=TEXT_VAT_ID}:</td>
+     <td>{form type=text name=cust_info[customers_vat_id] value=$cust_info.customers_vat_id} {txt key=TEXT_VAT_INFO}</td>
+  </tr>
+  {/if}
+</table>
+{/if}
+
+<h2>{txt key=TEXT_ADDRESS}:</h2>
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="120">{txt key=TEXT_STREET}:</td>
+    <td>{form type=text name=default_address[customers_street_address] value=$default_address.customers_street_address note=*}</td>
+  </tr>
+  {if $show_suburb eq 1}
+  <tr>
+    <td>{txt key=TEXT_SUBURB}:</td>
+    <td>{form type=text name=default_address[customers_suburb] value=$default_address.customers_suburb}</td>
+  </tr>
+  {/if}
+  <tr>
+    <td>{txt key=TEXT_CODE}:</td>
+    <td>{form type=text name=default_address[customers_postcode] value=$default_address.customers_postcode note=*}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_CITY}:</td>
+    <td>{form type=text name=default_address[customers_city] value=$default_address.customers_city note=*}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_COUNTRY}:</td>
+    <td>{form type=select name=default_address[customers_country_code] value=$country_data default=$smarty.const._STORE_COUNTRY note=*}</td>
+  </tr>
+</table>
+
+<h2>{txt key=TEXT_CONTACT}:</h2>
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="120">{txt key=TEXT_PHONE}:</td>
+    <td>{form type=text name=default_address[customers_phone] value=$default_address.customers_phone}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_FAX}:</td>
+    <td>{form type=text name=default_address[customers_fax] value=$default_address.customers_fax}</td>
+  </tr>
+</table>
+
+
+<h2>{txt key=TEXT_PASSWORD}:</h2>
+<p>{txt key=TEXT_TXT_NEW_CUSTOMER} {if $smarty.const._STORE_ALLOW_GUEST_ORDERS == 'true'}{txt key=TEXT_TXT_NEW_CUSTOMER_GUEST}{/if}</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="120">{txt key=TEXT_PASSWORD_ENTRY}:</td>
+    <td>{form type=password name=cust_info[customers_password] value=$cust_info.customers_password}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_PASSWORD_ENTRY_CONFIRM}:</td>
+    <td>{form type=password name=cust_info[customers_password_confirm] value=$cust_info.customers_password_confirm}</td>
+  </tr>
+</table>
+
+{if $show_privacy eq 1}
+{content cont_id=2 is_id='false'}
+{if $show_privacy_type eq 1}
+<br />
+<table width="100%" cellspacing="0" cellpadding="4">
+  <tr>
+    <td>{form type=checkbox name=privacy value=1}</td>  
+    <td width="100%"><strong>{txt key=TEXT_PRIVACY_ACCEPT}</strong><br /><a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT}</a> {$_content_2.content_popup_link}
+    </td>
+  </tr>
+</table>
+
+{else}
+<table width="100%" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="100%"><a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT_INFO}</a> {$_content_2.content_popup_link}
+    </td>
+  </tr>
+</table>
+{/if}
+{/if}
+{hook key=login_create_account_tpl}
+<p>{button text=$smarty.const.BUTTON_NEXT file='next.gif' type='form'}</p>
+<p>{txt key=TEXT_MUST}</p>
+</div>
+{form type=formend}

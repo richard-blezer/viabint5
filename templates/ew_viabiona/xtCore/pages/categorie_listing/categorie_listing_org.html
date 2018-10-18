@@ -1,0 +1,42 @@
+<div id="categorie-listing">
+
+    {if $categories_image}
+        <div class="cat-image img-thumbnail">
+            {img class="img-responsive" img=$categories_image type=m_org alt=$categories_name|escape:'html' title=$categories_name|escape:'html'}
+        </div>
+    {/if}
+
+	{if $categories_heading_title|strip_tags|trim != ''}
+	    <h1 class="text-primary">{$categories_heading_title}</h1>
+	{else}
+	    <h1 class="text-primary">{$categories_name}</h1>
+	{/if}
+
+	{if $categories_description|trim != ''}
+	    <div id="categorie-description" class="textstyles text-word-wrap">{$categories_description}</div>
+	{/if}
+
+	{if $categorie_listing != ''}
+	    <p class="h3">{txt key=TEXT_HEADING_MORE_CATEGORIES}</p>
+        <div class="listing">
+	        <div class="row">
+		        {foreach item=module_data from=$categorie_listing}
+		            <div class="col col-md-3 col-xs-6">
+			            <div class="section panel panel-default text-center panel-shadow" onclick="document.location.href='{$module_data.categories_link}'" style="cursor:pointer;">
+                            <span class="image">
+				                {if $module_data.categories_image}
+                                    <a href="{$module_data.categories_link}" class="vertical-helper image-link">{img img=$module_data.categories_image type=m_ew-viabiona-category-thumb class="productImageBorder img-responsive" alt=$module_data.categories_name|escape:"html"}</a>
+				                {else}
+                                    <a href="{$module_data.categories_link}" class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="productImageBorder img-responsive" alt=$module_data.categories_name|escape:"html"}</a>
+				                {/if}
+                            </span>
+                            <div class="panel-body">
+				                <span class="title text-word-wrap"><a href="{$module_data.categories_link}">{$module_data.categories_name}</a></span>
+                            </div>
+			            </div>
+		            </div><!-- .col -->
+		        {/foreach}
+	        </div>
+        </div>
+	{/if}
+</div><!-- #categorie-listing -->

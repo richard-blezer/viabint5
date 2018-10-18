@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+		<title>Clean Cache</title>
+		<version>1.0.7</version>
+		<code>xt_cleancache</code>
+		<url>http://www.xt-commerce.com</url>
+		<description>Clean Cache plugin</description>
+		<type>extension</type>
+		<developer>xt:Commerce</developer>
+		<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=12910603]]></documentation_link>
+		<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=4374]]></marketplace_link>
+		<icon>xt-commerce_logo.jpg</icon>
+		<db_install><![CDATA[
+			require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/db_install.php';
+		]]></db_install>
+		<db_uninstall><![CDATA[
+			require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/db_uninstall.php';
+		]]></db_uninstall>
+		<minimumupdateversion>1.0.3</minimumupdateversion>
+		<db_update>
+			<update>
+				<version>1.0.3</version>
+				<to_version>1.0.4</to_version>
+				<code><![CDATA[
+				$colExists = $db->GetOne("SELECT id FROM " . DB_PREFIX . "_clean_cache WHERE type='Templates' ");
+				if (!$colExists)
+				{
+					$db->Execute("INSERT INTO `".DB_PREFIX."_clean_cache` ( `type`, `date_added`, `last_modified`) VALUES ( 'Templates', '2012-04-05 00:00:00', '2012-04-05 00:00:00');");
+				}
+					]]>
+				</code>
+			</update>
+			<update>
+				<version>1.0.4</version>
+				<to_version>1.0.5</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+						<update>
+				<version>1.0.5</version>
+				<to_version>1.0.6</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+            <update>
+                <version>1.0.6</version>
+                <to_version>1.0.7</to_version>
+                <code><![CDATA[
+					]]>
+                </code>
+            </update>
+        </db_update>
+		<plugin_code>
+			<code>
+				<hook>class.plugin_installed.php:_set_bottom</hook>
+				<phpcode><![CDATA[
+					require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/exec_clean_cache.php'; 
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.plugin_installed.php:_setStatus_bottom</hook>
+				<phpcode><![CDATA[
+					require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/exec_clean_cache.php'; 
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>admin_dropdown.php:dropdown</hook>
+				<phpcode><![CDATA[
+					require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/admin_dropdown_php_dropdown.php'; 
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>page_registry.php:bottom</hook>
+				<phpcode><![CDATA[
+					require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/page_registry.phpbottom.php'; 
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>row_actions.php:actions</hook>
+				<phpcode><![CDATA[
+					require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/row_actions_php_actions.php'; 
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>cronjob.php:main</hook>
+				<phpcode><![CDATA[
+					require_once _SRV_WEBROOT.'plugins/xt_cleancache/hooks/cronjob_php_main.php'; 
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+		</plugin_code>
+</xtcommerceplugin>

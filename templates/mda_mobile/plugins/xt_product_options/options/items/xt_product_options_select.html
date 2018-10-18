@@ -1,0 +1,17 @@
+{if $options!=''}
+   {foreach name=outer item=options_data from=$options}
+      <div data-role="fieldcontain">
+        <label for="products_info[{$options_data.option_group_id}_SELECT]" class="select"> </label>
+            <select name="products_info[{$options_data.option_group_id}_SELECT]" id="products_info[{$options_data.option_group_id}_SELECT]">
+                <option selected="selected" value="">{txt key=TEXT_SELECT}</option>
+                {foreach name=test item=myOption from=$options_all.options}
+                    {if $myOption.id==$options_data.option_group_id}
+                        {foreach item=child from=$myOption.option_group_values}
+                            <option value="{$child.id}">{$child.text}</option>
+                        {/foreach}
+                    {/if}
+                {/foreach}
+            </select>
+        </div>
+    {/foreach}
+{/if}

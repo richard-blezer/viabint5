@@ -1,0 +1,11 @@
+#rescission_form label {
+    height: 16px;
+    line-height: 16px;
+    margin: 0 0 8px;
+    padding: 5px 10px 5px 0;
+}
+#rescission_form select {
+    margin: 0 0 10px;
+    padding: 5px 0;
+    width: 223px;
+}

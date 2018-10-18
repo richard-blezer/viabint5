@@ -1,0 +1,71 @@
+{$page}
+<div id="wrap">
+	<div id="header">
+		<div id="logo"><img src="{$tpl_url_path}img/top_logo.jpg" alt="{$store_name}" /></div>
+		<div id="search">{box name=search}</div>
+	</div>
+	<div id="topmenuwrap">
+		<ul id="topmenu">
+			<li><a href="{link page='cart'}">{txt key=TEXT_CART}</a></li>
+			{if $account == true}
+			<li><a href="{link page='customer' conn=SSL}">{txt key=TEXT_ACCOUNT}</a></li>
+			{/if}
+			<li><a href="{link page='checkout' paction='shipping' conn=SSL}">{txt key=TEXT_CHECKOUT}</a></li>
+			{if $account == true}
+			{if $registered_customer}
+			<li><a href="{link page='customer' paction='logoff' conn=SSL}">{txt key=TEXT_LOGOFF}</a></li>
+			{else}
+			<li><a href="{link page='customer' paction='login' conn=SSL}">{txt key=TEXT_LOGIN}</a></li>
+			{/if}
+			{/if}
+
+		</ul>
+		<div id="currencies">{box name=currency}</div>
+		<div id="languages">{box name=language}</div>
+		
+	</div>
+	<div id="breadcrumb">
+{include file="/xtCore/pages/navigation/breadcrumb.html" type="tpl_include"} 
+	</div>
+	<div id="contentwrap">
+		{if $show_index_boxes == 'true'}
+		<div id="leftcol">{box  name=categories}
+		{box name=manufacturers order_by='m.manufacturers_name'}
+		{content block_id=7 levels=nested}
+{if $_content_7|count > 0}
+<h2 class="boxheader">{txt key=TEXT_INFO}</h2>
+<div class="infoboxbody">
+<ul class="contentlist">
+{foreach name=aussen item=box_data from=$_content_7}
+<li class="level{$box_data.level}{if $box_data.active} active{/if}"><a href="{$box_data.link}">{$box_data.title}</a></li>
+{/foreach}
+</ul>
+</div>
+{/if}
+
+{box name=xt_special_products type=user order_by='rand()'}
+{box name=xt_new_products type=user order_by='rand()'}
+{box name=xt_trusted_shops type=user}
+{box name=xt_trusted_shops_schutz type=user}
+		</div>
+		{/if}
+		<div>
+		{if $show_index_boxes == 'true'}<div id="content">{else}<div id="contentfull">{/if}
+		{$content}</div>
+		{if $show_index_boxes == 'true'}
+		<div id="rightcol">{box name=cart}{box name=loginbox}{box name=xt_bestseller_products type=user}</div>
+		{/if}
+	</div>
+</div>
+<p class="footer">
+{content block_id=6}
+{if $_content_6|count > 0}
+{foreach name=aussen item=box_data from=$_content_6}
+<a href="{$box_data.link}">{$box_data.title}</a>
+{/foreach}
+{/if}
+</p>
+[<copyright>]
+</div>
+{hook key=index_footer_tpl}
+{banner bg=banner}

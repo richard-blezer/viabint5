@@ -1,0 +1,34 @@
+<h1>{txt key=TEXT_PAGE_TITLE_ACCOUNT_DOWNLOADS}</h1>
+{$message}
+
+{foreach name=aussen item=dl_data from=$download_data}
+<p><strong>{txt key=TEXT_ORDER_NUMBER}: <a href="{link page='customer' paction=order_info params=oid params_value=$dl_data.order_data.orders_id conn=SSL}">{$dl_data.order_data.orders_id}</a> / {$dl_data.order_data.date_purchased}</strong><br />
+{txt key=TEXT_ORDER_STATUS}: {$dl_data.order_data.orders_status}<br /></p>
+<table width="100%" class="downloadbox">
+  {foreach name=aussen item=dl_item from=$dl_data.download_data}
+  <tr>
+    {if $dl_item.download_allowed eq '1'}
+    <td class="icon">
+		<a href="{$dl_item.download_url}">{img img=page_white_compressed.png type=mi class=productImageBorder}</a>
+	</td>
+    <td class="downloadlink">
+		<b>{$dl_item.media_name}</b> ({$dl_item.media_size|fsize_format:"MB"})<br />
+		{if $dl_item.allowed_until}<br />{txt key=TEXT_ACCOUNT_DOWNLOADS_DATE}: <strong>{$dl_item.allowed_until}</strong>{/if}
+		{if $dl_item.allowed_count}<br />{txt key=TEXT_ACCOUNT_DOWNLOADS_COUNT}: <strong>{$dl_item.allowed_count}</strong>{/if}
+		<br /><a href="{$dl_item.download_url}">{button text=$smarty.const.BUTTON_DOWNLOAD file='download.gif'}</a>
+	</td>	
+	{else}	
+	<td class="icon">
+	{img img=lock_open.png type=mi class=productImageBorder}
+	</td>
+	<td class="downloadlink">
+	<b>{$dl_item.media_name}</b> ({$dl_item.media_size|fsize_format:"MB"})<br />
+		{txt key=TEXT_DOWNLOAD_NOT_ALLOWED}
+	</td>
+	{/if}
+  </tr>
+  {/foreach}
+</table>
+{/foreach}
+<div style="clear:both"></div>
+<p><a href="{link page='customer' conn=SSL}">{button text=$smarty.const.BUTTON_BACK file='back.gif'}</a></p>

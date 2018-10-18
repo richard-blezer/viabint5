@@ -1,0 +1,167 @@
+<div style="clear:both"></div>
+{$pp_message}
+<br />
+<h1>{txt key=TEXT_CHECKOUT_CONFIRMATION}:</h1>
+{txt key=TEXT_CHECKOUT_PAYPAL_CONFIRMATION_DESC}
+<br />
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="55%">
+    <h1>{txt key=TEXT_SHIPPING_ADDRESS}:</h1>
+    <p>
+	{if $shipping_address.customers_company} {$shipping_address.customers_company}<br />{/if}
+	{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}<br />
+	{$shipping_address.customers_street_address}<br />
+	{if $shipping_address.customers_suburb} {$shipping_address.customers_suburb}<br />{/if}
+	{$shipping_address.customers_postcode} {$shipping_address.customers_city}<br />
+	{$shipping_address.customers_country}<br />
+	</p>
+	{if $shipping_address.allow_change == true}
+	<p><a href="{link page='customer' paction=edit_address params='adType=shipping&abID' params_value=$shipping_address.address_book_id conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>
+	{/if}
+	{if $shipping_address.allow_change == true}
+	<p><strong></strong></p>
+	{form type=form name=shipping_address action='dynamic' link_params='' method=post conn=SSL}
+	{form type=select name=adID value=$address_data params='onChange="this.form.submit();"'}
+	{form type=hidden name=adType value=shipping}
+	{form type=hidden name=action value=select_address}
+	{form type=formend}
+	{if $add_new_address eq 1}
+	<p>{txt key=TEXT_NEW_SHIPPING_ADDRESS}:</p>
+	<p><a href="{link page='customer' paction='edit_address' params='adType=shipping' conn=SSL}">{button text=$smarty.const.BUTTON_ADD_ADDRESS file='add_address.gif'}</a></p>
+	{/if}
+	{/if}	
+	</td>
+    <td width="55%">
+    <h1>{txt key=TEXT_PAYMENT_ADDRESS}:</h1>
+    <p>
+	{if $payment_address.customers_company} {$payment_address.customers_company}<br />{/if}
+	{$payment_address.customers_firstname} {$payment_address.customers_lastname}<br />
+	{$payment_address.customers_street_address}<br />
+	{if $payment_address.customers_suburb} {$payment_address.customers_suburb}<br />{/if}
+	{$payment_address.customers_postcode} {$payment_address.customers_city}<br />
+	{$payment_address.customers_country}<br />
+	</p>
+	{if $payment_address.allow_change == true}
+	<p><a href="{link page='customer' paction=edit_address params='adType=payment&abID' params_value=$payment_address.address_book_id conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>
+	{/if}
+	{if $payment_address.allow_change == true}
+	<p><strong></strong></p>
+	{form type=form name=payment_address action='dynamic' link_params='' method=post conn=SSL}
+	{form type=select name=adID value=$address_data params='onChange="this.form.submit();"'}
+	{form type=hidden name=adType value=payment}
+	{form type=hidden name=action value=select_address}
+	{form type=formend}
+	{if $add_new_address eq 1}
+	<p>{txt key=TEXT_NEW_PAYMENT_ADDRESS}:</p>
+	<p><a href="{link page='customer' paction='edit_address' params='adType=payment' conn=SSL}">{button text=$smarty.const.BUTTON_ADD_ADDRESS file='add_address.gif'}</a></p>
+	{/if}
+	{/if}	
+    </td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="55%" valign="top">
+    <h1>{txt key=TEXT_SELECT_SHIPPING}:</h1>
+    {form type=form name=shipping action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=shipping}
+
+{foreach name=aussen item=sdata from=$shipping_data}
+{$sdata.shipping}
+{/foreach}
+{form type=formend}  
+    </td>
+    <td width="55%" valign="top">
+    <h1>{txt key=TEXT_PAYPAL_PAYMENT}:</h1>
+    {form type=form name=payment action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=payment}
+{foreach name=aussen item=pdata from=$payment_data}
+{$pdata.payment}
+{/foreach}   
+    </td>
+  </tr>
+</table>
+
+{form type=form name=process id=process action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=process}
+
+<h1>{txt key=TEXT_COMMENTS}:</h1>
+{txt key=TEXT_COMMENTS_DESC}<br />
+{form type=textarea name=comments cols=170 rows=5 id=comments}
+
+{if $rescission == 'true'}
+<h1>{txt key=XT_RESCISSION_HEADING}:</h1>
+{content cont_id=8 is_id='false'}
+<p>{$_content_8.content_popup_link}</p>
+<div id="checkout_rescission">{$_content_8.content_body}</div>
+
+{php} if($_SESSION['rescission_accepted_paypal']==true){ {/php}
+<p>{form type=checkbox name=rescission_accepted_paypal checked=true params='id="rescission_accepted_paypal"'} <strong>{txt key=XT_RESCISSION_ACCEPT}</strong></p>
+{php} }else{ {/php}
+<p>{form type=checkbox name=rescission_accepted_paypal params='id="rescission_accepted_paypal"'} <strong>{txt key=XT_RESCISSION_ACCEPT}</strong></p>
+{php} } {/php}
+{/if}
+
+<h1>{txt key=TEXT_CONDITIONS}:</h1>
+{content cont_id=3 is_id='false'}
+<p>{$_content_3.content_popup_link}</p>
+<div id="checkout_agb">{$_content_3.content_body}</div>
+
+
+{php} if($_SESSION['conditions_accepted_paypal']==true){ {/php}
+<p>{form type=checkbox name=conditions_accepted_paypal checked=true params='id="conditions_accepted_paypal"'} <strong>{txt key=TEXT_ACCEPT_CONDITIONS}</strong></p>
+{php} }else{ {/php}
+<p>{form type=checkbox name=conditions_accepted_paypal params='id="conditions_accepted_paypal"'} <strong>{txt key=TEXT_ACCEPT_CONDITIONS}</strong></p>
+{php} } {/php}
+
+
+<h1>{txt key=TEXT_ARTICLE}:</h1>
+<table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr class="headerrow">
+    <td class="left">{txt key=TEXT_QTY}</td>
+    <td class="left">{txt key=TEXT_ARTICLE}</td>
+    <td class="left">{txt key=TEXT_SINGLE_PRICE}</td>
+    <td class="right">{txt key=TEXT_TOTAL_PRICE}</td>
+  </tr>
+  {foreach name=aussen item=data from=$data}
+  <tr class="{cycle values="contentrow1,contentrow2"}">
+    <td class="left">{$data.products_quantity}</td>
+    <td class="left">
+		<strong><a href="{$data.products_link}">{$data.products_name}</a></strong>
+		{if $data.shipping_status}<br /><p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$data.shipping_status}</p>{/if}
+    <td class="left">
+    {if $data._cart_discount}
+    <span class="old-price">{$data._original_products_price.formated}</span>
+    {$data.products_price.formated} (-{$data._cart_discount} %)
+    {else}
+    {$data.products_price.formated}
+    {/if}
+    </td>
+    <td class="right">{$data.products_final_price.formated}</td>
+  </tr>
+  {$data.products_information} 
+  {/foreach}
+  <tr>
+    <td colspan="5" class="subtotal">
+    {txt key=TEXT_SUB_TOTAL}: {$sub_total}<br />
+        {foreach name=aussen item=sub_data from=$sub_data}
+    	{$sub_data.products_name}: {$sub_data.products_price.formated}<br />
+    	{/foreach}
+    	{foreach name=aussen item=tax_data from=$tax}
+	    {txt key=TEXT_TAX} {$tax_data.tax_key}%: {$tax_data.tax_value.formated}<br />
+	    {/foreach}
+    <strong>{txt key=TEXT_TOTAL}: {$total}</strong>
+    {if $discount}
+    <br />{txt key=TEXT_DISCOUNT_MADE} : {$discount.formated}<br />
+    {/if}
+    </td>
+  </tr>
+</table>
+{hook key=checkout_tpl_confiramtion}
+{hook key=checkout_tpl_form}
+<p>{button params='id="buttonConfirm"' text=$smarty.const.BUTTON_CONFIRM_ORDER file='confirm_order.gif' type='form'}</p>
+{form type=formend}

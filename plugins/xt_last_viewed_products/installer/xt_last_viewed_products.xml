@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<title>Last viewed Products</title> 
+	<version>1.0.1</version> 
+	<code>xt_last_viewed_products</code> 
+	<url>http://www.xt-commerce.com</url> 
+	<icon>xt-commerce_logo.jpg</icon>
+	<developer>xt:Commerce</developer>
+	<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=32669706]]></documentation_link>
+	<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=4614]]></marketplace_link>
+	<type>marketing</type>
+	<plugin_code>
+		<code>
+			<hook>module_product.php:top</hook>
+			<phpcode><![CDATA[
+				global $current_product_id,$current_category_id;
+				require _SRV_WEBROOT.'plugins/xt_last_viewed_products/classes/class.xt_last_viewed_products.php';
+				$last_viewed_products = new last_viewed_products($current_category_id);
+				$last_viewed_products->_addLastViewedProduct($current_product_id);
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code>
+	<configuration>
+		<config>
+			<key>XT_LAST_VIEWED_PRODUCTS_MAX</key>
+			<type>textfield</type>
+			<value>5</value>
+			<de>
+				<title>Max. Produktanzahl</title>
+			</de>
+			<en>
+				<title>Max. Number of Products</title>
+			</en>
+			<es>
+				<title>Max. Número de productos</title>
+			</es>
+		</config>
+	</configuration>
+	<language_content>
+		<phrase>
+			<key>XT_LAST_VIEWED_PRODUCTS_TITEL</key>
+			<class>store</class>
+			<de>
+				<value>Zuletzt gesehene Produkte</value>
+			</de> 
+			<en>
+				<value>Last viewed Products</value>
+			</en>
+			<es>
+				<value>Productos recientes</value>
+			</es>
+		</phrase>
+	</language_content>
+</xtcommerceplugin>

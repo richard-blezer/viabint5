@@ -1,0 +1,185 @@
+
+<div data-role="header">
+    <h1>{txt key=TEXT_PAGE_TITLE_ACCOUNT_HISTORY_INFO}</h1>
+</div>
+
+
+<p>{txt key=TEXT_ORDER_NUMBER}: {$order_data.orders_id}</p>
+<p>{txt key=TEXT_ORDER_DATE}: {$order_data.date_purchased}</p>
+
+<div class="ui-grid-a">
+    <div class="ui-block-a">
+        <div data-role="header">
+
+            <h2>{txt key=TEXT_SHIPPING_ADDRESS}</h2>
+        </div>
+        <p>
+            {if $order_data.delivery_company} {$order_data.delivery_company}<br />{/if}
+            {$order_data.delivery_firstname} {$order_data.delivery_lastname}<br />
+            {$order_data.delivery_street_address}<br />
+            {if $order_data.delivery_suburb} {$order_data.delivery_suburb}<br />{/if}
+            {$order_data.delivery_postcode} {$order_data.delivery_city}<br />
+            {if $order_data.delivery_state}{$order_data.delivery_state} {/if}{$order_data.delivery_country}<br />
+        </p>
+    </div>
+    <div class="ui-block-b">
+        <div data-role="header">
+            <h2>{txt key=TEXT_PAYMENT_ADDRESS}</h2>
+        </div>
+        <p>
+            {if $order_data.billing_company} {$order_data.billing_company}<br />{/if}
+            {$order_data.billing_firstname} {$order_data.billing_lastname}<br />
+            {$order_data.billing_street_address}<br />
+            {if $order_data.billing_suburb} {$order_data.billing_suburb}<br />{/if}
+            {$order_data.billing_postcode} {$order_data.billing_city}<br />
+            {if $order_data.billing_state}{$order_data.billing_state} {/if}{$order_data.billing_country}<br />
+        </p>
+    </div>
+</div>
+
+<br />
+
+<div class="ui-grid-a">
+    <div class="ui-block-a">
+
+        <div data-role="header">
+            <h2>{txt key=TEXT_SHIPPING_METHOD}</h2>
+        </div>
+        {if $order_data.shipping_method!=''}
+            <p>{$order_data.shipping_method}</p>
+        {/if}
+    </div>
+
+    <div class="ui-block-b">
+        <div data-role="header">
+            <h2>{txt key=TEXT_PAYMENT_METHOD}</h2>
+        </div>
+        {if $order_data.payment_name}
+        <p>{$order_data.payment_name}</p>
+        {/if}
+    </div>
+</div>
+
+<br />
+
+<div class="ui-grid-a">
+    <div class="ui-block-a">
+
+        <div data-role="header">
+            <h2>{txt key=TEXT_ORDER_COMMENTS}</h2>
+        </div>
+        {if $order_data.comments!=''}
+            <p>{$order_data.comments}</p>
+        {/if}
+    </div>
+    <div class="ui-block-b">
+
+        <div data-role="header">
+            <h2>{txt key=TEXT_PAYMENT_INFO}</h2>
+        </div>
+        {if $order_data.payment_info!=''}            
+            <p>{$order_data.payment_info}</p>
+        {/if}
+    </div>
+</div>
+
+<br />
+
+<div data-role="header">
+    <h2>{txt key=TEXT_ORDER_STATUS_HISTORY}</h2>
+</div>
+<div data-role="content">
+    {foreach name=aussen item=history_values from=$order_history}
+        <p>{$history_values.date_added} <b>{$history_values.status_name}</b> {if $history_values.customer_show_comment eq '1'}{$history_values.comments}{/if}</p>
+    {/foreach}
+</div>
+
+<br />
+
+<div data-role="header">
+    <h2>{txt key=TEXT_ARTICLE}</h2>
+</div>
+
+<ul data-role="listview" data-inset="false" data-theme="c" class="xtm-order-history">
+
+    {foreach name=aussen item=item_data from=$order_products}
+
+        <li class="xtm-order-history-cart-item" data-icon="false">
+            
+            <div class="ui-li-aside"></div>
+
+            <span class="ui-li-heading">{$item_data.products_name}</span>
+
+            <span class="ui-li-desc">
+                {if $item_data.shipping_status}<span class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$item_data.shipping_status}</span>{/if}
+            </span>
+
+            <span class="ui-li-desc">
+                {txt key=TEXT_QTY}: {$item_data.products_quantity} <br>
+                <br />
+                {txt key=TEXT_SINGLE_PRICE}: {$item_data.products_price.formated}<br>
+                <br />
+                {txt key=TEXT_TOTAL_PRICE}: {$item_data.products_final_price.formated}<br />
+                <br />
+                                
+                {if $item_data.products_information.content}
+                    <a href="#xtm-products-info-{$item_data.products_id}" data-rel="popup" data-position-to="window" data-inline="false">
+                       {txt key=TEXT_XT_MOBILE_DETAILS}
+                    </a>
+                {/if}
+            </span>
+
+            {if $item_data.products_information.content}
+                <div id="xtm-products-info-{$item_data.products_id}" class="test" data-role="popup" data-overlay-theme="a">
+                    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+                    <div data-role="header"><h3>{$item_data.products_name}</h3></div>
+                    <div data-role="content">
+                        <span class="desc">
+
+                            {$item_data.products_information.content}
+
+                            <br />
+                            <br />
+
+                            {txt key=TEXT_QTY}: {$item_data.products_quantity} <br>
+                            {txt key=TEXT_SINGLE_PRICE}: {$item_data.products_price.formated}<br>
+                            {txt key=TEXT_TOTAL_PRICE}: {$item_data.products_final_price.formated}<br />
+                        </span>
+
+                        {literal}
+                        <script>
+                            $('#xtm-products-info-{/literal}{$item_data.products_id}{literal}-popup').addClass('xtm-order-history-cart-item-popup');
+                        </script>                    
+                        {/literal}
+                    </div>
+                </div>
+            {/if}
+
+        </li>
+
+    {/foreach}
+
+    <li class="xtm-order-history-total" data-icon="false">
+        <div class="right">           
+            <table> 
+                <tr><td>{txt key=TEXT_SUB_TOTAL}:</td><td>{$total.product_total.formated}</td></tr>
+
+                {foreach name=aussen item=order_total_values from=$order_total_data}
+                <tr><td>{$order_total_values.orders_total_name}:</td><td>{$order_total_values.orders_total_price.formated}</td></tr>
+                {/foreach}
+
+                {foreach name=aussen item=tax_data from=$total.total_tax}
+                <tr><td>{txt key=TEXT_TAX} {$tax_data.tax_key}%:</td><td>{$tax_data.tax_value.formated}</td></tr>
+                {/foreach}
+
+                <tr><td><strong>{txt key=TEXT_TOTAL}:</td><td><strong>{$total.total.formated}</strong></td></tr>
+
+
+            </table>            
+        </div>
+    </li>  
+
+
+</ul>
+
+{hook key=account_history_info_bottom}

@@ -1,0 +1,29 @@
+<div id="adress-book">
+	<h1>{txt key=TEXT_PAGE_TITLE_ADDRESS_BOOK}</h1>
+	{$message}
+	<p>{txt key=TEXT_ADDRESS_BOOK_INFO}</p>
+	{foreach name=aussen item=addresses from=$addresses_data}
+	<div class="box">
+		{if $addresses.customers_company}<p>{$addresses.customers_company}</p>{/if}
+		<p>{$addresses.customers_firstname} {$addresses.customers_lastname}</p>
+		<p>{$addresses.customers_street_address}</p>
+		{if $addresses.customers_suburb}<p>{$addresses.customers_suburb}</p>{/if}
+		<p>{$addresses.customers_postcode} {$addresses.customers_city}</p>
+		{if $addresses.customers_zone}<p>{$addresses.customers_zone}</p>{/if}
+		<p>{$addresses.customers_country}</p>
+		{if $addresses.allow_change == true}
+		<p class="right bold">
+			<span><a href="{link page='customer' paction=edit_address params=abID params_value=$addresses.address_book_id' conn=SSL}">{css_button text=$smarty.const.BUTTON_EDIT}</a></span>
+			<span><a href="{link page='customer' paction=delete_address params=abID params_value=$addresses.address_book_id' conn=SSL}">{css_button text=$smarty.const.BUTTON_DELETE}</a></span>
+		</p>
+		{/if}
+	</div><!-- .box -->
+	{/foreach}
+	<p>{$address_count} / {$address_max_count} {txt key=TEXT_POSSIBLE_ENTRIES}</p>
+	<p>
+		{if $add_new_address eq 1}
+		<a href="{link page='customer' paction=edit_address' conn=SSL}">{css_button text=$smarty.const.BUTTON_ADD_ADDRESS}</a>
+		{/if}
+		<a href="{link page='customer' conn=SSL}">{css_button text=$smarty.const.BUTTON_BACK}</a>
+	</p>
+</div><!-- #adress-book -->

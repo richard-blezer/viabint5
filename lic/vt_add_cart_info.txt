@@ -1,0 +1,26 @@
+licCompany: Viabiona Ltd. 
+licFirstName: 
+licLastName: 
+licEmail: umeichelbock@holzwarth-group.de
+licCountryIso2: NL
+licCreated: 2015-10-29 12:00:00
+licKey: a8e030-8f901a-963132-da338a-6301e1-87
+
+LICENSEKEY: 574112AD031C77C8
+LICENSETYPE: 1
+UPDATESUNTIL: 2016-10-29
+
+------ LICENSE FILE DATA -------
+974U1779xhaGFbUx/M+ARszOOrCpVzAC
+Q3+I18a8jxHn60UGUSIVMSsJ6yiBOpin
+cwrQDDALGr4rFDfozC+/T4zKbLCi3ynS
+boAgxssoHzbN235FDEankfovuAISl4MO
+42SGwQO7+CoWc494hir94zydlsAEJcAC
+id/WitncppIP8Y531hmtXJYEj1f0ywI/
+TNk6Wd3PS+L6cYY9py8UnWCURl5VcIjZ
+iUGpDpTQdfXjUOqQu43tiSnK77TMBz+1
+aYMSRKZcMjwvcjGwlg5NN5foDgn9nP6c
+zNvEkwK75auDnWESkvaYTIkvWa09LMMj
+oXcTRLe0PLh4O8Vo1UJgXgPCejSD+BrY
+AoeysQPU+26BvKrCZJS17DadJpR8TMDd
+--------------------------------

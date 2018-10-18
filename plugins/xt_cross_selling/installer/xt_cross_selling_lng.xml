@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>HEADING_CROSS_SELLING_TO_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Cross Selling]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[交叉销售]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Cross Selling]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Cross Selling]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Ventes croisées]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Acquisto incrociato]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[クロスセリング]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Cross Selling]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Sprzedaż Krzyżowa]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Cross Selling]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[交叉銷售]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_CROSS_SELL_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Cross Selling Selection]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[交叉销售选择]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Cross Selling Auswahl]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Cross Selling Selection]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Ventes croisées]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Selezione acquisto incrociato]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[クロスセリング選択]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Cross Selling keuze]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Selekcja Sprzedaż Krzyżowa]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Cross Selling выбор]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_PRODUCTS_CROSS_SELLING</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Cross Selling]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[交叉销售]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Cross Selling]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Cross Selling]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Ventes croisées]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Acquisto incrociato]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[クロスセリング]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Cross Selling]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Sprzedaż Krzyżowa]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Cross Selling]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>XT_CROSS_SELLING_MAX_DISPLAY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Max. article]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[商品数 - 最大值]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Artikel]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Max. article]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nombre d'article]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Articoli massimi]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[商品数 - 最大値]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal artikelen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Max. artykułów]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число продуктов]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[商品數 - 最大值]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_HEADING_CROSS_SELL</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Recommended products]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[推荐商品]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Empfohlenes Zubehör]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Recommended products]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Accessoires recommandés]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Prodotti consigliati]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[おすすめ商品]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aanbevolen accessoires]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Produkty rekomendowane]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Рекомендоуемые аксессуары]]></value>
+	</ru>
+</phrase>
+</language_content>
+</xtcommerceplugin>

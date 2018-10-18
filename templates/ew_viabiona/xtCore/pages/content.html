@@ -1,0 +1,23 @@
+<h1>{$data.content_heading}</h1>
+{if $file}
+    {$file}
+{else}
+    <div class="textstyles">
+        {$data.content_body}
+    </div>
+{/if}
+{if $data.subcontent}
+    <hr />
+    <p class="h4">{txt key=HEADING_SUB_CONTENT}</p>
+    <ul class="list-inline">
+        {foreach name=aussen item=module_data from=$data.subcontent}
+            <li>
+                <a href="{$module_data.link}" class="btn btn-warning">
+                    <i class="fa fa-info-circle"></i>
+                    {$module_data.title|trim}
+                </a>
+            </li>
+        {/foreach}
+    </ul>
+    <br />
+{/if}

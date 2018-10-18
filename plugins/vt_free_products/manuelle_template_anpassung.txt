@@ -1,0 +1,42 @@
+Anzeige als Box
+----------------
+
+An der Stelle, an der die Box im  Template angezeigt werden soll, folgenden Code einfuegen.
+
+* Sortierung erfolgt an Hand der Reihenfolge die beim Artikel hinterlegt ist
+
+Code:
+
+{box name=vt_free_products type=user}
+
+
+
+
+PRODUCT_INFO
+------------
+
+/templates/<Ihr Template>/xtCore/pages/product/product.html
+-> evtl. wenn erforderlich in den weiteren dateien in diesem ordner
+
+
+{if $fp_prodinfo == true}
+	{if $fp_prodinfo_show != ''}
+		<div class="vt_free_products_info">{$fp_prodinfo_show}</div>
+	{/if}
+{/if}
+
+
+
+
+PRODUCT_LISTING
+---------------
+
+/templates/<Ihr Template>/xtCore/pages/product_listing/product_listing_v1.html
+-> evtl. wenn erforderlich in den weiteren dateien in diesem ordner
+
+
+{if $module_data.fp_listing == true}
+	{if $module_data.fp_listing_show != ''}
+		<div class="vt_free_products_listing">{$module_data.fp_listing_show}</div>
+	{/if}
+{/if}

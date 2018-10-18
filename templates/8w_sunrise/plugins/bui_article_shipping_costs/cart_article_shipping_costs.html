@@ -1,0 +1,263 @@
+{*php}__debug ($this->get_template_vars());{/php*}
+
+{php}
+$this->assign('selected_currency', 'EUR');
+if (isset($_SESSION['selected_currency'])) {
+    $this->assign('selected_currency', $_SESSION['selected_currency']);
+}
+{/php}
+
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+
+<div class="left-side cartMain" id="cart">
+  {if !$isMobile}
+    <h1>{txt key=TEXT_CART}</h1>
+  {else}
+    <h1>{txt key=TEXT_CART_SHORT}</h1>
+  {/if}
+  {if $show_cart_content == true}
+    {$message}
+    {form type=form name=cart action='dynamic' link_params=getParams method=post conn=SSL class="warenkorb-formular"}
+    {form type=hidden name=action value=update_product}
+    <div class="headline clearfix">
+      <div class="article"><span>{txt key=TEXT_ARTICLE}</span></div>
+      <div class="piece"><span>{txt key=TEXT_PIECE_SHORT}</span></div>
+      {if !$isMobile}
+      <div class="price"><span>{txt key=TEXT_SINGLE_PRICE}</span></div>
+      {/if}
+      <div class="total-price"><span>{txt key=TEXT_TOTAL_WORD}</span></div>
+    </div>
+    {foreach name=aussen item=data from=$cart_data key=key}
+    {if $data._cart_discount != ''}
+      {assign var="discount_percent" value=$data._cart_discount}
+    {/if}
+    <div class="article-line clearfix">
+      <div class="image-text">
+        <div class="inner-image-text clearfix">
+          <div class="image">
+          {if $data.products_image!=''}<a href="{$data.products_link}">{img img=$data.products_image type=m_wishlist class=productImageBorder alt=$data.products_name}</a>{/if}
+          </div>
+          <div class="text">
+            {if $isMobile}
+            <div class="piece" style="position:relative">
+              {html_options name=qty[] options=$selected_counts selected=$data.products_quantity}
+              {*form type=text name=qty[] value=$data.products_quantity style='width:30px;'*}
+            </div>
+            <div class="clearfix"></div>
+            {/if}
+            <h2><a href="{$data.products_link}">{$data.products_name}</a></h2>
+            <div class="package">{$data.product_itemcount}</div>
+            {if $data.shipping_status}<div class="delivery">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$data.shipping_status}</div>{/if}
+            <a href="#" class="delete underline">{txt key=BUTTON_DELETE}</a>
+            {form class="delete-box" type=checkbox name=cart_delete[] value=$data.products_key}
+            {if !$isMobile}
+            <a id="watchlistadd-{$key}" href="{$bui_watchlist_link}" class="last underline add-to-watchlist" target="_blank" rel="nofollow">{txt key=BUTTON_ADD_BUI_WATCHLIST}</a>
+            {/if}
+          </div>
+          {if !$isMobile}
+          <div class="piece" style="position:relative">
+            {html_options name=qty[] options=$selected_counts selected=$data.products_quantity}
+            {*form type=text name=qty[] value=$data.products_quantity style='width:30px;'*}
+          </div>
+          {/if}
+        </div>
+      </div>
+      <div class="price-box">
+        {if !$isMobile}
+        <div class="price">
+          {if $data.products_price.old_plain}
+          <span class="productOldPrice">
+            <span>
+              {if $selected_currency == 'EUR'}
+              <span class="eur">&euro;</span>
+              {elseif $selected_currency == 'CHF'}
+              <span class="chf">CHF</span>
+              {/if}
+              {$data.products_price.old_plain|string_format:"%.2f"|replace:".":","}
+            </span>
+          </span>
+          {/if}
+          {$data._original_products_price.formated}
+        </div>
+        {/if}
+        {math equation="a * b" a=$data._original_products_price.plain b=$data.products_quantity assign=total_price}
+        <div class="total-price">
+          <div class="total-price-inner price">
+            <span class="productNewPrice">
+              {if $selected_currency == 'EUR'}
+              <span class="eur">&euro;</span>
+              {elseif $selected_currency == 'CHF'}
+              <span class="chf">CHF</span>
+              {/if}
+              {$total_price|string_format:"%.2f"|replace:".":","}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    {form type=hidden name=products_key[] value=$data.products_key}
+    {/foreach}
+    {hook key=cart_total_tpl}
+    {math equation="a - b" a="125" b=$cart_total_plain assign=missingtotal}
+    {if $selected_currency == 'EUR'}
+      {assign var="shipping_price" value="4.95"}
+    {else}
+      {assign var="shipping_price" value="6.05"}
+    {/if}
+    {if $cart_total_plain > 125}
+      {assign var="shipping_price" value="0.00"}
+    {/if}
+    {if $shipping_price > 0}
+      {math equation="a + b" a=$cart_total_plain b=$shipping_price assign=cart_total_final}
+    {else}
+      {assign var="cart_total_final" value=$cart_total_plain}
+    {/if}
+    <div class="subtotal clearfix">
+      <div class="left">
+        <p>{txt key=WARENKORB_TEXT_EXCL_SHIPPING}</p>
+        <p>{txt key=TEXT_HEALTHY_DISCOUNT}</p>
+      </div>
+      <div class="middle">
+        {if $discount}
+          <div>{txt key=TEXT_SUB_TOTAL}:</div>
+          <div class="discount-text">{txt key=TEXT_DISCOUNT_SCALE}: {$discount_percent|round}% {txt key=TEXT_SAVED}</div>
+        {/if}
+
+        <div>{txt key=TEXT_TOTAL_WITHOUT_TAX}:</div>
+        <div>{txt key=TEXT_DEFAULT_SHIPPING}:</div>
+        {if $missingtotal > 0}
+          <div class="missing-total">{txt key=TEXT_MISSING_PRICE_1} {if $selected_currency == 'EUR'}&euro;{elseif $selected_currency == 'CHF'}CHF{/if} {$missingtotal|string_format:"%.2f"|replace:".":","} {txt key=TEXT_MISSING_PRICE_2}</div>
+        {/if}
+        {foreach name=aussen item=sdata from=$shipping_data}
+          {$sdata.shipping}
+        {/foreach}
+        {foreach name=aussen item=tax_data from=$cart_tax}
+          <div>
+            {$tax_data.tax_key}% {txt key=TEXT_TAX}:
+          </div>
+        {/foreach}
+      </div>
+      <div class="right">
+        {if $discount}
+          {math equation="a + b" a=$discount.plain b=$cart_total_final assign=discount_total}
+          <div class="price">
+            <span class="productNewPrice">
+              {if $selected_currency == 'EUR'}
+              <span class="eur">&euro;</span>
+              {elseif $selected_currency == 'CHF'}
+              <span class="chf">CHF</span>
+              {/if}
+              {$discount_total|string_format:"%.2f"|replace:".":","}
+            </span>
+          </div>
+          
+          <div class="price discount-price">
+            <p class="minus">-</p>
+            <span class="productNewPrice">
+              {if $selected_currency == 'EUR'}
+              <span class="eur">&euro;</span>
+              {elseif $selected_currency == 'CHF'}
+              <span class="chf">CHF</span>
+              {/if}
+              {$discount.plain|string_format:"%.2f"|replace:".":","}
+            </span>
+          </div>
+        {/if}
+        <div class="price">
+          <span class="productNewPrice">
+            {if $selected_currency == 'EUR'}
+            <span class="eur">&euro;</span>
+            {elseif $selected_currency == 'CHF'}
+            <span class="chf">CHF</span>
+            {/if}
+            {$cart_total_plain_otax|string_format:"%.2f"|replace:".":","}
+          </span>
+        </div>
+        <div class="price">
+          <span class="productNewPrice">
+            {if $selected_currency == 'EUR'}
+            <span class="eur">&euro;</span>
+            {elseif $selected_currency == 'CHF'}
+            <span class="chf">CHF</span>
+            {/if}
+            {$shipping_price|string_format:"%.2f"|replace:".":","}
+          </span>
+        </div>
+        {if $missingtotal > 0}
+          <div class="price"></div>
+        {/if}
+        {foreach name=aussen item=tax_data from=$cart_tax}
+          <div class="price">
+            {$tax_data.tax_value.formated}
+          </div>
+        {/foreach}
+       
+      </div>
+      
+    </div>
+    <div class="sub-total-price clearfix">
+      
+      <div class="text">
+        {txt key=TEXT_TOTAL}:
+      </div>
+      <div class="price">
+        <span class="productNewPrice">
+          {if $selected_currency == 'EUR'}
+          <span class="eur">&euro;</span>
+          {elseif $selected_currency == 'CHF'}
+          <span class="chf">CHF</span>
+          {/if}
+          {$cart_total_final|string_format:"%.2f"|replace:".":","}
+        </span>
+      </div>
+    </div>
+    {hook key=cart_total_bottom}
+
+    <p>{hook key=cart_tpl_form}</p>
+    {hook key=cart_tpl_form}
+    
+    
+    {*<!-- PAYPAL HOOK -->*}
+    {if $isMobile} <div class="paypal_margin"> {/if}
+    
+    {hook key=cart_tpl_form_paypal}
+    
+    {if $isMobile} </div> {/if}
+    {*<!-- PAYPAL HOOK -->*}
+    
+    
+    <div class="clearfix"></div>
+    
+    {form type=formend}
+
+    {foreach name=aussen item=data from=$cart_data key=key}
+
+      {form type=form name=add_bui_watchlist action='bui_watchlist' method=post id="watchlist-$key"}
+      {form type=hidden name=action value=add_bui_watchlist}
+      {form type=hidden name=bui_pID value=$data.products_id}
+
+      {form type=hidden name=qty value=1}
+
+      {form type=formend}
+    {/foreach}
+
+    <a class="btn" rel="nofollow" href="/">{txt key=BUTTON_8WORKS_CONTINUE_SHOPPING}</a>
+    <a class="checkout-link" href="{link page='checkout' paction='shipping' conn=SSL}">{txt key=BUTTON_CHECKOUT}</a>
+  {else}
+    {$message}
+  {/if}
+  <div id="productsdetail-page">{hook key=cart_bottom}</div>
+</div>
+{if !$isMobile}
+<div class="right-side">
+  {box name=xt_viabiona_cms type=user tpl=box_our_service.html}
+  {box name=xt_viabiona_cms type=user tpl=box_payment_methods.html}
+</div>
+{/if}  
+
+<div class="clearfix"></div>
+

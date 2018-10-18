@@ -1,0 +1,17 @@
+{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+<div id="box-cart">
+	<div id="box-cart-info">
+		<ul>
+			{if !$cart_total}
+			<li>{txt key=TEXT_EMPTY_BOX_CART}</li>
+			{else}
+			<li><a href="{link page='cart'}">{txt key=TEXT_CART}</a></li>
+			<li>{$cart_total}</li>
+			{/if}
+		</ul>
+	</div><!-- #box-cart-info -->
+	<div id="box-cart-box">
+		<p><a href="{link page='cart'}">{if $content_count}{$content_count}{else}0{/if}</a></p>
+	</div><!-- #box-cart-box -->
+</div><!-- #box-cart -->
+{/if}

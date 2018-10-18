@@ -1,0 +1,65 @@
+<h1>{txt key=TEXT_BUI_WATCHLIST_ADD_TOP}</h1>
+{$message}
+
+{form type=form name=add_bui_watchlist action=$link_page link_params=$link_params method=post} 
+{form type=hidden name=action value=add_bui_watchlist}
+{form type=hidden name=bui_pID value=$data.products_id}
+
+<table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="6">
+	<tr class="headerrow">
+    	<td class="left" colspan="2">{txt key=TEXT_ARTICLE}: {$data.products_name}</td>
+  	</tr>
+  	<tr class="contentrow1">
+		<td class="left">
+			{if $data.products_image!=''}{img img=$data.products_image type=m_info class=productImageBorder alt=$data.products_name}{/if}
+	  	</td>
+	  	<td class="left">
+	  		<table>
+	  			<tr class="contentrow1">
+		  			<td class="left">{txt key=TEXT_BUI_WATCHLIST_QTY}:</td>
+		  			<td class="left">{form type=text name=qty value=1 style='width:50px;'}</td>
+	  			</tr> 
+	{if $g_data}  
+	<tr class="contentrow1">
+		<td class="left" colspan="2">
+			<h2>{txt key=TEXT_BUI_WATCHLIST_TEXT_SELECT_LIST}</h2>
+	  	</td>
+	</tr>	 
+  
+	<tr class="contentrow1">
+		<td class="left">{txt key=TEXT_BUI_WATCHLIST_ADD_TO_GROUP}:</td>
+	  	<td class="left">
+			<table>
+		   		{foreach name=aussen item=gdata from=$g_data}
+		  		<tr>
+		  			<td>{form type=checkbox name=g_id[] value=$gdata.id}</td>
+		  			<td>{$gdata.text}</td>
+		  		</tr>
+		  		{/foreach}
+			</table>
+	 	</td>
+	</tr>   
+
+	<tr class="contentrow1">
+		<td class="left" colspan="2">
+		<h2>{txt key=TEXT_BUI_WATCHLIST_TEXT_ADD_LIST}</h2>
+	  	</td>
+	</tr>	 
+	{/if}
+
+	<tr class="contentrow1">
+		<td class="left">{txt key=TEXT_BUI_WATCHLIST_ADD_TO_NEW_GROUP}:</td>
+	  	<td class="left">{form type=text name=group_name value='' style='width:200px;'}</td>
+  	</tr>    
+  
+	<tr class="contentrow1">
+		<td class="center" colspan="2">
+			{button text=$smarty.const.BUTTON_ADD_BUI_WATCHLIST file='button_add_to_watchlist.gif' type='form' btn_template='tpl_button_2.gif' space_left='25'}
+	  	</td>
+	</tr>		  
+
+	  </table>
+	</td>
+	</tr>
+  </table>
+  {form type=formend}

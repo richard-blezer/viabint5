@@ -1,0 +1,50 @@
+{*php}__debug($this->get_template_vars('cat_main'));{/php*}
+<li class="themenheader">
+
+<span class="maincat first">{txt key=TEXT_CAT_BOX_CSTGRPS}</span>
+<ul class="categorymenu">
+{foreach name=aussen item=module_data from=$cat_main}
+    <li class="level{$module_data.level}{if $module_data.active} active{/if} {if $module_data.is_sub_active} sub-active{/if}">
+        <a href="{$module_data.categories_link}" title="{$module_data.categories_heading_title}">
+            <span>{$module_data.categories_name}</span>
+        </a>
+    </li>
+{/foreach}
+</ul>
+
+<span class="maincat">{txt key=TEXT_CAT_BOX_CSTGRPS1}</span>
+<ul class="categorymenu">
+{foreach name=aussen item=module_data from=$cat_main1}
+    <li class="level{$module_data.level}{if $module_data.active} active{/if} {if $module_data.is_sub_active} sub-active{/if}">
+        <a href="{$module_data.categories_link}" title="{$module_data.categories_heading_title}">
+            <span>{$module_data.categories_name}</span>
+        </a>
+    </li>
+{/foreach}
+</ul>
+
+<span class="maincat">{txt key=TEXT_CAT_BOX_CSTGRPS2}</span>
+<ul class="categorymenu">
+{foreach name=aussen item=module_data from=$cat_main2}
+    <li class="level{$module_data.level}{if $module_data.active} active{/if} {if $module_data.is_sub_active} sub-active{/if}">
+        <a href="{$module_data.categories_link}" title="{$module_data.categories_heading_title}">
+            <span>{$module_data.categories_name}</span>
+        </a>
+    </li>
+{/foreach}
+</ul>
+
+<span class="maincat">{txt key=TEXT_CAT_BOX_CSTGRPS3}</span>
+<ul class="categorymenu">
+{foreach name=aussen item=module_data from=$cat_main3}
+    <li class="level{$module_data.level}{if $module_data.active} active{/if} {if $module_data.is_sub_active} sub-active{/if}">
+        <a href="{$module_data.categories_link}" title="{$module_data.categories_heading_title}">
+            <span>{$module_data.categories_name}</span>
+        </a>
+    </li>
+{/foreach}
+</ul>
+
+
+
+</li>

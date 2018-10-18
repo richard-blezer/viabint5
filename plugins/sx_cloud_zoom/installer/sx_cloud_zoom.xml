@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf8" ?>
+<xtcommerceplugin>
+	<title>Cloud Zoom</title>
+	<version>1.0.3</version>
+	<code>sx_cloud_zoom</code>
+	<url>http://www.shopx.de</url>
+	<description>Cloud Zoom for xt:Commerce 4</description>
+	<type>extension</type>
+	<icon>sx_cloud_zoom.png</icon> 
+	<plugin_code>
+		<code>
+			<hook>javascript.php:bottom</hook>
+			<phpcode><![CDATA[
+				if(SX_CLOUD_ZOOM_STATUS == 'true'){
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'sx_cloud_zoom/classes/class.sx_cloud_zoom.php';
+					$cloud_zoom = new cloud_zoom();
+					$cloud_zoom->_getCloudZoom();
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code> 
+	<configuration>
+		<config>
+			<key>SX_CLOUD_ZOOM_STATUS</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Status</title>
+			</de>
+			<en>
+				<title>Status</title>
+			</en>
+			<fr>
+				<title>Statut</title>
+			</fr>
+		</config>
+	</configuration>
+</xtcommerceplugin>

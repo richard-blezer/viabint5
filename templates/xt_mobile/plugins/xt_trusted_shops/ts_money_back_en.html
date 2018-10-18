@@ -1,0 +1,24 @@
+<h1>Trusted Shops Buyer Protection</h1>
+<table width=400 border="0" cellspacing="0" cellpadding="4"> 
+<tr> 
+<td width="90"> 
+<form name="formSiegel" method="post" action="https://www.trustedshops.com/shop/certificate.php" target="_blank"> 
+<input type="image" border="0" src="plugins/xt_trusted_shops/images/trustedshops_m.png" title="Trusted Shops Seal of Approval - Click to verify."> 
+<input name="shop_id" type="hidden" value="{$shop_id}"> 
+</form> 
+</td> 
+<td align="justify"> 
+<form id="formTShops" name="formTShops" method="post" action="https://www.trustedshops.com/shop/protection.php" target="_blank"> 
+<input type="hidden" name="_charset_"> 
+<input name="shop_id" type="hidden" value="{$shop_id}"> 
+{foreach from=$_form_fields key=k item=v}
+<input name="{$k}" type="hidden" value="{$v}"> 
+{/foreach}
+<p>
+We offer you the Trusted Shops Buyer Protection as an additional service. We cover all costs for this guarantee. All you have to do is register!
+</p>
+<input type="submit" id="btnProtect" name="btnProtect" value="Register for Trusted Shops Buyer Protection"> 
+</form> 
+</td> 
+</tr> 
+</table> 

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_AUTO_CROSS_SELL_MAX_DISPLAY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Max. display]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[数示数量 - 最大值]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Max. Anzahl Test]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Max. display]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nombre maxi]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Visualizzazione massima]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[表示数量 - 最大値]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Max. aantal]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Max. wyświetlenie]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Макс. число]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[數示數量 - 最大值]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_HEADING_AUTO_CROSS_SELL</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Customers also purchased]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[我们的客户同时也购买了]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kunden kauften auch]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Customers also purchased]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Les clients ont également acheté]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[I clienti hanno comprato anche]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[同時に、我々の顧客に、こんなものも購入]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Klanten kochten ook]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Klienci również zakupili]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Другие клиенты купили\:]]></value>
+	</ru>
+</phrase>
+</language_content>
+</xtcommerceplugin>

@@ -1,0 +1,33 @@
+<table class="paymentblock" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr>
+		  	{if $payment_hidden == true}
+		  		{form type=hidden name=selected_payment value=$payment_code}
+		  	{else}			
+			  	{if $payment_code==$payment_selected}
+			  	<td class="header" width="10px">{form type=radio name=selected_payment value=$payment_code checked=true}</td>
+			  	{else}
+			  	<td class="header" width="10px">{form type=radio name=selected_payment value=$payment_code}</td>
+			  	{/if}
+			{/if}  
+  	<td class="header"><strong>{$payment_name}</strong></td>
+    <td class="header" align="right">{$payment_price.formated}</td>
+  </tr>
+   <tr>
+  	<td colspan="3" class="main">
+  	<table border="0" cellpadding="10" cellspacing="0" align="center">
+  	<tr>
+  	<td align="center"></td>
+  	</tr>
+	<tr>
+	<td align="center">
+	<img  src="plugins/xt_ClickandBuy/images/cab_logo_bezahl_175x60px_V1_sh_de.png" border="0" alt="ClickAndBuy-Bezahlmethoden-Logo">
+	</td>
+	<td>
+Mehr Informationen zu ClickandBuy finden Sie <a href="http://clickandbuy.com/DE_de/info.html" target="_blank">hier</a>!
+	</td>
+	</tr>
+	</table>
+  	</td>
+  </tr>
+</table>
+<br />

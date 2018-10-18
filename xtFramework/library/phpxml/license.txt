@@ -1,0 +1,15 @@
+Open Source License
+This license applies to all original software available from keithdevens.com unless the software is marked otherwise. This license is most like the Artistic License. I wrote this license separately and then discovered that the Artistic license has a similar philosophy.
+
+The code you have is Open Source. You have permission to use or modify the code for your own purposes: commercial, private, or educational. However, the author (me) retains ownership (copyright) over the code - it is not public domain.
+
+The unmodified source may be redistributed with no restrictions, provided that all files in the original distribution are included and unchanged.
+
+The modified source may be redistributed under the following conditions:
+
+Changes to the source must be made available and placed in the public domain or released on the same terms as this license.
+You must clearly state in each modified file what you have changed. This does not preclude a separate "changes" file from being distributed with the source in addition to the comments you make in the source file. So if you want to give just a short description in the source file, and then supply the location of the changes file containing more detail about the changes, you may do that.
+The initial comment header, containing my name, the URL to the homepage for the code, and any other information, must be left intact. You may add other comments below it, of course.
+You may use or redistribute this code within a larger product with no restrictions except those that apply to the source when distributed separately.
+
+Finally, I would appreciate it if you would let me know about any changes you make that you think would be generally useful so I can merge them in with the main source for the benefit of others.

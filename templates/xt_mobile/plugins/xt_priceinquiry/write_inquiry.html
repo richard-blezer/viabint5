@@ -1,0 +1,187 @@
+<div data-role="header">
+    <h1>{txt key=TEXT_XT_PRICEINQUIRY}</h1>
+</div>
+{$message}
+<div class="xtm-priceinquiry">
+    {if $product_data.products_image!=''}
+        <div class="images flexslider">
+            <ul class="slides">
+                <li>
+                    <table><tr><td>
+                        {if $product_data.products_image != 'product:noimage.gif'}
+                            <a href="#photo-main-screen" data-rel="popup">
+                                {img img=$product_data.products_image type=m_xt-mobile_info alt=$product_data.products_name|escape:"html"}
+                            </a>
+                        {else}
+                            <a href="#">
+                                <img src="{$tpl_url_path}/img/no_image.png" alt="{txt key=TEXT_NO_IMAGE}">
+                            </a>
+                        {/if}                                
+                    </td></tr></table>
+                </li>
+            </ul>
+        </div>    
+        {if $product_data.products_image != 'product:noimage.gif'}
+            <div id="photo-main-screen" class="xtm-popup-image" data-corners="false" data-theme="d" data-overlay-theme="a" data-role="popup" data-shadow="true" data-transition="flip" data-position-to="window">
+                <a class="ui-btn-right" data-iconpos="notext" data-icon="delete" data-theme="e" data-role="button" data-rel="back" href="#" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="Close"></a>
+                {img img=$product_data.products_image type=m_xt-mobile_popup alt=$product_data.products_name|escape:"html"}
+            </div>
+        {/if}         
+    {/if}
+
+    <div class="detail">
+         <table border="0">  
+            {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+            <tr>
+                <td class="left" style="padding-top:8px;">{txt key=TEXT_XT_MOBILE_PRICE}</td>
+                <td class="right">
+                    <span class="xtm-price">{$product_data.products_price.formated}</span><br />
+                    <span class="shippinginfo">{$product_data.products_tax_info.tax_desc}</span><br />
+                    {if $product_data.base_price && !$product_data.group_price}          
+                    <span class="xtm-base-price">{$product_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$product_data.base_price.vpe.name}</span>
+                    {/if}
+                </td>
+            </tr>
+            {/if}
+
+
+            {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+            <tr>
+                <td class="left">
+                    {txt key=TEXT_XT_MOBILE_SHIPPING}
+                </td>
+                <td class="right">
+                    <span class="taxandshippinginfo">{if $product_data.products_shipping_link}<a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</span>
+                </td>
+            </tr>
+            {/if}
+
+
+            {if $product_data.products_weight > 0}
+            <tr>
+                <td class="left">
+                    <span class="taxandshippinginfo">{txt key=TEXT_PRODUCTS_WEIGHT}</span>
+                </td>
+                <td class="right">
+                     <span class="taxandshippinginfo">{$product_data.products_weight|number_format:2:",":"."} KG</span>
+                </td>
+            </tr>
+            {/if}
+
+
+            <tr>
+                <td class="left">
+                    <span class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}{if $product_data.shipping_status}&nbsp;{$product_data.shipping_status}{/if}</span>
+                </td>
+                <td class="right">
+                    {if $product_data.stock_image}
+                    <span class="stockimage">{img img=$product_data.stock_image.image type=t_img_stockrules alt=$product_data.stock_image.name}</span>
+                    {else}
+                    <span class="stockimagetext">{$product_data.stock_image.name}</span>
+                    {/if}
+                </td>
+            </tr>
+
+            {if $product_data.review_stars_rating}
+                <tr>
+                    <td class="left">    
+                        {txt key=TEXT_XT_REVIEWS_INFO}
+                    </td>
+                    <td class="right">
+                        <div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$product_data.review_stars_rating}%"></div></div>
+                        <p class="reviews_text">{if $product_data.products_rating_count}{$product_data.products_rating_count}{else}0{/if} {txt key=TEXT_XT_REVIEWS_INFO}</p>
+                    </td>
+                </tr>
+            {/if}
+
+
+            {if $product_data.products_discount!=''}
+            <tr>
+                <td class="left">{txt key=TEXT_DISCOUNT}</td>
+                <td class="right">
+                    {$product_data.products_discount}
+                </td>
+            </tr>
+            {/if}
+
+            {if $product_data.products_model!=''}
+            <tr>
+                <td class="left">{txt key=TEXT_PRODUCTS_MODEL}</td>
+                <td class="right">
+                    {$product_data.products_model}
+                </td>
+            </tr>
+            {/if}
+
+        </table>
+
+    </div>    
+
+   
+    {form type=form name=write_review action='dynamic' link_params=getParams method=post}
+        {form type=hidden name=action value=send}
+        {form type=hidden name=products_id value=$products_id}
+
+        <p>
+            {txt key=TEXT_XT_PRICEINQUIRY_INTRO}
+        </p>
+
+        
+        <table>
+            <tr>
+                <td><strong>{txt key=TEXT_EMAIL} *:</strong></td>
+            </tr>    
+            <tr>
+                <td>{form type=email name=email_address params='maxlength="40" size="40"' value=$email_address}</td>
+            </tr>
+            <tr>
+                <td><strong>{txt key=TEXT_FIRSTNAME} *:</strong></td>
+            </tr>
+            <tr>
+                <td>{form type=text name=firstname params='maxlength="40" size="40"' value=$firstname}</td>
+            </tr>
+            <tr>
+                <td><strong>{txt key=TEXT_LASTNAME} *:</strong></td>
+            </tr>
+            <tr>
+                <td>{form type=text name=lastname params='maxlength="40" size="40"' value=$lastname}</td>
+            </tr>
+            <tr>
+                <td><strong>{txt key=TEXT_COMPETITOR_PRICE} *:</strong></td>
+            </tr>
+            <tr>
+                <td>{form type=text name=competitor_price params='maxlength="40" size="40"' value=$competitor_price}</td>
+            </tr>
+            <tr>
+                <td><strong>{txt key=TEXT_COMPETITOR_URL} *</strong></td>
+            </tr>
+            <tr>
+                <td>{form type=text name=competitor_url params='maxlength="120" size="60"' value=$competitor_url}</td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top;"><strong>{txt key=TEXT_MESSAGE}</strong></td>
+            </tr>
+            <tr>
+                <td>{form type=textarea name=customer_message params='cols="50" rows="15"' text=$customer_message}</td>
+            </tr>
+            {if $logged_in eq 'false'}
+            <tr>
+                <td><strong>{txt key=TEXT_CAPTCHA}:</strong></td>
+            </tr>
+            <tr>
+                <td><img src="{$captcha_link}" /></td>
+            </tr>
+            <tr>
+                <td><strong>{txt key=TEXT_CAPTCHA}:</strong></td>
+            </tr>
+            <tr>
+                <td>{form type=text name=captcha params='maxlength="30"'}</td>
+            </tr>
+            {/if}
+        </table>
+        
+        <button type="submit">{txt key=BUTTON_SUBMIT}</button>
+    {form type=formend}
+</div>
+
+<p>{txt key=TEXT_MUST}</p>

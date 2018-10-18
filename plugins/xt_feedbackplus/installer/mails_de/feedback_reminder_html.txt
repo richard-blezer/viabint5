@@ -1,0 +1,37 @@
+{include file="file:$_system_root_templates/email/email_top.html"}
+<!-- // Begin Content \\ -->
+<table cellpadding="0" cellspacing="0" class="email_container">
+    <tr>
+        <td colspan="3" class="email_toplogo">
+            <div class="email_toplogo"><img src="{$_system_logo_url}"/></div>
+        </td>
+    </tr>
+    <tr>
+        <td class="email_table_left_bg" valign="top">
+            <div class="email_table_left"></div>
+        </td>
+        <td class="email_table_center_bg" valign="top">
+            <div class="email_content">
+                <h1>Sehr geehrte/r {$order_data.billing_firstname} {$order_data.billing_lastname},</h1>
+                    <p>Vielen Dank für Ihren Einkauf in unserem Shop.<br/><br/>Da wir stehts um einen besseren Service und die Zufriedenheit unserer Kunden bemüht sind, bitten wir Sie, Ihren gekauften Produkte zu bewerten.
+                    {if isset($coupon)}
+                    {if $coupon.type eq 'freeshipping'}
+                    Als Dankeschön für eine abgegebene Bewertung erhalten Sie von uns einen Versandkostenfrei Gutschein für Ihre nächste Bestellung.
+                    {else}
+                    Als Dankeschön für eine abgegebene Bewertung erhalten Sie von uns einen Gutschein in Höhe von {$coupon.amount|round:"2"} {if $coupon.type eq 'fix'}EUR{else}%{/if} für Ihre nächste Bestellung.
+                    {/if}<br/><br />
+                    {/if}
+                    <a href="{$feedback_url}">Bewerten Sie Ihren Einkauf</a></p>
+                <p>Vielen Dank,</p>
+                <p>{$shop_name}</p>
+                <img src="{$product_data.pixel_url}"/>
+            </div>
+            <div class="email_footer">{$_system_footer_html}</div>
+        </td>
+        <td class="email_table_right_bg" valign="top">
+            <div class="email_table_right"></div>
+        </td>
+    </tr>
+</table>
+<!-- // End Content \\ -->
+{include file="file:$_system_root_templates/email/email_bottom.html"}

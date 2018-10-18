@@ -1,0 +1,9 @@
+{if $subpart == 'ul'}
+    <ul class="c{$count}">
+{elseif $subpart == 'li'}
+    <li id="cid-{$data.categories_id}" class="cat-level-{$data.level} list-level-{$count} list-item-{$i}{if $data.active == 1} active{/if}{if $data.current == 1} current{/if}{if $data.sub} has-subs{/if}{if $i == 1} first{elseif $i == $c} last{/if}">
+{elseif $subpart == 'link'}
+    <a href="{$data.categories_link}" class="no-ripple">
+        {$data.categories_name|escape:'html'}
+    </a>
+{/if}

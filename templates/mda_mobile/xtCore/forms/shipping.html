@@ -1,0 +1,66 @@
+<h2>{$data.content_heading}</h2>
+{$message}
+
+<p>{if $file}{$file}{else}{$data.content_body}{/if}</p>
+<p>{txt key=TEXT_SHIPPING_INTRO}</p>
+
+{form type=form name=shipping action='dynamic' link_params=getParams method=post}
+{form type=hidden name=action value=query}
+<div data-role="fieldcontain">
+	<label for="hipping_destination">{txt key=TEXT_COUNTRY}</label>
+	{if $sel_country}
+        {form type=select id=shipping_destination name=shipping_destination value=$country_data default=$sel_country}
+        {else}
+        {form type=select id=shipping_destination name=shipping_destination value=$country_data default=$smarty.const._STORE_COUNTRY}
+        {/if}
+</div>
+<input type="submit" value="{txt key=BUTTON_SHOW}" />
+{form type=formend}
+
+{if $shipping_data}
+	{foreach item=shipping_values from=$shipping_data}
+	<h3>{$shipping_values.shipping_name}</h3>
+	
+	<table class="tabledetails" width="100%" border="0" cellspacing="0">
+		<thead>
+			<tr>
+				<th align="left">{txt key=TEXT_RANGE_STAFFEL}</th>
+				<th align="left">{txt key=TEXT_TOTAL_PRICE} 
+					{if $shipping_values.shipping_type eq 'item'}{txt key=TEXT_TYPE_PER_ITEM}{/if}
+				</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			{foreach name=shipping item=costs from=$shipping_values.costs}
+			<tr class="{cycle values="contentrow1,contentrow2"}">
+				<td class="left">
+					{if $costs.shipping_type_value_from neq '0'}
+					{txt key=TEXT_RANGE_FROM}
+					{$costs.shipping_type_value_from} 
+					{/if} 
+					
+					{txt key=TEXT_RANGE_TO}
+					{$costs.shipping_type_value_to}
+					{if $shipping_values.shipping_type eq 'weight'} KG{/if}
+					{if $shipping_values.shipping_type eq 'item'} {txt key=TEXT_TYPE_ITEM}{/if}
+				</td>
+				<td class="right">{$costs.shipping_price}</td> 
+			</tr>
+  
+			{if $smarty.foreach.shipping.last eq true}
+			<tr class="contentrow1">
+				<td class="left">
+					{txt key=TEXT_RANGE_FROM}
+					{$costs.shipping_type_value_to}
+					{if $shipping_values.shipping_type eq 'weight'} KG{/if}
+					{if $shipping_values.shipping_type eq 'item'} {txt key=TEXT_TYPE_ITEM}{/if}
+				</td>
+				<td class="right">{txt key=TEXT_INFO_NO_SHIPPING}</td> 
+			</tr>
+			{/if}
+			{/foreach}
+		</tbody>
+	</table>
+	{/foreach}
+{/if}

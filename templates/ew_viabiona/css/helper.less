@@ -1,0 +1,379 @@
+/**
+* LESS HELPERS
+* NOTICE: Avoid any cowboy coding in this file!
+*/
+
+/*
+We occasionally expand on these media queries to include a max-width to limit CSS to a narrower set of devices.
+
+@media (max-width: @screen-xs-max) { ... }
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
+@media (min-width: @screen-lg-min) { ... }
+*/
+
+/**
+* Keyframes & animation LESS mixin
+* generating a cross-browser and completely valid @keyframes & animation's css code, without hacks
+*/
+@lesscompiler: 'php';
+
+/*fix for bs3.0.2 - scrolling on xs navbar toggle */
+@media (max-width: @grid-float-breakpoint) {
+    .navbar .navbar-collapse {
+        max-height: @navbar-collapse-max-height;
+        overflow-y: scroll;
+    }
+}
+
+/* Internet Explorer 10 auf Windows 8 und Windows Phone 8 */
+@-webkit-viewport {
+    width: device-width;
+}
+
+@-moz-viewport {
+    width: device-width;
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+
+@-o-viewport {
+    width: device-width;
+}
+
+@viewport {
+    width: device-width;
+}
+
+/**
+* HELPER
+* Text Positions
+*/
+.right {
+    .text-right
+}
+
+.float-right {
+    .pull-right
+}
+
+.left {
+    .text-left
+}
+
+.float-left {
+    .pull-left
+}
+
+.center {
+    .text-center
+}
+
+.clear {
+    .clearfix()
+}
+
+@media (max-width: @screen-sm-min) {
+    .text-left-xs {
+        text-align: left
+    }
+
+    .text-right-xs {
+        text-align: right
+    }
+
+    .text-center-xs {
+        text-align: center
+    }
+}
+
+@media (max-width: @screen-md-min) {
+    .text-left-sm {
+        text-align: left
+    }
+
+    .text-right-sm {
+        text-align: right
+    }
+
+    .text-center-sm {
+        text-align: center
+    }
+}
+
+@media (max-width: @screen-lg-min) {
+    .text-left-md {
+        text-align: left
+    }
+
+    .text-right-md {
+        text-align: right
+    }
+
+    .text-center-md {
+        text-align: center
+    }
+}
+
+@media (min-width: @screen-lg-min) {
+    .text-left-lg {
+        text-align: left
+    }
+
+    .text-right-lg {
+        text-align: right
+    }
+
+    .text-center-lg {
+        text-align: center
+    }
+}
+
+/**
+* HELPER
+* Quick cursor manipulation
+*/
+.cursor-pointer {
+    cursor: pointer
+}
+
+.cursor-default {
+    cursor: default
+}
+
+.cursor-help {
+    cursor: help
+}
+
+/**
+* HELPER
+* CSS Word Wrap
+*/
+.break-word,
+.text-word-wrap {
+    .hyphens();
+}
+
+/**
+* HELPER
+* Font size
+*/
+.text-small {
+    font-size: @ew-font-size-small;
+}
+
+/**
+* HELPER
+* Vertical align helper
+* 1. Auf wrappendes Element, dessen Kinder vertikal mittig ausgerichtet werden sollen die Klasse "vertical-helper" setzen
+* 2. Das wrappende Element muss eine Hoehe definiert haben und ein Block Element sein
+*/
+.vertical-helper {
+    white-space: nowrap;
+}
+
+.vertical-helper * {
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
+}
+
+.vertical-helper:after {
+    content: " ";
+    visibility: hidden;
+    height: 100%;
+    font-size: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/**
+* HELPER
+*
+* Image Link umschliesst ein Bild
+*/
+.image-link {
+    text-decoration: none;
+}
+
+.image-link img {
+    color: @gray-light;
+}
+
+/**
+* HELPER xt:Grid with 16 columns
+*/
+@xt-grid-columns: 16;
+.make-xt-grid-columns();
+@media (min-width: @screen-sm-min) {
+    .loop-xt-grid-columns(@xt-grid-columns, sm, width);
+}
+
+@media (min-width: @screen-md-min) {
+    .loop-xt-grid-columns(@xt-grid-columns, md, width);
+}
+
+@media (min-width: @screen-lg-min) {
+    .loop-xt-grid-columns(@xt-grid-columns, lg, width);
+}
+
+.make-xt-grid-columns() {
+    // Common styles for all sizes of grid columns, widths 1 - 12
+    .col(@index) when (@index = 1) {
+        // initial
+        @item: ~".xt-grid-@{index}, .xt-grid-@{index}-full";
+        .col((@index + 1), @item);
+    }
+    .col(@index, @list) when (@index =< @xt-grid-columns) {
+        // general; "=<" isn't a typo
+        @item: ~".xt-grid-@{index}, .xt-grid-@{index}-full";
+        .col((@index + 1), ~"@{list}, @{item}");
+    }
+    .col(@index, @list) when (@index > @xt-grid-columns) {
+        // terminal
+        @{list} {
+            position: relative;
+            // Prevent columns from collapsing when empty
+            min-height: 1px;
+            // Inner gutter via padding
+            padding-left: (@grid-gutter-width / 2);
+            padding-right: (@grid-gutter-width / 2);
+            float: left;
+            width: 100%;
+        }
+    }
+    .col(1); // kickstart it
+}
+
+.loop-xt-grid-columns(@index, @class, @type) when (@index >= 0) {
+    .calc-xt-grid-column(@index, @class, @type);
+    // next iteration
+    .loop-xt-grid-columns((@index - 1), @class, @type);
+}
+
+.calc-xt-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) and (@index <= @grid-columns) {
+    .xt-grid-@{index}, .xt-grid-@{index}-full {
+        width: percentage((@index / @xt-grid-columns));
+    }
+}
+
+.calc-xt-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) and (@index > @grid-columns) {
+    .xt-grid-@{index}, .xt-grid-@{index}-full {
+        width: 100%;
+    }
+}
+
+/**
+* SHADOW MIXINs
+*/
+.shadow-wrap(@image-url; @height) {
+    .shadow-background(@image-url; @height);
+    padding-bottom: @height;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+}
+
+.shadow-background(@image-url; @image-height; @background-color: transparent) {
+    background-image: @image-url;
+    background-color: @background-color;
+    background-size: 100% @image-height;
+}
+
+/**
+* Gray-scale effect
+*/
+.gray-scale {
+    filter: grayscale(100%);
+}
+
+/**
+* Alpha effect
+*/
+.transparency {
+    opacity: 0.5;
+}
+
+/**
+* Visibility Hidden
+*/
+.vhidden {
+    opacity: 0;
+}
+
+/*
+* Spacer
+*/
+.hr-space {
+    margin-bottom: @grid-gutter-width;
+}
+
+/**
+* RIPPLE click animation
+* Material Design Hover & Click Effects
+*/
+.ripple {
+    position: relative;
+    .transition(all .2s ease);
+    overflow: hidden;
+    .ink-ripple {
+        display: block;
+        position: absolute;
+        background: rgba(255, 255, 255, .3);
+        border-radius: 100%;
+        .scale(0);
+        &.animate-ripple {
+            .animation(Ripple .65s linear);
+        }
+    }
+}
+
+.animate-me(Ripple; false; false; '100%'; 'opacity: 0; %stransform: scale(2.5);');
+
+/**
+* TEXTAREA RESIZE
+* Defaults to resize::vertical
+*/
+textarea {
+    resize: vertical;
+    .resize-horizontal {
+        resize: horizontal;
+    }
+    .resize-none {
+        resize: none;
+    }
+    .resize-both {
+        resize: both;
+    }
+}
+
+/**
+* RESPONSIVE IFRAME
+*/
+iframe {
+    max-width: 100%;
+}
+
+/**
+* Shadows
+*/
+@grey-shadow-start: #FFF;
+@grey-shadow-end: darken(@grey-shadow-start, 10%);
+.grey-shadow {
+    background-color: @grey-shadow-start;
+    #gradient > .vertical(@grey-shadow-start; @end-color: @grey-shadow-end);
+    //.reset-filter(); // Disable gradients for IE9 because filter bleeds through rounded corners; see https://github.com/twbs/bootstrap/issues/10620
+    background-repeat: repeat-x;
+    color: @gray;
+}
+
+/**
+* SPECIAL HEADLINE
+*/
+.headline-special-big {
+    .h1;
+    font-size: (@font-size-h1 * 1.2);
+    font-family: @ew-font-family-special-big;
+    color: @ew-gray-light;
+}

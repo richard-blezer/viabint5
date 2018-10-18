@@ -1,0 +1,116 @@
+<div id="account-history-info">
+	<h1>
+        {txt key=TEXT_PAGE_TITLE_ACCOUNT_HISTORY_INFO}
+        <small>- {txt key=TEXT_ORDER_NUMBER}: {$order_data.orders_id}</small>
+    </h1>
+    
+	<div class="row">
+		<div class="col col-md-3">
+			<div class="well">
+				<p class="headline">{txt key=TEXT_SHIPPING_ADDRESS}</p>
+				{if $order_data.delivery_company}{$order_data.delivery_company}<br />{/if}
+				{$order_data.delivery_firstname} {$order_data.delivery_lastname}<br />
+				{$order_data.delivery_street_address}<br />
+				{if $order_data.delivery_suburb}{$order_data.delivery_suburb}<br />{/if}
+				{$order_data.delivery_postcode} {$order_data.delivery_city}<br />
+				{if $order_data.delivery_state}{$order_data.delivery_state}<br />{/if}
+				{$order_data.delivery_country}
+			</div><!-- .box -->
+			<div class="well">
+				<p class="headline">{txt key=TEXT_PAYMENT_ADDRESS}</p>
+				{if $order_data.billing_company}{$order_data.billing_company}<br />{/if}
+				{$order_data.billing_firstname}{$order_data.billing_lastname}<br />
+				{$order_data.billing_street_address}<br />
+				{if $order_data.billing_suburb}{$order_data.billing_suburb}<br />{/if}
+				{$order_data.billing_postcode} {$order_data.billing_city}<br />
+				{if $order_data.billing_state}{$order_data.billing_state}<br />{/if}
+				{$order_data.billing_country}
+			</div><!-- .box -->
+			{if $order_data.shipping_method!=''}
+			<div class="well">
+				<p class="headline">{txt key=TEXT_SHIPPING_METHOD}</p>
+				{$order_data.shipping_method}
+			</div><!-- .box -->
+			{/if}
+			{if $order_data.payment_name}
+			<div class="well">
+				<p class="headline">{txt key=TEXT_PAYMENT_METHOD}</p>
+				{$order_data.payment_name}
+			</div><!-- .box -->
+			{/if}
+			{if $order_data.payment_info!=''}
+			<div class="well">
+				<p class="headline">{txt key=TEXT_PAYMENT_INFO}</p>
+				{$order_data.payment_info}
+			</div><!-- .box -->
+			{/if}
+			{if $order_data.comments!=''}
+			<div class="well">
+				<p class="headline">{txt key=TEXT_ORDER_COMMENTS}</p>
+				{$order_data.comments}
+			</div><!-- .box -->
+			{/if}
+		</div><!-- .column .xt-grid-4 -->
+        
+		<div class="col col-md-9">
+            <p class="pull-right"><a href="{link page='customer' paction=order_overview conn=SSL}">{css_button text=$smarty.const.BUTTON_BACK}</a></p>
+            
+			<p class="headline">{txt key=TEXT_ORDER_DATE}</p>
+			<p>{$order_data.date_purchased}</p>
+			<hr />
+			<p class="headline">{txt key=TEXT_ORDER_STATUS_HISTORY}</p>
+			{foreach name=aussen item=history_values from=$order_history}
+			    <p>{$history_values.date_added|date_format:"%d.%m.%Y - %H:%M"}  - {$history_values.status_name}</p>
+			    {if $history_values.customer_show_comment eq '1'}
+			        <p>{$history_values.comments}</p>
+			    {/if}
+			{/foreach}
+            <br />
+            
+			<div class="table-responsive">
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+      						<th>{txt key=TEXT_ARTICLE}</th>
+      						<th>{txt key=TEXT_PRODUCTS_MODEL}</th>
+      						<th class="right">{txt key=TEXT_SINGLE_PRICE}</th>
+      						<th class="right">{txt key=TEXT_QTY}</th>
+	  						<th class="right">{txt key=TEXT_TOTAL_PRICE}</th>
+    					</tr>
+    				</thead>
+   					<tfoot>
+    					<tr>
+    						<td></td>
+    						<td colspan="4">
+								<p class="sub-total">{txt key=TEXT_SUB_TOTAL} <span class="float-right">{$total.product_total.formated}</span></p>
+								{foreach name=aussen item=order_total_values from=$order_total_data}
+								<p>{$order_total_values.orders_total_name} <span class="float-right">{$order_total_values.orders_total_price.formated}</span></p>
+								{/foreach}
+								<p class="total">{txt key=TEXT_TOTAL} <span class="float-right">{$total.total.formated}</span></p>
+								{foreach name=aussen item=tax_data from=$total.total_tax}
+								<p>{txt key=TEXT_TAX} {$tax_data.tax_key}% <span class="float-right">{$tax_data.tax_value.formated}</span></p>
+								{/foreach}
+   							</td>
+ 			 			</tr>
+    				</tfoot>
+    				<tbody>
+  						{foreach name=aussen item=order_values from=$order_products}
+   						<tr class="{cycle values="odd,even"}">
+    						<td class="bold">{$order_values.products_name}</td>
+    						<td>{$order_values.products_model}</td>
+    						<td class="right">{$order_values.products_price.formated}</td>
+    						<td class="right">{$order_values.products_quantity}</td>
+							<td class="right bold">{$order_values.products_final_price.formated}</td>
+  						</tr>
+  						{$order_values.products_information.content}
+ 						{/foreach}
+					</tbody>
+ 		 		</table>
+  			</div><!-- .box -->
+            <p class="pull-right"><a href="{link page='customer' paction=order_overview conn=SSL}">{css_button text=$smarty.const.BUTTON_BACK}</a></p>
+		</div><!-- .column .xt-grid-12 -->
+	</div><!-- .row -->
+
+	{hook key=account_history_info_bottom}
+
+</div><!-- #account-history-info -->

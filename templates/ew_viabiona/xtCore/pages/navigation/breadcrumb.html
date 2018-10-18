@@ -1,0 +1,23 @@
+<div class="breadcrumb-form{if $smarty.get.page != 'categorie'} hidden-xs{/if}">
+    <div class="container">
+        <ul class="breadcrumb text-word-wrap">
+            {foreach name=aussen key=key item=breadcrumb from=$top_navigation}
+                {if $smarty.foreach.aussen.first == true}
+                    <li class="home">
+                        <a href="{$breadcrumb.url}" title="{$breadcrumb.name|escape:"html"}" class="text-muted hidden-xs"><i class="fa fa-home"></i><span class="sr-only">{$breadcrumb.name|escape:"html"}</span></a>
+                        <a href="{$breadcrumb.url}?highlightCat={$smarty.get.cat}" class="text-muted hidden-sm hidden-md hidden-lg"><i class="fa fa-chevron-circle-left"></i><span class="sr-only">{txt key=BUTTON_BACK}</span></a>
+                    </li>
+                {elseif $smarty.foreach.aussen.last == false}
+                    {if ($key == 1) &&
+                        ($smarty.get.page == 'product' || $smarty.get.page == 'categorie')}
+                        <li class="nolink"><span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><span itemprop="title">{$breadcrumb.name|strip_tags|escape:"html"|trim|truncate:50:" ..."}</span></span></li>
+                    {else}
+                        <li><span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{$breadcrumb.url}" itemprop="url" title="{$breadcrumb.name|escape:"html"}"><span itemprop="title">{$breadcrumb.name|strip_tags|escape:"html"|trim|truncate:50:" ..."}</span></a></span></li>
+                    {/if}
+                {else}
+                    <li class="active" title="{$breadcrumb.name|escape:"html"}">{$breadcrumb.name|strip_tags|escape:"html"|trim|truncate:50:" ..."}</li>
+                {/if}
+            {/foreach}
+        </ul>
+    </div>
+</div>

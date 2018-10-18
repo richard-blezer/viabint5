@@ -1,0 +1,58 @@
+{if $pages|@count gt 1}
+    <div class="nav-pages btn-group">
+        {assign var=padding value=2}
+
+        {if $actual_page == 1}
+            <button class="btn btn-default prev" disabled="disabled">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Prev</span>
+            </button>
+        {else}
+            <a class="btn btn-default prev" role="button" href="{$prev}" rel="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Prev</span>
+            </a>
+        {/if}
+
+        {foreach from=$pages item=page_link key=pager_number}
+
+            {* <!-- first always --> *}
+            {if $pager_number == 1}
+                <a class="btn btn-default{if $pager_number == $actual_page} active{/if}" role="button" href="{$page_link}"{if $pager_number == $actual_page-1} rel="prev"{/if}>{$pager_number}</a>
+            {/if}
+
+            {* <!-- middle block --> *}
+            {* <!-- dots before middle block , check padding, no dots between 1 and 2--> *}
+            {if $actual_page - $padding == $pager_number && $actual_page - $padding > 1 && $actual_page - $padding -1  > 1}
+                <button class="btn btn-default dots" disabled="disabled">...</button>
+            {/if}
+
+            {if $pager_number!=1 && $pager_number!=$last_page && $pager_number>=$actual_page-$padding && $pager_number<=$actual_page+$padding}
+                <a class="btn btn-default{if $pager_number == $actual_page} active{/if}" role="button" href="{$page_link}"{if $pager_number == $actual_page-1} rel="prev"{elseif $pager_number == $actual_page+1} rel="next"{/if}>{$pager_number}</a>
+            {/if}
+
+            {* <!-- dots after middle block , check padding, no dots between second last and last--> *}
+            {if $actual_page + $padding == $pager_number && $actual_page + $padding < $last_page && $actual_page + $padding + 1 < $last_page}
+                <button class="btn btn-default dots" disabled="disabled">...</button>
+            {/if}
+
+            {* <!-- last always --> *}
+            {if $pager_number == $last_page}
+                <a class="btn btn-default{if $pager_number == $actual_page} active{/if}" role="button" href="{$page_link}"{if $pager_number == $actual_page+1} rel="next"{/if}>{$pager_number}</a>
+            {/if}
+
+        {/foreach}
+
+        {if $actual_page == $last_page}
+            <button class="btn btn-default next" disabled="disabled">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </button>
+        {else}
+            <a class="btn btn-default next" role="button" href="{$next}" rel="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        {/if}
+    </div>
+{/if}

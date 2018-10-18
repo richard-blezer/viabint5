@@ -1,0 +1,16 @@
+#addressBookWidgetDiv
+{
+	height: 300px;
+}
+
+#walletWidgetDiv
+{
+	height: 200px;
+}
+#loginModal .AmazonPaymentBox_leftbox{float: left;width: 100%;}
+#loginModal .AmazonPaymentBox_leftbox img{float: right;}
+#xt_cart_popup .AmazonPaymentBox_leftbox{padding-left:20px}
+.AmazonPaymentBox_productbox{ text-align: center; width: 180px; float: left; margin-top:5px;}
+
+.AmazonPaymentBox_productinfo{ margin-top:5px;}
+.azm-or_wrap{max-width: 230px;margin:10px 0;font-size: 18px;}

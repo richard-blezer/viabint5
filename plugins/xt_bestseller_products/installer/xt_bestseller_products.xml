@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Bestseller Products</title>
+    <version>1.1.2</version>
+    <code>xt_bestseller_products</code>
+    <url>http://www.xt-commerce.com</url>
+    <description>Bestseller</description>
+<developer>xt:Commerce</developer>
+    <type>core</type>
+    <icon>xt-commerce_logo.jpg</icon>
+	<db_install><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_bestseller_products/hooks/db_install.php';
+	]]></db_install>
+	<db_uninstall>
+	<![CDATA[
+			include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_bestseller_products/hooks/db_uninstall.php';
+	]]>
+</db_uninstall>
+	<minimumupdateversion>1.0.3</minimumupdateversion>
+	<db_update>
+		<update>
+			<version>1.0.3</version>
+			<to_version>1.0.4</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.0.4</version>
+			<to_version>1.1.0</to_version>
+			<code><![CDATA[
+				$seo_plugin_file = _SRV_WEBROOT.'/xtFramework/classes/class.seo_plugins.php';
+				if (file_exists($seo_plugin_file))
+				{
+					require_once $seo_plugin_file;
+					
+					 $seo_plugin = new seo_plugins();
+					 $seo_plugin->setPluginSEO('xt_bestseller_products');
+				}
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.0</version>
+			<to_version>1.1.1</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>		
+	</db_update>
+    <plugin_code>
+        <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode>
+                <![CDATA[define('PAGE_XT_BESTSELLER_PRODUCTS',_SRV_WEB_PLUGINS.'xt_bestseller_products/pages/xt_bestseller_products.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>admin_dropdown.php:dropdown</hook>
+            <phpcode>
+                <![CDATA[include(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_bestseller_products/hooks/admin_dropdown.php_dropdown.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+    <configuration>
+        <config>
+            <key>ACTIVATE_XT_BESTSELLER_PRODUCTS_PAGE</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Seite aktivieren</title>
+            </de>
+            <en>
+                <title>Activate Page</title>
+            </en>
+            <bp>
+                <title>Ativar Página</title>
+            </bp>
+        </config>
+        <config>
+            <key>ACTIVATE_XT_BESTSELLER_PRODUCTS_BOX</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Box aktivieren</title>
+            </de>
+            <en>
+                <title>Activate box</title>
+            </en>
+            <bp>
+                <title>Ativar box</title>
+            </bp>
+        </config>
+        <config>
+            <key>XT_BESTSELLER_PRODUCTS_BOX_LIMIT</key>
+            <type>textfield</type>
+            <value>3</value>
+            <de>
+                <title>Anzahl Artikel in Box</title>
+            </de>
+            <en>
+                <title>Max. article in Box</title>
+            </en>
+            <bp>
+                <title>Artigos máximos no Box</title>
+            </bp>
+
+        </config>
+        <config>
+            <key>XT_BESTSELLER_PRODUCTS_PAGE_LIMIT</key>
+            <type>textfield</type>
+            <value>25</value>
+            <de>
+                <title>Anzahl Artikel</title>
+            </de>
+            <en>
+                <title>Max. article</title>
+            </en>
+            <bp>
+                <title>Artigos máximos</title>
+            </bp>
+        </config>
+        <config>
+            <key>XT_BESTSELLER_PRODUCTS_PAGE_TPL</key>
+            <value>product_listing_v1.html</value>
+            <de>
+                <title>Template</title>
+            </de>
+            <en>
+                <title>Template</title>
+            </en>
+            <bp>
+                <title>Modelo</title>
+            </bp>
+        </config>
+        <config>
+            <key>XT_BESTSELLER_PRODUCTS_CACHE_HOURS</key>
+            <type>textfield</type>
+            <value>0</value>
+            <de>
+                <title>Cache Zeit (Stunden)</title>
+            </de>
+            <en>
+                <title>Caching time (hours)</title>
+            </en>
+            <bp>
+                <title>Tempo de caching (horas)</title>
+            </bp>
+        </config>
+        <config>
+            <key>XT_BESTSELLER_PRODUCTS_SHOW_TYPE</key>
+            <type>dropdown</type>
+            <value>nothing</value>
+            <url>plg_xt_bestseller_products_show_type</url>
+            <de>
+                <title>Produktauswahl</title>
+            </de>
+            <en>
+                <title>Products to show</title>
+            </en>
+            <bp>
+                <title>Produtos para mostrar</title>
+            </bp>
+        </config>
+        <config>
+            <key>XT_BESTSELLER_PRODUCTS_CATEGORY_DEPENDS</key>
+            <type>dropdown</type>
+            <value>false</value>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Kategoriebezogen</title>
+            </de>
+            <en>
+                <title>in depends on category</title>
+            </en>
+            <bp>
+                <title>depedendo da categoria</title>
+            </bp>
+        </config>
+    </configuration>
+</xtcommerceplugin>

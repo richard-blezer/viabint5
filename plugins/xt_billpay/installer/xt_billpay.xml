@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+	<title>Billpay.de - Sicherer Rechnungskauf/Sichere Lastschrift</title>
+	<version>1.1.3</version>
+	<code>xt_billpay</code>
+	<url>http://www.xt-commerce.com</url>
+	<description>Billpay.de Zahlungsmodul</description>
+	<icon>billpay-logo.png</icon>
+	<type>payment</type>
+	<payment>
+		<payment_code>xt_billpay</payment_code>
+		<payment_dir>xt_billpay</payment_dir>
+		<payment_icon></payment_icon>
+		<payment_tpl>billpay.html</payment_tpl>
+		<de>
+			<title>Zahlung per Rechnung</title>
+			<description></description>
+		</de>
+		<en>
+			<title>Pay with invoice</title>
+			<description></description>
+		</en>
+	</payment>
+	<db_install><![CDATA[
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 24, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 25, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 26, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 27, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 28, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 29, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 30, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 31, '', 0, 10000.00, 0, 1);");
+
+
+$db->Execute("
+CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_plg_billpay (
+  billpay_id int(11) NOT NULL auto_increment,
+  orders_id int(11) NOT NULL,
+  timestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  transaction_id varchar(64) NOT NULL,
+  billpay_status varchar(32) NOT NULL,
+  billpay_note varchar(255) NOT NULL,
+  account_holder varchar(64) default NULL,
+  account_number varchar(64) default NULL,
+  bank_code varchar(32) default NULL,
+  bank_name varchar(64) default NULL,
+  invoice_duedate varchar(32) default NULL,
+  invoice_reference varchar(32) default NULL,
+  PRIMARY KEY  (billpay_id),
+  UNIQUE KEY billpay_id (billpay_id)
+) ENGINE=MyISAM AUTO_INCREMENT=1;
+");
+
+]]></db_install>
+	<db_uninstall><![CDATA[
+
+]]></db_uninstall>
+	<configuration_payment>
+		<config>
+			<key>SANDBOX</key>
+			<type>dropdown</type>
+			<value>true</value>
+			<url>conf_truefalse</url>
+			<sort_order>5</sort_order>
+			<de>
+				<title>Testmodus</title>
+			</de>
+			<en>
+				<title>Testmode</title>
+			</en>
+		</config>
+		<config>
+			<key>MID</key>
+			<type>textfield</type>
+			<value></value>
+			<sort_order>1</sort_order>
+			<de>
+				<title>Händler ID</title>
+			</de>
+			<en>
+				<title>Merchant ID</title>
+			</en>
+		</config>
+		<config>
+			<key>PID</key>
+			<type>textfield</type>
+			<value></value>
+			<de>
+				<title>ID Zahlungsportal</title>
+			</de>
+			<en>
+				<title>ID Zahlungsportal</title>
+			</en>
+		</config>
+		<config>
+			<key>BPSECURE</key>
+			<type>textfield</type>
+			<sort_order>3</sort_order>
+			<value></value>
+			<de>
+				<title>Sicherheitscode</title>
+			</de>
+			<en>
+				<title>Securitycode</title>
+			</en>
+		</config>
+
+		<config>
+			<key>SHIFTDAY</key>
+			<type>textfield</type>
+			<sort_order>3</sort_order>
+			<value>0</value>
+			<de>
+				<title>Tage bis Aktivierung</title>
+			</de>
+			<en>
+				<title>Tage bis Aktivierung</title>
+			</en>
+		</config>
+
+		<config>
+			<key>STATUS_PAID</key>
+			<type>textfield</type>
+			<sort_order>3</sort_order>
+			<value>5</value>
+			<de>
+				<title>Bestellstatus-ID (bezahlt)</title>
+			</de>
+			<en>
+				<title>Order status ID (paid)</title>
+			</en>
+		</config>
+
+		<config>
+			<key>DEBUG</key>
+			<type>dropdown</type>
+			<value>false</value>
+			<url>conf_truefalse</url>
+			<sort_order>5</sort_order>
+			<de>
+				<title>Debug aktivieren</title>
+			</de>
+			<en>
+				<title>activate debugging</title>
+			</en>
+		</config>
+
+		<config>
+			<key>ACTIVATE_INVOICE</key>
+			<type>dropdown</type>
+			<value>true</value>
+			<url>conf_truefalse</url>
+			<sort_order>5</sort_order>
+			<de>
+				<title>Rechnung aktivieren</title>
+			</de>
+			<en>
+				<title>activate invoice</title>
+			</en>
+		</config>
+		<config>
+			<key>ACTIVATE_ELV</key>
+			<type>dropdown</type>
+			<value>false</value>
+			<url>conf_truefalse</url>
+			<sort_order>5</sort_order>
+			<de>
+				<title>Lastschrift aktivieren</title>
+			</de>
+			<en>
+				<title>Activate direct debit</title>
+			</en>
+		</config>
+		<config>
+			<key>ORDER_STATUS_SUCCESS</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+			<de>
+				<title>Bestellstatus - Genehmigt</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Accepted</title>
+			</en>
+		</config>
+		<config>
+			<key>ORDER_STATUS_FAILED</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+			<de>
+				<title>Bestellstatus - Abgelehnt</title>
+			</de>
+			<en>
+				<title>Ordersstatus - denied</title>
+			</en>
+		</config>
+
+		<config>
+			<key>ORDER_STATUS_CANCEL</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+			<de>
+				<title>Bestellstatus - Stornieren</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Cancel</title>
+			</en>
+		</config>
+
+		<config>
+			<key>ORDER_STATUS_ACTIVATE</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+			<de>
+				<title>Bestellstatus - Aktivieren</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Activate</title>
+			</en>
+		</config>
+
+	</configuration_payment>
+
+	<plugin_code>
+		<code>
+			<hook>page_registry.php:bottom</hook>
+			<phpcode><![CDATA[
+define('TABLE_XT_BILLPAY', $DB_PREFIX.'plg_billpay');
+]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>module_checkout.php:checkout_payment_bottom</hook>
+			<phpcode><![CDATA[
+if (isset($_SESSION['billpay_eula'])) unset($_SESSION['billpay_eula']);
+if (isset($_SESSION['billpay_eula_did'])) unset($_SESSION['billpay_eula_did']);
+if (isset($_SESSION['billpay_gebdat'])) unset($_SESSION['billpay_gebdat']);
+if (isset($_SESSION['billpay_account'])) unset($_SESSION['billpay_account']);
+// invoice
+if ($_POST['selected_payment']=='xt_billpay:INVOICE') {
+if(is_data($_POST['billpay_eula']) && $_POST['billpay_eula'] == 'on'){
+    $_SESSION['billpay_eula'] = 'true';
+}
+// dob
+if ($_SESSION['customer']->customer_payment_address['customers_dob'] == '') {
+  if ($_POST['billpay']['dob']['day']!='00' && $_POST['billpay']['dob']['month']!='00' && $_POST['billpay']['dob']['year']!='00') {
+     $_SESSION['billpay_gebdat'] = (int)$_POST['billpay']['dob']['day'].'.'.(int)$_POST['billpay']['dob']['month'].'.'.(int)$_POST['billpay']['dob']['year'];
+  }
+}                
+}
+
+// direct debit
+
+if ($_POST['selected_payment']=='xt_billpay:DID') {
+if(is_data($_POST['billpay_eula_did']) && $_POST['billpay_eula_did'] == 'on'){
+    $_SESSION['billpay_eula_did'] = 'true';
+}
+
+if ($_POST['billpay_account_holder']!='' && $_POST['billpay_account_number']!='' && $_POST['billpay_account_blz']!='') {
+   $_SESSION['billpay_account'] = 'true';
+   $_SESSION['billpay_account_holder'] = $_POST['billpay_account_holder'];
+   $_SESSION['billpay_account_number'] = $_POST['billpay_account_number'];
+   $_SESSION['billpay_account_blz'] = $_POST['billpay_account_blz'];
+}
+
+// dob
+if ($_SESSION['customer']->customer_payment_address['customers_dob'] == '') {
+  if ($_POST['billpay_did']['dob']['day']!='00' && $_POST['billpay_did']['dob']['month']!='00' && $_POST['billpay_did']['dob']['year']!='00') {
+     $_SESSION['billpay_gebdat'] = (int)$_POST['billpay_did']['dob']['day'].'.'.(int)$_POST['billpay_did']['dob']['month'].'.'.(int)$_POST['billpay_did']['dob']['year'];
+  }
+} 
+
+}
+]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+
+		<code>
+			<hook>module_checkout.php:checkout_pre_data</hook>
+			<phpcode><![CDATA[
+
+// invoice
+if ($_SESSION['selected_payment']=='xt_billpay' && $_SESSION['selected_payment_sub']=='INVOICE') {
+// eula
+if($_SESSION['billpay_eula'] != 'true'){
+        $info->_addInfo(ERROR_BILLPAY_EULA_ACCEPTED);
+        $checkout_data['page_action'] = 'payment';
+}
+// gebdat
+if ($_SESSION['customer']->customer_payment_address['customers_dob'] == '') {
+ if (!isset($_SESSION['billpay_gebdat'])) {
+        $info->_addInfo(ERROR_BILLPAY_GEBDAT_MISSING);
+        $checkout_data['page_action'] = 'payment';
+ 
+ }
+}
+}
+
+// did
+if ($_SESSION['selected_payment']=='xt_billpay' && $_SESSION['selected_payment_sub']=='DID') {
+// eula
+if($_SESSION['billpay_account'] != 'true'){
+        $info->_addInfo(ERROR_BILLPAY_ACCOUNT_ERROR);
+        $checkout_data['page_action'] = 'payment';
+}
+
+// account
+if($_SESSION['billpay_eula_did'] != 'true'){
+        $info->_addInfo(ERROR_BILLPAY_EULA_ACCEPTED);
+        $checkout_data['page_action'] = 'payment';
+}
+
+// gebdat
+if ($_SESSION['customer']->customer_payment_address['customers_dob'] == '') {
+ if (!isset($_SESSION['billpay_gebdat'])) {
+        $info->_addInfo(ERROR_BILLPAY_GEBDAT_MISSING);
+        $checkout_data['page_action'] = 'payment';
+ 
+ }
+}
+
+}
+
+
+]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+
+		<code>
+			<hook>class.order.php:_updateOrderStatus_top</hook>
+			<phpcode><![CDATA[
+// cancel or activate order
+global $db;
+$_ordersID = $this->oID;
+$rs = $db->Execute("SELECT * FROM ".TABLE_ORDERS." WHERE orders_id='".(int)$_ordersID."'");
+
+// activate or cancel billpay invoice
+if ($rs->fields['payment_code']=='xt_billpay' && ($rs->fields['subpayment_code']=='INVOICE' or $rs->fields['subpayment_code']=='DID') && $rs->fields['orders_data']!='') {
+
+// cancel
+if ($status==XT_BILLPAY_ORDER_STATUS_CANCEL) {
+    require_once _SRV_WEBROOT.'plugins/xt_billpay/classes/class.xt_billpay.php'; 
+    $billpay = new xt_billpay();
+    $billpay->cancelOrder($_ordersID);
+}
+
+// activate
+if ($status==XT_BILLPAY_ORDER_STATUS_ACTIVATE) {
+    require_once _SRV_WEBROOT.'plugins/xt_billpay/classes/class.xt_billpay.php'; 
+    $billpay = new xt_billpay();
+    $billpay->activateOrder($_ordersID);
+}
+
+}
+]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		
+		<code>
+			<hook>class.orders.php:_sendStatusMail_bottom</hook>
+			<phpcode><![CDATA[
+				$_ordersID = $this->oID;
+				
+				$rs = $db->Execute("SELECT * FROM ".TABLE_ORDERS." JOIN ".TABLE_XT_BILLPAY." ON ".TABLE_ORDERS.".orders_id = ".TABLE_XT_BILLPAY.".orders_id AND billpay_status = 'invoiceCreated Success' WHERE ".TABLE_ORDERS.".orders_id='".(int)$_ordersID."'");
+				if ($rs->fields['orders_status']==XT_BILLPAY_ORDER_STATUS_ACTIVATE) {
+				     					
+					if ($rs->fields['payment_code']=='xt_billpay' && $rs->fields['subpayment_code']=='INVOICE') {
+						$d = $rs->fields['invoice_duedate'];
+						$dueDate = substr($d,6,2).'.'.substr($d,4,2).'.'.substr($d,0,4);
+
+						$accountDetails = '<br /><br />Bitte überweisen Sie den Gesamtbetrag bis zum ' . $dueDate . ' auf das folgende Konto der Billpay GmbH:<br />';
+						$accountDetails .= '<br />Kontoinhaber: '.$rs->fields['account_holder'];
+						$accountDetails .= '<br />Geldinstitut: '.$rs->fields['bank_name'];
+						$accountDetails .= '<br />Kontonummer: '.$rs->fields['account_number'];
+						$accountDetails .= '<br />Bankleitzahl: '.$rs->fields['bank_code'];
+						$accountDetails .= '<br />Verwendungszweck: '.$rs->fields['invoice_reference'];
+						$accountDetails .= '<br />Fällig bis zum: '. $dueDate;
+
+						if ($comments!='') {
+							$accountDetails .= '<br /><br/>'.$comments;
+						}
+
+   						$statusmail->_assign('comments',$accountDetails);
+					}			
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		
+		
+		<code>
+			<hook>module_checkout.php:checkout_proccess_order_processed</hook>
+			<phpcode><![CDATA[
+            if ($_SESSION['selected_payment']=='xt_billpay' && isset ($_SESSION['selected_payment_sub']))
+            {        
+            // checks  
+                    
+            // preauth
+            $result = $payment_module_data->preAuth();
+            if (!$result) {
+                // foward to payment page
+                $tmp_link  = $xtLink->_link(array('page'=>'checkout', 'paction'=>'payment', 'conn'=>'SSL'));
+                if (isset($payment_module_data->display_error_message))
+                $info->_addInfoSession($payment_module_data->display_error_message,'error');                
+                $xtLink->_redirect($tmp_link);
+                break; 
+            } else {
+                // capture order
+                $result = $payment_module_data->captureOrder();
+                if (!$result) {
+                  // foward to payment page
+                  $tmp_link  = $xtLink->_link(array('page'=>'checkout', 'paction'=>'payment', 'conn'=>'SSL'));
+                  if (isset($payment_module_data->display_error_message))
+                  $info->_addInfoSession($payment_module_data->display_error_message,'error');                
+                  $xtLink->_redirect($tmp_link);
+                   break;  
+                }
+            }
+            }
+]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>order_edit.php:getProductsTemplate_top</hook>
+			<phpcode><![CDATA[
+require_once _SRV_WEBROOT.'plugins/xt_billpay/classes/class.xt_billpay.php';
+$billpay = new xt_billpay();
+$extras .=$billpay->getBillpayAdmin($this->oID);
+]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+
+
+		<!-- Jan Start -->
+		<code>
+			<hook>class.payment.php:_buildData_bottom</hook>
+			<phpcode><![CDATA[
+require_once _SRV_WEBROOT.'plugins/xt_billpay/classes/class.xt_billpay.php';
+
+if ($_SESSION['billpay_hide_payment']) {
+  $hideBillpayPayment = true;
+}
+else {
+	$billpay = new xt_billpay();
+	$showPayment = $billpay->showPayment();
+
+	if ($showPayment == false) {
+	  $hideBillpayPayment = true;
+	}
+}
+
+if ($hideBillpayPayment) {
+  unset($data['xt_billpay']);
+}
+
+]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+
+		<code>
+			<hook>class.orders.php:_sendOrderMail_bottom</hook>
+			<phpcode><![CDATA[
+if ($this->order_data['payment_code'] == 'xt_billpay') {
+	$logo = '<img src="'._SYSTEM_BASE_HTTP._SRV_WEB.'plugins/xt_billpay/images/billpay_logo_small.png" alt="Billpay logo" title="Billpay logo"/><br/>';
+	if ($this->order_data['subpayment_code'] == 'INVOICE') {
+		$rs2 = $db->Execute("SELECT * FROM ".TABLE_XT_BILLPAY." WHERE orders_id='".(int)$this->oID."'");
+	
+		$accountDetails = 'Bitte überweisen Sie den Gesamtbetrag bis zum Fälligkeitsdatum, welches Sie mit der Rechnung erhalten, auf das folgende Konto der Billpay GmbH:<br />';
+		$accountDetails .= '<br />Kontoinhaber: '.$rs2->fields['account_holder'];
+		$accountDetails .= '<br />Geldinstitut: '.$rs2->fields['bank_name'];
+		$accountDetails .= '<br />Kontonummer: '.$rs2->fields['account_number'];
+		$accountDetails .= '<br />Bankleitzahl: '.$rs2->fields['bank_code'];
+		$accountDetails .= '<br />Verwendungszweck: '.$rs2->fields['invoice_reference'];
+	
+		$logo .= 'Zahlungsweise: Kauf auf Rechnung (Billpay)<br /><br />';
+	
+		$infoHtml =  $logo.$accountDetails;
+		if ($rs->fields['payment_email_desc_html'] != '') {
+			$infoHtml .= '<br /><br />'.$rs->fields['payment_email_desc_html'];
+		}
+		
+		$infoPlain = $logo.str_replace('<br />',"\n",html_entity_decode($accountDetails));
+		if ($rs->fields['payment_email_desc_txt'] != '') {
+			$infoPlain .= "\n\n".$rs->fields['payment_email_desc_txt'];
+		}
+	}
+	else if ($this->order_data['subpayment_code'] == 'DID') {
+		$logo .= 'Zahlungsweise: Lastschrift (Billpay)<br /><br />';
+		$infoHtml = $logo.'Der fällige Betrag wird in den nächsten Tagen durch die Billpay GmbH von dem bei der Bestellung angegebenen Konto abgebucht';
+		$infoPlain = $infoHtml;
+	}
+	
+	// old payment info
+	$ordermail->_assign('payment_info',$infoPlain);
+	
+	// new payment info
+	$ordermail->_assign('payment_info_html',$infoHtml);
+	$ordermail->_assign('payment_info_txt',$infoPlain);
+}
+]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<!-- Jan End -->
+
+	</plugin_code>
+
+	<language_content>
+		<phrase>
+			<key>TEXT_XT_BILLPAY_TIMESTAMP</key>
+			<class>admin</class>
+			<de>
+				<value>Zeit</value>
+			</de>
+			<en>
+				<value>Time</value>
+			</en>
+		</phrase>
+
+		<phrase>
+			<key>TEXT_XT_BILLPAY_TRANS_ID</key>
+			<class>admin</class>
+			<de>
+				<value>Transaktions ID</value>
+			</de>
+			<en>
+				<value>Transaction ID</value>
+			</en>
+		</phrase>
+
+		<phrase>
+			<key>TEXT_XT_BILLPAY_STATUS</key>
+			<class>admin</class>
+			<de>
+				<value>Status</value>
+			</de>
+			<en>
+				<value>Status</value>
+			</en>
+		</phrase>
+
+		<phrase>
+			<key>TEXT_XT_BILLPAY_NOTE</key>
+			<class>admin</class>
+			<de>
+				<value>Status Detail</value>
+			</de>
+			<en>
+				<value>Status detail</value>
+			</en>
+		</phrase>
+
+		<phrase>
+			<key>ERROR_BILLPAY_EULA_ACCEPTED</key>
+			<class>store</class>
+			<de>
+				<value>Bitte akzeptieren Sie die AGB der Billpay GmbH</value>
+			</de>
+			<en>
+				<value>Please accept the general conditions from Billpay GmbH
+				</value>
+			</en>
+		</phrase>
+
+		<phrase>
+			<key>TEXT_PAYMENT_INVOICE</key>
+			<class>both</class>
+			<de>
+				<value>Rechnung</value>
+			</de>
+			<en>
+				<value>Invoice</value>
+			</en>
+		</phrase>
+
+	</language_content>
+
+</xtcommerceplugin> 

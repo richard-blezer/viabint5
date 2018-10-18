@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>ACTIVATE_XT_STARTPAGE_PRODUCTS_PAGE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Aktivate]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[启用]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Aktivieren]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Aktivate]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Activer]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Attiva]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[有効にする]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Activeren]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Aktywuj]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Активировать]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[啟用]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_ADD_STARTPAGE_PRODUCT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Attach products to Startpage]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Produkte zur Startseite hinzufügen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ATTACHED_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Attached products]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zugeordnete Produkte]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ATTACH_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Attach products]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Produkte hinzufügen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_STARTPAGE_PRODUCTS_SORT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Sort order]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Reihenfolge]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_STARTPAGE_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Startpage products]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Startseiten Produkte]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_STARTPAGE_PRODUCTS_PAGE_LIMIT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Max. products]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[商品数 - 最大值]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Artikel auf Seite]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Max. products]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nombre d'articles]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Massimo prodotti]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[商品数 - 最大値]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal artikelen per pagina]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Max. produkty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число продуктов на странице]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[商品數 - 最大值]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_STARTPAGE_PRODUCTS_PAGE_TPL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[样板]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Template]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Template]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Template]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Template]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[テンプレート]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Template]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Wzór]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Шаблон]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[樣板]]></value>
+	</tw>
+</phrase>
+</language_content>
+</xtcommerceplugin>

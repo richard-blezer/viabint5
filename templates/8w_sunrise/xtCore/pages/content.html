@@ -1,0 +1,29 @@
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+
+<div id="content-area" class="user-content">
+	<div class="left-side {if $isMobile}no-right{/if}">
+		<h1>{if $data.content_heading|strip_tags|trim != ''}{$data.content_heading}{else}{$data.content_title}{/if}</h1>
+		<div class="file">{if $file}{$file}{else}{$data.content_body}{php}if ($_GET['coID'] == 30) {{/php}{box name=nd_affiliate type=user}{php} } {/php}{/if}</div>
+		{if $data.subcontent}
+			<div id="sub-content" style="margin:20px 0 5px;">
+				<p><strong>{txt key=HEADING_SUB_CONTENT}:</strong> 
+					{foreach key=key name=aussen item=module_data from=$data.subcontent}
+						<a href="{$module_data.link}">{$module_data.title}</a>{if $key+1 != $data.subcontent|@count}, {/if}
+					{/foreach}
+				</p>
+			</div>
+		{/if}
+		<br />
+		<p class="print">{$data.content_popup_link}</p>
+	</div>
+	{if !$isMobile}
+	<div class="right-side boxes">
+	  {box name=xt_viabiona_cms type=user tpl=box_our_service.html}
+	  {box name=xt_viabiona_cms type=user tpl=box_payment_methods.html}
+	</div>
+	{/if}
+	<div class="clearfix"></div>
+</div>

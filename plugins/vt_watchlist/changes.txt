@@ -1,0 +1,48 @@
+4.2.12
+* Bug mit vt_watchlist.css link behoben
+
+4.2.11
+* Strict-Fehler mit mktime(); behoben
+
+4.2.10
+* Kleinen Bug mit css_buttons behoben
+
+4.2.09
+* Kleineren Bug mit SSL behoben
+
+4.2.08
+* Behebt Problem dass bei einigen Artikel nicht in den Warenkorb gelegt werden k쉗nen
+
+4.2.07
+* Probleme mit SSL behoben
+* Templates f체r xtCommerce 4.1.0 - Buttons und Formulare ge채ndert
+
+4.2.06
+* NyroModalBox wird wieder eingebunden wenn Status Aktiv
+
+4.2.04
+* Kompatibilit채t zur xtCommerce4 v4.1.0 hergestellt
+* Plugin Templates an xt_grid Template angepasst
+* jQuery Thickbox durch nyroModal Box ersetzt - wird automatisch geladen wenn diese noch nicht vorhanden ist
+
+2.0.3:
+* BUGFIXES: Fehlerhafte links auf dem Merkzettel bei eingeschalteten SEO-Links
+
+2.0.2:
+* BUGFIXES:
+    behebt kleine Fehler
+
+2.0.1:
+* BUGFIXES:
+    Ausgabe von Meldungen, wenn Artikel von der Merkliste in den Warenkorb gelegt werden
+
+2.0.0:
+* Plugincode /-bezeichnung ge채ndert
+* Plugin optimiert: Hooks ausgelagert, Plugin Installer hinzugef체gt f체r DB Install/Uninstall
+* BUGFIXES:
+    Artikel k철nnen nun auf mehrere Listen gesetzt werden
+* Anpassungen zur Herstellung der Kompatibilit채t zu den Merzettel Erweiterungen/ Addons
+    vt_watchlist_addon_configurator     v2.0.0
+    vt_watchlist_addon_options          v2.0.0
+    vt_watchlist_addon_reminder         v2.0.0
+* Licensing System aktualisiert auf v1.2

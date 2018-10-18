@@ -1,0 +1,31 @@
+{if $error}
+	<ul class="error">
+		{foreach name=aussen item=error_data from=$error}
+		<li>{$error_data.info_message}</li>
+		{/foreach}
+	</ul>
+{/if}
+
+{if $warning}
+	<ul class="warning">
+		{foreach name=aussen item=warning_data from=$warning}
+		<li>{$warning_data.info_message}</li>
+		{/foreach}
+	</ul>
+{/if}
+
+{if $success}
+	<ul class="success">
+		{foreach name=aussen item=success_data from=$success}
+		<li>{$success_data.info_message}</li>
+		{/foreach}
+	</ul>
+{/if}
+
+{if $info}
+	<ul class="info">
+		{foreach name=aussen item=info_data from=$info}
+		<li>{$info_data.info_message}</li>
+		{/foreach}
+	</ul>
+{/if}

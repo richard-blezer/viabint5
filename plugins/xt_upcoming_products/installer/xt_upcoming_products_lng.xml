@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>ACTIVATE_XT_UPCOMING_PRODUCTS_BOX_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate box]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[启动区块]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Box aktivieren]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Activate box]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Activer boîte]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Attiva cestino]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ブロックを有効にする]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Winkelmandje activeren]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Uaktywnij pole]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Активировать бокс]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[啟動區塊]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>ACTIVATE_XT_UPCOMING_PRODUCTS_PAGE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate page]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[启动页面]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Seite aktivieren]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Activate page]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Activer page]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Attiva pagina]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ページを有効にする]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Pagina activeren]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Uaktywnij stronę]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Активировать страницу]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[啟動頁面]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_UPCOMING_PRODUCTS_BOX_LIMIT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Box Limit]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[区块显示限制]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Artikel in Box]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Box Limit]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Limite boîte]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Limite del cestino]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ブロックの表示制限]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal artikelen in winkelmandje]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Limit pola]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число продуктов в поле]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[區塊顯示限制]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_UPCOMING_PRODUCTS_PAGE_LIMIT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Max. article]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[商品数限制]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Artikel]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Max. article]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nombre maxi d'articles]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Massimo articoli]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[商品数量の制限]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal artikelen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Max. artykułu]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число продуктов]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[商品數限制]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_UPCOMING_PRODUCTS_PAGE_TPL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[样板]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Template]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Template]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Template]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Template]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[テンプレート]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Template]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Wzór]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Шаблон]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[樣板]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_HEADING_UPCOMING_PRODUCTS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Upcoming  Products]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[即将上架商品]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Vorbestellungen]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Upcoming  Products]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Articles à venir]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Prodotti in arrivo]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[間もなく入荷商品]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Voorbestellingen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Nadchodzące produkty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Предварительные заказы]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_UPCOMING_PRODUCTS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Upcoming  Products]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[即将上架商品]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Vorbestellungen]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Upcoming  Products]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Articles à venir]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Prodotti in arrivo]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[間もなく入荷商品]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Voorbestellingen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Nadchodzące produkty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Бронирование]]></value>
+	</ru>
+</phrase>
+</language_content>
+</xtcommerceplugin>

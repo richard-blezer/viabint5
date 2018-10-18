@@ -1,0 +1,128 @@
+<h2>{txt key=TEXT_CHECKOUT_CONFIRMATION}:</h2>
+{txt key=TEXT_CHECKOUT_CONFIRMATION_DESC}
+
+<h3>{txt key=TEXT_SHIPPING_ADDRESS}:</h3>
+<p>
+	{if $shipping_address.customers_company} {$shipping_address.customers_company}<br />{/if}
+	{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}<br />
+	{$shipping_address.customers_street_address}<br />
+	{if $shipping_address.customers_suburb} {$shipping_address.customers_suburb}<br />{/if}
+	{$shipping_address.customers_postcode} {$shipping_address.customers_city}<br />
+	{$shipping_address.customers_country}<br />
+</p>
+<p><a href="{link page=checkout paction=shipping conn=SSL}" data-role="button" data-inline="true" data-icon="mda_mobile_edit">{txt key=TEXT_EDIT}</a></p>
+
+<h3>{txt key=TEXT_PAYMENT_ADDRESS}:</h3>
+<p>
+	{if $payment_address.customers_company} {$payment_address.customers_company}<br />{/if}
+	{$payment_address.customers_firstname} {$payment_address.customers_lastname}<br />
+	{$payment_address.customers_street_address}<br />
+	{if $payment_address.customers_suburb} {$payment_address.customers_suburb}<br />{/if}
+	{$payment_address.customers_postcode} {$payment_address.customers_city}<br />
+	{$payment_address.customers_country}<br />
+</p>
+<p><a href="{link page=checkout paction=payment conn=SSL}" data-role="button" data-inline="true" data-icon="mda_mobile_edit">{txt key=TEXT_EDIT}</a></p>
+
+
+{if $shipping_info.shipping_name}
+    	<h3>{txt key=TEXT_SHIPPING_METHOD}:</h3>
+	<p>{$shipping_info.shipping_name}</p>
+{/if}
+{if $shipping_info.shipping_desc}
+	<p>{$shipping_info.shipping_desc}</p>
+{/if}
+{if $shipping_info.shipping_info}
+	<p>{$shipping_info.shipping_info}</p>
+{/if}
+
+<p><a href="{link page='checkout' paction=shipping conn=SSL}" data-role="button" data-inline="true" data-icon="mda_mobile_edit">{txt key=TEXT_EDIT}</a></p>
+
+{if $payment_info.payment_name}
+	<h3>{txt key=TEXT_PAYMENT_METHOD}:</h3>
+	<p>{$payment_info.payment_name}</p>
+{if $payment_info.payment_desc}
+	<p>{$payment_info.payment_desc}</p>
+{/if}
+{/if}
+{if $payment_info.payment_info}
+	<p>{$payment_info.payment_info}</p>
+{/if}
+	<p><a href="{link page='checkout' paction=payment conn=SSL}" data-role="button" data-inline="true" data-icon="mda_mobile_edit">[{txt key=TEXT_EDIT}]</a></p>
+
+{hook key=checkout_tpl_info}
+
+<h3>{txt key=TEXT_ARTICLE}:</h3>
+<table class="tabledetails" border="0" cellspacing="0">
+	<thead>
+	</thead>
+	<tbody>
+		{foreach name=aussen item=data from=$data}
+		<tr>	
+			<td class="left" colspan="3">
+				<strong><a href="{$data.products_link}">{$data.products_name}</a></strong>
+				{if $data.shipping_status}<br /><p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$data.shipping_status}</p>{/if}
+			</td>
+		</tr>
+		
+		<tr valign="top">
+			<td class="left borderbottom">
+				{txt key=TEXT_QTY}<br/>
+				{$data.products_quantity}
+			</td>
+			<td class="right borderbottom">
+			{txt key=TEXT_SINGLE_PRICE}<br/>
+			{if $data._cart_discount}
+			    <span class="old-price">{$data._original_products_price.formated}</span>
+			    {$data.products_price.formated} (-{$data._cart_discount} %)
+			{else}
+			    {$data.products_price.formated}
+			{/if}
+			
+			
+			
+			<td class="right borderbottom">{txt key=TEXT_TOTAL_PRICE}<br/>{$data.products_final_price.formated}</td>
+			
+		</tr>
+		{/foreach}
+	</tr>
+	{$data.products_information} 
+	</tbody>
+	<tfoot>
+	<tr>
+	    <td colspan="4" class="subtotal">
+	    {txt key=TEXT_SUB_TOTAL}: {$sub_total}<br />
+		{foreach name=aussen item=sub_data from=$sub_data}
+			{$sub_data.products_name}: {$sub_data.products_price.formated}<br />
+		{/foreach}
+		
+		{foreach name=aussen item=tax_data from=$tax}
+		    {txt key=TEXT_TAX} {$tax_data.tax_key}%: {$tax_data.tax_value.formated}<br />
+		{/foreach}
+		
+		<strong>{txt key=TEXT_TOTAL}: {$total}</strong>
+		
+		{if $discount}
+			<br />{txt key=TEXT_DISCOUNT_MADE} : {$discount.formated}<br />
+		{/if}
+	    </td>
+	</tr>
+	</tfoot>
+</table>
+
+{hook key=checkout_tpl_confiramtion}
+{form type=form name=process action='checkout' method=post conn=SSL target=_self}
+{form type=hidden name=action value=process}
+
+{if $smarty.const._STORE_TERMSCOND_CHECK eq 'false'}
+	{content cont_id=3 is_id='false'}
+	<p><a href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION}</a> | {$_content_3.content_popup_link}</p>
+{/if}
+{hook key=checkout_tpl_form}
+
+{if $post_form eq '1'}
+	<p>{txt key=TEXT_INFO_PAY_NEXT_STEP}</p>
+	<input type="submit" value="{txt key=BUTTON_CONFIRM_ORDER_PAY}" />	
+{else}
+	<input type="submit" value="{txt key=BUTTON_CONFIRM_ORDER}" />
+{/if}
+{form type=formend}

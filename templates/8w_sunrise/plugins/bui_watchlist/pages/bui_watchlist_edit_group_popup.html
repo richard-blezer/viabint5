@@ -1,0 +1,25 @@
+<h1>{txt key=TEXT_BUI_WATCHLIST_EDIT_GROUP_TOP}</h1>
+{$message}
+
+{form type=form name=add_bui_watchlist action=$link_page link_params=$link_params method=post} 
+{form type=hidden name=action value=edit_bui_watchlist_group}
+{form type=hidden name=bui_gID value=$data.group_id}
+
+<table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr class="headerrow">
+    <td class="left" colspan="2">{txt key=TEXT_BUI_WATCHLIST_GROUP}: {$data.group_name}</td>
+  </tr>
+
+  <tr class="contentrow1">
+	  <td class="left">{txt key=TEXT_BUI_WATCHLIST_GROUP_NAME}:</td>
+	  <td style="width:100%">{form type=text name=group_name value=$data.group_name style='width:200px;'}</td>
+  </tr>  
+
+  <tr class="contentrow1">
+	  <td class="center" colspan="2">
+		{button text=$smarty.const.BUTTON_SAVE file='button_save.gif' type='form'}
+	  </td>
+  </tr>	 
+  
+  </table>
+  {form type=formend}

@@ -1,0 +1,38 @@
+<br />
+<table width="100%">
+    <tr>
+        <th></th>
+        <th></th>
+        <th>Menge</th>
+        <th>Einzelpreis</th>
+        <th>Gesamtpreis</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td align="left">{txt key=TEXT_XT_PRODUCT_OPTIONS_SINGLE_PRICE_CLEAN}</td>
+        <td>{if $smarty.request.qty}{$smarty.request.qty}{else}1{/if}</td>
+        <td>{$calculation.products_price.single.formated}</td>
+        <td>{$calculation.products_price.total.formated}</td>
+    </tr>
+    {foreach name=aussen item=info from=$options}
+        {foreach name=innem item=op from=$info.option_group_values}    
+            <tr>
+                <td>+</td>
+                <td align="left">{$op.option_group_name}/{$op.option_value_name}</td>
+                <td>{if $op.option_calc_type == 'multi'}{if $smarty.request.qty}{$smarty.request.qty}{else}1{/if}{elseif $op.option_calc_type == 'single'}1{/if}</td>
+                <td>{$op.option_price_array.formated}</td>
+                <td>{$op.option_price_total_array.formated}</td>
+            </tr>                
+        {/foreach}
+    {/foreach}
+    <tr>
+        <td></td>
+        <th align="left">{txt key=TEXT_TOTAL}</th>
+        <td></td>
+        <td></td>
+        <td>{$calculation.products_price_total.total.formated}</td>
+    </tr>    
+    
+</table>
+<hr><hr>
+<br />

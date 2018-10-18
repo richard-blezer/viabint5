@@ -1,0 +1,22 @@
+<div data-role="collapsible" data-collapsed="true" id="upcomingProducts" data-content-theme="d">
+	<h3>{txt key=TEXT_HEADING_UPCOMING_PRODUCTS}</h3>
+	
+	{if $_show_more_link == true}
+		<p><a href="{link page='xt_upcoming_products' conn=SSL}">{txt key=TEXT_SHOW_ALL}</a></p>
+	{/if}
+
+	<ul data-role="listview" data-inset="true">
+	{foreach name=aussen item=upcoming_products_data from=$_upcoming_products}
+		<li>
+			<a href="{$upcoming_products_data.products_link}">
+				{if $upcoming_products_data.products_image!=''}
+					{img img=$upcoming_products_data.products_image type=m_thumb alt=$upcoming_products_data.products_name}
+				{/if}
+				<h3>{$upcoming_products_data.products_name}</h3>
+				<p>{txt key=TEXT_PRODUCT_AVAILABLE} {$upcoming_products_data.date_available|date_format:"%A, %B %e, %Y"}</p>
+				<p>{$upcoming_products_data.products_price.formated}</p>
+			</a>
+		</li>
+	{/foreach}
+	</ul>
+</div>

@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Gutscheine/Kupons</title>
+    <version>1.4.7</version>
+    <code>xt_coupons</code>
+    <url>http://www.xt-commerce.com</url>
+    <icon>xt-commerce_logo.jpg</icon>
+    <description>Coupons</description>
+    <require_license_file>true</require_license_file>
+    <marketplace_link><![CDATA[http://addons.xt-commerce.com/de/Module-und-Plugins/Marketing/Gutscheinsystem-fuer-VEYTON.html]]></marketplace_link>
+    <license_file>xt_coupons.txt</license_file>
+<developer>xt:Commerce</developer>
+<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=917646]]></documentation_link>
+	<minimumupdateversion>1.3.0</minimumupdateversion>
+    <type>core</type>
+    <db_install><![CDATA[
+$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'coupons', 'images/icons/money_euro.png', '', '', '4000', 'shop', 'G', 'W');");
+$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'xt_coupons', 'images/icons/money_euro.png', '&plugin=xt_coupons', 'adminHandler.php', '4000', 'coupons', 'I', 'W');");
+$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'xt_coupons_token', 'images/icons/money_euro.png', '&plugin=xt_coupons&load_section=xt_coupons_token', 'adminHandler.php', '4010', 'coupons', 'I', 'W');");
+$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'xt_coupons_redeem', 'images/icons/money_euro.png', '&plugin=xt_coupons&load_section=xt_coupons_redeem', 'adminHandler.php', '4020', 'coupons', 'I', 'W');");
+
+$db->Execute("
+ CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_coupons (
+  `coupon_id` int(10) unsigned NOT NULL auto_increment,
+  `coupon_code` varchar(32) default NULL,
+  `compaign_id` int(10) unsigned default NULL,
+  `customers_status` int(10) unsigned default NULL,
+  `coupon_amount` double(15,4) default '0.0000',
+  `coupon_percent` smallint(5) unsigned default NULL,
+  `coupon_free_shipping` tinyint(3) unsigned default NULL,
+  `coupon_created_ip` varchar(15) default NULL,
+  `coupon_created_date` datetime default NULL,
+  `coupon_order_ordered` int(10) unsigned default NULL,
+  `coupon_max_total` int(10) unsigned default NULL,
+  `coupon_max_per_customer` int(10) unsigned default NULL,
+  `coupon_minimum_order_value` decimal(15,4) unsigned default NULL,
+  `coupon_status` tinyint(3) unsigned default NULL,
+  `coupon_last_modified_date` datetime default NULL,
+  `coupon_start_date` datetime default NULL,
+  `coupon_expire_date` datetime default NULL,
+  `coupon_tax_class`  int(10) unsigned default NULL,
+  `coupon_can_decrease_shipping` tinyint(3) unsigned default NULL,
+  PRIMARY KEY  (`coupon_id`),
+  UNIQUE KEY `pk` (`coupon_id`),
+  KEY `pk_2` (`coupon_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;   
+");
+
+// 1.3.3
+$db->Execute("
+  ALTER TABLE ".DB_PREFIX."_coupons ADD `coupon_free_on_100_status` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0'
+");
+///
+
+$db->Execute("
+CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_coupons_categories (
+  `pk` int(10) unsigned NOT NULL auto_increment,
+  `coupon_id` int(10) unsigned default NULL,
+  `categories_id` int(10) unsigned default NULL,
+  `allow` tinyint(3) unsigned default NULL,
+  PRIMARY KEY  (`pk`),
+  UNIQUE KEY `pk` (`pk`),
+  KEY `pk_2` (`pk`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8; 
+");
+
+$db->Execute("
+CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_coupons_customers (
+  `pk` int(10) unsigned NOT NULL auto_increment,
+  `coupon_id` int(10) unsigned default NULL,
+  `customers_id` int(10) unsigned default NULL,
+  PRIMARY KEY  (`pk`),
+  UNIQUE KEY `pk` (`pk`),
+  KEY `pk_2` (`pk`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8; 
+");
+
+$db->Execute("
+CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_coupons_description (
+  `coupon_id` int(10) unsigned NOT NULL default '0',
+  `language_code` char(2) NOT NULL default '0',
+  `coupon_name` varchar(50) default NULL,
+  `coupon_description` text,
+  PRIMARY KEY  (`coupon_id`,`language_code`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;   
+");
+
+$db->Execute("
+CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_coupons_generator (
+  `coupons_generator_id` int(10) unsigned NOT NULL auto_increment,
+  `count` int(10) unsigned default NULL,
+  `items_limit` int(10) unsigned default '100',
+  `mask` varchar(50) default NULL,
+  `coupon_id` int(10) unsigned default NULL,
+  PRIMARY KEY  (`coupons_generator_id`),
+  UNIQUE KEY `coupons_generator_id` (`coupons_generator_id`),
+  KEY `coupons_generator_id_2` (`coupons_generator_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;   
+");
+
+$db->Execute("
+CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_coupons_im_export (
+  `id` int(10) unsigned NOT NULL auto_increment,
+  `ei_type` varchar(32) default NULL,
+  `ei_title` varchar(64) default NULL,
+  `ei_filename` varchar(64) default NULL,
+  `ei_delimiter` varchar(32) default NULL,
+  `ei_limit` int(10) unsigned default NULL,
+  `ei_id` varchar(32) default NULL,
+  `ei_coupon` int(10) unsigned default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;   
+");
+
+$db->Execute("
+CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_coupons_products (
+  `pk` int(10) unsigned NOT NULL auto_increment,
+  `coupon_id` int(10) unsigned default NULL,
+  `products_id` int(10) unsigned default NULL,
+  `allow` tinyint(3) unsigned default NULL,
+  PRIMARY KEY  (`pk`),
+  UNIQUE KEY `pk` (`pk`),
+  KEY `pk_2` (`pk`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;   
+");
+
+$db->Execute("
+CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_coupons_redeem (
+  `coupons_redeem_id` int(10) unsigned NOT NULL auto_increment,
+  `coupon_id` int(10) unsigned default NULL,
+  `coupon_token_id` int(10) unsigned default NULL,
+  `redeem_date` datetime default NULL,
+  `redeem_ip` varchar(40) default NULL,
+  `customers_id` int(10) unsigned default NULL,
+  `order_id` int(10) unsigned default NULL,
+  `redeem_amount` decimal(15,4) unsigned default NULL,
+  PRIMARY KEY  (`coupons_redeem_id`),
+  UNIQUE KEY `coupons_redeem_id` (`coupons_redeem_id`),
+  KEY `coupons_redeem_id_2` (`coupons_redeem_id`),
+  KEY `coupon_id` (`coupon_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;   
+");
+
+$db->Execute("
+CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_coupons_token (
+  `coupons_token_id` int(10) unsigned NOT NULL auto_increment,
+  `coupon_id` int(10) unsigned NOT NULL,
+  `coupon_token_code` varchar(50) NOT NULL,
+  `coupon_token_order_id` int(10) unsigned default '0',
+  PRIMARY KEY  (`coupons_token_id`),
+  UNIQUE KEY `coupons_code_id` (`coupons_token_id`),
+  UNIQUE KEY `coupons_code_id_2` (`coupon_token_code`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;   
+");
+
+// 1.3.3
+$db->Execute("
+  ALTER TABLE ".DB_PREFIX."_coupons_token ADD `coupon_token_amount` DOUBLE(15,4) NULL DEFAULT '0.0000'
+");
+
+$db->Execute("
+	CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_coupons_permission (
+	  `pid` int(11) NOT NULL,
+	  `permission` tinyint(1) DEFAULT '0',
+	  `pgroup` varchar(255) NOT NULL,
+	  PRIMARY KEY (`pid`,`pgroup`)
+	) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+");
+]]></db_install>
+    <db_uninstall><![CDATA[
+$db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text = 'coupons'");
+$db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text = 'xt_coupons'");
+$db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text = 'xt_coupons_token'");
+$db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text = 'xt_coupons_redeem'");
+
+
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_coupons");
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_coupons_categories");
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_coupons_customers"); 
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_coupons_description");  
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_coupons_generator");  
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_coupons_im_export");  
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_coupons_products");  
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_coupons_redeem");  
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_coupons_token");  
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_coupons_permission"); 
+
+]]></db_uninstall>
+	
+	<db_update>
+		<update>
+			<version>1.3.0</version>
+			<to_version>1.3.4</to_version>
+			<code><![CDATA[
+				$db->Execute("
+				  ALTER TABLE ".DB_PREFIX."_coupons ADD `coupon_free_on_100_status` TINYINT(3) UNSIGNED NOT NULL DEFAULT '0';
+				");
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.3.4</version>
+			<to_version>1.3.5</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.3.5</version>
+			<to_version>1.3.7</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.3.7</version>
+			<to_version>1.3.8</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.3.8</version>
+			<to_version>1.3.9</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.3.9</version>
+			<to_version>1.4.1</to_version>
+			<code><![CDATA[
+				$db->Execute("
+				  ALTER TABLE ".DB_PREFIX."_coupons ADD `coupon_can_decrease_shipping` tinyint(3) unsigned default NULL;
+				");
+				$db->Execute("
+				  ALTER TABLE ".DB_PREFIX."_coupons_im_export ADD `ei_coupon` int(10) unsigned default NULL;
+				");
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.4.1</version>
+			<to_version>1.4.2</to_version>
+			<code><![CDATA[
+				$db->Execute("
+					CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_coupons_permission (
+					  `pid` int(11) NOT NULL,
+					  `permission` tinyint(1) DEFAULT '0',
+					  `pgroup` varchar(255) NOT NULL,
+					  PRIMARY KEY (`pid`,`pgroup`)
+					) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+				");
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.4.2</version>
+			<to_version>1.4.3</to_version>
+			<code><![CDATA[
+				]]>
+			</code>			
+		</update>
+		<update>
+			<version>1.4.3</version>
+			<to_version>1.4.4</to_version>
+			<code><![CDATA[
+				]]>
+			</code>			
+		</update>		
+        <update>
+            <version>1.4.4</version>
+            <to_version>1.4.5</to_version>
+            <code><![CDATA[
+				]]>
+            </code>
+        </update>
+		<update>
+            <version>1.4.5</version>
+            <to_version>1.4.6</to_version>
+            <code><![CDATA[
+				]]>
+            </code>
+        </update>
+        <update>
+            <version>1.4.6</version>
+            <to_version>1.4.7</to_version>
+            <code><![CDATA[
+				]]>
+            </code>
+        </update>
+	</db_update>
+<plugin_code>     
+<!-- admin_dropdown.php:drop! -->
+<code>
+<hook>admin_dropdown.php:dropdown</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/admin_dropdown.phpdropdown.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<!-- checkout_tpl_form -->
+<code>
+<hook>checkout_tpl_bottom</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/checkout_tpl_bottom.php'; 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+
+<!-- class.cart.php:_getContent  -->
+<code>
+<hook>class.cart.php:_getContent_data</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/class.cart.php_getContent_data.php'; 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+
+<!-- cronjob.php:main -->
+<code>
+<hook>cronjob.php:main</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/cronjob.phpmain.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<!-- module_checkout.php:checkout_data -->
+<code>
+<hook>module_checkout.php:checkout_data</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/module_checkout.phpcheckout_data.php'; 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<!-- module_checkout.php:checkout_data -->
+<code>
+<hook>module_checkout.php:checkout_proccess_bottom</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/module_checkout.phpcheckout_proccess_bottom.php'; 
+]]></phpcode>
+<order>0</order>
+<active>1</active>
+</code>
+
+<!-- module_checkout.php:checkout_process_top -->
+<!--
+<code>
+<hook>module_checkout.php:checkout_process_top</hook>
+<phpcode><![CDATA[
+if (isset($_POST['special'])) {
+    if ($_POST['special']=='coupon' && $_POST['coupon_code']=='') {
+        $_SESSION['coupon_info'] = TEXT_COUPON_MISSING;
+        $_SESSION['coupon_info_type'] = 'error';
+        $tmp_link  = $xtLink->_link(array('page'=>'checkout', 'paction'=> 'confirmation', 'conn'=>'SSL')); 
+        $xtLink->_redirect($tmp_link);   
+        break;
+    }
+}
+
+$coupon_code = $_POST['coupon_code'];
+if($coupon_code == '') {
+  unset($_SESSION['coupon_info']);
+} else {
+   $coupon = new xt_coupons();
+   $coupon_erg = $coupon->_addToCart($coupon_code); 
+   $tmp_link  = $xtLink->_link(array('page'=>'checkout', 'paction'=> 'confirmation', 'conn'=>'SSL'));  
+   if($coupon_erg == true) {
+     $_SESSION['coupon_info'] = TEXT_COUPON_ADDED;
+     $_SESSION['coupon_info_type'] = 'success';
+
+   } else {
+     $_SESSION['coupon_info'] = $coupon->error_info;
+     $_SESSION['coupon_info_type'] = 'error';
+   }
+   $xtLink->_redirect($tmp_link);   
+   break;
+}
+
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+-->
+<!-- module_checkout.php:checkout_selections -->
+<code>
+<hook>module_checkout.php:checkout_selections</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/module_checkout.phpcheckout_selections.php'; 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<!-- page_registry.php:bottom -->
+<code>
+<hook>page_registry.php:bottom</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/page_registry.phpbottom.php'; 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<!-- row_actions.php:actions -->
+<code>
+<hook>row_actions.php:actions</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/row_actions.phpactions.php'; 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>module_customer.php:success_login</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/module_customer.phpsuccess_login.php'; 
+]]></phpcode>
+<order>0</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>cart_total_bottom</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/cart_total_bottom.php'; 
+]]></phpcode>
+<order>0</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>cart_bottom</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/cart_bottom.php'; 
+]]></phpcode>
+<order>0</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>box_cart_bottom_tpl</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/box_cart_bottom_tpl.php'; 
+]]></phpcode>
+<order>0</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>module_cart.php:cart_top</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/module_cart_php_cart_top.php'; 
+]]></phpcode>
+<order>0</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>module_cart.php:tpl_data</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/module_cart_php_tpl_data.php'; 
+]]></phpcode>
+<order>0</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>module_checkout.php:payment_proccess_bottom</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/module_checkout.phppayment_proccess_bottom.php'; 
+]]></phpcode>
+<order>0</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>module_checkout.php:checkout_pre_data</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/module_checkout.phpcheckout_pre_data.php'; 
+]]></phpcode>
+<order>0</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>class.payment.php:_calcPrice_top</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/class_payment_php__calcPrice_top.php';
+]]></phpcode>
+<order>2</order>
+<active>1</active>
+</code>
+
+<code>
+	<hook>class.cart.php:_refresh_top</hook>
+	<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/class.cart.php_refresh_top.php';
+]]></phpcode>
+<order>0</order>
+<active>1</active>
+</code>
+	<code>
+		<hook>cart_total_top</hook>
+		<phpcode><![CDATA[
+		include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/cart_total_top.php'; 
+		]]></phpcode>
+		<order>0</order>
+		<active>1</active>
+	</code>
+	
+    <code>
+        <hook>class.shipping.php:_calcPrice_bottom</hook>
+        <phpcode><![CDATA[
+		include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_coupons/hooks/class.shipping.php__calcPrice_bottom.php';
+		]]></phpcode>
+        <order>0</order>
+        <active>1</active>
+    </code>
+	
+</plugin_code>
+
+<configuration>
+<config>
+    <key>XT_COUPONS_CHECKOUT_PAGE</key>
+    <type>dropdown</type>
+    <url>conf_truefalse</url>
+    <value>true</value>
+    <de>
+        <title>Checkout-Seite</title>
+    </de>
+    <en>
+        <title>checkout page</title>
+    </en>
+    <es>
+        <title>pagina de checkout</title>
+    </es>
+    <tw>
+        <title>checkout page</title>
+    </tw>
+    <cn>
+        <title>checkout page</title>
+    </cn>
+    <jp>
+        <title>checkout page</title>
+    </jp>
+	<bp>
+        <title>Página do checkout</title>
+    </bp>
+	
+</config>
+<config>
+    <key>XT_COUPONS_CART_PAGE</key>
+    <type>dropdown</type>
+    <url>conf_truefalse</url>
+    <value>false</value>
+    <de>
+        <title>Warenkorb-Seite</title>
+    </de>
+    <en>
+        <title>cart page</title>
+    </en>
+    <es>
+        <title>pagina de cesta</title>
+    </es>
+    <tw>
+        <title>cart page</title>
+    </tw>
+    <cn>
+        <title>cart page</title>
+    </cn>
+    <jp>
+        <title>cart page</title>
+    </jp>
+	<bp>
+        <title>Página do carrinho</title>
+    </bp>
+</config>
+<config>
+    <key>XT_COUPONS_CART_BOX</key>
+    <type>dropdown</type>
+    <url>conf_truefalse</url>
+    <value>false</value>
+    <de>
+        <title>Warenkorb-Box</title>
+    </de>
+    <en>
+        <title>cart box</title>
+    </en>
+    <es>
+        <title>selección de cesta</title>
+    </es>
+    <tw>
+        <title>cart box</title>
+    </tw>
+    <cn>
+        <title>cart box</title>
+    </cn>
+    <jp>
+        <title>cart box</title>
+    </jp>
+	<bp>
+        <title>Caixa do carrinho</title>
+    </bp>
+</config>
+<config>
+    <key>XT_COUPONS_LOGIN</key>
+    <type>dropdown</type>
+    <url>conf_truefalse</url>
+    <value>true</value>
+    <de>
+        <title>nur mit Kunden-Login</title>
+    </de>
+    <en>
+        <title>with customer login only</title>
+    </en>
+    <es>
+        <title>Solo registro de clientes</title>
+    </es>
+    <tw>
+        <title>with customer login only</title>
+    </tw>
+    <cn>
+        <title>with customer login only</title>
+    </cn>
+    <jp>
+        <title>with customer login only</title>
+    </jp>
+	<bp>
+        <title>Apenas com o login do cliente</title>
+    </bp>
+</config>
+<config>
+    <key>XT_COUPONS_USE_LEFTOVER</key>
+    <type>dropdown</type>
+    <url>conf_truefalse</url>
+    <value>false</value>
+    <de>
+        <title>Restwert zulassen (nur mit Code und ohne Steuerklasse)</title>
+    </de>
+    <en>
+        <title>allow leftover value (only for codes and without tax class)</title>
+    </en>
+    <es>
+        <title>permitir cantidad restante</title>
+    </es>
+    <tw>
+        <title>allow leftover value</title>
+    </tw>
+    <cn>
+        <title>allow leftover value</title>
+    </cn>
+    <jp>
+        <title>allow leftover value</title>
+    </jp>
+	<bp>
+        <title>Permitir valor de sobra (apenas sem classe fiscal)</title>
+    </bp>
+</config>
+</configuration>
+</xtcommerceplugin>

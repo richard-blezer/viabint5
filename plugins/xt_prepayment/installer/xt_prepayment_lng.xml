@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_PREPAYMENT_ORDER_STATUS_NEW_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[New Order Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[New Order Status]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

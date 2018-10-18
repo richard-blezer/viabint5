@@ -1,0 +1,36 @@
+<div class="ew_2to1_coupon ew_2to1_coupon_hook box well">
+    <p class="headline h2 clear">{txt key=TEXT_EW_2TO1_COUPON}</p>
+    {if $productsCount > 1}
+        <p>{$smarty.const.TEXT_EW_2TO1_COUPON_DESCRIPTION_MORE|sprintf:$productsCount}</p>
+    {else}
+        <p>{$smarty.const.TEXT_EW_2TO1_COUPON_DESCRIPTION_ONE}</p>
+    {/if}
+    <div class="product-listing row">
+        {foreach name=aussen item=module_data from=$products}
+        {if $module_data.allow_add_cart eq 'true'}
+            {form type=form name=product action='dynamic' link_params=getParams method=post role="form"}
+            {form type=hidden name=action value=add_product}
+            {form type=hidden name=product value=$module_data.products_id}
+            {form type=hidden name=$ew_2to1_coupon_product value=$module_data.products_id}
+            {form type=hidden name=qty value=1}
+
+            <div class="column four col-sm-2">
+                <div class="product box">
+                    {if $module_data.products_image == 'product:noimage.gif'}
+                        <p class="product-image"><a href="{$module_data.products_link}"><img src="{$tpl_url_path}img/no_image.png" alt="{$module_data.products_name}" /></a></p>
+                    {else}
+                        <p class="product-image"><a href="{$module_data.products_link}">{img img=$module_data.products_image type=m_thumb class=productImageBorder alt=$module_data.products_name}</a></p>
+                    {/if}
+                    <p class="product-name">
+                        <a href="{$module_data.products_link}">{$module_data.products_name}</a>
+                    </p>
+                    <button type="submit" class="btn btn-sm btn-primary preloader no-ajax">
+                        {txt key=BUTTON_ADD_CART}
+                    </button>
+                </div><!-- .product .box -->
+            </div><!-- .column .four -->
+            {form type=formend}
+        {/if}
+        {/foreach}
+    </div><!-- .product-listing .row -->
+</div>

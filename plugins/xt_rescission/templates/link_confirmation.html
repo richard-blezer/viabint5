@@ -1,0 +1,7 @@
+{if $smarty.const.XT_RESCISSION_SHOW_CONFIRMATION eq 'true'}
+{content cont_id=8 is_id='false'}
+<p>{form type=checkbox name=rescission_accepted} {txt key=TEXT_RESCISSION_CONFIRMATION_1} <a class="bold" href="{$_content_8.content_link}" target="_blank">{txt key=TEXT_RESCISSION_CONFIRMATION_2}</a> {txt key=TEXT_RESCISSION_CONFIRMATION_3}</p>
+{else}
+{content cont_id=8 is_id='false'}
+<p>{txt key=TEXT_RESCISSION_CONFIRMATION_1} <a class="bold" href="{$_content_8.content_link}" target="_blank">{txt key=TEXT_RESCISSION_CONFIRMATION_2}</a> {txt key=TEXT_RESCISSION_CONFIRMATION_3}</p>
+{/if}

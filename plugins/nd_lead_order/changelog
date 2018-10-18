@@ -1,0 +1,15 @@
+/*------------------------------------------------------------------------------
+	$Id: changelog 4 2011-10-06 10:02:29Z Standard $
+	copyright (c) 2008 by Andreas Oberzier
+	http://www.netz-designer.de
+	projects@netz-designer.de
+	---------------------------------------
+	project: Affiliate-Plugin für xt:Commerce Enterprise
+	
+	This file may not be redistributed in whole or significant part.
+------------------------------------------------------------------------------*/
+
+________________________________________________________________________________
+Revision 1.0.1 - 
+
+- Change: package completly changed to UTF-8

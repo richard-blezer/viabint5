@@ -1,0 +1,32 @@
+{$message}
+<div id="product">
+	<div id="tabs">
+
+        {form type=form name=write_reviews action='dynamic' link_params=getParams method=post}
+        {form type=hidden name=page value='feedback'}
+        {form type=hidden name=action value=add_reviews}
+        {form type=hidden name=paction value='write'}
+
+        {foreach name=aussen item=module_data from=$products}
+
+
+        <h1>{$module_data.products_name}</h1>
+
+
+        <div id="reviews"  class="box">
+            <p class="headline">{txt key=TEXT_XT_REVIEWS_RATING_DESC}</p>
+
+            <label for="review_rating_{$module_data.products_id}">1. {txt key=TEXT_XT_REVIEWS_RATE_DESC}</label>
+            {form params="id=review_rating_`$module_data.products_id`" type=select name=review_rating_`$module_data.products_id` value=$rating default=`$module_data.rating`}
+            <label for="review_title_{$module_data.products_id}">2. {txt key=TEXT_XT_REVIEWS_TITLE_DESC}</label>
+            {form id=review_title_`$module_data.products_id` type=text name=review_title_`$module_data.products_id` size=60 value=`$module_data.prefill.review_title`}
+            <label for="review_text_{$module_data.products_id}">3. {txt key=TEXT_XT_REVIEWS_TEXT_DESC}</label>
+            {form id=review_text_`$module_data.products_id` type=textarea name=review_text_`$module_data.products_id` cols=60 rows=10 value=`$module_data.prefill.review_text`}
+        </div><!-- .box .clear -->
+       {/foreach}
+
+        <p class="right">{css_button text=$smarty.const.BUTTON_SAVE type='form'}
+        {form type=formend}
+	</div><!-- #tabs -->
+
+</div><!-- #product -->

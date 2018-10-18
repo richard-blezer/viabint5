@@ -1,0 +1,5 @@
+AuthType Basic
+AuthName "Restricted Access"
+AuthUserFile .htnopasswd
+AuthGroupFile /dev/null
+Require valid-user

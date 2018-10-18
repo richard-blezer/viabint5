@@ -1,0 +1,12 @@
+Dear {$order_data.billing_firstname} {$order_data.billing_lastname},
+
+Your Feedback to order {$order_data.orders_id} was reviewed by us, released, and
+published on our website. 
+
+To thank you for your dedication and effort, we will send you a voucher for your next purchase in our shop.
+If you want to redeem the voucher, please enter the following voucher code during the next checkout: {$coupon_code}
+
+Many Thanks,
+{$shop_name}	
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

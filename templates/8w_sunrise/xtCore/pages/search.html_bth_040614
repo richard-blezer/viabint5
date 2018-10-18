@@ -1,0 +1,36 @@
+<h1>{txt key=text_search}</h1>
+{$message}
+{form type=form name=search action='dynamic' link_params=getParams method=get}
+{form type=hidden name=page value=search}
+{hook key=search_tpl}
+<div class="highlightbox">
+<table width="100%" border="0" cellpadding="4">
+  <tr>
+    <td width="45%"><strong>{txt key=text_search_keywords}</strong></td>
+    <td width="55%">{form type=text name=keywords}</td>
+  </tr>
+  {if $cat_data}
+  <tr>
+    <td width="45%" valign="top"><strong>{txt key=text_search_categories}</strong></td>
+    <td width="55%">{form type=select name=cat default=$default_cat value=$cat_data}<br>
+      {if $checked_subcat eq 'checked'}{form type=checkbox name=subkat checked=$checked_subcat} {else}{form type=checkbox name=subkat}{/if} {txt key=text_search_subcategories}</td>
+  </tr>
+  {/if}
+  {if $mnf_data|@count gt 1}
+  <tr>
+    <td width="45%" valign="top"><strong>{txt key=text_search_mnf}</strong></td>
+    <td width="55%">{form type=select name=mnf default=$default_mnf value=$mnf_data}</td>
+  </tr>
+  {/if}
+  <tr>
+    <td width="45%" valign="top"><strong>{txt key=text_search_sdesc}</strong></td>
+    <td width="55%">{if $checked_sdesc eq 'checked'}{form type=checkbox name=sdesc checked=$checked_sdesc}{else}{form type=checkbox name=sdesc}{/if}</td>
+  </tr>
+  <tr>
+    <td width="45%" valign="top"><strong>{txt key=text_search_desc}</strong></td>
+    <td width="55%">{if $checked_desc eq 'checked'}{form type=checkbox name=desc checked=$checked_desc}{else}{form type=checkbox name=desc}{/if}</td>
+  </tr>
+</table>
+</div>
+<p>{button text=$smarty.const.BUTTON_SEARCH file='search.gif' type='form'}</p>
+{form type=formend}

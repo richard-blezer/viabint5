@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>CleverReach Newsletter-System</title>
+<version>1.1.0</version>
+<code>xt_cleverreach</code>
+<url>http://www.xt-commerce.com</url>
+<description>CleverReach E-Mail Marketing</description>
+<type>marketing</type>
+<icon>logo_admin.gif</icon>
+<plugin_code>
+<code>
+<hook>store_main.php:bottom</hook>
+<phpcode><![CDATA[
+require _SRV_WEBROOT.'plugins/xt_cleverreach/classes/xt_cleverreach.php';
+if (!isset($_SESSION['cr_mid'])) {
+    if (($_GET['cr_mid'] || $_POST['cr_mid'])) {
+        if ($_GET['cr_mid']) $_SESSION['cr_mid'] = (int)$_GET['cr_mid'];
+        if ($_POST['cr_mid']) $_SESSION['cr_mid'] = (int)$_POST['cr_mid'];
+
+        // Set Cookie if the customer comes back and orders it counts
+        setcookie('cr_mid', $_SESSION['cr_mid'], time() + 86400);
+    }
+    if ($_COOKIE['cr_mid']) { // Customer comes back and is registered in cookie
+        $_SESSION['cr_mid'] = $_COOKIE['cr_mid'];
+    }
+}
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>page_registry.php:bottom</hook>
+<phpcode><![CDATA[
+define('PAGE_CLEVERREACH', _SRV_WEB_PLUGINS.'xt_cleverreach/pages/cleverreach.php');
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>module_checkout.php:checkout_proccess_order_processed</hook>
+<phpcode><![CDATA[
+//collect userData
+$rs            = $db->Execute("SELECT * FROM ".TABLE_CUSTOMERS." WHERE customers_id='".(int)$_SESSION['registered_customer']."'");
+$rs_order    = $db->Execute("SELECT * FROM ".TABLE_ORDERS." as a, ".TABLE_ORDERS_PRODUCTS." as b WHERE a.orders_id = '".(int)$_SESSION['last_order_id']."' AND b.orders_id = '".(int)$_SESSION['last_order_id']."'");
+
+    //new Stuff
+    $api = cleverreach::api();
+    //prepare
+    cleverreach::prepare_list(XT_CLEVERREACH_API_KEY, XT_CLEVERREACH_LIST_ID);
+    //add Orders
+    $orderData = array();
+    while(!$rs_order->EOF){
+      $orderData["order_id"] = $rs_order->fields["orders_id"];
+      $orderData["product"] = $rs_order->fields["products_name"];
+      $orderData["product_id"] = $rs_order->fields["products_id"];
+      $orderData["price"] = $rs_order->fields["products_price"];
+      $orderData["amount"] = (integer)$rs_order->fields["products_quantity"];
+      $orderData["purchase_date"] = strtotime($rs_order->fields["date_purchased"]);
+      $orderData["source"] = "Veyton Order";
+      if(isset($_SESSION['cr_mid'])){
+        $orderData["mailings_id"] = $_SESSION['cr_mid'];
+      }
+    
+      $api->addOrder(XT_CLEVERREACH_API_KEY, XT_CLEVERREACH_LIST_ID, $rs->fields["customers_email_address"], $orderData);
+      $rs_order->MoveNext();
+    }
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>login_create_account_tpl</hook>
+<phpcode><![CDATA[
+if (XT_CLEVERREACH_CHECKBOX=='true') {
+    $cleverreach = new cleverreach;
+    echo $cleverreach->_displayNLcheckBox($data_nl);
+}
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>class.customer.php:_buildCustomerData_bottom</hook>
+<phpcode><![CDATA[
+    if($form_data["default_address"]["customers_gender"] == "m"){
+        $salutation = "Herr";
+    }elseif($form_data["default_address"]["customers_gender"] == "f"){
+        $salutation = "Frau";
+    }else{
+        $salutation = "";
+    }
+
+    $userData = array(
+        'email' => $customer_data_array["customers_email_address"],
+        'registered' => time(),
+        'activated' => time(),
+        'source' => 'VEYTON',
+        'salutation' => $salutation,
+        'firstname' => $form_data["default_address"]["customers_firstname"],
+        'lastname' => $form_data["default_address"]["customers_lastname"],
+        'street' => $form_data["default_address"]["customers_street_address"],
+        'zip' => $form_data["default_address"]["customers_postcode"],
+        'city' => $form_data["default_ddress"]["customers_city"],
+        'country' => $form_data["default_address"]["customers_country_code"],
+        'company' => $form_data["default_address"]["customers_company"]
+    );
+    if($data['allow_newsletter'] == 1){
+        $allow_nl = "1";
+        $userData["user_defined"] = array(
+            0 => array("key" => 'opt_shop_id', "value" => @$customer_data_array['shop_id']),
+            1 => array("key" => 'opt_newsletter', "value" => @$allow_nl)
+        );
+        
+        //new Stuff
+        $api = cleverreach::api();
+        
+        //prepare
+        cleverreach::prepare_list(XT_CLEVERREACH_API_KEY, XT_CLEVERREACH_LIST_ID);
+        //add
+    
+        $result = $api->add(XT_CLEVERREACH_API_KEY, XT_CLEVERREACH_LIST_ID, $userData);
+        
+        if($result->status != "SUCCESS"){
+          unset($userData['registered']);
+          unset($userData['activated']);
+          $result = $api->update(XT_CLEVERREACH_API_KEY, XT_CLEVERREACH_LIST_ID, $userData);
+          $result = $api->setActive(XT_CLEVERREACH_API_KEY, XT_CLEVERREACH_LIST_ID, $userData["email"]);
+        }
+    }
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+<configuration>
+<config>
+<key>XT_CLEVERREACH_API_KEY</key>
+<type>textfield</type>
+<value></value>
+<de>
+<title>API Key</title>
+</de>
+<en>
+<title>API Key</title>
+</en>
+</config>
+<config>
+<key>XT_CLEVERREACH_LIST_ID</key>
+<type>passwordfield</type>
+<value></value>
+<de>
+<title>Listen ID</title>
+</de>
+<en>
+<title>List ID</title>
+</en>
+</config>
+<config>
+<key>XT_CLEVERREACH_CHECKBOX</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Newsletter-Checkbox in Anmeldung</title>
+</de>
+<en>
+<title>Display Newsletter Checkbox at registration</title>
+</en>
+</config>
+</configuration>
+
+<language_content>
+<phrase>
+<key>TEXT_NEWSLETTER_ACCEPT</key>
+<class>store</class>
+<de>
+<value>Newsletter abonnieren</value>
+</de>
+<en>
+<value>Receive Newsletter</value>
+</en>
+</phrase>
+</language_content>
+</xtcommerceplugin>

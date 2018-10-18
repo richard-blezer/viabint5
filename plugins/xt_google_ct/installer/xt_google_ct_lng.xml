@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_GCT_ACTIVATE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[activate for this store]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Für Mandant aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_GCT_CONVERSION_LABEL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Conversion Label]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Conversion Label]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_GCT_CUSTOMER_ID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Google Adwords Conversion ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Google Adwords Conversion ID]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

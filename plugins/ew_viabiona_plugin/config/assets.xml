@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf8"?>
+<assets>
+    <file>assets/components/bootstrap/js/bootstrap.min.js</file>
+    <file>assets/components/bootstrap-select/dist/js/bootstrap-select.min.js</file>
+    <file>assets/components/bootstrap-select/dist/css/bootstrap-select.min.css</file>
+    <file>assets/components/jquery-match-height/jquery.matchHeight-min.js</file>
+    <file>assets/components/font-awesome/css/font-awesome.min.css</file>
+    <file>assets/components/ladda-bootstrap/dist/ladda-themeless.min.css</file>
+    <file>assets/components/ladda-bootstrap/dist/spin.min.js</file>
+    <file>assets/components/ladda-bootstrap/dist/ladda.min.js</file>
+    <file>assets/components/WOW/dist/wow.min.js</file>
+    <file>assets/components/animate.css/animate.min.css</file>
+    <file>assets/components/Hover/css/hover-min.css</file>
+    <file>assets/components/jquery-spinner/dist/jquery.spinner.min.js</file>
+    <file>assets/components/jquery-spinner/dist/bootstrap-spinner.css</file>
+    <file>assets/components/SocialSharePrivacy/javascripts/socialshareprivacy.js</file>
+    <file>assets/components/SocialSharePrivacy/javascripts/modules/facebook.js</file>
+    <file>assets/components/SocialSharePrivacy/javascripts/modules/gplus.js</file>
+    <file>assets/components/SocialSharePrivacy/javascripts/modules/twitter.js</file>
+    <file>assets/components/SocialSharePrivacy/stylesheets/common.css</file>
+    <file>assets/components/SocialSharePrivacy/stylesheets/modules/facebook.css</file>
+    <file>assets/components/SocialSharePrivacy/stylesheets/modules/gplus.css</file>
+    <file>assets/components/SocialSharePrivacy/stylesheets/modules/twitter.css</file>
+    <file>assets/components/pnotify/dist/pnotify.js</file>
+    <file>assets/components/pnotify/dist/pnotify.css</file>
+    <file>assets/components/pnotify/dist/pnotify.animate.js</file>
+    <file>assets/components/pnotify/dist/pnotify.brighttheme.css</file>
+    <file>assets/components/pnotify/dist/pnotify.buttons.css</file>
+    <file>assets/components/pnotify/dist/pnotify.buttons.js</file>
+    <file>assets/components/pnotify/dist/pnotify.callbacks.js</file>
+    <file>assets/components/pnotify/dist/pnotify.confirm.js</file>
+    <file>assets/components/pnotify/dist/pnotify.desktop.js</file>
+    <file>assets/components/pnotify/dist/pnotify.history.css</file>
+    <file>assets/components/pnotify/dist/pnotify.history.js</file>
+    <file>assets/components/pnotify/dist/pnotify.mobile.css</file>
+    <file>assets/components/pnotify/dist/pnotify.mobile.js</file>
+    <file>assets/components/pnotify/dist/pnotify.nonblock.js</file>
+    <file>assets/components/bootstrap-show-password/bootstrap-show-password.min.js</file>
+</assets>

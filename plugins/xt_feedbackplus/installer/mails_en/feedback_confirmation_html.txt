@@ -1,0 +1,31 @@
+{include file="file:$_system_root_templates/email/email_top.html"}
+<!-- // Begin Content \\ --> 
+<table cellpadding="0" cellspacing="0" class="email_container">
+    <tr>
+        <td colspan="3" class="email_toplogo">
+            <div class="email_toplogo"><img src="{$_system_logo_url}"/></div>
+        </td>
+    </tr>
+    <tr>
+        <td class="email_table_left_bg" valign="top">
+            <div class="email_table_left"></div>
+        </td>
+        <td class="email_table_center_bg" valign="top">
+            <div class="email_content">
+                <h1>Dear {$order_data.billing_firstname} {$order_data.billing_lastname},</h1>
+                <p>Your Feedback to order {$order_data.orders_id} was reviewed by us, released, and published on our website.</p>
+                <p>To thank you for your dedication and effort, we will send you a voucher for your next purchase in our shop.</p>
+                <p>If you want to redeem the voucher, please enter the following voucher code during the next checkout: {$coupon_code}</p>
+                <p>Many Thanks,</p>
+
+                <p>{$shop_name}</p>
+            </div>
+            <div class="email_footer">{$_system_footer_html}</div>
+        </td>
+        <td class="email_table_right_bg" valign="top">
+            <div class="email_table_right"></div>
+        </td>
+    </tr>
+</table>
+<!-- // End Content \\ -->
+{include file="file:$_system_root_templates/email/email_bottom.html"}

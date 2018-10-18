@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xtcommerceplugin>
+<title>Käuferschutz Excellence</title>
+<version>1.0.5 fr</version>
+<code>xt_trusted_shops_schutz</code>
+<url>http://www.trustedshops.de</url>
+<description>Trusted Shops Käuferschutz Excellence</description>
+<type>marketing</type>
+<icon>trustedshops_140.png</icon>
+<db_install><![CDATA[
+if (!$this->_FieldExists('ts_type',TABLE_ORDERS)) 
+$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD `ts_type` varchar( 64 ) NOT NULL DEFAULT '';");
+
+if (!$this->_FieldExists('ts_response',TABLE_ORDERS)) 
+$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD `ts_response` varchar( 64 ) NOT NULL DEFAULT '';");
+
+]]></db_install>
+<db_uninstall><![CDATA[
+if ($this->_FieldExists('ts_type',TABLE_ORDERS)) 
+$db->Execute("ALTER TABLE ".TABLE_ORDERS." DROP `ts_type`");
+
+if ($this->_FieldExists('ts_response',TABLE_ORDERS)) 
+$db->Execute("ALTER TABLE ".TABLE_ORDERS." DROP `ts_response`");
+
+]]></db_uninstall>
+<configuration>
+
+<config>
+<key>XT_TRUSTED_SHOPS_SCHUTZ_TAX_CLASS</key>
+<type>dropdown</type>
+<url>tax_classes</url>
+<value>1</value>
+<de>
+<title>Steuerklasse</title>
+</de>
+<en>
+<title>Tax class</title>
+</en>
+<fr>
+<title>Tranche d'imposition</title>
+</fr>
+</config>
+
+<config>      
+<key>ACTIVATE_XT_TRUSTED_SHOPS_SCHUTZ_BOX</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Trusted Shops Siegel aktivieren</title>
+</de>
+<en>
+<title>Activate Trusted Shops Seal</title>
+</en>
+<fr>
+<title>Activer le label Trusted Shops</title>
+</fr>
+</config>
+
+<config>
+<key>XT_TRUSTED_SHOPS_SCHUTZ_SHOPNAME</key>
+<type>textfield</type>
+<value></value>
+<de>
+<title>Name des Online Shops</title>
+</de>
+<en>
+<title>Onlineshop name</title>
+</en>
+<fr>
+<title>Nom de la boutique en ligne</title>
+</fr>
+</config>
+
+<config>
+<key>XT_TRUSTED_SHOPS_SCHUTZ_WS_PW</key>
+<type>textfield</type>
+<value></value>
+<de>
+<title>Webservice Passwort (wsPassword)</title>
+</de>
+<en>
+<title>Web service password (wsPassword)</title>
+</en>
+<fr>
+<title>Web service mot de passe (wsPassword)</title>
+</fr>
+</config>
+
+<config>
+<key>XT_TRUSTED_SHOPS_SCHUTZ_WS_LOGIN</key>
+<type>textfield</type>
+<value></value>
+<de>
+<title>Webservice Benutzer (wsUser)</title>
+</de>
+<en>
+<title>Web service Username (wsUser)</title>
+</en>
+<fr>
+<title>Web service nom d'utilisateur (wsUser)</title>
+</fr>
+</config>
+
+<config>
+<key>XT_TRUSTED_SHOPS_SCHUTZ_KEY_FR</key>
+<type>textfield</type>
+<value></value>
+<de>
+<title>Trusted Shops ID</title>
+</de>
+<en>
+<title>Trusted Shops ID</title>
+</en>
+<fr>
+<title>Trusted Shops ID</title>
+</fr>
+</config>
+
+</configuration>
+<plugin_code>
+<code>
+<hook>page_registry.php:bottom</hook>
+<phpcode><![CDATA[
+require _SRV_WEBROOT.'plugins/xt_trusted_shops_schutz/classes/class.xt_trusted_shops_schutz.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>checkout_tpl_payment</hook>
+<phpcode><![CDATA[
+if (ACTIVATE_XT_TRUSTED_SHOPS_SCHUTZ_BOX=='true') {  
+    $trusted_schutz = new xt_trusted_shops_schutz();
+    echo $trusted_schutz->_displayProtectionBox();
+}
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>module_checkout.php:checkout_payment_bottom</hook>
+<phpcode><![CDATA[
+if (ACTIVATE_XT_TRUSTED_SHOPS_SCHUTZ_BOX=='true') {
+if ($_POST['ts_ks_checkbox'] == '1') {
+    $_SESSION['ts_ks_checkbox']='1';
+    $ts = new xt_trusted_shops_schutz();
+    $ts->_removeFromCart();
+    $resp = $ts->_addToCart();
+} else {
+    $_SESSION['ts_ks_checkbox']='0'; 
+    $ts = new xt_trusted_shops_schutz();
+    $ts->_removeFromCart();
+}
+}
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>module_checkout.php:success</hook>
+<phpcode><![CDATA[
+global $success_order_id;         
+if (ACTIVATE_XT_TRUSTED_SHOPS_SCHUTZ_BOX=='true') {
+    $ts = new xt_trusted_shops_schutz();
+    $ts->requestForProtection($success_order_id);
+}
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>order_edit.php:getProductsTemplate_top</hook>
+<phpcode><![CDATA[ 
+$ts = new xt_trusted_shops_schutz();
+$extras .=$ts->getTsAdmin($this->oID);
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+</plugin_code>
+<language_content>
+<phrase>
+<key>TEXT_TS_SCHUTZ_TITLE</key>
+<class>both</class>
+<de>
+<value>Trusted Shops Käuferschutz</value>
+</de>
+<en>
+<value>Trusted Shops Buyer Protection</value>
+</en>
+<fr>
+<value>Trusted Shops protection acheteur</value>
+</fr>
+</phrase>
+<phrase>
+<key>TEXT_TS_PAYMENT_CLASS</key>
+<class>admin</class>
+<de>
+<value>Zuweisung Trusted Shops Zahlungsarten</value>
+</de>
+<en>
+<value>Mapping of TrustedShops payment methods</value>
+</en>
+<fr>
+<value>Allocation des moyens de paiement</value>
+</fr>
+</phrase>
+
+</language_content>
+</xtcommerceplugin>

@@ -1,0 +1,32 @@
+<br />
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+	    <thead>
+		    <tr>
+      		    <th>{txt key=TEXT_ORDER_NUMBER}</th>
+      		    <th>{txt key=TEXT_ORDER_DATE}</th>
+      		    <th>{txt key=TEXT_ARTICLE}</th>
+      		    <th>{txt key=TEXT_TOTAL}</th>
+	  		    <th>{txt key=TEXT_ORDER_STATUS}</th>
+	 		    <th>{txt key=BUTTON_SHOW}</th>
+    	    </tr>
+        </thead>
+        <tbody>
+  		    {foreach name=aussen item=data from=$order_data}
+   		    <tr class="{cycle values="odd,even"} cursor-pointer" onclick="document.location.href='{link page='customer' paction=order_info params=oid params_value=$data.order_data.orders_id conn=SSL}'">
+    		    <td>{$data.order_data.orders_id}</td>
+    		    <td>{$data.order_data.date_purchased}</td>
+    		    <td>{$data.order_count}</td>
+    		    <td>{$data.order_total.total.formated}</td>
+			    <td>{$data.order_data.orders_status}</td>
+			    <td>
+                    <a href="{link page='customer' paction=order_info params=oid params_value=$data.order_data.orders_id conn=SSL}">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        <span class="sr-only">{txt key=BUTTON_SHOW}</span>
+                    </a>
+                </td>
+  		    </tr>
+  		    {/foreach}
+  	    </tbody>
+    </table>
+</div>

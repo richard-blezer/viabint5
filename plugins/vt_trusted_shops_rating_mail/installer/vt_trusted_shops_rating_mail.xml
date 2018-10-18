@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<title>Bewertungsaufforderung senden</title>
+	<version>1.0.1</version>
+	<code>vt_trusted_shops_rating_mail</code>
+	<url>http://www.bui-hinsche.de</url>
+	<description>Trusted-Shop Bewertungs-Email</description>
+	<icon>bui.png</icon>
+	<type>marketing</type>
+	<db_install><![CDATA[
+                $db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD rating_mail_sended_status TINYINT( 1 ) NOT NULL ;");
+                $db->Execute("INSERT INTO ".TABLE_MAIL_TEMPLATES." (tpl_id, tpl_type, tpl_special, email_from, email_from_name, email_reply, email_reply_name, email_forward) VALUES ('', 'send_rating', '', '', '', '', '', '');");
+                $tpl_id = $db->Execute("SELECT tpl_id FROM ".TABLE_MAIL_TEMPLATES." WHERE tpl_type = 'send_rating';");     
+                $db->Execute("INSERT INTO ".TABLE_MAIL_TEMPLATES_CONTENT." (tpl_id, language_code, mail_body_html, mail_body_txt, mail_subject) VALUES (".$tpl_id->fields['tpl_id'].", 'de', '{\$salutation} {\$name},<br/><br/>{\$link}', '', 'Bewertung Ihrer Bestellung (Bestellnummer: {\$order_id})');");
+                $db->Execute("INSERT INTO ".TABLE_MAIL_TEMPLATES_CONTENT." (tpl_id, language_code, mail_body_html, mail_body_txt, mail_subject) VALUES (".$tpl_id->fields['tpl_id'].", 'en', '{\$salutation} {\$name},<br/><br/>{\$link}', '', 'Plaese rate your Order (order-number: {\$order_id})');");
+                $db->Execute("ALTER TABLE ".TABLE_CUSTOMERS." ADD rating_mail_vorbidden_status TINYINT( 1 ) NOT NULL ");
+                      
+	]]></db_install>
+	<db_uninstall><![CDATA[
+		$db->Execute("ALTER TABLE ".TABLE_ORDERS." DROP rating_mail_sended_status;");
+                $tpl_id = $db->Execute("SELECT tpl_id FROM ".TABLE_MAIL_TEMPLATES." WHERE tpl_type = 'send_rating';");  
+                $db->Execute("DELETE FROM ".TABLE_MAIL_TEMPLATES_CONTENT." WHERE tpl_id = ".$tpl_id->fields['tpl_id'].";");
+                $db->Execute("DELETE FROM ".TABLE_MAIL_TEMPLATES." WHERE tpl_type = 'send_rating';");
+                $db->Execute("ALTER TABLE ".TABLE_CUSTOMERS." DROP rating_mail_vorbidden_status;");
+		
+	]]></db_uninstall>
+
+	<plugin_code>
+		<code>
+			<hook>class.customer.php:_getParams_header</hook>
+			<phpcode><![CDATA[
+				$header['rating_mail_vorbidden_status']= array('type'=>'hidden');
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+
+		</code>		
+	
+	<code>
+			<hook>cronjob.php:main</hook>
+			<phpcode><![CDATA[
+				if (VT_TRUSTED_SHOP_RATING_MAIL_ACTIVE == 'true'){
+					if ($_GET['task'] == 'send_rating_mail'){
+ 						require _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_trusted_shops_rating_mail/classes/class.vt_trusted_shops_rating_mail.php';
+						$mails = new vt_trusted_shops_rating_mail();
+					}
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+
+		</code>		
+	
+        
+		<code>
+			<hook>form_handler.php:data_array_top</hook>
+			<phpcode><![CDATA[
+				if (VT_TRUSTED_SHOP_RATING_MAIL_ACTIVE == 'true'){
+					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_trusted_shops_rating_mail/hooks/form_handler.php_data_array_top.php';
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+
+		</code>		
+	</plugin_code>
+	<configuration>
+		<config>
+			<key>VT_TRUSTED_SHOP_RATING_MAIL_ACTIVE</key>
+			<value>true</value>
+				<type>dropdown</type>
+				<url>conf_truefalse</url>
+				<de>
+					<title>Status</title>
+					<description>Modul an und abschalten.</description>
+				</de>
+				<en>
+					<title>State</title>
+					<description>Activate Modul</description>
+				</en>
+		</config>
+		<config>
+			<key>TRUSTED_SHOPS_ID</key>
+			<value></value>
+			<type>textfield</type>
+			<de>
+				<title>Trusted-Shop-ID</title>
+				<description>Ident-Schlüssel bei Trusted Shops</description>
+			</de>
+			<en>
+				<title>Trusted-Shop-ID</title>
+				<description>Identification at trusted shops</description>
+			</en>
+		</config>
+		<config>
+			<key>DAYS_BEFORE_MAX</key>
+			<value></value>
+			<type>textfield</type>
+			<de>
+				<title>Max. rückwirkende Tage</title>
+				<description>Beginnend bei Heute - Wert</description>
+			</de>
+			<en>
+				<title>Max. days backdated</title>
+				<description>Begins by today - value</description>
+			</en>
+		</config>
+		<config>
+			<key>DAYS_BEFORE_MIN</key>
+			<value></value>
+			<type>textfield</type>
+			<de>
+				<title>Min. rückwirkende Tage</title>
+				<description>Endet bei Heute - Wert</description>
+			</de>
+			<en>
+				<title>Min. days backdated</title>
+				<description>Ends by Today - value</description>
+			</en>
+		</config>
+		<config>
+			<key>ACTION_ORDERS_STATUS</key>
+			<value>0</value>
+			<type>dropdown</type>
+			<url>order_status</url>
+			<de>
+				<title>Bestellstatus</title>
+				<description>Sendet emails nach Änderung des Status zu Wert</description>
+			</de>
+			<en>
+				<title>Order-status</title>
+				<description>Send mails after changing order status to value</description>
+			</en>
+		</config>
+		
+		
+	</configuration>
+	<language_content>
+		<phrase>
+			<key>TEXT_SALUTATION_W</key>
+			<class>both</class>
+			<de>
+				<value>Sehr geehrte Frau</value>
+			</de>
+			<en>
+				<value>Dear</value>
+			</en>
+		</phrase>
+		
+		<phrase>
+			<key>TEXT_SALUTATION_M</key>
+			<class>both</class>
+			<de>
+				<value>Sehr geehrter Herr</value>
+			</de>
+			<en>
+				<value>Dear</value>
+			</en>
+		</phrase>
+                <phrase>
+			<key>TEXT_RATING_MAIL_VORBIDDEN_STATUS</key>
+			<class>admin</class>
+			<de>
+				<value>Keine Bewertungsmail senden</value>
+			</de>
+			<en>
+				<value>Send no Rating-mail</value>
+			</en>
+		</phrase>
+                <phrase>
+			<key>TEXT_VORBIDDEN</key>
+			<class>admin</class>
+			<de>
+				<value>Bewertungsmail nicht versenden oder bereits versendet</value>
+			</de>
+			<en>
+				<value>Send no Rating-mail or mail sent</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_LINK_DESCRIPTION</key>
+			<class>both</class>
+			<de>
+				<value>Bitte bewerten Sie unseren Shop!</value>
+			</de>
+			<en>
+				<value>Please rate our shop!</value>
+			</en>
+		</phrase>
+		
+	</language_content>
+</xtcommerceplugin>

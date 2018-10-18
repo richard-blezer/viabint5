@@ -1,0 +1,97 @@
+/*
+ #########################################################################
+ #                       Shogate GmbH
+ # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ #
+ # http://www.shopgate.com
+ #
+ # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ #
+ # @version $Rev: 558 $
+ #
+ # @author Martin Weber, Shopgate GmbH	weber@shopgate.com
+ #
+ # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ #########################################################################
+ */
+ 
+#shopgate_qr_banner {
+	background: #333;			/* Hintergrundfarbe */
+	border: 5px solid #333;		/* Hintergrundfarbe */
+	border-top: 7px solid #333;		/* Hintergrundfarbe */
+	border-bottom: 7px solid #333;		/* Hintergrundfarbe */
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#shopgate_qr_banner td.shopgate_qr_code,
+#shopgate_qr_banner td.shopgate_bubble,
+#shopgate_qr_banner td.shopgate_store,
+#shopgate_qr_banner td.shopgate_powered_by {
+	border: none;
+	padding: 0px;
+}
+
+#shopgate_qr_banner td.shopgate_qr_code {
+	text-align: center;
+}
+		
+#shopgate_qr_banner td.shopgate_bubble {
+	vertical-align: middle;
+	padding-left: 1px;
+}	
+
+#shopgate_qr_banner td.shopgate_store {
+	vertical-align: top;
+	text-align: center;
+	padding-top: 3px;
+}
+
+#shopgate_qr_banner td.shopgate_powered_by { 
+	vertical-align: bottom;
+}
+
+#shopgate_qr_banner td.shopgate_qr_code img {
+	max-height: 111px;
+	max-width: 111px;
+}
+
+#shopgate_qr_banner td.shopgate_bubble div {
+	height: 95px;
+	background-image: url('../images/bubble_bg.png');
+	background-repeat: no-repeat;
+	width: 255px;
+	margin: 0 auto;
+}
+
+#shopgate_qr_banner td.shopgate_bubble ul {
+	margin: 0px;
+	padding: 18px 0px 0px 25px;
+	line-height: 1.25;
+}
+
+#shopgate_qr_banner td.shopgate_bubble li,
+#shopgate_qr_banner td.shopgate_bubble a {
+	list-style: none;
+	color: #3d3d3d;
+	font-family: 'Helvetica Neue', Helvetica, Arial;
+	font-weight: bold;
+	font-size: 16px;
+	text-shadow: 0px 1px 2px #fff;
+	margin: 0;
+}
+
+#shopgate_qr_banner td.shopgate_powered_by a,
+#shopgate_qr_banner td.shopgate_powered_by {
+	text-align: center;
+	color: #fff;
+	font-family: Tahoma, Arial;
+	font-size: 11px;
+	padding-bottom: 6px;
+}
+
+#shopgate_qr_banner td.shopgate_store a img {
+	width: 110px;
+	height: 36px;
+	border: none;
+}

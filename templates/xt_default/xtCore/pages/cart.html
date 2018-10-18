@@ -1,0 +1,51 @@
+<h1>{txt key=TEXT_CART}</h1>
+{if $show_cart_content == true}
+{$message}
+{form type=form name=cart action='dynamic' link_params=getParams method=post conn=SSL}
+{form type=hidden name=action value=update_product}
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+
+<table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr class="headerrow">
+    <td class="left">{txt key=TEXT_QTY}</td>
+    <td class="left">{txt key=TEXT_ARTICLE}</td>
+    <td class="right">{txt key=TEXT_SINGLE_PRICE}</td>
+    <td class="right">{txt key=TEXT_TOTAL_PRICE}</td>
+    <td class="right">{txt key=TEXT_REMOVE}</td>
+  </tr>
+  {foreach name=aussen item=data from=$cart_data}
+  <tr class="{cycle values="contentrow1,contentrow2"}">
+    <td class="left">{form type=text name=qty[] value=$data.products_quantity style='width:30px;'}</td>
+    <td class="left">
+		<strong><a href="{$data.products_link}">{$data.products_name}</a></strong>
+		{if $data.shipping_status}<br /><p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$data.shipping_status}</p>{/if}
+    <td class="right">{$data.products_price.formated}</td>
+    <td class="right">{$data.products_final_price.formated}</td>
+    <td class="right">{form type=hidden name=products_key[] value=$data.products_key}{form type=checkbox name=cart_delete[] value=$data.products_key}</td>
+  </tr>
+  {$data.products_information}
+  {/foreach}
+  <tr>
+    <td colspan="5" class="subtotal">
+    	{hook key=cart_total_tpl}
+	    {foreach name=aussen item=tax_data from=$cart_tax}
+	    {txt key=TEXT_TAX} {$tax_data.tax_key}%: {$tax_data.tax_value.formated}<br />
+	    {/foreach}
+	    <strong>{txt key=TEXT_SUB_TOTAL}:{$cart_total}</strong>
+	    {if $discount}
+    	<br />{txt key=TEXT_DISCOUNT_MADE} : {$discount.formated}<br />
+    	{/if}
+    	{if $shipping_link}<br /><a href="{$shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}
+    	{if $cart_total_weight > 0}<br />({txt key=TEXT_PRODUCTS_WEIGHT}: {$cart_total_weight|number_format:2:",":"."} KG){/if}
+    	{hook key=cart_total_bottom}
+    </td>
+  </tr>
+</table>
+
+<p>{button text=$smarty.const.BUTTON_UPDATE file='update.gif' type='form'}&nbsp;<a href="{link page='checkout' paction='shipping' conn=SSL}">{button text=$smarty.const.BUTTON_CHECKOUT file='checkout.gif'}</a>&nbsp;{hook key=cart_tpl_form}</p>
+{form type=formend}
+{else}
+{$message}
+{/if}
+{hook key=cart_bottom}

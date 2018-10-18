@@ -1,0 +1,54 @@
+<h2>{txt key=TEXT_XT_REVIEWS_HEADING_REVIEWS}: {$products_name}</h2>
+<div id="productinfowrap">
+	{if $product_data.products_image!=''}
+	<div id="productinfoimages">
+		<ul class="gallery" >
+			<li>{img img=$product_data.products_image url=`$smarty.const._SRV_WEB`media/images/thumb/}</li>
+		</ul>
+	</div>
+	{/if}
+	
+  	{if $product_data.products_image!=''}<div id="productinfopricewithimages">{else}<div id="productinfopricewithoutimages">{/if}
+		<div id="productinfoprice">
+			{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}<p class="productprice">{$product_data.products_price.formated}</p>
+			<p class="taxandshippinginfo">{$product_data.products_tax_info.tax_desc}{if $product_data.products_shipping_link}<a href="{$product_data.products_shipping_link}" target="_blank">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</p>
+			{/if}
+			{if $product_data.shipping_status}<p class="shippingtime">{#text_shippingtime#}&nbsp;{$product_data.shipping_status}</p>{/if}
+			<!--{if $product_data.stock_image}
+			{assign var='sp1' value='templates/'|cat:$selected_template}
+			{assign var='stock_path' value=$sp1|cat:'/img/stockrules/'}
+			<p class="stockimage">{img img=$product_data.stock_image.image url=$stock_path}</p>
+			<p class="stockimagetext">{$product_data.stock_image.name}</p>
+			{/if}-->
+			{if $product_data.review_stars_rating}
+			<div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$review_stars_rating}%"></div></div>
+			{/if}
+			{if $product_data.base_price}{$product_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$product_data.base_price.vpe.name}{/if}
+			{if $product_data.products_discount!=''}{$product_data.products_discount}{/if}
+			{if $product_data.products_fsk18=='true'}<img src="{$tpl_path}img/fsk18.gif" alt="" style="cursor:default" />{/if}
+			{if $product_data.products_model!=''}{txt key=TEXT_PRODUCTS_MODEL}: {$product_data.products_model}{/if}
+			{if $product_data.products_url != ''}{$product_data.products_url}{/if}
+			<a href="{$product_data.products_link}" data-role="button">{txt key=BUTTON_TO_ARTICLE}</a>
+		</div>
+	</div>
+</div>
+
+<p>{txt key=TEXT_XT_REVIEWS_RATING_DESC}</p>
+{$message}
+{form type=form name=write_review action='dynamic' link_params=getParams method=post}
+{form type=hidden name=action value=add_review}
+{form type=hidden name=page value='reviews'}
+{form type=hidden name=paction value='write'}
+{form type=hidden name=products_id value=$products_id}
+<div  data-role="fieldcontain">
+	<label for="review_rating">1. {txt key=TEXT_XT_REVIEWS_RATE_DESC}</label>
+	{form type=select id=review_rating name=review_rating value=$rating default=$review_rating}<br/>
+	
+	<label for="review_title">2. {txt key=TEXT_XT_REVIEWS_TITLE_DESC}</label>
+	{form type=text id=review_title name=review_title size=60 value=$review_title}<br/>
+	
+	<label for="review_text">3. {txt key=TEXT_XT_REVIEWS_TEXT_DESC}</label>
+	{form type=textarea id=review_text name=review_text wrap=soft cols=40 rows=8 default=$review_text}<br/>
+</div>
+<input type="submit" value="{txt key=BUTTON_SAVE}" />
+{form type=formend}

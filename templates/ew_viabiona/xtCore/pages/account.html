@@ -1,0 +1,39 @@
+<h1>{txt key=TEXT_PAGE_TITLE_ACCOUNT}</h1>
+{$message}
+
+{if $registered_customer != true}
+<p class="h3">{txt key=TEXT_ACCOUNT_TITLE_WELCOME}</p>
+<p>{txt key=TEXT_ACCOUNT_WELCOME}</p>
+<p><a href="{link page='customer' paction='login' conn=SSL}" class="btn btn-success">{txt key=TEXT_ACCOUNT_LOGIN}</a></p>
+{/if}
+
+{if $registered_customer == true}
+<div class="well">
+    <p class="h3">{txt key=TEXT_ACCOUNT_TITLE}</p>
+    <ul class="btn-list">
+        <li><a href="{link page='customer' paction=edit_customer conn=SSL}">{txt key=TEXT_ACCOUNT_EDIT}</a></li>
+        <li><a href="{link page='customer' paction=address_overview conn=SSL}">{txt key=TEXT_ACCOUNT_ADRESSBOOK}</a></li>
+        {hook key=account_tpl_account_data}
+        <li><a href="{link page='customer' paction='logoff' conn=SSL}">{txt key=TEXT_LOGOFF}</a></li>
+    </ul>
+</div>
+{/if}
+
+{hook key=account_tpl_module_data}
+
+{if $order_data}
+<br />
+<p class="h3">{txt key=TEXT_ACCOUNT_ORDERS}</p>
+{include file="/xtCore/pages/order_history_block.html" type="tpl_include"}
+{/if}
+
+{if $download_flag == true}
+    <a class="btn btn-warning" href="{link page='customer' paction=download_overview conn=SSL}"><span class="glyphicon glyphicon-download"></span> {txt key=TEXT_ACCOUNT_DOWNLOADS_MORE}</a>
+{/if}
+{if $order_data}
+    <a class="btn btn-primary" href="{link page='customer' paction=order_overview conn=SSL}"><span class="glyphicon glyphicon-time"></span> {txt key=TEXT_ACCOUNT_ALL_ORDERS}</a>
+{/if}
+
+<div class="clearfix"></div>
+
+{hook key=account_tpl_module_data_bottom}

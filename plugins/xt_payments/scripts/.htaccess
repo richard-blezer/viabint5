@@ -1,0 +1,4 @@
+<Files doCapture.php>
+  Order Allow,Deny
+  Allow from all
+</Files>

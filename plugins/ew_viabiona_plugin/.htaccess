@@ -1,0 +1,4 @@
+<Filesmatch "(\.php|\.tpl|\.phar|composer\.json|composer\.lock|artisan|phpunit.xml)$">
+    Order Deny,Allow
+    Deny from all
+</Filesmatch>

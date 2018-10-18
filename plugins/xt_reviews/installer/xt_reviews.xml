@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<title>Reviews</title>
+	<version>1.2.0</version>
+
+	<code>xt_reviews</code>
+	<url>http://www.xt-commerce.com</url>
+	<description>Product reviews</description>
+	<type>core</type>
+	<developer>xt:Commerce</developer>
+	<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=3724]]></marketplace_link>
+	<icon>xt-commerce_logo.jpg</icon>
+	<db_install><![CDATA[
+	require_once _SRV_WEBROOT.'plugins/xt_reviews/hooks/db_install.php';
+	]]></db_install>
+	<db_uninstall><![CDATA[
+	require_once _SRV_WEBROOT.'plugins/xt_reviews/hooks/db_uninstall.php';
+	]]></db_uninstall>
+	<minimumupdateversion>1.0.0</minimumupdateversion>
+	<db_update>
+		<update>
+			<version>1.0.0</version>
+			<to_version>1.0.2</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.0.2</version>
+			<to_version>1.0.3</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.0.3</version>
+			<to_version>1.1.0</to_version>
+			<code><![CDATA[
+			 $db->Execute("
+				CREATE TABLE IF NOT EXISTS `".DB_PREFIX."_products_reviews` (
+				  `review_id` int(11) NOT NULL auto_increment,
+				  `products_id` int(11) NOT NULL,
+				  `customers_id` int(11) NOT NULL,
+				  `orders_id` int(11) NOT NULL default '0',
+				  `review_rating` int(1) NOT NULL,
+				  `review_date` datetime NOT NULL,
+				  `review_status` int(1) NOT NULL default '0',
+				  `language_code` char(2) NOT NULL,
+				  `review_text` text,
+				  `review_title` text,
+				  `review_source` varchar(64) default NULL,
+				  `admin_comment` text default NULL,
+				  PRIMARY KEY  (`review_id`),
+				  KEY `products_id_review_status` (`products_id`,`review_status`)
+				) ENGINE=MyISAM DEFAULT CHARSET=utf8
+			");
+			
+			$db->Execute("
+			CREATE TABLE IF NOT EXISTS `".DB_PREFIX."_products_reviews_permission` (
+			  `pid` int(11) NOT NULL,
+			  `permission` tinyint(1) DEFAULT '0',
+			  `pgroup` varchar(255) NOT NULL,
+			  PRIMARY KEY (`pid`,`pgroup`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8
+			");
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.0</version>
+			<to_version>1.1.1</to_version>
+			<code><![CDATA[
+			 $db->Execute("
+				CREATE TABLE IF NOT EXISTS `".DB_PREFIX."_products_reviews` (
+				  `review_id` int(11) NOT NULL auto_increment,
+				  `products_id` int(11) NOT NULL,
+				  `customers_id` int(11) NOT NULL,
+				  `orders_id` int(11) NOT NULL default '0',
+				  `review_rating` int(1) NOT NULL,
+				  `review_date` datetime NOT NULL,
+				  `review_status` int(1) NOT NULL default '0',
+				  `language_code` char(2) NOT NULL,
+				  `review_text` text,
+				  `review_title` text,
+				  `review_source` varchar(64) default NULL,
+				  `admin_comment` text default NULL,
+				  PRIMARY KEY  (`review_id`),
+				  KEY `products_id_review_status` (`products_id`,`review_status`)
+				) ENGINE=MyISAM DEFAULT CHARSET=utf8
+			");
+			
+			$db->Execute("
+			CREATE TABLE IF NOT EXISTS `".DB_PREFIX."_products_reviews_permission` (
+			  `pid` int(11) NOT NULL,
+			  `permission` tinyint(1) DEFAULT '0',
+			  `pgroup` varchar(255) NOT NULL,
+			  PRIMARY KEY (`pid`,`pgroup`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8
+			");
+				]]>
+			</code>
+		</update>	
+		<update>
+			<version>1.1.1</version>
+			<to_version>1.1.2</to_version>
+			<code><![CDATA[
+			$db->Execute("
+			    INSERT INTO `".DB_PREFIX."_mail_templates` (`tpl_type`, `tpl_special`, `email_from`, `email_from_name`, `email_reply`, `email_reply_name`, `email_forward`) 
+			    VALUES('review-notification-mail', '0', '"._STORE_CONTACT_EMAIL."', '', '"._STORE_CONTACT_EMAIL."', '', '');
+			"); 
+			
+			$db->Execute("
+			    INSERT INTO `".DB_PREFIX."_mail_templates_content` (`tpl_id`, `language_code`, `mail_body_html`, `mail_body_txt`, `mail_subject`) 
+			    VALUES((SELECT tpl_id FROM `".DB_PREFIX."_mail_templates` WHERE tpl_type='review-notification-mail'), 'de', '<p>Eine neue Bewertung wartet auf Freischaltung</p>\r\n <p>{txt key=TEXT_ORDER_NUMBER}: {\$orders_id} </p> \r\n <p>{txt key=TEXT_REVIEW_DATE}: {\$review_date} </p>\r\n<p>{txt key=TEXT_REVIEW_STATUS}: {\$review_status} </p>\r\n<p>{txt key=TEXT_REVIEW_LANGUAGE_CODE}: {\$language_code} </p>\r\n<p>{txt key=TEXT_REVIEW_TEXT}: {\$review_text} </p>\r\n<p>{txt key=TEXT_REVIEW_RATING}:  {\$review_rating}</p>\r\n','<p>Eine neue Bewertung wartet auf Freischaltung</p>\r\n <p>{txt key=TEXT_ORDER_NUMBER}: {\$orders_id} </p> \r\n <p>{txt key=TEXT_REVIEW_DATE}: {\$review_date} </p>\r\n<p>{txt key=TEXT_REVIEW_STATUS}: {\$review_status} </p>\r\n<p>{txt key=TEXT_REVIEW_LANGUAGE_CODE}: {\$language_code} </p>\r\n<p>{txt key=TEXT_REVIEW_TEXT}: {\$review_text} </p>\r\n<p>{txt key=TEXT_REVIEW_RATING}:  {\$review_rating}</p>\r\n', 'Neue Produktbewertung');
+			");
+			$db->Execute("
+			    INSERT INTO `".DB_PREFIX."_mail_templates_content` (`tpl_id`, `language_code`, `mail_body_html`, `mail_body_txt`, `mail_subject`) 
+			    VALUES((SELECT tpl_id FROM `".DB_PREFIX."_mail_templates` WHERE tpl_type='review-notification-mail'), 'en', '<p>A client submitted a new review</p>\r\n <p>{txt key=TEXT_ORDER_NUMBER}: {\$orders_id} </p> \r\n <p>{txt key=TEXT_REVIEW_DATE}: {\$review_date} </p>\r\n<p>{txt key=TEXT_REVIEW_STATUS}: {\$review_status} </p>\r\n<p>{txt key=TEXT_REVIEW_LANGUAGE_CODE}: {\$language_code} </p>\r\n<p>{txt key=TEXT_REVIEW_TEXT}: {\$review_text} </p>\r\n<p>{txt key=TEXT_REVIEW_RATING}:  {\$review_rating}</p>\r\n','<p>Eine neue Bewertung wartet auf Freischaltung</p>\r\n <p>{txt key=TEXT_ORDER_NUMBER}: {\$orders_id} </p> \r\n <p>{txt key=TEXT_REVIEW_DATE}: {\$review_date} </p>\r\n<p>{txt key=TEXT_REVIEW_STATUS}: {\$review_status} </p>\r\n<p>{txt key=TEXT_REVIEW_LANGUAGE_CODE}: {\$language_code} </p>\r\n<p>{txt key=TEXT_REVIEW_TEXT}: {\$review_text} </p>\r\n<p>{txt key=TEXT_REVIEW_RATING}:  {\$review_rating}</p>\r\n', 'New product review');
+			");
+				]]>
+			</code>
+		</update>	
+		<update>
+			<version>1.1.2</version>
+			<to_version>1.1.3</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.3</version>
+			<to_version>1.1.4</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.4</version>
+			<to_version>1.1.5</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.5</version>
+			<to_version>1.1.6</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.6</version>
+			<to_version>1.1.7</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>	 		
+		<update>
+			<version>1.1.6</version>
+			<to_version>1.1.7</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>		
+		<update>
+			<version>1.1.7</version>
+			<to_version>1.1.8</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+				<update>
+			<version>1.1.8</version>
+			<to_version>1.1.9</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.9</version>
+			<to_version>1.2.0</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>		
+	</db_update>
+	<plugin_code>
+		<code>
+			<hook>page_registry.php:bottom</hook>
+			<phpcode><![CDATA[
+			require_once _SRV_WEBROOT.'plugins/xt_reviews/hooks/page_registry_php_bottom.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.product.php:buildData_top</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT.'plugins/xt_reviews/hooks/class_product_php_buildData_top.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.product.php:_delete_bottom</hook>
+			<phpcode><![CDATA[
+			require_once _SRV_WEBROOT.'plugins/xt_reviews/hooks/class_product_php__delete_bottom.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.language.php:_delete_bottom</hook>
+			<phpcode><![CDATA[
+			require_once _SRV_WEBROOT.'plugins/xt_reviews/hooks/class_language_php__delete_bottom.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>product_info_tpl_reviews</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT.'plugins/xt_reviews/hooks/product_info_tpl_reviews.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>admin_dropdown.php:dropdown</hook>
+			<phpcode><![CDATA[
+			require_once _SRV_WEBROOT.'plugins/xt_reviews/hooks/admin_dropdown_php_dropdown.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code>
+	<language_content>
+		<phrase>
+			<key>TEXT_XT_REVIEWS_WRITE</key>
+			<class>store</class>
+			<de>
+			<value>Bewertung schreiben</value>
+			</de>
+			<en>
+			<value>Write a review</value>
+			</en>
+			<es>
+			<value>Escribir evaluación</value>
+			</es>
+			<bp>
+			<value>Escreva uma reputação</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_REVIEWS_SUCCESS</key>
+			<class>store</class>
+			<de>
+			<value>Bewertung gespeichert</value>
+			</de>
+			<en>
+			<value>review saved</value>
+			</en>
+			<es>
+			<value>Guardado evaluación</value>
+			</es>
+			<bp>
+			<value>Reputação salva</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_REVIEWS_SHOW</key>
+			<class>store</class>
+			<de>
+			<value>Bewertungen</value>
+			</de>
+			<en>
+			<value>reviews</value>
+			</en>
+			<es>
+			<value>Evaluación</value>
+			</es>
+			<bp>
+			<value>Reputação</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_REVIEWS_INFO</key>
+			<class>store</class>
+			<de>
+			<value>Bewertung(en)</value>
+			</de>
+			<en>
+			<value>Review(s)</value>
+			</en>
+			<es>
+			<value>Evaluación(es)</value>
+			</es>
+			<bp>
+			<value>Reputaçoes</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_HEADING_WRITE_REVIEW</key>
+			<class>store</class>
+			<de>
+			<value>Schreiben Sie Ihre eigene Bewertung</value>
+			</de>
+			<en>
+			<value>Write your own review</value>
+			</en>
+			<es>
+			<value>Escriba su propia evaluación</value>
+			</es>
+			<bp>
+			<value>Escreva sua propria Reputaçao</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_REVIEWS_PRODUCT</key>
+			<class>store</class>
+			<de>
+			<value>Produkt</value>
+			</de>
+			<en>
+			<value>Product</value>
+			</en>
+			<es>
+			<value>Producto</value>
+			</es>
+			<bp>
+			<value>Produto</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_REVIEWS_RATING_DESC</key>
+			<class>store</class>
+			<de>
+			<value>Bewerten Sie dieses Produkt auf einer Skala von 1 bis 5, wobei 5 die beste Bewertung darstellt.</value>
+			</de>
+			<en>
+			<value>Rate this article with 1 to 5 stars (5 stars = best rating)</value>
+			</en>
+			<es>
+			<value>Califique este producto en una escala de 1 a 5, siendo 5 la mejor puntuación.</value>
+			</es>
+			<bp>
+			<value>Qualifique este produto em uma escala de 1 a 5 sendo que 5 e a melhor pontuação </value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_REVIEWS_RATE_DESC</key>
+			<class>store</class>
+			<de>
+			<value>Ihre Bewertung</value>
+			</de>
+			<en>
+			<value>Your rating</value>
+			</en>
+			<es>
+			<value>Su evaluación</value>
+			</es>
+			<bp>
+			<value>Sua qualificação</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_REVIEWS_TITLE_DESC</key>
+			<class>store</class>
+			<de>
+			<value>Titel Ihrer Bewertung</value>
+			</de>
+			<en>
+			<value>Title of your review</value>
+			</en>
+			<es>
+			<value>Título de su evaluación</value>
+			</es>
+			<bp>
+			<value>Titulo da qualificação</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_REVIEWS_TEXT_DESC</key>
+			<class>store</class>
+			<de>
+			<value>Text Ihrer Bewertung</value>
+			</de>
+			<en>
+			<value>Text of your review</value>
+			</en>
+			<es>
+			<value>Texto de su calificación</value>
+			</es>
+			<bp>
+			<value>Texto da qualificação</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_REVIEWS_ERROR_LOGIN</key>
+			<class>store</class>
+			<de>
+			<value>Um eine Bewertung zu schreiben müssen Sie angemeldet sein.</value>
+			</de>
+			<en>
+			<value>Please login to write a review</value>
+			</en>
+			<es>
+			<value>Para realizar una evaluación debe estar registrado.</value>
+			</es>
+			<bp>
+			<value>Para realizar uma qualificação você deve estar logado</value>
+			</bp>
+		</phrase>
+		<phrase>
+		<key>TEXT_XT_REVIEWS_HEADING_REVIEWS</key>
+			<class>store</class>
+			<de>
+			<value>Bewertungen</value>
+			</de>
+			<en>
+			<value>Reviews</value>
+			</en>
+			<es>
+			<value>Evaluación(es)</value>
+			</es>
+			<bp>
+			<value>Qualificaçoes</value>
+			</bp>
+		</phrase>
+		<phrase>
+		<key>TEXT_XT_REVIEWS_EDITOR</key>
+			<class>store</class>
+			<de>
+			<value>Geschrieben von</value>
+			</de>
+			<en>
+			<value>Wrote by</value>
+			</en>
+			<es>
+			<value>Escrito por</value>
+			</es>
+			<bp>
+			<value>Escrito por</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_REVIEW_SOURCE</key>
+			<class>admin</class>
+			<de>
+		        <value>Quelle</value>
+			</de>
+			<en>
+				<value>Source</value>
+			</en>
+			<es>
+				<value>Source</value>
+			</es>
+			<bp>
+				<value>Fonte</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_REVIEWS_NO_REVIEWS</key>
+			<class>store</class>
+			<de>
+			<value>Zu diesem Artikel existieren noch keine Bewertungen</value>
+			</de>
+			<en>
+			<value>There are no reviews for this product</value>
+			</en>
+			<es>
+			<value>Aún no hay evaluaciones sobre este artículo</value>
+			</es>
+			<bp>
+			<value>Nenhuma qualificação para este produto</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>XT_REVIEWS_ADD_SUCCESS</key>
+			<class>store</class>
+			<de>
+			<value>Vielen Dank für Ihre Bewertung!</value>
+			</de>
+			<en>
+			<value>Thank you for your review!</value>
+			</en>
+			<es>
+			<value>¡Muchas gracias por su evaluación!</value>
+			</es>
+			<bp>
+			<value>Muito obrigado por sua reputação inserida</value>
+			</bp>
+		</phrase>
+		<phrase>
+		<key>TEXT_ADMIN_COMMENT</key>
+			<class>admin</class>
+			<de>
+			<value>Kommentar von admin</value>
+			</de>
+			<en>
+			<value>Admin's comment</value>
+			</en>
+			<es>
+			<value>Comentario de admin</value>
+			</es>
+			<bp>
+			<value>O comentário de administrador</value>
+			</bp>
+		</phrase>
+		<phrase>
+		<key>TEXT_REVIEW_DATE</key>
+			<class>store</class>
+			<de>
+			<value>Review Datum</value>
+			</de>
+			<en>
+			<value>Review Date</value>
+			</en>
+			<es>
+			<value>Valoración de la fecha</value>
+			</es>
+			<bp>
+			<value>revisar data</value>
+			</bp>
+		</phrase>
+		<phrase>
+		<key>TEXT_REVIEW_STATUS</key>
+			<class>store</class>
+			<de>
+			<value>Review Status</value>
+			</de>
+			<en>
+			<value>Review Status</value>
+			</en>
+			<es>
+			<value>Valoración del estado</value>
+			</es>
+			<bp>
+			<value>revisar status</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_REVIEW_LANGUAGE_CODE</key>
+			<class>store</class>
+			<de>
+			<value>language</value>
+			</de>
+			<en>
+			<value>language</value>
+			</en>
+			<es>
+			<value>language</value>
+			</es>
+			<bp>
+			<value>language</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_REVIEW_TEXT</key>
+			<class>store</class>
+			<de>
+			<value>Reviews Text</value>
+			</de>
+			<en>
+			<value>Reviews Text</value>
+			</en>
+			<es>
+			<value>Valoración del texto</value>
+			</es>
+			<bp>
+			<value>revisar texto</value>
+			</bp>
+		</phrase>
+		<phrase>
+			<key>TEXT_REVIEW_RATING</key>
+			<class>store</class>
+			<de>
+			<value>Bewertung</value>
+			</de>
+			<en>
+			<value>rating</value>
+			</en>
+			<es>
+			<value>Valoración</value>
+			</es>
+			<bp>
+			<value>avaliação</value>
+			</bp>
+		</phrase>
+	</language_content>
+	<configuration>
+		<config>
+			<key>XT_REVIEWS_MAX_DISPLAY_PRODUCTS</key>
+			<value>5</value>
+			<de>
+				<title>Anzahl Bewertungen</title>
+			</de>
+			<en>
+				<title>Max. reviews</title>
+			</en>
+			<es>
+				<title>Número de evaluaciones</title>
+			</es>
+			<bp>
+				<title>Numero maximo de reputação </title>
+			</bp>
+		</config>
+		<config>
+			<key>XT_REVIEWS_ALL_REVIEWS_PAGE</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Alle Bewertungen Seite</title>
+			</de>
+			<en>
+				<title>all reviews page</title>
+			</en>
+			<es>
+				<title>evaluaciones Página</title>
+			</es>
+			<bp>
+				<title>Todas reputação na pagina</title>
+			</bp>
+		</config>
+		<config>
+			<key>XT_REVIEWS_PRODUCT_ON_ALL_REVIEWS_PAGE</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Produktdaten auf Bewertungen Seite</title>
+			</de>
+			<en>
+				<title>Productdaten on reviews page</title>
+			</en>
+			<es>
+				<title>evaluaciones Página</title>
+			</es>
+		</config>
+		<config>
+			<key>XT_REVIEWS_AUTO_ACTIVATE</key>
+			<value>false</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>automatischen freischalten</title>
+			</de>
+			<en>
+				<title>enable automatic</title>
+			</en>
+			<es>
+				<title>permitirá automático</title>
+			</es>
+		</config>
+		<config>
+			<key>XT_REVIEWS_MASTER_SLAVE</key>
+			<value>default</value>
+			<type>dropdown</type>
+			<url>xt_reviews_master_slave</url>
+			<de>
+				<title>xt_master_slave</title>
+			</de>
+			<en>
+				<title>xt_master_slave</title>
+			</en>
+			<es>
+				<title>xt_master_slave</title>
+			</es>
+		</config>
+		<config>
+			<key>XT_REVIEWS_NOTIFY_ADMIN</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>notify admin for new review</title>
+			</de>
+			<en>
+				<title>notify admin for new review</title>
+			</en>
+			<es>
+				<title>notify admin for new review</title>
+			</es>
+		</config>
+		<config>
+			<key>XT_REVIEWS_ALLOW_GUEST_REVIEWS</key>
+			<value>false</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Allow guest reviews</title>
+			</de>
+			<en>
+				<title>Allow guest reviews</title>
+			</en>
+			<es>
+				<title>Allow guest reviews</title>
+			</es>
+		</config>
+		<config>
+			<key>XT_REVIEWS_LAST_REVIEWS_CATEGORY_FILTER</key>
+			<value>false</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Last reviews category filter</title>
+			</de>
+			<en>
+				<title>Last reviews category filter</title>
+			</en>
+			<es>
+				<title>Last reviews category filter</title>
+			</es>
+		</config>
+		<config>
+			<key>XT_REVIEWS_TOP_RATED_CATEGORY_FILTER</key>
+			<value>false</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Top rated category filter</title>
+			</de>
+			<en>
+				<title>Top rated category filter</title>
+			</en>
+			<es>
+				<title>Top rated category filter</title>
+			</es>
+		</config>
+	</configuration>
+</xtcommerceplugin>

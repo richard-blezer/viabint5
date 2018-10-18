@@ -1,0 +1,6 @@
+{if $PRICE!=''}
+{$TEXT_FROM} {$PRICE}
+{else}
+<span class="price-old">{$TEXT_MSRP} {$OLD_PRICE}</span>
+<span class="price-new">{$TEXT_YOUR_PRICE} {$SPECIAL_PRICE}</span>
+{/if}

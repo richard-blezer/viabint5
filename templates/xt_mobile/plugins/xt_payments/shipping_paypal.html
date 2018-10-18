@@ -1,0 +1,50 @@
+{if $shipping_hidden == true}
+	<div>
+       {form type=radio class=autosubmit name=selected_shipping value=$shipping_code checked=true params='onClick="this.form.submit();"'}
+	   
+	   {$shipping_name}
+	   
+	   {if $shipping_price.formated}
+		({$shipping_price.formated})
+		{/if}
+		
+		{if $shipping_icon}
+			{img img=$shipping_icon type=w_media_shipping alt=$shipping_name}
+		{/if}
+		
+        {if $shipping_desc}<p class="shipping-desc" style="padding-left:25px;">{$shipping_desc}</p>{/if}
+	</div><!-- .box .box-white .box-hover -->
+{else}
+    {if $shipping_code == $shipping_selected}
+	<div>
+	{form type=radio class=autosubmit name=selected_shipping value=$shipping_code checked=true}
+	
+	{$shipping_name}
+	
+	{if $shipping_price.formated}
+		({$shipping_price.formated})
+	{/if}
+            {if $shipping_icon}
+				{img img=$shipping_icon type=w_media_shipping alt=$shipping_name}
+			{/if}
+           
+     {if $shipping_desc}<p class="shipping-desc" style="padding-left:25px;">{$shipping_desc}</p>{/if}
+	</div><!-- .box .box-white .box-hover -->
+	{else}
+	<div>
+        {form type=radio class=autosubmit name=selected_shipping value=$shipping_code params='onClick="this.form.submit();"'}
+		
+		{$shipping_name}
+		
+		{if $shipping_price.formated}
+			({$shipping_price.formated})
+		{/if}
+            
+			{if $shipping_icon}
+				{img img=$shipping_icon type=w_media_shipping alt=$shipping_name}
+			{/if}
+            
+            {if $shipping_desc}<p class="shipping-desc" style="display:none;padding-left: 25px;">{$shipping_desc}</p>{/if}
+	</div><!-- .box .box-white .box-hover -->
+	{/if}
+{/if}

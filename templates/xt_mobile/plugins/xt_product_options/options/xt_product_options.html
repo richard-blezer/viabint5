@@ -1,0 +1,56 @@
+{if $options!=''}
+
+    <div class="xtm-product-options" data-role="collapsible" data-inset="false" data-theme="c" data-collapsed="false">
+        <h2>Produkt Optionen</h2>
+
+        {$product_options_javascript}
+
+        <!-- Info messages validation messages -->
+        {$message}
+
+        <!-- Reedit Options -->
+        {if $reedit_options}
+            {$reedit_form}
+        {/if}
+
+        <!-- Product Options Content -->
+        <div id="optionsContainer_{$products_unique_key}">
+            {foreach name=outer item=options_data from=$options}
+                <div class="xtpo_group_{$options_data.option_group_id}">
+                    <div data-role="header" data-theme="c">
+                        <h2>{$options_data.option_group_name}</h2>
+                    </div>
+                    {if $options_data.option_group_desc}
+                        <div>{$options_data.option_group_desc}</div>
+                    {/if}
+
+                    <div data-role="controlgroup" id="xtpo_group_{$options_data.option_group_id}">
+                        {foreach name=inner key=key_data item=item_data from=$options_data.option_group_values}
+                            {$item_data.content}
+                        {/foreach}
+                    </div>
+                </div>	
+            {/foreach}
+        </div>
+        <!-- Product Options Content ENDE-->
+        
+        <!-- Produkt Optionen Liveberechnung Ausgabe -->
+        <div id="optionsCalcContainer_{$products_unique_key}">
+
+        </div>
+        
+        {if $smarty.const.XT_PRODUCT_OPTIONS_LIVE_CALC_TYPE == 'button'}
+            <button type="submit" id="optionsCalcButton_{$products_unique_key}" >{txt key=TEXT_XT_PRODUCT_OPTIONS_CALC_BUTTON}</button>
+        {/if}
+        <!-- Produkt Optionen Liveberechnung Ausgabe ENDE -->
+
+        <div style="clear:both;"></div>
+
+        <!-- Reedit Options -->
+        {if $reedit_options}
+            {button text=$smarty.const.BUTTON_SAVE file='PO_save_.gif' type='form' onclick=$save_action btn_template='tpl_button_2.gif'}
+            {button text=$smarty.const.BUTTON_BACK file='PO_cancel_.gif' type='form' onclick=$stop_action btn_template='tpl_button_2.gif'}
+        {/if}
+    </div>
+{/if}
+

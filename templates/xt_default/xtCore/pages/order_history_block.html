@@ -1,0 +1,20 @@
+<table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="4">
+	<tr class="headerrow">
+      <td class="left">{txt key=TEXT_ORDER_NUMBER}</td>
+      <td class="left">{txt key=TEXT_ORDER_DATE}</td>
+      <td class="left">{txt key=TEXT_ARTICLE}</td>
+      <td class="left">{txt key=TEXT_TOTAL}</td>
+	  <td class="right">{txt key=TEXT_ORDER_STATUS}</td>
+	  <td class="right"> </td>
+    </tr>
+  {foreach name=aussen item=data from=$order_data}
+    <tr class="{cycle values="contentrow1,contentrow2"}">
+    <td>{$data.order_data.orders_id}</td>
+    <td><strong>{$data.order_data.date_purchased}</strong></td>
+    <td>{$data.order_count}</td>
+    <td>{$data.order_total.total.formated}</td>
+	<td>{$data.order_data.orders_status}</td>
+	<td><a href="{link page='customer' paction=order_info params=oid params_value=$data.order_data.orders_id conn=SSL}">{img img=magnifier.png type=mi class=productImageBorder}</a></td>
+  </tr>
+  {/foreach}
+</table>

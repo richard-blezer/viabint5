@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xtcommerce_language>
+	<name>简体中文</name>
+	<code>cn</code>
+    <version>4.0.13.1</version>
+	<image>cn.gif</image>
+	<sort_order>1</sort_order>
+	<language_charset>utf-8</language_charset>
+	<default_currency>CNY</default_currency>
+	<font>ume-pgc4.ttf</font>
+	<font_size>11</font_size>
+	<font_position>17</font_position>
+	<setlocale>zh_CN;zh-CN;cn</setlocale>
+	<translated />
+</xtcommerce_language>

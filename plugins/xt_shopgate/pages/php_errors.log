@@ -1,0 +1,12 @@
+[11-Apr-2011 08:39:18] PHP Warning:  include_once(/home/www/shopgate_framework/xtFramework/admin/main.php) [<a href='function.include-once'>function.include-once</a>]: failed to open stream: No such file or directory in /home/www/shopgate_framework/plugins/veyton/pages/iframe_wrapper.php on line 20
+[11-Apr-2011 08:39:18] PHP Stack trace:
+[11-Apr-2011 08:39:18] PHP   1. {main}() /home/www/shopgate_framework/plugins/veyton/pages/iframe_wrapper.php:0
+[11-Apr-2011 08:39:18] PHP Warning:  include_once() [<a href='function.include'>function.include</a>]: Failed opening '/home/www/shopgate_framework/xtFramework/admin/main.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/www/shopgate_framework/plugins/veyton/pages/iframe_wrapper.php on line 20
+[11-Apr-2011 08:39:18] PHP Stack trace:
+[11-Apr-2011 08:39:18] PHP   1. {main}() /home/www/shopgate_framework/plugins/veyton/pages/iframe_wrapper.php:0
+[11-Apr-2011 08:39:18] PHP Notice:  Undefined variable: xtc_acl in /home/www/shopgate_framework/plugins/veyton/pages/iframe_wrapper.php on line 21
+[11-Apr-2011 08:39:18] PHP Stack trace:
+[11-Apr-2011 08:39:18] PHP   1. {main}() /home/www/shopgate_framework/plugins/veyton/pages/iframe_wrapper.php:0
+[11-Apr-2011 08:39:18] PHP Fatal error:  Call to a member function isLoggedIn() on a non-object in /home/www/shopgate_framework/plugins/veyton/pages/iframe_wrapper.php on line 21
+[11-Apr-2011 08:39:18] PHP Stack trace:
+[11-Apr-2011 08:39:18] PHP   1. {main}() /home/www/shopgate_framework/plugins/veyton/pages/iframe_wrapper.php:0

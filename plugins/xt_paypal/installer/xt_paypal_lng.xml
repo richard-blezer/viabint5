@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>BUTTON_CAPTURE_PAYPAL_FUNDS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Capture amount from PayPal]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Betrag von PayPal einziehen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PP_INVALID_REFUND_AMOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Invalid refund amount. Check refund typ refunds already made for this order]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ungültiger Betrag. Prüfen Sie den Typ der Rückzahlung und bereits getätigte Rückzahlungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_CALLBACK_LOG_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Callback ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Callback ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_AUTODETECT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[autodetect]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Automatisch erkennen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_CAPTURE_ERROR</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Error:]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Fehler:]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_CAPTURE_SUCCESS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Capture of amount was successfull]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Betrag erfolgreich eingezogen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_GET_FUNDS_ASK</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Capture order amount from PayPal Account?]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellsumme vom PayPal Konto einziehen?]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_PAYMENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Payment]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlungsweise]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_REFUNDS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Paypal Refunds]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paypal Rückzahlungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_TEST_CONNECTION</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Check connection to PayPal-Server]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Verbindung zu PayPal-Server testen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_TRANSACTIONS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Paypal Transactions]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paypal Transaktionen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_REFUNDED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Refunded]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Refunded]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_REFUNDS_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Refund_id]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Refund_id]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_REFUNDS_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Refund type]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Refund Typ]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_REFUNDS_TYPE_FULL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Full]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Full]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_REFUNDS_TYPE_PARTIAL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Partial]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Partial]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_REFUND_MEMO</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Memo]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bemerkung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PAYPAL_REFUNDS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Paypal Refunds]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paypal Refunds]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_ACCOUNT_MAIL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[send account mail]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sende Email wenn Account generiert wird.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_API_PWD_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal-API-Password (Live)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal-API-Passwort (Live)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_API_SANDBOX_PWD_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal-API-Password (Sandbox)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal-API-Passwort (Sandbox)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_API_SANDBOX_SIGNATURE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal-API-Signature (Sandbox)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal-API-Signatur (Sandbox)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_API_SANDBOX_USER_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal-API-User (Sandbox)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal-API-Benutzer (Sandbox)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_API_SIGNATURE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal-API-Signature (Live)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal-API-Signatur (Live)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_API_USER_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal-API-User (Live)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal-API-Benutzer (Live)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_BORDER_COLOR_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Color for Paypal Page (Format: FF0000)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Farbe für Paypal Seite (Format: FF0000)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_CORRECTION_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[automatic correction]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Automatische Korrektur.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_EXPRESS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate PayPal Express]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal Express aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_LOGO_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Logo URL for PayPal Page (Size: 190x60px only https request !!!)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Logo URL für PayPal Zahlungsseite (Größe: 190x60px Nur über https aufrufbar !!!)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_MODE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Testmode (Sandbox)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Testmodus (Sandbox)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_ORDER_STATUS_COMPLETED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Completed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - Zahlung abgeschlossen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_ORDER_STATUS_DENIED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Denied]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - Abgelehnt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_ORDER_STATUS_FAILED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Failed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - Fehler]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_ORDER_STATUS_NEW_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[New Order Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[New Order Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_ORDER_STATUS_PENDING_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Pending]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - In Bearbeitung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_ORDER_STATUS_REFUNDED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Refunded]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - Zurückgezahlt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_ORDER_STATUS_REVERSED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Reversed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - Storniert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_PAYMENT_TYPE_ORDER_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Capture money immediately]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kundenkonto sofort belasten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_EXPRESS_ERROR_UNSUPPORTED_COUNTRY</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Shipping to selected address is not possible.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ein Versand an die von Ihnen gewählte Adresse ist nicht möglich.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_CHECKOUT_PAYPAL_CONFIRMATION_DESC</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please check all informations and click on (confirm order)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte prüfen Sie alle Angaben und klicken Sie auf (Bestellung bestätigen)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_EXPRESS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[PayPal Express Checkout]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal Express Checkout]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_PAYMENT</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Paymentmethod]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlungsweise]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_PAYMENT_CORRECTION_PRODUCT_NAME</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Correction]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Korrektur]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_PAYMENT_CORRECTION_PRODUCT_NUMBER</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Handling]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Handling]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYPAL_TEXT_EXPRESS_CART</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[<small>If you push the button <b>Express-Buy with PayPal</b> you will be automatically forwarded to PayPal. Login with your PayPal account and authorise your payment. After authorizing your payment you come back to the shop and finalize your purchase.</small>]]></value>
+	</en>
+	<de>
+		<value><![CDATA[<small>Wenn Sie auf <b>Express-Kauf mit PayPal</b> klicken, werden Sie automatisch zu PayPal weitergeleitet. Dort können Sie sich mit Ihrer PayPal-Email anmelden und die Zahlung freigeben. Sie kommen danach zurück in den Shop, wo Sie den Kauf dann endgültig abschließen können.</small>]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

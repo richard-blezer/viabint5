@@ -1,0 +1,5 @@
+<ul>
+{foreach name=aussen item=breadcrumb from=$top_navigation}
+<li><a class="pathway" href="{$breadcrumb.url}" title="{$breadcrumb.name|escape:"html"}">{$breadcrumb.name|escape:"html"}</a></li>
+{/foreach}
+</ul>

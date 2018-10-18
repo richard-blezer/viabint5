@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_CERTIFICATESTATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Certificate state]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zertifikat-Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_CERTIFICATETYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Certificate type]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zertifikat-Typ]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_CERTIFICATE_KEY</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Certificate key]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zertifikat-Schlüssel]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_DONT_SHOW</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[don\'t show]]></value>
+	</en>
+	<de>
+		<value><![CDATA[nicht anzeigen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_RATE_LATER_AFTER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[\"Rate later\"-Email after x days]]></value>
+	</en>
+	<de>
+		<value><![CDATA[\"Später bewerten\"-Email nach x Tagen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_RATINGENABLED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Rating enabled]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bewertungen aktiv]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHOW_BADGE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Show badge layer]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Badge-Layer anzeigen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHOW_BADGE_POS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Badge layer px from bottom]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Badge-Layer px von unten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHOW_RATING</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Show ratings box]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bewertungen Box anzeigen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHOW_RICH_SNIPPETS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Rich Snippets active]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rich Snippets aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHOW_SEAL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Show seal box]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Siegel Box anzeigen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHOW_VIDEO</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Show video-ad box]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Video-Ad Box anzeigen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_BADGE_SIZE_DEFAULT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[default]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Standart]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_BADGE_SIZE_REVIEWS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[review]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Übersicht]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_BADGE_SIZE_SMALL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[small]]></value>
+	</en>
+	<de>
+		<value><![CDATA[klein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_BADGE_SIZE_TEXT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[text]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Text]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_INVALID_TS_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Please contact Trusted Shops at service@trustedshops.de]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte kontaktieren Sie Trusted Shops unter service@trustedshops.de]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_LNG</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Language]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sprache]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_REFRESH</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Update certificate state]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zertifikatstatus aktualisieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_SUCCESS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[The data has been saved]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Die Daten wurden gespeichert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_URL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shop-URL]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Shop-URL]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_TRUSTED_SHOPS_CERTIFICATES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Trusted Shops Certificates]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Trusted Shops Zertifikate]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TPL_TS_RATE_LATER_INFO</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Yes, I would like to “rate my purchase later” and receive a one-off e-mail from Trusted Shops after {rate_after_days} days reminding me to submit my rating]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ja, ich möchte meinen Einkauf „später bewerten“ und von Trusted Shops nach {rate_after_days} Tagen einmalig per E-Mail an die Abgabe eine Bewertung erinnert werden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_NOSCRIPT</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Trusted Shops Seal of Approval - click to verify.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Klicken Sie auf das Gütesiegel, um die Gültigkeit zu prüfen!]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_OPEN_REVIEWS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Show customer reviews]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kundenmeinungen ansehen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_RATE_NOW</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Rate shop now]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Shop jetzt bewerten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_RATE_NOW_INFO</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Were you satisfied with our service? Please write a review and rate us.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Waren Sie mit Ihrem Einkauf und unserem Service zufrieden? Hier können Sie uns bewerten.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TS_CERTIFICATE_SHOW</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Show certificate]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zertifikat anzeigen]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

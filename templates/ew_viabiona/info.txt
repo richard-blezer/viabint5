@@ -1,0 +1,13 @@
+   ___                     _
+  / _ \                   | |
+ | (_) |_      _____  _ __| | _____
+  > _ <\ \ /\ / / _ \| '__| |/ / __|
+ | (_) |\ V  V / (_) | |  |   <\__ \
+  \___/  \_/\_/ \___/|_|  |_|\_\___/
+
+Template "ew_viabiona"
+
+@version:       1.2.0
+@copyright:     Internetagentur 8works <info@8works.de>
+@author:        J. Albert <ja@8works.de>
+@author:        K. Modrow <km@8works.de>

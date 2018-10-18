@@ -1,0 +1,11 @@
+{
+    "orders": {
+        "fields": {
+            "defaultpayment": {
+                "values": {
+                    "matching": "Carry over payment method from _#_platformName_#_"
+                }
+            }
+        }
+    }
+}

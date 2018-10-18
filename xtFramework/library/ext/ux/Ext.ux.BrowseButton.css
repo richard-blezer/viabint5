@@ -1,0 +1,36 @@
+.x-bb-buttons-ct {
+	position: relative;
+	height: 22px;
+	margin-bottom: 5px;
+}
+
+.x-bb-input-ct {
+	position: relative;
+    height: 22px;
+	overflow: hidden;
+}
+
+.x-bb-bbtn-ct {
+	position: absolute;
+	height: 22px;
+	right: 0;
+}
+
+.x-bb-input-wrap {
+	position: absolute;
+	opacity: 0.0;
+	-moz-opacity: 0.0;
+	filter: alpha(opacity=0);
+	right:0;
+	height: 22px;
+}
+
+.x-bb-input-wrap input {
+	top: 0;
+	height: 22px;
+	font-size: 14px;
+	cursor: pointer;
+	-moz-user-focus: ignore;
+	border: 0px none transparent;
+	overflow: hidden;
+}

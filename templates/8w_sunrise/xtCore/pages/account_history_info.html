@@ -1,0 +1,178 @@
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+
+<div class="left-side order-info {if $isMobile}no-right full{/if}">
+	<div class="top">
+		<h1>{txt key=TEXT_PAGE_TITLE_ACCOUNT_HISTORY_INFO}</h1>
+		<h2>{txt key=TEXT_ORDER_NUMBER}: {$order_data.orders_id}</h2>
+		<p>{txt key=TEXT_ORDER_DATE}: {$order_data.date_purchased}</p>
+
+
+		<div class="outer-box left">
+			<h3>{txt key=TEXT_SHIPPING_ADDRESS}</h3>
+			<div class="highlightbox">
+				<p>
+				{if $order_data.delivery_company} <span class="medium">{$order_data.delivery_company}</span><br />
+					{$order_data.delivery_firstname} {$order_data.delivery_lastname}<br />
+				{else}
+					<span class="medium">{$order_data.delivery_firstname} {$order_data.delivery_lastname}</span><br />
+				{/if}
+				{$order_data.delivery_street_address}<br />
+				{if $order_data.delivery_suburb} {$order_data.delivery_suburb}<br />{/if}
+				{$order_data.delivery_postcode} {$order_data.delivery_city}<br />
+				{if $order_data.delivery_state}{$order_data.delivery_state} {/if}{$order_data.delivery_country}<br />
+				</p>
+			</div>
+		</div>
+
+		<div class="outer-box middle">
+			<h3>{txt key=TEXT_PAYMENT_ADDRESS}</h3>
+			<div class="highlightbox small middle">
+				<p>
+				{if $order_data.billing_company} <span class="medium">{$order_data.billing_company}</span><br />
+					{$order_data.billing_firstname} {$order_data.billing_lastname}<br />
+				{else}
+					<span class="medium">{$order_data.billing_firstname} {$order_data.billing_lastname}</span><br />
+				{/if}
+				{$order_data.billing_street_address}<br />
+				{if $order_data.billing_suburb} {$order_data.billing_suburb}<br />{/if}
+				{$order_data.billing_postcode} {$order_data.billing_city}<br />
+				{if $order_data.billing_state}{$order_data.billing_state} {/if}{$order_data.billing_country}<br />
+				</p>
+			</div>
+		</div>
+
+		{if $order_data.payment_name}
+		<div class="outer-box right">
+			<h3>{txt key=TEXT_PAYMENT_METHOD}</h3>
+			<div class="highlightbox small right">
+				<p class="medium">{$order_data.payment_name}</p>
+			</div>
+		</div>
+		{/if}
+
+		<div class="clearfix"></div>
+
+		{if $order_data.shipping_method!=''}
+		<div class="highlightbox">
+			<h3>{txt key=TEXT_SHIPPING_METHOD}</h3>
+			<p>{$order_data.shipping_method}</p>
+		</div>
+		{/if}
+			
+
+		{if $order_data.comments!=''}
+		<div class="highlightbox">
+			<h3>{txt key=TEXT_ORDER_COMMENTS}</h3>
+			<p>{$order_data.comments}</p>
+		</div>
+		{/if}
+
+		{if $order_data.payment_info!=''}
+		<div class="highlightbox">
+			<h3>{txt key=TEXT_PAYMENT_INFO}</h3>
+			<p>{$order_data.payment_info}</p>
+		</div>
+		{/if}
+
+		<h3>{txt key=TEXT_ORDER_STATUS_HISTORY}</h3>
+		<div class="highlightbox clearfix order-history">
+			{foreach name=aussen item=history_values from=$order_history}
+			<p class="left">{$history_values.date_added|date_format:"%d.%m.%Y - %H:%M"} <p class="middle">{$history_values.status_name}</p> {if $history_values.customer_show_comment eq '1'}<p class="right">{$history_values.comments}</p>{/if}
+			{/foreach}
+		</div>
+	</div>	
+	<div id="cart">
+		<div class="headline clearfix">
+	      <div class="article"><span>{txt key=TEXT_ARTICLE}</span></div>
+	      <div class="piece"><span>{txt key=TEXT_PIECE_SHORT}</span></div>
+	      {if !$isMobile}
+	      <div class="price"><span>{txt key=TEXT_SINGLE_PRICE}</span></div>
+	      {/if}
+	      <div class="total-price"><span>{txt key=TEXT_TOTAL_WORD}</span></div>
+	    </div>
+	    {foreach name=aussen item=order_values from=$order_products}
+	    	<div class="article-line clearfix">
+		      <div class="image-text">
+		        <div class="inner-image-text clearfix">
+		          <div class="image">
+		          {if $order_values.products_image!=''}<a href="{$order_values.products_link}">{img img=$order_values.products_image type=m_wishlist class=productImageBorder alt=$order_values.products_name}</a>{/if}
+		          </div>
+		          <div class="text">
+		          	{if $isMobile}
+		          	 <div class="piece" style="position:relative">
+			            {$order_values.products_quantity|string_format:"%.0f"|replace:".":" "}
+			        </div>
+			        {/if}
+		            <h2>{$order_values.products_name}</h2>
+		            <div class="package">{$order_values.product_itemcount}</div>
+		            {if $order_values.shipping_status}<div class="delivery">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$order_values.shipping_status}</div>{/if}
+		          </div>
+		          {if !$isMobile}
+		          <div class="piece" style="position:relative">
+		            {$order_values.products_quantity|string_format:"%.0f"|replace:".":" "}
+		          </div>
+		          {/if}
+		        </div>
+		      </div>
+		      <div class="price-box">
+		      	{if !$isMobile}
+		        <div class="price">{$order_values.products_price.formated}</div>
+		        {/if}
+		        <div class="total-price">
+		          <div class="total-price-inner price">
+		            {$order_values.products_final_price.formated}
+		          </div>
+		        </div>
+		      </div>
+		      <div class="clearfix"></div>
+		    </div>
+	    {/foreach}
+
+	    <div class="subtotal clearfix">
+	    	<div class="left"></div>
+	      	<div class="middle">
+	        	<div>{txt key=TEXT_TOTAL_WITHOUT_TAX}:</div>
+				{foreach name=aussen item=order_total_values from=$order_total_data}
+				<div>{$order_total_values.orders_total_name}</div>
+				{/foreach}
+	        	{foreach name=aussen item=tax_data from=$total.total_tax}
+				<div>{txt key=TEXT_TAX} {$tax_data.tax_key}%:</div>
+				{/foreach}
+	    	</div>
+	      	<div class="right">
+	        	<div class="price">
+		          {$total.product_total_otax.formated}
+		        </div>
+				{foreach name=aussen item=order_total_values from=$order_total_data}
+				<div class="price">{$order_total_values.orders_total_price.formated}</div>
+				{/foreach}
+	        	{foreach name=aussen item=tax_data from=$total.total_tax}
+				<div class="price"> {$tax_data.tax_value.formated}</div>
+				{/foreach}
+          	</div>
+      	</div>
+
+      	<div class="sub-total-price clearfix">
+	      <div class="text">
+	        {txt key=TEXT_TOTAL}:
+	      </div>
+	      <div class="price">
+	         {$total.total.formated}
+	      </div>
+	    </div>
+
+	</div>
+	<p class="prev"><a class="return-button" href="{link page='customer' paction=order_overview conn=SSL}"><span>{txt key=BUTTON_BACK}</span></a></p>
+</div>
+{if !$isMobile}
+<div class="right-side boxes">
+  {box name=xt_viabiona_cms type=user tpl=box_our_service.html}
+  {box name=xt_viabiona_cms type=user tpl=box_payment_methods.html}
+</div>
+{/if}
+<div class="clearfix"></div>
+
+{hook key=account_history_info_bottom}

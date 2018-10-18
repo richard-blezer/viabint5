@@ -1,0 +1,18 @@
+  
+<ul data-role="listview" class="xtm-order-history">
+    {foreach name=aussen item=data from=$order_data}
+
+        <li class="item">
+            <a href="{link page='customer' paction=order_info params=oid params_value=$data.order_data.orders_id conn=SSL}">
+                <p class="ui-li-aside">
+                    <span class="info date">{$data.order_data.date_purchased}</span>
+                </p>
+                
+                <span class="info number">{txt key=TEXT_ORDER_NUMBER}: {$data.order_data.orders_id}</span><br />
+                <span class="info status">{txt key=TEXT_ORDER_STATUS}: {$data.order_data.orders_status}</span><br />
+                <span class="info total">{txt key=TEXT_TOTAL}: {$data.order_total.total.formated}</span><br />
+            </a>
+        </li>
+    {/foreach}
+    
+</ul>

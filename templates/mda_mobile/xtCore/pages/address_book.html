@@ -1,0 +1,33 @@
+<h2>{txt key=TEXT_PAGE_TITLE_ADDRESS_BOOK}</h2>
+{$message}
+<!--<a href="{link page='customer' conn=SSL}" data-role="button" data-icon="back">{txt key=BUTTON_BACK}</a>--><p>{txt key=TEXT_ADDRESS_BOOK_INFO}</p>
+
+<div class="highlightbox">
+{foreach name=aussen item=addresses from=$addresses_data}
+	<p>
+		<strong>
+			{if $addresses.customers_company} {$addresses.customers_company} <br />{/if}
+			{$addresses.customers_firstname} {$addresses.customers_lastname} <br />
+		</strong>
+		
+		{$addresses.customers_street_address} <br />
+		{if $addresses.customers_suburb} {$addresses.customers_suburb} <br />{/if}
+		{$addresses.customers_postcode} {$addresses.customers_city} <br />
+		{if $addresses.customers_zone} {$addresses.customers_zone} <br />{/if}
+		{$addresses.customers_country} <br />
+	</p>
+
+	{if $addresses.allow_change == true}
+		<div class="ui-grid-a">
+			<div class="ui-block-a"><a href="{link page='customer' paction=edit_address params=abID params_value=$addresses.address_book_id' conn=SSL}" data-role="button" data-icon="mda_mobile_edit" data-inline="true">{txt key=BUTTON_EDIT}</a></div>
+			<div class="ui-block-b"><a href="{link page='customer' paction=delete_address params=abID params_value=$addresses.address_book_id' conn=SSL}" data-role="button" data-icon="delete" data-inline="true">{txt key=BUTTON_DELETE}</a></div>
+		</div>
+	{/if}
+{/foreach}
+</div>
+
+<p><small>{$address_count} / {$address_max_count} {txt key=TEXT_POSSIBLE_ENTRIES}</small></p>
+
+{if $add_new_address eq 1}
+	<a href="{link page='customer' paction=edit_address' conn=SSL}" data-role="button" data-icon="plus">{txt key=BUTTON_ADD_ADDRESS}</a>
+{/if}

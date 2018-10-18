@@ -1,0 +1,16 @@
+<div id="box-language">
+	<p class="headline">{txt key=TEXT_LANGUAGE}</p>
+	<ul id="languages">
+		{foreach name=aussen item=box_data from=$lang_data}
+        {if $box_data.code eq $smarty.session.selected_language}
+        <li>{img img=$box_data.image type=w_media_flags alt=$box_data.name}</li>
+        {else}
+        {if $box_data.link neq ''}
+        <li><a href="{$box_data.link}">{img img=$box_data.image type=w_media_flags alt=$box_data.name}</a></li>
+        {else}
+        <li><a href="{link page='dynamic' params='action=change_lang&new_lang' params_value=$box_data.code}">{img img=$box_data.image type=w_media_flags alt=$box_data.name}</a></li>
+        {/if}
+        {/if}
+		{/foreach}
+	</ul>
+</div><!-- #box-language -->

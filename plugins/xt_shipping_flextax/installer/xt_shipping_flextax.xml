@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>Flex-Tax Shipping</title>
+<version>1.0.3</version>
+<code>xt_shipping_flextax</code>
+<url>http://www.xt-commerce.com</url>
+<description></description>
+<type>shipping</type>
+<developer>xt:Commerce</developer>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=232]]></marketplace_link>
+<icon>xt-commerce_logo.jpg</icon>
+<db_install><![CDATA[
+if (!$this->_FieldExists('flexible_tax_status',TABLE_SHIPPING)) 
+$db->Execute("ALTER TABLE ".TABLE_SHIPPING." ADD `flexible_tax_status` INT( 11 ) NOT NULL DEFAULT '0';");
+]]></db_install>
+<db_uninstall><![CDATA[
+if ($this->_FieldExists('flexible_tax_status',TABLE_SHIPPING)) 
+$db->Execute("ALTER TABLE ".TABLE_SHIPPING." DROP `flexible_tax_status`");
+]]></db_uninstall>
+<plugin_code>
+<code>
+<hook>class.shipping.php:_calcPrice</hook>
+<phpcode><![CDATA[
+if (is_array($_SESSION['cart']->content_tax) && $data['flexible_tax_status']==1) {
+			$tax_class = $data['shipping_tax_class'];
+			$max_tax=0;
+			foreach ($_SESSION['cart']->content_tax as $key => $arr) {
+				if ($arr['tax_key']>$max_tax) {
+					$max_tax = $arr['tax_key'];
+					$tax_class = $key;
+				}
+			}
+			$data['shipping_tax_class'] = $tax_class;
+}
+
+if (XT_SHIPPING_FLEXTAX_GROSS=='true') {
+    $_flex_tax = $tax->data[$data['shipping_tax_class']];
+    $shipping_price = $price->_removeTax($data['costs']['0']['shipping_price'],$_flex_tax);
+}
+
+
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>class.shipping.php:_calcPrice_bottom</hook>
+<phpcode><![CDATA[
+$shipping_price['shipping_tax_class'] = $data['shipping_tax_class'];
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>class.shipping.php:_buildData_filter</hook>
+<phpcode><![CDATA[
+$shipping_price = $this->_calcPrice($value);
+$value['shipping_tax_class'] = $shipping_price['shipping_tax_class'];
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+<language_content>
+<phrase>
+<key>TEXT_FLEXIBLE_TAX_STATUS</key>
+<class>admin</class>
+<de>
+<value>Flexible Steuerberechnung</value>
+</de>
+<en>
+<value>Flex tax calculation</value>
+</en>
+<es>
+<value>Cálculo del impuesto flexible</value>
+</es>
+<bp>
+<value>Cálculo de imposto flexivel</value>
+</bp>
+</phrase>
+</language_content>
+
+
+<configuration>  
+<config>
+       <key>XT_SHIPPING_FLEXTAX_GROSS</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+       <de>
+           <title>Versandkosten als Brutto definiert</title>
+       </de>
+       <en>
+           <title>Shipping costs defined as gross</title>
+       </en>
+       <es>
+           <title>Los gastos de envío se definen como bruto</title>
+       </es>
+	   <bp>
+<title>Os gastos de envio se definem como bruto</title>
+</bp>
+</config>
+</configuration>  
+
+</xtcommerceplugin>

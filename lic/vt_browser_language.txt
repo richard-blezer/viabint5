@@ -1,0 +1,23 @@
+licCompany: xt:Commerce GmbH
+licFirstName: Mike
+licLastName: Burow
+licEmail: mike.b@xt-commerce.com
+licCountryIso2: DE
+licCreated: 2012-05-04 12:00:00
+licKey: 486536-566928-03e2da-762810-cf888a-49
+licInfo: 
+
+LICENSEKEY: f1a4371a5a768dd975ca76416997d878
+
+------ LICENSE FILE DATA -------
+3Y43235UKSMRMkGkAjFEI2wG0wZcfHph
+/7l/tyQdRpOa6vElDz+KGh2IBkFfQdHD
+/iEBJmM9Es86pmGVe8IP+5HH8amF+CSN
+iqp5R7+tWSujya/waqzBd1d60KF4WOtO
+hdoHSqdyqUOBRoT7+coajNPM+a7+MJse
+fh1g5ojTBqPKFC9pcWJzgAfD9MgapIQg
+uRIdULrJqCVfgO/rg2Fq+NT9DT2jdl89
+4JO1zivaqVor98KBRtEvLDL54M020FJJ
+txKSGIv9pc7WvXeHD/WUe9IMjodVr02h
+xj7XDJmPkxnkCYJcVsM5b4KRcHtK
+--------------------------------

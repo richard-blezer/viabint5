@@ -1,0 +1,31 @@
+{if $payment_hidden == true}
+	<div class="box box-white box-hover">
+		<p class="payment-name" style="display: none;">
+            <span style="width: 25px;">{form type=radio name=selected_payment value=$payment_code checked=true}</span> {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} {if $payment_icon}<span class="float-right">{img img=$payment_icon type=w_media_payment alt=$payment_name}</span>{/if}</p>
+		{if $payment_desc}<p class="payment-desc" style="padding-left:25px;">{$payment_desc}
+    </p>{/if}
+    <div id="walletWidgetDiv">Loading ...</div>
+	</div><!-- .box .box-white .box-hover -->
+{else}
+	{if $payment_code == $payment_selected}
+	<div class="box box-white box-hover">
+		<p class="payment-name" style="display: none;">
+            <span style="display:none;width: 25px;">{form type=radio name=selected_payment value=$payment_code checked=true}</span> {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} {if $payment_icon}<span class="float-right">{img img=$payment_icon type=w_media_payment alt=$payment_name}</span>{/if}</p>
+		{if $payment_desc}<p class="payment-desc" style="padding-left:25px;">{$payment_desc}
+    </p>{/if}
+    <div id="walletWidgetDiv">Loading ...</div>
+	</div><!-- .box .box-white .box-hover -->
+	{else}
+	<div class="box box-white box-hover">
+		<p class="payment-name" style="display: none;">
+            <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code}</span> {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated})</span>{/if} {if $payment_icon}<span class="float-right">{img img=$payment_icon type=w_media_payment alt=$payment_name}</span>{/if}</p>
+		{if $payment_desc}<p class="payment-desc" style="display:none;padding-left:25px;">{$payment_desc}
+    </p>{/if}
+    <div id="walletWidgetDiv">Loading ...</div>
+	</div><!-- .box .box-white .box-hover -->
+	{/if}
+{/if}
+
+
+	
+   

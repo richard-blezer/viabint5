@@ -1,0 +1,36 @@
+#TB_ajaxContent .loading {
+height:50px;
+display:block;
+text-align:center;
+margin-top: 200px;
+background: url(images/loading.gif) no-repeat center center;
+}
+
+#TB_ajaxContent .adressbutton {
+float:right;
+}
+
+#TB_ajaxContent .addresses {
+float:left;
+}
+
+#TB_ajaxContent .hr{
+clear:both;
+}
+
+#content .checkError{
+	background-color: #C64934;
+	color: #ffffff;
+}
+
+#subpage_shippingBlock.checkError,
+#subpage_paymentBlock.checkError{
+	color: #C64934;
+	border: 1px solid #C64934;
+	background-color: transparent;
+}
+
+ul#checkoutnavigation li.checkError{
+	color: #C64934;
+	border: 1px solid #C64934;
+}

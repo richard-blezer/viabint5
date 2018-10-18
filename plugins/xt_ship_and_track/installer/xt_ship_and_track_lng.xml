@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_BULK_GOODS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Bulk goods]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sperrgut]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_CASH_ON_DELIVERY</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Cash on delivery]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Nachnahme]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COLLECT_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Collection date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholdatum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COLLECT_REQUEST_NO</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Collection request number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholauftragsnr.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COL_HERMES_SETTINGS_HINT_LABEL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Hint]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hinweis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_DELETING_TRACKING</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Deleting tracking]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Tracking wird gelöscht]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_BULK_GOOD</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Bulk goods]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sperrgut]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_CHECKING_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Requesting status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status wird abgerufen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_CHECK_SETTINGS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Check Hermes settings!]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes-Enstellungen überprüfen !]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_CREATING_ORDER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Creating Hermes order]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes-Auftrag wird angelegt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_DELETING_ORDER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Deleting Hermes order]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes-Auftrag wird gelöscht]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_PRINT_SELECTION</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Print selected]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Markierte drucken]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_PWD</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Hermes ProfiPaketService password]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes ProfiPaketService Passwort]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_REFRESH</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Reload status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status neuladen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_REFRESHING</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Refreshing data]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Daten werden abgerufen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_SANDBOX</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Test mode (sandbox)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Testmodus (Sandbox)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_SETTINGS_HINT_TEXT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Please enter your Hermes ProfiPaketService login information. Other credentials (eg myhermes.de) do not work! If you are not a ProfiPaketService user, please contact the Hermes sales department.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte tragen Sie hier Ihre Hermes ProfiPaketService Zugangsdaten ein. Andere Zugänge (z.B. myhermes.de) funktionieren nicht! Falls Sie noch keinen ProfiPaketService Account haben, setzen Sie sich bitte mit dem Hermes Vertrieb in Verbindung.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_USER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Hermes ProfiPaketService user]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes ProfiPaketService Nutzer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PARCEL_CLASS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Parcel class]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paketklasse]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRINT_LABEL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Print label]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Paketschein drucken]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_REQUESTING_COLLECT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Requestion collection]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholung wird beauftragt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_REQUEST_COLLECT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Request collect]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholung beauftragen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SEND_MAIL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Send Info-Email for customer]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Info-Email an Kunden senden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPPERS_PAGE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Tracking webpage]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Webseite zur Sendungsverfolgung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPPER_CODE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipper code]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versender-Code]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPPER_ENABLED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[enabled]]></value>
+	</en>
+	<de>
+		<value><![CDATA[aktiv]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPPER_NAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipper name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versender-Name]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SHIPPER_TRACKING_URL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Tracking URL]]></value>
+	</en>
+	<de>
+		<value><![CDATA[URL zur Sendungsverfolgung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRACKING_MAIL_SENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipment information sent]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versandinformationen wurden gesendet]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_HERMES_COLLECT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Collections]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Abholungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_HERMES_SETTINGS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Settings]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Einstellungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ORDERS_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[xt order number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[xt-Bestellnummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SHIPPER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipper]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versender]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ADD_HERMES_PARCEL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Create Hermes parcel order]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes Paket-Auftrag anlegen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ADD_TRACKING</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Add shipment number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sendungsnummern hinzufügen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_AMOUNT_CASH_ON_DELIVERY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Amount cash on delivery]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Nachnahmebetrag]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_ORDER_NO</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Order number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Auftragsnummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_SHIPPING_ID</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Shipment ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sendungs-ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_HERMES_STATUS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRACKING</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Shipment tracking]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sendungsverfolgung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRACKING_CODE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Shipment number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sendungsnummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRACKING_SHIPPER</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Shipper]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versender]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_HERMES_PARCELS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Hermes parcels]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes-Pakete]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SHIP_AND_TRACK</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Hermes parcels]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Hermes-Sendungen]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

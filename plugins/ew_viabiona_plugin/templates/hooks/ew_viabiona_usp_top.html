@@ -1,0 +1,27 @@
+{if $data}
+    <div class="usp-container pos{$position} visible-md visible-lg">
+        <div class="row listing">
+            {assign var="animationDelay" value="200"}
+            {php}$i = 0;{/php}
+            {foreach name=usp key=key item=item from=$data}
+                {math assign="animationDelay" equation='x+y' x=$animationDelay y=300}
+                <div class="col col-md-4 wow zoomIn text-word-wrap" data-wow-delay="{$animationDelay}ms" data-wow-duration="500ms">
+                    <div class="section panel-shadow hvr-float{if $item.link} cursor-pointer{/if}"{if $item.image} style="background-image: url('{img img=$item.image type=m_org path_only=true}');"{/if}{if $item.link} onclick="document.location.href='{$item.link}'"{/if}>
+                        <p class="heading h2">
+                            {if $item.link}<a href="{$item.link}">{/if}
+                            {$item.heading}
+                            {if $item.link}</a>{/if}
+                        </p>
+                        {if $item.short_content}
+                            {$item.short_content}
+                        {/if}
+                    </div>
+                </div>
+                {php}
+                    $i++;
+                    if ($i == 3) { $i = 0; echo '</div><div class="row listing">'; }
+                {/php}
+            {/foreach}
+        </div>
+    </div>
+{/if}

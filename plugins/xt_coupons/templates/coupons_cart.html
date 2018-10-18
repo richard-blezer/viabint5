@@ -1,0 +1,7 @@
+<div class="box">
+	<p class="headline">{txt key=TEXT_COUPON_HEADLINE}</p>
+	{form type=form name=process action='cart' method=post conn=SSL}
+	{form type=hidden name=special value=coupon}
+	{txt key=TEXT_COUPON_LABEL} {form type=text id=coupon_code name=coupon_code params='maxlength="20"'} {css_button text=$smarty.const.TEXT_COUPON_BUTTON type='form'}
+	{form type=formend}
+</div><!-- .box -->

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf8"?>
+<image_type>
+    <!-- products -->
+    <type>
+        <dir>thumb</dir>
+        <width>300</width>
+        <height>450</height>
+        <watermark>false</watermark>
+        <processing>true</processing>
+        <class>default</class>
+    </type>
+    <type>
+        <dir>info</dir>
+        <width>350</width>
+        <height>700</height>
+        <watermark>false</watermark>
+        <processing>true</processing>
+        <class>default</class>
+    </type>
+    <type>
+        <dir>icon</dir>
+        <width>70</width>
+        <height>70</height>
+        <watermark>false</watermark>
+        <processing>true</processing>
+        <class>default</class>
+    </type>
+    <type>
+        <dir>sidebar</dir>
+        <width>208</width>
+        <height>208</height>
+        <watermark>false</watermark>
+        <processing>true</processing>
+        <class>default</class>
+    </type>
+    <!-- categorie listing -->
+    <type>
+        <dir>category-thumb</dir>
+        <width>350</width>
+        <height>338</height>
+        <watermark>false</watermark>
+        <processing>true</processing>
+        <class>category</class>
+    </type>
+    <!-- teaser -->
+    <type>
+        <dir>teaser-thumb</dir>
+        <width>480</width>
+        <height>960</height>
+        <watermark>false</watermark>
+        <processing>true</processing>
+        <class>content</class>
+    </type>
+</image_type>

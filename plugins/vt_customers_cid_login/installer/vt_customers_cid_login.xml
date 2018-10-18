@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+<title>Kundennummern Login</title>
+<version>1.2.1</version>
+<code>vt_customers_cid_login</code>
+<url>http://www.bui-hinsche.de</url>
+<icon>bui.png</icon>
+<description>Login with postalcode and customer_cid</description>
+<type>core</type>
+<plugin_code>
+	<code>
+		<hook>store_main.php:bottom</hook>
+		<phpcode><![CDATA[
+
+			if(BUI_CUSTOMERS_LOGIN_ACTIVE=='true' && defined('USER_POSITION')) {
+				include "plugins/vt_customers_cid_login/hooks/bottom.php";
+			}
+		
+		
+		]]></phpcode>
+		<order>1</order>
+		<active>1</active>
+	</code>
+	<code>
+	<hook>module_customer.php:failed_login</hook>
+	<phpcode><![CDATA[
+			if(BUI_CUSTOMERS_LOGIN_ACTIVE=='true' && defined('USER_POSITION')) {
+				include "plugins/vt_customers_cid_login/hooks/failed_login.php";
+			}
+
+	]]></phpcode>
+	<order>1</order>
+	<active>1</active>
+	</code>
+	<code>
+	<hook>module_customer.php:pre_login</hook>
+	<phpcode><![CDATA[
+
+			if(BUI_CUSTOMERS_LOGIN_ACTIVE=='true' && defined('USER_POSITION')) {
+				include "plugins/vt_customers_cid_login/hooks/pre_login.php";
+			}		
+	]]></phpcode>
+	<order>1</order>
+	<active>1</active>
+	</code>		
+	<code>
+	<hook>class.customer_check.php:_checkCurrentPassword_top</hook>
+	<phpcode><![CDATA[
+
+			if(BUI_CUSTOMERS_LOGIN_ACTIVE=='true' && defined('USER_POSITION')) {
+				include "plugins/vt_customers_cid_login/hooks/checkCurrentPassword_top.php";
+			}		
+	]]></phpcode>
+	<order>1</order>
+	<active>1</active>
+	</code>		
+</plugin_code>	<configuration>
+		<config>
+			<key>BUI_CUSTOMERS_LOGIN_ACTIVE</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Status</title>
+				<description>an / aus</description>
+			</de>
+			<en>
+				<title>Status</title>
+				<description>on / off</description>
+			</en>
+		</config>
+		<config>
+			<key>BUI_CUSTOMERS_LOGIN_EMAIL_CHECK</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Check ob Kunden-EMail hinterlegt</title>
+				<description>an / aus</description>
+			</de>
+			<en>
+				<title>Check if customers has email</title>
+				<description>on / off</description>
+			</en>
+		</config>
+	</configuration>
+	<language_content>
+		<phrase>
+			<key>BUI_CUSTOMERS_LOGIN_EMAIL</key>
+			<class>store</class>
+			<de>
+				<value>Bitte geben Sie eine EMail-Adresse an, da diese f&amp;uuml;r den Shop (z.B.: Bestellvorgang) ben&amp;ouml;tigt wird.</value>
+			</de>
+			<en>
+				<value>Add Categorie</value>
+			</en>
+		</phrase>
+	</language_content>
+</xtcommerceplugin>

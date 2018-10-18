@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Google Analytics</title>
+    <version>2.0.1</version>
+    <code>xt_googleanalytics</code>
+    <url>http://www.xt-commerce.com</url>
+    <description>Google analytics plugin</description>
+    <developer>xt:Commerce</developer>
+    <type>marketing</type>
+    <icon>logo_admin.gif</icon>
+    <minimumupdateversion>1.0.1</minimumupdateversion>
+    <db_update>
+    <update>
+        <version>1.0.1</version>
+        <to_version>2.0.0</to_version>
+        <code><![CDATA[
+				]]>
+        </code>
+    </update>
+    <update>
+        <version>2.0.0</version>
+        <to_version>2.0.1</to_version>
+        <code><![CDATA[
+				]]>
+        </code>
+    </update>	
+    </db_update>
+    <plugin_code>
+        <code>
+            <hook>index_footer_tpl</hook>
+            <phpcode><![CDATA[
+                require _SRV_WEBROOT.'plugins/xt_googleanalytics/classes/class.xt_googleanalytics.php';
+                $google_analytics = new google_analytics();
+                $google_analytics->_getCode();
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+    <configuration>
+        <config>
+            <key>XT_GOOGLE_ANALYTICS_UA</key>
+            <value></value>
+            <de>
+                <title>Google UA ID (UA-XXXXXX-XX)</title>
+            </de>
+            <en>
+                <title>Google UA ID (UA-XXXXXX-XX)</title>
+            </en>
+            <bp>
+                <title>Google UA ID (UA-XXXXXX-XX)</title>
+            </bp>
+        </config>
+        <config>
+            <key>XT_GOOGLE_ANALYTICS_ECOM</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Google eCommerce Tracking</title>
+            </de>
+            <en>
+                <title>Google eCommerce Tracking</title>
+            </en>
+            <bp>
+                <title>Google eCommerce Tracking</title>
+            </bp>
+        </config>
+        <config>
+            <key>XT_GOOGLE_ANALYTICS_ANON</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Letzte Stelle in IP entfernen</title>
+            </de>
+            <en>
+                <title>Remove last IP octed</title>
+            </en>
+            <es>
+                <title>Retirar último dígito de la IP</title>
+            </es>
+            <bp>
+                <title>Retirar o ultimo digito do IP</title>
+            </bp>
+        </config>
+    </configuration>
+</xtcommerceplugin>

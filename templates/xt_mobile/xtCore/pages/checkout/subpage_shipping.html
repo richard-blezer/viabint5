@@ -1,0 +1,53 @@
+<div data-role="header" data-theme="c">
+    <h1>{txt key=TEXT_SELECT_SHIPPING}:</h1>
+</div>
+
+<p>
+    {txt key=TEXT_SELECT_SHIPPING_DESC}
+</p>
+
+{form type=form name=shipping action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=shipping}
+
+<ul data-role="listview" data-theme="c">
+    {foreach name=aussen item=sdata from=$shipping_data}
+    {$sdata.shipping}
+    {/foreach}
+</ul>
+
+{hook key=checkout_tpl_shipping}
+
+
+<button type="submit">{$smarty.const.BUTTON_NEXT}</button>
+{form type=formend}
+        <br>
+<div data-role="header" data-theme="c">
+    <h1>{txt key=TEXT_SHIPPING_ADDRESS}:</h1>
+</div>
+
+<p>
+    {if $shipping_address.customers_company} {$shipping_address.customers_company}<br />{/if}
+    {$shipping_address.customers_firstname} {$shipping_address.customers_lastname}<br />
+    {$shipping_address.customers_street_address}<br />
+    {if $shipping_address.customers_suburb} {$shipping_address.customers_suburb}<br />{/if}
+    {$shipping_address.customers_postcode} {$shipping_address.customers_city}<br />
+    {$shipping_address.customers_country}<br />
+</p>
+{if $shipping_address.allow_change == true}
+    <a data-role="button" href="{link page='customer' paction=edit_address params='adType=shipping&abID' params_value=$shipping_address.address_book_id conn=SSL}">{txt key=TEXT_EDIT}</a>
+{/if}
+
+{if $shipping_address.allow_change == true}
+    <p>{txt key=TEXT_SELECT_SHIPPING_ADDRESS}:</p>
+    {form type=form name=shipping_address action='dynamic' link_params='page_action=shipping' method=post conn=SSL}
+        {form type=select name=adID value=$address_data default=$smarty.session.customer->customer_shipping_address.address_book_id params='onchange="this.form.submit();"'}
+        {form type=hidden name=adType value=shipping}
+        {form type=hidden name=action value=select_address}
+    {form type=formend}
+    {if $add_new_address eq 1}
+        <p>{txt key=TEXT_NEW_SHIPPING_ADDRESS}:</p>
+        <a data-role="button" href="{link page='customer' paction='edit_address' params='adType=shipping' conn=SSL}">{$smarty.const.BUTTON_ADD_ADDRESS}</a>
+    {/if}
+{/if}
+
+<br />

@@ -1,0 +1,60 @@
+<h2>{txt key=TEXT_VT_FREE_PRODUCTS}</h2>
+<table>
+    {foreach name=aussen item=free_products_data from=$free_products}
+        <tr>
+            {if $free_products_data.products_image!=''}
+	    	<td>
+                    <a href="{$free_products_data.products_link}">
+                        {img img=$free_products_data.products_image type=m_thumb class=productImageBorder alt=$free_products_data.products_name}
+                    </a>
+	    	</td>
+            {else}
+                <td>&nbsp;</td>
+	    {/if}
+	    <td>
+                <h2><a href="{$free_products_data.products_link}">{$free_products_data.products_name}</a></h2>
+                    {if $free_products_data.fpButton eq 'true'}
+                        {form type=form name=free_product action='dynamic' link_params=getParams method=post conn=SSL}
+                            {form type=hidden name=action value=add_free_product}
+                            {form type=hidden name=product value=$free_products_data.products_id}
+                            {form type=hidden name=fpid value=$free_products_data.fp_data.fpID}
+                            {form type=hidden name=qty value=$free_products_data.fp_data.fpOrderVal}
+                            <div style="clear:both;"></div>
+                            <div>
+                                <table border="0" cellspacing="0" cellpadding="2">
+                                    <tr><td colspan="2">{$free_products_data.products_information}</td></tr>
+                                    <tr><td colspan="2">
+                                        {button text=$smarty.const.TEXT_VT_FREE_PRODUCTS_ADD_TO_CART file='button_fp_in_cart.gif' type='form' btn_template='tpl_button_2.gif' space_left='25'}
+                                    </td></tr>
+                                </table>
+                            </div>
+			{form type=formend}
+                    {else}
+                        <div>{txt key=TEXT_VT_FREE_PRODUCTS_ERROR_CONDITION_NOT}</div>
+                    {/if}
+            </td>
+         </tr>
+         {if is_array($free_products_data.fp_data.filterData) && count($free_products_data.fp_data.filterData) > 0}
+            <tr>
+                <td colspan="2"><b>{txt key=TEXT_VT_FREE_PRODUCTS_CONDITIONS}</b></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table>
+                        {foreach name=aussen item=fp_cond from=$free_products_data.fp_data.filterData}
+                            <tr>
+                                <td width="10px" bgcolor="{if $fp_cond.fpCheckStatus == true}#04B404{else}#B40404{/if}">
+                                    &nbsp;
+                                </td>
+                                <td>
+                                    {$fp_cond.fpCondDesc}
+                                </td>
+                            <tr>
+                        {/foreach}
+                    </table>
+                </td>
+            </tr>
+         {/if}
+         <tr><td colspan="2"><hr /></td></tr>
+    {/foreach}
+</table>

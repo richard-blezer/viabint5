@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Rechnungskauf mit BillSAFE</title>
+    <version>1.2.4</version>
+    <code>vt_billsafe</code>
+    <url>http://www.bui-hinsche.de</url>
+    <description>Rechnungskauf mit BillSAFE</description>
+    <developer>xt:Commerce</developer>
+    <minimumupdateversion>1.2.2</minimumupdateversion>
+    <db_update>
+        <update>
+            <version>1.2.2</version>
+            <to_version>1.2.3</to_version>
+            <code><![CDATA[
+                    ]]>
+            </code>
+        </update>
+    </db_update>
+    <marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=603]]></marketplace_link>
+    <icon>billsafe.png</icon>
+    <type>payment</type>
+    <payment>
+        <payment_code>vt_billsafe</payment_code>
+        <payment_dir>vt_billsafe</payment_dir>
+        <payment_tpl>vt_billsafe_payment.html</payment_tpl>
+        <de>
+            <title>Rechnungskauf mit BillSAFE</title>
+            <description></description>
+        </de>
+    </payment>
+    <db_install><![CDATA[
+		require_once (_SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_billsafe/classes/class.plugin_install.php');
+
+        $vtfl = new plugin_install();
+        $vtfl->installPlugin($payment_id);
+	]]></db_install>
+    <db_uninstall><![CDATA[
+		require_once (_SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_billsafe/classes/class.plugin_install.php');
+
+        $vtfl = new plugin_install();
+        $vtfl->uninstallPlugin();
+	]]></db_uninstall>
+    <plugin_code>
+        <code>
+            <hook>class.checkout.php:_getPayment</hook>
+            <phpcode><![CDATA[
+				include _SRV_WEBROOT.'plugins/vt_billsafe/hooks/class.checkout.php_getPayment.php';
+			]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>order_edit.php:display_tpl</hook>
+            <phpcode><![CDATA[
+				include _SRV_WEBROOT.'plugins/vt_billsafe/hooks/order_edit.php_display_tpl.php';
+			]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ejsadmin.php:css_styles</hook>
+            <phpcode><![CDATA[
+				include _SRV_WEBROOT.'plugins/vt_billsafe/hooks/ejsadmin.php_css_styles.php';
+			]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ejsadmin.php:more_js</hook>
+            <phpcode><![CDATA[
+				include _SRV_WEBROOT.'plugins/vt_billsafe/hooks/ejsadmin.php_more_js.php';
+			]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>order_edit.php:display_data</hook>
+            <phpcode><![CDATA[
+				include _SRV_WEBROOT.'plugins/vt_billsafe/hooks/order_edit.php_display_data.php';
+			]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.cart.php:_getSubContent_top</hook>
+            <phpcode><![CDATA[
+				include _SRV_WEBROOT.'plugins/vt_billsafe/hooks/cart_php.php_getSubContent_data.php';
+			]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_checkout.php:checkout_first</hook>
+            <phpcode><![CDATA[
+				include _SRV_WEBROOT.'plugins/vt_billsafe/hooks/module_checkout.php_checkout_first.php';
+			]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_checkout.php:checkout_pages</hook>
+            <phpcode><![CDATA[
+				include _SRV_WEBROOT.'plugins/vt_billsafe/hooks/module_checkout.php_checkout_pages.php';
+			]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>products_images_tpl</hook>
+            <phpcode><![CDATA[
+				include _SRV_WEBROOT.'plugins/vt_billsafe/hooks/products_price_tpl.php';
+			]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+    <configuration_payment>
+        <config>
+            <key>SANDBOX</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Sandbox-Modus</title>
+            </de>
+            <en>
+                <title>Sandbox Mode</title>
+            </en>
+        </config>
+        <config>
+            <key>LICENCEKEY</key>
+            <type>textfield</type>
+            <value></value>
+            <de>
+                <title>Lizenzschluessel</title>
+            </de>
+            <en>
+                <title>Licencekey</title>
+            </en>
+        </config>
+        <config>
+            <key>CLIENTID</key>
+            <type>textfield</type>
+            <value></value>
+            <de>
+                <title>Mandanten ID</title>
+            </de>
+            <en>
+                <title>Client iD</title>
+            </en>
+        </config>
+        <config>
+            <key>PASSCODE</key>
+            <type>textfield</type>
+            <value></value>
+            <de>
+                <title>Passcode</title>
+            </de>
+            <en>
+                <title>Passcode</title>
+            </en>
+        </config>
+        <config>
+            <key>SHOP_LOGO_URL</key>
+            <type>textfield</type>
+            <de>
+                <title>URL zum Shop-Logo</title>
+            </de>
+            <en>
+                <title>URL to Shop-Logo</title>
+            </en>
+        </config>
+        <config>
+            <key>STATUS_SUCCESS</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <de>
+                <title>Bestellstatus - Success</title>
+            </de>
+            <en>
+                <title>Ordersstatus - Success</title>
+            </en>
+        </config>
+        <config>
+            <key>STATUS_SUCCESS_MAIL</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Bestellstatus-Mail senden - Success</title>
+            </de>
+            <en>
+                <title>Ordersstatus-Mail send - Success</title>
+            </en>
+        </config>
+        <config>
+            <key>STATUS_FAILED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <de>
+                <title>Bestellstatus - Failed</title>
+            </de>
+            <en>
+                <title>Ordersstatus - Failed</title>
+            </en>
+        </config>
+        <config>
+            <key>STATUS_PAYMENT_LAYER</key>
+            <value>false</value>
+            <type>hidden</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Payment-Layer aktivieren</title>
+            </de>
+            <en>
+                <title>Activate Payment-Layer</title>
+            </en>
+        </config>
+        <config>
+            <key>ACTIVATE_INSTALLMENTS</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Ratenkauf aktivieren</title>
+            </de>
+            <en>
+                <title>Activate rate payments</title>
+            </en>
+        </config>
+        <config>
+            <key>ACTIVATE_INVOICE</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Rechnungskauf aktivieren</title>
+            </de>
+            <en>
+                <title>Activate invoice payments</title>
+            </en>
+        </config>
+    </configuration_payment>
+    <language_content>
+        <phrase>
+            <key>VT_BILLSAFE_PAYMENT_DECLINED</key>
+            <class>store</class>
+            <de>
+                <value>Leider ist der Rechnungskauf mit BILLSAFE nicht möglich. Bitte wählen Sie eine andere
+                    Zahlungsart.
+                </value>
+            </de>
+            <en>
+                <value>Unfortunately purchase on invoice is not available using BILLSAFE. Please choose another payment
+                    method.
+                </value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_SELECTION</key>
+            <class>admin</class>
+            <de>
+                <value>Auswahl</value>
+            </de>
+            <en>
+                <value>Selection</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_QUANTITY</key>
+            <class>admin</class>
+            <de>
+                <value>Anzahl</value>
+            </de>
+            <en>
+                <value>Quantity</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_SHIPPED</key>
+            <class>admin</class>
+            <de>
+                <value>Artikel versandt</value>
+            </de>
+            <en>
+                <value>Product shipped</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_PAYED</key>
+            <class>admin</class>
+            <de>
+                <value>Artikel in Rechnung gestellt</value>
+            </de>
+            <en>
+                <value>Quantity for products invoice created</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_SUBMIT_SHIPPING</key>
+            <class>admin</class>
+            <de>
+                <value>Versand übermitteln</value>
+            </de>
+            <en>
+                <value>Report Shipment</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_CREATE_INVOICE</key>
+            <class>admin</class>
+            <de>
+                <value>Zahlschein erstellen</value>
+            </de>
+            <en>
+                <value>Create payment slip</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_SUBMIT_REVERSAL</key>
+            <class>admin</class>
+            <de>
+                <value>Stornierung übermitteln</value>
+            </de>
+            <en>
+                <value>Submit Reversal</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_SUBMIT_COUPON_REVERSAL</key>
+            <class>admin</class>
+            <de>
+                <value>Gutschrift Stornieren</value>
+            </de>
+            <en>
+                <value>Reversal Coupon</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_PAYED_DATE</key>
+            <class>admin</class>
+            <de>
+                <value>Datum</value>
+            </de>
+            <en>
+                <value>Date</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_PAYED_AMOUNT</key>
+            <class>admin</class>
+            <de>
+                <value>Betrag</value>
+            </de>
+            <en>
+                <value>Amount</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_SUBMIT_DIRECTPAYMENT</key>
+            <class>admin</class>
+            <de>
+                <value>Zahlungseingang übermitteln</value>
+            </de>
+            <en>
+                <value>Report payment receipt</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_LOG_DATE</key>
+            <class>admin</class>
+            <de>
+                <value>Datum</value>
+            </de>
+            <en>
+                <value>Date</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_LOG_TYPE</key>
+            <class>admin</class>
+            <de>
+                <value>Art</value>
+            </de>
+            <en>
+                <value>Type</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_LOG_TYPE_SHIPPING</key>
+            <class>admin</class>
+            <de>
+                <value>Lieferung</value>
+            </de>
+            <en>
+                <value>Shipping</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_LOG_TYPE_PAYMENT</key>
+            <class>admin</class>
+            <de>
+                <value>Zahlschein</value>
+            </de>
+            <en>
+                <value>Payment slip</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_LOG_TYPE_REVERSAL</key>
+            <class>admin</class>
+            <de>
+                <value>Stornierung</value>
+            </de>
+            <en>
+                <value>Reversal</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_LOG_TYPE_RETOURE</key>
+            <class>admin</class>
+            <de>
+                <value>Retoure</value>
+            </de>
+            <en>
+                <value>returned shipping</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_LOG_TYPE_VOUCHER</key>
+            <class>admin</class>
+            <de>
+                <value>Gutschrift</value>
+            </de>
+            <en>
+                <value>Voucher</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_LOG_TYPE_DIRECTPAYMENT</key>
+            <class>admin</class>
+            <de>
+                <value>Direktzahlung übermittelt</value>
+            </de>
+            <en>
+                <value>direct payment report</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_LOG_TYPE_REVERSALVOUCHER</key>
+            <class>admin</class>
+            <de>
+                <value>Gutschrift Storniert</value>
+            </de>
+            <en>
+                <value>Reversal Voucher</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_SUBMIT_RETOURE</key>
+            <class>admin</class>
+            <de>
+                <value>Retoure</value>
+            </de>
+            <en>
+                <value>shipping return</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_PAYED_TAX</key>
+            <class>admin</class>
+            <de>
+                <value>Steuersatz</value>
+            </de>
+            <en>
+                <value>tax</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_SUBMIT_COUPON</key>
+            <class>admin</class>
+            <de>
+                <value>Gutschrift</value>
+            </de>
+            <en>
+                <value>credit note</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_ERROR_QUANTITY</key>
+            <class>admin</class>
+            <de>
+                <value>Fehler bei der Eingabe der Anzahl</value>
+            </de>
+            <en>
+                <value>error by input quantity</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_ACTION_COMPLETE</key>
+            <class>admin</class>
+            <de>
+                <value>Vorgang erfolgreich abgeschlossen</value>
+            </de>
+            <en>
+                <value>action complete</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_ERROR_NO_PRODUCT_SELECTED</key>
+            <class>admin</class>
+            <de>
+                <value>Es wurde kein Produkt ausgewählt</value>
+            </de>
+            <en>
+                <value>no product selected</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_ERROR_AMOUNT</key>
+            <class>admin</class>
+            <de>
+                <value>Ungültiger Betrag</value>
+            </de>
+            <en>
+                <value>error by amount</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_ERROR_TYPE</key>
+            <class>admin</class>
+            <de>
+                <value>Falscher Typ</value>
+            </de>
+            <en>
+                <value>error by type</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>VT_BILLSAFE_ERROR_NO_COUPON_SELECTED</key>
+            <class>admin</class>
+            <de>
+                <value>Kein Gutschein ausgewählt</value>
+            </de>
+            <en>
+                <value>no coupon selected</value>
+            </en>
+        </phrase>
+    </language_content>
+</xtcommerceplugin> 

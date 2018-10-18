@@ -1,0 +1,25 @@
+<div id="box-loginbox" class="clearfix">
+    {form type=form name=create_account action='customer' paction='login' link_params='page_action=login' method=post conn=SSL role="form"}
+        {form type=hidden name=action value=login}
+        {form type=hidden name=link_target value=index}
+        <div class="form-group">
+            <label for="login_email">{txt key=text_email}*</label>
+            {form type=text id="login_email" name=email maxlength='50'}
+        </div>
+        <div class="form-group">
+            <label for="login_password">{txt key=text_password}*</label>
+            {form type=password id="login_password" name=password maxlength='30'}
+            <p class="help-block"><a href="{link page='customer' paction='password_reset' conn=SSL}"><i class="fa fa-envelope"></i> {txt key=text_link_lostpassword}</a></p>
+        </div>
+        
+        <p class="pull-left">
+            <button type="submit" class="btn btn-primary preloader">
+                {txt key=BUTTON_LOGIN}
+            </button>
+            &nbsp;{txt key=TEXT_EW_VIABIONA_OR}&nbsp;
+            <a href="{link page='customer' paction='login' params='showForm' params_value='register' conn=SSL}">
+                {txt key=TEXT_EW_VIABIONA_CREATE_ACCOUNT}
+            </a>
+        </p>
+    {form type=formend}
+</div><!-- #box-loginbox -->

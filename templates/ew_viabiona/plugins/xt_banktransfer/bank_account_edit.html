@@ -1,0 +1,50 @@
+<h1>{txt key=TEXT_XT_BANKTRANSFER_ACCOUNTS}</h1>
+
+{$message}
+
+{form class="form-horizontal" type=form name=edit_bank_account action='dynamic' link_params='page_action=edit_account' method=post conn=SSL}
+{form type=hidden name=action value=edit_bank_account}
+{form type=hidden name=account_id value=$account_id}
+<fieldset>
+    <legend>{txt key=TEXT_ACCOUNT_DATA}</legend>
+    <div class="form-group">
+        <label for="banktransfer_owner" class="col-sm-2 control-label">{txt key=TEXT_BANKTRANSFER_OWNER}*</label>
+        <div class="col-sm-10">
+            {form type=text id=banktransfer_owner name=banktransfer_owner value=$banktransfer_owner}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="banktransfer_bank_name" class="col-sm-2 control-label">{txt key=TEXT_BANKTRANSFER_BANK_NAME}*</label>
+        <div class="col-sm-10">
+            {form type=text id=banktransfer_bank_name name=banktransfer_bank_name value=$banktransfer_bank_name}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="banktransfer_iban" class="col-sm-2 control-label">{txt key=TEXT_BANKTRANSFER_IBAN}*</label>
+        <div class="col-sm-10">
+            {form type=text id=banktransfer_iban name=banktransfer_iban value=$banktransfer_iban}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="banktransfer_bic" class="col-sm-2 control-label">{txt key=TEXT_BANKTRANSFER_BIC}*</label>
+        <div class="col-sm-10">
+            {form type=text id=banktransfer_bic name=banktransfer_bic value=$banktransfer_bic}
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <a href="javascript:history.back();" class="btn btn-default">{txt key=BUTTON_BACK}</a>
+            <button type="submit" class="btn btn-success pull-right preloader">
+                <i class="fa fa-floppy-o"></i>&nbsp;
+                {txt key=BUTTON_SAVE}
+            </button>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <p class="required pull-right">{txt key=TEXT_MUST}</p>
+        </div>
+    </div>
+</fieldset>
+{form type=formend}

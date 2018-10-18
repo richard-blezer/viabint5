@@ -1,0 +1,21 @@
+<div data-role="collapsible" data-collapsed="true" id="newProducts" data-content-theme="d">
+	<h3>{txt key=TEXT_HEADING_NEW_PRODUCTS}</h3>
+	
+	{if $smarty.const.ACTIVATE_XT_NEW_PRODUCTS_PAGE eq 'true'}
+		<p><a href="{link page='xt_new_products' conn=SSL}">{txt key=TEXT_SHOW_ALL}</a></p>
+	{/if}	
+	
+	<ul data-role="listview" data-inset="true">
+	{foreach name=aussen item=new_products_data from=$_new_products}
+		<li>
+			<a href="{$new_products_data.products_link}">
+				{if $new_products_data.products_image!=''}
+					{img img=$new_products_data.products_image type=m_thumb alt=$new_products_data.products_name}
+				{/if}
+				<h3>{$new_products_data.products_name}</h3>
+				<p>{$new_products_data.products_price.formated}</p>
+			</a>
+		</li>
+	{/foreach}
+	</ul>
+</div>

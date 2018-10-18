@@ -1,0 +1,24 @@
+<table>
+	<thead>
+		<tr>
+      		<th>{txt key=TEXT_ORDER_NUMBER}</th>
+      		<th>{txt key=TEXT_ORDER_DATE}</th>
+      		<th class="right">{txt key=TEXT_ARTICLE}</th>
+      		<th class="right">{txt key=TEXT_TOTAL}</th>
+	  		<th class="right">{txt key=TEXT_ORDER_STATUS}</th>
+	 		<th></th>
+    	</tr>
+    </thead>
+    <tbody>
+  		{foreach name=aussen item=data from=$order_data}
+   		<tr class="{cycle values="odd,even"}">
+    		<td>{$data.order_data.orders_id}</td>
+    		<td>{$data.order_data.date_purchased}</td>
+    		<td class="right">{$data.order_count}</td>
+    		<td class="right">{$data.order_total.total.formated}</td>
+			<td class="right">{$data.order_data.orders_status}</td>
+			<td><a href="{link page='customer' paction=order_info params=oid params_value=$data.order_data.orders_id conn=SSL}">{img img=magnifier.png type=mi alt=$smarty.const.BUTTON_SHOW}</a></td>
+  		</tr>
+  		{/foreach}
+  	</tbody>
+</table>

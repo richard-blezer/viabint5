@@ -1,0 +1,8 @@
+.vt_article_shipping_costs_module_list {list-style-position:inside;}
+
+.vt_article_shipping_costs_module_icon img {max-height:50px;max-width:50px;}
+
+.vt_article_shipping_costs_highlightbox {background-color:#C5EBFF;border: 2px solid #0EADFF;padding:15px;}
+
+/* fuer die darstellung in der standard info-meldung des shops */
+.info_info .vt_article_shipping_costs_highlightbox{border:0px;padding:0px;}

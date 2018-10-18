@@ -1,0 +1,7 @@
+<ul class="breadcrumbUl">
+{foreach name=aussen item=breadcrumb from=$top_navigation}
+{*<li><a class="pathway {if !$smarty.foreach.aussen.first}pathwayIcon{/if}" href="{$breadcrumb.url}" title="{$breadcrumb.name}">{$breadcrumb.name}</a></li>*}
+<li> {if !$smarty.foreach.aussen.first}&raquo;{/if} <a class="pathway" href="{$breadcrumb.url}" title="{$breadcrumb.name}">{$breadcrumb.name}</a></li>
+
+{/foreach}
+</ul>

@@ -1,0 +1,138 @@
+body {
+    background-color: #FFF;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #404040;
+    text-align: left;
+}
+
+p, ul, li { font-size: 12px; }
+
+table p { font-size: 11px; }
+
+ul { list-style-type: square; margin-bottom: 40px; }
+
+h1 { color: #000; font-weight: bold; font-size: 18px; margin: 20px 0 15px 0; padding: 0; }
+
+h2 { color: #000; font-weight: bold; font-size: 16px; margin: 15px 0 8px 0; padding: 0; }
+
+.email_container {
+    margin: 0 auto;
+    width: 720px;
+    border-right: 1px solid #F5F5F5;
+}
+
+.email_table_left_bg {
+    width: 20px;
+}
+
+.email_table_center_bg {
+    width: 600px;
+    padding-top: 10px;
+}
+
+.email_table_right_bg {
+    width: 60px;
+}
+
+.email_table_left {
+    width: 20px;
+    height: 480px;
+}
+
+.email_table_right {
+    width: 60px;
+    height: 480px;
+}
+
+.email_toplogo {
+    width: 600px;
+    height: 80px;
+}
+
+div.email_toplogo {
+    padding-left: 20px;
+}
+
+.email_content {
+    min-height: 430px;
+}
+
+.email_footer {
+    color: #666;
+    font-size: 11px;
+    border-top: 1px #EFEFEF solid;
+    height: 50px;
+    padding: 10px 0 0 0;
+}
+
+.email_title {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.email_highlight {
+    font-weight: 600;
+    color: #000;
+    background: #F4F4F4;
+    border: 1px solid #DDD;
+    padding: 10px;
+}
+
+.email_highlight a, .email_highlight a:link {
+    color: #039BE6;
+    text-decoration: none;
+}
+
+.email_ul {
+    background: #FFF;
+    border: 1px #DDD solid;
+    padding: 10px;
+}
+
+.email_ul li {
+    list-style-position: inside;
+    padding-top: 10px;
+}
+
+.email_caution {
+    background: #F5F5F5;
+    border: 1px #BF0000 solid;
+    padding: 10px;
+    color: #505050;
+}
+
+.email_strong {
+    font-weight: normal;
+}
+
+/* ORDER DETAILS */
+table.tabledetails { font-size: 11px; background-color: #F0F0F0; border-style: solid; border-width: 0 1px 1px 1px; border-color: #909090; }
+
+table.tabledetails tr td { padding: 4px }
+
+table.tabledetails tr.headerrow td { background-color: #505050; color: #FFF; font-weight: bold }
+
+table.tabledetails tr.headerrow td.left { text-align: left }
+
+table.tabledetails tr.headerrow td.center { text-align: center }
+
+table.tabledetails tr.headerrow td.right { text-align: right }
+
+/* ORDER DETAILS CONTENT ROW 1 */
+table.tabledetails tr.contentrow1 td { background-color: #F0F0F0; vertical-align: top }
+
+table.tabledetails tr.contentrow1 td.left { text-align: left }
+
+table.tabledetails tr.contentrow1 td.center { text-align: center }
+
+table.tabledetails tr.contentrow1 td.right { text-align: right }
+
+/* ORDER DETAILS CONTENT ROW 2 */
+table.tabledetails tr.contentrow2 td { background-color: #C0C0C0; vertical-align: top }
+
+table.tabledetails tr.contentrow2 td.left { text-align: left }
+
+table.tabledetails tr.contentrow2 td.center { text-align: center }
+
+table.tabledetails tr.contentrow2 td.right { text-align: right }

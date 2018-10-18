@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+    <title>xt:Commerce Payments</title>
+    <version>2.3.2</version>
+    <code>xt_payments</code>
+    <url>http://www.xt-commerce.com</url>
+    <icon>logo_xtcommerce_payments.png</icon>
+    <type>payment</type>
+    <payment>
+        <payment_code>xt_payments</payment_code>
+        <payment_dir>xt_payments</payment_dir>
+        <payment_icon></payment_icon>
+        <payment_tpl>xtpayments.html</payment_tpl>
+        <de>
+            <title>xt:Commerce Payments</title>
+            <description></description>
+        </de>
+        <en>
+            <title>xt:Commerce Payments</title>
+            <description></description>
+        </en>
+        <es>
+             <title>xt:Commerce Payments</title>
+             <description></description>
+        </es>
+        <bp>
+        	 <title>xt:Commerce Payments</title>
+        	 <description></description>
+        </bp>
+        <se>
+        	 <title>xt:Commerce Payments</title>
+        	 <description></description>
+        </se>
+    </payment>
+    <db_install><![CDATA[
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 24, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 25, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 26, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 27, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 28, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 29, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 30, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 31, '', 0, 10000.00, 0, 1);");
+
+// north navigation
+$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid`, `text`, `icon`, `url_i`, `url_d`, `sortorder`, `parent`, `type`, `navtype`, `cls`, `handler`, `iconCls`) VALUES (NULL, 'xt_payments_configuration','../plugins/xt_payments/images/money.png','plugin=xt_payments&load_section=XTPaymentsRegistration&pg=xtPaymentsCPanelLogin','adminHandler.php?',NULL,'0','I','N',NULL,'clickHandler2',NULL); ");
+
+// disable PayPal express for standard PayPal plg
+$db->Execute("UPDATE ".TABLE_CONFIGURATION_PAYMENT." SET config_value = 'false' where config_key = 'XT_Paypal_EXPRESS';");
+
+$db->Execute("UPDATE " . TABLE_ADMIN_NAVIGATION . " SET TYPE='G' WHERE text='payment' AND type='I'");
+$db->Execute("replace INTO " . TABLE_ADMIN_NAVIGATION . " (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'xt_payments_configuration_left', '../plugins/xt_payments/images/money.png', '&plugin=xt_payments&load_section=XTPaymentsRegistration&pg=xtPaymentsCPanelLogin', 'adminHandler.php', '4000', 'payment', 'I', 'W');");
+
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/db_install.php';
+]]></db_install>
+    <db_uninstall>
+        <![CDATA[
+$db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text = 'xt_payments' or text = 'xt_payments_configuration'");
+]]>
+    </db_uninstall>
+	<minimumupdateversion>2.0.0</minimumupdateversion>
+	<db_update>
+		<update>
+			<version>2.0.0</version>
+			<to_version>2.1.1</to_version>
+			<code><![CDATA[
+				$db->Execute("UPDATE " . TABLE_ADMIN_NAVIGATION . " SET TYPE='G' WHERE text='payment' AND type='I'");
+				$db->Execute("replace INTO " . TABLE_ADMIN_NAVIGATION . " (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'xt_payments_configuration_left', '../plugins/xt_payments/images/money.png', '&plugin=xt_payments&load_section=XTPaymentsRegistration&pg=xtPaymentsCPanelLogin', 'adminHandler.php', '4000', 'payment', 'I', 'W');");
+
+				$cols = $db->MetaColumns(TABLE_ORDERS);
+				if(!array_key_exists('XT_PAYMENTS_AUTHORIZATION_ID', $cols)){
+					$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD COLUMN `XT_PAYMENTS_AUTHORIZATION_ID` VARCHAR(255) NOT NULL DEFAULT ''");
+				}
+				if(!array_key_exists('XT_PAYMENTS_AUTHORIZATION_AMOUNT', $cols) && !array_key_exists('XT_PAYMENTS_AUTHORIZATION_EXPIRE', $cols)){
+					$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD COLUMN `XT_PAYMENTS_AUTHORIZATION_AMOUNT` DECIMAL(15,4) NULL AFTER `XT_PAYMENTS_AUTHORIZATION_ID`, ADD COLUMN `XT_PAYMENTS_AUTHORIZATION_EXPIRE` DATETIME NULL AFTER `XT_PAYMENTS_AUTHORIZATION_AMOUNT`");
+				}
+				if(!array_key_exists('XT_PAYMENTS_GW_RELATED_ID', $cols)){
+					$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD COLUMN `XT_PAYMENTS_GW_RELATED_ID` VARCHAR(255) NOT NULL DEFAULT '' AFTER `XT_PAYMENTS_AUTHORIZATION_EXPIRE`");
+				}
+				
+				$db->Execute("CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_payments_tmp (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,payment_code VARCHAR(50), payment_type VARCHAR(10), col_key VARCHAR(255), col_value VARCHAR(255))");
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.1.1</version>
+			<to_version>2.2.1</to_version>
+			<code><![CDATA[
+				
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>2.2.1</version>
+			<to_version>2.2.3</to_version>
+			<code><![CDATA[
+				
+				]]>
+			</code>
+		</update>		
+		<update>
+			<version>2.2.3</version>
+			<to_version>2.3.0</to_version>
+			<code><![CDATA[
+				
+				]]>
+			</code>
+		</update>			
+		<update>
+			<version>2.3.0</version>
+			<to_version>2.3.1</to_version>
+			<code><![CDATA[
+				
+				]]>
+			</code>
+		</update>			
+	</db_update>
+    <configuration_payment>
+
+        <config>
+            <key>PENDING</key>
+            <type>dropdown</type>
+            <value>17</value>
+            <sort_order>1</sort_order>
+            <url>status:order_status</url>
+            <de>
+                <title>Bestellstatus - In Bearbeitung</title>
+            </de>
+            <en>
+                <title>Pending status</title>
+            </en>
+            <bp>
+                <title>Estado do Pedido</title>
+            </bp>			
+        </config>
+        <config>
+            <key>APPROVED</key>
+            <type>dropdown</type>
+            <value>23</value>
+            <sort_order>2</sort_order>
+            <url>status:order_status</url>
+            <de>
+                <title>Bestellstatus - Bestätigt</title>
+            </de>
+            <en>
+                <title>Approved status</title>
+            </en>
+			<bp>
+                <title>Estado do pedido - Confirmado</title>
+            </bp>
+        </config>
+        <config>
+            <key>DECLINED</key>
+            <type>dropdown</type>
+            <value>32</value>
+            <sort_order>3</sort_order>
+            <url>status:order_status</url>
+            <de>
+                <title>Bestellstatus - Abgelehnt</title>
+            </de>
+            <en>
+                <title>Declined status</title>
+            </en>
+			<bp>
+                <title>Estado do Pedido - Recusado</title>
+            </bp>
+			
+        </config>
+        <config>
+            <key>ERROR</key>
+            <type>dropdown</type>
+            <value>34</value>
+            <sort_order>4</sort_order>
+            <url>status:order_status</url>
+            <de>
+                <title>Bestellstatus - Fehler</title>
+            </de>
+            <en>
+                <title>Error status</title>
+            </en>
+			<bp>
+                <title>Estado do pedido - falhou</title>
+            </bp>
+        </config>
+		
+		<config>
+            <key>HOLD</key>
+            <type>dropdown</type>
+            <value>34</value>
+            <sort_order>4</sort_order>
+            <url>status:order_status</url>
+            <de>
+                <title>Bestellstatus - Hold</title>
+            </de>
+            <en>
+                <title>Hold status</title>
+            </en>
+			<bp>
+                <title>Estado do pedido - Hold</title>
+            </bp>
+        </config>
+
+        <config>
+            <key>TEST_MODE</key>
+            <type>status</type>
+            <value>0</value>
+            <sort_order>5</sort_order>
+            <de>
+                <title>Testmodus</title>
+            </de>
+            <en>
+                <title>Check to use test mode</title>
+            </en>
+			<bp>
+                <title>Checar para usar o test modo</title>
+            </bp>
+        </config>
+
+        <config>
+            <key>REGISTERED</key>
+            <type>hidden</type>
+            <value>false</value>
+            <url>conf_truefalse</url>
+            <sort_order>14</sort_order>
+            <de>
+                <title>Register</title>
+            </de>
+            <en>
+                <title>Register</title>
+            </en>
+			<bp>
+                <title>Registrar</title>
+            </bp>
+
+        </config>
+
+        <config>
+            <key>REGISTRATION_SERVICE_URL</key>
+            <type>hidden</type>
+            <value>https://api.xt-commerce.com/service/service.php</value>
+            <sort_order>15</sort_order>
+            <de>
+                <title>Registration Service Url</title>
+            </de>
+            <en>
+                <title>Registration Service Url</title>
+            </en>
+			<bp>
+                <title>Registro do serviço Url</title>
+            </bp>
+        </config>
+
+
+
+        <config>
+            <key>COMMERCIAL_PAGE_URL</key>
+            <type>hidden</type>
+            <value>https://gp1.wac.edgecastcdn.net/8020B1/ppp/pppthemes/xtlogos/xtc_commercialpage/content.html</value>
+            <sort_order>16</sort_order>
+            <de>
+                <title>Commercial Page Url</title>
+            </de>
+            <en>
+                <title>Commercial Page Url</title>
+            </en>
+			<bp>
+                <title>Pagina comercial Url</title>
+            </bp>
+        </config>
+		
+		<config>
+            <key>REGISTRATION_SUCCESS_PAGE_URL</key>
+            <type>hidden</type>
+            <value>https://gp1.wac.edgecastcdn.net/8020B1/ppp/pppthemes/xtlogos/xtc_registraion_success_page/success_page.html</value>
+            <sort_order>16</sort_order>
+            <de>
+                <title>Registration Success Page Url</title>
+            </de>
+            <en>
+                <title>Registration Success Page Url</title>
+            </en>
+			<bp>
+                <title>Registro do serviço Url com sucesso</title>
+            </bp>
+        </config>
+
+        <config>
+            <key>CC_CARD_LOGO</key>
+            <type>hidden</type>
+            <value>https://gp1.wac.edgecastcdn.net/8020B1/ppp/pppthemes/xtlogos/100_50_debit.png</value>
+            <sort_order>17</sort_order>
+            <de>
+                <title>Credit Card Logo</title>
+            </de>
+            <en>
+                <title>Credit Card Logo</title>
+            </en>
+			<bp>
+                <title>Logotipo do cartão de credito</title>
+            </bp>
+        </config>
+
+        <!-- PayPal EXPRESS -->
+        <config>
+            <key>PAYPAL_MODE_SANDBOX</key>
+            <type>hidden</type>
+            <value>false</value>
+            <url>conf_truefalse</url>
+            <sort_order>18</sort_order>
+            <de>
+                <title>PayPal Sandbox-Modus aktiviert (CPanel Wert)</title>
+            </de>
+            <en>
+                <title>PayPal sandbox mode enabled (CPanel Value)</title>
+            </en>
+			 <bp>
+                <title>PayPal sandbox modo ativado (CPanel Value)</title>
+            </bp>
+			
+        </config>
+
+        <config>
+            <key>PAYPAL_EXPRESS_ENABLED</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <sort_order>19</sort_order>
+            <de>
+                <title>PayPal Express aktiviert</title>
+            </de>
+            <en>
+                <title>PayPal Express enabled</title>
+            </en>
+			
+			<bp>
+                <title>PayPal Express ativado</title>
+            </bp>
+			
+        </config>
+
+        <config>
+            <key>PAYPAL_ORDER_STATUS_COMPLETED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>23</value>
+            <sort_order>6</sort_order>
+            <de>
+                <title>PayPal Express Bestellstatus  - Zahlung abgeschlossen</title>
+            </de>
+            <en>
+                <title>PayPal Express Ordersstatus - Completed</title>
+            </en>
+            <es>
+                <title>PayPal Express Estado del pedido - Finalizado</title>
+            </es>
+            <bp>
+                <title>PayPal Express Estado dos pedidos - Completos</title>
+            </bp>
+        </config>
+        <config>
+            <key>PAYPAL_ORDER_STATUS_DENIED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>32</value>
+            <sort_order>7</sort_order>
+            <de>
+                <title>PayPal Express Bestellstatus  - Abgelehnt</title>
+            </de>
+            <en>
+                <title>PayPal Express Ordersstatus - Denied</title>
+            </en>
+            <es>
+                <title>PayPal Express Estado del pedido - cancelar</title>
+            </es>
+            <bp>
+                <title>PayPal Express Estado  dos pedidos - Recusado</title>
+            </bp>
+        </config>
+        <config>
+            <key>PAYPAL_ORDER_STATUS_FAILED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>32</value>
+            <sort_order>8</sort_order>
+            <de>
+                <title>PayPal Express Bestellstatus - Fehler</title>
+            </de>
+            <en>
+                <title>PayPal Express Ordersstatus - Failed</title>
+            </en>
+            <es>
+                <title>PayPal Express Estado del pedido - rechazado</title>
+            </es>
+            <bp>
+                <title>PayPal Express Estado dos pedidos - Falha</title>
+            </bp>
+        </config>
+        <config>
+            <key>PAYPAL_ORDER_STATUS_REFUNDED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>32</value>
+            <sort_order>9</sort_order>
+            <de>
+                <title>PayPal Express Bestellstatus - Zurückgezahlt</title>
+            </de>
+            <en>
+                <title>PayPal Express Ordersstatus - Refunded</title>
+            </en>
+            <es>
+                <title>PayPal Express Estado del pedido - Pago devuelto</title>
+            </es>
+            <bp>
+                <title>PayPal Express Estado dos pedidos - Reembolsados</title>
+            </bp>
+        </config>
+        <config>
+            <key>PAYPAL_ORDER_STATUS_REVERSED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <sort_order>10</sort_order>
+            <de>
+                <title>PayPal Express Bestellstatus  - Storniert</title>
+            </de>
+            <en>
+                <title>PayPal Express Ordersstatus - Reversed</title>
+            </en>
+            <es>
+                <title>PayPal Express Estado del pedido - cancelar</title>
+            </es>
+            <bp>
+                <title>PayPal Express Estado dos pedidos - cancelado</title>
+            </bp>
+        </config>
+        <config>
+            <key>PAYPAL_ORDER_STATUS_PENDING</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <sort_order>11</sort_order>
+            <de>
+                <title>PayPal Express Bestellstatus - In Bearbeitung</title>
+            </de>
+            <en>
+                <title>PayPal Express Ordersstatus - Pending</title>
+            </en>
+            <es>
+                <title>PayPal Express Estado del pedido - En progreso</title>
+            </es>
+            <bp>
+                <title>PayPal Express Estado dos pedidos - Pendente</title>
+            </bp>
+        </config>
+        <config>
+            <key>PAYPAL_LOGO</key>
+            <type>textfield</type>
+            <url></url>
+            <sort_order>12</sort_order>
+            <de>
+                <title>Logo URL für PayPal Zahlungsseite (Größe: 190x60px Nur über https aufrufbar!!!)</title>
+            </de>
+            <en>
+                <title>Logo URL for PayPal Page (Size: 190x60px only https request!!!)</title>
+            </en>
+            <es>
+                <title>URL de logotipo para la página de pago de PayPal (tamaño: 190x60px ¡¡¡Sólo accesible a través de https!!!)</title>
+            </es>
+            <bp>
+                <title>Logo URL da Página PayPal (Tamanho: 190x60px somente acessado no https!!!)</title>
+            </bp>
+        </config>
+        <config>
+            <key>PAYPAL_BORDER_COLOR</key>
+            <type>textfield</type>
+            <url></url>
+            <sort_order>13</sort_order>
+            <de>
+                <title>Farbe für PayPal Seite (Format: FF0000)</title>
+            </de>
+            <en>
+                <title>Color for PayPal Page (Format: FF0000)</title>
+            </en>
+            <es>
+                <title>Color para el sitio de PayPal (Formato: FF0000)</title>
+            </es>
+            <bp>
+                <title>Cor da Página do PayPal (Formato: FF0000)</title>
+            </bp>
+        </config>
+		
+		<config>
+            <key>PAYPAL_PAYMENT_TYPE_ORDER</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+			<sort_order>14</sort_order>
+            <de>
+                <title>Kundenkonto sofort belasten</title>
+            </de>
+            <en>
+                <title>Capture money immediately</title>
+            </en>
+            <es>
+                <title>Capture money immediately</title>
+            </es>
+            <bp>
+                <title>Capture money immediately</title>
+            </bp>
+        </config>
+
+
+    </configuration_payment>
+
+    <plugin_code>
+        <code>
+            <hook>ejsadmin.php:more_js</hook>
+            <phpcode><![CDATA[
+			include_once(_SRV_WEBROOT.'plugins/xt_payments/hooks/ejsadmin_php_more_js.php');
+	]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_checkout.php:checkout_page_actions</hook>
+            <phpcode><![CDATA[
+if (isset($_GET['error_payments']) && $_GET['error_payments']=='ERROR_PAYMENT') {
+    $field = $_GET['error_payments'];
+    if (defined($field)){
+	    $info->_addInfo(constant($field));
+	}
+    if(isset($_GET['customError'])) {
+        $info->_addInfo(urldecode($_GET['customError']));
+    }
+    
+        
+}
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>store_main_handler.php:seo</hook>
+            <phpcode><![CDATA[
+
+if (isset($_GET['page']) && $_GET['page']=='callback'){
+
+if (isset($_GET['PPP_TransactionID'])) {
+
+$g2s_page = $_GET['page_action'];
+$g2s_page = explode('?',$g2s_page);
+$_GET['page_action'] = $g2s_page[0];
+
+// ppp status
+if (isset($g2s_page[1])) {
+$ppp_status = explode('=',$g2s_page[1]);
+if (isset($ppp_status[1])) {
+$_GET['ppp_status']=$ppp_status[1];
+}
+}
+
+}
+
+}
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_pre_data</hook>
+            <phpcode><![CDATA[
+			        include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/module_checkout_php__checkout_pre_data.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_payment_check</hook>
+            <phpcode><![CDATA[
+			        include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/module_checkout_php__checkout_payment_check.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>_pre_include</hook>
+            <phpcode><![CDATA[
+			        include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/_pre_include.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- PayPal EXPRESS -->
+        <code>
+            <hook>cart_tpl_form</hook><!-- before xt_grid -->
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/cart_tpl_form.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+        <code>
+            <hook>cart_tpl_form_paypal</hook><!-- since xt_grid -->
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/cart_tpl_form_paypal.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>checkout_tpl_info</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/checkout_tpl_info.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.checkout.php:_selectShipping_tpl_data</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/class_checkout_php__selectShipping_tpl_data.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.customer.php:_buildCustomerAddressData_top</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/class_customer_php__buildCustomerAddressData_top.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.payment.php:_buildData_filter</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/class_payment_php__buildData_filter.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>form_handler.php:data_array_bottom</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/form_handler_php_data_array_bottom.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>form_handler.php:select_address_bottom</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/form_handler_php_select_address_bottom.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+			<hook>module_cart.php:tpl_data</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/module_cart_php_tpl_data.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+
+        <code>
+            <hook>module_checkout.php:checkout_process_check</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/module_checkout.php_checkout_process_check.php';
+			]]></phpcode>
+            <order>99</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_bottom</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/module_checkout_php_checkout_bottom.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_first</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/module_checkout_php_checkout_first.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_page_actions</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/module_checkout_php_checkout_page_actions.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_payment_bottom</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/module_checkout_php_checkout_payment_bottom.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_selections</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/module_checkout_php_checkout_selections.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_checkout.php:checkout_shipping_bottom</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/module_checkout_php_checkout_shipping_bottom.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/page_registry_php_bottom.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>styles.php:bottom</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/styles_php_bottom.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>module_cart.php:cart_top</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/module_cart_php__cart_top.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+		<code>
+            <hook>order_edit.php:getMemoPanel_button_add</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_payments/hooks/ppex/order_edit_php_getMemoPanel_button_add.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+    </plugin_code>
+</xtcommerceplugin> 

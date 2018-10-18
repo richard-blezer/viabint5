@@ -1,0 +1,78 @@
+<div class="left_conf">
+<h1>{txt key=TEXT_CHECKOUT_CONFIRMATION}:</h1>
+{txt key=TEXT_CHECKOUT_CONFIRMATION_DESC}
+<br />
+</div>
+<div class="right_conf">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+  {if $cartType!='virtual'}
+    <td width="55%">
+    <h1>{txt key=TEXT_SHIPPING_ADDRESS}:</h1>
+    <div id="shippingAdress" class="adress">
+	{if $shipping_address.customers_company} {$shipping_address.customers_company}<br />{/if}
+	{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}<br />
+	{$shipping_address.customers_street_address}<br />
+	{if $shipping_address.customers_suburb} {$shipping_address.customers_suburb}<br />{/if}
+	{$shipping_address.customers_postcode} {$shipping_address.customers_city}<br />
+	{$shipping_address.customers_country}<br />
+	</div>
+	<p><a title="{txt key=TEXT_SHIPPING_ADDRESS}" class="thickbox" href="{link page='customer' paction=select_address params='adType=shipping' conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>
+	</td>
+	{/if}
+    <td width="55%">
+    <h1>{txt key=TEXT_PAYMENT_ADDRESS}:</h1>
+    <div id="paymentAdress" class="adress">
+	{if $payment_address.customers_company} {$payment_address.customers_company}<br />{/if}
+	{$payment_address.customers_firstname} {$payment_address.customers_lastname}<br />
+	{$payment_address.customers_street_address}<br />
+	{if $payment_address.customers_suburb} {$payment_address.customers_suburb}<br />{/if}
+	{$payment_address.customers_postcode} {$payment_address.customers_city}<br />
+	{$payment_address.customers_country}<br />
+	</div>
+	<p><a title="{txt key=TEXT_PAYMENT_ADDRESS}" class="thickbox" href="{link page='customer' paction=select_address params='adType=payment'  conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>
+    </td>
+  </tr>
+</table>
+</div>
+<div style="clear:both;"></div>
+<div id="confirmationTable">
+{include file="checkout/subpage_confirmationTable.html" type="tpl_include_root"}
+</div>
+
+{hook key=checkout_tpl_confiramtion}
+{form type=form name=process action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=process}
+
+<div class="left_conf">
+<h1>{txt key=TEXT_COMMENTS}:</h1>
+{txt key=TEXT_COMMENTS_DESC}<br />
+{form type=textarea name=comments cols=54 rows=5}
+</div>
+<div class="right_conf">
+
+<h1>{txt key=TEXT_CONDITIONS}:</h1>
+{content cont_id=3 is_id='false'}
+<p>{$_content_3.content_popup_link}</p>
+<div id="checkout_agb">{$_content_3.content_body}</div>
+<a href="{$_content_3.content_link}" class="thickbox">{txt key=TEXT_AGB}</a>
+
+<p>{form type=checkbox name=conditions_accepted params='class="check"'} <strong>{txt key=TEXT_ACCEPT_CONDITIONS}</strong></p>
+
+{if $rescission == 'true'}
+<h1>{txt key=XT_RESCISSION_HEADING}:</h1>
+{content cont_id=8 is_id='false'}
+<p>{$_content_8.content_popup_link}</p>
+<div id="checkout_rescission">{$_content_8.content_body}</div>
+<p>{form type=checkbox name=rescission_accepted params='class="check"'} <strong>{txt key=XT_RESCISSION_ACCEPT}</strong></p>
+{/if}
+</div>
+<div style="clear:both;"></div>
+{hook key=checkout_tpl_form}
+{if $post_form eq '1'}
+<p>{txt key=TEXT_INFO_PAY_NEXT_STEP}</p>
+<p>{button text=$smarty.const.BUTTON_CONFIRM_ORDER_PAY file='confirm_order_pay.gif' type='form'}</p>
+{else}
+<p class="right">{button text=$smarty.const.BUTTON_CONFIRM_ORDER file='confirm_order.gif' params='id="buttonConfirm"' type='form'}</p>
+{/if}
+{form type=formend}

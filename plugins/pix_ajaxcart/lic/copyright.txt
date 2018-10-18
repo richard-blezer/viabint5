@@ -1,0 +1,15 @@
+######################################################
+# lugin for xt:Commerce VEYTON 4.0 Enterprise
+#
+# Copyright 2006-2011 Pixeleyes. All Rights Reserved.
+# This file may not be redistributed in whole or significant part.
+# Content of this file is Protected By International Copyright Laws.
+#
+# lugin for xt:Commerce VEYTON 4.0  IS NOT FREE SOFTWARE
+#
+# http://www.pixeleyes.de
+#
+# Pixeleyes, Oststraﬂe 82 , 42551 Velbert (Germany)
+# info@pixeleyes.de
+#
+######################################################

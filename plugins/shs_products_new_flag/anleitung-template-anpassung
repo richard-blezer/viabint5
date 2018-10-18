@@ -1,0 +1,80 @@
+für Artikel-listing an gewünschter position einfügen 
+
+{if $module_data.flag_has_new=='1'}
+<img src="plugins/shs_products_new_flag/images/shs_icon_new.png" alt="{$module_data.products_name}" class="newflag"  />
+{/if}
+
+
+Beispiel für listing 
+
+{if $module_data.products_image == 'product:noimage.gif'}
+			<p class="product-image"><a href="{$module_data.products_link}"><img src="{$tpl_url_path}img/no_image.png" alt="{$module_data.products_name|escape:"html"}" /></a>
+			{if $module_data.flag_has_new=='1'}
+			<img src="plugins/shs_products_new_flag/images/shs_icon_new.png" alt="{$module_data.products_name}" class="newflag" />
+			{/if}
+            </p>
+			{else}
+			<p class="product-image"><a href="{$module_data.products_link}">{img img=$module_data.products_image type=m_thumb class=productImageBorder alt=$module_data.products_name|escape:"html"}</a>
+			{if $module_data.flag_has_new=='1'}			
+			<img src="plugins/shs_products_new_flag/images/shs_icon_new.png" alt="{$module_data.products_name}" class="newflag" />
+            {/if}
+
+			</p>
+
+    		{/if}
+
+
+
+product info seite an gewünschter position einfügen 
+
+{if $flag_has_new=='1'}<img src="plugins/shs_products_new_flag/images/shs_icon_new.png" alt="{$module_data.products_name}" class="newflagInfo" />{/if}
+
+
+Beispiel 
+<div id="product-images">
+      <div class="box">
+          {if $products_image == 'product:noimage.gif'}
+            <p class="product-image center">
+                <img src="{$tpl_url_path}img/no_image.png" alt="{$products_name|escape:'html'}"/>
+                {if $flag_has_new=='1'}
+			    <img src="plugins/shs_products_new_flag/images/shs_icon_new.png" alt="{$module_data.products_name}" class="newflagInfo" />
+			    {/if}
+            </p>
+          {else}
+          <p class="product-image">
+              {if $diplayFancyCloud}
+              <a href="{img img=$products_image type=m_org path_only=true}" class="cloud-zoom fancy-click-trigger" id="zoom" rel="fancy-gallery" data-cloudzoom="adjustX: 28, adjustY:-10, zoomWidth: 350">
+                  {img img=$products_image type=m_info alt=$products_name|escape:"html" width=auto height=auto itemprop=image}
+                  {if $flag_has_new=='1'}
+			    <img src="plugins/shs_products_new_flag/images/shs_icon_new.png" alt="{$module_data.products_name}" class="newflagInfo" />
+			    {/if}
+              </a>
+              {else}
+              {img img=$products_image type=m_info alt=$products_name|escape:"html" width=auto height=auto itemprop=image}
+              {if $flag_has_new=='1'}
+			    <img src="plugins/shs_products_new_flag/images/shs_icon_new.png" alt="{$module_data.products_name}" class="newflagInfo" />
+			    {/if}
+              {/if}
+          </p>
+          {/if}
+      </div>
+
+
+
+css Anpassung 
+
+.newflag {
+    bottom: 110px;
+    float: left;
+    position: relative;
+    right: 11px;
+    z-index: 33333;
+}
+
+.newflagInfo {
+    bottom: 51px;
+    position: relative;
+    right: 208px;
+    z-index: 3333;
+}
+

@@ -1,0 +1,55 @@
+@media screen 
+{
+	#popupwrap 
+	{
+		margin: 0 auto; 
+		width:100%; 
+		background-color:#fff; 
+		padding:0px 0px 0px 10px;
+	}
+	#popupheaderwrap 
+	{
+		background: #000; 
+		height:36px;
+		margin:0 0 20px 0;
+	}
+	#popupmenu 
+	{
+		float:right; 
+		padding:0; 
+		margin:0; 
+		list-style-type:none; 
+		height:36px; 
+		font-size:13px; 
+	}
+	#popupmenu li 
+	{
+		height:36px; 
+		float:right; 
+		padding: 0px 25px 0px 25px; 
+	}
+	#popupmenu a, #popupmenu a:link, #popupmenu a:visited, #popupmenu a:hover, #popupmenu a:active 
+	{
+		line-height:36px; 
+		vertical-align:middle; 
+		text-decoration:none; 
+		font-weight:bold; 
+		cursor:pointer;
+		color:#fff; 
+		margin:0; 
+		padding:0;
+	}
+	#popupmenu a:hover 
+	{
+		color:#DB9501;
+	}
+}
+
+
+@media print 
+{
+	#popupheaderwrap 
+	{
+		display:none;
+	}
+}

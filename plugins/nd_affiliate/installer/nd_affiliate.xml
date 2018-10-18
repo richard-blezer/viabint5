@@ -1,0 +1,2837 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+	<title>Affiliate Plugin</title>
+	<version>1.3.3</version>
+	<code>nd_affiliate</code>
+	<url>http://www.netz-designer.de</url>
+	<description>Partnerprogramm</description>
+	<type>marketing</type>
+	<icon>logo_nd.gif</icon>
+	<db_install><![CDATA[
+	$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'nd_affiliate', 'images/icons/chart_bar.png', '', '', '6000', 'ordertab', 'G', 'W');");
+	$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'nd_affiliate_affiliate', 'images/icons/group.png', '&plugin=nd_affiliate', 'adminHandler.php', '6001', 'nd_affiliate', 'I', 'W');");
+	$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'nd_affiliate_inventory', 'images/icons/bricks.png', '&plugin=nd_affiliate', 'adminHandler.php', '6002', 'nd_affiliate', 'I', 'W');");
+	$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'nd_affiliate_sales', 'images/icons/basket.png', '&plugin=nd_affiliate', 'adminHandler.php', '6003', 'nd_affiliate', 'I', 'W');");
+	$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'nd_affiliate_payment', 'images/icons/money.png', '&plugin=nd_affiliate', 'adminHandler.php', '6004', 'nd_affiliate', 'I', 'W');");
+	$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'nd_affiliate_clicks', 'images/icons/mouse.png', '&plugin=nd_affiliate', 'adminHandler.php', '6005', 'nd_affiliate', 'I', 'W');");
+	$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'nd_affiliate_leads', 'images/icons/door_in.png', '&plugin=nd_affiliate', 'adminHandler.php', '6006', 'nd_affiliate', 'I', 'W');");
+	$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'nd_affiliate_summary', 'images/icons/chart_curve.png', '', 'row_actions.php?type=nd_affiliate_summary', '6007', 'nd_affiliate', 'I', 'W');");
+	$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'nd_affiliate_update', 'images/icons/cd_go.png', '', 'row_actions.php?type=nd_affiliate_update', '6008', 'nd_affiliate', 'I', 'W');");
+	
+	$db->Execute("
+		CREATE TABLE ".DB_PREFIX."_affiliate_affiliate (
+		  affiliate_id int(11) NOT NULL auto_increment,
+		  affiliate_lft int(11) NOT NULL,
+		  affiliate_rgt int(11) NOT NULL,
+		  affiliate_root int(11) NOT NULL,
+		  affiliate_gender char(1) NOT NULL default '',
+		  affiliate_firstname varchar(32) NOT NULL default '',
+		  affiliate_lastname varchar(32) NOT NULL default '',
+		  affiliate_dob date NOT NULL default '0000-00-00',
+		  affiliate_email_address varchar(96) NOT NULL default '',
+		  affiliate_telephone varchar(32),
+		  affiliate_fax varchar(32),
+		  affiliate_password varchar(40) NOT NULL default '',
+		  affiliate_homepage varchar(96),
+		  affiliate_street_address varchar(64) NOT NULL default '',
+		  affiliate_suburb varchar(64),
+		  affiliate_city varchar(32) NOT NULL default '',
+		  affiliate_postcode varchar(10) NOT NULL default '',
+		  affiliate_country_code varchar(2) NOT NULL default '0',
+		  affiliate_agb tinyint(1) NOT NULL default '0',
+		  affiliate_company varchar(60),
+		  affiliate_vat_id varchar(64),
+		  affiliate_commission_percent DECIMAL(4,2) NOT NULL default '0.00',
+		  affiliate_lifetime_duration VARCHAR(6),
+		  affiliate_tiers_allowed TINYINT(1) NOT NULL default '0',
+		  affiliate_payment_check varchar(100),
+		  affiliate_payment_paypal varchar(64),
+		  affiliate_payment_bank_name varchar(64),
+		  affiliate_payment_bank_branch_number varchar(64),
+		  affiliate_payment_bank_swift_code varchar(64),
+		  affiliate_payment_bank_iban varchar(64),
+		  affiliate_payment_bank_account_name varchar(64),
+		  affiliate_payment_bank_account_number varchar(64),
+		  affiliate_shop_id int(11) NOT NULL default '1',
+		  affiliate_date_of_last_logon datetime NOT NULL default '0000-00-00 00:00:00',
+		  affiliate_number_of_logons int(11) NOT NULL default '0',
+		  affiliate_date_account_created datetime NOT NULL default '0000-00-00 00:00:00',
+		  affiliate_date_account_last_modified datetime NOT NULL default '0000-00-00 00:00:00',
+		  affiliate_status TINYINT(1) NOT NULL default '0',
+		  affiliate_vat_entitled TINYINT(1) NOT NULL default '0',
+		  PRIMARY KEY (affiliate_id),
+		  KEY `affiliate_root` (`affiliate_root`),
+		  KEY `affiliate_rgt` (`affiliate_rgt`),
+		  KEY `affiliate_lft` (`affiliate_lft`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+	");
+	
+	$db->Execute("
+		CREATE TABLE ".DB_PREFIX."_affiliate_inventory (
+		  inventory_id int(11) NOT NULL auto_increment,
+		  inventory_title varchar(64) default NULL,
+		  inventory_status tinyint(1) NOT NULL default '0',
+		  inventory_image varchar(255) default NULL,
+		  inventory_html text default NULL,
+		  inventory_text text default NULL,
+		  inventory_width int(11) NOT NULL default '0',
+		  inventory_height int(11) NOT NULL default '0',
+		  inventory_target varchar(16) default NULL,
+		  inventory_url varchar(255) default NULL,
+		  inventory_expires_impressions int(11) default NULL,
+		  inventory_expires_date datetime default NULL,
+		  inventory_scheduled_date datetime default NULL,
+		  inventory_date_added datetime NOT NULL default '0000-00-00 00:00:00',
+		  inventory_date_last_modified datetime NOT NULL default '0000-00-00 00:00:00',
+		  affiliate_shop_id int(11) NOT NULL default '1',
+		  PRIMARY KEY  (inventory_id)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+	");
+	
+	$db->Execute("
+		CREATE TABLE ".DB_PREFIX."_affiliate_inventory_history (
+		  inventory_history_id int(11) NOT NULL auto_increment,
+		  inventory_id int(11) NOT NULL default '0',
+		  shop_id int(11) NOT NULL default '1',
+		  inventory_affiliate_id int(11) NOT NULL default '0',
+		  inventory_shown int(11) NOT NULL default '0',
+		  inventory_clicks tinyint(4) NOT NULL default '0',
+		  inventory_history_date date NOT NULL default '0000-00-00',
+		  PRIMARY KEY  (inventory_history_id)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+	");
+	
+	$db->Execute("
+		CREATE TABLE ".DB_PREFIX."_affiliate_clickthroughs (
+		  affiliate_clickthrough_id int(11) NOT NULL auto_increment,
+		  affiliate_id int(11) NOT NULL default '0',
+		  affiliate_clientdate datetime NOT NULL default '0000-00-00 00:00:00',
+		  affiliate_clientbrowser varchar(200) default 'Could Not Find This Data',
+		  affiliate_clientip varchar(50) default 'Could Not Find This Data',
+		  affiliate_clientreferer varchar(200) default 'none detected (maybe a direct link)',
+		  affiliate_products_id int(11) default '0',
+		  affiliate_banner_id int(11) default '0',
+		  affiliate_shop_id int(11) NOT NULL default '1',
+		  PRIMARY KEY  (affiliate_clickthrough_id),
+		  KEY refid (affiliate_id)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+	");
+	
+	$db->Execute("
+		CREATE TABLE ".DB_PREFIX."_affiliate_leads (
+		  affiliate_leads_id int(11) NOT NULL auto_increment,
+		  affiliate_id int(11) NOT NULL default '0',
+		  affiliate_date datetime NOT NULL default '0000-00-00 00:00:00',
+		  affiliate_date_valid datetime NOT NULL default '0000-00-00 00:00:00',
+		  affiliate_payment decimal(15,2) NOT NULL default '0.00',
+		  affiliate_clickthroughs_id int(11) NOT NULL default '0',
+		  affiliate_lead_target varchar(255) default NULL,
+		  affiliate_billing_status int(5) NOT NULL default '0',
+		  affiliate_payment_date datetime default NULL,
+		  affiliate_payment_id int(11) default NULL,
+		  affiliate_salesman int(11) NOT NULL default '0',
+		  affiliate_level tinyint(4) NOT NULL default '0',
+		  affiliate_shop_id int(11) NOT NULL default '1',
+		  PRIMARY KEY  (`affiliate_leads_id`)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+	");
+	
+	$db->Execute("
+		CREATE TABLE ".DB_PREFIX."_affiliate_payment (
+		  affiliate_payment_id int(11) NOT NULL auto_increment,
+		  affiliate_id int(11) NOT NULL default '0',
+		  affiliate_payment decimal(15,2) NOT NULL default '0.00',
+		  affiliate_payment_tax decimal(15,2) NOT NULL default '0.00',
+		  affiliate_payment_total decimal(15,2) NOT NULL default '0.00',
+		  affiliate_payment_date datetime NOT NULL default '0000-00-00 00:00:00',
+		  affiliate_payment_status tinyint(1) NOT NULL default '0',
+		  affiliate_shop_id int(11) NOT NULL default '1',
+		  affiliate_firstname varchar(32) NOT NULL default '',
+		  affiliate_lastname varchar(32) NOT NULL default '',
+		  affiliate_street_address varchar(64) NOT NULL default '',
+		  affiliate_suburb varchar(64),
+		  affiliate_city varchar(32) NOT NULL default '',
+		  affiliate_postcode varchar(10) NOT NULL default '',
+		  affiliate_country_code varchar(2) NOT NULL default '0',
+		  affiliate_company varchar(60),
+		  affiliate_address_format_id int(5) NOT NULL default '0',
+		  affiliate_last_modified datetime NOT NULL default '0000-00-00 00:00:00',
+		  PRIMARY KEY  (affiliate_payment_id)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+	");
+	
+	$db->Execute("
+		CREATE TABLE ".DB_PREFIX."_affiliate_payment_status (
+		  affiliate_payment_status_id int(11) NOT NULL default '0',
+		  affiliate_language_code varchar(2) NOT NULL,
+		  affiliate_payment_status_name varchar(32) NOT NULL default '',
+		  PRIMARY KEY  (affiliate_payment_status_id,affiliate_language_code),
+		  KEY idx_affiliate_payment_status_name (affiliate_payment_status_name)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+	");
+	$db->Execute("
+		INSERT INTO ".DB_PREFIX."_affiliate_payment_status VALUES (0, 'en', 'Pending');
+	");
+	$db->Execute("
+		INSERT INTO ".DB_PREFIX."_affiliate_payment_status VALUES (0, 'de', 'Offen');
+	");
+	$db->Execute("
+		INSERT INTO ".DB_PREFIX."_affiliate_payment_status VALUES (1, 'en', 'Paid');
+	");
+	$db->Execute("
+		INSERT INTO ".DB_PREFIX."_affiliate_payment_status VALUES (1, 'de', 'Ausgezahlt');
+	");
+	
+	$db->Execute("
+		CREATE TABLE ".DB_PREFIX."_affiliate_payment_status_history (
+		  affiliate_status_history_id int(11) NOT NULL auto_increment,
+		  affiliate_payment_id int(11) NOT NULL default '0',
+		  affiliate_new_value int(5) NOT NULL default '0',
+		  affiliate_old_value int(5) default NULL,
+		  affiliate_date_added datetime NOT NULL default '0000-00-00 00:00:00',
+		  affiliate_notified int(1) default '0',
+		  PRIMARY KEY  (affiliate_status_history_id)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+	");
+	
+	$db->Execute("
+		CREATE TABLE ".DB_PREFIX."_affiliate_sales (
+		  affiliate_sales_id int(11) NOT NULL auto_increment,
+		  affiliate_id int(11) NOT NULL default '0',
+		  affiliate_date datetime NOT NULL default '0000-00-00 00:00:00',
+		  affiliate_orders_id int(11) NOT NULL default '0',
+		  affiliate_value decimal(15,2) NOT NULL default '0.00',
+		  affiliate_payment decimal(15,2) NOT NULL default '0.00',
+		  affiliate_clickthroughs_id int(11),
+		  affiliate_billing_status int(5) NOT NULL default '0',
+		  affiliate_payment_date datetime,
+		  affiliate_payment_id int(11),
+		  affiliate_percent  DECIMAL(4,2)  NOT NULL default '0.00',
+		  affiliate_salesman int(11) NOT NULL default '0',
+		  affiliate_level tinyint(4) NOT NULL default '0',
+		  affiliate_shop_id int(11) NOT NULL default '1',
+		  PRIMARY KEY  (affiliate_sales_id)
+		) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+	");
+	
+	// insert the contents
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT_BLOCK . " (block_tag, block_status, block_protected) VALUES ('nd_affiliate', 1, 0);
+	");
+	
+	$cb = $db->Insert_ID();
+	
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT . " (content_parent, content_status, content_hook, content_form) VALUES (0, 1, 0, 0);
+	");
+	$cid = $db->Insert_ID();
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT_ELEMENTS . " (content_id, language_code, content_title, content_heading, content_body, content_body_short, content_file) VALUES (
+		" . $cid . ", 'de', 'Partner-AGB', 'Partner-AGB', 'Tragen Sie <STRONG>hier</STRONG> Ihre <EM><U>allgemeinen Geschäftsbedingungen</U></EM> für Ihr Partnerprogramm ein.', '', ''); 
+	");
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT_ELEMENTS . " (content_id, language_code, content_title, content_heading, content_body, content_body_short, content_file) VALUES (
+		" . $cid . ", 'en', 'Partner T&C', 'Partner T&C', 'Put in <STRONG>here</STRONG> your <EM><U>terms and conditions</U></EM> for your affiliate program.', '', ''); 
+	");
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT_TO_BLOCK . " (block_id, content_id) VALUES (" . $cb . ", " . $cid . ");
+	");
+	
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT . " (content_parent, content_status, content_hook, content_form) VALUES (0, 1, 0, 0);
+	");
+	$cid = $db->Insert_ID();
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT_ELEMENTS . " (content_id, language_code, content_title, content_heading, content_body, content_body_short, content_file) VALUES (
+		" . $cid . ", 'de', 'Affiliate Info', 'Affiliate Info', 'Tragen Sie <STRONG>hier</STRONG> Ihre <EM><U>Informationen zum Affiliate Programm</U></EM> ein.', '', ''); 
+	");
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT_ELEMENTS . " (content_id, language_code, content_title, content_heading, content_body, content_body_short, content_file) VALUES (
+		" . $cid . ", 'en', 'Affiliate Info', 'Affiliate Info', 'Put in <STRONG>here</STRONG> your <EM><U>information about your affiliate program</U></EM>.', '', ''); 
+	");
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT_TO_BLOCK . " (block_id, content_id) VALUES (" . $cb . ", " . $cid . ");
+	");
+	
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT . " (content_parent, content_status, content_hook, content_form) VALUES (0, 1, 0, 0);
+	");
+	$cid = $db->Insert_ID();
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT_ELEMENTS . " (content_id, language_code, content_title, content_heading, content_body, content_body_short, content_file) VALUES (
+		" . $cid . ", 'de', 'Affiliate FAQ', 'Affiliate FAQ', 'Tragen Sie <STRONG>hier</STRONG> Ihre <EM><U>FAQ zum Affiliate Programm</U></EM> ein.', '', ''); 
+	");
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT_ELEMENTS . " (content_id, language_code, content_title, content_heading, content_body, content_body_short, content_file) VALUES (
+		" . $cid . ", 'en', 'Affiliate FAQ', 'Affiliate FAQ', 'Put in <STRONG>here</STRONG> some <EM><U>FAQ for your affiliate program</U></EM>.', '', ''); 
+	");
+	$db->Execute("
+		INSERT INTO " . TABLE_CONTENT_TO_BLOCK . " (block_id, content_id) VALUES (" . $cb . ", " . $cid . ");
+	");
+	
+	// alter existing tables
+	$db->Execute("
+		ALTER TABLE " . TABLE_PRODUCTS . " ADD affiliate_provision varchar(3)
+	");
+	$db->Execute("
+		ALTER TABLE " . TABLE_CATEGORIES . " ADD affiliate_provision varchar(3)
+	");
+	$db->Execute("
+		ALTER TABLE " . TABLE_CUSTOMERS_STATUS . " ADD affiliate_provision varchar(3)
+	");
+	$db->Execute("
+		ALTER TABLE " . TABLE_CUSTOMERS . " ADD affiliate_referrer int
+	");
+	$db->Execute("
+		ALTER TABLE " . TABLE_CUSTOMERS . " ADD affiliate_date datetime
+	");
+	$db->Execute("
+		ALTER TABLE " . TABLE_CUSTOMERS . " ADD affiliate_duration int
+	");
+		
+	
+	// insert the mails
+	$db->Execute("
+		INSERT INTO " . TABLE_MAIL_TEMPLATES . " (tpl_type) VALUES ('nd_affiliate_contact')
+	");
+	$tpl_id = $db->Insert_ID();
+	
+	$sql_array['tpl_id'] = $tpl_id;
+	$sql_array['language_code'] = 'de';
+	$sql_array['mail_body_html'] = '<link href="{$_system_mail_css}" type="text/css" rel="stylesheet"><table cellpadding="0" cellspacing="0" class="email_container"><tr><td colspan="3" class="email_toplogo"><div class="email_toplogo"><img src="{$_system_logo_url}" /></div></td></tr><tr><td class="email_table_left_bg" valign="top"><div class="email_table_left"></div></td><td class="email_table_center_bg" valign="top"><div class="email_content"><h1>Hallo {$name},</h1><p>Sie haben uns folgende Nachricht über unser Kontaktformlar gesendet:</p><p class="email_highlight">{$message}</p></div><div class="email_footer">{$_system_footer_html}</div></td><td class="email_table_right_bg" valign="top"><div class="email_table_right"></div></td></tr></table>';
+	$sql_array['mail_body_txt'] = 'Hallo {$name}\n\nSie haben uns folgende Nachrcht über unser Kontaktformular gesendet:\n\n{$message}\n------------------------------------------------------------------------------------------------------------\n{$_system_footer_txt}';
+	$sql_array['mail_subject'] = '{$name} - Kontaktformular';
+	
+	$db->AutoExecute(TABLE_MAIL_TEMPLATES_CONTENT,$sql_array);
+	
+	$sql_array['tpl_id'] = $tpl_id;
+	$sql_array['language_code'] = 'en';
+	$sql_array['mail_body_html'] = '<link href="{$_system_mail_css}" type="text/css" rel="stylesheet"><table cellpadding="0" cellspacing="0" class="email_container"><tr><td colspan="3" class="email_toplogo"><div class="email_toplogo"><img src="{$_system_logo_url}" /></div></td></tr><tr><td class="email_table_left_bg" valign="top"><div class="email_table_left"></div></td><td class="email_table_center_bg" valign="top"><div class="email_content"><h1>Hello {$name},</h1><p>You have sent us the following message via our contactform:</p><p class="email_highlight">{$message}</p></div><div class="email_footer">{$_system_footer_html}</div></td><td class="email_table_right_bg" valign="top"><div class="email_table_right"></div></td></tr></table>';
+	$sql_array['mail_body_txt'] = 'Hello {$name}\n\nYou have sent us the following message via our contactform:\n\n{$message}\n------------------------------------------------------------------------------------------------------------\n{$_system_footer_txt}';
+	$sql_array['mail_subject'] = '{$name} - Contactform';
+	
+	$db->AutoExecute(TABLE_MAIL_TEMPLATES_CONTENT,$sql_array);
+	
+		
+	$db->Execute("
+		INSERT INTO " . TABLE_MAIL_TEMPLATES . " (tpl_type) VALUES ('nd_affiliate_password_forgotten')
+	");
+	$tpl_id = $db->Insert_ID();
+	
+	$sql_array['tpl_id'] = $tpl_id;
+	$sql_array['language_code'] = 'de';
+	$sql_array['mail_body_html'] = '<link href="{$_system_mail_css}" type="text/css" rel="stylesheet"><table cellpadding="0" cellspacing="0" class="email_container"><tr><td colspan="3" class="email_toplogo"><div class="email_toplogo"><img src="{$_system_logo_url}" /></div></td></tr><tr><td class="email_table_left_bg" valign="top"><div class="email_table_left"></div></td><td class="email_table_center_bg" valign="top"><div class="email_content"><h1>Hallo {$name},</h1><p>Für Ihren Account bei unserem Partnerprogramm wude ein neues Passwort angefordert. Bitte loggen Sie sich mit dem neuen Passwort in unserem Partnerprogramm ein und ändern es umgehend.</p><p class="email_highlight">Neues Passwort: {$newpass}</p></div><div class="email_footer">{$_system_footer_html}</div></td><td class="email_table_right_bg" valign="top"><div class="email_table_right"></div></td></tr></table>';
+	$sql_array['mail_body_txt'] = 'Hallo {$name}\n\nFür Ihren Account bei unserem Partnerprogramm wude ein neues Passwort angefordert. Bitte loggen Sie sich mit dem neuen Passwort in unserem Partnerprogramm ein und ändern es umgehend.\n\nNeues Passwort: {$newpass}\n------------------------------------------------------------------------------------------------------------\n{$_system_footer_txt}';
+	$sql_array['mail_subject'] = 'Neues Passwort';
+	
+	$db->AutoExecute(TABLE_MAIL_TEMPLATES_CONTENT,$sql_array);
+	
+	$sql_array['tpl_id'] = $tpl_id;
+	$sql_array['language_code'] = 'en';
+	$sql_array['mail_body_html'] = '<link href="{$_system_mail_css}" type="text/css" rel="stylesheet"><table cellpadding="0" cellspacing="0" class="email_container"><tr><td colspan="3" class="email_toplogo"><div class="email_toplogo"><img src="{$_system_logo_url}" /></div></td></tr><tr><td class="email_table_left_bg" valign="top"><div class="email_table_left"></div></td><td class="email_table_center_bg" valign="top"><div class="email_content"><h1>Hello {$name},</h1><p>You have requested a new Passwort for your affiliate program account. Please login at our Site with your new password and change it immediately.</p><p class="email_highlight">New Password: {$newpass}</p></div><div class="email_footer">{$_system_footer_html}</div></td><td class="email_table_right_bg" valign="top"><div class="email_table_right"></div></td></tr></table>';
+	$sql_array['mail_body_txt'] = 'Hello {$name}\n\nYou have requested a new Passwort for your affiliate program account. Please login at our Site with your new password and change it immediately.\n\nNew Password: {$newpass}\n------------------------------------------------------------------------------------------------------------\n{$_system_footer_txt}';
+	$sql_array['mail_subject'] = 'New Password';
+	
+	$db->AutoExecute(TABLE_MAIL_TEMPLATES_CONTENT,$sql_array);
+
+	
+	$db->Execute("
+		INSERT INTO " . TABLE_MAIL_TEMPLATES . " (tpl_type) VALUES ('nd_affiliate_signup')
+	");
+	$tpl_id = $db->Insert_ID();
+	
+	$sql_array['tpl_id'] = $tpl_id;
+	$sql_array['language_code'] = 'de';
+	$sql_array['mail_body_html'] = '<link href="{$_system_mail_css}" type="text/css" rel="stylesheet"><table cellpadding="0" cellspacing="0" class="email_container"><tr><td colspan="3" class="email_toplogo"><div class="email_toplogo"><img src="{$_system_logo_url}" /></div></td></tr><tr><td class="email_table_left_bg" valign="top"><div class="email_table_left"></div></td><td class="email_table_center_bg" valign="top"><div class="email_content"><h1>Hallo {$name},</h1><p>Vielen Dank für Ihre Anmeldung bei unserem Partnerprogramm. Nachfolgend finden Sie die wichtigsten Daten für Ihren Account.</p><p class="email_highlight">Partner-ID: {$affiliate_id}<br />Name: {$name}<br />eMail: {$email}</p><p>Wir freuen uns auf eine gute Zusammenarbeit.</p></div><div class="email_footer">{$_system_footer_html}</div></td><td class="email_table_right_bg" valign="top"><div class="email_table_right"></div></td></tr></table>';
+	$sql_array['mail_body_txt'] = 'Hallo {$name}\n\nVielen Dank für Ihre Anmeldung bei unserem Partnerprogramm. Nachfolgend finden Sie die wichtigsten Daten für Ihren Account.\n\nPartner-ID: {$affiliate_id}\nName: {$name}\neMail: {$email}\n\nWir freuen uns auf eine gute Zusammenarbeit.\n------------------------------------------------------------------------------------------------------------\n{$_system_footer_txt}';
+	$sql_array['mail_subject'] = '{$name} - Anmeldung zu unserem Partnerprogramm';
+	
+	$db->AutoExecute(TABLE_MAIL_TEMPLATES_CONTENT,$sql_array);
+	
+	$sql_array['tpl_id'] = $tpl_id;
+	$sql_array['language_code'] = 'en';
+	$sql_array['mail_body_html'] = '<link href="{$_system_mail_css}" type="text/css" rel="stylesheet"><table cellpadding="0" cellspacing="0" class="email_container"><tr><td colspan="3" class="email_toplogo"><div class="email_toplogo"><img src="{$_system_logo_url}" /></div></td></tr><tr><td class="email_table_left_bg" valign="top"><div class="email_table_left"></div></td><td class="email_table_center_bg" valign="top"><div class="email_content"><h1>Hello {$name},</h1><p>Thank you for your sign up at our affiliate-programm. Following you will find your most important information about your account.</p><p class="email_highlight">Partner-ID: {$affiliate_id}<br />Name: {$name}<br />eMail: {$email}</p><p>We look forward in an successfull Co-Work.</p></div><div class="email_footer">{$_system_footer_html}</div></td><td class="email_table_right_bg" valign="top"><div class="email_table_right"></div></td></tr></table>';
+	$sql_array['mail_body_txt'] = 'Hello {$name}\n\nThank you for your sign up at our affiliate-programm. Following you will find your most important information about your account.\n\nPartner-ID: {$affiliate_id}\nName: {$name}\neMail: {$email}\n\nWe look forward in an successfull Co-Work.\n------------------------------------------------------------------------------------------------------------\n{$_system_footer_txt}';
+	$sql_array['mail_subject'] = '{$name} - Sign Up at our Affiliate-Program';
+	
+	$db->AutoExecute(TABLE_MAIL_TEMPLATES_CONTENT,$sql_array);
+	
+	
+	$db->Execute("
+		INSERT INTO " . TABLE_MAIL_TEMPLATES . " (tpl_type) VALUES ('nd_affiliate_payment')
+	");
+	$tpl_id = $db->Insert_ID();
+	
+	$sql_array['tpl_id'] = $tpl_id;
+	$sql_array['language_code'] = 'de';
+	$sql_array['mail_body_html'] = '<link href="{$_system_mail_css}" type="text/css" rel="stylesheet"><table cellpadding="0" cellspacing="0" class="email_container"><tr><td colspan="3" class="email_toplogo"><div class="email_toplogo"><img src="{$_system_logo_url}" /></div></td></tr><tr><td class="email_table_left_bg" valign="top"><div class="email_table_left"></div></td><td class="email_table_center_bg" valign="top"><div class="email_content"><h1>Hallo {$name},</h1><p>Eine neue Abrechnung über Ihre Provisionen wurde erstellt.</p><p class="email_highlight">Provisionsabrechnung-Nr.: <b>{$payment_id}</b><br />Detailierte Provisionsabrechnung: <b>{$payment_url}</b><br />Abrechnungsdatum: <b>{$payment_date}</b><br /><br /></p><p>Wir freuen uns auf eine weiterhin gute Zusammenarbeit.<br /><br />Ihr Partnerprogramm Team</p></div><div class="email_footer">{$_system_footer_html}</div></td><td class="email_table_right_bg" valign="top"><div class="email_table_right"></div></td></tr></table>';
+	$sql_array['mail_body_txt'] = 'Hallo {$name},\n\nEine neue Abrechnung über Ihre Provisionen wurde erstellt.\n\nProvisionsabrechnung-Nr.: {$payment_id}\nDetailierte Provisionsabrechnung: {$payment_url}\nAbrechnungsdatum: {$payment_date}\n\nWir freuen uns auf eine weiterhin gute Zusammenarbeit.\n\nIhr Partnerprogramm Team\n------------------------------------------------------------------------------------------------------------\n{$_system_footer_txt}';
+	$sql_array['mail_subject'] = '{$name} - Partnerabrechnung';
+	
+	$db->AutoExecute(TABLE_MAIL_TEMPLATES_CONTENT,$sql_array);
+	
+	$sql_array['tpl_id'] = $tpl_id;
+	$sql_array['language_code'] = 'en';
+	$sql_array['mail_body_html'] = '<link href="{$_system_mail_css}" type="text/css" rel="stylesheet"><table cellpadding="0" cellspacing="0" class="email_container"><tr><td colspan="3" class="email_toplogo"><div class="email_toplogo"><img src="{$_system_logo_url}" /></div></td></tr><tr><td class="email_table_left_bg" valign="top"><div class="email_table_left"></div></td><td class="email_table_center_bg" valign="top"><div class="email_content"><h1>Hello {$name},</h1><p>A new billing has been processed for your affiliate account.</p><p class="email_highlight">Payment-Number: <b>{$payment_id}</b><br />Detailled Invoice: <b>{$payment_url}</b><br />Billing Date: <b>{$payment_date}</b><br /><br /></p><p>We are looking foreward on an ongoing successfull cooperation.<br /><br />sincerly your Affiliate-Team</p></div><div class="email_footer">{$_system_footer_html}</div></td><td class="email_table_right_bg" valign="top"><div class="email_table_right"></div></td></tr></table>';
+	$sql_array['mail_body_txt'] = 'Hallo {$name},\n\nA new billing has been processed for your affiliate account.\n\nPayment-Number: {$payment_id}\nDetailled Invoice: {$payment_url}\nBilling Date: {$payment_date}\n\nWe are looking foreward on an ongoing successfull cooperation.\n\nsincerly your Affiliate-Team\n------------------------------------------------------------------------------------------------------------\n{$_system_footer_txt}';
+	$sql_array['mail_subject'] = '{$name} - Affiliate-Billing';
+	
+	$db->AutoExecute(TABLE_MAIL_TEMPLATES_CONTENT,$sql_array);
+	
+	$db->Execute("
+		INSERT INTO " . TABLE_MAIL_TEMPLATES . " (tpl_type) VALUES ('nd_affiliate_payment_update')
+	");
+	$tpl_id = $db->Insert_ID();
+	
+	$sql_array['tpl_id'] = $tpl_id;
+	$sql_array['language_code'] = 'de';
+	$sql_array['mail_body_html'] = '<link href="{$_system_mail_css}" type="text/css" rel="stylesheet"><table cellpadding="0" cellspacing="0" class="email_container"><tr><td colspan="3" class="email_toplogo"><div class="email_toplogo"><img src="{$_system_logo_url}" /></div></td></tr><tr><td class="email_table_left_bg" valign="top"><div class="email_table_left"></div></td><td class="email_table_center_bg" valign="top"><div class="email_content"><h1>Hallo {$name},</h1><p>Der Status Ihrer Provisionsabrechnung wurde geändert.<br />Neuer Status: {$payment_status}<br/>Bei Fragen zu Ihrer Provisionsabrechnung antworten Sie bitte auf diese eMail.</p><p class="email_highlight">Provisionsabrechnung-Nr.: <b>{$payment_id}</b><br />Detailierte Provisionsabrechnung: <b>{$payment_url}</b><br />Abrechnungsdatum: <b>{$payment_date}</b><br /><br /></p><p>Wir freuen uns auf eine weiterhin gute Zusammenarbeit.<br /><br />Ihr Partnerprogramm Team</p></div><div class="email_footer">{$_system_footer_html}</div></td><td class="email_table_right_bg" valign="top"><div class="email_table_right"></div></td></tr></table>';
+	$sql_array['mail_body_txt'] = 'Hallo {$name},\n\nDer Status Ihrer Provisionsabrechnung wurde geändert.\nNeuer Status: {$payment_status}\nBei Fragen zu Ihrer Provisionsabrechnung antworten Sie bitte auf diese eMail.\n\nProvisionsabrechnung-Nr.: {$payment_id}\nDetailierte Provisionsabrechnung: {$payment_url}\nAbrechnungsdatum: {$payment_date}\n\nWir freuen uns auf eine weiterhin gute Zusammenarbeit.\n\nIhr Partnerprogramm Team\n------------------------------------------------------------------------------------------------------------\n{$_system_footer_txt}';
+	$sql_array['mail_subject'] = '{$name} - Partnerabrechnung-Update';
+	
+	$db->AutoExecute(TABLE_MAIL_TEMPLATES_CONTENT,$sql_array);
+	
+	$sql_array['tpl_id'] = $tpl_id;
+	$sql_array['language_code'] = 'en';
+	$sql_array['mail_body_html'] = '<link href="{$_system_mail_css}" type="text/css" rel="stylesheet"><table cellpadding="0" cellspacing="0" class="email_container"><tr><td colspan="3" class="email_toplogo"><div class="email_toplogo"><img src="{$_system_logo_url}" /></div></td></tr><tr><td class="email_table_left_bg" valign="top"><div class="email_table_left"></div></td><td class="email_table_center_bg" valign="top"><div class="email_content"><h1>Hello {$name},</h1><p>Your payment has been updated to the following status.<br />New status: {$payment_status}<br />Please reply to this email if you have any questions.</p><p class="email_highlight">Payment-Number: <b>{$payment_id}</b><br />Detailled Invoice: <b>{$payment_url}</b><br />Billing Date: <b>{$payment_date}</b><br /><br /></p><p>We are looking foreward on an ongoing successfull cooperation.<br /><br />sincerly your Affiliate-Team</p></div><div class="email_footer">{$_system_footer_html}</div></td><td class="email_table_right_bg" valign="top"><div class="email_table_right"></div></td></tr></table>';
+	$sql_array['mail_body_txt'] = 'Hallo {$name},\n\nYour payment has been updated to the following status.\nNew status: {$payment_status}\nPlease reply to this email if you have any questions.\n\nPayment-Number: {$payment_id}\nDetailled Invoice: {$payment_url}\nBilling Date: {$payment_date}\n\nWe are looking foreward on an ongoing successfull cooperation.\n\nsincerly your Affiliate-Team\n------------------------------------------------------------------------------------------------------------\n{$_system_footer_txt}';
+	$sql_array['mail_subject'] = '{$name} - Affiliate-Billing-Update';
+	
+	$db->AutoExecute(TABLE_MAIL_TEMPLATES_CONTENT,$sql_array);
+	]]></db_install>
+	<db_uninstall><![CDATA[
+	$db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text like 'nd_affiliate%'");
+	
+	$db->Execute("DELETE FROM ".TABLE_ADMIN_ACL_AREA." WHERE area_name like 'nd_affiliate%'");
+	
+	$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_affiliate_affiliate");
+	$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_affiliate_inventory");
+	$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_affiliate_inventory_history");
+	$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_affiliate_clickthroughs");
+	$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_affiliate_leads");
+	$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_affiliate_payment");
+	$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_affiliate_payment_status");
+	$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_affiliate_payment_status_history");
+	$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_affiliate_sales");
+	
+	$cb = $db->Execute("SELECT block_id FROM " . TABLE_CONTENT_BLOCK . " WHERE block_tag = 'nd_affiliate'");
+	$cid = $db->Execute("SELECT content_id FROM " . TABLE_CONTENT_TO_BLOCK . " WHERE block_id = " . $cb->fields['block_id']);
+	while(!$cid->EOF) {
+		$db->Execute("DELETE FROM " . TABLE_CONTENT . " WHERE content_id=" . $cid->fields['content_id']);
+		$db->Execute("DELETE FROM " . TABLE_CONTENT_ELEMENTS . " WHERE content_id=" . $cid->fields['content_id']);
+		$db->Execute("DELETE FROM " . TABLE_CONTENT_TO_BLOCK . " WHERE content_id=" . $cid->fields['content_id']);
+		$cid->MoveNext();
+	}
+	$db->Execute("DELETE FROM " . TABLE_CONTENT_BLOCK . " WHERE block_tag='nd_affiliate'");
+	
+	$db->Execute("ALTER TABLE " . TABLE_PRODUCTS . " DROP affiliate_provision");
+	$db->Execute("ALTER TABLE " . TABLE_CATEGORIES . " DROP affiliate_provision");
+	$db->Execute("ALTER TABLE " . TABLE_CUSTOMERS_STATUS . " DROP affiliate_provision");
+	$db->Execute("ALTER TABLE " . TABLE_CUSTOMERS . " DROP affiliate_referrer");
+	$db->Execute("ALTER TABLE " . TABLE_CUSTOMERS . " DROP affiliate_date");
+	$db->Execute("ALTER TABLE " . TABLE_CUSTOMERS . " DROP affiliate_duration");
+	
+	$tpl = $db->Execute("SELECT tpl_id FROM " . TABLE_MAIL_TEMPLATES . " WHERE tpl_type like 'nd_affiliate%'");
+	while(!$tpl->EOF) {
+		$db->Execute("DELETE FROM " . TABLE_MAIL_TEMPLATES . " WHERE tpl_id = " . $tpl->fields['tpl_id']);
+		$db->Execute("DELETE FROM " . TABLE_MAIL_TEMPLATES_CONTENT . " WHERE tpl_id = " . $tpl->fields['tpl_id']);
+		$tpl->MoveNext();
+	}
+	]]></db_uninstall>
+	<plugin_code>
+	  <code>
+	    <hook>page_registry.php:bottom</hook>
+	    <phpcode><![CDATA[
+	    if(AFFILIATE_ACTIVATE_PLUGIN == 'true') {
+		    define('PAGE_AFFILIATE_AFFILIATE', _SRV_WEB_PLUGINS.'nd_affiliate/pages/affiliate_affiliate.php');
+		    define('PAGE_AFFILIATE_SUMMARY', _SRV_WEB_PLUGINS.'nd_affiliate/pages/affiliate_summary.php');
+		    define('PAGE_AFFILIATE_ACCOUNT', _SRV_WEB_PLUGINS.'nd_affiliate/pages/affiliate_account.php');
+		    define('PAGE_AFFILIATE_PAYMENT', _SRV_WEB_PLUGINS.'nd_affiliate/pages/affiliate_payment.php');
+		    define('PAGE_AFFILIATE_CLICKS', _SRV_WEB_PLUGINS.'nd_affiliate/pages/affiliate_clicks.php');
+		    define('PAGE_AFFILIATE_SALES', _SRV_WEB_PLUGINS.'nd_affiliate/pages/affiliate_sales.php');
+		    define('PAGE_AFFILIATE_LEADS', _SRV_WEB_PLUGINS.'nd_affiliate/pages/affiliate_leads.php');
+		    define('PAGE_AFFILIATE_INVENTORY', _SRV_WEB_PLUGINS.'nd_affiliate/pages/affiliate_inventory.php');
+		    define('PAGE_AFFILIATE_CONTACT', _SRV_WEB_PLUGINS.'nd_affiliate/pages/affiliate_contact.php');
+	    }
+	    ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	  </code>
+	  <code>
+	    <hook>store_main.php:bottom</hook>
+	    <phpcode><![CDATA[
+	    if(AFFILIATE_ACTIVATE_PLUGIN == 'true') {
+			define('TABLE_AFFILIATE', DB_PREFIX . '_affiliate_affiliate');
+		    define('TABLE_AFFILIATE_INVENTORY', DB_PREFIX . '_affiliate_inventory');
+		    define('TABLE_AFFILIATE_INVENTORY_HISTORY', DB_PREFIX . '_affiliate_inventory_history');
+		    define('TABLE_AFFILIATE_CLICKTHROUGHS', DB_PREFIX . '_affiliate_clickthroughs');
+		    define('TABLE_AFFILIATE_LEADS', DB_PREFIX . '_affiliate_leads');
+		    define('TABLE_AFFILIATE_SALES', DB_PREFIX . '_affiliate_sales');
+		    define('TABLE_AFFILIATE_PAYMENT', DB_PREFIX . '_affiliate_payment');
+		    define('TABLE_AFFILIATE_PAYMENT_STATUS', DB_PREFIX . '_affiliate_payment_status');
+		    define('TABLE_AFFILIATE_PAYMENT_STATUS_HISTORY', DB_PREFIX . '_affiliate_payment_status_history');
+		    
+		    if(!isset($_SESSION['affiliate_ref'])) {
+		    	require_once(_SRV_WEBROOT._SRV_WEB_PLUGINS.'nd_affiliate/classes/class.nd_affiliate_clicks.php'); 
+		    	$_click = new nd_affiliate_clicks();
+		    	$_click->newClick();
+		    }
+		}
+	    ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	  </code>
+	  <code>
+	    <hook>product_info_tpl</hook>
+	    <phpcode><![CDATA[
+	    if(AFFILIATE_ACTIVATE_PLUGIN == 'true') {
+	    	global $current_product_id;
+	    	
+	    	require_once(_SRV_WEBROOT._SRV_WEB_PLUGINS.'nd_affiliate/classes/class.nd_affiliate_inventory.php');
+	    	$_inventory = new nd_affiliate_inventory;
+	    	echo $_inventory->drawProductDeeplink($_SESSION['affiliate_id'], $current_product_id);
+		}
+	    ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	  </code>
+	  <code>
+	  	<hook>module_checkout.php:checkout_proccess_order_processed</hook>
+	  	<phpcode><![CDATA[
+	    if(isset($xtPlugin->active_modules['nd_affiliate']) && AFFILIATE_ACTIVATE_PLUGIN == 'true') {
+	    	require_once(_SRV_WEBROOT._SRV_WEB_PLUGINS.'nd_affiliate/classes/class.nd_affiliate_sales.php'); 
+	    	$_sale = new nd_affiliate_sales();
+	    	$_sale->newSale($_SESSION['last_order_id']);
+	    }
+	    ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	  </code>
+	  <code>
+	    <hook>admin_main.php:bottom</hook>
+	    <phpcode><![CDATA[
+	    define('TABLE_AFFILIATE', DB_PREFIX . '_affiliate_affiliate');
+		define('TABLE_AFFILIATE_INVENTORY', DB_PREFIX . '_affiliate_inventory');
+		define('TABLE_AFFILIATE_INVENTORY_HISTORY', DB_PREFIX . '_affiliate_inventory_history');
+		define('TABLE_AFFILIATE_CLICKTHROUGHS', DB_PREFIX . '_affiliate_clickthroughs');
+		define('TABLE_AFFILIATE_LEADS', DB_PREFIX . '_affiliate_leads');
+		define('TABLE_AFFILIATE_SALES', DB_PREFIX . '_affiliate_sales');
+		define('TABLE_AFFILIATE_PAYMENT', DB_PREFIX . '_affiliate_payment');
+		define('TABLE_AFFILIATE_PAYMENT_STATUS', DB_PREFIX . '_affiliate_payment_status');
+		define('TABLE_AFFILIATE_PAYMENT_STATUS_HISTORY', DB_PREFIX . '_affiliate_payment_status_history');
+		
+		require_once(_SRV_WEBROOT._SRV_WEB_PLUGINS.'/nd_affiliate/classes/class.nd_affiliate_inventory.php');
+	    ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	  </code>
+	  <code>
+	    <hook>row_actions.php:actions</hook>
+	    <phpcode><![CDATA[
+	    if ($_GET['type']=='nd_affiliate_summary') {
+	    	require_once(_SRV_WEBROOT._SRV_WEB_PLUGINS.'nd_affiliate/classes/class.nd_affiliate_summary.php'); 
+	    	$_summary = new nd_affiliate_summary();
+	    	$_summary->buildSummary();
+	    	echo $_summary->displaySummary();
+	    }
+	    if ($_GET['type']=='nd_affiliate_update') {
+	    	require_once(_SRV_WEBROOT._SRV_WEB_PLUGINS.'nd_affiliate/classes/class.nd_affiliate_update.php'); 
+	    	$_update = new nd_affiliate_update();
+	    	echo $_update->processUpdate();
+	    }
+	    ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	  </code>
+	  <code>
+	    <hook>css_admin.php:css</hook>
+	    <phpcode><![CDATA[
+	    echo '.nd_affiliate_subaffiliatetree {background-image: url(images/icons/chart_organisation.png) !important;}';
+	    echo '.nd_affiliate_payment {background-image: url(images/icons/money.png) !important;}';
+	    echo '.nd_affiliate_sales {background-image: url(images/icons/basket.png) !important;}';
+	    echo '.nd_affiliate_clicks {background-image: url(images/icons/mouse.png) !important;}';
+	    echo '.nd_affiliate_leads {background-image: url(images/icons/door_in.png) !important;}';
+	    echo '.nd_affiliate_summary {background-image: url(images/icons/chart_curve.png) !important;}';
+	    echo '.nd_affiliate_printpayment {background-image: url(images/icons/page_white_acrobat.png) !important;}';
+	    ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	  </code>
+	  <code>
+	    <hook>class.customer.php:_getParams_header</hook>
+	    <phpcode><![CDATA[
+	    $header['affiliate_referrer'] = array('type' => 'dropdown', 'url'  => 'DropdownData.php?get=affiliates');
+	    ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	  </code>
+	  <code>
+	    <hook>admin_dropdown.php:dropdown</hook>
+	    <phpcode><![CDATA[
+	    switch ($request['get']) {
+	    	case "affiliates":
+	    		require_once _SRV_WEBROOT.'plugins/nd_affiliate/classes/class.nd_affiliate_affiliate.php';
+	    		$affiliate = new nd_affiliate_affiliate();
+	    		$result = $affiliate->_getAffiliates();
+	    		break;
+	    }
+	    ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	  </code>
+	</plugin_code>
+	<configuration>
+	  <config>
+	    <key>ACTIVATE_ND_AFFILIATE_BOX</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Box aktivieren</title>
+	      <description>Affilaite Box anzeigen</description>
+	    </de>
+	    <en>
+	      <title>Activate Box</title>
+	      <description>Activate the Affiliate Box</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_ACTIVATE_PLUGIN</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Affiliate-Plugin aktivieren</title>
+	      <description>Affiliate-Plugin aktivieren.</description>
+	    </de>
+	    <en>
+	      <title>Activate Affiliate-Plugin</title>
+	      <description>Activate Affiliate-Plugin.</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_LIFETIME_PROVISION</key>
+	    <value>false</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Lifetime Provision</title>
+	      <description>Kunde fest einem Partner zuordnen</description>
+	    </de>
+	    <en>
+	      <title>Lifetime Provision</title>
+	      <description>Allocate an affilite to a customer</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_LIFETIME_DURATION</key>
+	    <value>365</value>
+	    <de>
+	      <title>Lifetime-Dauer</title>
+	      <description>Anzahl Tage, die eine Zuordnung Affiliate-Kunde gültig ist</description>
+	    </de>
+	    <en>
+	      <title>Lifetime-Duration</title>
+	      <description>Number of Days the allocation affiliate-customer is valid</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_PRODUCT_PROVISION</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Produktprovision</title>
+	      <description>Produktspezifische Provision berücksichtigen</description>
+	    </de>
+	    <en>
+	      <title>Productprovision</title>
+	      <description>Use product specific provision</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_CATEGORIE_PROVISION</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Kategorieprovision</title>
+	      <description>Kategoriespezifische Provision berücksichtigen</description>
+	    </de>
+	    <en>
+	      <title>Categorieprovision</title>
+	      <description>Use categorie specific provision</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_CUSTOMERSSTATUS_PROVISION</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Kundengruppenprovision</title>
+	      <description>Kundegruppenspezifische Provision berücksichtigen</description>
+	    </de>
+	    <en>
+	      <title>Customersstatusprovision</title>
+	      <description>Use customers_status specific provision</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_BANNER_JS</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Bannercode als JS</title>
+	      <description>Bannercode als JavaScript ausliefern</description>
+	    </de>
+	    <en>
+	      <title>Bannercode by JS</title>
+	      <description>Deliver Bannercode by JavaSript</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_AUTO_ACTIVATE</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Partner aktivieren</title>
+	      <description>Partner nach Registrierung automatisch aktivieren</description>
+	    </de>
+	    <en>
+	      <title>Affiliate activate</title>
+	      <description>Activate affiliate automatically after registration</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_AFFILIATE_GLOBAL</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Affiliates global anlegen</title>
+	      <description>Affiliates unabhängig von aktivem Shop global registrieren.</description>
+	    </de>
+	    <en>
+	      <title>Register Affiliates global</title>
+	      <description>Register affiliates global no matter of active shop.</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_EMAIL_ADDRESS</key>
+	    <value>affiliate@localhost</value>
+	    <de>
+	      <title>E-Mail Adresse</title>
+	      <description>Die e-Mail Adresse für das Affiliate Programm</description>
+	    </de>
+	    <en>
+	      <title>E-Mail Adress</title>
+	      <description>The E Mail Address for the Affiliate Programm</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_NOTIFY_AFTER_BILLING</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Payments benachrichtigen</title>
+	      <description>Affiliates nach der Generierung von Abrechnungen automatisch benachrichtigen.</description>
+	    </de>
+	    <en>
+	      <title>Notify Payments</title>
+	      <description>Notify Affiliates after a Pament is generated.</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_PERCENT</key>
+	    <value>10.00</value>
+	    <de>
+	      <title>Affiliate Pay Per Sale %-Rate</title>
+	      <description>Prozentuale Rate für das Pay Per Sale Affiliate Programm.</description>
+	    </de>
+	    <en>
+	      <title>Affiliate Pay Per Sale %-Rate</title>
+	      <description>Percentage Rate for the Affiliate Program</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_PROVISION_TAX</key>
+	    <value>false</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Affiliate Provision Netto</title>
+	      <description>Provisionen vom Netto-Warenwert berechnen</description>
+	    </de>
+	    <en>
+	      <title>Affiliates Provision Net</title>
+	      <description>Calculate Provision from net-products-price</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_THRESHOLD</key>
+	    <value>50.00</value>
+	    <de>
+	      <title>Auszahlungsgrenze</title>
+	      <description>Untere Grenze für die Auszahlung an Affiliates</description>
+	    </de>
+	    <en>
+	      <title>Payment Threshold</title>
+	      <description>Payment Threshold for paying affiliates</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_COOKIE_LIFETIME</key>
+	    <value>7200</value>
+	    <de>
+	      <title>Cookie Lifetime</title>
+	      <description>Wie lange (in Sekunden) der Lead eines Affiliates gültig bleibt.</description>
+	    </de>
+	    <en>
+	      <title>Cookie Lifetime</title>
+	      <description>How long does the click count (seconds) if customer comes back</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_BILLING_TIME</key>
+	    <value>30</value>
+	    <de>
+	      <title>Abrechnungszeit</title>
+	      <description>Die Zeit, die zwischen einer erfolgreichen Bestellung und der Gutschrift beim Affiliate vergehen soll. Benötigt falls Bestellungen Rückbelastet werden.</description>
+	    </de>
+	    <en>
+	      <title>Billing Time</title>
+	      <description>Orders billed must be at least "30" days old. This is needed if a order is refunded</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_PAYMENT_ORDER_STATUS</key>
+	    <value>23</value>
+	    <de>
+	      <title>Order Status</title>
+	      <description>Der Status einer Berstellung, ab wann sie provisionsfähig ist. Mehrere durch Semikolon getrennt (z.B. 23;33)</description>
+	    </de>
+	    <en>
+	      <title>Order Status</title>
+	      <description>The status an order must have to be billed. More than one have to be separated by semikolon.</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_USE_CHECK</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Affiliate Scheck</title>
+	      <description>Affilaites per Scheck auszahlen</description>
+	    </de>
+	    <en>
+	      <title>Affiliates Check</title>
+	      <description>Pay Affiliates with check</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_USE_PAYPAL</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Affiliate Paypal</title>
+	      <description>Affilaites per PayPal auszahlen</description>
+	    </de>
+	    <en>
+	      <title>Affiliates PayPal</title>
+	      <description>Pay Affiliates with PayPal</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_USE_BANK</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Affiliate Bank</title>
+	      <description>Affilaites per Überweisung auszahlen</description>
+	    </de>
+	    <en>
+	      <title>Affiliates Bank</title>
+	      <description>Pay Affiliates with banktransfer</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILATE_INDIVIDUAL_PERCENTAGE</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Individueller Prozentsatz</title>
+	      <description>Prozentsatz individuell per Affiliate festlegen</description>
+	    </de>
+	    <en>
+	      <title>Individual Affiliate Percentage</title>
+	      <description>Allow per Affiliate provision</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILATE_USE_TIER</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Klassensystem</title>
+	      <description>Multiklassen Affiliate Programm verwenden</description>
+	    </de>
+	    <en>
+	      <title>Use Affiliate-tier</title>
+	      <description>Multilevel Affiliate provisions</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_TIER_ALLOWED</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Standard für Subaffiliates</title>
+	      <description>Dürfen neue Affiliates Standardmässig Subaffiliates haben.</description>
+	    </de>
+	    <en>
+	      <title>Default for Subaffiliates</title>
+	      <description>Are new affiliates allowed to have Subaffiliates by default.</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_TIER_SHOW_SUBPARTNER</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>Subpartner anzeigen</title>
+	      <description>Sollen dem Partner im Frontend seine Subpartner angezeigt werden?</description>
+	    </de>
+	    <en>
+	      <title>Show Subaffiliates</title>
+	      <description>Should the Affiliate see his Subaffiliates in the frontend?</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_TIER_LEVELS</key>
+	    <value>3</value>
+	    <de>
+	      <title>Anzahl Klassen</title>
+	      <description>Anzahl der beim Klassensystem zu verwendenden Klassen </description>
+	    </de>
+	    <en>
+	      <title>Number of Tierlevels</title>
+	      <description>Number of Tierlevels</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>AFFILIATE_TIER_PERCENTAGE</key>
+	    <value>8.00;5.00;1.00</value>
+	    <de>
+	      <title>Prozentsätze für Klassensystem</title>
+	      <description>Individuelle Prozentsätze für die Unterklassen. Zum Beispiel 8.00;5.00;1.00</description>
+	    </de>
+	    <en>
+	      <title>Percentage Rate for the Tierlevels</title>
+	      <description>Percent Rates for the tierlevels, e.g. 8.00;5.00;1.00</description>
+	    </en>
+	  </config>
+	</configuration>
+	<language_content>
+	<!-- TABLE_AFFILIATE -->
+	  <phrase>
+	    <key>HEADING_ND_AFFILIATE_AFFILIATE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partner</value>
+	    </de>
+	    <en>
+	      <value>Affiliates</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_ID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partner-Nr.</value>
+	    </de>
+	    <en>
+	      <value>Affiliate-No.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_GENDER</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Anrede</value>
+	    </de>
+	    <en>
+	      <value>Gender</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_FIRSTNAME</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Vorname</value>
+	    </de>
+	    <en>
+	      <value>Firstname</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_LASTNAME</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Nachname</value>
+	    </de>
+	    <en>
+	      <value>Lastname</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_DOB</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Geburtsdatum</value>
+	    </de>
+	    <en>
+	      <value>Date of Birth</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_EMAIL_ADDRESS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>eMail</value>
+	    </de>
+	    <en>
+	      <value>eMail</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_TELEPHONE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Telefon</value>
+	    </de>
+	    <en>
+	      <value>Telephone</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_FAX</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Fax</value>
+	    </de>
+	    <en>
+	      <value>Fax</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PASSWORD</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Passwort</value>
+	    </de>
+	    <en>
+	      <value>Password</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_HOMEPAGE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>URL</value>
+	    </de>
+	    <en>
+	      <value>URL</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_STREET_ADDRESS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Strasse / Haus-Nr.</value>
+	    </de>
+	    <en>
+	      <value>Streetaddress</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_SUBURB</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Ortsteil</value>
+	    </de>
+	    <en>
+	      <value>Suburb</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_CITY</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Ort</value>
+	    </de>
+	    <en>
+	      <value>City</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_POSTCODE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>PLZ</value>
+	    </de>
+	    <en>
+	      <value>ZIP</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_COUNTRY_CODE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Land</value>
+	    </de>
+	    <en>
+	      <value>State</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_COMPANY</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Firma</value>
+	    </de>
+	    <en>
+	      <value>Company</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_VAT_ID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>UstID</value>
+	    </de>
+	    <en>
+	      <value>VAT ID</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_COMMISSION_PERCENT</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Provision</value>
+	    </de>
+	    <en>
+	      <value>Commission</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_LIFETIME_DURATION</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Lifetime-Dauer</value>
+	    </de>
+	    <en>
+	      <value>Lifetime-Duration</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_TIERS_ALLOWED</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Sub-Affiliates</value>
+	    </de>
+	    <en>
+	      <value>Sub-Affiliates</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_CHECK</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Scheckempfänger</value>
+	    </de>
+	    <en>
+	      <value>Check-Recipient</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_PAYPAL</key>
+	    <class>admin</class>
+	    <de>
+	      <value>PayPal-Account</value>
+	    </de>
+	    <en>
+	      <value>PayPal-Account</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_BANK_NAME</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Kreditinstitut</value>
+	    </de>
+	    <en>
+	      <value>Bankname</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_BANK_BRANCH_NUMBER</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Bankleitzahl</value>
+	    </de>
+	    <en>
+	      <value>Bankbranchnumber</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_BANK_SWIFT_CODE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>SwiftCode</value>
+	    </de>
+	    <en>
+	      <value>SwiftCode</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_BANK_IBAN</key>
+	    <class>admin</class>
+	    <de>
+	      <value>IBAN</value>
+	    </de>
+	    <en>
+	      <value>IBAN</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_BANK_ACCOUNT_NAME</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Kontoinhaber</value>
+	    </de>
+	    <en>
+	      <value>Account Name</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_BANK_ACCOUNT_NUMBER</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Kontonummer</value>
+	    </de>
+	    <en>
+	      <value>Account Number</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_SHOP_ID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Shop-ID</value>
+	    </de>
+	    <en>
+	      <value>Shop-ID</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_LAST_MODIFIED</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Letzte Änderung</value>
+	    </de>
+	    <en>
+	      <value>last modified</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_STATUS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Aktiv</value>
+	    </de>
+	    <en>
+	      <value>Active</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_VAT_ENTITLED</key>
+	    <class>admin</class>
+	    <de>
+	      <value>USt.-Ausweisbar</value>
+	    </de>
+	    <en>
+	      <value>VAT entitled</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENTS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Auszahlungen</value>
+	    </de>
+	    <en>
+	      <value>Payments</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_SALES</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Verkäufe</value>
+	    </de>
+	    <en>
+	      <value>Sales</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_CLICKTHROUGHS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Klicks</value>
+	    </de>
+	    <en>
+	      <value>Clicks</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_LEADS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Leads</value>
+	    </de>
+	    <en>
+	      <value>Leads</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_REFERRER</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Affiliate</value>
+	    </de>
+	    <en>
+	      <value>Affiliate</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_DURATION</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Lifetime-Dauer</value>
+	    </de>
+	    <en>
+	      <value>Lifetime-Duration</value>
+	    </en>
+	  </phrase>
+	<!-- TABLE_AFFILIATE_INVENTORY -->
+	  <phrase>
+	    <key>HEADING_ND_AFFILIATE_INVENTORY</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Werbemittel</value>
+	    </de>
+	    <en>
+	      <value>Advertising Media</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_ID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Banner-Nr.</value>
+	    </de>
+	    <en>
+	      <value>Banner-No.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_TITLE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Name</value>
+	    </de>
+	    <en>
+	      <value>Name</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_STATUS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Aktiv</value>
+	    </de>
+	    <en>
+	      <value>Active</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_IMAGE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Bild</value>
+	    </de>
+	    <en>
+	      <value>Image</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_HTML</key>
+	    <class>admin</class>
+	    <de>
+	      <value>HTML</value>
+	    </de>
+	    <en>
+	      <value>HTML</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_TEXT</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Text</value>
+	    </de>
+	    <en>
+	      <value>Text</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_WIDTH</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Breite</value>
+	    </de>
+	    <en>
+	      <value>Width</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_HEIGHT</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Höhe</value>
+	    </de>
+	    <en>
+	      <value>Height</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_TARGET</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Ziel</value>
+	    </de>
+	    <en>
+	      <value>Target</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_URL</key>
+	    <class>admin</class>
+	    <de>
+	      <value>URL</value>
+	    </de>
+	    <en>
+	      <value>URL</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_EXPIRES_IMPRESSIONS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Anzahl Einblendungen</value>
+	    </de>
+	    <en>
+	      <value>Numbers of Impressions</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_EXPIRES_DATE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Anzeigen bis</value>
+	    </de>
+	    <en>
+	      <value>Show until</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_INVENTORY_SCHEDULED_DATE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Anzeigen ab</value>
+	    </de>
+	    <en>
+	      <value>Show from</value>
+	    </en>
+	  </phrase>
+	<!-- TABLE_AFFILIATE_INVENTORY_HISTORY -->
+	<!-- TABLE_AFFILIATE_CLICKTHROUGHS -->
+	  <phrase>
+	    <key>HEADING_ND_AFFILIATE_CLICKS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partnerklicks</value>
+	    </de>
+	    <en>
+	      <value>Affiliate Clicks</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_CLICKTHROUGH_ID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Klick-Nr.</value>
+	    </de>
+	    <en>
+	      <value>Click-No.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_CLIENTDATE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Datum</value>
+	    </de>
+	    <en>
+	      <value>Date</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_CLIENTBROWSER</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Browser</value>
+	    </de>
+	    <en>
+	      <value>Browser</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_CLIENTIP</key>
+	    <class>admin</class>
+	    <de>
+	      <value>IP-Adresse</value>
+	    </de>
+	    <en>
+	      <value>IP-Address</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_CLIENTREFERER</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Referrer</value>
+	    </de>
+	    <en>
+	      <value>Referer</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PRODUCTS_ID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Produkt</value>
+	    </de>
+	    <en>
+	      <value>Product</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_BANNER_ID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Werbemittel</value>
+	    </de>
+	    <en>
+	      <value>Advertisingmedia</value>
+	    </en>
+	  </phrase>
+	<!-- TABLE_AFFILIATE_PAYMENT -->
+	  <phrase>
+	    <key>HEADING_ND_AFFILIATE_PAYMENT</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partnerauszahlungen</value>
+	    </de>
+	    <en>
+	      <value>Affiliate Payments</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_ID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Zahlungs-Nr.</value>
+	    </de>
+	    <en>
+	      <value>Payment-No.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Betrag</value>
+	    </de>
+	    <en>
+	      <value>Value</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_TAX</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Steuer</value>
+	    </de>
+	    <en>
+	      <value>Tax</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_TOTAL</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Gesamt</value>
+	    </de>
+	    <en>
+	      <value>Total</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_DATE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Datum</value>
+	    </de>
+	    <en>
+	      <value>Date</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_STATUS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Status</value>
+	    </de>
+	    <en>
+	      <value>Status</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_FIRSTNAME</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Vorname</value>
+	    </de>
+	    <en>
+	      <value>Firstname</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PAYMENT_LASTNAME</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Nachname</value>
+	    </de>
+	    <en>
+	      <value>Lastname</value>
+	    </en>
+	  </phrase>
+	<!-- TABLE_AFFILIATE_PAYMENT_STATUS -->
+	<!-- TABLE_AFFILIATE_PAYMENT_STATUS_HISTORY -->
+	<!-- TABLE_AFFILIATE_SALES -->
+	  <phrase>
+	    <key>HEADING_ND_AFFILIATE_SALES</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partnerverkäufe</value>
+	    </de>
+	    <en>
+	      <value>Affiliate Sales</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_SALES_ID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Verkauf-Nr.</value>
+	    </de>
+	    <en>
+	      <value>Sale-No.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_DATE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Datum</value>
+	    </de>
+	    <en>
+	      <value>Date</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_ORDERS_ID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Bestellung</value>
+	    </de>
+	    <en>
+	      <value>Order</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_VALUE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Bestellsumme</value>
+	    </de>
+	    <en>
+	      <value>Ordervalue</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_CLICKTHROUGHS_ID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Klick-ID</value>
+	    </de>
+	    <en>
+	      <value>Click-ID</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_BILLING_STATUS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Status</value>
+	    </de>
+	    <en>
+	      <value>Status</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PERCENT</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Prozent</value>
+	    </de>
+	    <en>
+	      <value>Percent</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_SALESMAN</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Vertreter</value>
+	    </de>
+	    <en>
+	      <value>Salesman</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_LEVEL</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Level</value>
+	    </de>
+	    <en>
+	      <value>Level</value>
+	    </en>
+	  </phrase>
+	<!-- TABLE_AFFILIATE_LEADS -->
+	  <phrase>
+	    <key>HEADING_ND_AFFILIATE_LEADS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partner-Leads</value>
+	    </de>
+	    <en>
+	      <value>Affiliate Leads</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_LEADS_ID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Lead-Nr.</value>
+	    </de>
+	    <en>
+	      <value>Lead-No.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_DATE_VALID</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Auszahlung ab</value>
+	    </de>
+	    <en>
+	      <value>Payout at</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_LEAD_TARGET</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Lead-Ziel</value>
+	    </de>
+	    <en>
+	      <value>Lead-Target</value>
+	    </en>
+	  </phrase>
+	<!-- BOX AFFILIATE -->
+	  <phrase>
+	    <key>BOX_AFFILIATE_HEADER</key>
+	    <class>store</class>
+	    <de>
+	      <value>Partnerprogramm</value>
+	    </de>
+	    <en>
+	      <value>Affiliate</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_INFO</key>
+	    <class>store</class>
+	    <de>
+	      <value>Partner Information</value>
+	    </de>
+	    <en>
+	      <value>Affiliate Information</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_SUMMARY</key>
+	    <class>store</class>
+	    <de>
+	      <value>Partnerkonto übersicht</value>
+	    </de>
+	    <en>
+	      <value>Affiliate Summary</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_ACCOUNT</key>
+	    <class>store</class>
+	    <de>
+	      <value>Partnerkonto Bearbeiten</value>
+	    </de>
+	    <en>
+	      <value>Edit Affiliate Account</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_CLICKS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Partnerklicks</value>
+	    </de>
+	    <en>
+	      <value>Clickthrough Report</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_PAYMENT</key>
+	    <class>store</class>
+	    <de>
+	      <value>Partner Auszahlungen</value>
+	    </de>
+	    <en>
+	      <value>Payment Report</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_SALES</key>
+	    <class>store</class>
+	    <de>
+	      <value>Partnerverkäufe</value>
+	    </de>
+	    <en>
+	      <value>Sales Report</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_LEADS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Partner-Leads</value>
+	    </de>
+	    <en>
+	      <value>Leads Report</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_INVENTORY</key>
+	    <class>store</class>
+	    <de>
+	      <value>Werbemittel</value>
+	    </de>
+	    <en>
+	      <value>Affiliate Media</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_CONTACT</key>
+	    <class>store</class>
+	    <de>
+	      <value>Kontakt</value>
+	    </de>
+	    <en>
+	      <value>Contact Us</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_FAQ</key>
+	    <class>store</class>
+	    <de>
+	      <value>Partner FAQ</value>
+	    </de>
+	    <en>
+	      <value>Affiliate FAQ</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TOC</key>
+	    <class>store</class>
+	    <de>
+	      <value>Partner AGB</value>
+	    </de>
+	    <en>
+	      <value>Affiliate TOC</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_LOGIN</key>
+	    <class>store</class>
+	    <de>
+	      <value>Partner Login</value>
+	    </de>
+	    <en>
+	      <value>Affiliate Login</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_LOGOUT</key>
+	    <class>store</class>
+	    <de>
+	      <value>Partner Logout</value>
+	    </de>
+	    <en>
+	      <value>Affiliate Logout</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_LINK_REGISTER</key>
+	    <class>store</class>
+	    <de>
+	      <value>Zum Partnerprogramm anmelden</value>
+	    </de>
+	    <en>
+	      <value>Register for affiliate</value>
+	    </en>
+	  </phrase>
+	<!-- AFFILIATE ADMIN -->
+	  <phrase>
+	    <key>AFFILIATE_TEXT_AFFILIATES</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partner</value>
+	    </de>
+	    <en>
+	      <value>Affiliates</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_IMPRESSIONS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Bannereinblendungen</value>
+	    </de>
+	    <en>
+	      <value>Bannerimpressions</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_CLICKS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Bannerklicks</value>
+	    </de>
+	    <en>
+	      <value>Bannerclicks</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_SALES_NUMBERS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Anzahl Verkäufe</value>
+	    </de>
+	    <en>
+	      <value>Number of sales</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_SALES_TOTAL</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Summe Bestellwert</value>
+	    </de>
+	    <en>
+	      <value>Amount</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_SALES_PROVISION</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Provisionsbetrag</value>
+	    </de>
+	    <en>
+	      <value>Comission</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_AVERAGE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Durchschnitt</value>
+	    </de>
+	    <en>
+	      <value>Average</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_CONVERSION</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Verkäufe/Klicks</value>
+	    </de>
+	    <en>
+	      <value>Sales/Clicks</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_AVERAGE_PERCENTAGE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Durchschnittliche Provision</value>
+	    </de>
+	    <en>
+	      <value>Average Provision</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_LEADS_PROVISION</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Leadsbetrag</value>
+	    </de>
+	    <en>
+	      <value>Leadsvalue</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_LEADS_NUMBERS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Anzahl Leads</value>
+	    </de>
+	    <en>
+	      <value>Number of Leads</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_ND_AFFILIATE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partnerprogramm</value>
+	    </de>
+	    <en>
+	      <value>Affiliate Program</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_ND_AFFILIATE_AFFILIATE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partner</value>
+	    </de>
+	    <en>
+	      <value>Affiliates</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_ND_AFFILIATE_INVENTORY</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Werbemittel</value>
+	    </de>
+	    <en>
+	      <value>Advertising media</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_ND_AFFILIATE_SALES</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partnerverkäufe</value>
+	    </de>
+	    <en>
+	      <value>Affiliatesales</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_ND_AFFILIATE_PAYMENT</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partnerauszahlungen</value>
+	    </de>
+	    <en>
+	      <value>Affiliatepayments</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_ND_AFFILIATE_CLICKS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partnerklicks</value>
+	    </de>
+	    <en>
+	      <value>Affiliateclicks</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_ND_AFFILIATE_LEADS</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partnerleads</value>
+	    </de>
+	    <en>
+	      <value>Affiliateleads</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_ND_AFFILIATE_SUMMARY</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Zusammenfassung</value>
+	    </de>
+	    <en>
+	      <value>Summary</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_ND_AFFILIATE_UPDATE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Update</value>
+	    </de>
+	    <en>
+	      <value>Update</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_ND_AFFILIATE_SUBAFFILIATETREE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Subpartner</value>
+	    </de>
+	    <en>
+	      <value>Subaffiliates</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PROVISION</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Provision</value>
+	    </de>
+	    <en>
+	      <value>Provision</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_SUBAFFILIATETREE</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Subpartner</value>
+	    </de>
+	    <en>
+	      <value>Subaffiliates</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PROCESS_PAYMENT</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Partnerabrechnung starten</value>
+	    </de>
+	    <en>
+	      <value>Start Affiliatepayment</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>TEXT_AFFILIATE_PRINTPAYMENT</key>
+	    <class>admin</class>
+	    <de>
+	      <value>Auszahlung drucken</value>
+	    </de>
+	    <en>
+	      <value>print payment</value>
+	    </en>
+	  </phrase>
+	<!-- PAGE AFFILIATE ACCOUNT -->
+	  <phrase>
+	    <key>AFFILIATE_COMPANY</key>
+	    <class>store</class>
+	    <de>
+	      <value>Firmendaten</value>
+	    </de>
+	    <en>
+	      <value>Company Data</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_PAYOUT</key>
+	    <class>store</class>
+	    <de>
+	      <value>Auszahlungsweg</value>
+	    </de>
+	    <en>
+	      <value>Payout by</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_ADDRESS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Adressdaten</value>
+	    </de>
+	    <en>
+	      <value>Address Data</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_FORM_CHECK</key>
+	    <class>store</class>
+	    <de>
+	      <value>Scheckempfänger</value>
+	    </de>
+	    <en>
+	      <value>Check Payee Name</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_FORM_PAYPAL</key>
+	    <class>store</class>
+	    <de>
+	      <value>PayPal eMail Adresse</value>
+	    </de>
+	    <en>
+	      <value>PayPal eMail Address</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_FORM_BANKNAME</key>
+	    <class>store</class>
+	    <de>
+	      <value>Kreditinstitut</value>
+	    </de>
+	    <en>
+	      <value>Bank Name</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_FORM_BRANCHNUMBER</key>
+	    <class>store</class>
+	    <de>
+	      <value>Bankleitzahl</value>
+	    </de>
+	    <en>
+	      <value>Bank Code</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_FORM_SWIFTCODE</key>
+	    <class>store</class>
+	    <de>
+	      <value>SWIFT Code</value>
+	    </de>
+	    <en>
+	      <value>SWIFT Code</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_FORM_IBAN</key>
+	    <class>store</class>
+	    <de>
+	      <value>IBAN</value>
+	    </de>
+	    <en>
+	      <value>IBAN</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_FORM_ACCOUNTNAME</key>
+	    <class>store</class>
+	    <de>
+	      <value>Kontoinhaber</value>
+	    </de>
+	    <en>
+	      <value>Account Name</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_FORM_ACCOUNTNUMBER</key>
+	    <class>store</class>
+	    <de>
+	      <value>Kontonummer</value>
+	    </de>
+	    <en>
+	      <value>Account Number</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_FORM_HOMEPAGE</key>
+	    <class>store</class>
+	    <de>
+	      <value>Homepage</value>
+	    </de>
+	    <en>
+	      <value>Homepage</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_ERROR_DOB</key>
+	    <class>store</class>
+	    <de>
+	      <value>Bitte geben Sie ein gültiges Geburtsdatum an.</value>
+	    </de>
+	    <en>
+	      <value>Please insert a valig date of birth.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TOC_ACCEPT</key>
+	    <class>store</class>
+	    <de>
+	      <value>Ich habe die %sAGB%s gelesen und akzeptiere sie.</value>
+	    </de>
+	    <en>
+	      <value>I read the %sTOC%s an I accept them.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TOC_ERROR</key>
+	    <class>store</class>
+	    <de>
+	      <value>Sie müssen die AGB akzeptieren.</value>
+	    </de>
+	    <en>
+	      <value>You have to accept the TOC.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_REGISTER_SUCCESS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Ihre Daten wurden erfolgreich eingetragen.</value>
+	    </de>
+	    <en>
+	      <value>Your data were inserted successfully.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_REGISTER_PENDING</key>
+	    <class>store</class>
+	    <de>
+	      <value>Ihre Daten wurden erfolgreich eingetragen. Ihr Account wird nach Prüfung durch uns freigeschaltet.</value>
+	    </de>
+	    <en>
+	      <value>Your data were inserted successfully. Your Account will be activated after it is checked.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_LOGIN_FAILED</key>
+	    <class>store</class>
+	    <de>
+	      <value>Loginfehler</value>
+	    </de>
+	    <en>
+	      <value>Loginfailure</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_LOGIN_FAILED</key>
+	    <class>store</class>
+	    <de>
+	      <value>Ihre Anmeldung konnte nicht erfolgreich durchgeführt werden. Bitte versuchen Sie es erneut. Achten Sie auch auf Gross- und Kleinschreibung Ihrer Daten.</value>
+	    </de>
+	    <en>
+	      <value>Your login could not be processed successfully. Please try again. Take attention on the upper- and lowercase writing of your input.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_LOGIN_NOT_ACTIVATED</key>
+	    <class>store</class>
+	    <de>
+	      <value>Ihre Anmeldung konnte nicht erfolgreich durchgeführt werden, da Ihr Account noch nicht freigeschaltet wurde. Bitte versuchen Sie es später erneut.</value>
+	    </de>
+	    <en>
+	      <value>Your login could not be processed successfully due to a not activated account. Please try again later.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_LOGOUT_SUCCESS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Sie wurden erfolgreich vom System abgemeldet.</value>
+	    </de>
+	    <en>
+	      <value>Your logoff was successfull.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_PASSWORD_RESET</key>
+	    <class>store</class>
+	    <de>
+	      <value>Passwort zurücksetzten</value>
+	    </de>
+	    <en>
+	      <value>Password Reset</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_PASSWORD_RESET</key>
+	    <class>store</class>
+	    <de>
+	      <value>Bitte geben Sie die E-Mail-Adresse ein, unter der Sie Ihr Partner-Konto in unserem Shop angelegt haben. Klicken Sie danach auf "Weiter" und wir senden Ihnen eine E-Mail mit einem neuen Passwort zu.</value>
+	    </de>
+	    <en>
+	      <value>Please insert your E-Mail-Address you used when registered as an affiliate in our shop. After that klick on "Next" and we will send you an eMail with a new password.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_PASSWORD_RESET_SUCCESS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Passwort erfogreich zurückgesetzt</value>
+	    </de>
+	    <en>
+	      <value>Password reset succeeded</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_PASSWORD_RESET_SUCCESS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Ihr Passwort wurde erfogreich zurückgesetzt. Eine eMail mit einem neuen Passwort ist an Ihre registrierte eMail-Adresse gesendet worden.</value>
+	    </de>
+	    <en>
+	      <value>Your password was successfully resetted. An eMail with a new password was sent to your registered eMail-Address.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_PASSWORD_RESET_FAILED</key>
+	    <class>store</class>
+	    <de>
+	      <value>Ihr Passwort konnte nicht zurückgesetzt werden. Bitte überpfüfen Sie Ihre Eingabe der eMailadresse.</value>
+	    </de>
+	    <en>
+	      <value>Your Password could not be resetted.Please verify yoour given eMailaddress.</value>
+	    </en>
+	  </phrase>
+	<!-- PAGE AFFILIATE INVENTORY -->
+	  <phrase>
+	    <key>AFFILIATE_TEXT_DEEPLINK</key>
+	    <class>store</class>
+	    <de>
+	      <value>Deeplink zu diesem Produkt</value>
+	    </de>
+	    <en>
+	      <value>Deeplink to this product</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXTLINKS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Textlinks</value>
+	    </de>
+	    <en>
+	      <value>Affiliate Textlinks</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_BANNER</key>
+	    <class>store</class>
+	    <de>
+	      <value>Banner</value>
+	    </de>
+	    <en>
+	      <value>Banner</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_HTMLLINKS</key>
+	    <class>store</class>
+	    <de>
+	      <value>HTML-Links</value>
+	    </de>
+	    <en>
+	      <value>HTML-Links</value>
+	    </en>
+	  </phrase>
+	<!-- PAGE AFFILIATE CLICKS -->
+	  <phrase>
+	    <key>AFFILIATE_TEXT_PRODUCT</key>
+	    <class>store</class>
+	    <de>
+	      <value>Produkt</value>
+	    </de>
+	    <en>
+	      <value>Product</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_REFERENCE</key>
+	    <class>store</class>
+	    <de>
+	      <value>Referrer</value>
+	    </de>
+	    <en>
+	      <value>Referrer</value>
+	    </en>
+	  </phrase>
+	<!-- PAGE AFFILIATE CONTACT -->
+	  <phrase>
+	    <key>AFFILIATE_TEXT_MESSAGE</key>
+	    <class>store</class>
+	    <de>
+	      <value>Bitte tragen Sie ihre Nachricht an uns in unten stehendes Feld ein.&lt;br /&gt;&lt;br /&gt;Ihre Nachricht:</value>
+	    </de>
+	    <en>
+	      <value>Please insert your Message in the following area.&lt;br /&gt;&lt;br /&gt;Your Message:</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_EMAIL_SUCCESS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Wir haben Ihre Nachricht erhalten und werden uns so bald wie möglich um Ihr Anliegen kümmern.&lt;br /&gt;Vielen Dank.</value>
+	    </de>
+	    <en>
+	      <value>We received your message and we will attend it as soon as possible.&lt;br /&gt;Thank you.</value>
+	    </en>
+	  </phrase>
+	<!-- PAGE AFFILIATE PAYMENT -->
+	  <phrase>
+	    <key>AFFILIATE_TEXT_ID</key>
+	    <class>store</class>
+	    <de>
+	      <value>Nr.</value>
+	    </de>
+	    <en>
+	      <value>Id</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_TOTAL</key>
+	    <class>store</class>
+	    <de>
+	      <value>Gesamtsumme</value>
+	    </de>
+	    <en>
+	      <value>Sum Total</value>
+	    </en>
+	  </phrase>
+	<!-- PAGE AFFILIATE SALES -->
+	  <phrase>
+	    <key>AFFILIATE_TEXT_PERIOD</key>
+	    <class>store</class>
+	    <de>
+	      <value>Zeitraum</value>
+	    </de>
+	    <en>
+	      <value>Period</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_STATUS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Status</value>
+	    </de>
+	    <en>
+	      <value>Status</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_LEVEL</key>
+	    <class>store</class>
+	    <de>
+	      <value>Level</value>
+	    </de>
+	    <en>
+	      <value>Level</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_DATE</key>
+	    <class>store</class>
+	    <de>
+	      <value>Datum</value>
+	    </de>
+	    <en>
+	      <value>Date</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_VALUE</key>
+	    <class>store</class>
+	    <de>
+	      <value>Betrag</value>
+	    </de>
+	    <en>
+	      <value>Value</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_PAYMENT</key>
+	    <class>store</class>
+	    <de>
+	      <value>Provision</value>
+	    </de>
+	    <en>
+	      <value>Payment</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_PERCENT</key>
+	    <class>store</class>
+	    <de>
+	      <value>%</value>
+	    </de>
+	    <en>
+	      <value>%</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_ALL</key>
+	    <class>store</class>
+	    <de>
+	      <value>alle</value>
+	    </de>
+	    <en>
+	      <value>all</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_PERSONAL_LEVEL</key>
+	    <class>store</class>
+	    <de>
+	      <value>eigene Ebene</value>
+	    </de>
+	    <en>
+	      <value>own level</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_LEVEL_SUFFIX</key>
+	    <class>store</class>
+	    <de>
+	      <value>Level </value>
+	    </de>
+	    <en>
+	      <value>Level </value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_TOTAL_SALES</key>
+	    <class>store</class>
+	    <de>
+	      <value>Ihre momentane Provision beträgt %s bei %s Verkäufen.</value>
+	    </de>
+	    <en>
+	      <value>Your actual Provision is %s at %s Sales.</value>
+	    </en>
+	  </phrase>
+	<!-- PAGE AFFILIATE LEADS -->
+	  <phrase>
+	    <key>AFFILIATE_TEXT_TOTAL_LEADS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Ihre momentane Provision beträgt %s bei %s Leads.</value>
+	    </de>
+	    <en>
+	      <value>Your actual Provision is %s at %s Leads.</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_LEAD_TARGET</key>
+	    <class>store</class>
+	    <de>
+	      <value>Lead-Ziel</value>
+	    </de>
+	    <en>
+	      <value>Lead-Target</value>
+	    </en>
+	  </phrase>
+	<!-- PAGE AFFILIATE SUMMARY -->
+	  <phrase>
+	    <key>AFFILIATE_TEXT_IMPRESSIONS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Bannereinblendungen</value>
+	    </de>
+	    <en>
+	      <value>Bannerimpressions</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_CLICKS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Bannerklicks</value>
+	    </de>
+	    <en>
+	      <value>Bannerclicks</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_SALES_NUMBERS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Anzahl Verkäufe</value>
+	    </de>
+	    <en>
+	      <value>Number of sales</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_SALES_TOTAL</key>
+	    <class>store</class>
+	    <de>
+	      <value>Summe Bestellwert</value>
+	    </de>
+	    <en>
+	      <value>Amount</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_SALES_PROVISION</key>
+	    <class>store</class>
+	    <de>
+	      <value>Provisionsbetrag</value>
+	    </de>
+	    <en>
+	      <value>Comission</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_AVERAGE</key>
+	    <class>store</class>
+	    <de>
+	      <value>Durchschnitt</value>
+	    </de>
+	    <en>
+	      <value>Average</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_CONVERSION</key>
+	    <class>store</class>
+	    <de>
+	      <value>Verkäufe/Klicks</value>
+	    </de>
+	    <en>
+	      <value>Sales/Clicks</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_AVERAGE_PERCENTAGE</key>
+	    <class>store</class>
+	    <de>
+	      <value>Durchschnittliche Provision</value>
+	    </de>
+	    <en>
+	      <value>Average Provision</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_LEADS_PROVISION</key>
+	    <class>store</class>
+	    <de>
+	      <value>Leadsbetrag</value>
+	    </de>
+	    <en>
+	      <value>Leadsvalue</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_LEADS_NUMBERS</key>
+	    <class>store</class>
+	    <de>
+	      <value>Anzahl Leads</value>
+	    </de>
+	    <en>
+	      <value>Number of Leads</value>
+	    </en>
+	  </phrase>
+	<!-- PAGE PRINT_PAYMENT -->
+	  <phrase>
+	    <key>AFFILIATE_TEXT_PRINTPAYMENT_TITLE</key>
+	    <class>both</class>
+	    <de>
+	      <value>Auszahlung Nr. %s</value>
+	    </de>
+	    <en>
+	      <value>Payment No. %s</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_SUM_OT</key>
+	    <class>both</class>
+	    <de>
+	      <value>Zwischensumme</value>
+	    </de>
+	    <en>
+	      <value>sub total</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_TAX</key>
+	    <class>both</class>
+	    <de>
+	      <value>USt. (%s %)</value>
+	    </de>
+	    <en>
+	      <value>VAT (%s %)</value>
+	    </en>
+	  </phrase>
+	  <phrase>
+	    <key>AFFILIATE_TEXT_SUM_TOTAL</key>
+	    <class>both</class>
+	    <de>
+	      <value>Summe</value>
+	    </de>
+	    <en>
+	      <value>total</value>
+	    </en>
+	  </phrase>
+	</language_content>
+</xtcommerceplugin> 

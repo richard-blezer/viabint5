@@ -1,0 +1,1750 @@
+<html><head><meta content="text/html; charset=UTF-8" http-equiv="Content-Type"><style type="text/css">
+			body
+				{	font-family: Arial, Helvetica, sans-serif;
+					font-size: 10pt;
+					color: #000000 ; 
+				}
+				
+			
+			
+			table.tabOperation{
+					border-style: solid;
+					border-width: 0.75pt;
+					border-color:lightgray;
+					width:800px;
+					margin-bottom:20px;
+				}			
+				
+				
+			td{
+					border-style: solid;
+					border-width: 0.75pt;
+					border-color:lightgray;
+			
+			}	
+				
+			td.tdHead{
+					
+					margin:0px;
+					padding-top: 0px;
+					padding-bottom: 0px;
+					font-size:14pt;
+					text-align:center;
+			}	
+
+			td.tdHead2{
+					
+					margin:0px;
+					padding-top: 0px;
+					padding-bottom: 0px;
+					font-size:12pt;
+					text-align:center;
+					color:#0a0a0a;
+			}	
+			
+
+			td.tdDocu{
+					margin:0px;
+					padding-top: 0px;
+					padding-bottom: 0px;
+					font-size:12pt;
+					text-align:left;
+					font-weight:bold;
+					color:green;
+			}		
+
+
+			td.tdParaName{
+					font-size:11pt;
+					text-align:left;
+					font-weight:bold;
+					color:black;
+					background-color:#f0f0f0;
+					width:200px;
+			}		
+			
+			td.tdParaType{
+					font-size:11pt;
+					text-align:left;
+					font-weight:bold;
+					color:black;
+					
+			}					
+			
+	
+			
+		</style></head><body><h1>xt SOAP - Documentation (JSON Mode)</h1><ul><li><b>SOAP - Requests</b></li><ul><li><a href="#REQcheckLicense">checkLicense</a></li><li><a href="#REQdeleteArticle">deleteArticle</a></li><li><a href="#REQdeleteAttribute">deleteAttribute</a></li><li><a href="#REQdeleteCategory">deleteCategory</a></li><li><a href="#REQdeleteCustomer">deleteCustomer</a></li><li><a href="#REQdeleteCustomerByMailAdr">deleteCustomerByMailAdr</a></li><li><a href="#REQdeleteManufacturer">deleteManufacturer</a></li><li><a href="#REQgetArticle">getArticle</a></li><li><a href="#REQgetArticles">getArticles</a></li><li><a href="#REQgetAttributes">getAttributes</a></li><li><a href="#REQgetBasePriceNames">getBasePriceNames</a></li><li><a href="#REQgetCategories">getCategories</a></li><li><a href="#REQgetCustomersStatus">getCustomersStatus</a></li><li><a href="#REQgetDeliveryTimes">getDeliveryTimes</a></li><li><a href="#REQgetImage">getImage</a></li><li><a href="#REQgetManufacturers">getManufacturers</a></li><li><a href="#REQgetOrders">getOrders</a></li><li><a href="#REQgetOrderStatusNames">getOrderStatusNames</a></li><li><a href="#REQgetPaymentMethods">getPaymentMethods</a></li><li><a href="#REQgetShippingMethods">getShippingMethods</a></li><li><a href="#REQgetStores">getStores</a></li><li><a href="#REQgetVersion">getVersion</a></li><li><a href="#REQsetArticle">setArticle</a></li><li><a href="#REQsetArticleImages">setArticleImages</a></li><li><a href="#REQsetArticleImagesList">setArticleImagesList</a></li><li><a href="#REQsetArticles">setArticles</a></li><li><a href="#REQsetAttribute">setAttribute</a></li><li><a href="#REQsetAttributes">setAttributes</a></li><li><a href="#REQsetCategories">setCategories</a></li><li><a href="#REQsetCategory">setCategory</a></li><li><a href="#REQsetCustomer">setCustomer</a></li><li><a href="#REQsetManufacturer">setManufacturer</a></li><li><a href="#REQsetManufacturers">setManufacturers</a></li><li><a href="#REQsetMedia">setMedia</a></li><li><a href="#REQsetOrderExported">setOrderExported</a></li><li><a href="#REQsetOrderStati">setOrderStati</a></li><li><a href="#REQsetOrderStatus">setOrderStatus</a></li><li><a href="#REQsetStocks">setStocks</a></li></ul><li><b>SOAP - Datatypes</b></li><ul><li><a href="#TYPEarrayOfDecimal">arrayOfDecimal</a></li><li><a href="#TYPEarrayOfInt">arrayOfInt</a></li><li><a href="#TYPEarrayOfString">arrayOfString</a></li><li><a href="#TYPEattributeItem">attributeItem</a></li><li><a href="#TYPEattributeItemList">attributeItemList</a></li><li><a href="#TYPEattributeResultItem">attributeResultItem</a></li><li><a href="#TYPEcategories_descriptionItem">categories_descriptionItem</a></li><li><a href="#TYPEcategories_descriptionList">categories_descriptionList</a></li><li><a href="#TYPEcategoriesItem">categoriesItem</a></li><li><a href="#TYPEcategoriesItemList">categoriesItemList</a></li><li><a href="#TYPEcategoriesResultItemList">categoriesResultItemList</a></li><li><a href="#TYPEcategoryItem">categoryItem</a></li><li><a href="#TYPEcategoryItemExport">categoryItemExport</a></li><li><a href="#TYPEcategoryList">categoryList</a></li><li><a href="#TYPEcategoryResultItem">categoryResultItem</a></li><li><a href="#TYPEcustomer_dataBase">customer_dataBase</a></li><li><a href="#TYPEcustomers_addressesItem">customers_addressesItem</a></li><li><a href="#TYPEcustomers_addressesList">customers_addressesList</a></li><li><a href="#TYPEcustomersItem">customersItem</a></li><li><a href="#TYPEdeliveryItem">deliveryItem</a></li><li><a href="#TYPEdeliveryList">deliveryList</a></li><li><a href="#TYPEgetArticleResultItem">getArticleResultItem</a></li><li><a href="#TYPEgetArticlesResultItem">getArticlesResultItem</a></li><li><a href="#TYPEindivField">indivField</a></li><li><a href="#TYPEindivFieldsList">indivFieldsList</a></li><li><a href="#TYPEitemsBase">itemsBase</a></li><li><a href="#TYPEitemsList">itemsList</a></li><li><a href="#TYPElangItem">langItem</a></li><li><a href="#TYPEmanufacturerList">manufacturerList</a></li><li><a href="#TYPEmanufacturerListItem">manufacturerListItem</a></li><li><a href="#TYPEmanufacturerResultItem">manufacturerResultItem</a></li><li><a href="#TYPEmanufacturersResultItemList">manufacturersResultItemList</a></li><li><a href="#TYPEmediaItem">mediaItem</a></li><li><a href="#TYPEoptionItem">optionItem</a></li><li><a href="#TYPEOptionsList">OptionsList</a></li><li><a href="#TYPEorders_productsItem">orders_productsItem</a></li><li><a href="#TYPEorders_productsList">orders_productsList</a></li><li><a href="#TYPEorders_totalItem">orders_totalItem</a></li><li><a href="#TYPEorders_totalList">orders_totalList</a></li><li><a href="#TYPEordersItem">ordersItem</a></li><li><a href="#TYPEordersList">ordersList</a></li><li><a href="#TYPEpayment_dataBase">payment_dataBase</a></li><li><a href="#TYPEpaymentItem">paymentItem</a></li><li><a href="#TYPEpaymentList">paymentList</a></li><li><a href="#TYPEpermissionItem">permissionItem</a></li><li><a href="#TYPEpermissionItemList">permissionItemList</a></li><li><a href="#TYPEpriceset">priceset</a></li><li><a href="#TYPEpricesetList">pricesetList</a></li><li><a href="#TYPEproductImages">productImages</a></li><li><a href="#TYPEproductImagesList">productImagesList</a></li><li><a href="#TYPEproductResultItem">productResultItem</a></li><li><a href="#TYPEproducts_attributes_ids">products_attributes_ids</a></li><li><a href="#TYPEproducts_attributes_idsList">products_attributes_idsList</a></li><li><a href="#TYPEproducts_cross_sellItem">products_cross_sellItem</a></li><li><a href="#TYPEproducts_cross_sellList">products_cross_sellList</a></li><li><a href="#TYPEproducts_imageItem">products_imageItem</a></li><li><a href="#TYPEproducts_imageList">products_imageList</a></li><li><a href="#TYPEproducts_media_url">products_media_url</a></li><li><a href="#TYPEproducts_media_urlList">products_media_urlList</a></li><li><a href="#TYPEproducts_priceItem">products_priceItem</a></li><li><a href="#TYPEproducts_priceList">products_priceList</a></li><li><a href="#TYPEproductsItem">productsItem</a></li><li><a href="#TYPEproductsItemExport">productsItemExport</a></li><li><a href="#TYPEproductsItemExportList">productsItemExportList</a></li><li><a href="#TYPEproductsItemList">productsItemList</a></li><li><a href="#TYPEproductsResultItemList">productsResultItemList</a></li><li><a href="#TYPEproductsStockItem">productsStockItem</a></li><li><a href="#TYPEproductsStockList">productsStockList</a></li><li><a href="#TYPEshipping_dataBase">shipping_dataBase</a></li><li><a href="#TYPEshippingItem">shippingItem</a></li><li><a href="#TYPEshippingList">shippingList</a></li><li><a href="#TYPEspecialprice">specialprice</a></li><li><a href="#TYPEspecialpriceList">specialpriceList</a></li><li><a href="#TYPEstoreItem">storeItem</a></li><li><a href="#TYPEstoresList">storesList</a></li><li><a href="#TYPEtaxBase">taxBase</a></li><li><a href="#TYPEtaxList">taxList</a></li><li><a href="#TYPExtcustomersStatus">xtcustomersStatus</a></li><li><a href="#TYPExtcustomersStatusList">xtcustomersStatusList</a></li><li><a href="#TYPExtimage">xtimage</a></li><li><a href="#TYPExtstatus">xtstatus</a></li><li><a href="#TYPExtstatusList">xtstatusList</a></li><li><a href="#TYPExtVersionInfos">xtVersionInfos</a></li></ul></ul><br><h2>SOAP - Requests</h2><a name="REQcheckLicense"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">checkLicense</td></tr><tr><td colspan="2" class="tdDocu">Check valid license</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">key</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">type</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"checkLicense",
+"paras":{
+    "user":"",
+    "pass":"",
+    "key":"",
+    "type":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">valid</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">demo</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "valid":"",
+    "demo":"",
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQdeleteArticle"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">deleteArticle</td></tr><tr><td colspan="2" class="tdDocu">delete an article</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"deleteArticle",
+"paras":{
+    "user":"",
+    "pass":"",
+    "products_id":"",
+    "external_id":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEproductResultItem">tns:productResultItem</a></td></tr><tr><td colspan="2"><pre>{
+    "result":{
+        "products_model":"",
+        "products_id":0,
+        "external_id":"",
+        "result":true,
+        "message":""
+    }
+}</pre></td></tr></tbody></table><a name="REQdeleteAttribute"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">deleteAttribute</td></tr><tr><td colspan="2" class="tdDocu">delete an attribute</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">attributes_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">attributes_ext_id</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"deleteAttribute",
+"paras":{
+    "user":"",
+    "pass":"",
+    "attributes_id":"",
+    "attributes_ext_id":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEattributeResultItem">tns:attributeResultItem</a></td></tr><tr><td colspan="2"><pre>{
+    "result":{
+        "attributes_id":0,
+        "attributes_ext_id":0,
+        "result":true,
+        "message":""
+    }
+}</pre></td></tr></tbody></table><a name="REQdeleteCategory"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">deleteCategory</td></tr><tr><td colspan="2" class="tdDocu">delete a category optional with childcategories</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">categories_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">doRemoveSubCategories</td><td class="tdParaType">xsd:boolean</td></tr><tr><td colspan="2"><pre>{
+"function":"deleteCategory",
+"paras":{
+    "user":"",
+    "pass":"",
+    "categories_id":"",
+    "external_id":"",
+    "doRemoveSubCategories":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEcategoryResultItem">tns:categoryResultItem</a></td></tr><tr><td colspan="2"><pre>{
+    "result":{
+        "categories_id":"",
+        "external_id":"",
+        "result":true,
+        "message":""
+    }
+}</pre></td></tr></tbody></table><a name="REQdeleteCustomer"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">deleteCustomer</td></tr><tr><td colspan="2" class="tdDocu">delete a customer</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"deleteCustomer",
+"paras":{
+    "user":"",
+    "pass":"",
+    "customers_id":"",
+    "external_id":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":"",
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQdeleteCustomerByMailAdr"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">deleteCustomerByMailAdr</td></tr><tr><td colspan="2" class="tdDocu">delete a customer</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customer_mail</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">shop_id</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"deleteCustomerByMailAdr",
+"paras":{
+    "user":"",
+    "pass":"",
+    "customer_mail":"",
+    "shop_id":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":"",
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQdeleteManufacturer"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">deleteManufacturer</td></tr><tr><td colspan="2" class="tdDocu">delete a manufacturer</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">manufacturers_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"deleteManufacturer",
+"paras":{
+    "user":"",
+    "pass":"",
+    "manufacturers_id":"",
+    "external_id":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEmanufacturerResultItem">tns:manufacturerResultItem</a></td></tr><tr><td colspan="2"><pre>{
+    "result":{
+        "manufacturers_id":"",
+        "external_id":"",
+        "result":true,
+        "message":""
+    }
+}</pre></td></tr></tbody></table><a name="REQgetArticle"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getArticle</td></tr><tr><td colspan="2" class="tdDocu">get product data WITHOUT IMAGE DATA itself. Use SOAP method getImage to get the image data.</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"getArticle",
+"paras":{
+    "user":"",
+    "pass":"",
+    "products_id":0,
+    "external_id":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">getArticleResultItem</td><td class="tdParaType"><a href="#TYPEgetArticleResultItem">tns:getArticleResultItem</a></td></tr><tr><td colspan="2"><pre>{
+    "getArticleResultItem":{
+        "productsItemExport":{
+            "products_id":0,
+            "external_id":"",
+            "permission_id":0,
+            "products_owner":0,
+            "products_ean":"",
+            "products_quantity":0,
+            "products_average_quantity":0,
+            "products_shippingtime":0,
+            "products_model":"",
+            "price_flag_graduated_all":0,
+            "price_flag_graduated_1":0,
+            "price_flag_graduated_2":0,
+            "price_flag_graduated_3":0,
+            "products_sort":0,
+            "products_option_master_price":"",
+            "ekomi_allow":0,
+            "products_image":"",
+            "products_price":0,
+            "date_added":"0001-01-01T00:00:00",
+            "last_modified":"0001-01-01T00:00:00",
+            "date_available":"0001-01-01T00:00:00",
+            "products_weight":0,
+            "products_status":0,
+            "products_tax_class_id":0,
+            "product_template":"",
+            "product_list_template":"",
+            "manufacturers_id":0,
+            "products_ordered":0,
+            "products_fsk18":0,
+            "products_vpe":0,
+            "products_vpe_status":0,
+            "products_vpe_value":0,
+            "products_startpage":0,
+            "products_startpage_sort":0,
+            "products_average_rating":0,
+            "products_rating_count":0,
+            "products_digital":0,
+            "flag_has_specials":0,
+            "products_serials":0,
+            "products_master_flag":"",
+            "products_master_model":"",
+            "products_keywords":{
+                "de":"",
+                "en":""
+            },
+            "products_description":{
+                "de":"",
+                "en":""
+            },
+            "products_short_description":{
+                "de":"",
+                "en":""
+            },
+            "meta_description":{
+                "de":"",
+                "en":""
+            },
+            "meta_title":{
+                "de":"",
+                "en":""
+            },
+            "meta_keywords":{
+                "de":"",
+                "en":""
+            },
+            "seo_url":{
+                "de":"",
+                "en":""
+            },
+            "url":{
+                "de":"",
+                "en":""
+            },
+            "products_special_prices":[{
+                    "special_price":0,
+                    "status":0,
+                    "date_available":"0001-01-01T00:00:00",
+                    "date_expired":"0001-01-01T00:00:00",
+                    "group_permissions":[],
+                    "group_permission_all":0
+                }            ],
+            "products_name":{
+                "de":"",
+                "en":""
+            },
+            "categories":[],
+            "image_name":"",
+            "image":"",
+            "products_prices":[{
+                    "price":0,
+                    "staffel":0,
+                    "group":"",
+                    "quantity":0
+                }            ],
+            "products_cross_sell":[],
+            "products_images":[{
+                    "type":"",
+                    "id":"",
+                    "image_name":"",
+                    "image_data":""
+                }            ],
+            "products_categories":[],
+            "products_attributes":[{
+                    "attributes_id":0,
+                    "attributes_parent_id":0
+                }            ],
+            "permissionList":[{
+                    "external_id":"",
+                    "permission":true,
+                    "pgroup":""
+                }            ],
+            "indivFieldsList":[{
+                    "dstTable":"",
+                    "sqlFieldName":"",
+                    "sqlFieldType":"",
+                    "value":"",
+                    "langValue":{
+                        "de":"",
+                        "en":""
+                    }
+                }            ],
+            "products_media_urlList":[{
+                    "type":"",
+                    "file":"",
+                    "width":"",
+                    "height":"",
+                    "folder":"",
+                    "url":""
+                }            ]
+        },
+        "result":true,
+        "message":""
+    }
+}</pre></td></tr></tbody></table><a name="REQgetArticles"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getArticles</td></tr><tr><td colspan="2" class="tdDocu">get a list of products data WITHOUT IMAGE DATA itself. Use SOAP method getImage to get the image data.</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">offset</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">blocksize</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">filter</td><td class="tdParaType"><a href="#TYPEarrayOfString">tns:arrayOfString</a></td></tr><tr><td colspan="2"><pre>{
+"function":"getArticles",
+"paras":{
+    "user":"",
+    "pass":"",
+    "offset":"",
+    "blocksize":"",
+    "filter":[]
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEgetArticlesResultItem">tns:getArticlesResultItem</a></td></tr><tr><td colspan="2"><pre>{
+    "result":{
+        "productsItemExportList":[{
+                "products_id":0,
+                "external_id":"",
+                "permission_id":0,
+                "products_owner":0,
+                "products_ean":"",
+                "products_quantity":0,
+                "products_average_quantity":0,
+                "products_shippingtime":0,
+                "products_model":"",
+                "price_flag_graduated_all":0,
+                "price_flag_graduated_1":0,
+                "price_flag_graduated_2":0,
+                "price_flag_graduated_3":0,
+                "products_sort":0,
+                "products_option_master_price":"",
+                "ekomi_allow":0,
+                "products_image":"",
+                "products_price":0,
+                "date_added":"0001-01-01T00:00:00",
+                "last_modified":"0001-01-01T00:00:00",
+                "date_available":"0001-01-01T00:00:00",
+                "products_weight":0,
+                "products_status":0,
+                "products_tax_class_id":0,
+                "product_template":"",
+                "product_list_template":"",
+                "manufacturers_id":0,
+                "products_ordered":0,
+                "products_fsk18":0,
+                "products_vpe":0,
+                "products_vpe_status":0,
+                "products_vpe_value":0,
+                "products_startpage":0,
+                "products_startpage_sort":0,
+                "products_average_rating":0,
+                "products_rating_count":0,
+                "products_digital":0,
+                "flag_has_specials":0,
+                "products_serials":0,
+                "products_master_flag":"",
+                "products_master_model":"",
+                "products_keywords":{
+                    "de":"",
+                    "en":""
+                },
+                "products_description":{
+                    "de":"",
+                    "en":""
+                },
+                "products_short_description":{
+                    "de":"",
+                    "en":""
+                },
+                "meta_description":{
+                    "de":"",
+                    "en":""
+                },
+                "meta_title":{
+                    "de":"",
+                    "en":""
+                },
+                "meta_keywords":{
+                    "de":"",
+                    "en":""
+                },
+                "seo_url":{
+                    "de":"",
+                    "en":""
+                },
+                "url":{
+                    "de":"",
+                    "en":""
+                },
+                "products_special_prices":[{
+                        "special_price":0,
+                        "status":0,
+                        "date_available":"0001-01-01T00:00:00",
+                        "date_expired":"0001-01-01T00:00:00",
+                        "group_permissions":[],
+                        "group_permission_all":0
+                    }                ],
+                "products_name":{
+                    "de":"",
+                    "en":""
+                },
+                "categories":[],
+                "image_name":"",
+                "image":"",
+                "products_prices":[{
+                        "price":0,
+                        "staffel":0,
+                        "group":"",
+                        "quantity":0
+                    }                ],
+                "products_cross_sell":[],
+                "products_images":[{
+                        "type":"",
+                        "id":"",
+                        "image_name":"",
+                        "image_data":""
+                    }                ],
+                "products_categories":[],
+                "products_attributes":[{
+                        "attributes_id":0,
+                        "attributes_parent_id":0
+                    }                ],
+                "permissionList":[{
+                        "external_id":"",
+                        "permission":true,
+                        "pgroup":""
+                    }                ],
+                "indivFieldsList":[{
+                        "dstTable":"",
+                        "sqlFieldName":"",
+                        "sqlFieldType":"",
+                        "value":"",
+                        "langValue":{
+                            "de":"",
+                            "en":""
+                        }
+                    }                ],
+                "products_media_urlList":[{
+                        "type":"",
+                        "file":"",
+                        "width":"",
+                        "height":"",
+                        "folder":"",
+                        "url":""
+                    }                ]
+            }        ],
+        "result":true,
+        "message":""
+    }
+}</pre></td></tr></tbody></table><a name="REQgetAttributes"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getAttributes</td></tr><tr><td colspan="2" class="tdDocu">get all attributes for products</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">extNumberRange</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"getAttributes",
+"paras":{
+    "user":"",
+    "pass":"",
+    "extNumberRange":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEattributeItemList">tns:attributeItemList</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "attributes_id":0,
+            "attributes_parent":0,
+            "attributes_ext_id":0,
+            "attributes_ext_parent_id":0,
+            "attributes_model":"",
+            "attributes_image":"",
+            "sort_order":0,
+            "status":0,
+            "attributes_name":{
+                "de":"",
+                "en":""
+            },
+            "attributes_desc":{
+                "de":"",
+                "en":""
+            },
+            "indivFieldsList":[{
+                    "dstTable":"",
+                    "sqlFieldName":"",
+                    "sqlFieldType":"",
+                    "value":"",
+                    "langValue":{
+                        "de":"",
+                        "en":""
+                    }
+                }            ]
+        }    ],
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQgetBasePriceNames"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getBasePriceNames</td></tr><tr><td colspan="2" class="tdDocu">get base price unit names</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"getBasePriceNames",
+"paras":{
+    "user":"",
+    "pass":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPExtstatusList">tns:xtstatusList</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "status_id":0,
+            "status_name":""
+        }    ],
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQgetCategories"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getCategories</td></tr><tr><td colspan="2" class="tdDocu">List Categories</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">start</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">blocksize</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">extNumberRange</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"getCategories",
+"paras":{
+    "user":"",
+    "pass":"",
+    "start":"",
+    "blocksize":"",
+    "extNumberRange":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEcategoryList">tns:categoryList</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "categories_id":0,
+            "external_id":"",
+            "permission_id":0,
+            "parent_id":"",
+            "external_parent_id":"",
+            "categories_status":0,
+            "sort_order":0,
+            "top_category":0,
+            "categories_image":"",
+            "date_added":"0001-01-01T00:00:00",
+            "last_modified":"0001-01-01T00:00:00",
+            "categories_template":"",
+            "listing_template":"",
+            "categories_name":{
+                "de":"",
+                "en":""
+            },
+            "categories_heading_title":{
+                "de":"",
+                "en":""
+            },
+            "categories_description":{
+                "de":"",
+                "en":""
+            },
+            "categories_description_bottom":{
+                "de":"",
+                "en":""
+            },
+            "meta_description":{
+                "de":"",
+                "en":""
+            },
+            "meta_title":{
+                "de":"",
+                "en":""
+            },
+            "meta_keywords":{
+                "de":"",
+                "en":""
+            },
+            "url_text":{
+                "de":"",
+                "en":""
+            },
+            "permissionList":[{
+                    "external_id":"",
+                    "permission":true,
+                    "pgroup":""
+                }            ],
+            "products_sorting":"",
+            "products_sorting2":"",
+            "google_product_cat":""
+        }    ],
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQgetCustomersStatus"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getCustomersStatus</td></tr><tr><td colspan="2" class="tdDocu">get customer status names (Kundengruppen)</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"getCustomersStatus",
+"paras":{
+    "user":"",
+    "pass":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPExtcustomersStatusList">tns:xtcustomersStatusList</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "customers_status_id":0,
+            "customers_status_name":""
+        }    ],
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQgetDeliveryTimes"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getDeliveryTimes</td></tr><tr><td colspan="2" class="tdDocu">List Categories</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"getDeliveryTimes",
+"paras":{
+    "user":"",
+    "pass":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPExtstatusList">tns:xtstatusList</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "status_id":0,
+            "status_name":""
+        }    ],
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQgetImage"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getImage</td></tr><tr><td colspan="2" class="tdDocu">get image by name</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">image_dir</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">image_name</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"getImage",
+"paras":{
+    "user":"",
+    "pass":"",
+    "image_dir":"",
+    "image_name":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPExtimage">tns:xtimage</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":{
+        "imageBase64":""
+    },
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQgetManufacturers"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getManufacturers</td></tr><tr><td colspan="2" class="tdDocu">List Manufacturers</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">start</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">size</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">extNumberRange</td><td class="tdParaType">xsd:int</td></tr><tr><td colspan="2"><pre>{
+"function":"getManufacturers",
+"paras":{
+    "user":"",
+    "pass":"",
+    "start":0,
+    "size":0,
+    "extNumberRange":0
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEmanufacturerList">tns:manufacturerList</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "manufacturers_id":0,
+            "external_id":"",
+            "manufacturers_name":"",
+            "manufacturers_image":"",
+            "manufacturers_status":0,
+            "manufacturers_sort":0,
+            "products_sorting":"",
+            "products_sorting2":"",
+            "date_added":"0001-01-01T00:00:00",
+            "last_modified":"0001-01-01T00:00:00",
+            "manufacturers_description":{
+                "de":"",
+                "en":""
+            },
+            "meta_description":{
+                "de":"",
+                "en":""
+            },
+            "meta_title":{
+                "de":"",
+                "en":""
+            },
+            "meta_keywords":{
+                "de":"",
+                "en":""
+            },
+            "url_text":{
+                "de":"",
+                "en":""
+            },
+            "permissionList":[{
+                    "external_id":"",
+                    "permission":true,
+                    "pgroup":""
+                }            ]
+        }    ],
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQgetOrders"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getOrders</td></tr><tr><td colspan="2" class="tdDocu">use filter: Examples: array('status=16','date_purchased &gt;= YYYY-mm-dd HH:MM:SS'</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">filter</td><td class="tdParaType"><a href="#TYPEarrayOfString">tns:arrayOfString</a></td></tr><tr><td class="tdParaName">start</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">blocksize</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">extNumberRangeCustomerId</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">extNumberRangeDeliveryAdr</td><td class="tdParaType">xsd:int</td></tr><tr><td colspan="2"><pre>{
+"function":"getOrders",
+"paras":{
+    "user":"",
+    "pass":"",
+    "filter":[],
+    "start":"",
+    "blocksize":"",
+    "extNumberRangeCustomerId":0,
+    "extNumberRangeDeliveryAdr":0
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEordersList">tns:ordersList</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "orders_id":0,
+            "customers_id":0,
+            "customers_cid":"",
+            "customers_external_id":"",
+            "customers_vat_id":"",
+            "customers_status":0,
+            "customers_status_show_price_tax":0,
+            "customers_status_add_tax_ot":0,
+            "customers_email_address":"",
+            "delivery_gender":"",
+            "delivery_phone":"",
+            "delivery_fax":"",
+            "delivery_firstname":"",
+            "delivery_lastname":"",
+            "delivery_company":"",
+            "delivery_company_2":"",
+            "delivery_company_3":"",
+            "delivery_street_address":"",
+            "delivery_suburb":"",
+            "delivery_city":"",
+            "delivery_postcode":"",
+            "delivery_zone":"",
+            "delivery_zone_code":"",
+            "delivery_country":"",
+            "delivery_country_code":"",
+            "billing_gender":"",
+            "billing_phone":"",
+            "billing_fax":"",
+            "billing_firstname":"",
+            "billing_lastname":"",
+            "billing_company":"",
+            "billing_company_2":"",
+            "billing_company_3":"",
+            "billing_street_address":"",
+            "billing_suburb":"",
+            "billing_city":"",
+            "billing_postcode":"",
+            "billing_zone":"",
+            "billing_zone_code":"",
+            "billing_country":"",
+            "billing_country_code":"",
+            "payment_code":"",
+            "subpayment_code":"",
+            "shipping_code":"",
+            "currency_code":"",
+            "currency_value":0,
+            "language_code":"",
+            "comments":"",
+            "last_modified":"0001-01-01T00:00:00",
+            "order_date":"0001-01-01T00:00:00",
+            "orders_status":0,
+            "account_type":0,
+            "allow_tax":0,
+            "tax_included":0,
+            "tax_free":0,
+            "customers_ip":"",
+            "shop_id":0,
+            "orders_data":"",
+            "campaign_id":0,
+            "count_items":0,
+            "orders_total":[{
+                    "orders_total_id":0,
+                    "orders_total_key":"",
+                    "orders_total_model":"",
+                    "orders_total_name":"",
+                    "orders_total_price":0,
+                    "orders_total_tax":0,
+                    "orders_total_tax_class":0,
+                    "orders_total_quantity":0,
+                    "allow_tax":0,
+                    "info_code":""
+                }            ],
+            "customer_data":{
+                "address_id":0,
+                "firstname":"",
+                "dob":"0001-01-01T00:00:00",
+                "name":"",
+                "street":"",
+                "gender":"",
+                "email":"",
+                "city":"",
+                "suburb":"",
+                "password":"",
+                "company":"",
+                "company_2":"",
+                "company_3":"",
+                "country":"",
+                "country_code":"",
+                "phone":"",
+                "zip":"",
+                "customers_cid":"",
+                "vat_id":"",
+                "group":0,
+                "banktransfer_owner":"",
+                "banktransfer_blz":"",
+                "banktransfer_bank_name":"",
+                "banktransfer_number":"",
+                "banktransfer_iban":"",
+                "banktransfer_bic":"",
+                "packstation_post":"",
+                "packstation_nr":""
+            },
+            "delivery_data":{
+                "address_id":0,
+                "firstname":"",
+                "dob":"0001-01-01T00:00:00",
+                "name":"",
+                "street":"",
+                "gender":"",
+                "email":"",
+                "city":"",
+                "suburb":"",
+                "password":"",
+                "company":"",
+                "company_2":"",
+                "company_3":"",
+                "country":"",
+                "country_code":"",
+                "phone":"",
+                "zip":"",
+                "customers_cid":"",
+                "vat_id":"",
+                "group":0,
+                "banktransfer_owner":"",
+                "banktransfer_blz":"",
+                "banktransfer_bank_name":"",
+                "banktransfer_number":"",
+                "banktransfer_iban":"",
+                "banktransfer_bic":"",
+                "packstation_post":"",
+                "packstation_nr":""
+            },
+            "payment_data":{
+                "cost":0,
+                "id":0,
+                "type":"",
+                "tax":0
+            },
+            "shipping_data":{
+                "cost":0,
+                "id":0,
+                "type":"",
+                "tax":0
+            },
+            "items":[{
+                    "products_id":0,
+                    "products_model":"",
+                    "external_id":"",
+                    "price_sum":0,
+                    "name":"",
+                    "item_data":"",
+                    "options_full":[{
+                            "option_group_id":0,
+                            "option_group_field":"",
+                            "option_group_name":"",
+                            "option_group_desc":"",
+                            "option_value_id":"",
+                            "option_value_parent":"",
+                            "option_value_image":"",
+                            "option_value_field":"",
+                            "option_value_default_model":"",
+                            "option_value_default_price":"",
+                            "option_value_default_p_prefix":"",
+                            "option_value_default_weight":"",
+                            "option_value_default_w_prefix":"",
+                            "option_value_name":"",
+                            "option_value_value":"",
+                            "option_value_desc":"",
+                            "pto_id":"",
+                            "option_model":"",
+                            "option_price":0,
+                            "option_p_prefix":"",
+                            "option_weight":0,
+                            "option_w_prefix":"",
+                            "option_calc_type":"",
+                            "option_count":""
+                        }                    ],
+                    "quantity":0,
+                    "tax":0,
+                    "tax_class":0,
+                    "weight":0,
+                    "price":0,
+                    "price_otax":0,
+                    "applied_discount_percent":0,
+                    "original_price":0
+                }            ],
+            "total_tax":[{
+                    "value":0,
+                    "tax_rate":"",
+                    "value_formated":""
+                }            ],
+            "total_price_formated":"",
+            "total_price":0
+        }    ],
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQgetOrderStatusNames"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getOrderStatusNames</td></tr><tr><td colspan="2" class="tdDocu">get order status names</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"getOrderStatusNames",
+"paras":{
+    "user":"",
+    "pass":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPExtstatusList">tns:xtstatusList</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "status_id":0,
+            "status_name":""
+        }    ],
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQgetPaymentMethods"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getPaymentMethods</td></tr><tr><td colspan="2" class="tdDocu">List Payment Methods</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"getPaymentMethods",
+"paras":{
+    "user":"",
+    "pass":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEpaymentList">tns:paymentList</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "payment_id":0,
+            "payment_name":{
+                "de":"",
+                "en":""
+            }
+        }    ],
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQgetShippingMethods"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getShippingMethods</td></tr><tr><td colspan="2" class="tdDocu">List Shipping Methods</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"getShippingMethods",
+"paras":{
+    "user":"",
+    "pass":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEshippingList">tns:shippingList</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "shipping_id":0,
+            "shipping_code":"",
+            "shipping_name":{
+                "de":"",
+                "en":""
+            }
+        }    ],
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQgetStores"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getStores</td></tr><tr><td colspan="2" class="tdDocu">get stores</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"getStores",
+"paras":{
+    "user":"",
+    "pass":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEstoresList">tns:storesList</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "shop_id":0,
+            "shop_status":0,
+            "shop_name":"",
+            "shop_domain":"",
+            "shop_http":"",
+            "shop_https":"",
+            "shop_ssl":0
+        }    ],
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQgetVersion"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getVersion</td></tr><tr><td colspan="2" class="tdDocu">get version infos of this SOAP interface</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+"function":"getVersion",
+"paras":{
+    "user":"",
+    "pass":""
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">versionInfos</td><td class="tdParaType"><a href="#TYPExtVersionInfos">tns:xtVersionInfos</a></td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "versionInfos":{
+        "productName":"",
+        "productVersionMajor":0,
+        "productVersionMinor":0,
+        "productVersionPatchLevel":0
+    },
+    "result":"",
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQsetArticle"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setArticle</td></tr><tr><td colspan="2" class="tdDocu">update or add product. For indivFieldsList use dstTable=TABLE_PRODUCTS</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">productItem</td><td class="tdParaType"><a href="#TYPEproductsItem">tns:productsItem</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setArticle",
+"paras":{
+    "user":"",
+    "pass":"",
+    "productItem":{
+        "products_id":0,
+        "external_id":"",
+        "permission_id":0,
+        "products_owner":0,
+        "products_ean":"",
+        "products_quantity":0,
+        "products_average_quantity":0,
+        "products_shippingtime":0,
+        "products_model":"",
+        "price_flag_graduated_all":0,
+        "price_flag_graduated_1":0,
+        "price_flag_graduated_2":0,
+        "price_flag_graduated_3":0,
+        "products_sort":0,
+        "products_option_master_price":"",
+        "ekomi_allow":0,
+        "products_image":"",
+        "products_price":0,
+        "date_added":"0001-01-01T00:00:00",
+        "last_modified":"0001-01-01T00:00:00",
+        "date_available":"0001-01-01T00:00:00",
+        "products_weight":0,
+        "products_status":0,
+        "products_tax_class_id":0,
+        "product_template":"",
+        "product_list_template":"",
+        "manufacturers_id":0,
+        "products_ordered":0,
+        "products_fsk18":0,
+        "products_vpe":0,
+        "products_vpe_status":0,
+        "products_vpe_value":0,
+        "products_startpage":0,
+        "products_startpage_sort":0,
+        "products_average_rating":0,
+        "products_rating_count":0,
+        "products_digital":0,
+        "flag_has_specials":0,
+        "products_serials":0,
+        "products_master_flag":"",
+        "products_master_model":"",
+        "products_keywords":{
+            "de":"",
+            "en":""
+        },
+        "products_description":{
+            "de":"",
+            "en":""
+        },
+        "products_short_description":{
+            "de":"",
+            "en":""
+        },
+        "meta_description":{
+            "de":"",
+            "en":""
+        },
+        "meta_title":{
+            "de":"",
+            "en":""
+        },
+        "meta_keywords":{
+            "de":"",
+            "en":""
+        },
+        "seo_url":{
+            "de":"",
+            "en":""
+        },
+        "url":{
+            "de":"",
+            "en":""
+        },
+        "products_special_prices":[{
+                "special_price":0,
+                "status":0,
+                "date_available":"0001-01-01T00:00:00",
+                "date_expired":"0001-01-01T00:00:00",
+                "group_permissions":[],
+                "group_permission_all":0
+            }        ],
+        "products_name":{
+            "de":"",
+            "en":""
+        },
+        "categories":[],
+        "image_name":"",
+        "image":"",
+        "products_prices":[{
+                "price":0,
+                "staffel":0,
+                "group":"",
+                "quantity":0
+            }        ],
+        "products_cross_sell":[],
+        "products_images":[{
+                "type":"",
+                "id":"",
+                "image_name":"",
+                "image_data":""
+            }        ],
+        "products_categories":[],
+        "products_attributes":[{
+                "attributes_id":0,
+                "attributes_parent_id":0
+            }        ],
+        "permissionList":[{
+                "external_id":"",
+                "permission":true,
+                "pgroup":""
+            }        ],
+        "indivFieldsList":[{
+                "dstTable":"",
+                "sqlFieldName":"",
+                "sqlFieldType":"",
+                "value":"",
+                "langValue":{
+                    "de":"",
+                    "en":""
+                }
+            }        ]
+    }
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEproductResultItem">tns:productResultItem</a></td></tr><tr><td colspan="2"><pre>{
+    "result":{
+        "products_model":"",
+        "products_id":0,
+        "external_id":"",
+        "result":true,
+        "message":""
+    }
+}</pre></td></tr></tbody></table><a name="REQsetArticleImages"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setArticleImages</td></tr><tr><td colspan="2" class="tdDocu">set new Product Images </td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">product_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">images</td><td class="tdParaType"><a href="#TYPEproductImages">tns:productImages</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setArticleImages",
+"paras":{
+    "user":"",
+    "pass":"",
+    "product_model":"",
+    "images":{
+        "products_id":0,
+        "products_model":"",
+        "external_id":"",
+        "image_name":"",
+        "image":"",
+        "products_images":[{
+                "products_id":0,
+                "products_model":"",
+                "external_id":"",
+                "image_name":"",
+                "image":"",
+                "products_images":[                ]
+            }        ]
+    }
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":"",
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQsetArticleImagesList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setArticleImagesList</td></tr><tr><td colspan="2" class="tdDocu">set new Product Images List of products</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">images</td><td class="tdParaType"><a href="#TYPEproductImagesList">tns:productImagesList</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setArticleImagesList",
+"paras":{
+    "user":"",
+    "pass":"",
+    "images":[{
+            "products_id":0,
+            "products_model":"",
+            "external_id":"",
+            "image_name":"",
+            "image":"",
+            "products_images":[            ]
+        }    ]
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEproductsResultItemList">tns:productsResultItemList</a></td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "products_model":"",
+            "products_id":0,
+            "external_id":"",
+            "result":true,
+            "message":""
+        }    ]
+}</pre></td></tr></tbody></table><a name="REQsetArticles"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setArticles</td></tr><tr><td colspan="2" class="tdDocu">update or add a list of products. For indivFieldsList use dstTable=TABLE_PRODUCTS</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">Item</td><td class="tdParaType"><a href="#TYPEproductsItemList">tns:productsItemList</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setArticles",
+"paras":{
+    "user":"",
+    "pass":"",
+    "Item":[{
+            "products_id":0,
+            "external_id":"",
+            "permission_id":0,
+            "products_owner":0,
+            "products_ean":"",
+            "products_quantity":0,
+            "products_average_quantity":0,
+            "products_shippingtime":0,
+            "products_model":"",
+            "price_flag_graduated_all":0,
+            "price_flag_graduated_1":0,
+            "price_flag_graduated_2":0,
+            "price_flag_graduated_3":0,
+            "products_sort":0,
+            "products_option_master_price":"",
+            "ekomi_allow":0,
+            "products_image":"",
+            "products_price":0,
+            "date_added":"0001-01-01T00:00:00",
+            "last_modified":"0001-01-01T00:00:00",
+            "date_available":"0001-01-01T00:00:00",
+            "products_weight":0,
+            "products_status":0,
+            "products_tax_class_id":0,
+            "product_template":"",
+            "product_list_template":"",
+            "manufacturers_id":0,
+            "products_ordered":0,
+            "products_fsk18":0,
+            "products_vpe":0,
+            "products_vpe_status":0,
+            "products_vpe_value":0,
+            "products_startpage":0,
+            "products_startpage_sort":0,
+            "products_average_rating":0,
+            "products_rating_count":0,
+            "products_digital":0,
+            "flag_has_specials":0,
+            "products_serials":0,
+            "products_master_flag":"",
+            "products_master_model":"",
+            "products_keywords":{
+                "de":"",
+                "en":""
+            },
+            "products_description":{
+                "de":"",
+                "en":""
+            },
+            "products_short_description":{
+                "de":"",
+                "en":""
+            },
+            "meta_description":{
+                "de":"",
+                "en":""
+            },
+            "meta_title":{
+                "de":"",
+                "en":""
+            },
+            "meta_keywords":{
+                "de":"",
+                "en":""
+            },
+            "seo_url":{
+                "de":"",
+                "en":""
+            },
+            "url":{
+                "de":"",
+                "en":""
+            },
+            "products_special_prices":[{
+                    "special_price":0,
+                    "status":0,
+                    "date_available":"0001-01-01T00:00:00",
+                    "date_expired":"0001-01-01T00:00:00",
+                    "group_permissions":[],
+                    "group_permission_all":0
+                }            ],
+            "products_name":{
+                "de":"",
+                "en":""
+            },
+            "categories":[],
+            "image_name":"",
+            "image":"",
+            "products_prices":[{
+                    "price":0,
+                    "staffel":0,
+                    "group":"",
+                    "quantity":0
+                }            ],
+            "products_cross_sell":[],
+            "products_images":[{
+                    "type":"",
+                    "id":"",
+                    "image_name":"",
+                    "image_data":""
+                }            ],
+            "products_categories":[],
+            "products_attributes":[{
+                    "attributes_id":0,
+                    "attributes_parent_id":0
+                }            ],
+            "permissionList":[{
+                    "external_id":"",
+                    "permission":true,
+                    "pgroup":""
+                }            ],
+            "indivFieldsList":[{
+                    "dstTable":"",
+                    "sqlFieldName":"",
+                    "sqlFieldType":"",
+                    "value":"",
+                    "langValue":{
+                        "de":"",
+                        "en":""
+                    }
+                }            ]
+        }    ]
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEproductsResultItemList">tns:productsResultItemList</a></td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "products_model":"",
+            "products_id":0,
+            "external_id":"",
+            "result":true,
+            "message":""
+        }    ]
+}</pre></td></tr></tbody></table><a name="REQsetAttribute"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setAttribute</td></tr><tr><td colspan="2" class="tdDocu">set one attribute for products. For indivFieldsList use dstTable=TABLE_PRODUCTS_ATTRIBUTES</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">attributeItem</td><td class="tdParaType"><a href="#TYPEattributeItem">tns:attributeItem</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setAttribute",
+"paras":{
+    "user":"",
+    "pass":"",
+    "attributeItem":{
+        "attributes_id":0,
+        "attributes_parent":0,
+        "attributes_ext_id":0,
+        "attributes_ext_parent_id":0,
+        "attributes_model":"",
+        "attributes_image":"",
+        "sort_order":0,
+        "status":0,
+        "attributes_name":{
+            "de":"",
+            "en":""
+        },
+        "attributes_desc":{
+            "de":"",
+            "en":""
+        },
+        "indivFieldsList":[{
+                "dstTable":"",
+                "sqlFieldName":"",
+                "sqlFieldType":"",
+                "value":"",
+                "langValue":{
+                    "de":"",
+                    "en":""
+                }
+            }        ]
+    }
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEattributeResultItem">tns:attributeResultItem</a></td></tr><tr><td colspan="2"><pre>{
+    "result":{
+        "attributes_id":0,
+        "attributes_ext_id":0,
+        "result":true,
+        "message":""
+    }
+}</pre></td></tr></tbody></table><a name="REQsetAttributes"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setAttributes</td></tr><tr><td colspan="2" class="tdDocu">set attributes for products. For indivFieldsList use dstTable=TABLE_PRODUCTS_ATTRIBUTES</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">attributeItemList</td><td class="tdParaType"><a href="#TYPEattributeItemList">tns:attributeItemList</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setAttributes",
+"paras":{
+    "user":"",
+    "pass":"",
+    "attributeItemList":[{
+            "attributes_id":0,
+            "attributes_parent":0,
+            "attributes_ext_id":0,
+            "attributes_ext_parent_id":0,
+            "attributes_model":"",
+            "attributes_image":"",
+            "sort_order":0,
+            "status":0,
+            "attributes_name":{
+                "de":"",
+                "en":""
+            },
+            "attributes_desc":{
+                "de":"",
+                "en":""
+            },
+            "indivFieldsList":[{
+                    "dstTable":"",
+                    "sqlFieldName":"",
+                    "sqlFieldType":"",
+                    "value":"",
+                    "langValue":{
+                        "de":"",
+                        "en":""
+                    }
+                }            ]
+        }    ]
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEattributeItemList">tns:attributeItemList</a></td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "attributes_id":0,
+            "attributes_parent":0,
+            "attributes_ext_id":0,
+            "attributes_ext_parent_id":0,
+            "attributes_model":"",
+            "attributes_image":"",
+            "sort_order":0,
+            "status":0,
+            "attributes_name":{
+                "de":"",
+                "en":""
+            },
+            "attributes_desc":{
+                "de":"",
+                "en":""
+            },
+            "indivFieldsList":[{
+                    "dstTable":"",
+                    "sqlFieldName":"",
+                    "sqlFieldType":"",
+                    "value":"",
+                    "langValue":{
+                        "de":"",
+                        "en":""
+                    }
+                }            ]
+        }    ],
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQsetCategories"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setCategories</td></tr><tr><td colspan="2" class="tdDocu">update or add a list of categories.  For indivFieldsList use dstTable=TABLE_CATEGORIES</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">Item</td><td class="tdParaType"><a href="#TYPEcategoriesItemList">tns:categoriesItemList</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setCategories",
+"paras":{
+    "user":"",
+    "pass":"",
+    "Item":[{
+            "external_id":"",
+            "permission_id":0,
+            "parent_id":"",
+            "categories_status":0,
+            "sort_order":0,
+            "top_category":0,
+            "categories_image":"",
+            "date_added":"0001-01-01T00:00:00",
+            "last_modified":"0001-01-01T00:00:00",
+            "categories_template":"",
+            "listing_template":"",
+            "categories_name":{
+                "de":"",
+                "en":""
+            },
+            "categories_heading_title":{
+                "de":"",
+                "en":""
+            },
+            "categories_description":{
+                "de":"",
+                "en":""
+            },
+            "categories_description_bottom":{
+                "de":"",
+                "en":""
+            },
+            "meta_description":{
+                "de":"",
+                "en":""
+            },
+            "meta_title":{
+                "de":"",
+                "en":""
+            },
+            "meta_keywords":{
+                "de":"",
+                "en":""
+            },
+            "seo_url":{
+                "de":"",
+                "en":""
+            },
+            "permissionList":[{
+                    "external_id":"",
+                    "permission":true,
+                    "pgroup":""
+                }            ],
+            "products_sorting":"",
+            "products_sorting2":"",
+            "google_product_cat":"",
+            "indivFieldsList":[{
+                    "dstTable":"",
+                    "sqlFieldName":"",
+                    "sqlFieldType":"",
+                    "value":"",
+                    "langValue":{
+                        "de":"",
+                        "en":""
+                    }
+                }            ]
+        }    ]
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEcategoriesResultItemList">tns:categoriesResultItemList</a></td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "categories_id":"",
+            "external_id":"",
+            "result":true,
+            "message":""
+        }    ]
+}</pre></td></tr></tbody></table><a name="REQsetCategory"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setCategory</td></tr><tr><td colspan="2" class="tdDocu">update or add a category.  For indivFieldsList use dstTable=TABLE_CATEGORIES</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">Item</td><td class="tdParaType"><a href="#TYPEcategoryItem">tns:categoryItem</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setCategory",
+"paras":{
+    "user":"",
+    "pass":"",
+    "Item":{
+        "external_id":"",
+        "permission_id":0,
+        "parent_id":"",
+        "categories_status":0,
+        "sort_order":0,
+        "top_category":0,
+        "categories_image":"",
+        "date_added":"0001-01-01T00:00:00",
+        "last_modified":"0001-01-01T00:00:00",
+        "categories_template":"",
+        "listing_template":"",
+        "categories_name":{
+            "de":"",
+            "en":""
+        },
+        "categories_heading_title":{
+            "de":"",
+            "en":""
+        },
+        "categories_description":{
+            "de":"",
+            "en":""
+        },
+        "categories_description_bottom":{
+            "de":"",
+            "en":""
+        },
+        "meta_description":{
+            "de":"",
+            "en":""
+        },
+        "meta_title":{
+            "de":"",
+            "en":""
+        },
+        "meta_keywords":{
+            "de":"",
+            "en":""
+        },
+        "seo_url":{
+            "de":"",
+            "en":""
+        },
+        "permissionList":[{
+                "external_id":"",
+                "permission":true,
+                "pgroup":""
+            }        ],
+        "products_sorting":"",
+        "products_sorting2":"",
+        "google_product_cat":"",
+        "indivFieldsList":[{
+                "dstTable":"",
+                "sqlFieldName":"",
+                "sqlFieldType":"",
+                "value":"",
+                "langValue":{
+                    "de":"",
+                    "en":""
+                }
+            }        ]
+    }
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEcategoryResultItem">tns:categoryResultItem</a></td></tr><tr><td colspan="2"><pre>{
+    "result":{
+        "categories_id":"",
+        "external_id":"",
+        "result":true,
+        "message":""
+    }
+}</pre></td></tr></tbody></table><a name="REQsetCustomer"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setCustomer</td></tr><tr><td colspan="2" class="tdDocu">update or add a customer. For indivFieldsList use dstTable=TABLE_CUSTOMERS</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">Item</td><td class="tdParaType"><a href="#TYPEcustomersItem">tns:customersItem</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setCustomer",
+"paras":{
+    "user":"",
+    "pass":"",
+    "Item":{
+        "shop_id":"",
+        "customers_cid":"",
+        "external_id":"",
+        "gender":"",
+        "lastname":"",
+        "firstname":"",
+        "dob":"0001-01-01T00:00:00",
+        "mail":"",
+        "phone":"",
+        "fax":"",
+        "company":"",
+        "company_2":"",
+        "company_3":"",
+        "street_address":"",
+        "postcode":"",
+        "city":"",
+        "country_code":"",
+        "vat_id":"",
+        "group":0,
+        "customers_status":0,
+        "password":"",
+        "indivFieldsList":[{
+                "dstTable":"",
+                "sqlFieldName":"",
+                "sqlFieldType":"",
+                "value":"",
+                "langValue":{
+                    "de":"",
+                    "en":""
+                }
+            }        ]
+    }
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">csid</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":"",
+    "message":"",
+    "customers_id":"",
+    "external_id":"",
+    "csid":""
+}</pre></td></tr></tbody></table><a name="REQsetManufacturer"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setManufacturer</td></tr><tr><td colspan="2" class="tdDocu">update or add a manufactuerer</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">Item</td><td class="tdParaType"><a href="#TYPEmanufacturerListItem">tns:manufacturerListItem</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setManufacturer",
+"paras":{
+    "user":"",
+    "pass":"",
+    "Item":{
+        "manufacturers_id":0,
+        "external_id":"",
+        "manufacturers_name":"",
+        "manufacturers_image":"",
+        "manufacturers_status":0,
+        "manufacturers_sort":0,
+        "products_sorting":"",
+        "products_sorting2":"",
+        "date_added":"0001-01-01T00:00:00",
+        "last_modified":"0001-01-01T00:00:00",
+        "manufacturers_description":{
+            "de":"",
+            "en":""
+        },
+        "meta_description":{
+            "de":"",
+            "en":""
+        },
+        "meta_title":{
+            "de":"",
+            "en":""
+        },
+        "meta_keywords":{
+            "de":"",
+            "en":""
+        },
+        "url_text":{
+            "de":"",
+            "en":""
+        },
+        "permissionList":[{
+                "external_id":"",
+                "permission":true,
+                "pgroup":""
+            }        ]
+    }
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEmanufacturerResultItem">tns:manufacturerResultItem</a></td></tr><tr><td colspan="2"><pre>{
+    "result":{
+        "manufacturers_id":"",
+        "external_id":"",
+        "result":true,
+        "message":""
+    }
+}</pre></td></tr></tbody></table><a name="REQsetManufacturers"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setManufacturers</td></tr><tr><td colspan="2" class="tdDocu">update or add a list of manufacturers</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">Item</td><td class="tdParaType"><a href="#TYPEmanufacturerList">tns:manufacturerList</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setManufacturers",
+"paras":{
+    "user":"",
+    "pass":"",
+    "Item":[{
+            "manufacturers_id":0,
+            "external_id":"",
+            "manufacturers_name":"",
+            "manufacturers_image":"",
+            "manufacturers_status":0,
+            "manufacturers_sort":0,
+            "products_sorting":"",
+            "products_sorting2":"",
+            "date_added":"0001-01-01T00:00:00",
+            "last_modified":"0001-01-01T00:00:00",
+            "manufacturers_description":{
+                "de":"",
+                "en":""
+            },
+            "meta_description":{
+                "de":"",
+                "en":""
+            },
+            "meta_title":{
+                "de":"",
+                "en":""
+            },
+            "meta_keywords":{
+                "de":"",
+                "en":""
+            },
+            "url_text":{
+                "de":"",
+                "en":""
+            },
+            "permissionList":[{
+                    "external_id":"",
+                    "permission":true,
+                    "pgroup":""
+                }            ]
+        }    ]
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEmanufacturersResultItemList">tns:manufacturersResultItemList</a></td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "manufacturers_id":"",
+            "external_id":"",
+            "result":true,
+            "message":""
+        }    ]
+}</pre></td></tr></tbody></table><a name="REQsetMedia"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setMedia</td></tr><tr><td colspan="2" class="tdDocu">set a media item</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">link_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">isLinkExternal</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">className</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">mediaItem</td><td class="tdParaType"><a href="#TYPEmediaItem">tns:mediaItem</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setMedia",
+"paras":{
+    "user":"",
+    "pass":"",
+    "link_id":"",
+    "isLinkExternal":"",
+    "className":"",
+    "mediaItem":{
+        "filename":"",
+        "filedata":"",
+        "mediatype":""
+    }
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":"",
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQsetOrderExported"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setOrderExported</td></tr><tr><td colspan="2" class="tdDocu">set exported flag to order</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">order_id</td><td class="tdParaType">xsd:int</td></tr><tr><td colspan="2"><pre>{
+"function":"setOrderExported",
+"paras":{
+    "user":"",
+    "pass":"",
+    "order_id":0
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":"",
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQsetOrderStati"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setOrderStati</td></tr><tr><td colspan="2" class="tdDocu">set new order stati for a list of orders</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">order_ids</td><td class="tdParaType"><a href="#TYPEarrayOfInt">tns:arrayOfInt</a></td></tr><tr><td class="tdParaName">new_status_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">comments</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">sendmail</td><td class="tdParaType">xsd:int</td></tr><tr><td colspan="2"><pre>{
+"function":"setOrderStati",
+"paras":{
+    "user":"",
+    "pass":"",
+    "order_ids":[],
+    "new_status_id":0,
+    "comments":"",
+    "sendmail":0
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":"",
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQsetOrderStatus"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setOrderStatus</td></tr><tr><td colspan="2" class="tdDocu">set new order status</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">order_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">new_status_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">comments</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">sendmail</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">indivFieldsList</td><td class="tdParaType"><a href="#TYPEindivFieldsList">tns:indivFieldsList</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setOrderStatus",
+"paras":{
+    "user":"",
+    "pass":"",
+    "order_id":0,
+    "new_status_id":0,
+    "comments":"",
+    "sendmail":0,
+    "indivFieldsList":[{
+            "dstTable":"",
+            "sqlFieldName":"",
+            "sqlFieldType":"",
+            "value":"",
+            "langValue":{
+                "de":"",
+                "en":""
+            }
+        }    ]
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr><tr><td colspan="2"><pre>{
+    "result":"",
+    "message":""
+}</pre></td></tr></tbody></table><a name="REQsetStocks"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">setStocks</td></tr><tr><td colspan="2" class="tdDocu">update stocks of a list of products</td></tr><tr><td colspan="2" class="tdHead2">Request</td></tr><tr><td class="tdParaName">user</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pass</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">Item</td><td class="tdParaType"><a href="#TYPEproductsStockList">tns:productsStockList</a></td></tr><tr><td colspan="2"><pre>{
+"function":"setStocks",
+"paras":{
+    "user":"",
+    "pass":"",
+    "Item":[{
+            "products_id":0,
+            "external_id":"",
+            "products_model":"",
+            "products_quantity":0
+        }    ]
+
+}}</pre></td></tr><tr><td colspan="2" class="tdHead2">Response</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType"><a href="#TYPEproductsResultItemList">tns:productsResultItemList</a></td></tr><tr><td colspan="2"><pre>{
+    "result":[{
+            "products_model":"",
+            "products_id":0,
+            "external_id":"",
+            "result":true,
+            "message":""
+        }    ]
+}</pre></td></tr></tbody></table><h1>SOAP - Datatypes</h1><a name="TYPEarrayOfDecimal"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">arrayOfDecimal</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType">xsd:decimal[]</td></tr></tbody></table><a name="TYPEarrayOfInt"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">arrayOfInt</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType">xsd:int[]</td></tr></tbody></table><a name="TYPEarrayOfString"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">arrayOfString</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType">xsd:string[]</td></tr></tbody></table><a name="TYPEattributeItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">attributeItem</td></tr><tr><td class="tdParaName">attributes_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">attributes_parent</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">attributes_ext_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">attributes_ext_parent_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">attributes_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">attributes_image</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">sort_order</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">attributes_name</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">attributes_desc</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">indivFieldsList</td><td class="tdParaType"><a href="#TYPEindivFieldsList">tns:indivFieldsList</a></td></tr></tbody></table><a name="TYPEattributeItemList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">attributeItemList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEattributeItem">tns:attributeItem[]</a></td></tr></tbody></table><a name="TYPEattributeResultItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">attributeResultItem</td></tr><tr><td class="tdParaName">attributes_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">attributes_ext_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEcategories_descriptionItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">categories_descriptionItem</td></tr><tr><td class="tdParaName">categories_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">language_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">categories_name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">categories_heading_title</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">categories_description</td><td class="tdParaType"><a href="#TYPEcategories_descriptionList">tns:categories_descriptionList</a></td></tr></tbody></table><a name="TYPEcategories_descriptionList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">categories_descriptionList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEcategories_descriptionItem">tns:categories_descriptionItem[]</a></td></tr></tbody></table><a name="TYPEcategoriesItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">categoriesItem</td></tr><tr><td class="tdParaName">categories_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">permission_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">categories_owner</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">categories_image</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">parent_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">categories_status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">categories_template</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">listing_template</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">sort_order</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_sorting</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_sorting2</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">date_added</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">last_modified</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">categories_descriptions</td><td class="tdParaType"><a href="#TYPEcategories_descriptionList">tns:categories_descriptionList</a></td></tr></tbody></table><a name="TYPEcategoriesItemList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">categoriesItemList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEcategoryItem">tns:categoryItem[]</a></td></tr></tbody></table><a name="TYPEcategoriesResultItemList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">categoriesResultItemList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEcategoryResultItem">tns:categoryResultItem[]</a></td></tr></tbody></table><a name="TYPEcategoryItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">categoryItem</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">permission_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">parent_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">categories_status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">sort_order</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">top_category</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">categories_image</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">date_added</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">last_modified</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">categories_template</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">listing_template</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">categories_name</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">categories_heading_title</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">categories_description</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">categories_description_bottom</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_description</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_title</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_keywords</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">seo_url</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">permissionList</td><td class="tdParaType"><a href="#TYPEpermissionItemList">tns:permissionItemList</a></td></tr><tr><td class="tdParaName">products_sorting</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_sorting2</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">google_product_cat</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">indivFieldsList</td><td class="tdParaType"><a href="#TYPEindivFieldsList">tns:indivFieldsList</a></td></tr></tbody></table><a name="TYPEcategoryItemExport"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">categoryItemExport</td></tr><tr><td class="tdParaName">categories_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">permission_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">parent_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">external_parent_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">categories_status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">sort_order</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">top_category</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">categories_image</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">date_added</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">last_modified</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">categories_template</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">listing_template</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">categories_name</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">categories_heading_title</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">categories_description</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">categories_description_bottom</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_description</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_title</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_keywords</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">url_text</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">permissionList</td><td class="tdParaType"><a href="#TYPEpermissionItemList">tns:permissionItemList</a></td></tr><tr><td class="tdParaName">products_sorting</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_sorting2</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">google_product_cat</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEcategoryList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">categoryList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEcategoryItemExport">tns:categoryItemExport[]</a></td></tr></tbody></table><a name="TYPEcategoryResultItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">categoryResultItem</td></tr><tr><td class="tdParaName">categories_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEcustomer_dataBase"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">customer_dataBase</td></tr><tr><td class="tdParaName">address_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">firstname</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">dob</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">street</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">gender</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">email</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">city</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">suburb</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">password</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">company</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">company_2</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">company_3</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">country</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">country_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">phone</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">zip</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_cid</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">vat_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">group</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">banktransfer_owner</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">banktransfer_blz</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">banktransfer_bank_name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">banktransfer_number</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">banktransfer_iban</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">banktransfer_bic</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">packstation_post</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">packstation_nr</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEcustomers_addressesItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">customers_addressesItem</td></tr><tr><td class="tdParaName">address_book_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">customers_gender</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_dob</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">customers_phone</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_fax</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_company</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_company_2</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_company_3</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_firstname</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_lastname</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_street_address</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_suburb</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_postcode</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_city</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_country_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">address_class</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">date_added</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">last_modified</td><td class="tdParaType">xsd:dateTime</td></tr></tbody></table><a name="TYPEcustomers_addressesList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">customers_addressesList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEcustomers_addressesItem">tns:customers_addressesItem[]</a></td></tr></tbody></table><a name="TYPEcustomersItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">customersItem</td></tr><tr><td class="tdParaName">shop_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_cid</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">gender</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">lastname</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">firstname</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">dob</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">mail</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">phone</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">fax</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">company</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">company_2</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">company_3</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">street_address</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">postcode</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">city</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">country_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">vat_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">group</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">customers_status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">password</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">indivFieldsList</td><td class="tdParaType"><a href="#TYPEindivFieldsList">tns:indivFieldsList</a></td></tr></tbody></table><a name="TYPEdeliveryItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">deliveryItem</td></tr><tr><td class="tdParaName">id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">name</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr></tbody></table><a name="TYPEdeliveryList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">deliveryList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEdeliveryItem">tns:deliveryItem[]</a></td></tr></tbody></table><a name="TYPEgetArticleResultItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getArticleResultItem</td></tr><tr><td class="tdParaName">productsItemExport</td><td class="tdParaType"><a href="#TYPEproductsItemExport">tns:productsItemExport</a></td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEgetArticlesResultItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">getArticlesResultItem</td></tr><tr><td class="tdParaName">productsItemExportList</td><td class="tdParaType"><a href="#TYPEproductsItemExportList">tns:productsItemExportList</a></td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEindivField"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">indivField</td></tr><tr><td class="tdParaName">dstTable</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">sqlFieldName</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">sqlFieldType</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">value</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">langValue</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr></tbody></table><a name="TYPEindivFieldsList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">indivFieldsList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEindivField">tns:indivField[]</a></td></tr></tbody></table><a name="TYPEitemsBase"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">itemsBase</td></tr><tr><td class="tdParaName">products_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">price_sum</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">item_data</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">options_full</td><td class="tdParaType"><a href="#TYPEOptionsList">tns:OptionsList</a></td></tr><tr><td class="tdParaName">quantity</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">tax</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">tax_class</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">weight</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">price</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">price_otax</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">applied_discount_percent</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">original_price</td><td class="tdParaType">xsd:decimal</td></tr></tbody></table><a name="TYPEitemsList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">itemsList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEitemsBase">tns:itemsBase[]</a></td></tr></tbody></table><a name="TYPElangItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">langItem</td></tr><tr><td class="tdParaName">de</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">en</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEmanufacturerList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">manufacturerList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEmanufacturerListItem">tns:manufacturerListItem[]</a></td></tr></tbody></table><a name="TYPEmanufacturerListItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">manufacturerListItem</td></tr><tr><td class="tdParaName">manufacturers_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">manufacturers_name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">manufacturers_image</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">manufacturers_status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">manufacturers_sort</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_sorting</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_sorting2</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">date_added</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">last_modified</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">manufacturers_description</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_description</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_title</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_keywords</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">url_text</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">permissionList</td><td class="tdParaType"><a href="#TYPEpermissionItemList">tns:permissionItemList</a></td></tr></tbody></table><a name="TYPEmanufacturerResultItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">manufacturerResultItem</td></tr><tr><td class="tdParaName">manufacturers_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEmanufacturersResultItemList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">manufacturersResultItemList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEmanufacturerResultItem">tns:manufacturerResultItem[]</a></td></tr></tbody></table><a name="TYPEmediaItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">mediaItem</td></tr><tr><td class="tdParaName">filename</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">filedata</td><td class="tdParaType">xsd:base64Binary</td></tr><tr><td class="tdParaName">mediatype</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEoptionItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">optionItem</td></tr><tr><td class="tdParaName">option_group_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">option_group_field</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_group_name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_group_desc</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_value_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_value_parent</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_value_image</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_value_field</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_value_default_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_value_default_price</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_value_default_p_prefix</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_value_default_weight</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_value_default_w_prefix</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_value_name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_value_value</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_value_desc</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">pto_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_price</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">option_p_prefix</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_weight</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">option_w_prefix</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_calc_type</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">option_count</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEOptionsList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">OptionsList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEoptionItem">tns:optionItem[]</a></td></tr></tbody></table><a name="TYPEorders_productsItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">orders_productsItem</td></tr><tr><td class="tdParaName">orders_products_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_price</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">products_discount</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">products_tax</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">products_tax_class</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_quantity</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">products_data</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">allow_tax</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_shipping_time</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEorders_productsList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">orders_productsList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEorders_productsItem">tns:orders_productsItem[]</a></td></tr></tbody></table><a name="TYPEorders_totalItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">orders_totalItem</td></tr><tr><td class="tdParaName">orders_total_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">orders_total_key</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">orders_total_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">orders_total_name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">orders_total_price</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">orders_total_tax</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">orders_total_tax_class</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">orders_total_quantity</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">allow_tax</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">info_code</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEorders_totalList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">orders_totalList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEorders_totalItem">tns:orders_totalItem[]</a></td></tr></tbody></table><a name="TYPEordersItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">ordersItem</td></tr><tr><td class="tdParaName">orders_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">customers_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">customers_cid</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_vat_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">customers_status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">customers_status_show_price_tax</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">customers_status_add_tax_ot</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">customers_email_address</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_gender</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_phone</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_fax</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_firstname</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_lastname</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_company</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_company_2</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_company_3</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_street_address</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_suburb</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_city</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_postcode</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_zone</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_zone_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_country</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">delivery_country_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_gender</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_phone</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_fax</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_firstname</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_lastname</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_company</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_company_2</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_company_3</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_street_address</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_suburb</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_city</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_postcode</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_zone</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_zone_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_country</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">billing_country_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">payment_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">subpayment_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">shipping_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">currency_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">currency_value</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">language_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">comments</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">last_modified</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">order_date</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">orders_status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">account_type</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">allow_tax</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">tax_included</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">tax_free</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">customers_ip</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">shop_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">orders_data</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">campaign_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">count_items</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">orders_total</td><td class="tdParaType"><a href="#TYPEorders_totalList">tns:orders_totalList</a></td></tr><tr><td class="tdParaName">customer_data</td><td class="tdParaType"><a href="#TYPEcustomer_dataBase">tns:customer_dataBase</a></td></tr><tr><td class="tdParaName">delivery_data</td><td class="tdParaType"><a href="#TYPEcustomer_dataBase">tns:customer_dataBase</a></td></tr><tr><td class="tdParaName">payment_data</td><td class="tdParaType"><a href="#TYPEpayment_dataBase">tns:payment_dataBase</a></td></tr><tr><td class="tdParaName">shipping_data</td><td class="tdParaType"><a href="#TYPEshipping_dataBase">tns:shipping_dataBase</a></td></tr><tr><td class="tdParaName">items</td><td class="tdParaType"><a href="#TYPEitemsList">tns:itemsList</a></td></tr><tr><td class="tdParaName">total_tax</td><td class="tdParaType"><a href="#TYPEtaxList">tns:taxList</a></td></tr><tr><td class="tdParaName">total_price_formated</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">total_price</td><td class="tdParaType">xsd:decimal</td></tr></tbody></table><a name="TYPEordersList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">ordersList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEordersItem">tns:ordersItem[]</a></td></tr></tbody></table><a name="TYPEpayment_dataBase"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">payment_dataBase</td></tr><tr><td class="tdParaName">cost</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">type</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">tax</td><td class="tdParaType">xsd:decimal</td></tr></tbody></table><a name="TYPEpaymentItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">paymentItem</td></tr><tr><td class="tdParaName">payment_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">payment_name</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr></tbody></table><a name="TYPEpaymentList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">paymentList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEpaymentItem">tns:paymentItem[]</a></td></tr></tbody></table><a name="TYPEpermissionItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">permissionItem</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">permission</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">pgroup</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEpermissionItemList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">permissionItemList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEpermissionItem">tns:permissionItem[]</a></td></tr></tbody></table><a name="TYPEpriceset"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">priceset</td></tr><tr><td class="tdParaName">price</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">staffel</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">group</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">quantity</td><td class="tdParaType">xsd:int</td></tr></tbody></table><a name="TYPEpricesetList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">pricesetList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEpriceset">tns:priceset[]</a></td></tr></tbody></table><a name="TYPEproductImages"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">productImages</td></tr><tr><td class="tdParaName">products_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">image_name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">image</td><td class="tdParaType">xsd:base64Binary</td></tr><tr><td class="tdParaName">products_images</td><td class="tdParaType"><a href="#TYPEproductImagesList">tns:productImagesList</a></td></tr></tbody></table><a name="TYPEproductImagesList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">productImagesList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEproductImages">tns:productImages[]</a></td></tr></tbody></table><a name="TYPEproductResultItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">productResultItem</td></tr><tr><td class="tdParaName">products_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">result</td><td class="tdParaType">xsd:boolean</td></tr><tr><td class="tdParaName">message</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEproducts_attributes_ids"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">products_attributes_ids</td></tr><tr><td class="tdParaName">attributes_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">attributes_parent_id</td><td class="tdParaType">xsd:int</td></tr></tbody></table><a name="TYPEproducts_attributes_idsList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">products_attributes_idsList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEproducts_attributes_ids">tns:products_attributes_ids[]</a></td></tr></tbody></table><a name="TYPEproducts_cross_sellItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">products_cross_sellItem</td></tr><tr><td class="tdParaName">products_id_cross_sell</td><td class="tdParaType">xsd:int</td></tr></tbody></table><a name="TYPEproducts_cross_sellList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">products_cross_sellList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEproducts_cross_sellItem">tns:products_cross_sellItem[]</a></td></tr></tbody></table><a name="TYPEproducts_imageItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">products_imageItem</td></tr><tr><td class="tdParaName">type</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">image_name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">image_data</td><td class="tdParaType">xsd:base64Binary</td></tr></tbody></table><a name="TYPEproducts_imageList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">products_imageList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEproducts_imageItem">tns:products_imageItem[]</a></td></tr></tbody></table><a name="TYPEproducts_media_url"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">products_media_url</td></tr><tr><td class="tdParaName">type</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">file</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">width</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">height</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">folder</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">url</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEproducts_media_urlList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">products_media_urlList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEproducts_media_url">tns:products_media_url[]</a></td></tr></tbody></table><a name="TYPEproducts_priceItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">products_priceItem</td></tr><tr><td class="tdParaName">products_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">group</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">discount_quantity</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">price</td><td class="tdParaType">xsd:decimal</td></tr></tbody></table><a name="TYPEproducts_priceList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">products_priceList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEproducts_priceItem">tns:products_priceItem[]</a></td></tr></tbody></table><a name="TYPEproductsItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">productsItem</td></tr><tr><td class="tdParaName">products_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">permission_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_owner</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_ean</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_quantity</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">products_average_quantity</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_shippingtime</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">price_flag_graduated_all</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">price_flag_graduated_1</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">price_flag_graduated_2</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">price_flag_graduated_3</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_sort</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_option_master_price</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">ekomi_allow</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_image</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_price</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">date_added</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">last_modified</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">date_available</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">products_weight</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">products_status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_tax_class_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">product_template</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">product_list_template</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">manufacturers_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_ordered</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_fsk18</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_vpe</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_vpe_status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_vpe_value</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">products_startpage</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_startpage_sort</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_average_rating</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">products_rating_count</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_digital</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">flag_has_specials</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_serials</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_master_flag</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_master_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_keywords</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">products_description</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">products_short_description</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_description</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_title</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_keywords</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">seo_url</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">url</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">products_special_prices</td><td class="tdParaType"><a href="#TYPEspecialpriceList">tns:specialpriceList</a></td></tr><tr><td class="tdParaName">products_name</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">categories</td><td class="tdParaType"><a href="#TYPEarrayOfInt">tns:arrayOfInt</a></td></tr><tr><td class="tdParaName">image_name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">image</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_prices</td><td class="tdParaType"><a href="#TYPEpricesetList">tns:pricesetList</a></td></tr><tr><td class="tdParaName">products_cross_sell</td><td class="tdParaType"><a href="#TYPEarrayOfString">tns:arrayOfString</a></td></tr><tr><td class="tdParaName">products_images</td><td class="tdParaType"><a href="#TYPEproducts_imageList">tns:products_imageList</a></td></tr><tr><td class="tdParaName">products_categories</td><td class="tdParaType"><a href="#TYPEarrayOfInt">tns:arrayOfInt</a></td></tr><tr><td class="tdParaName">products_attributes</td><td class="tdParaType"><a href="#TYPEproducts_attributes_idsList">tns:products_attributes_idsList</a></td></tr><tr><td class="tdParaName">permissionList</td><td class="tdParaType"><a href="#TYPEpermissionItemList">tns:permissionItemList</a></td></tr><tr><td class="tdParaName">indivFieldsList</td><td class="tdParaType"><a href="#TYPEindivFieldsList">tns:indivFieldsList</a></td></tr></tbody></table><a name="TYPEproductsItemExport"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">productsItemExport</td></tr><tr><td class="tdParaName">products_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">permission_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_owner</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_ean</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_quantity</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">products_average_quantity</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_shippingtime</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">price_flag_graduated_all</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">price_flag_graduated_1</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">price_flag_graduated_2</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">price_flag_graduated_3</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_sort</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_option_master_price</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">ekomi_allow</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_image</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_price</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">date_added</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">last_modified</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">date_available</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">products_weight</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">products_status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_tax_class_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">product_template</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">product_list_template</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">manufacturers_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_ordered</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_fsk18</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_vpe</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_vpe_status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_vpe_value</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">products_startpage</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_startpage_sort</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_average_rating</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">products_rating_count</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_digital</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">flag_has_specials</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_serials</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">products_master_flag</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_master_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_keywords</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">products_description</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">products_short_description</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_description</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_title</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">meta_keywords</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">seo_url</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">url</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">products_special_prices</td><td class="tdParaType"><a href="#TYPEspecialpriceList">tns:specialpriceList</a></td></tr><tr><td class="tdParaName">products_name</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr><tr><td class="tdParaName">categories</td><td class="tdParaType"><a href="#TYPEarrayOfInt">tns:arrayOfInt</a></td></tr><tr><td class="tdParaName">image_name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">image</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_prices</td><td class="tdParaType"><a href="#TYPEpricesetList">tns:pricesetList</a></td></tr><tr><td class="tdParaName">products_cross_sell</td><td class="tdParaType"><a href="#TYPEarrayOfString">tns:arrayOfString</a></td></tr><tr><td class="tdParaName">products_images</td><td class="tdParaType"><a href="#TYPEproducts_imageList">tns:products_imageList</a></td></tr><tr><td class="tdParaName">products_categories</td><td class="tdParaType"><a href="#TYPEarrayOfInt">tns:arrayOfInt</a></td></tr><tr><td class="tdParaName">products_attributes</td><td class="tdParaType"><a href="#TYPEproducts_attributes_idsList">tns:products_attributes_idsList</a></td></tr><tr><td class="tdParaName">permissionList</td><td class="tdParaType"><a href="#TYPEpermissionItemList">tns:permissionItemList</a></td></tr><tr><td class="tdParaName">indivFieldsList</td><td class="tdParaType"><a href="#TYPEindivFieldsList">tns:indivFieldsList</a></td></tr><tr><td class="tdParaName">products_media_urlList</td><td class="tdParaType"><a href="#TYPEproducts_media_urlList">tns:products_media_urlList</a></td></tr></tbody></table><a name="TYPEproductsItemExportList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">productsItemExportList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEproductsItemExport">tns:productsItemExport[]</a></td></tr></tbody></table><a name="TYPEproductsItemList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">productsItemList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEproductsItem">tns:productsItem[]</a></td></tr></tbody></table><a name="TYPEproductsResultItemList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">productsResultItemList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEproductResultItem">tns:productResultItem[]</a></td></tr></tbody></table><a name="TYPEproductsStockItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">productsStockItem</td></tr><tr><td class="tdParaName">products_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">external_id</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_model</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">products_quantity</td><td class="tdParaType">xsd:decimal</td></tr></tbody></table><a name="TYPEproductsStockList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">productsStockList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEproductsStockItem">tns:productsStockItem[]</a></td></tr></tbody></table><a name="TYPEshipping_dataBase"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">shipping_dataBase</td></tr><tr><td class="tdParaName">cost</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">type</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">tax</td><td class="tdParaType">xsd:decimal</td></tr></tbody></table><a name="TYPEshippingItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">shippingItem</td></tr><tr><td class="tdParaName">shipping_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">shipping_code</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">shipping_name</td><td class="tdParaType"><a href="#TYPElangItem">tns:langItem</a></td></tr></tbody></table><a name="TYPEshippingList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">shippingList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEshippingItem">tns:shippingItem[]</a></td></tr></tbody></table><a name="TYPEspecialprice"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">specialprice</td></tr><tr><td class="tdParaName">special_price</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">date_available</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">date_expired</td><td class="tdParaType">xsd:dateTime</td></tr><tr><td class="tdParaName">group_permissions</td><td class="tdParaType"><a href="#TYPEarrayOfInt">tns:arrayOfInt</a></td></tr><tr><td class="tdParaName">group_permission_all</td><td class="tdParaType">xsd:int</td></tr></tbody></table><a name="TYPEspecialpriceList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">specialpriceList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEspecialprice">tns:specialprice[]</a></td></tr></tbody></table><a name="TYPEstoreItem"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">storeItem</td></tr><tr><td class="tdParaName">shop_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">shop_status</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">shop_name</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">shop_domain</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">shop_http</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">shop_https</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">shop_ssl</td><td class="tdParaType">xsd:int</td></tr></tbody></table><a name="TYPEstoresList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">storesList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEstoreItem">tns:storeItem[]</a></td></tr></tbody></table><a name="TYPEtaxBase"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">taxBase</td></tr><tr><td class="tdParaName">value</td><td class="tdParaType">xsd:decimal</td></tr><tr><td class="tdParaName">tax_rate</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">value_formated</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPEtaxList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">taxList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPEtaxBase">tns:taxBase[]</a></td></tr></tbody></table><a name="TYPExtcustomersStatus"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">xtcustomersStatus</td></tr><tr><td class="tdParaName">customers_status_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">customers_status_name</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPExtcustomersStatusList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">xtcustomersStatusList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPExtcustomersStatus">tns:xtcustomersStatus[]</a></td></tr></tbody></table><a name="TYPExtimage"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">xtimage</td></tr><tr><td class="tdParaName">imageBase64</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPExtstatus"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">xtstatus</td></tr><tr><td class="tdParaName">status_id</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">status_name</td><td class="tdParaType">xsd:string</td></tr></tbody></table><a name="TYPExtstatusList"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">xtstatusList</td></tr><tr><td class="tdParaName">SOAP-ENC:arrayType</td><td class="tdParaType"><a href="#TYPExtstatus">tns:xtstatus[]</a></td></tr></tbody></table><a name="TYPExtVersionInfos"></a><table class="tabOperation"><tbody><tr><td colspan="2" class="tdHead">xtVersionInfos</td></tr><tr><td class="tdParaName">productName</td><td class="tdParaType">xsd:string</td></tr><tr><td class="tdParaName">productVersionMajor</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">productVersionMinor</td><td class="tdParaType">xsd:int</td></tr><tr><td class="tdParaName">productVersionPatchLevel</td><td class="tdParaType">xsd:int</td></tr></tbody></table></body></html>

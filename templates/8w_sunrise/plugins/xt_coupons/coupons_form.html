@@ -1,0 +1,17 @@
+<div style="margin-top: 25px;">
+{if $arr_coupon == ''}
+    <h1>{txt key=TEXT_HAS_COUPON_HEADLINE}</h1>
+    {form type=form name=process action='checkout' method=post conn=SSL}
+    {form type=hidden name=page_action value=confirmation}
+    {form type=hidden name=special value=coupon}
+    <input type="text" id="coupon_code" name="coupon_code" maxlength="25" size="25" placeholder="{$smarty.const.TEXT_COUPON_LABEL}" />
+    {button_text params="class='btn-coupon'" value=TEXT_COUPON_BUTTON type='form'}
+    {form type=formend}
+{else}
+    {if $arr_coupon.coupon_token_code != ''}
+    <p>{txt key=TEXT_COUPON_REDEEMED} = {$arr_coupon.coupon_token_code}</p>
+    {else}
+    <p>{txt key=TEXT_COUPON_REDEEMED} = {$arr_coupon.coupon_code}</p>
+    {/if}
+{/if}
+</div>

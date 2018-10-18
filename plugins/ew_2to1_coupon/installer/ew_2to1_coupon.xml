@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+
+    <title>2:1 Gutschein</title>
+    <version>1.1.0</version>
+    <code>ew_2to1_coupon</code>
+    <url>http://www.8works.de</url>
+    <developer>8works</developer>
+    <description></description>
+    <type>marketing</type>
+    <icon>logo.gif</icon>
+    <minimumupdateversion>1.0.0</minimumupdateversion>
+	<require_license_file>false</require_license_file>
+    <marketplace_link>http://8shop.de/</marketplace_link>
+    <license_file>ew_2to1_coupon.txt</license_file>
+
+    <required_plugins>
+		<plugin>xt_coupons</plugin>
+	</required_plugins>
+
+    <db_install><![CDATA[
+        $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_2to1_coupon/functions/install.php';
+        if (file_exists($f)) {
+            require_once $f;
+        }
+    ]]></db_install>
+    <db_uninstall><![CDATA[
+        $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_2to1_coupon/functions/uninstall.php';
+        if (file_exists($f)) {
+            require_once $f;
+        }
+    ]]></db_uninstall>
+
+    <plugin_code>
+        <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode><![CDATA[
+                if (isset($xtPlugin->active_modules['ew_2to1_coupon'])) {
+                    $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_2to1_coupon/hooks/page_registry.php_bottom.php';
+                    if (file_exists($f)) {
+                        require $f;
+                    }
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_2to1_coupon</hook>
+            <phpcode><![CDATA[
+            if (ew_2to1_coupon::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_2to1_coupon/hooks/ew_2to1_coupon.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.cart.php:_addCart_top</hook>
+            <phpcode><![CDATA[
+            if (ew_2to1_coupon::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_2to1_coupon/hooks/class.cart.php_addCart_top.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.cart.php:_deleteContent_top</hook>
+            <phpcode><![CDATA[
+            if (ew_2to1_coupon::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_2to1_coupon/hooks/class.cart.php_deleteContent_top.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:getProductData_top</hook>
+            <phpcode><![CDATA[
+            if (ew_2to1_coupon::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_2to1_coupon/hooks/class.product.php_getProductData_top.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:getProductData_bottom</hook>
+            <phpcode><![CDATA[
+            if (ew_2to1_coupon::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_2to1_coupon/hooks/class.product.php_getProductData_bottom.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:_getPrice_afterProductsPrice</hook>
+            <phpcode><![CDATA[
+            if (ew_2to1_coupon::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_2to1_coupon/hooks/class.product.php_getPrice_afterProductsPrice.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.cart.php:_updateCart_top</hook>
+            <phpcode><![CDATA[
+            if (ew_2to1_coupon::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_2to1_coupon/hooks/class.cart.php_updateCart_top.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.cart.php:_refresh_top</hook>
+            <phpcode><![CDATA[
+            $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_2to1_coupon/hooks/class.cart.php_refresh_top.php';
+            if (file_exists($f)) {
+                require $f;
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>form_handler.php:add_product_bottom</hook>
+            <phpcode><![CDATA[
+            if (ew_2to1_coupon::status()) {
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_2to1_coupon/hooks/form_handler.php_add_product_bottom.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+
+    <configuration>
+        <config>
+            <key>CONFIG_EW_2TO1_COUPON_STATUS</key>
+            <sort_order>10</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Für diesen Mandanten aktivieren</title>
+            </de>
+            <en>
+                <title>Activate</title>
+            </en>
+            <bp>
+                <title>Activate</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_2TO1_COUPON_PRODUCT_PRICE_MIN</key>
+            <sort_order>20</sort_order>
+            <value>0</value>
+            <de>
+                <title>Minimum Preis des 2:1 Produkt (netto)</title>
+            </de>
+            <en>
+                <title>Minimum price of the 2:1 product (netto)</title>
+            </en>
+            <bp>
+                <title>Minimum price of the 2:1 product (netto)</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_2TO1_COUPON_PRODUCT_PRICE_MAX</key>
+            <sort_order>30</sort_order>
+            <value>0</value>
+            <de>
+                <title>Maximum Preis des 2:1 Produkt (netto)</title>
+            </de>
+            <en>
+                <title>Maximum price of the 2:1 product (netto)</title>
+            </en>
+            <bp>
+                <title>Maximum price of the 2:1 product (netto)</title>
+            </bp>
+        </config>
+    </configuration>
+
+    <language_content>
+        <phrase>
+            <key>TEXT_EW_2TO1_COUPON</key>
+            <class>both</class>
+            <de>
+                <value>Lieblingsprodukt GRATIS</value>
+            </de>
+            <en>
+                <value>Lieblingsprodukt GRATIS</value>
+            </en>
+            <bp>
+                <value>Lieblingsprodukt GRATIS</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_2TO1_COUPON_DESCRIPTION_ONE</key>
+            <class>store</class>
+            <de>
+                <value>Wählen Sie hier einfach Ihr GRATIS-Lieblingsprodukt aus. Danach wird dieses Produkt kostenlos ein zweites Mal am Ende Ihres Warenkorbs angezeigt.</value>
+            </de>
+            <en>
+                <value>We offer two products for the price of one. Select one product of the current basket to put it a second time for free in the cart.</value>
+            </en>
+            <bp>
+                <value>We offer two products for the price of one. Select one product of the current basket to put it a second time for free in the cart.</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_2TO1_COUPON_DESCRIPTION_MORE</key>
+            <class>store</class>
+            <de>
+                <value>Wählen Sie hier einfach eines der %s Produkte Ihres Warenkorbs aus. Danach wird dieses Produkt kostenlos ein zweites Mal am Ende Ihres Warenkorbs angezeigt.</value>
+            </de>
+            <en>
+                <value>We offer two products for the price of one. Select one of the %s products of the current basket to put it a second time for free in the cart.</value>
+            </en>
+            <bp>
+                <value>We offer two products for the price of one. Select one of the %s products of the current basket to put it a second time for free in the cart.</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_2TO1_COUPON_COUPON_STATUS</key>
+            <class>admin</class>
+            <de>
+                <value>2:1 Gutschein aktivieren</value>
+            </de>
+            <en>
+                <value>2:1 Coupon activation</value>
+            </en>
+            <bp>
+                <value>2:1 Coupon activation</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_2TO1_COUPON_ERROR_PRODUCT_ALREADY_SET</key>
+            <class>store</class>
+            <de>
+                <value>Ihr GRATIS-Lieblingsprodukt wurde bereits ausgewählt. Um es zu ändern, können Sie das Vorhandene im Warenkorb einfach entfernen und danach ein anderes GRATIS-Lieblingsprodukt auswählen.</value>
+            </de>
+            <en>
+                <value>The 2:1 free product is already selected. You can remove it and select a new one.</value>
+            </en>
+            <bp>
+                <value>The 2:1 free product is already selected. You can remove it and select a new one.</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_2TO1_COUPON_ERROR_TO_MANY</key>
+            <class>store</class>
+            <de>
+                <value>Das GRATIS-Lieblingsprodukt kann nur %s mal in den Warenkorb gelegt werden.</value>
+            </de>
+            <en>
+                <value>The 2:1 free product can only be %s times in the shopping cart</value>
+            </en>
+            <bp>
+                <value>The 2:1 free product can only be %s times in the shopping cart</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_2TO1_COUPON_INFO_PRODUCT_SET</key>
+            <class>store</class>
+            <de>
+                <value>Ihr GRATIS-Lieblingsprodukt wurde Ihrem Warenkorb kostenlos hinzugefügt.</value>
+            </de>
+            <en>
+                <value>The 2:1 free product was added to your cart.</value>
+            </en>
+            <bp>
+                <value>The 2:1 free product was added to your cart.</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_2TO1_COUPON_INFO_PRODUCT_UNSET</key>
+            <class>store</class>
+            <de>
+                <value>Das GRATIS-Lieblingsprodukt wurde aus Ihrem Warenkorb entfernt.</value>
+            </de>
+            <en>
+                <value>The 2:1 free product has been removed from the cart</value>
+            </en>
+            <bp>
+                <value>The 2:1 free product has been removed from the cart</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_2TO1_COUPON_PRODUCTS_NAME</key>
+            <class>store</class>
+            <de>
+                <value>Lieblingsprodukt GRATIS "%s"</value>
+            </de>
+            <en>
+                <value>2:1 free product "%s"</value>
+            </en>
+            <bp>
+                <value>2:1 free product "%s"</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_2TO1_COUPON_CHOOSE</key>
+            <class>store</class>
+            <de>
+                <value>Ihr GRATIS-Lieblingsprodukt auswählen.</value>
+            </de>
+            <en>
+                <value>Choose 2:1 free product</value>
+            </en>
+            <bp>
+                <value>Choose 2:1 free product</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_2TO1_COUPON_CHOOSE_LATER</key>
+            <class>store</class>
+            <de>
+                <value>Ihr GRATIS-Lieblingsprodukt später auswählen.</value>
+            </de>
+            <en>
+                <value>Choose 2:1 free product later</value>
+            </en>
+            <bp>
+                <value>Choose 2:1 free product later</value>
+            </bp>
+        </phrase>
+    </language_content>
+
+</xtcommerceplugin>

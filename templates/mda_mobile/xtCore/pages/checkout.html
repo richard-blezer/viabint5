@@ -1,0 +1,58 @@
+{assign var='icon_path' value=$tpl_path|cat:'img/icons/'}
+<ul id="checkoutnavigation" data-role="listview" data-inset="true" >
+	<li>
+		{if $page_action == shipping}
+		{img img=icon_accept.gif url=$icon_path class=ui-li-icon}
+		{/if}
+		<strong>{txt key=TEXT_SELECT_SHIPPING}</strong>
+		<!--<br />{txt key=TEXT_SELECT_SHIPPING_DESC}-->
+	</li>
+	<li>
+		{if $page_action == payment}
+		{img img=icon_accept.gif url=$icon_path class=ui-li-icon}
+		{/if}
+		<strong>{txt key=TEXT_SELECT_PAYMENT}</strong>
+		<!--<br />{txt key=TEXT_SELECT_PAYMENT_DESC}-->
+	</li>
+	<li>
+		{if $page_action == confirmation}
+		{img img=icon_accept.gif url=$icon_path class=ui-li-icon}
+		{/if}
+		<strong>{txt key=TEXT_CONFIRMATION}</strong>
+		<!--<br />{txt key=TEXT_CONFIRMATION_DESC}-->
+	</li>
+	<li>
+		{if $page_action == success}
+		{img img=icon_accept.gif url=$icon_path class=ui-li-icon}
+		{/if}
+		<strong>{txt key=TEXT_SUCCESS}</strong>
+		<!--<br />{txt key=TEXT_SUCCESS_DESC}-->
+	</li>
+</ul>
+
+{$message}
+<br />
+
+{if $page_action == shipping}
+{include file="/xtCore/pages/checkout/subpage_shipping.html" type="tpl_include"}
+{/if}
+
+{if $page_action == payment}
+{include file="/xtCore/pages/checkout/subpage_payment.html" type="tpl_include"}
+{/if}
+
+{if $page_action == confirmation}
+{include file="/xtCore/pages/checkout/subpage_confirmation.html" type="tpl_include"}
+{/if}
+
+{if $page_action == pay}
+{include file="/xtCore/pages/checkout/subpage_pay.html" type="tpl_include"}
+{/if}
+
+{if $page_action == pay_frame}
+{include file="/xtCore/pages/checkout/subpage_pay_iframe.html" type="tpl_include"}
+{/if}
+
+{if $page_action == success}
+{include file="/xtCore/pages/checkout/subpage_success.html" type="tpl_include"}
+{/if}

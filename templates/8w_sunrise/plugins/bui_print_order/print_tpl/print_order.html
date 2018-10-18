@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title></title>
+</head>
+<body onload="window.print();">
+<h1>{txt key=TEXT_BPO_ORDERS}</h1>
+<div>
+<br />
+{txt key=TEXT_BPO_ORDER_ID} {$order_data.orders_id}&nbsp;&nbsp;({$order_data.date_purchased})
+{txt key=TEXT_BPO_ORDERS_STATUS}: {$order_data.orders_status} &nbsp;&nbsp; {txt key=TEXT_BPO_last_modified}: {$order_data.last_modified}
+<br />
+<br />
+</div>
+
+<table width="100%">
+	<thead>
+		<tr>
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_BPO_BILLING_ADDRESS}:</th>
+			<th class="x-panel-header x-unselectable">{txt key=TEXT_BPO_DELIVERY_ADDRESS}:</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>
+			    <p class="billingbg">
+				{if $order_data.billing_company} {$order_data.billing_company}<br />{/if}
+				{$order_data.billing_firstname} {$order_data.billing_lastname}<br />
+				{$order_data.billing_street_address}<br />
+				{if $order_data.billing_suburb} {$order_data.billing_suburb}<br />{/if}
+				{$order_data.billing_postcode} {$order_data.billing_city}<br />
+				{$order_data.billing_country}<br />
+				</p>				
+			</td>
+			<td>
+			    <p class="deliverybg">
+				{if $order_data.delivery_company} {$order_data.delivery_company}<br />{/if}
+				{$order_data.delivery_firstname} {$order_data.delivery_lastname}<br />
+				{$order_data.delivery_street_address}<br />
+				{if $order_data.delivery_suburb} {$order_data.delivery_suburb}<br />{/if}
+				{$order_data.delivery_postcode} {$order_data.delivery_city}<br />
+				{$order_data.delivery_country}<br />
+				</p>			
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<br />
+<br />
+
+<table width="100%" border="0" cellspacing="0" cellpadding="6">
+
+	<thead>
+	  <tr>
+	    <th class="x-panel-header x-unselectable">&nbsp;</th>
+	    <th class="x-panel-header x-unselectable">&nbsp;</th>
+	  </tr>
+	</thead>  
+
+	<tbody>
+	<tr>
+		<td width="50%">
+		
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+				  <tr>
+				    <td width="20%" class="left">{txt key=TEXT_BPO_customers_email_address}:</td>
+				    <td width="30%" class="left">{$order_data.customers_email_address}</td>
+				    <td></td>
+				  </tr> 
+				  
+				  <tr>
+				    <td width="20%" class="left">{txt key=TEXT_BPO_customers_cid}:</td>
+				    <td width="30%" class="left">{$order_data.customers_cid}</td>
+				    <td></td>
+				  </tr>	  
+				  
+				  <tr>
+				    <td width="20%" class="left">{txt key=TEXT_BPO_customers_vat_id}:</td>
+				    <td width="30%" class="left">{$order_data.customers_vat_id}</td>
+				    <td></td>
+				  </tr>	  
+				  
+				  <tr>
+				    <td width="20%" class="left">{txt key=TEXT_BPO_payment_code}:</td>
+				    <td width="30%" class="left">{$order_data.payment_code}</td>
+				    <td></td>
+				  </tr>	  
+				  
+				  <tr>
+				    <td width="20%" class="left">{txt key=TEXT_BPO_shipping_code}:</td>
+				    <td width="30%" class="left">{$order_data.shipping_code}</td>
+				    <td></td>
+				  </tr>	  	  	  	  
+				</tbody>
+			</table>		
+		
+		</td>
+	
+		<td width="50%">
+			{if $order_data.order_info_options}
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tbody>
+				{foreach name=aussen item=info from=$order_data.order_info_options}
+				  <tr>
+				    <td width="20%" class="left">{$info.text}:</td>
+				    <td width="30%" class="left">{$info.value}</td>
+				    <td></td>
+				  </tr> 
+  	  	  	  	{/foreach}
+				</tbody>
+			</table>		
+			{/if}
+		
+		
+		</td>
+	
+	</tr>
+	</tbody>
+</table>	
+
+<br />
+<br />
+
+<table class="a_order" width="100%" border="0" cellspacing="0" cellpadding="6">
+	<thead>
+	  <tr>
+	    <th class="x-panel-header x-unselectable">{txt key=TEXT_BPO_PRODUCTS_QUANTITY}</th>
+	    <th class="x-panel-header x-unselectable">{txt key=TEXT_BPO_PRODUCTS_NAME}</th>
+	    <th class="x-panel-header x-unselectable">{txt key=TEXT_BPO_PRODUCTS_MODEL}</th>
+	    <th class="x-panel-header x-unselectable">{txt key=TEXT_BPO_PRODUCTS_SINGLEPRICE}</th>
+	    <th class="x-panel-header x-unselectable">{txt key=TEXT_BPO_PRODUCTS_FINALPRICE}</th>
+	  </tr>
+	</thead>  
+	<tbody>
+	  {foreach name=aussen item=data from=$order_products}
+	  <tr>
+	    <td class="left">{$data.products_quantity}</td>
+	    <td class="left">{$data.products_name}</td>
+	    <td class="left">{$data.products_model}</td>
+	    <td class="right">{$data.products_price.formated}</td>
+	    <td class="right">{$data.products_final_price.formated}</td>
+	  </tr>
+	  {$data.products_information.content_admin}
+	  
+	  {/foreach}	 
+	</tbody>
+</table>
+	    	<table class="a_order" width="100%">
+	    		<tbody>
+	    			<tr>
+						<td></td>
+			            <td width="250" class="tdtotal">{txt key=TEXT_BPO_PRODUCT_TOTAL}:</td>
+			            <td width="150" class="tdtotal">{$order_total.product_total.formated}</td>
+		            </tr>
+		            {foreach name=aussen item=sub_data from=$order_total_data}
+	    			<tr>
+						<td></td>
+			            <td width="250" class="tdtotal">{$sub_data.orders_total_name}:</td>
+			            <td width="150" class="tdtotal">{$sub_data.orders_total_price.formated}</td>
+		            </tr>		            
+		            {/foreach}
+		            
+		            {foreach name=aussen item=tax_data from=$order_total.total_tax}
+	    			<tr>
+						<td></td>
+			            <td width="250" class="tdtotal">{txt key=TEXT_BPO_PRODUCT_TAX} {$tax_data.tax_key}%::</td>
+			            <td width="150" class="tdtotal">{$tax_data.tax_value.formated}</td>
+		            </tr>		            
+		            {/foreach}	
+	    			<tr>
+						<td></td>
+			            <td width="250" class="tdtotal">{txt key=TEXT_BPO_TOTAL}:</td>
+			            <td width="150" class="tdtotal">{$order_total.total.formated}</td>
+		            </tr>		            	            
+	    		</tbody>
+	    	</table>
+</body>
+</html>

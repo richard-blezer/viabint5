@@ -1,0 +1,37 @@
+{if $type == 'last_reviews'}
+<div class="sidebar-box" id="box-last-reviews">
+    <h2 class="boxheader">{txt key=TEXT_LAST_REVIEWS}</h2>
+    <div class="boxbody">
+        <ul>
+            {foreach from=$reviews item=review}
+            <li>
+                <a href="{$review.url}">{$review.review_title}</a>
+                <p>{$review.review_text|truncate:30}</p>
+                <p class="date">{$review.review_date}</p>
+            </li>
+            {/foreach}
+        </ul>
+    </div>
+</div>
+{else}
+<div class="sidebar-box">
+    <p class="headline">{txt key=TEXT_TOP_RATED_PRODUCTS}</p>
+    <div class="box">
+        {foreach item=bestseller_products_data from=$top_products}
+        {if $bestseller_products_data.products_image == 'product:noimage.gif'}
+        <p class="product-image"><a href="{$bestseller_products_data.products_link}"><img src="{$tpl_url_path}img/no_image.png" alt="{$bestseller_products_data.products_name}" /></a></p>
+        {else}
+        <p class="product-image"><a href="{$bestseller_products_data.products_link}">{img img=$bestseller_products_data.products_image type=m_sidebar class=productImageBorder alt=$bestseller_products_data.products_name}</a></p>
+        {/if}
+        <p class="product-name"><a href="{$bestseller_products_data.products_link}">{$bestseller_products_data.products_name}</a></p>
+        {if $bestseller_products_data.base_price}<p class="vpe">{$bestseller_products_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$bestseller_products_data.base_price.vpe.name}</p>{/if}
+        <p class="product-price">{$bestseller_products_data.products_price.formated}</p>
+        {if $bestseller_products_data.products_shipping_link}
+        <p class="product-tax-shipping">{$bestseller_products_data.products_tax_info.tax_desc}&nbsp;<a href="{$bestseller_products_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+        {else}
+        <p class="product-tax-shipping">{$bestseller_products_data.products_tax_info.tax_desc}&nbsp;{txt key=TEXT_EXCL_SHIPPING}</p>
+        {/if}
+        {/foreach}
+    </div><!-- .box -->
+</div><!-- .sidebar-box -->
+{/if}

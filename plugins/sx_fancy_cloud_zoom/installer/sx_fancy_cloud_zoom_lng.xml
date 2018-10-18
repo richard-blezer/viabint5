@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>SX_FANCY_CLOUD_ZOOM_CZ_ENABLED_ON_MOBILE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[CloudZoom for mobil activated]]></value>
+	</en>
+	<de>
+		<value><![CDATA[CloudZoom für Mobile aktiviert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>SX_FANCY_CLOUD_ZOOM_CZ_ENABLED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[CloudZoom activated]]></value>
+	</en>
+	<de>
+		<value><![CDATA[CloudZoom aktiviert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>SX_FANCY_CLOUD_ZOOM_FB_ENABLED_ON_MOBILE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[FancyBox for mobil aktivated]]></value>
+	</en>
+	<de>
+		<value><![CDATA[FancyBox für Mobile aktiviert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>SX_FANCY_CLOUD_ZOOM_FB_ENABLED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[FancyBox aktivated]]></value>
+	</en>
+	<de>
+		<value><![CDATA[FancyBox aktiviert]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

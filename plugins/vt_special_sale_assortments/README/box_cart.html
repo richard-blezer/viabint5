@@ -1,0 +1,39 @@
+{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+{if $show_cart_content == true}
+<div id="bcb">
+    <h2 class="boxcartheader">{txt key=TEXT_CART}</h2>
+    <div class="boxcartbody">
+        
+        {assign var=ssag_bundle_head value=''}
+        {foreach name=aussen item=data from=$cart_data}
+            
+            {if $data.ssag_bundle_id && $ssag_bundle_head != $data.ssag_bundle_id}
+                {assign var=ssag_bundle_head value=$data.ssag_bundle_id}
+                <p>1&nbsp;x&nbsp;<a href="{$data.ssa_group.ssag_link}">{$data.ssa_group.ssag_name|truncate:20:"...":true} {$data.ssag_bundle}</a></p>
+            {elseif !$data.ssag_bundle_id}
+                <p>{$data.products_quantity}&nbsp;x&nbsp;<a href="{$data.products_link}">{$data.products_name|truncate:20:"...":true}</a></p>
+            {/if}
+        {/foreach}
+        <div class="hr"></div>
+        <p style="text-align:right">
+        {foreach name=aussen item=tax_data from=$cart_tax}
+        {txt key=TEXT_TAX} {$tax_data.tax_key}%: {$tax_data.tax_value.formated}<br />
+        {/foreach}
+        <strong>{txt key=TEXT_SUB_TOTAL}:{$cart_total}</strong>
+        {if $shipping_link}<br /><a href="{$shipping_link}" target="_blank">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}
+        {if $cart_total_weight > 0}<br />({txt key=TEXT_PRODUCTS_WEIGHT}: {$cart_total_weight} KG){/if}
+        <br />
+        </p>
+        <div class="hr"></div>
+        <p style="text-align:right;"><a href="{link page='cart' conn=SSL}"><strong>{txt key=TEXT_CART}&nbsp;&raquo;</strong></a></p>
+    </div>
+</div>
+{else}
+<div id="bcb">
+		<h2 class="boxcartheader">{txt key=TEXT_CART}</h2>
+			<div class="boxcartbody">
+			<p>{txt key=TEXT_EMPTY_CART}<br /><br /><a href="{link page='cart' conn=SSL}">{txt key=TEXT_CART}&nbsp;&raquo;</a></p>
+		</div>
+</div>
+{/if}
+{/if}

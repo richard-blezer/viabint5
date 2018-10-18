@@ -1,0 +1,2 @@
+1.0.4:
+* bei einfachen zahlungsarten wie barzahlung (xt_cashpayment) wurden die bestellkommentare nicht übernommen.

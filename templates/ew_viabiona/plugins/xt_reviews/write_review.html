@@ -1,0 +1,70 @@
+<div id="product" class="detail">
+    <h1>{$products_name}</h1>
+
+    <p class="alert alert-info">{txt key=TEXT_XT_REVIEWS_RATING_DESC}</p>
+
+    <div id="pinfo" class="row">
+        <div id="product-images" class="col col-sm-4">
+            <div class="image product-image img-thumbnail center">
+                {if !$products_image || $products_image == 'product:noimage.gif'}
+                    <span class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="productImageBorder img-responsive" alt=$products_name|escape:"html"}</span>
+                {else}
+                    <span class="vertical-helper image-link">{img img=$products_image type=m_ew-viabiona-info class="productImageBorder img-responsive" alt=$products_name|escape:"html" width=auto height=auto itemprop=image}</span>
+                {/if}
+            </div>
+            {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}
+                <p class="product-price">{$products_price.formated}</p>
+            {/if}
+            {if $review_stars_rating}
+                <div class="left">
+                    <div class="product-reviews cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_XT_REVIEWS_INFO}" data-content="{if $products_rating_count}{$products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO} {txt key=TEXT_EW_VIABIONA_POPOVER_RATING_AVERAGE} {$products_average_rating|round:2} / 5 {txt key=TEXT_EW_VIABIONA_POPOVER_RATING_STAR}.{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}.{/if}" onclick="document.location.href='{$link_reviews_list}'">
+                        <div class="reviews_rating_light">
+                            <div class="reviews_rating_dark" style="width:{$review_stars_rating}%"></div>
+                        </div>
+                    </div>
+                </div>
+            {/if}
+            {if $products_model!=''}
+                <p class="product-model">{txt key=TEXT_PRODUCTS_MODEL} <span class="bold">{$products_model}</span></p>
+            {/if}
+        </div>
+        <div id="reviews" class="col col-sm-8">
+
+            {$message}
+
+            {form type=form name=write_review action='dynamic' link_params=getParams method=post role="form"}
+            {form type=hidden name=action value=add_review}
+            {form type=hidden name=page value='reviews'}
+            {form type=hidden name=paction value='write'}
+            {form type=hidden name=products_id value=$products_id}
+
+            <fieldset>
+                <legend><span class="glyphicon glyphicon-pencil"></span> {txt key=TEXT_XT_REVIEWS_WRITE}</legend>
+                <div class="form-group">
+                    <label for="review_rating">1. {txt key=TEXT_XT_REVIEWS_RATE_DESC}*</label>
+                    {form params='id="review_rating"' class="form-control" type=select name=review_rating value=$rating default=$review_rating}
+                </div>
+                <div class="form-group">
+                    <label for="review_title">2. {txt key=TEXT_XT_REVIEWS_TITLE_DESC}*</label>
+                    {form id=review_title type=text name=review_title size=60 value=$review_title}
+                </div>
+                <div class="form-group">
+                    <label for="review_text">3. {txt key=TEXT_XT_REVIEWS_TEXT_DESC}*</label>
+                    {form id=review_text type=textarea class="form-control" name=review_text cols=60 rows=10 default=$review_text}
+                </div>
+
+            </fieldset>
+
+            <div class="form-submit pull-right">
+                <a href="{$products_link}" class="btn btn-default" role="button">{txt key=BUTTON_BACK}</a>
+                <button type="submit" class="btn btn-success preloader">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {txt key=BUTTON_SAVE}
+                </button>
+            </div>
+
+            <p class="required">{txt key=TEXT_MUST}</p>
+            {form type=formend}
+        </div>
+    </div>
+</div>

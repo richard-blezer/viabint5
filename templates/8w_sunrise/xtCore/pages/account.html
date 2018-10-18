@@ -1,0 +1,49 @@
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+<div class="left-side {if $isMobile}no-right{/if}">
+    <h1>{txt key=TEXT_PAGE_TITLE_ACCOUNT}</h1>
+    {$message}
+    {if $registered_customer != true}
+    <h2>{txt key=TEXT_ACCOUNT_TITLE_WELCOME}</h2>
+    <p>{txt key=TEXT_ACCOUNT_WELCOME}</p>
+    <p><a href="{link page='customer' paction='login' conn=SSL}" style="font-size:13px;"><b>{txt key=TEXT_ACCOUNT_LOGIN}</b></a></p>
+    {/if}
+    <h2>{txt key=TEXT_ACCOUNT_TITLE}</h2>
+    <div class="highlightbox arrow">	
+        <ul>		
+        <li><a href="{link page='customer' paction=edit_customer conn=SSL}"><span></span>{txt key=TEXT_ACCOUNT_EDIT}</b></a></li>		
+        <li><a href="{link page='customer' paction=address_overview conn=SSL}"><span></span>{txt key=TEXT_ACCOUNT_ADRESSBOOK}</a></li>
+                {hook key=account_tpl_account_data}	   
+        </ul>
+    </div>
+    {hook key=account_tpl_module_data}
+    {if $download_flag == true}
+    <h2>{txt key=TEXT_ACCOUNT_DOWNLOADS}</h2>	
+    <table width="100%" class="downloadbox">
+      <tr>
+        <td class="icon">
+    		<a href="{link page='customer' paction=download_overview conn=SSL}"><img src="{$tpl_path}img/img_download.jpg" alt="" border="0" /></a>
+    	</td>
+        <td class="downloadlink">
+    		<a href="{link page='customer' paction=download_overview conn=SSL}"><b>{txt key=TEXT_ACCOUNT_DOWNLOADS_MORE}</b></a>
+    	</td>
+      </tr>
+    </table>
+    {/if}
+    {if $order_data}
+    <h2>{txt key=TEXT_ACCOUNT_ORDERS}</h2>
+    {include file="/xtCore/pages/order_history_block.html" type="tpl_include"}
+    <p><a class="btn" href="{link page='customer' paction=order_overview conn=SSL}">{txt key=TEXT_ACCOUNT_ALL_ORDERS}</a></p>
+
+    {/if}
+</div>
+{if !$isMobile}
+<div class="right-side">
+  {box name=xt_viabiona_cms type=user tpl=box_our_service.html}
+  {box name=xt_viabiona_cms type=user tpl=box_payment_methods.html}
+</div>
+<div class="clearfix"></div>
+{/if}
+{hook key=account_tpl_module_data_bottom}

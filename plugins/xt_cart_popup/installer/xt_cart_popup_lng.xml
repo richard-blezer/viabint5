@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_CART_POPUP_MOBILE_STATUS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Mobile Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Mobile Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_CART_POPUP_STATUS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>BUTTON_CONTINUE_SHOPPING</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Continue shopping]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Weiter einkaufen]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

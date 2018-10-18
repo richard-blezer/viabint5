@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<xtcommerceplugin>
+<title>Sperrgut</title>
+<version>1.1.2</version>
+<code>xt_sperrgut</code>
+<url>http://www.xt-commerce.com</url>
+<description>Sperrgut</description>
+<developer>xt:Commerce</developer>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=90]]></marketplace_link>
+<icon>xt-commerce_logo.jpg</icon>
+<type>shipping</type>
+<db_install>
+    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_sperrgut/hooks/db_install.php';
+</db_install>
+<db_uninstall>
+    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_sperrgut/hooks/db_uninstall.php';
+</db_uninstall>
+<configuration>
+<config>
+<key>XT_SPERRGUT_TAX_CLASS</key>
+<type>dropdown</type>
+<url>tax_classes</url>
+<value>1</value>
+<de>
+<title>Steuerklasse</title>
+</de>
+<en>
+<title>Tax Class</title>
+</en>
+<es>
+<title>Categoría fiscal</title>
+</es>
+</config>
+    <config>
+        <key>XT_SPERRGUT_CALCULATE_MODULE</key>
+        <type>dropdown</type>
+        <url>xt_sperrgut_calculate_module</url>
+        <value>total</value>
+        <de>
+            <title>Berechnen</title>
+        </de>
+        <en>
+            <title>Calculate</title>
+        </en>
+        <es>
+            <title>Calculate</title>
+        </es>
+    </config>
+<config>
+<key>XT_SPERRGUT_TAX_SORTING</key>
+<type>textfield</type>
+<value>0</value>
+<de>
+<title>Sortierung</title>
+</de>
+<en>
+<title>Sorting</title>
+</en>
+<es>
+<title>Clasificación</title>
+</es>
+</config>
+</configuration>
+<plugin_code>
+<code>
+<hook>page_registry.php:bottom</hook>
+<phpcode>
+    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_sperrgut/hooks/page_registry_php_bottom.php';
+</phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>class.product.php:_get_data</hook>
+<phpcode>
+    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_sperrgut/hooks/class_product_php__get_data.php';
+</phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>admin_dropdown.php:dropdown</hook>
+<phpcode>
+    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_sperrgut/hooks/admin_dropdown_php_dropdown.php';
+</phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>module_checkout.php:checkout_selections</hook>
+<phpcode>
+    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_sperrgut/hooks/module_checkout_php_checkout_selections.php';
+</phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>checkout_tpl_shipping</hook>
+<phpcode>
+    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_sperrgut/hooks/checkout_tpl_shipping.php';
+</phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+<language_content>
+<phrase>
+<key>TEXT_XT_SPERRGUT</key>
+<class>admin</class>
+<de>
+<value>Sperrgutzuschlag</value>
+</de>
+<en>
+<value>bulky goods fee</value>
+</en>
+<es>
+<value>Recargo por mercancías de gran bulto</value>
+</es>
+</phrase>
+<phrase>
+<key>TEXT_XT_SPERRGUT_CLASS</key>
+<class>admin</class>
+<de>
+<value>Sperrgutklasse</value>
+</de>
+<en>
+<value>bulky goods class</value>
+</en>
+<es>
+<value>Clase de mercancías de gran bulto</value>
+</es>
+</phrase>
+<phrase>
+<key>TEXT_XT_SPERRGUT_TITLE</key>
+<class>store</class>
+<de>
+<value>Sperrgutzuschlag</value>
+</de>
+<en>
+<value>bulky goods fee</value>
+</en>
+<es>
+<value>Recargo por mercancías de gran bulto</value>
+</es>
+</phrase>
+<phrase>
+<key>TEXT_XT_SPERRGUT_PRICE</key>
+<class>admin</class>
+<de>
+<value>Sperrgutpreis</value>
+</de>
+<en>
+<value>bulky goods fee</value>
+</en>
+<es>
+<value>Precios de mercancías de gran bulto</value>
+</es>
+</phrase>
+<phrase>
+<key>HEADING_XT_SPERRGUT</key>
+<class>admin</class>
+<de>
+<value>Sperrgutzuschläge</value>
+</de>
+<en>
+<value>bulky goods fees</value>
+</en>
+<es>
+<value>Recargo por mercancías de gran bulto</value>
+</es>
+</phrase>
+<phrase>
+<key>TEXT_XT_SPERRGUT_INFO</key>
+<class>store</class>
+<de>
+<value>Zusätzlich wird für die von Ihnen gewählten Produkte ein Sperrgutzuschlag von %s berechnet</value>
+</de>
+<en>
+<value>For your chosen products an extra fee of %s for bulky goods will be added</value>
+</en>
+<es>
+<value>Además, para los productos seleccionados por usted se cobra un recargo calculado de %s</value>
+</es>
+</phrase>
+</language_content>
+</xtcommerceplugin>

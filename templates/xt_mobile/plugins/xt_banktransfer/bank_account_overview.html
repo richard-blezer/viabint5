@@ -1,0 +1,31 @@
+<div data-role="header">
+    <h1>{txt key=TEXT_BANKTRANSFER_ACCOUNTS}</h1>
+</div>   
+{$message}
+
+{if $account_count >0}
+    
+    {foreach name=aussen item=account from=$account_data.data}
+        <p>
+            <strong>
+                {$account.banktransfer_owner} <br />
+                {$account.banktransfer_bank_name} <br />
+            </strong>
+            {$account.banktransfer_blz} <br />
+            {$account.banktransfer_number} <br />
+        </p>
+        
+        
+        <a data-role="button" href="{link page='bank_account' paction=edit_account params=acID params_value=$account.account_id conn=SSL}">{txt key=BUTTON_EDIT}</a>
+        <a data-role="button" href="{link page='bank_account' paction=delete_account params=acID params_value=$account.account_id conn=SSL}">{txt key=BUTTON_DELETE}</a>
+        
+        <div class="hr"></div>
+    {/foreach}
+
+    <div id="NAVIGATION">
+      <div class="COUNT">{$count}</div>
+      <div class="PAGES">{$pages}</div>
+    </div>
+{/if}
+<br>
+<a data-role="button" href="{link page='bank_account' paction=edit_account conn=SSL}">{txt key=BUTTON_ADD_ACCOUNT}</a>

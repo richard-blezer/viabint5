@@ -1,0 +1,59 @@
+{$message}
+
+{form type=form name=affiliate_payments action='dynamic' link_params=getParams method=post}
+
+<h2>{txt key=AFFILIATE_PAYMENT}</h2>
+
+<div class="aff-links">
+<a href="http://www.viabiona.com/de/affiliate_summary.html">Affiliate-Konto übersicht</a>
+<a href="http://www.viabiona.com/de/affiliate_account.html">Affiliate-Konto bearbeiten</a>
+<a href="http://www.viabiona.com/de/affiliate_payment.html">Affiliate-Auszahlungen</a>
+<a href="http://www.viabiona.com/de/affiliate_clicks.html">Affiliate-Кlicks</a>
+<a href="http://www.viabiona.com/de/affiliate_sales.html">Affiliate-Verkäufe</a>
+<a href="http://www.viabiona.com/de/affiliate_inventory.html?type=i">Werbemittel</a>
+<a href="http://www.viabiona.com/de/affiliate_account/logout.html">Logout</a>
+</div>
+
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">
+  <tr>
+    <td>
+      {txt key=AFFILIATE_TEXT_PERIOD}:{form type=select name=a_period value=$periods.data default=$periods.default onchange=submit()}
+    </td>
+  </tr>
+  <tr>
+    <td><table width="90%" cellpadding="2" cellspacing="2">
+      <tr>
+        <th align="center">{txt key=AFFILIATE_TEXT_ID}</th>
+        <th align="center">{txt key=AFFILIATE_TEXT_DATE}</th>
+        <th align="center">{txt key=AFFILIATE_TEXT_PAYMENT}</th>
+        <th align="center">{txt key=AFFILIATE_TEXT_STATUS}</th>
+        <th align="center">&nbsp;</th>
+      </tr>
+      <tr>
+        <td colspan="6"><hr /></td>
+      </tr>
+      {foreach name=payments item=payment from=$affiliate_payments.data}
+      <tr bgcolor="{cycle values="#eeeeee,#d0d0d0"}">
+        <td>{$payment.affiliate_payment_id}</td>
+        <td>{$payment.a_date}</td>
+        <td>{$payment.affiliate_payment_total}</td>
+        <td>{$payment.affiliate_payment_status_name}</td>
+        <td align="center"><a href="nd_affiliate_printpayment.php?pID={$payment.affiliate_payment_id}" target="_blank"><img src="media/icons/page_white_acrobat.png" alt="PDF"></a></td>
+      </tr>
+      {/foreach}
+      <tr>
+        <td colspan="6"><hr /></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td>{$affiliate_payments.count}&nbsp;{$affiliate_payments.pages}</td>
+  </tr>
+  <tr>
+    <td>{txt key=AFFILIATE_TEXT_TOTAL}: {$total}</td>
+  </tr>
+</table>
+</div>
+
+{form type=formend}

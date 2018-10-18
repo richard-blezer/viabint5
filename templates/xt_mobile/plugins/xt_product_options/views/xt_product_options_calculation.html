@@ -1,0 +1,32 @@
+<br />
+<div class="label float_left">{txt key=TEXT_XT_PRODUCT_OPTIONS_SINGLE_PRICE_CLEAN} </div>
+<div class="price float_right">{$calculation.products_price.single.formated}</div>
+<div class="clearBoth"></div>
+<br />
+{if $calculation.products_price_calc.single.plain}    
+    <br />    
+    <hr />
+    <div class="label float_left">{txt key=TEXT_XT_PRODUCT_OPTIONS_SINGLE_PRICE_CALC} </div>
+    <div class="price float_right">{$calculation.products_price_calc.single.formated}</div>
+    <div class="clearBoth"></div>
+    <br />
+{/if}
+<div class="label float_left">{txt key=TEXT_XT_PRODUCT_OPTIONS_PRICE_OPTIONS} </div>
+<div class="price float_right">{$calculation.options_multi_addprice.single.formated}</div>
+<div class="clearBoth"></div>
+<br />
+
+<hr />
+<div class="label float_left"><b>{txt key=TEXT_XT_PRODUCT_OPTIONS_TOTAL_PRICE} {txt key=TEXT_XT_PRODUCT_OPTIONS_PLUS} {txt key=TEXT_XT_PRODUCT_OPTIONS_ONE_TIME_PRICE_OPTIONS}</b></div>
+<div class="price float_right"><b>{$calculation.products_single_price.single.formated}</b></div>
+<div class="clearBoth"></div>
+<br />
+<hr />
+<hr />
+{if $calculation.options_single_addprice.single.plain > 0}
+<br />
+<div class="label float_left">{$smarty.const.XT_PRODUCT_OPTIONS_SINGLE_MARKER}) {txt key=TEXT_XT_PRODUCT_OPTIONS_ONE_TIME_PRICE_OPTIONS} </div>
+<div class="price float_right">{$calculation.options_single_addprice.single.formated}</div>
+<div class="clearBoth"></div>
+<br />
+{/if}

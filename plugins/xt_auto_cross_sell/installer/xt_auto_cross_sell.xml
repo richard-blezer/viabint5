@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+		<title>Auto Cross Selling</title>
+		<version>1.0.4</version>
+		<code>xt_auto_cross_sell</code>
+		<url>http://www.xt-commerce.com</url>
+		<description>Automated cross selling for products</description>
+		<developer>xt:Commerce</developer>
+		<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/display/MANUAL/Cross-Selling]]></documentation_link>
+		<type>core</type>
+		<icon>xt-commerce_logo.jpg</icon>
+		<plugin_code>
+			<code>
+				<hook>store_main.php:bottom</hook>
+				<title>load class</title>
+				<phpcode><![CDATA[
+					require _SRV_WEBROOT.'plugins/xt_auto_cross_sell/hooks/store_main_php_bottom.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>product_info_tpl</hook>
+				<phpcode><![CDATA[
+					require _SRV_WEBROOT.'plugins/xt_auto_cross_sell/hooks/product_info_tpl.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>cart_bottom</hook>
+				<phpcode><![CDATA[
+					require _SRV_WEBROOT.'plugins/xt_auto_cross_sell/hooks/cart_bottom.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+		</plugin_code>
+		<configuration>
+			<config>
+				<key>XT_AUTO_CROSS_SELL_MAX_DISPLAY</key>
+				<value>5</value>
+				<de>
+					<title>Max. Anzahl</title>
+				</de>
+				<en>
+					<title>Max. display</title>
+				</en>
+				<es>
+					<title>Max. Cantidad</title>
+				</es>
+    			<bp>
+        			<title>Quantidade exibida</title>
+    			</bp>
+			</config>
+		</configuration>
+</xtcommerceplugin>

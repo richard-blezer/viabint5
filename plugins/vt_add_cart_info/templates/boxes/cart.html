@@ -1,0 +1,54 @@
+<script>
+	$(document).ready(function() {
+		$(".add2cart").bind("submit", function() {
+			$.ajax({
+				type: "POST",
+				cache: false,
+				url: $(this).attr('action'),
+				data: $(this).serializeArray(),
+				success: function(data) {
+					$.fancybox(data,{
+						'width': 300,
+						'height': 175,
+						'showCloseButton': false,
+						'scrolling': 'no',
+						'onClosed': function(){getcart()}
+					});
+				}
+			});
+
+			return false;
+		});
+
+		function getcart(){
+			var form = $('.add2cart');	
+			var sform = form.serializeArray();
+			var pobject = {};
+
+			$.each(sform,function(){
+				pobject[this.name] = this.value;
+			});
+
+			pobject.ajax = true;
+
+			$.ajax({
+				type: 'POST',
+				url: form.action,
+				data: pobject,
+				dataType: 'json',
+				success: function(data){
+					if(data.redirect){
+						location.href = data.redirect;
+					} else if(data.cart) {
+						//Dieser Part ist notwendig wenn xt_product_options_fileupload installiert ist
+						$(eval('"#optionsContainer_'+pobject.product+'"')).find('.flash').children('span').html('');
+						var decode = $('</div>').html(data.cart);
+						$('#bcb').replaceWith(data.cart);
+					}
+				}
+			});
+
+			return false;
+		}
+	});
+</script>

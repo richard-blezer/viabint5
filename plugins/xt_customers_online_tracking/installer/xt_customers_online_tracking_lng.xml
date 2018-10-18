@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>CUSTOMERS_ONLINE_TIME_INTERVAL_HOURS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Track active customers for (hours)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Track active customers for (hours)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_CUSTOMERS_ONLINE_PREVIEW</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Customers online preview]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Customers online preview]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_CUSTOMERS_ONLINE_REAL_TIME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Customers online]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Customers online]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

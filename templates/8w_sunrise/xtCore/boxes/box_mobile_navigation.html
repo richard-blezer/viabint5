@@ -1,0 +1,48 @@
+{php}
+if (method_exists('sunrise', 'get_categories')) {
+    $showCategories = array(164, 230, 124, 122);
+    $sunrise = new sunrise();
+    $nav = $sunrise->get_categories(true);
+    if (is_array($nav) && !empty($nav)) {
+        $this->assign('mobileNavigation', $nav);
+        $this->assign('showCategories', $showCategories);
+    }
+}
+{/php}
+{if $mobileNavigation}
+    <li id="mobile-navigation" class="layerPage">
+        <a href="javascript:void(0);" class="toggle"><span><i class="burger">&equiv;</i>&nbsp;MEN&Uuml;</span></a>
+        <ul class="dropdown main">
+            {foreach name=level1 key=k1 item=l1 from=$mobileNavigation}
+                {if in_array($l1.categories_id, $showCategories)}
+                    <li class="level-{$l1.level} cid-{$l1.categories_id}{if $l1.active == 1} active{/if}">
+                        <a href="{$l1.categories_link|escape:'html'}"{if $l1.sub} class="toggle"{/if}>{$l1.categories_name|escape:'html'}</a>
+                        {if $l1.sub}
+                            <ul class="dropdown sub">
+                                {foreach name=level2 key=k2 item=l2 from=$l1.sub}
+                                    <li class="level-{$l2.level} cid-{$l2.categories_id}{if $l2.active == 1} active{/if}">
+                                        <a href="{$l2.categories_link|escape:'html'}"><i>&bull;</i>&nbsp;&nbsp;{$l2.categories_name|escape:'html'}</a>
+                                    </li>
+                                {/foreach}
+                            </ul>
+                        {/if}
+                    </li>
+                {/if}
+            {/foreach}
+        </ul>
+    </li>
+    {literal}
+    <script type="text/javascript">
+    /* <![CDATA[ */
+        $("#mobile-navigation .toggle").click(function(e){
+//            if (!$(this).hasClass('clicked')) {
+//                e.preventDefault();
+//            }
+            e.preventDefault();
+            $("#mobile-navigation .dropdown.main li").removeClass('in');
+            $(this).toggleClass('clicked').parent().toggleClass('in');
+        });
+    /* ]]> */
+    </script>
+    {/literal}
+{/if}

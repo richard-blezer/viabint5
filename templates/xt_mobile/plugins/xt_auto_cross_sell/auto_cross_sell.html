@@ -1,0 +1,24 @@
+<div data-role="collapsible" data-inset="false" data-theme="c">
+    <h2>{txt key=TEXT_HEADING_AUTO_CROSS_SELL}</h2>
+    <div data-role="content">
+        <ul data-role="listview" class="xtm-product-list"> 
+        {foreach name=aussen item=cross_sell_products_data from=$_auto_cross_sell}
+            <li class="xtm-product-list-element">
+                <a href="{$cross_sell_products_data.products_link}">
+                    {if $cross_sell_products_data.products_image != 'product:noimage.gif'}
+                        {img img=$cross_sell_products_data.products_image type=m_mobile_thumb class='' alt=$cross_sell_products_data.products_name|escape:"html"}
+                    {else}
+                        <img src="{$tpl_url_path}/img/no_image.png" alt="{txt key=TEXT_NO_IMAGE}">
+                    {/if}
+                    <h2 class="ui-li-heading Name">{$cross_sell_products_data.products_name}</h2>
+                    <p class="ui-li-desc">
+                        <span class="Price">
+                            {$cross_sell_products_data.products_price.formated}
+                        </span>
+                    </p>
+                </a>
+            </li>
+        {/foreach}
+        </ul>
+    </div>
+</div>

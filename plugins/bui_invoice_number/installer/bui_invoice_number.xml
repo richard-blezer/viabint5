@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Rechnungsnummern Generierung</title>
+    <version>4.1.03</version>
+    <code>bui_invoice_number</code>
+    <url>http://www.bui-hinsche.de</url>
+    <description></description>
+    <type>extension</type>
+    <icon>bui.png</icon>
+    
+    
+    
+    <db_install><![CDATA[
+        if (!$this->_FieldExists('invoice_number', TABLE_ORDERS)) {
+            $db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD invoice_number VARCHAR( 255 ) NULL AFTER orders_id");
+        }
+        if (!$this->_FieldExists('shop_last_invoice_number', TABLE_MANDANT_CONFIG)) {
+            $db->Execute("ALTER TABLE ".TABLE_MANDANT_CONFIG." ADD shop_last_invoice_number int(11) NOT NULL DEFAULT 1");
+        }
+    ]]></db_install>
+    
+    
+    
+    <db_uninstall><![CDATA[
+        if ($this->_FieldExists('invoice_number', TABLE_ORDERS)) {
+            $db->Execute("ALTER TABLE ".TABLE_ORDERS." DROP `invoice_number`");
+        }            
+        if ($this->_FieldExists('shop_last_invoice_number', TABLE_MANDANT_CONFIG)) {
+            $db->Execute("ALTER TABLE ".TABLE_MANDANT_CONFIG." DROP shop_last_invoice_number");
+        }
+    ]]></db_uninstall>
+    
+    
+    
+    <plugin_code>
+	<code>
+	    <hook>class.order.php:_updateOrderStatus_bottom</hook>
+	    <phpcode><![CDATA[
+            
+                require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_invoice_number/classes/class.bui_invoice_number.php';
+                $invoice=new bui_invoice_number($this->order_data['shop_id']);
+
+            ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	</code>
+	<code>
+	    <hook>class.orders.php:_sendOrderMail_top</hook>
+	    <phpcode><![CDATA[
+            
+                $res = $db->Execute("SELECT invoice_number FROM " . TABLE_ORDERS . " WHERE orders_id = ". $this->order_data['orders_id']);
+                $this->order_data['invoice_number'] = $res->fields['invoice_number'];            
+            
+            ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	</code>
+	<code>
+	    <hook>admin_dropdown.php:dropdown</hook>
+	    <phpcode><![CDATA[
+
+            ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	</code>
+    </plugin_code>
+    
+    
+    
+    <configuration>
+	<config>
+	    <key>BUI_INVOICE_NUMBER_STATUS</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+		<title>Status</title>
+		<description>an / aus</description>
+	    </de>
+	    <en>
+		<title>status</title>
+		<description>on / off</description>
+	    </en>
+	</config>
+	<config>
+	    <key>BUI_INVOICE_NUMBER_FORMAT</key>
+	    <value>Ym-</value>
+	    <de>
+		<title>Format</title>
+		<description>benutze php Datumsfunktionen und {number}</description>
+	    </de>
+	    <en>
+		<title>format</title>
+		<description>use php date functions and {number}</description>
+	    </en>
+	</config>
+	<config>
+	    <key>BUI_INVOICE_NUMBER_ORDERSTATUS</key>
+	    <value>23</value>
+	    <type>dropdown</type>
+	    <url>order_status</url>
+	    <de>
+		<title>Bestellstatus</title>
+		<description></description>
+	    </de>
+	    <en>
+		<title>order status</title>
+		<description></description>
+	    </en>
+	</config>
+	<config>
+	    <key>BUI_INVOICE_NUMBER_MAILTEMPLATE</key>
+	    <value>send_invoice</value>
+	    <de>
+		<title>Email-Template</title>
+		<description></description>
+	    </de>
+	    <en>
+		<title>email template</title>
+		<description></description>
+	    </en>
+	</config>	
+    </configuration>
+
+
+
+
+    <language_content>
+	<phrase>
+	    <key>TEXT_NUMBER_FORMAT</key>
+	    <class>admin</class>
+	    <de><value>Nummern Format</value></de>
+	    <en><value>Format</value></en>
+	</phrase>
+	<phrase>
+	    <key>TEXT_INVOICE_NUMBER</key>
+	    <class>both</class>
+	    <de><value>Rechnungsnummer</value></de>
+	    <en><value>invoice number</value></en>
+	</phrase>
+    </language_content>
+</xtcommerceplugin>

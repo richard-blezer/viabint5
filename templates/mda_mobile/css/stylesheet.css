@@ -1,0 +1,72 @@
+@media screen and (max-width: 1030px) {
+    img {max-width: 100%;}
+}
+
+#topmenuwrap { clear:both; }
+
+.floatLeft {float:left;}
+
+.borderbottom {border-bottom: 1px solid black;}
+
+.productlisting_item{margin-bottom: 15px;}
+
+.products_sort{margin-bottom: 15px;}
+
+/* Info Handler Styles */
+.info_error .infoError {color: #bb0000;font-weight:bold; margin-bottom: 15px;}
+
+.info_warning .infoWarning {color: #cd6f00;font-weight:bold;margin-bottom: 15px;}
+
+.info_success .infoSuccess { color: #008800;font-weight:bold; margin-bottom: 15px;}
+
+.info_info .infoInfo {color: #666666;font-weight:bold;margin-bottom: 15px;}
+
+/* BREADCRUMB PATH AS LIST */
+  #breadcrumb {float:left; width:100%; margin:0 0 15px 0; padding:0; font-size:0.9em;}
+  #breadcrumb a, #breadcrumb a:link, #breadcrumb a:visited, {text-decoration:underline; font-weight:normal; margin:0; padding:0;}
+  #breadcrumb a, #breadcrumb a:link {color:#3333AA;}
+  #breadcrumb a:hover, #breadcrumb a:visited, #breadcrumb a:active {color:#003399;}
+  #breadcrumb ul li {display:inline; padding:0 0 0 0; margin:0;} 
+  #breadcrumb a.pathwayIcon  {padding-left:15px; background:transparent url(../../img/a_breadcrumb.gif) no-repeat;}
+  #breadcrumb ul{margin:0; padding:0; padding-left:0;} 
+
+/* Preise / Prices */
+.productSpecialPrice {
+ color:#C64934;
+ font-weight:bold;
+}
+
+.productOldPrice {
+  font-weight:normal;
+  font-size:0.9em;
+  text-decoration: line-through;
+}
+.productSpecialSave {
+  font-weight:bold;
+  font-size:0.9em;
+}
+
+.contentrow1 td {background-color:#FFFFFF}
+/*.contentrow2 td {background-color:#FFEAAB}*/
+
+.reviews_rating_light .reviews_rating_dark {
+background:transparent url(../img/review_star.png) repeat-x scroll 0%;
+height:15px;
+position:relative;
+margin-bottom: 0.5em;
+margin-top: -0.5em;
+}
+
+.reviews_rating_light {
+background:transparent url(../img/review_star_light.png) repeat-x scroll 0%;
+height:15px;
+margin-right:5px;
+position:relative;
+width:80px;
+margin-bottom: 0.5em;
+margin-top: -0.5em;
+}
+
+#NAVIGATION{
+margin-bottom: 0.5em;
+}

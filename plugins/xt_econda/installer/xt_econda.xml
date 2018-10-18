@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>econda - Web Shop Controlling </title>
+<version>1.2.1</version>
+<code>xt_econda</code>
+<url>http://www.econda.de</url>
+<description>Web Shop Controlling</description>
+<type>marketing</type>
+<icon>partner_econda.gif</icon>
+<db_install><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_econda/hooks/db_install.php';
+]]></db_install>
+<db_uninstall><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_econda/hooks/db_uninstall.php';
+]]></db_uninstall>
+<plugin_code>
+<code>
+<hook>store_main.php:bottom</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_econda/hooks/store_main_php_bottom.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>index_footer_tpl</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_econda/hooks/index_footer_tpl.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>module_customer.php:success_login</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_econda/hooks/module_customer_php_success_login.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>module_customer.php:failed_login</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_econda/hooks/module_customer_php_failed_login.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>module_customer.php:locked_login</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_econda/hooks/module_customer_php_locked_login.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>module_customer.php:register_success</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_econda/hooks/module_customer_php_register_success.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>display.php:content_top</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_econda/hooks/display_php_content_top.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>form_handler.php:add_product_top</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_econda/hooks/form_handler_php_add_product_top.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>form_handler.php:update_product_top</hook>
+<phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_econda/hooks/form_handler_php_update_product_top.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+<language_content>
+<phrase>
+<key>TEXT_ECONDA_TRACKING</key>
+<class>admin</class>
+<de>
+<value>econda Label</value>
+</de>
+<en>
+<value>econda Label</value>
+</en>
+<es>
+<value>Etiqueta econda</value>
+</es>
+<bp>
+<value>Etiqueta da econda</value>
+</bp>
+</phrase>
+</language_content>
+
+<configuration>
+<config>
+<key>XT_ECONDA_USER_ID</key>
+<value></value>
+<de>
+<title>Econda ID</title>
+</de>
+<en>
+<title>Econda ID</title>
+</en>
+<es>
+<title>Econda ID</title>
+</es>
+<bp>
+<title>Econda ID</title>
+</bp>
+</config>
+<config>
+<key>XT_ECONDA_STATUS</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Econda Status</title>
+</de>
+<en>
+<title>Econda Status</title>
+</en>
+<es>
+<title>Econda Estado</title>
+</es>
+<bp>
+<title>Econda status</title>
+</bp>
+</config>
+</configuration>
+</xtcommerceplugin>

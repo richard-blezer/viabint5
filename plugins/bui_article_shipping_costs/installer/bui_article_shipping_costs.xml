@@ -1,0 +1,1330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Artikel-Versandkosten</title>
+    <version>1.2.9</version>
+    <code>bui_article_shipping_costs</code>
+    <url>http://www.bui-hinsche.de</url>
+    <description>Versandmodul f&amp;uuml;r Artikelabh&amp;auml;ngiege Versandkosten</description>
+    <icon>bui.png</icon>
+    <type>shipping</type>
+    <shipping>
+        <shipping_code>bui_article_shipping_costs</shipping_code>
+        <shipping_dir>bui_article_shipping_costs</shipping_dir>
+        <shipping_icon></shipping_icon>
+        <shipping_tpl></shipping_tpl>
+        <de>
+            <title>Versandkosten</title>
+            <description></description>
+        </de>
+        <en>
+            <title>Shipping costs</title>
+            <description></description>
+        </en>
+    </shipping>
+    <db_install><![CDATA[
+		$db->Execute("
+ 		ALTER TABLE ".TABLE_PRODUCTS." ADD products_shipping_costs decimal(15,4) NULL DEFAULT 0 AFTER products_price,
+ 			ADD products_shipping_costs_free tinyint(1) NULL DEFAULT 0 AFTER products_shipping_costs;
+		");
+
+		$db->Execute("
+		CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_bui_products_to_shipping (
+  		products_id int(11) NOT NULL,
+  		shipping_code text NOT NULL,
+  		products_to_shipping_id int(11) NOT NULL auto_increment,
+  		PRIMARY KEY  (products_to_shipping_id)
+		) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+		");
+
+	]]></db_install>
+	<db_uninstall><![CDATA[
+		$db->Execute("
+		ALTER TABLE ".TABLE_PRODUCTS."
+  		DROP `products_shipping_costs`,
+  		DROP `products_shipping_costs_free`;
+		");
+
+		$db->Execute("DROP TABLE ".DB_PREFIX."_bui_products_to_shipping");
+	]]></db_uninstall>
+	<configuration_shipping>
+  		<config>
+    		<key>STATUS</key>
+    		<value>false</value>
+    		<type>dropdown</type>
+    		<url>conf_truefalse</url>
+    		<de>
+      			<title>Plugin aktivieren</title>
+      			<description></description>
+    		</de>
+    		<en>
+      			<title>Plugin active</title>
+      			<description></description>
+    		</en>
+  		</config>
+	</configuration_shipping>
+	<plugin_code>
+		<code>
+			<hook>class.product.php:_getParams_row_actions</hook>
+			
+			<phpcode><![CDATA[
+	
+				$rowActions[] = array('iconCls' => 'products_to_shipping', 'qtipIndex' => 'qtip1', 'tooltip' => '".TEXT_PRODUCTS_SHIPPING_COSTS_MODULE."');
+        		if ($this->url_data['edit_id'])
+		  			$js = "var edit_id = ".$this->url_data['edit_id'].";";
+				else
+          			$js = "var edit_id = record.id;";
+          		$extF = new ExtFunctions();
+				$js.= $extF->_RemoteWindow("TEXT_PRODUCTS_SHIPPING_COSTS_MODULE","TEXT_PRODUCTS","adminHandler.php?plugin=bui_article_shipping_costs&load_section=product_to_shipping&pg=getTreePanel&products_id='+edit_id+'", '', array(), 800, 600).' new_window.show();';
+
+				$rowActionsFunctions['products_to_shipping'] = $js;
+	
+
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>admin_main.php:bottom</hook>
+			<phpcode><![CDATA[
+				define('TABLE_PRODUCTS_TO_SHIPPING', $DB_PREFIX.'bui_products_to_shipping');
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+    		<hook>ejsadmin.php:css_styles</hook>
+        	<phpcode><![CDATA[
+				echo '<link rel="stylesheet" type="text/css" href="../plugins/bui_article_shipping_costs/bui_article_shipping_costs_icons.css" />';
+         	]]></phpcode>
+       		<order>1</order>
+        	<active>1</active>
+    	</code>
+    	<code>
+    		<hook>styles.php:bottom</hook>
+        	<phpcode><![CDATA[
+        		if(BUI_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['bui_article_shipping_costs'])){
+					echo '<link rel="stylesheet" type="text/css" href="'._SYSTEM_BASE_URL._SRV_WEB._SRV_WEB_PLUGINS.'bui_article_shipping_costs/bui_article_shipping_costs_shop.css'.'" />';
+				}
+         	]]></phpcode>
+       		<order>1</order>
+        	<active>1</active>
+    	</code>
+		<code>
+			<hook>store_main.php:bottom</hook>
+			<phpcode><![CDATA[
+				if(BUI_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['bui_article_shipping_costs'])){
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_article_shipping_costs/classes/class.bui_article_shipping_costs.php';
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.product.php:BuildData_bottom</hook>
+			<phpcode><![CDATA[
+				if(BUI_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['bui_article_shipping_costs'])){
+
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_article_shipping_costs/classes/class.bui_article_shipping_costs.php';
+					$bui_asc = new article_shipping_costs();
+					$bui_asc->setProductID($this->data['products_id']);
+
+					if($this->data['products_shipping_costs']>0 || BUI_ARTICLE_SHIPPING_COSTS_TYPE=='module' || $this->data['products_shipping_costs_free']==1) {
+						//$this->data['products_shipping_link']='';
+						$this->data['products_shipping_costs_temp'] = $bui_asc->getPrice(array('format'=>false, 'curr'=>true, 'products_shipping_price'=>$this->data['products_shipping_costs'], 'products_tax_class_id' => TEXT_BUI_ARTICLE_SHIPPING_COSTS_TAX_CLASS));
+					}
+					
+					if($this->data['products_shipping_costs_free'] == 1)
+						$this->data['products_shipping_costs']=0;
+
+					$this->data['products_shipping_costs'] = $bui_asc->getPrice(array('format'=>true, 'curr'=>true, 'products_shipping_price'=>$this->data['products_shipping_costs'], 'products_tax_class_id' => TEXT_BUI_ARTICLE_SHIPPING_COSTS_TAX_CLASS));
+
+					if(BUI_ARTICLE_SHIPPING_COSTS_IN_SHORT_DESC == 'true' && $bui_asc->showArticleShippingCosts($this->data) != '' 
+						&& ($this->data['products_shipping_costs']['plain']>0 || BUI_ARTICLE_SHIPPING_COSTS_TYPE=='module' || $this->data['products_shipping_costs_free']==1)) {
+						
+						if($this->data['products_short_description'] != '' && $this->data['products_short_description']!='<br>') {
+							$this->data['products_short_description']=$bui_asc->showArticleShippingCosts($this->data).$this->data['products_short_description'];
+						} else if($_GET['page']!='product' && ($this->data['products_short_description'] == '' || $this->data['products_short_description']=='<br>')) {
+							if(BUI_ARTICLE_SHIPPING_COSTS_IN_SHORT_DESC_WITH_DESC == 'true' && $bui_asc->showArticleShippingCosts($this->data) != '') {
+								$this->data['products_short_description']=$bui_asc->showArticleShippingCosts($this->data).substr(strip_tags(str_replace('<br>', ' ', $this->data['products_description'])), 0, 280).'...';
+							} else {
+								$this->data['products_short_description']=$bui_asc->showArticleShippingCosts($this->data);
+							}
+						}
+					}
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.product.php:_get_data</hook>
+			<phpcode><![CDATA[
+
+				$header['products_shipping_costs'] = array('type' => 'text', 	// you can modyfy the auto type
+														   'url'  => 'DropdownData.php?get=products_shipping_costs');
+
+				$header['products_shipping_costs_free'] = array('type' => 'status');														   
+
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.product.php:_set_top</hook>
+			<phpcode><![CDATA[
+
+				if($set_type=='edit') {
+					$data['products_shipping_costs'] = $this->build_price($data['products_id'], $data['products_shipping_costs'], TEXT_BUI_ARTICLE_SHIPPING_COSTS_TAX_CLASS, 'save');
+				}
+				
+				if($data['products_shipping_costs_free'] == 1)
+					$data['products_shipping_costs']=0;
+
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>product_info_tpl_shipping_link</hook>
+			<phpcode><![CDATA[
+				if(BUI_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['bui_article_shipping_costs'])){
+					global $current_product_id;
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_article_shipping_costs/classes/class.bui_article_shipping_costs.php';
+					$bui_asc = new article_shipping_costs();
+					$bui_asc->setProductID($current_product_id);
+					echo $bui_asc->showArticleShippingCosts();
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.product.php:_get_bottom</hook>
+			<phpcode><![CDATA[
+				if(BUI_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['bui_article_shipping_costs'])){
+					$data[$key]['products_shipping_costs'] = $this->build_price($data[$key]['products_id'], $data[$key]['products_shipping_costs'], TEXT_BUI_ARTICLE_SHIPPING_COSTS_TAX_CLASS);
+					
+					if($data[$key]['products_shipping_costs_free'] == 1)
+						$data[$key]['products_shipping_costs']=0;
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>module_cart.php:tpl_data</hook>
+			<phpcode><![CDATA[
+				if(BUI_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['bui_article_shipping_costs'])){
+					if(BUI_ARTICLE_SHIPPING_COSTS_TYPE=='single' && is_object($_SESSION['cart']) && count($_SESSION['cart']->show_content) > 0) {
+						$brotkrumen->_addItem($xtLink->_link(array('page'=>'cart')),TEXT_CART);
+						$template = new Template();
+						$tpl='cart_article_shipping_costs.html';
+						$template->getTemplatePath($tpl, 'bui_article_shipping_costs', '', 'plugin');
+						$page_data = $template->getTemplate('smarty', $tpl, $tpl_data);
+						$plugin_return_value= true;
+					}
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.cart.php:_getContent_data_format</hook>
+			<phpcode><![CDATA[
+				if(BUI_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['bui_article_shipping_costs'])){
+					$products_tax2 = $tax->data[TEXT_BUI_ARTICLE_SHIPPING_COSTS_TAX_CLASS];
+					
+					$value['products_shipping_costs_tax'] = $price->_calcTax($value['products_shipping_costs']['plain_otax'], $products_tax2);
+					
+					if(BUI_ARTICLE_SHIPPING_COSTS_CALC_ITEM == 'true') {
+						$value['products_shipping_costs_final_tax'] = $value['products_shipping_costs_tax'] * $value['products_quantity'];
+					} else {
+						$value['products_shipping_costs_final_tax'] = $value['products_shipping_costs_tax'];
+					}
+
+					$value['products_shipping_costs'] = $value['products_shipping_costs']['plain_otax'];
+					
+					if(BUI_ARTICLE_SHIPPING_COSTS_CALC_ITEM == 'true') {
+						$value['products_shipping_costs_final'] = $value['products_shipping_costs'] * $value['products_quantity'];
+					} else {
+						$value['products_shipping_costs_final'] = $value['products_shipping_costs'];
+					}
+
+					$value['products_shipping_costs_otax'] = $value['products_shipping_costs'];
+					$value['products_shipping_costs_final_otax'] = $value['products_shipping_costs_final'];
+
+					if ($customers_status->customers_status_show_price_tax == '1') {
+						$value['products_shipping_costs'] = $value['products_shipping_costs'] + $value['products_shipping_costs_tax'];
+						$value['products_shipping_costs_final'] = $value['products_shipping_costs_final']  + $value['products_shipping_costs_final_tax'];
+					}
+
+					$value['products_shipping_costs_tax'] = $price->_Format(array('price'=>$value['products_shipping_costs_tax'], 'format'=>true, 'format_type'=>'default'));
+					$value['products_shipping_costs_final_tax'] = $price->_Format(array('price'=>$value['products_shipping_costs_final_tax'], 'format'=>true, 'format_type'=>'default'));
+
+					$value['products_shipping_costs'] = $price->_Format(array('price'=>$value['products_shipping_costs'], 'price_otax'=>$value['products_shipping_costs_otax'], 'format'=>true, 'format_type'=>'default'));
+					$value['products_shipping_costs_final'] = $price->_Format(array('price'=>$value['products_shipping_costs_final'], 'price_otax'=>$value['products_shipping_costs_final_otax'], 'format'=>true, 'format_type'=>'default'));
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.checkout.php:_getShipping</hook>
+			<phpcode><![CDATA[
+				if(BUI_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['bui_article_shipping_costs'])){
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_article_shipping_costs/classes/class.bui_article_shipping_costs_shipping.php';
+
+					$shipping2 = new bui_article_shipping_costs_shipping();
+					$shipping2->_shipping($shipping_data);
+					if(BUI_ARTICLE_SHIPPING_COSTS_TYPE=='single' && BUI_ARTICLE_SHIPPING_COSTS_SINGLE_OTHERS=='true') {
+						if($shipping2->shipping_data['bui_article_shipping_costs']['shipping_price']['plain'] > 0 || $shipping2->shipping_data['bui_article_shipping_costs']['tmp_shipping_free'] == 1) {
+							if(is_array($shipping_data)) {
+								$shipping_data = array_merge($shipping_data, $shipping2->shipping_data);
+							} else {
+								$shipping_data = $shipping2->shipping_data;
+							}
+						}
+					} else {
+						$shipping_data = $shipping2->shipping_data;
+					}
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>admin_dropdown.php:dropdown</hook>
+			<phpcode><![CDATA[
+				switch ($request['get']) {
+					case "conf_asctype":
+						require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_article_shipping_costs/classes/class.bui_article_shipping_costs_config.php';
+						$asc_config=new bui_article_shipping_costs_config();
+						$result = $asc_config->getConfAscType();
+						break;
+
+					case "products_shipping_costs_module":
+						require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_article_shipping_costs/classes/class.bui_article_shipping_costs_config.php';
+						$asc_config=new bui_article_shipping_costs_config();
+						$result = $asc_config->getShippingModules();
+						break;
+					
+					case "conf_asc_highest_costs_calc_type":
+						require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_article_shipping_costs/classes/class.bui_article_shipping_costs_config.php';
+						$asc_config=new bui_article_shipping_costs_config();
+						$result = $asc_config->getConfAscHighestCostsCalcType();
+						break;
+					
+					case "conf_asc_export":
+						require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_article_shipping_costs/classes/class.bui_article_shipping_costs_config.php';
+						$asc_config=new bui_article_shipping_costs_config();
+						$result = $asc_config->getConfAscExport();
+						break;
+						
+					case "conf_asc_module_preferred":
+						require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_article_shipping_costs/classes/class.bui_article_shipping_costs_config.php';
+						$asc_config=new bui_article_shipping_costs_config();
+						$result = $asc_config->getConfAscModulePreferred();
+						break;	
+				}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.product.php:_delete_bottom</hook>
+			<phpcode><![CDATA[
+				$db->Execute("DELETE FROM " . TABLE_PRODUCTS_TO_SHIPPING . " WHERE products_id= '" .$id . "'");                          
+			]]>
+			</phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>	
+		<code>
+			<hook>class.product.php:_copy_bottom</hook>
+			<phpcode><![CDATA[
+				$pts_table_data = new adminDB_DataRead(TABLE_PRODUCTS_TO_SHIPPING, null, null, 'products_to_shipping_id', ' products_id='.$ID);
+				$pts_data = $pts_table_data->getData();
+
+				$pts_count = count($pts_data);
+
+				for ($i = 0; $i < $pts_count; $i++) {
+					unset($pts_data[$i]['products_to_shipping_id']);
+					$pts_data[$i]['products_id'] = $obj->new_id;
+       				$oPtS = new adminDB_DataSave(TABLE_PRODUCTS_TO_SHIPPING, $pts_data[$i], false, __CLASS__);
+        			$objPtS = $oPtS->saveDataSet();
+	    		}                          
+			]]>
+			</phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>export:extractData_products_bottom</hook>
+			<phpcode><![CDATA[
+				if(BUI_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['bui_article_shipping_costs']) && BUI_ARTICLE_SHIPPING_COSTS_TYPE == 'module'){
+					$data_array['products_id'];
+					
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'bui_article_shipping_costs/classes/class.bui_article_shipping_costs.php';
+					$bui_asc_export = new article_shipping_costs();
+					$bui_asc_export->setProductID($data_array['products_id']);
+					$bui_asc_exportData = $bui_asc_export->getExportData();
+					if(is_array($bui_asc_exportData)) {
+						$data_array=array_merge($data_array, $bui_asc_exportData);
+					}
+				}                          
+			]]>
+			</phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>permission:_getAutoData_shipping</hook>
+			<phpcode><![CDATA[
+				define('TEXT_SHIPPING_PERMISSION_BUI_ARTICLE_SHIPPING_COSTS', TEXT_BUI_ARTICLE_SHIPPING_COSTS_NAME.' – (bui_article_shipping_costs)');
+				$shippingMethods[]=array('id' => 'bui_article_shipping_costs', 'name' => TEXT_BUI_ARTICLE_SHIPPING_COSTS_NAME);                           
+			]]>
+			</phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>class.shipping.php:_unset_bottom</hook>
+			<phpcode><![CDATA[
+				$db->Execute("DELETE FROM " . TABLE_PRODUCTS_TO_SHIPPING . " WHERE shipping_code NOT IN (SELECT DISTINCT shipping_code FROM ".TABLE_SHIPPING.")");
+			]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.shipping.php:_calcPrice</hook>
+            <phpcode><![CDATA[
+				if(isset($data['item_newqty']) && $data['shipping_type'] == 'item' && $data['item_price'] == true){
+                    $qty=$data['item_newqty'];
+                }
+			]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.shipping.php:_filterItem_top</hook>
+            <phpcode><![CDATA[
+				if(!is_data($data)) return false;
+				if(!is_data($data['costs'])) return false;
+				//if(!is_data($this->count)) return false;
+                if(BUI_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['bui_article_shipping_costs']) && BUI_ARTICLE_SHIPPING_COSTS_TYPE=='module'){
+                    global $db;
+
+                    $rs_p2m=$db->Execute("SELECT DISTINCT products_id FROM ".TABLE_BUI_ARTICEL_SHIPPING
+                            ." WHERE shipping_code='".$data['shipping_code']."'");
+
+                    if($rs_p2m->RecordCount() > 0) {
+
+                        $_tmp_pids=array();
+
+                        while(!$rs_p2m->EOF){
+                            $_tmp_pids[]=$rs_p2m->fields['products_id'];
+                            $rs_p2m->MoveNext();
+			}
+                        $rs_p2m->Close();
+                        } 
+                        foreach($this->products as $tk => $tv) {
+                           $_tmp_pids[]=$tv['products_id'];
+                                    }
+                                    reset($this->products);
+                    
+
+
+                        if(is_array($_tmp_pids) && count($_tmp_pids)>0) {
+                            $check_keys=array_keys($this->products);
+
+                            if(is_array($check_keys)) {
+                                $new_checkval=null;
+
+$no_cart_key=false;
+
+                                foreach($check_keys as $tk => $tv) {
+                                if(preg_match('/\_.*/', $tv)) {
+                                    if(in_array(preg_replace('/\_.*/', '', $tv), $_tmp_pids)) {
+                                        if(isset($new_checkval)) {
+                                            $new_checkval+=$this->products[$tv]['products_quantity'];
+                                        } else {
+                                            $new_checkval=$this->products[$tv]['products_quantity'];
+                                        }
+                                    }
+                                } else {
+            $no_cart_key = true;
+        }
+                                }
+                                reset($check_keys);
+
+
+                                if($no_cart_key == true) {
+    	foreach($this->products as $tk => $tv) {
+        	if(in_array($tv['products_id'], $_tmp_pids)) {
+            	if(isset($new_checkval)) {
+                	$new_checkval+=1;
+                } else {
+                	$new_checkval=1;
+                }
+            }
+        }
+        reset($this->products);
+    }
+
+
+                                if(isset($new_checkval) && $new_checkval!='') {
+                                    $old_checkval=$this->count;
+                                    $this->count=$new_checkval;
+                                }
+                            }
+                        }
+                    
+                }
+			]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.shipping.php:_filterItem_bottom</hook>
+            <phpcode><![CDATA[
+				if(isset($new_checkval) && $new_checkval!='') {
+                    $this->count=$old_checkval;
+                    $data['item_newqty']=$new_checkval;
+                }
+			]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.shipping.php:_filterPrice_top</hook>
+            <phpcode><![CDATA[
+				if(!is_data($data)) return false;
+				if(!is_data($data['costs'])) return false;
+                if(BUI_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['bui_article_shipping_costs']) && BUI_ARTICLE_SHIPPING_COSTS_TYPE=='module'){
+                    global $db;
+
+                    $rs_p2m=$db->Execute("SELECT DISTINCT products_id FROM ".TABLE_BUI_ARTICEL_SHIPPING
+                            ." WHERE shipping_code='".$data['shipping_code']."'");
+
+                    if($rs_p2m->RecordCount() > 0) {
+
+                        $_tmp_pids=array();
+
+                        while(!$rs_p2m->EOF){
+                            $_tmp_pids[]=$rs_p2m->fields['products_id'];
+                            $rs_p2m->MoveNext();
+			}
+                        $rs_p2m->Close();
+                        } 
+                        foreach($this->products as $tk => $tv) {
+                           $_tmp_pids[]=$tv['products_id'];
+                                    }
+                                    reset($this->products);
+                    
+
+
+                        if(is_array($_tmp_pids) && count($_tmp_pids)>0) {
+                            $check_keys=array_keys($this->products);
+
+                            if(is_array($check_keys)) {
+	$new_checkval=null;
+
+    $no_cart_key=false;
+
+	foreach($check_keys as $tk => $tv) {
+    	if(preg_match('/\_.*/', $tv)) {
+        	if(in_array(preg_replace('/\_.*/', '', $tv), $_tmp_pids)) {
+				if(isset($new_checkval)) {
+                	$new_checkval+=$this->products[$tv]['products_final_price']['plain'];
+                } else {
+                    $new_checkval=$this->products[$tv]['products_final_price']['plain'];
+                }
+            }
+        } else {
+            $no_cart_key = true;
+        }
+    }
+    reset($check_keys);
+
+
+    if($no_cart_key == true) {
+    	foreach($this->products as $tk => $tv) {
+        	if(in_array($tv['products_id'], $_tmp_pids)) {
+            	if(isset($new_checkval)) {
+                	$new_checkval+=($tv['products_price']['plain']*1);
+                } else {
+                	$new_checkval=($tv['products_price']['plain']*1);
+                }
+            }
+        }
+        reset($this->products);
+    }
+
+
+    if(isset($new_checkval) && $new_checkval!='') {
+    	$old_checkval=$this->total;
+        $this->total['plain']=$new_checkval;
+    }
+}
+                        }
+                    
+                }
+			]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.shipping.php:_filterPrice_bottom</hook>
+            <phpcode><![CDATA[
+				if(isset($new_checkval) && $new_checkval!='') {
+                    $this->total=$old_checkval;
+                }
+			]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.shipping.php:_filterWeight_top</hook>
+            <phpcode><![CDATA[
+				if(!is_data($data)) return false;
+				if(!is_data($data['costs'])) return false;
+                if(BUI_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['bui_article_shipping_costs']) && BUI_ARTICLE_SHIPPING_COSTS_TYPE=='module'){
+                    global $db;
+
+                    $rs_p2m=$db->Execute("SELECT DISTINCT products_id FROM ".TABLE_BUI_ARTICEL_SHIPPING
+                            ." WHERE shipping_code='".$data['shipping_code']."'");
+                    
+                    if($rs_p2m->RecordCount() > 0) {
+
+                        $_tmp_pids=array();
+
+                        while(!$rs_p2m->EOF){
+                            $_tmp_pids[]=$rs_p2m->fields['products_id'];
+                            $rs_p2m->MoveNext();
+						}	
+                        $rs_p2m->Close();
+                     } 
+                        foreach($this->products as $tk => $tv) {
+                           $_tmp_pids[]=$tv['products_id'];
+                                    }
+                                    reset($this->products);
+                    
+
+
+                        if(is_array($_tmp_pids) && count($_tmp_pids)>0) {
+                            $check_keys=array_keys($this->products);
+
+                            if(is_array($check_keys)) {
+                                $new_checkval=null;
+
+                                $no_cart_key=false;
+
+                                foreach($check_keys as $tk => $tv) {
+                                    if(preg_match('/\_.*/', $tv)) {
+                                        if(in_array(preg_replace('/\_.*/', '', $tv), $_tmp_pids)) {
+                                            if(isset($new_checkval)) {
+                                                $new_checkval+=($this->products[$tv]['products_weight']*$this->products[$tv]['products_quantity']);
+                                            } else {
+                                                $new_checkval=($this->products[$tv]['products_weight']*$this->products[$tv]['products_quantity']);
+                                            }
+                                        }
+                                    } else {
+                                        $no_cart_key = true;
+                                    }
+                                }
+                                reset($check_keys);
+
+
+                                if($no_cart_key == true) {
+                                    foreach($this->products as $tk => $tv) {
+                                        if(in_array($tv['products_id'], $_tmp_pids)) {
+                                            if(isset($new_checkval)) {
+                                                $new_checkval+=($tv['products_weight']*1);
+                                            } else {
+                                                $new_checkval=($tv['products_weight']*1);
+                                            }
+                                        }
+                                    }
+                                    reset($this->products);
+                                }
+
+                                if(isset($new_checkval) && $new_checkval!='') {
+                                    $old_checkval=$this->weight;
+                                    $this->weight=$new_checkval;
+                                }
+                            }
+                        }
+                    
+                }
+			]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.shipping.php:_filterWeight_bottom</hook>
+            <phpcode><![CDATA[
+				if(isset($new_checkval) && $new_checkval!='') {
+                    $this->weight=$old_checkval;
+                }
+			]]>
+			</phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code>
+	<configuration>
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_TYPE</key>
+			<value>single</value>
+			<type>dropdown</type>
+			<url>conf_asctype</url>
+			<de>
+				<title>Verandkosten-Typ</title>
+				<description>Versankosten je Artikel / Versandmodule</description>
+			</de>
+			<en>
+				<title>Shipping costs-Typ</title>
+				<description>on / off</description>
+			</en>
+		</config>
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_IN_SHORT_DESC</key>
+			<value>false</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Versandkosten in Artikel-Kurzbeschreibung</title>
+				<description>an / aus</description>
+			</de>
+			<en>
+				<title>Shipping costs in article short description</title>
+				<description>on / off</description>
+			</en>
+		</config>
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_IN_SHORT_DESC_WITH_DESC</key>
+			<value>false</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Lange-Beschreibung wenn keine Kurzbeschreibung angegeben (f&amp;uuml;r Versandkosten in Artikel-Kurzbeschreibung)</title>
+				<description>an / aus</description>
+			</de>
+			<en>
+				<title>Use article description if article short description is not set (for shipping costs in article short description)</title>
+				<description>on / off</description>
+			</en>
+		</config>
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_ACTIVE</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Status</title>
+				<description>an / aus</description>
+			</de>
+			<en>
+				<title>Status</title>
+				<description>on / off</description>
+			</en>
+		</config>
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_HIGHEST</key>
+			<value>false</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Verwende die h&amp;ouml;chsten Artikel-Versandkosten im Checkout (nur f&amp;uuml;r Versandkosten-Typ 'single')</title>
+				<description>ja / nein</description>
+			</de>
+			<en>
+				<title>Use highest article shipping costs in checkout (only for shipping costs-Typ 'single')</title>
+				<description>yes / no</description>
+			</en>
+		</config>
+		<config>
+			<key>TEXT_BUI_ARTICLE_SHIPPING_COSTS_NAME</key>
+			<value>Versandkosten</value>
+			<type></type>
+			<url></url>
+			<de>
+				<title>Versand Name (nur f&amp;uuml;r Versandkosten-Typ 'single')</title>
+				<description>Name</description>
+			</de>
+			<en>
+				<title>Shipping Name (only for shipping costs-Typ 'single')</title>
+				<description>Name</description>
+			</en>
+		</config>
+		<config>
+			<key>TEXT_BUI_ARTICLE_SHIPPING_COSTS_DESC</key>
+			<value>Versandkosten</value>
+			<type></type>
+			<url></url>
+			<de>
+				<title>Beschreibung (nur f&amp;uuml;r Versandkosten-Typ 'single')</title>
+				<description>Name</description>
+			</de>
+			<en>
+				<title>Beschreibung (only for shipping costs-Typ 'single')</title>
+				<description>Name</description>
+			</en>
+		</config>
+		<config>
+			<key>TEXT_BUI_ARTICLE_SHIPPING_COSTS_TAX_CLASS</key>
+			<value>1</value>
+			<type>dropdown</type>
+			<url>tax_classes</url>
+			<de>
+				<title>Steuerklasse (nur f&amp;uuml;r Versandkosten-Typ 'single')</title>
+				<description>Steuerklasse</description>
+			</de>
+			<en>
+				<title>Tax class (only for shipping costs-Typ 'single')</title>
+				<description>Tax class</description>
+			</en>
+		</config>
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_CALC_ITEM</key>
+			<value>false</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Berechne Artikel-Versandkosten an Hand der St&amp;uuml;ckzahl pro Artikel (nur f&amp;uuml;r Versandkosten-Typ 'single')</title>
+				<description>ja / nein</description>
+			</de>
+			<en>
+				<title>Calculate article shipping costs on the basis of the number of items per article (only for shipping costs-Typ 'single')</title>
+				<description>yes / no</description>
+			</en>
+		</config>
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_MODULE_CHECK</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Zeige nur Versandkosten-Module im Checkout die allen Artikel zugewiesen sind (nur f&amp;uuml;r Versandkosten-Typ 'module')</title>
+				<description>ja / nein</description>
+			</de>
+			<en>
+				<title>Use only shipping modules in Checkout which are asing to all articles (only for shipping costs-Typ 'module')</title>
+				<description>yes / no</description>
+			</en>
+		</config>
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_MODULE_HIGHEST</key>
+			<value>false</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Verwende Versandkosten-Modul mit den h&amp;ouml;chsten Kosten und Preis 0,- im Checkout (nur f&amp;uuml;r Versandkosten-Typ 'module')</title>
+				<description>ja / nein</description>
+			</de>
+			<en>
+				<title>Use shipping modules with the highest costs and cost 0,- in checkout (only for shipping costs-Typ 'module')</title>
+				<description>yes / no</description>
+			</en>
+		</config>		
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED</key>
+			<value>none</value>
+			<type>dropdown</type>
+			<url>conf_asc_module_preferred</url>
+			<de>
+				<title>Verwende Versandkosten-Modul bevorzugt (nur f&amp;uuml;r Versandkosten-Typ 'module')</title>
+				<description>Soll eine bestimmte Versandart bevorzugt verwendet werden</description>
+			</de>
+			<en>
+				<title>Use shipping modules preferred (only for shipping costs-Typ 'module')</title>
+				<description>should a certain shipping method is to be used preferentially</description>
+			</en>
+		</config>		
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE</key>
+			<value>unique</value>
+			<type>dropdown</type>
+			<url>conf_asc_highest_costs_calc_type</url>
+			<de>
+				<title>Wie sollen h&amp;ouml;chsten Artikel-Versandkosten im Checkout berechnet werden (nur f&amp;uuml;r Versandkosten-Typ 'single')</title>
+				<description></description>
+			</de>
+			<en>
+				<title>How should calculate the highest article shipping costs in checkout (only for shipping costs-Typ 'single')</title>
+				<description></description>
+			</en>
+		</config>
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_SINGLE_OTHERS</key>
+			<value>true</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Zeige auch andere Versandkosten-Module im Checkout (nur f&amp;uuml;r Versandkosten-Typ 'single')</title>
+				<description>ja / nein</description>
+			</de>
+			<en>
+				<title>Show other shipping modules in Checkout too (only for shipping costs-Typ 'single')</title>
+				<description>yes / no</description>
+			</en>
+		</config>		
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT</key>
+			<value>highest</value>
+			<type>dropdown</type>
+			<url>conf_asc_export</url>
+			<de>
+				<title>Welche Versandart soll exportiert werden (nur f&amp;uuml;r Versandkosten-Typ 'module')</title>
+				<description>Soll die Versandart mit den h&amp;ouml;chsten / niedrigsten Kosten/Sortierung/Reihenfolge exportiert werden</description>
+			</de>
+			<en>
+				<title>Which shipping should be exported (only for shipping costs-Typ 'module')</title>
+				<description>Should the shipping with the highest/lowest costs/sort order be exported</description>
+			</en>
+		</config>
+		<config>
+			<key>BUI_ARTICLE_SHIPPING_COSTS_MODULE_DEFAULT</key>
+			<value>-none-</value>
+			<type></type>
+			<url></url>
+			<de>
+				<title>Standard-Versandart wenn keine Versandart zugewiesen (nur f&amp;uuml;r Versandkosten-Typ 'module')</title>
+				<description>Welche Versandart soll standardm&amp;auml;&amp;szlig;ig f&amp;uuml;r Artikel verwendet werden, denen keine Versandart zugeordnet wurde</description>
+			</de>
+			<en>
+				<title>default-shipping if no shipping assigned (only for shipping costs-Typ 'module')</title>
+				<description>Which shipping is used for articles which have no shipping assigned</description>
+			</en>
+		</config>
+	</configuration>
+	<language_content>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE_UNIQUE</key>
+			<class>admin</class>
+			<de>
+				<value>einmalig</value>
+			</de>
+			<en>
+				<value>unique</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE_UNIQUE_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>H&amp;ouml;chsten Artikelversandkosten einmalig berechnen.</value>
+			</de>
+			<en>
+				<value>Highest article shipping costs uniquely calculate.</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE_CART_QTY</key>
+			<class>admin</class>
+			<de>
+				<value>mal der Anzahl der Artikel im Warenkorb</value>
+			</de>
+			<en>
+				<value>times the number of articles in the cart</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE_CART_QTY_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>H&amp;ouml;chsten Artikelversandkosten mal der Anzahl der Artikel im Warenkorb berechnen.</value>
+			</de>
+			<en>
+				<value>Highest article shipping costs calculate with the number of articles in the cart.</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE_CART_ART_QTY</key>
+			<class>admin</class>
+			<de>
+				<value>mal der Anzahl pro Artikel im Warenkorb</value>
+			</de>
+			<en>
+				<value>times the number per articles in the cart</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE_CART_ART_QTY_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>H&amp;ouml;chsten Artikelversandkosten mal der Anzahl pro Artikel im Warenkorb berechnen.</value>
+			</de>
+			<en>
+				<value>Highest article shipping costs calculate with the number per articles in the cart.</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_TYPE_SINGLE</key>
+			<class>admin</class>
+			<de>
+				<value>Pro Artikel</value>
+			</de>
+			<en>
+				<value>per article</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_TYPE_SINGLE_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>Artikelversandkosten f&amp;uuml;r jeden Artikel seperat einstellen.</value>
+			</de>
+			<en>
+				<value>Configure article shipping costs for each article separatley.</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_TYPE_MODULE</key>
+			<class>admin</class>
+			<de>
+				<value>Versandmodule</value>
+			</de>
+			<en>
+				<value>Shipping modules</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_TYPE_MODULE_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>Artikelversandkosten &amp;uuml;ber die Versandmodule einstellen.</value>
+			</de>
+			<en>
+				<value>Configure article shipping costs over the shipping modules.</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>PRODUCTS_SHIPPING_COSTS_MODULE</key>
+			<class>admin</class>
+			<de>
+				<value>Versandkosten-Module</value>
+			</de>
+			<en>
+				<value>Shipping costs modules</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS</key>
+			<class>admin</class>
+			<de>
+				<value>Versandkosten</value>
+			</de>
+			<en>
+				<value>Shipping costs</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_FREE</key>
+			<class>admin</class>
+			<de>
+				<value>Versandkostenfrei (ja/nein)</value>
+			</de>
+			<en>
+				<value>Shipping costs free (yes/no)</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS</key>
+			<class>store</class>
+			<de>
+				<value>Versandkosten</value>
+			</de>
+			<en>
+				<value>Shipping Costs</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_FREE</key>
+			<class>store</class>
+			<de>
+				<value>Versandkostenfrei</value>
+			</de>
+			<en>
+				<value>Shipping Costs free</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_EXCL</key>
+			<class>store</class>
+			<de>
+				<value>zzgl.</value>
+			</de>
+			<en>
+				<value>excl.</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_SINGLE_ARTICLE_SHIPPING_COSTS</key>
+			<class>store</class>
+			<de>
+				<value>Einzel-Versandkosten</value>
+			</de>
+			<en>
+				<value>Single-Shipping costs</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_TOTAL_ARTICLE_SHIPPING_COSTS</key>
+			<class>store</class>
+			<de>
+				<value>Gesamt-Versandkosten</value>
+			</de>
+			<en>
+				<value>Total-Shipping costs</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_NAME</key>
+			<class>store</class>
+			<de>
+				<value>Artikel-Versandkosten</value>
+			</de>
+			<en>
+				<value>Article-Shipping costs</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_POSSIBLE_MODULES</key>
+			<class>store</class>
+			<de>
+				<value>Versand ist m&amp;ouml;glich &amp;uuml;ber:</value>
+			</de>
+			<en>
+				<value>Dispatch is possible over:</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_DROPDOWN_PRODUCTS_SHIPPING_COSTS_MODULE</key>
+			<class>admin</class>
+			<de>
+				<value>Bitte w&amp;auml;hlen</value>
+			</de>
+			<en>
+				<value>Please select</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_SHIPPING_COSTS_MODULE</key>
+			<class>admin</class>
+			<de>
+				<value>Versandkosten-Module</value>
+			</de>
+			<en>
+				<value>Shipping costs modules</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_PRODUCTS_TO_SHIPPING</key>
+			<class>admin</class>
+			<de>
+				<value>Versandkosten-Module zuweisen</value>
+			</de>
+			<en>
+				<value>Assign shipping costs modules</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_NO_SHIPPING_IN_SHOP</key>
+			<class>admin</class>
+			<de>
+				<value>Sie haben noch keine Versandarten im Shop angelegt</value>
+			</de>
+			<en>
+				<value>You must create shipping costs in the shop</value>
+			</en>
+		</phrase>		
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_HIGHEST</key>
+			<class>admin</class>
+			<de>
+				<value>h&amp;ouml;chste Kosten</value>
+			</de>
+			<en>
+				<value>highest costs</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_HIGHEST_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>Exportiere die Versandart mit den h&amp;ouml;chsten Versandkosten</value>
+			</de>
+			<en>
+				<value>Export the shipping mehtod with the highest costs</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_LOWEST</key>
+			<class>admin</class>
+			<de>
+				<value>niedrigste Kosten</value>
+			</de>
+			<en>
+				<value>lowest costs</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_LOWEST_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>Exportiere die Versandart mit den niedrigsten Versandkosten</value>
+			</de>
+			<en>
+				<value>Export the shipping method with the lowest costs</value>
+			</en>
+		</phrase>		
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_SORT_HIGHEST</key>
+			<class>admin</class>
+			<de>
+				<value>h&amp;ouml;chste Sortierung/Reihenfolge</value>
+			</de>
+			<en>
+				<value>highest sort order</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_SORT_HIGHEST_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>Exportiere die Versandart mit der h&amp;ouml;chsten Sortierung/Reihenfolge</value>
+			</de>
+			<en>
+				<value>Export the shipping mehtod with the highest sort order</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_SORT_LOWEST</key>
+			<class>admin</class>
+			<de>
+				<value>niedrigste Sortierung/Reihenfolge</value>
+			</de>
+			<en>
+				<value>lowest sort order</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_SORT_LOWEST_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>Exportiere die Versandart mit der niedrigsten Sortierung/Reihenfolge</value>
+			</de>
+			<en>
+				<value>Export the shipping method with the lowest sort order</value>
+			</en>
+		</phrase>		
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_NONE</key>
+			<class>admin</class>
+			<de>
+				<value>keine</value>
+			</de>
+			<en>
+				<value>none</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_NONE_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>Es wird keine Versandart bevorzugt verwendet</value>
+			</de>
+			<en>
+				<value>no shipping method is preferentially used</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_HIGHEST</key>
+			<class>admin</class>
+			<de>
+				<value>h&amp;ouml;chste Kosten</value>
+			</de>
+			<en>
+				<value>highest costs</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_HIGHEST_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>die Versandart mit den h&amp;ouml;chsten Versandkosten</value>
+			</de>
+			<en>
+				<value>the shipping mehtod with the highest costs</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_LOWEST</key>
+			<class>admin</class>
+			<de>
+				<value>niedrigste Kosten</value>
+			</de>
+			<en>
+				<value>lowest costs</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_LOWEST_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>die Versandart mit den niedrigsten Versandkosten</value>
+			</de>
+			<en>
+				<value>the shipping method with the lowest costs</value>
+			</en>
+		</phrase>		
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_SORT_HIGHEST</key>
+			<class>admin</class>
+			<de>
+				<value>h&amp;ouml;chste Sortierung/Reihenfolge</value>
+			</de>
+			<en>
+				<value>highest sort order</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_SORT_HIGHEST_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>die Versandart mit der h&amp;ouml;chsten Sortierung/Reihenfolge</value>
+			</de>
+			<en>
+				<value>the shipping mehtod with the highest sort order</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_SORT_LOWEST</key>
+			<class>admin</class>
+			<de>
+				<value>niedrigste Sortierung/Reihenfolge</value>
+			</de>
+			<en>
+				<value>lowest sort order</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_SORT_LOWEST_DESC</key>
+			<class>admin</class>
+			<de>
+				<value>die Versandart mit der niedrigsten Sortierung/Reihenfolge</value>
+			</de>
+			<en>
+				<value>the shipping method with the lowest sort order</value>
+			</en>
+		</phrase>
+	</language_content>
+</xtcommerceplugin>

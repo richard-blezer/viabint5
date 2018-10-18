@@ -1,0 +1,61 @@
+{if $product_listing}
+    {if $heading_text}
+        <div data-role="header"> 
+            <h1>{$heading_text}</h1>
+        </div>
+    {/if}     
+
+    {if $product_listing !=''}
+
+        <!-- Place somewhere in the <body> of your page -->
+        <div class="xtm-startpage-products flexslider">
+            <ul class="slides">
+                {foreach name=aussen item=startpage_data from=$product_listing}      
+                <li>
+                    <table width="100%"><tr><td>
+                        <a href="{$startpage_data.products_link}">
+                            <span class="item">
+                               
+                                <table><tr><td>
+
+                                    <span style="display:inline-block; position:relative;">
+                                        {if $startpage_data.products_image != 'product:noimage.gif'}                            
+                                            {img img=$startpage_data.products_image type=m_mobile_islider class=productImageBorder alt=$startpage_data.products_name}
+                                        {else}
+                                            <img class="islider_noimage" src="{$tpl_url_path}img/no-image_2.png" alt="{txt key=TEXT_NO_IMAGE}">
+                                        {/if}
+                                        <span class="subline">
+                                            <span class="headline">{$startpage_data.products_name}</span>
+                                            <span class="price">{$startpage_data.products_price.formated}</span>
+
+                                        </span>
+                                    </span>                        
+                                </td></tr></table>
+
+                                
+                            </span>
+                        </a>
+                    </td></tr></table>
+                </li>
+                {/foreach}
+            </ul>
+        </div>
+
+
+
+        {literal}    
+        <script>
+            $(document).ready(function() {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    animationLoop: true       
+                });
+            });
+        </script>
+        {/literal}
+
+
+    {/if}
+{$error_listing}    
+{/if}
+

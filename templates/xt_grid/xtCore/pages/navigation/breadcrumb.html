@@ -1,0 +1,10 @@
+<ul>
+    <li>{txt key=TEXT_YOU_ARE_HERE}</li>
+    {foreach name=aussen item=breadcrumb from=$top_navigation}
+    {if $smarty.foreach.aussen.last == false}
+    <li><div itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="{$breadcrumb.url}" itemprop="url"><span itemprop="title">{$breadcrumb.name|escape:"html"}</span></a></div> &gt;</li>
+    {else}
+    <li>{$breadcrumb.name|escape:"html"}</li>
+    {/if}
+    {/foreach}
+</ul> 

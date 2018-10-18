@@ -1,0 +1,1174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>4tfm Amazon Payment</title>
+    <version>3.3.0</version>
+    <code>tfm_amazon_payments</code>
+    <url>https://www.4tfm.de</url>
+    <developer>4tfm</developer>
+    <type>payment</type>
+    <payment>
+        <payment_code>tfm_amazon_payments</payment_code>
+        <payment_dir>tfm_amazon_payments</payment_dir>
+        <payment_icon></payment_icon>
+        <payment_tpl>amazon_payment_row.html</payment_tpl>
+        <de>
+            <title>Amazon Pay</title>
+            <description></description>
+        </de>
+        <en>
+            <title>Amazon Pay</title>
+            <description></description>
+        </en>
+    </payment>
+    <icon>4tfm-logo.png</icon>
+    <db_install><![CDATA[
+	    require_once _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/db_install.php';
+	]]></db_install>
+    <db_uninstall><![CDATA[
+	    require_once _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/db_uninstall.php';
+	]]></db_uninstall>
+    
+    <plugin_code>
+		
+		<code>
+            <hook>class.xt_cart_popup.php:add_product_bottom</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/xt_cart_popup_fix.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		
+		<code>
+            <hook>display.php:content_top</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/display_php__content_top.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+        <code>
+            <hook>product_info_tpl_cart</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/amazon_login_button_product_info.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+        <code>
+            <hook>product_listing_slider_footer_bottom</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/amazon_login_button_product_box.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+        <code>
+            <hook>product_listing_base_footer_bottom</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/amazon_login_button_product_box.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		
+		<code>
+            <hook>form_handler.php:add_product_bottom</hook>
+            <phpcode><![CDATA[
+                    require _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/form_handler_php__add_product_bottom.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+        <code>
+            <hook>form_handler.php:add_product_top</hook>
+            <phpcode><![CDATA[
+                    require _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/form_handler_php__add_product_top.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+        form_handler.php:add_product_top
+        <code>
+            <hook>class.multistore.php:_set</hook>
+            <phpcode><![CDATA[
+                    require _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/class_multistore_php__set.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+		
+        <code>
+			<hook>index.php:tpl_data</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/index_php_tpl_data.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+	</code>	
+	
+	<code>
+			<hook>index_footer_tpl</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/index_footer_tpl.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+	</code>	
+	
+	<code>
+			<hook>tfm_amazon_payments_user_group_error</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/pages/group_permission_inner.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+	</code>	
+	
+	
+	
+	
+	 <code>
+            <hook>ejsadmin.php:more_js</hook>
+            <phpcode><![CDATA[
+			include_once(_SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/ejsadmin_php_more_js.php');
+	]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+       
+        <code>
+			<hook>class.order.php:_setOrder_billing_data</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/class_order_php__setOrder_billing_data.php';	
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+	</code>
+        
+        <code>
+            <hook>box_login_tpl</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT.'plugins/tfm_amazon_payments/templates/amazon_login_button_box.html';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+        
+        
+         <code>
+            <hook>module_cart.php:cart_top</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/module_cart_php_cart_top.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+        <code>
+            <hook>module_customer.php:login_link_target</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/module_customer_php_login_link_target.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+        <code>
+            <hook>check_pw.php:_checkPW_top</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/check_pw_php__checkPW_top.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_customer.php:success_login</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/module_customer_php_success_login.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_customer.php:post_data</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/module_customer_php_post_data.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_customer.php:failed_login</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/module_customer_php_failed_login.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.customer_check.php:_checkExist_top</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/class_customer_check_php_checkExist_top.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>admin_dropdown.php:dropdown</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/admin_dropdown_php_dropdown.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/page_registry_php_bottom.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>javascript.php:bottom</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT.'plugins/tfm_amazon_payments/hooks/js.php_bottom.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>styles.php:bottom</hook>
+            <phpcode><![CDATA[
+                require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/styles.phpbottom.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.checkout.php:_getPayment</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/class_checkout_php_getPayment.php';	
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.order.php:_getParams_row_actions</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/class_order_php_getParams_row_actions.php';	
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.order.php:_updateOrderStatus_bottom</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/class_order_php_updateOrderStatus_bottom.php';	
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_checkout.php:checkout_proccess_order_processed</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/module_checkout_php_checkout_proccess_order_processed.php';	
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.customer.php:_registerCustomer_top</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/class_customer_php_registerCustomer_top.php';	
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_checkout.php:checkout_first</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/module_checkout_php_checkout_first.php';	
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_customer.php:login_top</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'tfm_amazon_payments/hooks/module_customer_php_login_top.php';	
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+    
+    <configuration>
+         <config>
+            <key>TFM_AMAZON_ENABLED</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>false</value>
+            <en>
+                <title><![CDATA[Activated for the store]]></title>
+            </en>
+            <de>
+                <title><![CDATA[Für Shop aktivieren]]></title>
+            </de>
+        </config>
+        
+         <config>
+            <key>TFM_AMAZON_EMPTY_DATA_WARNING</key>
+            <type>hidden</type>
+            <value></value>
+            <en>
+                <title><![CDATA[When the warnning was opened for the last!]]></title>
+            </en>
+        </config>
+        
+    </configuration>
+    
+    <configuration_payment>
+         <config>
+            <key>TFM_AMAZON_SHOPNAME</key>
+            <type>text</type>
+            <value></value>
+            <en>
+                <title><![CDATA[Shop name]]></title>
+            </en>
+            <de>
+                <title><![CDATA[Shopname]]></title>
+            </de>
+        </config> 
+        
+        <config>
+            <key>TFM_AMAZON_PRODUCT_DETAILS_BUTTON</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title><![CDATA[Amazon Knopf in Produkt Details]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Product Details Button]]></title>
+            </en>
+        </config> 
+        
+         <config>
+            <key>TFM_AMAZON_PRODUCT_LIST_BUTTON</key>
+            <type>hidden</type>
+            <url>conf_truefalse</url>
+            <value>false</value>
+            <en>
+                <title><![CDATA[Products List Button]]></title>
+            </en>
+            <de>
+                <title><![CDATA[Amazon Knopf in Produkt Listings]]></title>
+            </de>			
+        </config> 
+        
+        <config>
+            <key>FILE_JSSELECTORS</key>
+            <type>dropdown</type>
+            <url>tfm_amazon_payments_selectors</url>
+            <value>xt_grid_xt_mobile.js</value>
+            <en>
+                <title><![CDATA[JS selectors file]]></title>
+            </en>
+            <de>
+                <title><![CDATA[JS selectors Datei]]></title>
+            </de>
+        </config>
+        
+        <config>
+            <key>FILE_CSSADDITIONAL</key>
+            <type>dropdown</type>
+            <url>tfm_amazon_payments_cssadditional</url>
+            <value>none</value>
+            <en>
+                <title><![CDATA[Additional .css]]></title>
+            </en>
+            <de>
+                <title><![CDATA[Additional .css]]></title>
+            </de>
+        </config>
+        
+        
+        
+        <config>
+            <key>TFM_AMAZON_SELLER_ID</key>
+            <type>text</type>
+            <value></value>
+            <en>
+                <title><![CDATA[Seller ID]]></title>
+            </en>
+            <de>
+                <title><![CDATA[Seller ID]]></title>
+            </de>
+        </config>
+
+        <config>
+            <key>TFM_AMAZON_CLIENT_ID</key>
+            <type>text</type>
+            <value></value>
+            <en>
+                <title><![CDATA[Client ID]]></title>
+            </en>
+            <de>
+                <title><![CDATA[Client ID]]></title>
+            </de>
+        </config>
+
+        <config>
+            <key>TFM_AMAZON_ACCESS_KEY</key>
+            <type>text</type>
+            <value></value>
+            <en>
+                <title><![CDATA[Access Key]]></title>
+            </en>
+            <de>
+                <title><![CDATA[Access Key]]></title>
+            </de>
+        </config>
+        <config>
+            <key>TFM_AMAZON_ACCESS_SECRET</key>
+            <type>text</type>
+            <value></value>
+            <en>
+                <title><![CDATA[Access Secret]]></title>
+            </en>
+            <de>
+                <title><![CDATA[Access Secret]]></title>
+            </de>
+        </config>
+        <config>
+            <key>TFM_AMAZON_REGION</key>
+            <type>dropdown</type>
+            <url>tfm_amazon_payments_region</url>
+            <value>de</value>
+            <en>
+                <title><![CDATA[Region]]></title>
+            </en>
+            <de>
+                <title><![CDATA[Region]]></title>
+            </de>
+        </config>
+        
+        <config>
+            <key>TFM_AMAZON_BUTTONS_THEME</key>
+            <type>dropdown</type>
+            <url>tfm_amazon_buttons_theme</url>
+            <value>Gold</value>
+            <de>
+                <title><![CDATA[Knopf Design]]></title>
+            </de>
+            <en>
+                <title><![CDATA[Buttons Theme]]></title>
+            </en>
+        </config>
+        
+        <config>
+            <key>TFM_AMAZON_SANDBOX</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <en>
+                <title><![CDATA[Sandbox Mode]]></title>
+            </en>
+            <de>
+                <title><![CDATA[Sandbox Mode]]></title>
+            </de>
+        </config>
+        <config>
+            <key>EXCLUDE_PACKSTATION</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <en>
+                <title><![CDATA[Exclude Packstation delivery during checkout]]></title>
+            </en>
+            <de>
+                <title><![CDATA[Lieferung an Packstationen deaktivieren]]></title>
+            </de>
+        </config>
+        
+        
+        <config>
+            <key>ORDER_STATUS_ASYNC_AUTHORIZE</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <en>
+                <title>Easy payment authorizing</title>
+            </en>            
+            <de>
+                <title>Optimale Zahlungs-Autorisierung</title>
+            </de>  	 	
+        </config>
+        
+        <config>
+            <key>ORDER_STATUS_ASYNC_PENDING</key>
+            <type>hidden</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <en>
+                <title>Ordersstatus - Asynchronous Pending</title>
+            </en>
+            <en>
+                <title>Bestellstatus - Asynchrone Autorisierung Pending</title>
+            </en>			
+        </config>
+        
+        <config>
+            <key>ORDER_STATUS_ERROR</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>34</value>
+            <en>
+                <title>Ordersstatus - Payment Error</title>
+            </en>            
+			<de>
+                <title>Bestellstatus - Payment Error</title>
+            </de>
+        </config>
+        
+        <config>
+            <key>ORDER_CAPTURE_ON_CHECKOUT</key>
+            <type>dropdown</type>
+            <url>tfm_amazon_payments_capture_type</url>
+            <value>on_checkout</value>
+            <en>
+                <title><![CDATA[Capture Order On]]></title>
+            </en>           
+			<de>
+                <title><![CDATA[Capture Order On]]></title>
+            </de>
+        </config>
+        <config>
+            <key>ORDER_STATUS_OPENED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <en>
+                <title>Ordersstatus - Opened In Amazon</title>
+            </en>           
+			<de>
+                <title>Bestellstatus - Opened In Amazon</title>
+            </de>
+        </config>
+        <config>
+            <key>ORDER_STATUS_CAPTURE</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>23</value>
+            <en>
+                <title>Ordersstatus - Capture from Amazon</title>
+            </en>            
+			<de>
+                <title>Bestellstatus - Capture from Amazon</title>
+            </de>
+        </config>
+        <config>
+            <key>ORDER_STATUS_COMPLETED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>23</value>
+            <en>
+                <title>Ordersstatus - Payment Completed</title>
+            </en>            
+			<de>
+                <title>Bestellstatus - Payment Completed</title>
+            </de>
+        </config>
+        <config>
+            <key>ORDER_STATUS_CANCELED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>32</value>
+            <en>
+                <title>Ordersstatus - Payment Declined</title>
+            </en>        
+			<de>
+                <title>Bestellstatus - Payment Declined</title>
+            </de>
+        </config>
+        
+        <config>
+            <key>ORDER_STATUS_DECLINED_ASYNC</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>32</value>
+            <en>
+                <title>Order Status: Async Authorize Declined</title>
+            </en>
+			<de>
+                <title>Order Status: Authorize Declined(Async)</title>
+            </de>
+        </config>
+        
+        <config>
+            <key>ORDER_STATUS_DO_CANCEL</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>34</value>
+            <en>
+                <title>Ordersstatus - Decline The Order</title>
+            </en>        
+            <de>
+                <title>Bestellstatus - Decline The Order</title>
+            </de>
+        </config>
+
+        <config>
+            <key>ORDER_STATUS_PLACED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <en>
+                <title>Ordersstatus - Order Placed</title>
+            </en>
+            <de>
+                <title>Bestellstatus - Order Placed</title>
+            </de>			
+        </config>
+    </configuration_payment>
+    <language_content>
+       
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_FILE_CSSADDITIONAL_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Additional .css]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Additional .css]]></value>
+            </en>
+        </phrase>
+        
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_FILE_JSSELECTORS_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[JS selector Datei]]></value>
+            </de>
+            <en>
+                <value><![CDATA[JS selectors file]]></value>
+            </en>
+        </phrase>
+        
+        <phrase>
+            <key>TFM_AMAZON_MATCH_ACCOUNTS</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Geben Sie Ihr Shop-Passwort ein um Ihr Shop-Konto mit Ihrem Amazon-Konto zu verbinden]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Enter your shop password and connect your Amazon account with your shop account]]></value>
+            </en>
+        </phrase>
+
+
+        <phrase>
+            <key>TFM_AMAZON_MATCH_ACCOUNTS_BTN</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[Connect accounts]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Konten verbinden]]></value>
+            </de>
+        </phrase>
+
+        <phrase>
+            <key>TFM_AMAZON_ERROR_PASS</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Verbinden der Konten fehlgeschlagen: Das Passwort ist falsch!]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Connecting accounts failed: your password was incorrect!]]></value>
+            </en>
+        </phrase>
+
+
+        <phrase>
+            <key>TFM_AMAZON_CAPTURE_AMAZON_ONLY</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Amazon Capture!]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Amazon Capture!]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TFM_AMAZON_CAPTURE_AMAZON_ONLY_SAY</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Diese Aktion kann nur bei Bestellungen vorgenommen werden, die mit Amazon bezahlt wurden!]]></value>
+            </de>
+            <en>
+                <value><![CDATA[The action is only available for the orders paid  with Amazon!]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TFM_AMAZON_CAPTURE_ORDER</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Amazon Capture!]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Amazon Capture!]]></value>
+            </en>
+        </phrase>
+
+        <phrase>
+            <key>TFM_AMAZON_CAPTURE_ORDER_ASK</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Diese Aktion wird den Betrag einziehen. Wollen Sie fortfahren?]]></value>
+            </de>
+            <en>
+                <value><![CDATA[This action will capture the order! Do you want to proceed?]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_CAPTURE_SUCCESS</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Betrag wurde erfolgreich eingezogen!]]></value>
+            </de>
+            <en>
+                <value><![CDATA[The order was captured successfully!]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_CAPTURE_FAIL</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Amazon hat diese Aktion zurückgewiesen.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[The Amazon service rejected the action!]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_CAPTURE_INVALDORDER</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Unpassende Bestelldaten!]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Invalid order data!]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_CAPTURE_INVALDORDER_COMPLETED</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Betrag wurde bereits eingezogen!]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Amount already captured!]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_EXCLUDE_PACKSTATION_TITLE</key>
+            <class>admin</class>
+            <de>
+                <value><![CDATA[Lieferungen an Packstationen im Checkout ablehnen]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Exclude Packstation delivery during checkout]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_GUEST_ACCOUNTS_BTN</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Weiter]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Continue]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_ACCOUNT_PAGE_MESSAGE</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[You are logged in with your Amazon account, the settings are for your shop account!]]></value>
+            </en>            
+			<de>
+                <value><![CDATA[Sie sind mit Ihrem Amazon-Konto eingeloggt, diese Einstellungen sind für Ihren Shop-Konto!]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_MISSING_SESSION_MESSAGE</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Unpassende Adressdaten!]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Invalid Address data!]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PACKSTATION_MESSAGE</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[Unfortunately, we do not deliver to packing station, please choose a different shipping address.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Leider liefern wir nicht an Packstation, bitte wählen Sie eine andere Versandadresse aus.]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_WARNING_NO_SHIPPING_FOR_ZONE</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[Unfortunately, there is no available shipping method for this shipping zone, please choose a different shipping address.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Leider gibt es keine verfügbare Versandart für diese Versandadresse, bitte wählen Sie eine andere Versandadresse.]]></value>
+            </de>            
+        </phrase>
+         <phrase>
+            <key>TFM_AMAZON_LOGIN_MODE_BUTTON</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[Switch to normal checkout]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Amazon Checkout verlassen]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_ENABLED_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Activated for the store]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Aktiviert für diesen Shop]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_ORDER_STATUS_CAPTURE_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Capture from Amazon]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Capture von Amazon]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_ORDER_STATUS_ASYNC_PENDING_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Orders status: - Asynchronous Authorizing]]></value>
+            </en>			
+            <de>
+                <value><![CDATA[Bestellstatus - Asynchronous Authorizing]]></value>
+            </de>			
+        </phrase>
+        
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_ORDER_CAPTURE_ON_CHECKOUT_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Capture On]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Capture bei]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_ORDER_STATUS_OPENED_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Orders status: open]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bestellstatus: open]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_TFM_AMAZON_REGION_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Region]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Region]]></value>
+            </de>			
+        </phrase>
+         <phrase>
+            <key>TFM_AMAZON_PAYMENTS_TFM_AMAZON_SHOPNAME_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Name of the shop passed to Amazon]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Anzeigename des Shops]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_TFM_AMAZON_SELLER_ID_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Seller ID]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Seller ID]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_TFM_AMAZON_CLIENT_ID_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Client ID]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Client ID]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_TFM_AMAZON_ACCESS_KEY_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Access Key]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Access Key]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_TFM_AMAZON_ACCESS_SECRET_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Access Secret]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Access Secret]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_ORDER_STATUS_NEW_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[New Order Status]]></value>
+            </en>           
+			<de>
+                <value><![CDATA[New Order Status]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_ORDER_STATUS_PLACED_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Order status: Placed]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bestellstatus: vermittelt]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_ORDER_STATUS_ERROR_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Order status: Failed]]></value>
+            </en>            
+			<de>
+                <value><![CDATA[Bestellstatus: Zahlung gescheitert]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_ORDER_STATUS_CANCELED_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Order status: Payment Declined]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bestellstatus: Zahlung storniert]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_ORDER_STATUS_DO_CANCEL_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Shop order status: Order canceled]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Shop Bestellstatus: Bestellung storniert]]></value>
+            </de>			
+        </phrase>
+        
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_ORDER_STATUS_COMPLETED_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Order status: Payment Completed]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bestellstatus: Zahlung komplett]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_PAYMENTS_TFM_AMAZON_SANDBOX_TITLE</key>
+            <class>admin</class>
+            <en>
+                <value><![CDATA[Sandbox Mode]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Sandbox Mode]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TEXT_AMAZON_REQUIRED_FIELDS</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[* mandatory informations]]></value>
+            </en>
+            <de>
+                <value><![CDATA[* notwendige Informationen]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TEXT_PAGE_TITLE_FILL_ADDRESS</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Complete You Address Data]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Vervollständigen Sie Ihre Adressdaten]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TEXT_BUTTON_FILL_ADDRESS</key>
+            <class>both</class>
+            <en>
+                <value><![CDATA[Save Address]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Adresse speichern]]></value>
+            </de>			
+        </phrase>
+        <phrase>
+            <key>TEXT_LOGIN_PAGE_DESC</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Mit Bezahlen über Amazon können Sie bei uns ganz einfach mit den Zahlungs- und Versandinformationen aus Ihrem Amazon-Kundenkonto bezahlen.]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Amazon Payments makes shopping on our website even easier by using the payment information in your Amazon account.]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_LOGIN_PAGE_HEADLINE</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[Login with Amazon]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Login mit Amazon]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_GUEST_ACCOUNTS</key>
+            <class>store</class>
+            <de>
+                <value><![CDATA[Weiter mit dem Amazon Konto]]></value>
+            </de>
+            <en>
+                <value><![CDATA[Proceed with your amazon Account]]></value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_ACC_INFO_HEADLINE</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[Connect accounts]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Kundenkontos verbinden]]></value>
+            </de>
+        </phrase>
+        <phrase>
+            <key>TFM_AMAZON_ACC_INFO1</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[There is already a customer account with this eMail address in this shop.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Es gibt in diesem Shop bereits ein Kundenkonto mit dieser E-Mail-Adresse.]]></value>
+            </de>
+        </phrase>
+        
+        <phrase>
+            <key>TFM_AMAZON_INVALID_PAYMENT_MESSAGE</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[Please check you Payment details.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Bitte prüfen Sie Ihre Zahlungsart.]]></value>
+            </de>
+        </phrase>
+        
+        <phrase>
+            <key>TFM_AMAZON_PAYMENT_DECLINED_TIMEOUT_MESSAGE</key>
+            <class>store</class>
+            <en>
+                <value><![CDATA[Your transaction with Amazon Pay is currently being validated. Please be aware that we will inform you shortly as needed.]]></value>
+            </en>
+            <de>
+                <value><![CDATA[Ihre Zahlung mit Amazon Pay ist derzeit noch in Prüfung. Bitte beachten Sie, dass wir uns mit Ihnen in Kürze per Email in Verbindung setzen werden, falls noch Unklarheiten bestehen sollten.]]></value>
+            </de>
+        </phrase>
+        
+        <phrase>
+            <key>TFM_AMAZON_PAYMENT_DECLINED_MESSAGE</key>
+            <class>store</class>
+            <en>
+				<value><![CDATA[Your transaction with Amazon Pay is currently being validated. Please be aware that we will inform you shortly as needed.]]></value>
+            </en>
+            <de>
+				<value><![CDATA[Ihre Zahlung mit Amazon Pay ist derzeit noch in Prüfung. Bitte beachten Sie, dass wir uns mit Ihnen in Kürze per Email in Verbindung setzen werden, falls noch Unklarheiten bestehen sollten.]]></value>
+            </de>
+        </phrase>
+                
+        <phrase>
+            <key>TFM_AMAZON_PAYMENT_GROUP_PERMISSION_MESSAGE</key>
+            <class>store</class>
+            <en>
+				<value><![CDATA[Your transaction with Amazon Pay is currently being validated. Please be aware that we will inform you shortly as needed.]]></value>
+            </en>
+            <de>
+				<value><![CDATA[Ihre Zahlung mit Amazon Pay ist derzeit noch in Prüfung. Bitte beachten Sie, dass wir uns mit Ihnen in Kürze per Email in Verbindung setzen werden, falls noch Unklarheiten bestehen sollten.]]></value>
+            </de>
+        </phrase>                
+        <phrase>
+            <key>TEXT_AZM_OR</key>
+            <class>store</class>
+            <en>
+				<value><![CDATA[or]]></value>
+            </en>
+            <de>
+				<value><![CDATA[oder]]></value>
+            </de>
+        </phrase>
+        
+        
+    </language_content>
+</xtcommerceplugin>

@@ -1,0 +1,27 @@
+<ul class="box-language">
+    {foreach name=aussen item=box_data from=$lang_data}
+        {if $box_data.code eq $smarty.session.selected_language}
+            <li class="active" title="{$box_data.name}">{img img=$box_data.image type=w_media_flags alt=$box_data.name}</li>
+        {else}
+            {if $box_data.link neq ''}
+                <li><a href="{$box_data.link}" title="{$box_data.name}">{img img=$box_data.image type=w_media_flags alt=$box_data.name}</a></li>
+            {else}
+                <li><a href="{link page='dynamic' params='action=change_lang&new_lang' params_value=$box_data.code}" title="{$box_data.name}">{img img=$box_data.image type=w_media_flags alt=$box_data.name}</a></li>
+            {/if}
+        {/if}
+    {/foreach}
+</ul>
+<div class="footer-language">
+    <p class="headline">{txt key=TEXT_LANGUAGE}</p>
+    {form type=form name=language action='dynamic' link_params=getParams method=get}
+    <select name="new_lang" onchange="location.href=this.options[this.selectedIndex].value" class="show-tick form-control">
+        {foreach name=aussen item=box_data from=$lang_data}
+            {if !$selected_lang}{* <!-- no cookie, $selected_lang != available --> *}
+                <option data-content="<img src='{img img=$box_data.image type=w_media_flags alt=$box_data.name path_only=true}' alt='' style='vertical-align:middle;' /> <span style='vertical-align:middle;'>{$box_data.name}</span>" value="{link page='dynamic' params='action=change_lang&new_lang' params_value=$box_data.code}"{if $language == $box_data.code} selected="selected"{/if}>{$box_data.name}</option>
+            {else}{* <!-- choose selected by option value, not by shown language (because of some crazy user configurations) --> *}
+                <option data-content="<img src='{img img=$box_data.image type=w_media_flags alt=$box_data.name path_only=true}' alt='' style='vertical-align:middle;' /> <span style='vertical-align:middle;'>{$box_data.name}</span>" value="{link page='dynamic' params='action=change_lang&new_lang' params_value=$box_data.code}"{if $selected_lang == $box_data.code} selected="selected"{/if}>{$box_data.name}</option>
+            {/if}
+        {/foreach}
+    </select>
+    {form type=formend}
+</div>

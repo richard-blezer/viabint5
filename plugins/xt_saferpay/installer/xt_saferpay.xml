@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>Saferpay</title>
+<version>1.0.4</version>
+<code>xt_saferpay</code>
+<url>http://www.xt-commerce.com</url>
+<description>Saferpay Zahlungsmodul</description>
+<icon>saferpay.gif</icon>
+<type>payment</type>
+<payment>
+<payment_code>xt_saferpay</payment_code>
+<payment_dir>xt_saferpay</payment_dir>
+<payment_icon></payment_icon>
+<payment_tpl>saferpay.html</payment_tpl>
+<de>
+<title>Saferpay</title>
+<description></description>
+</de>
+<en>
+<title>Saferpay</title>
+<description></description>
+</en>
+</payment>
+<db_install><![CDATA[
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 24, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 25, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 26, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 27, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 28, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 29, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 30, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 31, '', 0, 10000.00, 0, 1);");
+]]></db_install>
+<configuration_payment>
+<config>
+<key>API_MODE</key>
+<type>dropdown</type>
+<value>true</value>
+<url>conf_truefalse</url>
+<de>
+<title>Test-Modus</title>
+</de>
+<en>
+<title>Testmodus</title>
+</en>
+</config>
+<config>
+<key>API_ACCOUNT_ID</key>
+<value></value>
+<type>textfield</type>
+<de>
+<title>Account-ID</title>
+</de>
+<en>
+<title>Account-ID</title>
+</en>
+</config>
+<config>
+<key>AUTH</key>
+<type>dropdown</type>
+<sort_order>4</sort_order>
+<url>status:order_status</url>
+<de>
+<title>Bestellstatus  - Authorisiert</title>
+</de>
+<en>
+<title>Ordersstatus - Authorized</title>
+</en>
+</config>
+<config>
+<key>COMPLETED</key>
+<type>dropdown</type>
+<sort_order>4</sort_order>
+<url>status:order_status</url>
+<de>
+<title>Bestellstatus  - Eingezogen</title>
+</de>
+<en>
+<title>Ordersstatus - Completed</title>
+</en>
+</config>
+<config>
+<key>AUTH_ONLY</key>
+<type>dropdown</type>
+<value>true</value>
+<url>conf_truefalse</url>
+<de>
+<title>Nur Authorisieren</title>
+</de>
+<en>
+<title>Authorization only</title>
+</en>
+</config>
+<config>
+<key>HEADCOLOR</key>
+<value></value>
+<type>textfield</type>
+<de>
+<title>HEADCOLOR</title>
+</de>
+<en>
+<title>HEADCOLOR</title>
+</en>
+</config>
+<config>
+<key>HEADLINECOLOR</key>
+<value></value>
+<type>textfield</type>
+<de>
+<title>HEADLINECOLOR</title>
+</de>
+<en>
+<title>HEADLINECOLOR</title>
+</en>
+</config>
+<config>
+<key>FONT</key>
+<value></value>
+<type>textfield</type>
+<de>
+<title>FONT</title>
+</de>
+<en>
+<title>FONT</title>
+</en>
+</config>
+<config>
+<key>HEADFONTCOLOR</key>
+<value></value>
+<type>textfield</type>
+<de>
+<title>HEADFONTCOLOR</title>
+</de>
+<en>
+<title>HEADFONTCOLOR</title>
+</en>
+</config>
+<config>
+<key>MENUCOLOR</key>
+<value></value>
+<type>textfield</type>
+<de>
+<title>MENUCOLOR</title>
+</de>
+<en>
+<title>MENUCOLOR</title>
+</en>
+</config>
+<config>
+<key>BODYFONTCOLOR</key>
+<value></value>
+<type>textfield</type>
+<de>
+<title>BODYFONTCOLOR</title>
+</de>
+<en>
+<title>BODYFONTCOLOR</title>
+</en>
+</config>
+<config>
+<key>BODYCOLOR</key>
+<value></value>
+<type>textfield</type>
+<de>
+<title>BODYCOLOR</title>
+</de>
+<en>
+<title>BODYCOLOR</title>
+</en>
+</config>
+</configuration_payment>
+</xtcommerceplugin> 

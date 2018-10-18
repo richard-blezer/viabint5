@@ -1,0 +1,20 @@
+<h2>{$categories_name}</h2>
+{if $categories_description}<p>{$categories_description}</p>{/if}
+{if $categorie_listing|@count > 0}
+	<h3>{txt key=TEXT_HEADING_MORE_CATEGORIES}</h3>
+	
+	<ul data-role="listview" data-inset="true">
+	{foreach item=module_data from=$categorie_listing}
+		<li>
+			<a href="{$module_data.categories_link}" title="{$module_data.categories_name}">
+				{if $module_data.categories_image}
+				{img img=$module_data.categories_image type=m_category_thumb alt=$module_date.categories_name|escape:"html"}
+				{/if}
+			
+				{$module_data.categories_name}
+			</a>
+		</li>
+	{/foreach}
+	</ul>
+	{page name=xt_new_products type=user order_by='rand()' tpl_type='product_listing'}
+{/if}

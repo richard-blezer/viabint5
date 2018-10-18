@@ -1,0 +1,19 @@
+Konfiguration für die Einstellung der Standard-Versandart bei Artikel denen keine Versandart zugewiesen wurde:
+=> greift wenn Plugin mit Versandkosten-Typ "module" verwendet wird
+
+Nachfolgenden SQL-Befehl mittels DB-Tool (z.B.: PhpMyAdmin, MySqlDumper) in der
+Datenbank des Shops ausführen! Nur nötig falls Konfigurations-Punkt noch nicht angelegt ist.
+
+INSERT INTO `xt_config_plugin` ( `id` , `config_key` , `config_value` , `plugin_id` , `type` , `url` , `group_id` , `shop_id` , `last_modified` , `date_added` )
+VALUES (
+NULL , 'BUI_ARTICLE_SHIPPING_COSTS_MODULE_DEFAULT', '-none-', '34', NULL , NULL , '0', '1', 'CURRENT_TIMESTAMP', NULL
+);
+
+
+-> plugin_id entsprechend anpassen
+
+-> einfügen pro shop (shop_id)
+
+-> sprachvariable anlegen "BUI_ARTICLE_SHIPPING_COSTS_MODULE_DEFAULT_TITLE"
+=> pro sprache jeweils mit klasse "both"
+=> text aus install-xml entnehmen

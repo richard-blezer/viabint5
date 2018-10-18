@@ -1,0 +1,5 @@
+<div data-role="controlgroup" data-type="horizontal">
+{foreach name=aussen item=box_data from=$lang_data}
+<a href="{link page='dynamic' params='action=change_lang&new_lang' params_value=$box_data.code}" data-role="button">{img img=$box_data.image type=w_media_flags alt=$box_data.name}</a>
+{/foreach}
+</div>

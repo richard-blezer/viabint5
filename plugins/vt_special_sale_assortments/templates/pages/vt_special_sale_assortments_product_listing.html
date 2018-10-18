@@ -1,0 +1,80 @@
+
+{if $product_listing}
+{if $group}
+    <h1>{$group.ssag_name}<div class="float_right"><a href="{link page=$smarty.const.VT_SPECIAL_SALE_ASSORTMENTS_PAGE_SEO}">{button text=$smarty.const.TEXT_VT_SSA_SHOW_GROUPS file='button_vt_ssa_show_groups.gif'}</a></div></h1>
+
+    <div style="clear:both;"></div>
+    <p>
+        {if $group.ssag_image}
+            <img src="{img img=$group.ssag_image type=m_info path_only=true}" align="left" style="padding:0px 10px 0px 0px;"  />
+        {/if}    
+        {if $group.ssag_desc}
+            {$group.ssag_desc}
+        {/if}
+    </p>
+    <div style="clear:both;"></div>
+
+{/if}
+
+<div class="hrproductpreview"></div>
+{foreach name=aussen item=module_data from=$product_listing}
+<table class="productPreview" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    {if $module_data.products_image!=''}<td class="productPreviewImage"><a href="{$module_data.products_link}">{img img=$module_data.products_image hover=true id=$module_data.products_id type=m_thumb class=productImageBorder alt=$module_data.products_name|escape:"html"}</a></td>{/if}
+    <td class="productPreviewContent">
+		<h2><a href="{$module_data.products_link}">{$module_data.products_name}</a></h2>
+		{if $module_data.date_available!=''}
+		<ul class="info_info">
+			<li class="infoInfo">{txt key=TEXT_PRODUCT_AVAILABLE} {$module_data.date_available|date_format:"%A, %B %e, %Y"}</li>
+		</ul>
+		{/if}
+		{if $module_data.review_stars_rating}
+			<div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$module_data.review_stars_rating}%"></div></div>
+		{/if}
+		{if $module_data.products_short_description}<p>{$module_data.products_short_description}</p>{/if}
+		
+		{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+		<p class="price">{$module_data.products_price.formated}</p>
+		<p class="taxandshippinginfo">{$module_data.products_tax_info.tax_desc}{if $module_data.products_shipping_link}<a href="{$module_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING} {if $module_data.products_shipping_group_name} ({$module_data.products_shipping_group_name}) {/if}</a>{/if}</p>
+                {*<p class="taxandshippinginfo">
+                    {if $module_data.special_sale_group}    
+                        {$module_data.special_sale_group.ssag_name}<br />
+                        {$module_data.special_sale_group.ssag_short_desc}<br />
+                        {img img=$module_data.special_sale_group.ssag_image type=m_thumb alt=$module_data.special_sale_group.ssag_name}
+                    {/if}
+                </p>*}    
+                
+		{if $module_data.base_price}<p class="vpe">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</p>{/if}
+		{/if}
+		{if $module_data.products_weight > 0}<p class="taxandshippinginfo">{txt key=TEXT_PRODUCTS_WEIGHT}: {$module_data.products_weight} KG</p>{/if}
+		{if $module_data.shipping_status}<p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$module_data.shipping_status}</p>{/if}
+
+		{if $module_data.stock_image}
+            <p class="stockimage">{img img=$module_data.stock_image.image type=t_img_stockrules alt=$module_data.stock_image.name}</p>
+			<p class="stockimagetext">{$module_data.stock_image.name}</p>
+		{/if}
+
+		{if $module_data.allow_add_cart eq 'true'}
+		{form type=form name=product action='dynamic' link_params=getParams method=post}
+		{form type=hidden name=action value=add_product}
+		{form type=hidden name=product value=$module_data.products_id}
+		<div class="addtobasketlisting">
+		<table border="0" cellspacing="0" cellpadding="2">
+  			<tr>
+    		<td style="width:100%">{form type=text name=qty value=1 style='width:50px;'}</td>
+    		<td>{button text=$smarty.const.BUTTON_ADD_CART file='button_in_cart.gif' type='form' btn_template='tpl_button_2.gif' space_left='25' params="onclick='javascript: return refresh_cart(this)'"}
+    		{if $module_data.bui_watchlist_link}<a class="thickbox" href="{$module_data.bui_watchlist_link}">{button text=$smarty.const.BUTTON_ADD_BUI_WATCHLIST file='button_add_to_watchlist.gif' btn_template='tpl_button_2.gif' space_left='25'}</a>{/if}</td>
+  			</tr>
+		</table>
+		</div>
+		{form type=formend}
+		{/if}
+
+	</td>
+  </tr>
+</table>
+<div class="hrproductpreview"></div>
+{/foreach}
+
+{/if}
+{$message}

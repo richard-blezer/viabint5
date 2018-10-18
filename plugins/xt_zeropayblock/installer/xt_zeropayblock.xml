@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<title>Block Payment Type On Zero</title>
+	<version>1.0.0</version>
+	<code>xt_zeropayblock</code>
+	<url>http://www.xt-commerce.com</url>
+	<icon>xt-commerce_logo.jpg</icon>
+	<description>Deactivate payments in case of zero total amount</description>
+	<type>core</type>
+	
+<plugin_code>
+	<code>
+		<hook>class.payment.php:_buildData_bottom</hook>
+		<phpcode><![CDATA[
+		include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_zeropayblock/hooks/class_payment_php__buildData_bottom.php';
+		]]></phpcode>
+		<order>1</order>
+		<active>1</active>
+	</code>
+	<code>
+		<hook>module_checkout.php:checkout_selections</hook>
+		<phpcode><![CDATA[
+		include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_zeropayblock/hooks/module_checkout_php_checkout_selections.php';
+		]]></phpcode>
+		<order>3</order>
+		<active>1</active>
+	</code>
+</plugin_code>
+	
+<configuration>
+<config>
+	<key>XT_ZEROPAYBLOCK_LIST</key>
+	<type>textfield</type>
+	<value></value>
+	<de>
+		<title>durch Komma getrennte Zahlungsart Codes (z.B. xt_paypal)</title>
+	</de>
+	<en>
+		<title>comma separated Payment Codes (e.g. xt_paypal)</title>
+	</en>
+</config>
+</configuration>
+	
+</xtcommerceplugin>

@@ -1,0 +1,66 @@
+/* xt_master_slave */
+
+
+.default_option{
+	border:1px solid #C9CBD0; 
+	padding:2px 10px;
+	background:white;
+	color:black;
+	margin:2px 5px;
+	cursor:pointer;
+}
+
+
+.default_option_deactivated{
+	border:1px solid #C9CBD0; 
+	padding:2px 10px;
+	background:#C9CBD0;
+	color:white;
+	margin:2px 2px;
+}
+
+.default_option_deactivated_selected{
+	border:2px solid black!important; 
+	display:inline-block;
+	/*height:50px;*/
+}
+
+.default_option_selected{
+	border:2px solid black; 
+	padding:2px 10px;
+	background:white;
+	color:black;
+	margin:2px 5px;
+}
+
+.image_option{
+	border:1px solid #C9CBD0; 
+	margin:2px 5px;
+	cursor:pointer;
+}
+
+.image_option_deactivated{
+	border:1px solid #C9CBD0; 
+	background:#C9CBD0;
+	margin:2px 2px;
+	opacity:0.4;
+}
+
+.image_option_selected{
+	border:2px solid black; 
+	margin:2px 5px;
+}
+
+.default_option input, .default_option_deactivated input, .default_option_selected input {display:none;}
+.image_option_holder input {display:none;}
+
+.reset_optoions{
+	color: #fff;
+	padding: 11px 20px;
+	background:#000000!important;
+	background: -webkit-linear-gradient(#707070, #000000)!important;
+	background: -moz-linear-gradient(center top , #707070 0%, #000000)!important;
+	border-radius: 5px;
+	border: 1px solid #000000!important;
+	margin:5px;
+}

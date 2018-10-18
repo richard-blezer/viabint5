@@ -1,0 +1,10 @@
+{if $smarty.const.XT_CLEVERREACH_CHECKBOX eq 'true'}
+<br />
+<table width="100%" cellspacing="0" cellpadding="4">
+  <tr>
+    <td valign="top">{if $cust_info.newsletter eq '1'}{form type=checkbox name=cust_info[allow_newsletter] value=1 check=true}{else}{form type=checkbox name=cust_info[allow_newsletter] value=1}{/if}</td>  
+    <td width="100%">{txt key=TEXT_NEWSLETTER_ACCEPT}<br />
+    </td>
+  </tr>
+</table>
+{/if}

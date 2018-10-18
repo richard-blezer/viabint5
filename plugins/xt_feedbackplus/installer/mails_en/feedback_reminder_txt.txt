@@ -1,0 +1,18 @@
+Dear {$order_data.billing_firstname} {$order_data.billing_lastname},
+
+Thank you for your purchase in our shop.
+
+As we always make an effort to provide better service and customer satisfaction, we ask you - to evaluate your products purchased from us.
+
+{if isset($coupon)}{if $coupon.type eq 'freeshipping'}
+As a thank you for a given rating you will get a free shipping coupon for your next order.{else}
+As a thank you for a given rating you will get a voucher in the amount of {$coupon.amount|round:"2"} {if $coupon.type eq 'fix'}EUR{else}%{/if} for your next order.
+{/if}
+{/if}
+Rate your order: {$feedback_url}
+
+Many Thanks,
+
+{$shop_name}
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

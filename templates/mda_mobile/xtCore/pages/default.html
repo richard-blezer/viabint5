@@ -1,0 +1,30 @@
+<!-- all sort of boxes on the landing page.-->
+
+<!--{box name=loginbox}-->
+<!--{box name=cart}-->
+<!--{box name=manufacturers}-->
+
+<!-- content --> 
+<h1>{$title}</h1>
+<p>{$text}</p>
+
+<!-- Products on Startpage-->
+{page name=xt_startpage_products type=user order_by='p.products_sort' tpl_type='product_listing'}
+
+<!-- categories -->
+{box name=categories}
+
+<!-- Pluginboxes -->
+{box name=xt_special_products type=user order_by='rand()'}
+{box name=xt_bestseller_products type=user}
+{box name=xt_new_products type=user order_by='rand()'}
+{box name=xt_upcoming_products type=user order_by='p.date_available'}
+
+<!-- Languge and currency-->
+<div data-role="collapsible" data-collapsed="true" id="settingsbox" data-content-theme="d">
+	<h3>{txt key=TEXT_BOX_TITLE_CURRENCY} / {txt key=TEXT_BOX_TITLE_LANGUAGE}</h3>
+	<div class="ui-grid-a">
+		<div class="ui-block-a">{box name=currency}</div>
+		<div class="ui-block-b">{box name=language}</div>
+	</div>
+</div>

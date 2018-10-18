@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_AGB_CONTENT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Terms and Conditions]]></value>
+	</en>
+	<de>
+		<value><![CDATA[AGB Text]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_BANNER_LOGO_URL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Banner Logo (2048x100 pixel) *]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Banner Logo (2048x100 pixel) *]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_CITY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[City *]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Stadt *]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_COUNTRY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Country *]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Land *]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_CUSTOMER_STATUS_NEW_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Customers Group for new Customers]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kundengruppe für neue Kunden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_EMAIL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[E-Mail Address *]]></value>
+	</en>
+	<de>
+		<value><![CDATA[E-Mail Adresse *]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_FIRSTNAME_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Firstname *]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorname *]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_LASTNAME_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Lastname *]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Nachname *]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_LOGO_URL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Icon Logo (150x150 pixel) *]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Icon Logo (150x150 pixel) *]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_NEW_ORDER_STATUS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Orderstatus - new order]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - Neue Bestellung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_ORDER_STATUS_AUTHORIZATION_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Authorized]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - Authorisiert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_ORDER_STATUS_COMPLETED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Completed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - Zahlung abgeschlossen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_ORDER_STATUS_DENIED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Denied]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - Abgelehnt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_ORDER_STATUS_FAILED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Failed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - Fehler]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_ORDER_STATUS_PENDING_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Pending]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - In Bearbeitung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_ORDER_STATUS_REFUNDED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Refunded]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - Zurückgezahlt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_ORDER_STATUS_REVERSED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Reversed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus  - Storniert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_PLZ_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Zip *]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PLZ *]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_SALE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Capture payment]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlung sofort einziehen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_SHIPPING_COSTS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipping Costs]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versandkosten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_SHIPPING_TAX_CLASS_ID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipping Tax Class]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Steuerklasse für Versandkosten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_SHOP_NAME_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shopname *]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Shopname *]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_SHOW_SHOP_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Display your shop in QR Code shopping APP]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Shop in der Shop-Suche anzeigen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_STREET_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Street Address *]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Strasse *]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_X_API_KEY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[X-QRShopping API-Password]]></value>
+	</en>
+	<de>
+		<value><![CDATA[X-QRShopping API-Passwort]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_X_API_SIGNATURE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[X-QRShopping API-Signature]]></value>
+	</en>
+	<de>
+		<value><![CDATA[X-QRShopping API-Signatur]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>PAYPAL_QR_SHOPPING_X_API_USER_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[X-QRShopping API Username]]></value>
+	</en>
+	<de>
+		<value><![CDATA[X-QRShopping API Username]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_QR</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal QRShopping]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal QRShopping]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_QR_CODE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal QRShopping]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal QRShopping]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_QR_GENERATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Generate QR Codes]]></value>
+	</en>
+	<de>
+		<value><![CDATA[QR Codes generieren (Bitte Datensätze pro Durchgang auf 10 Einstellen!)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_QR_PRICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[QRShopping Special Price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Aktionspreis QRShopping]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_QR_SHIPPING_PRICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Additional shipping price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zusätzlicher Versandpreis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_QR_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Label Type]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Label Typ]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYPAL_QR_VARIANT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal QRShopping assign]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal QRShopping Variante]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

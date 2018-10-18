@@ -1,0 +1,11 @@
+
+    <div data-role="header" data-theme="b"> 
+	<h2 class="">{txt key=TEXT_BOX_TITLE_CATEGORIES}</h2>
+    </div>
+    
+    <ul data-role="listview" data-theme="b">
+        {foreach name=aussen item=module_data from=$_categories}
+            <li><a href="{$module_data.categories_link}" data-transition="slidefade" title="{$module_data.categories_heading_title}">{$module_data.categories_name}</a></li>
+        {/foreach}
+    </ul>    
+

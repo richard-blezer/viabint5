@@ -1,0 +1,4 @@
+<Files customers_online_table.php>
+Order Deny,Allow
+Allow from all
+</Files>

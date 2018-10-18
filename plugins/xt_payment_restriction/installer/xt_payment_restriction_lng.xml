@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_PAYMENT_RESTRICTION</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Payment restrictions]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[付款限定]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Zahlungsweisen sperren]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Payment restrictions]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Restrictions de paiement]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Restrizioni di pagamento]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[支払い限定]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Betaalwijze sperren]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Ograniczenia płatności]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Заблокировать способы оплаты]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_PAYMENT_RESTRICTION_AMOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Orders amount]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[订单总额]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bestellsumme]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Orders amount]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Montant commandes]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Ammontare degli ordini]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[注文書総額]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Bestelsom]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Suma zamówień]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Сумма заказа]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_PAYMENT_RESTRICTION_COUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Orders count]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[订单数量]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Bestellungen]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Orders count]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nombre de commandes]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Contatore ordini]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[注文書数量]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal bestellingen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Liczenie Zamówień]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число заказов]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_RESTRICTION_CLASS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Type]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[类型]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Typ]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Type]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Type]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Tipo]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[タイプ]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Type]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Typ]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Тип]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_RESTRICTION_VALUE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Value]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[值]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Wert]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Value]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Valeur]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Valore]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[値]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Waarde]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Wartość]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Значение]]></value>
+	</ru>
+</phrase>
+</language_content>
+</xtcommerceplugin>

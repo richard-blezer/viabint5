@@ -1,0 +1,234 @@
+// nav
+
+.mobile-header {
+
+  display: flex;
+
+  .logo {
+    padding: 9px !important;
+    max-height: none !important;
+    max-width: none !important;
+    height: auto !important;
+    margin-left: auto;
+    margin-right: auto;
+    img {
+      height: 40px !important;
+      max-width: none !important;
+    }
+    @media (max-width: 415px) {
+      img {
+        height: 20px !important;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .icons {
+    li {
+      a {
+        display: block;
+        padding: 18px 5px 6px 0;
+      }
+    }
+  }
+
+}
+
+.box-categories {
+  &.mobile {
+    .panel-heading {
+      a {
+        display: block;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+
+// search
+
+body {
+  #mobile-search .form-group {
+    top: 100px;
+    .form-control {
+      font-size: @font-size-base;
+    }
+  }
+  .ui-autocomplete {
+    @media (max-width: @screen-sm-max) {
+      .ui-menu-item {
+        padding: 0;
+        a {
+          display: block;
+          padding: 10px 15px;
+        }
+      }
+    }
+  }
+}
+
+// product
+
+#product {
+  .prodinfo-labels {
+    .label {
+      padding: 8px;
+      display: inline-block;
+      margin: 0 0 4px;
+      color: @gray;
+      &.label-default {
+        background-color: darken(@well-bg, 7%);
+      }
+      &.label-success {
+        background-color: lighten(@label-success-bg, 30%);
+      }
+    }
+  }
+  .mobile-info-panel {
+    .panel-heading {
+      a {
+        display: block;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+
+/**
+ * Table with DIVs
+ */
+.div-table {
+  .container-fluid;
+  .th, .tr {
+    border-bottom: 1px solid @table-border-color;
+    &.no-border {
+      border: 0 none;
+    }
+  }
+  .border-top {
+    border-top: 1px solid @table-border-color;
+  }
+  .th, .tr, .tfoot {
+    @media (min-width: @screen-sm-min) {
+      display: flex;
+      flex-direction: row;
+    }
+    .col {
+      padding: @table-cell-padding;
+      .div-table-col-split {
+        @media (min-width: @screen-md-min) {
+          .pull-left;
+        }
+      }
+    }
+  }
+  .th {
+    border-bottom-width: 2px;
+    font-family: @ew-font-family-bold;
+  }
+  .tfoot {
+    background-color: lighten(@table-bg-active, 2%);
+  }
+  .active {
+    background-color: @table-bg-active;
+    @media (max-width: @screen-xs-max) {
+      background-color: transparent;
+    }
+  }
+  .warning {
+    background-color: @state-warning-bg;
+  }
+  .success {
+    background-color: @state-success-bg;
+  }
+  .info {
+    background-color: @state-info-bg;
+  }
+  .danger {
+    background-color: @state-danger-bg;
+  }
+  &.table-hover {
+    .tr:hover {
+      background-color: @table-bg-hover !important;
+    }
+  }
+  &.table-striped {
+    .tr:nth-child(odd) {
+      background-color: @table-bg-accent;
+    }
+  }
+  &,
+  .text-right,
+  .text-center {
+    @media (max-width: @screen-xs-max) {
+      text-align: left;
+    }
+  }
+}
+
+//
+// show/hide password field values
+//
+
+.pw-show-hide {
+  input, input:-webkit-autofill {
+    border-right: 0 none !important;
+    border-color: @input-border !important;
+    background: @input-bg !important;
+    -webkit-box-shadow: 0 0 0 30px @input-bg inset;
+  }
+  .input-group-addon {
+    border-color: @input-border !important;
+    border-width: 2px;
+    background: @input-bg !important;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-left: 0 none !important;
+  }
+}
+
+//
+// breadcrumb
+//
+
+@media (max-width: @screen-xs-max) {
+  .breadcrumb-form {
+    margin-bottom: -@grid-gutter-width;
+    .container {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+//
+// cart / checkout
+//
+
+.checkout-bottom-bar {
+  display: block;
+  clear: both;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: lighten(@brand-success, 15%);
+  border-top: 1px solid lighten(@brand-success, 12%);
+  width: 100%;
+  height: @navbar-height;
+  z-index: @zindex-navbar;
+  padding: 6px @navbar-padding-horizontal;
+  .btn {
+    color: @btn-success-color;
+    &.btn-back {
+      @media (max-width: 340px) {
+        .hidden;
+      }
+    }
+    #checkout-confirmation &.btn-next {
+      width: 100%;
+    }
+  }
+
+}

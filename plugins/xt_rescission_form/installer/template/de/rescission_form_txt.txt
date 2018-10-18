@@ -1,0 +1,19 @@
+Hallo {$gender} {$customers_firstname} {$customers_lastname},
+Wir haben Ihren Widerruf erhalten und werden Sie in kürze kontaktieren.
+Ihre Daten:
+
+{txt key=TEXT_ORDER_DATE}: {$order_date}
+{txt key=TEXT_RECIEVED_DATE}: {$recieved_date}
+{txt key=TEXT_STREET}: {$street}
+{txt key=TEXT_CITY}: {$city}
+{txt key=TEXT_COUNTRY}: {$country}
+{txt key=TEXT_CLIENT_NUMBER}: {$client_number}
+{txt key=TEXT_INVOICE_NUMBER}: {$invoice_number}
+{txt key=TEXT_PRODUCT_NUMBERS}: {$product_numbers}
+{txt key=TEXT_MESSAGE}: {$message}
+{txt key=TEXT_REVOCATION_DATE}: {$revocation_date}
+
+Achtung: Diese E-Mail-Adresse wurde uns von einem Kunden bekannt gegeben. Falls Sie sich nicht angemeldet haben, antworten Sie bitte auf diese E-Mail.
+
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>ICRA Label</title>
+<version>1.0.0</version>
+<code>xt_icra_label</code>
+<url>http://www.xt-commerce.com</url>
+<description>ICRA Verifizierung</description>
+<icon>icra.jpg</icon>
+<type>extension</type>
+
+<plugin_code>
+<code>
+<hook>class.meta_tags.php:icra</hook>
+<phpcode><![CDATA[
+
+if(XT_ICRA_LABEL_ACTIVE=='true')
+echo stripslashes(XT_ICRA_LABEL_LABEL);
+
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+
+<configuration>
+<config>
+<key>XT_ICRA_LABEL_ACTIVE</key>
+<value>false</value>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<de>
+<title>Status</title>
+<description>an / aus</description>
+</de>
+<en>
+<title>Status</title>
+<description>on / off</description>
+</en>
+<tw>
+<title>狀態</title>
+<description>開啟 / 關閉</description>
+</tw>
+<cn>
+<title>状态</title>
+<description>开启 / 关闭</description>
+</cn>
+<jp>
+<title>状態</title>
+<description>オン/オフ</description>
+</jp>
+</config>
+<config>
+<key>XT_ICRA_LABEL_LABEL</key>
+<value></value>
+<de>
+<title>Label Code</title>
+<description></description>
+</de>
+<en>
+<title>Label Code</title>
+<description></description>
+</en>
+<tw>
+<title>標籤代碼</title>
+<description></description>
+</tw>
+<cn>
+<title>标签代码</title>
+<description></description>
+</cn>
+<jp>
+<title>ラベルのコード</title>
+<description></description>
+</jp>
+</config>
+</configuration>
+</xtcommerceplugin> 

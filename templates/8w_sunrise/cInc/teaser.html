@@ -1,0 +1,24 @@
+{if $teaser_data}
+	<div id="teaser">
+		<div class="teaser-inner">
+			<div id="teaser-slider">
+				{foreach name=aussen key=key item=element from=$teaser_data}
+					{if $element.status == 1 && $element.image}
+						<div id="element-{$key}" class="element cat-id-{$element.id} language-{$element.language}">
+							<div class="img">
+								<a href="{$element.link}" title="{$element.name|escape:"html"}">{img img=$element.image type=m_org alt=$element.name|escape:"html"}</a>
+							</div>
+							<div class="txt">
+								<div class="txt-inner">
+									<h3><a href="{$element.link}" title="{$element.name|escape:"html"}">{if $element.title|strip_tags|trim != ''}{$element.title|strip_tags|trim}{else}{$element.name|strip_tags|trim}{/if}</a></h3>
+									<p>{$element.description|truncate:200:"..."} <a class="more" href="{$element.link}" title="{$element.name|escape:"html"}">[{txt key=TEXT_8WORKS_SUNRISE_READ_MORE}]</a></p>
+								</div>
+							</div>
+						</div>
+					{/if}
+				{/foreach}
+			</div>
+		</div>
+		<div id="teaser-pager" class="clearfix pagination"></div>
+	</div>
+{/if}

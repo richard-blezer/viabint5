@@ -1,0 +1,21 @@
+@color: red;
+
+html, body {
+    background-color: @background-color;
+}
+
+footer {
+    .column {
+        ul {
+            &.footer-column {
+                li, li a {
+                    color: @color;
+                    &:hover,
+                    &:active {
+                        color: darken(@color, 20%);
+                    }
+                }
+            }
+        }
+    }
+}

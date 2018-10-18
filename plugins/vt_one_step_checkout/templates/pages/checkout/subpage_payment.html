@@ -1,0 +1,46 @@
+{*
+<h1>{txt key=TEXT_PAYMENT_ADDRESS}:</h1>
+<table width="100%" class="payment_address">
+  <tr>
+    <td width="40%" valign="top">
+	<p>
+	{if $payment_address.customers_company} {$payment_address.customers_company}<br />{/if}
+	{$payment_address.customers_firstname} {$payment_address.customers_lastname}<br />
+	{$payment_address.customers_street_address}<br />
+	{if $payment_address.customers_suburb} {$payment_address.customers_suburb}<br />{/if}
+	{$payment_address.customers_postcode} {$payment_address.customers_city}<br />
+	{$payment_address.customers_country}<br />
+	</p>
+	<p><a href="{link page='customer' paction=edit_address params='adType=payment&abID' params_value=$payment_address.address_book_id conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>
+	</td>
+	<td width="60%">
+	<p><strong>{txt key=TEXT_SELECT_PAYMENT_ADDRESS}:</strong></p>
+	{form type=form name=payment_address action='dynamic' link_params='page_action=payment' method=post conn=SSL}
+	{form type=select name=adID value=$address_data params='onChange="this.form.submit();"'}
+	{form type=hidden name=adType value=payment}
+	{form type=hidden name=action value=select_address}
+	{form type=formend}
+	{if $add_new_address eq 1}
+	<p>{txt key=TEXT_NEW_PAYMENT_ADDRESS}:</p>
+	<p><a href="{link page='customer' paction='edit_address' params='adType=payment' conn=SSL}">{button text=$smarty.const.BUTTON_ADD_ADDRESS file='add_address.gif'}</a></p>
+	{/if}
+	</td>
+	</tr>
+</table>
+*}
+<h1>{txt key=TEXT_SELECT_PAYMENT}:</h1>
+{txt key=TEXT_SELECT_PAYMENT_DESC}
+{form type=form name=payment action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=payment}
+{foreach name=aussen item=pdata from=$payment_data}
+{$pdata.payment}
+{/foreach}
+
+
+
+
+
+{hook key=checkout_tpl_payment}
+
+{*<p>{button text=$smarty.const.BUTTON_NEXT file='next.gif' type='form'}</p>*}
+{form type=formend}

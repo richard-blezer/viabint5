@@ -1,0 +1,67 @@
+<div data-role="header">
+    <h1>{txt key=TEXT_PAGE_TITLE_ACCOUNT}</h1>
+</div>
+
+{$message}
+
+{if $registered_customer != true}
+
+    <div data-role="header" data-theme="c">
+        <h2>{txt key=TEXT_ACCOUNT_TITLE_WELCOME}</h2>
+    </div>
+
+    <p>{txt key=TEXT_ACCOUNT_WELCOME}</p>
+
+    <p>
+        <a data-role="button" href="{link page='customer' paction='login' conn=SSL}" style="font-size:13px;">
+            <strong>{txt key=TEXT_ACCOUNT_LOGIN}</strong>
+        </a>
+    </p>
+{/if}
+
+<div data-role="header" data-theme="c">
+    <h2>{txt key=TEXT_ACCOUNT_TITLE}</h2>
+</div>
+
+<div class="highlightbox">
+    <ul data-role="listview">
+            <li><a href="{link page='customer' paction=edit_customer conn=SSL}"><strong>{txt key=TEXT_ACCOUNT_EDIT}</strong></a></li>
+            <li><a href="{link page='customer' paction=address_overview conn=SSL}"><strong>{txt key=TEXT_ACCOUNT_ADRESSBOOK}</strong></a></li>
+            {hook key=account_tpl_account_data}
+    </ul>
+</div>
+
+
+{hook key=account_tpl_module_data}
+
+{if $download_flag == true}
+    <br />
+    <div data-role="header" data-theme="c">
+        <h2>{txt key=TEXT_ACCOUNT_DOWNLOADS}</h2>	
+    </div>
+    <table width="100%" class="downloadbox">
+        <tr>
+            <td class="icon">
+                <a href="{link page='customer' paction=download_overview conn=SSL}"><img src="{$tpl_path}img/img_download.jpg" alt="" border="0" /></a>
+            </td>
+            <td class="downloadlink">
+                <a href="{link page='customer' paction=download_overview conn=SSL}"><strong>{txt key=TEXT_ACCOUNT_DOWNLOADS_MORE}</strong></a>
+            </td>
+        </tr>
+    </table>
+{/if}
+
+{if $order_data}
+    <br />
+    <div data-role="header" data-theme="c">
+        <h2>{txt key=TEXT_ACCOUNT_ORDERS}</h2>
+    </div>
+    {include file="/xtCore/pages/order_history_block.html" type="tpl_include"}
+    <br />
+    <a data-role="button" href="{link page='customer' paction=order_overview conn=SSL}">{txt key=TEXT_ACCOUNT_ALL_ORDERS}</a>
+
+{/if}
+
+{hook key=account_tpl_module_data_bottom}
+
+

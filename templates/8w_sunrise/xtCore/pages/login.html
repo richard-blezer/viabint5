@@ -1,0 +1,341 @@
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+{* <!-- <h1>{txt key=TEXT_PAGE_TITLE_LOGIN}</h1> --> *}
+{$message}
+{*php}__debug ($this->get_template_vars());{/php*}
+<div class="left-side {if $isMobile}no-right{/if}">
+  <h1>{txt key=TEXT_REGISTER}</h1>
+  <div class="radio">
+    {if $action != 'add_customer' && $cust_info.guest != '1'}
+      {assign var=returning value="returning"}
+    {/if}
+    {if $action == 'add_customer' && $cust_info.guest != '1'}
+      {assign var=new value="new"}
+    {/if}
+    {if $action == 'add_customer' && $cust_info.guest == '1'}
+      {assign var=guest value="guest"}
+    {/if}
+    {html_radios values="returning" checked=$returning output=$smarty.const.TEXT_RETURNING_CUSTOMER_LOGIN }
+  </div>
+  <div class="highlightbox returning-customer" id="returning" {if $action == 'add_customer'}style="display:none"{/if}>
+    {form type=form name=login action='dynamic' link_params='page_action=login' method=post conn=SSL}
+    {form type=hidden name=action value=login}
+    {form type=hidden name=link_target value=index}
+    <div class="left-line">
+      <div class="line">
+        <p>{txt key=TEXT_LOGIN_EMAIL}</p>
+        <div>{form type=text name=email maxlength='50' class="required"}</div>
+      </div>
+      <div class="line">
+        <p>{txt key=TEXT_LOGIN_PASSWORD}</p>
+        <div>{form type=password name=password maxlength='30' class="required"}</div>
+      </div>
+      <a class="lost-password" href="{link page='customer' paction='password_reset' conn=SSL}">{txt key=text_link_lostpassword}</a>
+    </div>
+    {button_text class="login-button" value=BUTTON_LOGIN type='form'}
+    <div class="clearfix"></div>
+    {form type=formend}
+  </div>
+  <div class="radio">
+    {html_radios values="new" checked=$new output=$smarty.const.TEXT_NEW_CUSTOMER_LOGIN}
+  </div>
+  <div class="highlightbox new-customer" id="new" {if $action != 'add_customer' || $cust_info.guest == '1'}style="display:none"{/if}>
+    {form type=form name=create_account action='dynamic' link_params='page_action=login' method=post conn=SSL}
+    {form type=hidden name=action value=add_customer}
+    {form type=hidden name=page value='customer'}
+    {form type=hidden name=default_address[address_class] value=default}
+    <div class="left-line">
+      <h2>{txt key=TEXT_PERSONAL}:</h2>
+      {if $show_gender eq 1}
+      <div class="line">
+        <p>{txt key=TEXT_GENDER}:</p>
+        <div class="relative gender">{form type=select name=default_address[customers_gender] value=$gender_data default=$default_address.customers_gender note=*}</div>
+      </div>
+      {/if}
+      <div class="line">
+        <p>{txt key=TEXT_FIRSTNAME}:</p>
+        <div>{form type=text name=default_address[customers_firstname] value=$default_address.customers_firstname note=* class="required"}</div>
+      </div>
+      <div class="line">
+        <p>{txt key=TEXT_LASTNAME}:</p>
+        <div>{form type=text name=default_address[customers_lastname] value=$default_address.customers_lastname note=* class="required"}</div>
+      </div>
+      {if $show_birthdate eq 1}
+      <div class="line">
+        <p>{txt key=TEXT_BIRTHDATE}:</p>
+        <div>{form id=default_address_customers_dob type=text name=default_address[customers_dob] value=$default_address.customers_dob note=* class="required"}</div>
+      </div>
+      {/if}
+      <div class="line">
+        <p>{txt key=TEXT_EMAIL}:</p>
+        <div>{form type=text name=cust_info[customers_email_address] value=$cust_info.customers_email_address note=* class="required"}</div>
+      </div>
+      <div class="line">
+        <p>{txt key=TEXT_EMAIL_CONFIRM}:</p>
+        <div>{form type=text name=cust_info[customers_email_address_confirm] value=$cust_info.customers_email_address_confirm note=* class="required"}</div>
+      </div>
+      <div class="line">
+        <p>{txt key=TEXT_PASSWORD_ENTRY}:</p>
+        <div>{form type=password name=cust_info[customers_password] value=$cust_info.customers_password note=* class="required"}</div>
+      </div>
+      <div class="line">
+        <p>{txt key=TEXT_PASSWORD_ENTRY_CONFIRM}:</p>
+        <div>{form type=password name=cust_info[customers_password_confirm] value=$cust_info.customers_password_confirm note=* class="required"}</div>
+      </div>
+      {if $show_company eq 1}
+        <h2>{txt key=TEXT_COMPANY}:</h2>
+        <div class="line">
+          <p>{txt key=TEXT_COMPANY_NAME}:</p>
+          <div>{form type=text name=default_address[customers_company] value=$default_address.customers_company class="required"}</div>
+        </div>
+        <div class="line">
+          <p>{txt key=TEXT_COMPANY_NAME_2}:</p>
+          <p>{form type=text name=default_address[customers_company_2] value=$default_address.customers_company_2 class="required"}</p>
+        </div>
+        <div class="line">
+          <p>{txt key=TEXT_COMPANY_NAME_3}:</p>
+          <div>{form type=text name=default_address[customers_company_3] value=$default_address.customers_company_3 class="required"}</div>
+        </div>
+        {if $show_vat eq 1}
+          <div class="line">
+            <p>{txt key=TEXT_VAT_ID}:</p>
+            <div>{form type=text name=cust_info[customers_vat_id] value=$cust_info.customers_vat_id} {txt key=TEXT_VAT_INFO }</div>
+          </div>
+        {/if}
+      {/if}
+    </div>
+    <div class="right-line">
+      <h2>{txt key=TEXT_ADDRESS}:</h2>
+      <div class="line">
+        <p>{txt key=TEXT_STREET}:</p>
+        <div>{form type=text name=default_address[customers_street_address] value=$default_address.customers_street_address note=* class="required"}</div>
+      </div>
+      <div class="line">
+        <p>{txt key=TEXT_CODE}, {txt key=TEXT_CITY}:</p>
+        <div>
+          {form type=text name=default_address[customers_postcode] value=$default_address.customers_postcode class="required"}
+          {form type=text name=default_address[customers_city] value=$default_address.customers_city note=* class="required"}
+        </div>
+      </div>
+      
+        <div id="countries" class="line">
+            <p>{txt key=TEXT_COUNTRY}:</p>
+            <div class="relative country">
+            {if isset($default_address.customers_country_code)}
+                {form type=select name=default_address[customers_country_code] value=$country_data default=$default_address.customers_country_code note=*}
+            {else}
+                {form type=select name=default_address[customers_country_code] value=$country_data default=$smarty.const._STORE_COUNTRY note=*}
+            {/if}
+            </div>
+        </div>
+    
+    {if $show_federal_states eq 1}
+        <div id='federals' class="line"></div>
+    {/if}
+      
+      <h2>{txt key=TEXT_CONTACT}:</h2>
+      <div class="line">
+        <p>{txt key=TEXT_PHONE}:</p>
+        {if _STORE_TELEPHONE_MIN_LENGTH > 0}
+            <div>{form type=text name=default_address[customers_phone] value=$default_address.customers_phone note=*}</div>
+        {else}
+            <div>{form type=text name=default_address[customers_phone] value=$default_address.customers_phone}</div>
+        {/if}
+        
+      </div>
+      
+      <div class="line">
+        <p>{txt key=TEXT_MOBILE_PHONE}:</p>
+        {if _STORE_MOBILE_PHONE_MIN_LENGTH > 0}
+            <div>{form type=text name=default_address[customers_mobile_phone] value=$default_address.customers_mobile_phone note=*}</div>
+        {else}
+            <div>{form type=text name=default_address[customers_mobile_phone] value=$default_address.customers_mobile_phone}</div>
+        {/if}
+        
+      </div>
+      
+      
+      {if $show_suburb eq 1}
+      <div class="line">
+        <p>{txt key=TEXT_SUBURB}:</p>
+        <div>{form type=text name=default_address[customers_suburb] value=$default_address.customers_suburb}</div>
+      </div>
+      {/if}
+    </div>
+    <div class="clearfix"></div>
+    <p>{txt key=TEXT_MUST}</p>
+    <p>{txt key=TEXT_GUEST_LOGIN_STERNCHEN}</p>
+    <div class="privacy">
+      {if $show_privacy eq 1}
+        {content cont_id=2 is_id='false'}
+        {if $show_privacy_type eq 1}
+          <div class="clearfix">
+            {form type=checkbox name=privacy value=1 class="required"}
+            <span class="required-text">{txt key=TEXT_PRIVACY_ACCEPT} <a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT}</a> {txt key=TEXT_PRIVACY_ACCEPT_2}. {if !$isMobile}{$_content_2.content_popup_link}{/if}</span>
+          </div>
+        {else}
+          <p><a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT_INFO}</a> | {if !$isMobile}{$_content_2.content_popup_link}{/if}</p>
+        {/if}
+      {/if}
+    </div>
+    {hook key=login_create_account_tpl}
+    {button_text class="login-button" value=BUTTON_NEXT type='form'}
+    <div class="clearfix"></div>
+    {form type=formend}
+  </div>
+  <div class="radio">
+    {html_radios values="guest" checked=$guest output=$smarty.const.TEXT_GUEST}
+  </div>
+  <div class="highlightbox new-customer" id="guest" {if $action != 'add_customer' || $cust_info.guest != '1'}style="display:none"{/if}>
+    {form type=form name=create_account action='dynamic' link_params='page_action=login' method=post conn=SSL}
+    {form type=hidden name=action value=add_customer}
+    {form type=hidden name=page value='customer'}
+    {form type=hidden name=default_address[address_class] value=default}
+    <div class="left-line">
+      <h2>{txt key=TEXT_PERSONAL}:</h2>
+      {if $show_gender eq 1}
+      <div class="line">
+        <p>{txt key=TEXT_GENDER}:</p>
+        <div class="relative gender">{form type=select name=default_address[customers_gender] value=$gender_data default=$default_address.customers_gender note=*}</div>
+      </div>
+      {/if}
+      <div class="line">
+        <p>{txt key=TEXT_FIRSTNAME}:</p>
+        <div>{form type=text name=default_address[customers_firstname] value=$default_address.customers_firstname note=* class="required"}</div>
+      </div>
+      <div class="line">
+        <p>{txt key=TEXT_LASTNAME}:</p>
+        <div>{form type=text name=default_address[customers_lastname] value=$default_address.customers_lastname note=* class="required"}</div>
+      </div>
+      {if $show_birthdate eq 1}
+      <div class="line">
+        <p>{txt key=TEXT_BIRTHDATE}:</p>
+        <div>{form type=text name=default_address[customers_dob] value=$default_address.customers_dob note=* class="required"}</div>
+      </div>
+      {/if}
+      <div class="line">
+        <p>{txt key=TEXT_EMAIL}:</p>
+        <div>{form type=text name=cust_info[customers_email_address] value=$cust_info.customers_email_address note=* class="required"}</div>
+      </div>
+      <div class="line">
+        <p>{txt key=TEXT_EMAIL_CONFIRM}:</p>
+        <div>{form type=text name=cust_info[customers_email_address_confirm] value=$cust_info.customers_email_address_confirm note=* class="required"}</div>
+      </div>
+      {if $show_company eq 1}
+        <h2>{txt key=TEXT_COMPANY}:</h2>
+        <div class="line">
+          <p>{txt key=TEXT_COMPANY_NAME}:</p>
+          <div>{form type=text name=default_address[customers_company] value=$default_address.customers_company class="required"}</div>
+        </div>
+        <div class="line">
+          <p>{txt key=TEXT_COMPANY_NAME_2}:</p>
+          <p>{form type=text name=default_address[customers_company_2] value=$default_address.customers_company_2 class="required"}</p>
+        </div>
+        <div class="line">
+          <p>{txt key=TEXT_COMPANY_NAME_3}:</p>
+          <div>{form type=text name=default_address[customers_company_3] value=$default_address.customers_company_3 class="required"}</div>
+        </div>
+        {if $show_vat eq 1}
+          <div class="line">
+            <p>{txt key=TEXT_VAT_ID}:</p>
+            <div>{form type=text name=cust_info[customers_vat_id] value=$cust_info.customers_vat_id} {txt key=TEXT_VAT_INFO}</div>
+          </div>
+        {/if}
+      {/if}
+    </div>
+    <div class="right-line">
+      <h2>{txt key=TEXT_ADDRESS}:</h2>
+      <div class="line">
+        <p>{txt key=TEXT_STREET}:</p>
+        <div>{form type=text name=default_address[customers_street_address] value=$default_address.customers_street_address note=* class="required"}</div>
+      </div>
+      <div class="line">
+        <p>{txt key=TEXT_CODE}, {txt key=TEXT_CITY}:</p>
+        <div>
+          {form type=text name=default_address[customers_postcode] value=$default_address.customers_postcode class="required"}
+          {form type=text name=default_address[customers_city] value=$default_address.customers_city note=* class="required"}
+        </div>
+      </div>
+      <div class="line">
+        <p>{txt key=TEXT_COUNTRY}:</p>
+        <div class="relative country">{form type=select name=default_address[customers_country_code] value=$country_data default=$smarty.const._STORE_COUNTRY note=*}</div>
+      </div>
+      <h2>{txt key=TEXT_CONTACT}:</h2>
+      <div class="line">
+        <p>{txt key=TEXT_PHONE}:</p>
+        <div>{form type=text name=default_address[customers_phone] value=$default_address.customers_phone}</div>
+      </div>
+      {if $show_suburb eq 1}
+      <div class="line">
+        <p>{txt key=TEXT_SUBURB}:</p>
+        <div>{form type=text name=default_address[customers_suburb] value=$default_address.customers_suburb}</div>
+      </div>
+      {/if}
+    </div>
+    <div class="clearfix"></div>
+    <p>{txt key=TEXT_MUST}</p>
+    <p>{txt key=TEXT_GUEST_LOGIN_STERNCHEN}</p>
+    <div class="privacy">
+      {if $show_privacy eq 1}
+        {content cont_id=2 is_id='false'}
+        {if $show_privacy_type eq 1}
+          <div class="clearfix">
+            {form type=checkbox name=privacy value=1 class="required"}
+            <span class="required-text">{txt key=TEXT_PRIVACY_ACCEPT} <a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT}</a> {txt key=TEXT_PRIVACY_ACCEPT_2}. {if !$isMobile}{$_content_2.content_popup_link}{/if}</span>
+          </div>
+        {else}
+          <p><a href="{$privacy_link}" target="_blank">{txt key=TEXT_PRIVACY_TEXT_INFO}</a> | {if !$isMobile}{$_content_2.content_popup_link}{/if}</p>
+        {/if}
+      {/if}
+    </div>
+    {hook key=login_create_account_tpl}
+    {button_text class="login-button" value=BUTTON_NEXT type='form'}
+    <div class="clearfix"></div>
+    {form type=formend}
+  </div>
+</div>
+{if !$isMobile}
+<div class="right-side boxes">
+  {box name=xt_viabiona_cms type=user tpl=box_our_service.html}
+  {box name=xt_viabiona_cms type=user tpl=box_payment_methods.html}
+</div>
+{/if}
+<div class="clearfix"></div>
+
+
+<table style='display:none'>
+{foreach item='federal_states' from=$country_data}
+{if $federal_states.federal_states}
+<tr class='{$federal_states.id}'>
+<td>{txt key=TEXT_FEDERAL_STATES}:</td>
+<td>{form type=select name=default_address[customers_federal_state_code] value=$federal_states.federal_states note=*}</td>
+</tr>
+{/if}
+{/foreach}
+</table>
+
+{literal}
+<script type="text/javascript">
+$(document).ready(function(){
+$('#countries').change(function(){
+var selected_country = $('#countries option:selected').val();
+if($('.'+selected_country).length != 0){
+$('#federals').html($('.'+selected_country).html());
+} else {
+$('#federals').html('');
+}
+});
+var selected_country = $('#countries option:selected').val();
+if($('.'+selected_country).length != 0){
+$('#federals').html($('.'+selected_country).html());
+} else {
+$('#federals').html('');
+}
+
+});
+
+
+</script> 
+{/literal}

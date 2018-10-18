@@ -1,0 +1,8 @@
+<h2 class="boxmanufacturerheader">{txt key=TEXT_BOX_TITLE_MANUFACTURERS}</h2>
+<div class="boxbody">
+<ul id="manufacturerslist">
+{foreach name=aussen item=module_data from=$_manufacturers}
+	<li><a href="{$module_data.link}">{$module_data.manufacturers_name}</a></li>
+{/foreach}
+</ul>
+</div>

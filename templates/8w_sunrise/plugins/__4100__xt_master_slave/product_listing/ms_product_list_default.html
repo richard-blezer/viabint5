@@ -1,0 +1,41 @@
+<div class="hrproductpreview"></div>
+{foreach name=aussen item=module_data from=$product_listing}{if $module_data.products_id != $smarty.get.info}
+<table class="productPreview" width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    {if $module_data.products_image!=''}<td class="productPreviewImage"><a href="{$module_data.products_link}">{img img=$module_data.products_image type=m_thumb class=productImageBorder alt=$module_data.products_name}</a></td>{/if}
+    <td class="productPreviewContent">
+		<h2><a href="{$module_data.products_link}">{$module_data.products_name}</a></h2>
+		{if $module_data.products_short_description}<p>{$module_data.products_short_description}</p>{else}<p>{$module_data.products_description}</p>{/if}
+		{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+		<p class="price">{$module_data.products_price.formated}</p>
+		<p class="taxandshippinginfo">{$module_data.products_tax_info.tax_desc}{if $module_data.products_shipping_link}<a href="{$module_data.products_shipping_link}" target="_blank">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</p>
+		{if $module_data.base_price}<p class="vpe">{$module_data.base_price.price} {#text_per#} {$module_data.base_price.vpe.name}</p>{/if}
+		{/if}
+
+		{if $module_data.shipping_status}<p class="shippingtime">{#text_shippingtime#}&nbsp;{$module_data.shipping_status}</p>{/if}
+
+		{if $module_data.stock_image}
+            <p class="stockimage">{img img=$module_data.stock_image.image type=t_img_stockrules alt=$module_data.stock_image.name}</p>
+			<p class="stockimagetext">{$module_data.stock_image.name}</p>
+		{/if}
+
+		{if $module_data.allow_add_cart eq 'true'}
+		{form type=form name=product action='dynamic' link_params=getParams method=post}
+		{form type=hidden name=action value=add_product}
+		{form type=hidden name=product value=$module_data.products_id}
+		<div class="addtobasketlisting">
+		<table border="0" cellspacing="0" cellpadding="2">
+  			<tr>
+    		<td style="width:100%">{form type=text name=qty value=1 params='style="width:50px;"'}</td>
+    		<td>{button text=$smarty.const.BUTTON_ADD_CART file='button_in_cart.gif' type='form' btn_template='tpl_button_2.gif' space_left='25'}</td>
+  			</tr>
+		</table>
+		</div>
+		{form type=formend}
+		{/if}
+
+	</td>
+  </tr>
+</table>
+<div class="hrproductpreview"></div>{/if}
+{/foreach}

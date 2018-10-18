@@ -1,0 +1,8 @@
+<li class="currency">
+	{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+		{form type=form name=currency action='dynamic' link_params=getParams method=post}
+		{form type=hidden name=action value=change_currency}
+		{form type=select name=new_currency value=$currency_data default=$selected_currency params='onchange="this.form.submit();" style="width: 50"'}
+		{form type=formend}
+	{/if}
+</li>

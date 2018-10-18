@@ -1,0 +1,114 @@
+<div id="checkout-payment" class="row">
+	<div class="col col-sm-3">
+		<div class="well shipping-address address hidden-xs">
+			<p class="headline-underline">{txt key=TEXT_SHIPPING_ADDRESS}</p>
+			{if $shipping_address.customers_company}<p>{$shipping_address.customers_company}</p>{/if}
+			<p>{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}</p>
+			<p>{$shipping_address.customers_street_address}</p>
+			{if $shipping_address.customers_suburb}<p>{$shipping_address.customers_suburb}</p>{/if}
+			<p>{$shipping_address.customers_postcode} {$shipping_address.customers_city}</p>
+			<p>{$shipping_address.customers_country}</p>
+		</div>
+
+		<div class="well payment-address address{if $shipping_address.address_book_id == $payment_address.address_book_id} hidden-xs{/if}">
+			<p class="headline-underline clearfix">
+                {txt key=TEXT_PAYMENT_ADDRESS}
+                {if $payment_address.allow_change == true}
+                    <a title="{txt key=TEXT_EDIT}" class="btn btn-default pull-right" href="{link page='customer' paction='edit_address' params="adType=`$payment_address.address_class`&abID" params_value=$payment_address.address_book_id conn=SSL}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        <span class="sr-only">{txt key=TEXT_EDIT}</span>
+                    </a>
+                {/if}
+            </p>
+			{if $payment_address.customers_company}<p>{$payment_address.customers_company}</p>{/if}
+			<p>{$payment_address.customers_firstname} {$payment_address.customers_lastname}</p>
+			<p>{$payment_address.customers_street_address}</p>
+			{if $payment_address.customers_suburb}<p>{$payment_address.customers_suburb}</p>{/if}
+			<p>{$payment_address.customers_postcode} {$payment_address.customers_city}</p>
+			<p>{$payment_address.customers_country}</p>
+			<p><br /></p>
+			{if $shipping_address.allow_change == true}
+				{if $address_data|@count > 2}
+					{form type=form role="form" name=payment_address action='dynamic' link_params='page_action=payment' method=post conn=SSL}
+					<div class="form-group">
+						<label for="address_data">{txt key=TEXT_SELECT_PAYMENT_ADDRESS}</label>
+						{form id="address_data" class="form-control" type=select name=adID value=$address_data params='onchange="this.form.submit();" data-style=""' default=$smarty.session.customer->customer_payment_address.address_book_id params='onchange="this.form.submit();"'}
+					</div>
+					{form type=hidden name=adType value=payment}
+					{form type=hidden name=action value=select_address}
+					{form type=formend}
+				{/if}
+			    {if $add_new_address eq 1}
+                    <a class="btn btn-default" href="{link page='customer' paction='edit_address' params='adType=payment' conn=SSL}">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        {txt key=BUTTON_ADD_ADDRESS}
+                    </a>
+			    {/if}
+			{/if}
+		</div>
+	</div>
+	<div class="col col-sm-9">
+		<h1>{txt key=TEXT_SELECT_PAYMENT_DESC}</h1>
+
+		{form type=form role="form" name=payment action='checkout' method=post conn=SSL}
+		{form type=hidden name=action value=payment}
+
+        <ul class="list-group">
+		    {foreach name=aussen item=pdata from=$payment_data}
+			    <li class="list-group-item clearfix cursor-pointer">{$pdata.payment}</li>
+		    {/foreach}
+        </ul>
+
+        {hook key=checkout_tpl_payment_comment}
+
+        <hr class="visible-xs" />
+
+		<div class="well form-counter">
+			<p class="h4">{txt key=TEXT_COMMENTS} <small>{txt key=TEXT_MAX_CHARACTERS}</small></p>
+            <textarea name="comments" id="comments" class="form-control autosizejs" cols="50" rows="3" placeholder="{txt key=TEXT_COMMENTS_DESC}" maxlength="255">{$smarty.session.order_comments}</textarea>
+		</div>
+
+        <div class="visible-xs">
+
+            {if $shipping_address.address_book_id == $payment_address.address_book_id}
+                <div class="different-payment-address">
+                    <h2>Abweichende {txt key=TEXT_PAYMENT_ADDRESS}?</h2>
+                    <p>{txt key=TEXT_SELECT_PAYMENT_ADDRESS}</p>
+                    <a href="javascript:void(0)" class="btn btn-default show-payment-address backtotop">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        {txt key=TEXT_PAYMENT_ADDRESS}
+                    </a>
+                </div>
+            {/if}
+
+            <div class="checkout-bottom-bar">
+                <a href="javascript:history.back();" class="btn-back btn btn-link pull-left">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    {txt key=BUTTON_BACK}
+                </a>
+                <button type="submit" class="btn btn-next btn-success preloader pull-right">
+                    {txt key=BUTTON_NEXT}
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <div class="hidden-xs">
+            <div class="clearfix">
+                <a href="javascript:history.back();" class="btn btn-default pull-left">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    {txt key=BUTTON_BACK}
+                </a>
+                <button type="submit" class="btn btn-success preloader pull-right">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    {txt key=BUTTON_NEXT}
+                </button>
+            </div>
+        </div>
+
+        {hook key=checkout_tpl_payment}
+        {form type=formend}
+
+    </div>
+</div><!-- #checkout-payment .row -->

@@ -1,0 +1,120 @@
+body {
+	margin: 0px auto;
+	background: url(../img/email/email_bg.png);
+}
+
+h1 {color:#000000;font-weight:bold;font-size:22px;margin:20px 0px 15px 0px;padding:0px;width:auto;border-style:solid;border-width:0px 0px 1px 0px;border-color:#000000;}
+h2 {color:#000000; font-weight:bold;font-size:16px;margin:15px 0px 8px 0px;padding:0px;}
+
+
+.email_container{
+	margin: 0px auto;
+	width: 720px;
+}
+
+.email_table_left_bg{
+	width: 60px;
+	background: url(../img/email/table_left_bg.png) repeat-y 0 0;
+}
+
+.email_table_center_bg{
+	background: url(../img/email/table_center.png) #ffffff repeat-x;
+	width: 600px;
+	padding-top: 50px;
+}
+
+.email_table_right_bg{
+	width: 60px;
+	background: url(../img/email/table_right_bg.png) repeat-y 0 0;
+}
+
+.email_table_left{
+	width: 60px;
+	height: 480px;
+	background: url(../img/email/table_left.png) no-repeat;
+}
+
+.email_table_right{
+	width: 60px;
+	height: 480px;
+	background: url(../img/email/table_right.png) no-repeat;
+}
+
+.email_toplogo {
+	width: 600px;
+	height: 80px;
+}
+
+	
+.email_content{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	min-height:430px;
+}
+	
+.email_footer{
+	color: #666666;
+	font-size: 11px;
+	border-top: 1px #efefef solid;
+	height: 50px;
+	padding:10px;
+	text-align: center;
+}
+	
+.email_title{
+	font-size: 16px;
+	font-weight:600;	
+}
+	
+.email_highlight{
+	font-weight:600;
+	color:#000000;
+	background: #B1B16D;
+	padding: 10px;
+}
+	
+.email_highlight a, .email_highlight a:link{	
+	color:#ffffff;	
+	text-decoration:none;
+}	
+
+.email_ul{
+	background: #FFFFFF;
+	border: 1px #DDDDDD solid;
+	padding: 10px;
+}
+	
+.email_ul li{
+	list-style-position: inside;
+	padding-top: 10px;
+}
+	
+.email_caution{	
+	background: #FFE0E4;
+	border: 1px #DDDDDD solid;
+	padding: 10px;
+}
+
+.email_strong{
+	font-weight:600;	
+}
+
+/* ORDER DETAILS */
+table.tabledetails {font-size:11px; background-color:#FFF2CC; border-style: solid; border-width:0px 1px 1px 1px; border-color:#DA9401;}
+table.tabledetails tr td {padding:4px}
+table.tabledetails tr.headerrow td {background-color:#DA9401; color:#FFFFFF; font-weight:bold}
+table.tabledetails tr.headerrow td.left {text-align:left}
+table.tabledetails tr.headerrow td.center {text-align:center}
+table.tabledetails tr.headerrow td.right {text-align:right}
+
+/* ORDER DETAILS CONTENT ROW 1 */
+table.tabledetails tr.contentrow1 td {background-color:#FFF2CC;vertical-align:top}
+table.tabledetails tr.contentrow1 td.left {text-align:left}
+table.tabledetails tr.contentrow1 td.center {text-align:center}
+table.tabledetails tr.contentrow1 td.right {text-align:right}
+
+/* ORDER DETAILS CONTENT ROW 2 */
+table.tabledetails tr.contentrow2 td {background-color:#FFEAAB;vertical-align:top}
+table.tabledetails tr.contentrow2 td.left {text-align:left}
+table.tabledetails tr.contentrow2 td.center {text-align:center}
+table.tabledetails tr.contentrow2 td.right {text-align:right}

@@ -1,0 +1,63 @@
+<div class="box box-white box-hover">
+    {if $payment_hidden == true}
+        <p class="payment-name">
+            <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code checked=true}</span> {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated|strip_tags|trim})</span>{/if} {if $payment_icon}<span class="float-right">{img img=$payment_icon type=w_media_payment alt=$payment_name}</span>{/if}
+        </p>
+    {else}
+        {if $payment_code == $payment_selected}
+            <p class="payment-name">
+                <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code checked=true}</span> {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated|strip_tags|trim})</span>{/if} {if $payment_icon}<span class="float-right">{img img=$payment_icon type=w_media_payment alt=$payment_name}</span>{/if}
+            </p>
+        {else}
+            <p class="payment-name">
+                <span style="display:inline-block;width: 25px;">{form type=radio name=selected_payment value=$payment_code}</span> {$payment_name} {if $payment_price.formated}<span class="normal">({$payment_price.formated|strip_tags|trim})</span>{/if} {if $payment_icon}<span class="float-right">{img img=$payment_icon type=w_media_payment alt=$payment_name}</span>{/if}
+            </p>
+        {/if}
+    {/if}
+    <div class="payment-desc form-horizontal" style="padding-left:25px;{if $payment_code != $payment_selected}display:none;{/if}">
+        {if $payment_desc}
+            <div class="desc">
+                {$payment_desc}
+            </div>
+        {/if}
+        {if $account_list !=''}
+            <p>{txt key=TEXT_BANK_ACCOUNTS_NEW}</p>
+            <div class="form-group">
+                <label for="acID" class="col-sm-4 control-label">{txt key=TEXT_BANKTRANSFER_ACCOUNT_SELECT}:</label>
+                <div class="col-sm-8">
+                    {form type=select id=acID name=acID value=$account_list}
+                </div>
+            </div>
+            <hr />
+        {/if}
+        <fieldset>
+            <p class="h3">{txt key=BUTTON_ADD_ACCOUNT}:</p>
+            <div class="form-group">
+                <label for="banktransfer_owner" class="col-sm-4 control-label">{txt key=TEXT_BANKTRANSFER_OWNER}*</label>
+                <div class="col-sm-8">
+                    {form type=text id=banktransfer_owner name=banktransfer_owner value=$banktransfer_owner}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="banktransfer_bank_name" class="col-sm-4 control-label">{txt key=TEXT_BANKTRANSFER_BANK_NAME}*</label>
+                <div class="col-sm-8">
+                    {form type=text id=banktransfer_bank_name name=banktransfer_bank_name value=$banktransfer_bank_name}
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="banktransfer_iban" class="col-sm-4 control-label">{txt key=TEXT_BANKTRANSFER_IBAN}*</label>
+                <div class="col-sm-8">
+                    {form type=text id=banktransfer_iban name=banktransfer_iban value=$banktransfer_iban}
+                </div>
+            </div>
+            {* dummy BIC *}
+            {form type=hidden id=banktransfer_bic name=banktransfer_bic value="Standard"}
+            <p class="required pull-right">
+                {txt key=TEXT_MUST}
+            </p>
+            <div class="clearfix"></div>
+            {* Save account for default *}
+            {form type=hidden id=banktransfer_save name=banktransfer_save value=1}
+        </fieldset>
+    </div>
+</div>

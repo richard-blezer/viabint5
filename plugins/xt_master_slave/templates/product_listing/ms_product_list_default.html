@@ -1,0 +1,32 @@
+<div class="product-listing row">
+{foreach name=aussen item=module_data from=$product_listing}
+{if $module_data.products_id != $smarty.get.info}
+<div class="column three">
+    <div class="product box">
+			{if $module_data.products_image == 'product:noimage.gif'}
+			<p class="product-image"><a href="{$module_data.products_link}"><img src="{$tpl_url_path}img/no_image.png" alt="{$module_data.products_name|escape:"html"}" /></a></p>
+			{else}
+			<p class="product-image"><a href="{$module_data.products_link}">{img img=$module_data.products_image type=m_thumb class=productImageBorder alt=$module_data.products_name|escape:"html"}</a></p>
+    		{/if}
+			<p class="product-name"><a href="{$module_data.products_link}">{$module_data.products_name}</a></p>			
+			{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+			<p class="product-price">{$module_data.products_price.formated}</p>
+			{if $module_data.products_shipping_link}
+			<p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} <a href="{$module_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+			{else}
+			<p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} {txt key=TEXT_EXCL_SHIPPING}</p>
+			{/if}
+			{/if}
+			{if $module_data.allow_add_cart eq 'true'}
+    		{form type=form name=product action='dynamic' link_params=getParams method=post}
+    		{form type=hidden name=action value=add_product}
+    		{form type=hidden name=product value=$module_data.products_id}
+				{$products_information}
+				<p class="add-to-cart">{form type=text name=qty value=1} {css_button text=$smarty.const.BUTTON_ADD_CART type='form'}</p>
+				{form type=formend}
+			{/if}
+    </div><!-- .box .product -->
+</div><!-- .column .four -->
+{/if}
+{/foreach}
+</div>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_RESCISSION_SHOW_CONFIRMATION_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Needs to be confirmed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Muss bestätigt werden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_RESCISSION_SHOW_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Aktivieren]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[啟用]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>ERROR_RESCISSION_ACCEPTED</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Sie müssen die Widerrufsinformationen akzeptieren um die Bestellung abschließen zu können.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sie müssen die Widerrufsinformationen akzeptieren um die Bestellung abschließen zu können.]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[你必須接受對於訂單的撤銷權利內容。]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_RESCISSION_ACCEPT</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[I have read the informations about my right of rescission.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ich habe die Informationen zu meinem Widerrufsrecht gelesen.]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[我已閱讀關於撤銷權利內容。]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_RESCISSION_CONFIRMATION</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Display right of rescission]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Widerrufsrecht anzeigen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_RESCISSION_HEADING</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Informations about right of rescission]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Informationen zum Widerrufsrecht]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[關於撤銷權利內容]]></value>
+	</tw>
+</phrase>
+</language_content>
+</xtcommerceplugin>

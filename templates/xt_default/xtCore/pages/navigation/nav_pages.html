@@ -1,0 +1,7 @@
+<div>
+{if $actual_page neq 1}<a href="{$first}">{txt key=TEXT_FIRST}</a> {/if}
+{if $actual_page neq 1}<a href="{$prev}">{txt key=TEXT_PREV}</a>{/if}
+{$pages}
+{if $actual_page neq $last_page}<a href="{$next}">{txt key=TEXT_NEXT}</a> {/if}
+{if $actual_page neq $last_page}<a href="{$last}">{txt key=TEXT_LAST}</a>{/if}
+</div>

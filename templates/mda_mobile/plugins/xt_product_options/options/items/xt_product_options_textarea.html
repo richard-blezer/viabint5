@@ -1,0 +1,8 @@
+{if $options!=''}
+        <div data-role="fieldcontain">
+            {foreach name=outer item=options_data from=$options}
+            <label for="products_info[{$options_data.option_group_id}_{$options_data.id}]">{$options_data.text}</label>
+            <textarea id="products_info[{$options_data.option_group_id}_{$options_data.id}]" name="products_info[{$options_data.option_group_id}_{$options_data.id}]"></textarea>
+            {/foreach}
+        </div>
+{/if}

@@ -1,0 +1,60 @@
+<h2>Downloads</h2>
+<!-- Table based view -->
+<!--<table width="100%">
+	<thead>
+		<tr>
+			<th colspan="2" align="left">{txt key=TEXT_FILE}</td>
+			<th colspan="2" align="left">{txt key=TEXT_SIZE}</td>
+		</tr>
+	</thead>
+	<tbody>
+		{foreach name=aussen item=file_data from=$media_files}
+		<tr>
+			<td>{img img=$file_data.icon url=`$smarty.const._SRV_WEB`media/filetypes/ alt=$file_data.file}</td>
+			<td>
+				{$file_data.file}
+				{if $file_data.media_name}<br />{$file_data.media_name}{/if}
+				{if $file_data.media_description}<br />{$file_data.media_description}{/if}
+			</td>
+			<td>{$file_data.media_size|fsize_format:"MB"}</td>
+			<td><a href="{$file_data.download_url}" rel="nofollow">{img img=disk.png url=`$smarty.const._SRV_WEB`media/icons/}</a></td>
+		</tr>
+		{/foreach}
+	</tbody>
+</table>-->
+
+<!-- List based view. -->
+<ul data-role="listview" data-inset="true">
+{foreach name=aussen item=file_data from=$media_files}
+	{assign var='dp1' value=$language_code|cat:'/product?info='}
+	{assign var='dp2' value=$dp1|cat:$file_data.link_id}
+	{assign var='dp3' value=$dp2|cat:'&dl_media='}
+	{assign var='dp4' value=$dp3|cat:$file_data.m_id}
+	<li>
+		<a href="{$dp4}" rel="external" target="_blank">
+			{img img=$file_data.icon url=`$smarty.const._SRV_WEB`media/filetypes/ alt=$file_data.file class="ui-li-icon"}
+			<p><strong>{$file_data.file}</strong></p>
+			<p>
+				{if $file_data.media_name}<br />{$file_data.media_name}{/if}
+				{if $file_data.media_description}<br />{$file_data.media_description}{/if}
+				{$file_data.media_size|fsize_format:"MB"}
+			</p>
+		</a>
+	</li>
+{/foreach}
+</ul>
+<p><br/></p>
+     
+      
+      
+  
+    
+    
+    
+    
+    
+    
+    
+	
+
+  

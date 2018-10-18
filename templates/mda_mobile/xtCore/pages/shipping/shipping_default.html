@@ -1,0 +1,53 @@
+{if $shipping_hidden == true}
+	<br/>
+	<ul data-role="listview">
+		<li>
+			{if $shipping_icon}
+				{img img=$shipping_icon url=`$smarty.const._SRV_WEB`media/shipping/}
+			{/if}
+			<strong>{$shipping_name}</strong> {$shipping_price.formated}
+			{if $shipping_desc}
+				<p>{$shipping_desc}</p>
+			{/if}
+			
+		</li>
+		
+	</ul>
+	<br/>
+	{form type=hidden name=selected_shipping value=$shipping_code}
+{else}
+	{if $shipping_code==$shipping_selected}
+		<label for="{$shipping_code}">
+			<strong>{$shipping_name}</strong>
+			
+			{if $shipping_desc}
+				<p>{$shipping_desc}</p>
+			{/if}
+			
+			{if $shipping_icon}
+				{img img=$shipping_icon url=`$smarty.const._SRV_WEB`media/shipping/}
+			{/if}
+			
+			{$shipping_price.formated}
+		</label>
+		{form type=radio id=$shipping_code name=selected_shipping value=$shipping_code checked=true}
+	{else}
+		<label for="{$shipping_code}">
+			<strong>{$shipping_name}</strong>
+			{if $shipping_desc}
+				<p>{$shipping_desc}</p>
+			{/if}
+			
+			{if $shipping_icon}
+				{img img=$shipping_icon url=`$smarty.const._SRV_WEB`media/shipping/}
+			{/if}
+		
+			{$shipping_price.formated}
+		</label>
+		{form type=radio id=$shipping_code name=selected_shipping value=$shipping_code}
+	{/if}		
+{/if}
+  	
+  	
+  
+	

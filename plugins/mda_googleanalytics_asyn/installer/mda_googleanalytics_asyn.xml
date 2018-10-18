@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>Google Analytics Asyn Tracker</title>
+<version>1.0.0</version>
+<code>mda_googleanalytics_asyn</code>
+<url>http://www.xt-commerce.com</url>
+<description>Google analytics plugin with new Tracker</description>
+<type>marketing</type>
+<icon>logo_admin.gif</icon>
+<plugin_code>
+<code>
+<hook>display.php:content_head</hook>
+<phpcode><![CDATA[
+require_once _SRV_WEBROOT.'plugins/mda_googleanalytics_asyn/classes/class.xt_googleanalytics_async.php';
+$google_analytics = new google_analytics_async();
+echo $google_analytics->_getHeaderCode();
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>index_footer_tpl</hook>
+<phpcode><![CDATA[
+require_once _SRV_WEBROOT.'plugins/mda_googleanalytics_asyn/classes/class.xt_googleanalytics_async.php';
+$google_analytics = new google_analytics_async();
+$google_analytics->_getCode();
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+<configuration>
+<config>
+<key>XT_GOOGLE_ANALYTICS_ASYNC_UA</key>
+<value></value>
+<de>
+<title>Google UA ID (UA-XXXXXX-XX)</title>
+</de>
+<en>
+<title>Google UA ID (UA-XXXXXX-XX)</title>
+</en>
+</config>
+<config>
+<key>XT_GOOGLE_ANALYTICS_ASYNC_ECOM</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Google eCommerce Tracking</title>
+</de>
+<en>
+<title>Google eCommerce Tracking</title>
+</en>
+</config>
+<config>
+<key>XT_GOOGLE_ANALYTICS_ASYNC_ANON</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Letzte Stelle in IP entfernen</title>
+</de>
+<en>
+<title>Remove last IP octed</title>
+</en>
+</config>
+</configuration>
+</xtcommerceplugin>

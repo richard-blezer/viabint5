@@ -1,0 +1,63 @@
+<div data-role="page" id="main">
+	<div data-role="header" data-theme="c">
+		<a href="{link page='cart'}" data-iconpos="notext" data-icon="mda_mobile_cart" data-theme="d">{txt key=TEXT_CART}</a>
+		<h1><a href="{$top_navigation.0.url}"><img src="{$tpl_path}img/top_logo.png" alt="{$store_name}" /></a></h1>
+		<a href="#searchbox" data-iconpos="notext" data-icon="search" data-rel="dialog" data-transition="pop" data-theme="d">{txt key=TEXT_SEARCH}</a>
+		<div data-role="navbar">
+			<ul>
+				<li><a href="{$top_navigation.0.url}.php" data-theme="b">{txt key=TEXT_HOME}</a></li>
+				{if $account == true}
+				<li><a href="{link page='customer' conn=SSL}" data-theme="b">{txt key=TEXT_ACCOUNT}</a></li>
+				{/if}
+				<li><a href="{link page='checkout' paction='shipping' conn=SSL}" data-theme="b">{txt key=TEXT_CHECKOUT}</a></li>
+				{if $account == true}
+				{if $registered_customer}
+				<li><a href="{link page='customer' paction='logoff' conn=SSL}" data-theme="b">{txt key=TEXT_LOGOFF}</a></li>
+				{else}
+				<li><a href="{link page='customer' paction='login' conn=SSL}" data-theme="b">{txt key=TEXT_LOGIN}</a></li>
+				{/if}
+				{/if}
+			</ul>
+		</div>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<!-- I think, breadcrumb is not neccessary, but others may think otherwise-->
+		<!--<div id="breadcrumb">
+			{include file="/xtCore/pages/navigation/breadcrumb.html" type="tpl_include"} 
+		</div>-->
+						
+		<!-- Since we have no space here, all boxes are in the "default" template which defines the landing page-->
+		
+		{$content}
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-theme="c">
+		<div data-role="navbar">
+			{content block_id=6}
+			{if $_content_6|count > 0}
+			<ul>
+			{foreach name=aussen item=box_data from=$_content_6}
+				<li><a href="{$box_data.link}" data-theme="b">{$box_data.title}</a></li>
+			{/foreach}
+			</ul>
+			{/if}
+		</div>
+		<p>[<copyright>]</p>
+		<p><small>Template &copy; by MdA Business Communications AG Basel, Schweiz</small></p>
+		{hook key=index_footer_tpl}
+		{banner bg=banner}
+
+    <!--<p><small><a href="http://mobishop.eintest.ch/index.php?overrideMobileTemplate=true" data-ajax="false">Default Template anzeigen</a></small></p>-->
+	</div><!-- /footer -->
+	
+</div><!-- /page -->
+
+<div data-role="page" id="searchbox">
+	<div data-role="header" data-theme="b">
+		<h1>{txt key=TEXT_SEARCH}</h1>
+	</div><!-- /header -->
+	<div data-role="content">	
+		{box name=search}
+	</div><!-- /content -->
+</div><!-- /page -->

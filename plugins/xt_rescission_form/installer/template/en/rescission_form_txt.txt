@@ -1,0 +1,19 @@
+Hello {$gender} {$customers_firstname} {$customers_lastname},</h1>
+We have received your cancellation and soon we will contact you</p>
+The data you've submitted:</h2>
+
+{txt key=TEXT_ORDER_DATE}: {$order_date}
+{txt key=TEXT_RECIEVED_DATE}: {$recieved_date}
+{txt key=TEXT_STREET}: {$street}
+{txt key=TEXT_CITY}: {$city}
+{txt key=TEXT_COUNTRY}: {$country}
+{txt key=TEXT_CLIENT_NUMBER}: {$client_number}
+{txt key=TEXT_INVOICE_NUMBER}: {$invoice_number}
+{txt key=TEXT_PRODUCT_NUMBERS}: {$product_numbers}
+{txt key=TEXT_MESSAGE}: {$message}
+{txt key=TEXT_REVOCATION_DATE}: {$revocation_date}
+
+Warning: This e-mail address was given to us by a customer. If you have not registered, please reply to this e-mail.
+
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

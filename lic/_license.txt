@@ -1,0 +1,48 @@
+company: Grijs b.v.
+created: 2012-08-10 15:36:11
+key: f1a4371a5a768dd975ca76416997d878
+license: xt:Commece 4 - Professional
+mailaddress: stefan.a@xt-commerce.com
+maxproducts: 0
+maxstores: 1
+maxversion: 4015
+name: Alexander Krings
+project: xt:Commerce Veyton
+updatesuntil: 2013-08-10 15:36:11
+
+------ LICENSE FILE DATA -------
+4V47UY33k8YrysS5D2vm84KVVGed5wZT
+7XfuiBnNWq6zjUDZx8yPqWCwVdtLBgas
+4SW9sVXOn0rcIE/3d6scolmjN5qzyvR6
+/uVkBFpcsVsqr6tMyVlIYfzhsxd3pMrT
+0fvK6XEHG+gF69Q/qxiHQ9OqBJLhYHmv
+Nv1F6rMFRs0PBrBxDqeuaNUdnw3ZF6di
+t/TDuYIXNK7nalOQ7joELRLilCbzvWSY
+ZP+fY2kuWVUkJ1Wic+SJyVHRdI2MYGjf
+8CFmwhofMHtsb0+7f9q2vHZrTxY0eQ5v
+AU2d1ve2rQck9RoiXtzCT/inoO4rzt0P
+0WpRgNGOhe86vlyC1ElyZJC9MAXH/05M
+XPZoInXxxOn6bBG+skY6c2IoVF8QKkWl
+/ABu5QPVfrCGN7bNuAZqSBUNK2eYzhMQ
+dF/bHZEkhFdZh/2AjhSi+FLxRg/UZn5s
+Ha7rcpEjBjwtSK65CBSgqZNF6CxZmptp
+pcuOrKmwFrEBF58anME2oQHvWkTU60BX
+sgeDQAg17IVK5ywms+zGz0DpXpz+1TIJ
+EAeh4QhMuNuFFRxS3TgN8IQI71LT1HBW
+ujsJPeB2blfY1+ne8DOABOltgMTQmwBY
+vbah1s665b1FM1p1yhkHqhg7+USu43kB
+u1sQ1063oNZkp3z11uFjxCGcBqvZZNws
+zuUl+7JrkmmOoN4pTq5NLhvLcl6nNUnI
+rts2xD8CxkkpfUpyHqYAmGnMrfrZo3mt
+pOj96dGLrnYc+SgrKhXD8prrTMbVrh37
+svPdbpBLtT7Qn59DhpmOD5F1ZvoGjNUY
+/IZj1v1E/J9gFgvqHhomq1ZZAcxg22sz
+50QuWQNe2ZBOxNG6VJ5V+yjnRUBBBMTM
+jMRwWw1B98ZLZgAYhlNbDelduPoDXEEN
+Q96L9L8MK+weapBlQCBRLx2tQHE7cYuO
+/dXV7t/03jG3D8N0vO94DpjfxKJmsvpM
+jWtP1dINf4xzwf3h0lC/pg4MUFCcS7Nm
+9EvoKCVpN8z4nPSl6Bz4mbKg+4g2dZds
+24ZTM8Z8vC+INexSupL3/TPcXLO9s4cy
+AYGQkZJrS4i72IrHtj==
+--------------------------------

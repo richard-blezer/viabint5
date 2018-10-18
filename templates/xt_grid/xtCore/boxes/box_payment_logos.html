@@ -1,0 +1,7 @@
+<p class="headline">{txt key=TEXT_PAYMENTS_FE}:</p>
+{foreach name=aussen item=module_data from=$_payment_logos}
+{assign var="image" value="`$smarty.const._SRV_WEBROOT`templates/`$smarty.const._STORE_TEMPLATE`/img/payments/`$language`/`$module_data.payment_code`.png"}
+{if file_exists($image)}
+<img src="{$tpl_url_path}img/payments/{$language}/{$module_data.payment_code}.png" alt="{$module_data.payment_name}" />
+{/if}
+{/foreach}

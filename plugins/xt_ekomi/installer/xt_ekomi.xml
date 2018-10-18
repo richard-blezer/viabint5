@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+  		<title>eKomi - Kundenmeinungen</title>
+  		<version>1.1.5</version>
+  		<code>xt_ekomi</code>
+  		<url>http://www.xt-commerce.com</url>
+  		<description>eKomi - garantiert echte Kundenbewertungen</description>
+  		<icon>ekomi.jpg</icon>
+		<developer>xt:Commerce</developer>
+<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=11894793]]></documentation_link>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=3123]]></marketplace_link>
+  		<type>marketing</type>
+		<db_install><![CDATA[
+			if (!$this->_FieldExists('ekomi_success',TABLE_ORDERS)) 
+				$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD `ekomi_success` INT( 1 ) NOT NULL DEFAULT '0';");
+			
+			if (!$this->_FieldExists('ekomi_success_date',TABLE_ORDERS)) 
+				$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD `ekomi_success_date` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00';");
+			
+			if (!$this->_FieldExists('ekomi_allow',TABLE_PRODUCTS))
+				$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD `ekomi_allow` INT( 1 ) NOT NULL DEFAULT '1';");
+			
+			if (!$this->_FieldExists('ekomi_link',TABLE_ORDERS))
+				$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD `ekomi_link` VARCHAR( 255 ) NOT NULL DEFAULT '';");
+			
+			if (!$this->_FieldExists('ekomi_hash',TABLE_ORDERS))
+				$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD `ekomi_hash` VARCHAR( 64 ) NOT NULL DEFAULT '';");
+			
+			$db->Execute("INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'ekomi_portal', 'images/icons/medal_gold_3.png', '../plugins/xt_ekomi/xtAdmin/ekomi_login.php', '', '4000', 'shop', 'I', 'W');");
+			// insert actual date as ekomi startdate
+			
+			$db->Execute("INSERT INTO ".TABLE_CONFIGURATION." (`config_key`, `config_value`, `group_id`, `sort_order`, `last_modified`, `date_added`, `type`, `url`) VALUES ('_SYSTEM_EKOMI_INSTALL_TIME', '".time()."', 18, 9, '".$db->BindTimeStamp(time())."', '".$db->BindTimeStamp(time())."', '', '');");
+			
+			$db->Execute("INSERT INTO ".TABLE_CONFIGURATION." (`config_key`, `config_value`, `group_id`, `sort_order`, `last_modified`, `date_added`, `type`, `url`) VALUES ('_SYSTEM_EKOMI_LAST_IMPORT', '".time()."', 18, 9, '".$db->BindTimeStamp(time())."', '".$db->BindTimeStamp(time())."', '', '');");
+			]]></db_install>
+		<db_uninstall><![CDATA[
+			if ($this->_FieldExists('ekomi_success',TABLE_ORDERS)) 
+				$db->Execute("ALTER TABLE ".TABLE_ORDERS." DROP `ekomi_success`");
+			
+			if ($this->_FieldExists('ekomi_success_date',TABLE_ORDERS)) 
+				$db->Execute("ALTER TABLE ".TABLE_ORDERS." DROP `ekomi_success_date`");
+			
+			if ($this->_FieldExists('ekomi_allow',TABLE_PRODUCTS))
+				$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." DROP `ekomi_allow`");
+			
+			if ($this->_FieldExists('ekomi_link',TABLE_ORDERS))
+				$db->Execute("ALTER TABLE ".TABLE_ORDERS." DROP `ekomi_link`");
+			
+			if ($this->_FieldExists('ekomi_hash',TABLE_ORDERS))
+				$db->Execute("ALTER TABLE ".TABLE_ORDERS." DROP `ekomi_hash`");
+			
+			$db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text = 'ekomi_portal'");
+			
+			$db->Execute("DELETE FROM ".TABLE_CONFIGURATION." WHERE config_key = '_SYSTEM_EKOMI_INSTALL_TIME'");
+			$db->Execute("DELETE FROM ".TABLE_CONFIGURATION." WHERE config_key = '_SYSTEM_EKOMI_LAST_IMPORT'");
+			
+			//delete mail
+		]]></db_uninstall>
+		<plugin_code>
+			<code>
+				<hook>page_registry.php:bottom</hook>
+				<phpcode><![CDATA[
+					define('PAGE_EKOMI', _SRV_WEB_PLUGINS.'xt_ekomi/pages/page.ekomi.php');
+					require _SRV_WEBROOT.'plugins/xt_ekomi/classes/class.ekomi.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+    		<code>
+        		<hook>adminHandler.php:pinger</hook>
+        		<phpcode><![CDATA[
+     				require_once _SRV_WEBROOT.'plugins/xt_ekomi/classes/class.ekomi.php';
+     				$ekomi = new ekomi();
+    				$ekomi->sendNotifications();
+				
+    				if (XT_EKOMI_ACTIVATE_REVIEWS=='true') $ekomi->getProductReviews();
+				]]></phpcode>
+        		<order>1</order>
+        		<active>1</active>
+    		</code>
+    		<code>
+        		<hook>class.plugin.php:setPluginConfig</hook>
+        		<phpcode><![CDATA[
+					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_ekomi/hooks/class.plugin.phpsetPluginConfig.php';
+				]]></phpcode>
+        		<order>1</order>
+        		<active>1</active>
+    		</code>
+    		<code>
+        		<hook>class.product.php:_getParams_panelSettings</hook>
+        		<phpcode><![CDATA[
+					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_ekomi/hooks/class.product.php_getParams_panelSettings.php';
+				]]></phpcode>
+        		<order>1</order>
+        		<active>1</active>
+    		</code>
+		</plugin_code>
+		<configuration>
+    		<config>
+        		<key>XT_EKOMI_ID</key>
+        		<type>textfield</type>
+        		<value></value>
+        			<de>
+            			<title>Händler ID</title>
+        			</de>
+        			<en>
+            			<title>Merchant ID</title>
+        			</en>
+        			<es>
+            			<title>Merchant ID</title>
+        			</es>
+    		</config>
+			<config>
+				<key>XT_EKOMI_API_ID</key>
+				<type>textfield</type>
+				<value></value>
+					<de>
+						<title>Schnittstellen ID</title>
+					</de>
+					<en>
+						<title>Schnittstellen ID</title>
+					</en>
+					<es>
+						<title>ID de interfaz</title>
+					</es>
+			</config>
+			<config>
+				<key>XT_EKOMI_MAILS_BATCH</key>
+				<type>textfield</type>
+				<value>5</value>
+					<de>
+						<title>E-Mails pro Aufruf</title>
+					</de>
+					<en>
+						<title>Mails per request</title>
+					</en>
+					<es>
+						<title>Correos electrónicos por llamada</title>
+					</es>
+			</config>
+			<config>
+				<key>XT_EKOMI_DELAY</key>
+				<type>textfield</type>
+				<value>10</value>
+					<de>
+						<title>Tage nach Bestellstatusänderung</title>
+					</de>
+					<en>
+						<title>Days after Statuschange</title>
+					</en>
+					<es>
+						<title>Days after Statuschange</title>
+					</es>
+			</config>
+			<config>
+				<key>XT_EKOMI_API_KEY</key>
+				<type>textfield</type>
+				<value></value>
+					<de>
+						<title>Schnittstellenpasswort</title>
+					</de>
+					<en>
+						<title>Schnittstellenpasswort</title>
+					</en>
+					<es>
+						<title>Contraseña de interfaz</title>
+					</es>
+		</config>
+		<config>
+    			<key>XT_EKOMI_LOGIN_MAIL</key>
+    			<type>textfield</type>
+    			<value></value>
+    				<de>
+        				<title>Ekomi Login Benutzername</title>
+    				</de>
+    				<en>
+        				<title>Ekomi Login Username</title>
+    				</en>
+		</config>
+		<config>
+    			<key>XT_EKOMI_LOGIN_PASS</key>
+    			<type>textfield</type>
+    			<value></value>
+    				<de>
+        				<title>Ekomi Login Passwort</title>
+    				</de>
+    				<en>
+        				<title>Ekomi Login Password</title>
+    				</en>
+		</config>
+		<config>
+    		<key>XT_EKOMI_ENABLED</key>
+    		<type>dropdown</type>
+    		<url>conf_truefalse</url>
+    		<value>true</value>
+    		<de>
+        		<title>Enabled</title>
+    		</de>
+    		<en>
+        		<title>Enabled</title>
+    		</en>
+		</config>
+		<config>
+			<key>XT_EKOMI_ORDER_STATUS</key>
+			<type>dropdown</type>
+			<url>status:order_status</url>
+    		<value>33</value>
+			<sort_order>4</sort_order>
+			<de>
+				<title>Bestellstatus - Versand</title>
+			</de>
+			<en>
+				<title>Bestellstatus - Versand</title>
+			</en>
+			<es>
+				<title>Estado del pedido - Envío</title>
+			</es>
+		</config>
+    	<config>
+        	<key>XT_EKOMI_ACTIVATE_REVIEWS</key>
+        	<value>false</value>
+        	<type>dropdown</type>
+        	<url>conf_truefalse</url>
+        	<de>
+            	<title>Produktbewertungen von eKomi importieren (Kostenpflichtig)</title>
+        	</de>
+        	<en>
+            	<title>Import reviews from eKomi (requires eKomi Pro Account)</title>
+        	</en>
+        	<es>
+            	<title>Import reviews from eKomi (requires eKomi Pro Account)</title>
+        	</es>
+    	</config>
+	</configuration>
+    <language_content>
+    <phrase>
+        <key>TEXT_XT_EKOMI</key>
+        <class>admin</class>
+        <en>
+            <value>eKomi Portal</value>
+        </en>
+        <de>
+            <value>eKomi Portal</value>
+        </de>
+        <es>
+            <value>eKomi Portal</value>
+        </es>
+    </phrase>
+        <phrase>
+            <key>TEXT_EKOMI</key>
+            <class>admin</class>
+            <en>
+                <value>eKomi Produktbewertungen</value>
+            </en>
+            <de>
+                <value>eKomi product reviews</value>
+            </de>
+            <es>
+                <value>eKomi product reviews</value>
+            </es>
+        </phrase>
+        <phrase>
+            <key>TEXT_EKOMI_ALLOW</key>
+            <class>admin</class>
+            <en>
+                <value>Bewertungs-E-Mails aktivieren</value>
+            </en>
+            <de>
+                <value>Activate review reminder E-Mails</value>
+            </de>
+            <es>
+                <value>Activate review reminder E-Mails</value>
+            </es>
+        </phrase>
+
+    </language_content>
+</xtcommerceplugin>

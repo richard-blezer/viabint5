@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_ACCOUNT_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Account ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Account ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_BANKTRANSFER_BANK_NAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Bank]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bank]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_BANKTRANSFER_BIC</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[BIC]]></value>
+	</en>
+	<bp>
+		<value><![CDATA[Codigo bancario]]></value>
+	</bp>
+	<cn>
+		<value><![CDATA[BIC 银行识别码]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[BIC]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Bic]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Code banque]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Bic]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[BIC 銀行番号]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Bic]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Bic]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[BIC]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_BANKTRANSFER_IBAN</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[IBAN]]></value>
+	</en>
+	<bp>
+		<value><![CDATA[Iban]]></value>
+	</bp>
+	<cn>
+		<value><![CDATA[IBAN 国际银行帐户号码]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[IBAN]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Iban]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Iban]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Iban]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[IBAN 国際銀行口座番号]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Iban]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Iban]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[IBAN]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_BANKTRANSFER_OWNER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Account Owner]]></value>
+	</en>
+	<bp>
+		<value><![CDATA[Titular da conta]]></value>
+	</bp>
+	<cn>
+		<value><![CDATA[帐户名称]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kontoinhaber]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Account Owner]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Propriétaire du compte]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Proprietario del conto]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[アカウント名]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Rekeninghouder]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Właściciel Konta]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Владелец счёта]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_CUSTOMER_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Customer ID]]></value>
+	</en>
+	<bp>
+		<value><![CDATA[ID do cliente]]></value>
+	</bp>
+	<cn>
+		<value><![CDATA[会员 ID]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kunden ID]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Customer ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Numéro de client]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Identificativo (ID) Cliente]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[メンバー ID]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Klanten ID]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Klienta ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[ИД клиента]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_SEPA_MANDAT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[SEPA Mandat]]></value>
+	</en>
+	<de>
+		<value><![CDATA[SEPA Mandat]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_BANKTRANSFER_COMPANY_ADDRESS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Address]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Adresse]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_BANKTRANSFER_COMPANY_NAME_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Company Name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Firmenname]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_BANKTRANSFER_ORDER_STATUS_NEW_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[New Order Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[New Order Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_BANKTRANSFER_SEND_MANDATE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Send PDF Mandat]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PDF Mandat versenden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_BANKTRANSFER_SEPA_ID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Identification Number]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Identifikationsnummer]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_BANKTRANSFER_STATUS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Plugin active]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[启用挂载]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Plugin aktivieren]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Plugin active]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Plugin actif]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Plugin attivo]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[プラグインを有効にする]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Plugin activeren]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Plugin aktywny]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Активировать плагин]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[啟用掛載]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_XT_BANKTRANSFER_ACCOUNTS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Accounts]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bankverbindungen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>BUTTON_ADD_ACCOUNT</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Add bank account]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[新增银行帐户]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bankverbindung hinzufügen]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Add bank account]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Ajouter un compte bancaire]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Aggiungi conto corrente bancario]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[新しい銀行口座]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Bankverbinding toevoegen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[dodaj konto bankowe]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Добавить реквизиты банковского счёта]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[新增銀行帳戶]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>ERROR_CHECK_BIX</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Error in your BIC, please check your entry.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Der BIC ist nicht korrekt, bitte überprüfen Sie Ihre Eingabe.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>ERROR_CHECK_IBAN</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Error in your IBAN, please check your entry.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Der IBAN ist nicht korrekt, bitte überprüfen Sie Ihre Eingabe.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_BANKTRANSFER_ACCOUNT_SELECT</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Saved accounts]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[现存的帐户]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Gespeicherte Bankverbindungen]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Saved accounts]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Comptes sauvegardés]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Conti correnti salvati]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[既存のアカウント]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Opgeslagen bankverbindingen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Zapamiętane konta]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Сохранённые реквизиты банковских счетов]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_BANKTRANSFER_BANK_NAME</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Bank name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bank]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_BANKTRANSFER_NO_ACCOUNTS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[There is no bank account added for your customers account.]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[没有银行帐户资料在你的会员帐户内。]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bisher wurde noch keine Bankverbindung hinterlegt]]></value>
+	</de>
+	<es>
+		<value><![CDATA[There is no bank account added for your customers account.]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Il n'y a pas de compte bancaire pour votre compte client.]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Non c\'e\' nessun conto corrente bancario per gli accounti dei tuoi clienti.]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ご自分のメンバーのアカウントに銀行口座情報なし。]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Er is tot nu toe nog geen bankverbinding opgeslagen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Brak dodanych kont bankowych do Twojego konta klienta.]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Нет сохранённых банковских реквизитов]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_BANKTRANSFER_SAVE_ACCOUNT</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Daten speichern]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[储存资料]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Daten speichern]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Daten speichern]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Save data]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Dati salvati]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[保存データ]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Gegevens opslaan]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Daten speichern]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Сохранить данные]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_BANKTRANSFER_SAVE_ACCOUNT_DESC</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Bankdaten permanent speichern]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[储存银行资料到你的会员帐户中。]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bankdaten permanent speichern]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Bankdaten permanent speichern]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Bankdaten permanent speichern]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Dati bancari memorizzati permanentemente]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[メンバーにお客様の銀行口座情報を保存。]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Bank gegevens permanent opslaan]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Bankdaten permanent speichern]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Сохранить банковские реквизиты]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_BANK_ACCOUNTS_NEW</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Please choose your saved bank account or enter new one.]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[请选择你现存的银行帐户或输入新的帐户。]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Verwenden Sie eine vorhandene Bankverbindung oder geben Sie eine neue an.]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Please choose your saved bank account or enter new one.]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Veuillez choisir votre compte bancaire enregistré ou en renseigner un nouveau.]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Scegli il tuo conto corrente bancario salvato o aggiungine uno.]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[既存の銀行口座か、新しいアカウントを選択入力してください。]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Kies een bankverbinding of geef een nieuwe in.]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Proszę wybierz zapamiętane konto bankowe lub wpisz nowe konto.]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Воспользуйтесь имеющимся банковским реквизитом или введите новый.]]></value>
+	</ru>
+</phrase>
+</language_content>
+</xtcommerceplugin>

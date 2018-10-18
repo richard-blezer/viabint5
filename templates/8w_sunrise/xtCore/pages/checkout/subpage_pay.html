@@ -1,0 +1,8 @@
+<h1>{txt key=TEXT_PAGE_TITLE_PAY}</h1>
+<p>{txt key=TEXT_PAY_FORMULAR}</p>
+<form action="{$psp_target}" method="POST">
+{foreach from=$psp_params key=k item=v}
+<input type="hidden" name="{$k}" value="{$v}" />
+{/foreach}
+<p>{button text=$smarty.const.BUTTON_START_PAYMENT file='start_payment.gif' type='form'}</p>
+</form>

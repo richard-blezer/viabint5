@@ -1,0 +1,18 @@
+{literal}
+    <script type="text/javascript">
+        (function() {
+            var _trusted_shops_cert_key = '{/literal}{$ts_ui.certificate_key}{literal}';
+            _tsConfig = {
+                'yOffset': '{/literal}{$ts_ui.show_badge_pos}{literal}',
+                'variant': '{/literal}{$ts_ui.show_badge}{literal}' //text, default, small, reviews
+            };
+            var _ts = document.createElement('script');
+            _ts.type = 'text/javascript'; _ts.async = true;
+            _ts.src = ('https:' == document.location.protocol ? 'https://' :
+                    'http://') + 'widgets.trustedshops.com/js/{/literal}{$ts_ui.certificate_key}{literal}.js';
+            var __ts = document.getElementsByTagName('script')[0]; __ts.parentNode.insertBefore(_ts, __ts);
+        })();
+    </script>
+{/literal}
+
+    <noscript><a href="https://www.trustedshops.{$ts_ui.domain_tld}/shop/certificate.php?shop_id={$ts_ui.certificate_key}"><img title="{txt key=TEXT_TS_NOSCRIPT}" src="//widgets.trustedshops.com/images/badge.png" style="position:fixed;bottom:0;right:0;" /></a></noscript>

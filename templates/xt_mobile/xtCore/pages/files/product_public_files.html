@@ -1,0 +1,21 @@
+<div data-role="collapsible" data-inset="false" data-theme="c">
+    <h2>Downloads</h2>
+    <ul data-role="listview">
+        {foreach name=aussen item=file_data from=$media_files}
+            <li>
+                <a href="{$file_data.download_url}" rel="nofollow" target="_blank">
+                    {img img=$file_data.icon type=w_media_filetypes alt=$file_data.file}
+                    {if $file_data.media_name}
+                        <h2 class="ui-li-heading">{$file_data.media_name}</h2>
+                        <p class="ui-li-desc">{txt key=TEXT_FILE}: <strong>{$file_data.file}</strong></p>
+                    {else}    
+                        <h2 class="ui-li-heading">{$file_data.file}</h2>
+                    {/if}
+                    
+                    <p class="ui-li-desc">{txt key=TEXT_SIZE}: <strong>{$file_data.media_size|fsize_format:"MB"}</strong></p>
+                    <p class="ui-li-desc">{if $file_data.media_description}{$file_data.media_description}{/if}</p>
+                </a>
+            </li>
+        {/foreach}   
+    </ul>
+</div>

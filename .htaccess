@@ -1,0 +1,47 @@
+#DirectoryIndex index.php
+#
+<IfModule mod_rewrite.c>
+
+
+Options -MultiViews
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !^/media/
+RewriteCond %{REQUEST_URI} !^/xtAdmin/
+RewriteCond %{REQUEST_URI} !^/skin/
+RewriteCond %{REQUEST_URI} !^/js/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+
+RewriteRule .* index.php
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 1 seconds"
+    ExpiresByType image/x-icon "access plus 2692000 seconds"
+    ExpiresByType image/jpeg "access plus 2692000 seconds"
+    ExpiresByType image/png "access plus 2692000 seconds"
+    ExpiresByType image/gif "access plus 2692000 seconds"
+    ExpiresByType application/x-shockwave-flash "access plus 2692000 seconds"
+    ExpiresByType text/css "access plus 2692000 seconds"
+    ExpiresByType text/javascript "access plus 2692000 seconds"
+    ExpiresByType application/x-javascript "access plus 2692000 seconds"
+</IfModule>
+<IfModule mod_headers.c>
+    <FilesMatch "\\.(ico|jpe?g|png|gif|swf|css|js)$">
+        Header set Cache-Control "max-age=2692000, public"
+    </FilesMatch>
+    Header unset ETag
+    Header unset Last-Modified
+</IfModule>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php56” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddType application/x-httpd-ea-php56 .php .php5 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
+
+Header set Access-Control-Allow-Origin "*"

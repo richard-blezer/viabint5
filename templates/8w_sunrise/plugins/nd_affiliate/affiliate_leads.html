@@ -1,0 +1,47 @@
+{$message}
+
+{form type=form name=affiliate_leads action='dynamic' link_params=getParams method=post}
+
+<h2>{txt key=AFFILIATE_LEADS}</h2>
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">
+  <tr>
+    <td>
+      {txt key=AFFILIATE_TEXT_PERIOD}:{form type=select name=a_period value=$periods.data default=$periods.default onchange=submit()}
+      {txt key=AFFILIATE_TEXT_LEVEL}:{form type=select name=a_level value=$levels.data default=$levels.default onchange=submit()}
+    </td>
+  </tr>
+  <tr>
+    <td><table width="90%" cellpadding="2" cellspacing="2">
+      <tr >
+        <th align="center">{txt key=AFFILIATE_TEXT_DATE}</th>
+        <th align="center">{txt key=AFFILIATE_TEXT_PAYMENT}</th>
+        <th align="center">{txt key=AFFILIATE_TEXT_LEAD_TARGET}</th>
+        <th align="center">{txt key=AFFILIATE_TEXT_LEVEL}</th>
+      </tr>
+      <tr>
+        <td colspan="4"><hr /></td>
+      </tr>
+      {foreach name=leads item=lead from=$affiliate_leads.data}
+      <tr bgcolor="{cycle values="#eeeeee,#d0d0d0"}">
+        <td>{$lead.a_date}</td>
+        <td>{$lead.affiliate_payment}</td>
+        <td>{$lead.affiliate_lead_target}</td>
+        <td>{$lead.level}</td>
+      </tr>
+      {/foreach}
+      <tr>
+        <td colspan="4"><hr /></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td>{$affiliate_leads.count}&nbsp;{$affiliate_leads.pages}</td>
+  </tr>
+  <tr>
+    <td>{$total}</td>
+  </tr>
+</table>
+</div>
+
+{form type=formend}

@@ -1,0 +1,7 @@
+{if $show_next_button eq 'true'}
+	<h2>{txt key=TEXT_PAGE_TITLE_CHECKOUT_SUCCESS}</h2>
+	<p>{txt key=TEXT_CHECKOUT_SUCCESS_DESC}</p>
+	<a href="{link page='index' conn=NOSSL}" data-role="button" data-icon="check">{txt key=BUTTON_NEXT}</a>
+{/if}
+
+{hook key=checkout_success_tpl}

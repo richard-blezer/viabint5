@@ -1,0 +1,11 @@
+<h1>{txt key=TEXT_PAGE_TITLE_PAY}</h1>
+<p>{txt key=TEXT_PAY_FORMULAR}</p>
+<form action="{$psp_target}" method="POST">
+	{foreach from=$psp_params key=k item=v}
+	<input type="hidden" name="{$k}" value="{$v}" />
+	{/foreach}
+	<p>
+		<span><a href="javascript:history.back();" class="button">{txt key=BUTTON_BACK}</a></span>
+		<span class="float-right">{css_button text=$smarty.const.BUTTON_START_PAYMENT type='form'}</span>	
+	</p>
+</form>

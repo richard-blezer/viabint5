@@ -1,0 +1,1 @@
+{"yatego":{"requiredfields":{"ItemId":true,"ItemName":true,"Price":true,"ItemDescription":true,"ItemUrl":false,"ManufacturerName":false,"ModelNumber":false,"EAN":false,"ImageUrl":false,"ShippingCost":false,"ShippingTime":false,"ItemWeight":false,"ItemTax":true,"ItemStockQty":true}}}

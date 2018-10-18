@@ -1,0 +1,13 @@
+{if $show_cart_content == true}
+		<h2 class="boxcartheader">{txt key=TEXT_VT_WATCHLIST_TOP}</h2>
+		<div class="boxcartbody">
+			<p>{$vt_watchlist_count} {txt key=TEXT_ARTICLE}</p>
+			<div class="hr"></div>
+			<p style="text-align:right;"><a href="{link page='vt_watchlist' conn=SSL}"><strong>{txt key=TEXT_VT_WATCHLIST_LINK_TO}&nbsp;&raquo;</strong></a></p>
+		</div>
+{else}
+		<h2 class="boxcartheader">{txt key=TEXT_VT_WATCHLIST_TOP}</h2>
+			<div class="boxcartbody">
+			<p>{txt key=TEXT_VT_WATCHLIST_EMPTY}</p>
+		</div>
+{/if}

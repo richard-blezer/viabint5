@@ -1,0 +1,138 @@
+<div id="editAdress">
+
+
+{form type=form name=edit_address action='dynamic' link_params='page_action=edit_address' method=post conn=SSL}
+{form type=hidden name=action value=edit_address}
+{if $address_book_id}
+{form type=hidden name=address_book_id value=$address_book_id}
+{/if}
+
+
+
+
+
+<h1>{txt key=TEXT_EDIT_ADDRESS}</h1>
+<a class="ajax" href="{link page='customer' paction=select_address params=adType params_value=$smarty.get.adType' conn=SSL}">{button text=$smarty.const.BUTTON_BACK file='back.gif'}</a>
+
+{$message}
+
+<h2>{txt key=TEXT_PERSONAL}</h2>
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">
+  {if $show_gender eq 1}
+    <tr>
+    <td>{txt key=TEXT_GENDER}:</td>
+    <td>{form type=select name=customers_gender value=$gender_data default=$customers_gender note=*}</td>
+  </tr>
+  {/if}
+  {if $show_company eq 1}
+  <tr>
+    <td>{txt key=TEXT_COMPANY_NAME}:</td>
+    <td>{form type=text name=customers_company value=$customers_company}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_COMPANY_NAME_2}:</td>
+    <td>{form type=text name=customers_company_2 value=$customers_company_2}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_COMPANY_NAME_3}:</td>
+    <td>{form type=text name=customers_company_3 value=$customers_company_3}</td>
+  </tr>
+  {/if}
+  <tr>
+    <td>{txt key=TEXT_FIRSTNAME}:</td>
+    <td>{form type=text name=customers_firstname value=$customers_firstname note=*}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_LASTNAME}:</td>
+    <td>{form type=text name=customers_lastname value=$customers_lastname note=*}</td>
+  </tr>
+  {if $show_birthdate eq 1}
+  <tr>
+    <td>{txt key=TEXT_BIRTHDATE}:</td>
+    <td>{form type=text name=customers_dob value=$customers_dob} {txt key=TEXT_BIRTHDATE_INFO}</td>
+  </tr>
+  {/if}
+</table>
+</div>
+
+<h2>{txt key=TEXT_ADDRESS}</h2>
+<div class="highlightbox">
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="120">{txt key=TEXT_STREET}:</td>
+    <td>{form type=text name=customers_street_address value=$customers_street_address note=*}</td>
+  </tr>
+  {if $show_suburb eq 1}
+  <tr>
+    <td>{txt key=TEXT_SUBURB}:</td>
+    <td>{form type=text name=suburb value=$suburb}</td>
+  </tr>
+  {/if}
+  <tr>
+    <td>{txt key=TEXT_CODE}:</td>
+    <td>{form type=text name=customers_postcode value=$customers_postcode note=*}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_CITY}:</td>
+    <td>{form type=text name=customers_city value=$customers_city note=*}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_COUNTRY}:</td>
+    {if $selected_country}
+        <td>{form type=select name=customers_country_code value=$country_data default=$selected_country note=*}</td>
+    {else}
+        <td>{form type=select name=customers_country_code value=$country_data default=$smarty.const._STORE_COUNTRY note=*}</td>
+    {/if}
+  </tr>
+
+  {if $show_state eq 1}
+  <tr>
+    <td>{txt key=TEXT_STATE}:</td>
+    <td>{form type=select name=customers_zone_code value=$customers_zone_code default=$selected_zone}</td>
+  </tr>
+  {/if}
+
+    {if $show_county eq 1}
+  <tr>
+    <td>{txt key=TEXT_COUNTY}:</td>
+    <td>{$INPUT_COUNTY}</td>
+  </tr>
+  {/if}
+</table>
+</div>
+
+<h2>{txt key=TEXT_CONTACT}</h2>
+<div class="highlightbox">
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="120">{txt key=TEXT_PHONE}:</td>
+    <td>{form type=text name=customers_phone value=$customers_phone}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_FAX}:</td>
+    <td>{form type=text name=customers_fax value=$customers_fax}</td>
+  </tr>
+</table>
+</div>
+
+{if $adType}
+{form type=hidden name=address_class value=$adType}
+{form type=hidden name=adType value=$adType}
+{else}
+<h2>{txt key=TEXT_ADDRESS_TYPE}</h2>
+<div class="highlightbox">
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="120">{txt key=TEXT_ADDRESS_TYPE}:</td>
+    <td>{form type=hidden name=old_address_class value=$old_address_class}{form type=select name=address_class value=$address_type default=$address_class}</td>
+  </tr>
+</table>
+</div>
+{/if}
+
+<p>{button text=$smarty.const.BUTTON_SAVE file='save.gif' type='form'}</p>
+<p>{txt key=TEXT_MUST}</p>
+{form type=formend}
+
+</div>

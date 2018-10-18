@@ -1,0 +1,475 @@
+<div id="product" class="detail">
+
+    {if $allow_add_cart eq 'true'}
+        {if $products_fsk18 == '1'}
+            <div class="error box">
+                <i class="fa fa-exclamation-triangle"></i>&nbsp;&nbsp;{txt key=TEXT_PRODUCTS_FSK18_NOTE}
+            </div>
+        {/if}
+    {/if}
+
+    {if $date_available!=''}
+        <div class="box info">
+            <i class="fa fa-calendar"></i>&nbsp;&nbsp;{txt key=TEXT_PRODUCT_AVAILABLE} {$date_available|date_format:"%A, %d.%m.%Y"}
+        </div>
+    {/if}
+
+    <div id="pinfo" class="row">
+        <div class="col col-xs-12 col-sm-5 col-md-4">
+
+            {* <!-- Product images; not mobile --> *}
+            <div class="hidden-xs">
+                <div id="product-informations-affix-container">
+                    <div class="product-images">
+                        <div class="image product-image center">
+                            {if !$products_image || $products_image == 'product:noimage.gif'}
+                                <span class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="productImageBorder img-responsive" alt=$products_name|escape:"html"}</span>
+                            {else}
+                                {if $diplayFancyCloud}
+                            <a id="zoom" href="{img img=$products_image type=m_org path_only=true}" rel="fancy-gallery" class="img-responsive image-link cloud-zoom fancy-click-trigger img-thumbnail fancybox" data-cloudzoom="position: 'inside', adjustX: 0, adjustY: 0">{img
+                                img=$products_image type=m_ew-viabiona-info class="productImageBorder img-responsive"
+                                alt=$products_name|escape:"html" width=auto height=auto}</a>
+                                {else}
+                                    <span class="vertical-helper image-link">{img img=$products_image type=m_ew-viabiona-info class="productImageBorder img-responsive img-thumbnail" alt=$products_name|escape:"html" width=auto height=auto}</span>
+                                {/if}
+                            {/if}
+                        </div>
+                        {if $more_images && $more_images|@count != 0}
+                            <div class="more-images row listing hidden-affix">
+                                {foreach name=aussen item=img_data from=$more_images}
+                                    <div class="col section col-sm-4 col-md-3">
+                                        <a href="{img img=$img_data.file type=m_org path_only=true}" rel="fancy-gallery" class="vertical-helper img-thumbnail image-link cloud-zoom-gallery text-center fancybox" data-cloudzoom="useZoom: 'zoom', smallImage: '{img img=$img_data.file type=m_ew-viabiona-info path_only=true}'">
+                                            {img img=$img_data.file type=m_ew-viabiona-icon class="productImageBorder img-responsive" alt=$products_name|escape:"html" width=auto height=auto}
+                                        </a>
+                                    </div>
+                                {/foreach}
+                            </div>
+                        {/if}
+
+                        <p class="text-uppercase headline-special-big visible-affix">{$products_name}</p>
+
+                        <div class="well visible-affix">
+                            {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}
+                                <p class="product-price this">{$products_price.formated}</p>
+                                {if $base_price && !$group_price}
+                                    <p class="product-base-price">{$base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$base_price.vpe.name}</p>
+                                {/if}
+                                {if $products_shipping_link}
+                                    <p class="product-tax-shipping">{$products_tax_info.tax_desc} <a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+                                {else}
+                            <p class="product-tax-shipping">{$products_tax_info.tax_desc}<br /><a href="{$products_link}#versand-info" title="Versicherter Versand (DHL) nach Deutschland, Österreich, Schweiz, Frankreich, Großbritannien: 4,95 EUR">
+                                <i class="fa fa-truck" aria-hidden="true"> </i>{txt key=TEXT_EXCL_SHIPPING}</a></p>
+                                {/if}
+                            {/if}
+
+                            {if $products_master_flag == 1 OR  $products_master_model != ''}
+                                {if $allow_add_cart eq 'false'}
+                                    <hr />
+                                    <div class="add-to-cart dummy">
+                                        <a href="{$products_link}#ms-options" class="btn btn-default move" title="{txt key=TEXT_EW_VIABIONA_BUTTON_ADD_CART_MASTER_DUMMY}">
+                                            <i class="fa fa-cart-arrow-down"></i>&nbsp;&nbsp;{txt key=BUTTON_ADD_CART}
+                                        </a>
+                                    </div>
+                                {/if}
+                            {/if}
+                            {if $allow_add_cart eq 'true'}
+                                <hr />
+                                {form type=form name=product action='dynamic' link_params=getParams method=post class="form-inline add2cart" role="form"}
+                                {form type=hidden name=action value=add_product}
+                                {form type=hidden name=product value=$products_id}
+                                {$products_information}
+                                <div class="add-to-cart form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group spinner jq-spinner" data-trigger="spinner">
+                                            <input type="text" name="qty" value="1" data-rule="quantity" class="form-control input-number" placeholder="{txt key=TEXT_QTY}" data-min="1">
+                                            <span class="input-group-addon">
+                                                <a href="#" class="spin-up" data-spin="up"><i class="fa fa-sort-asc"></i></a>
+                                                <a href="#" class="spin-down" data-spin="down"><i class="fa fa-sort-desc"></i></a>
+                                            </span>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary submit">
+                                            <i class="fa fa-cart-arrow-down"></i>&nbsp;&nbsp;{txt key=BUTTON_ADD_CART}
+                                        </button>
+                                    </div>
+                                </div>
+                                {form type=formend}
+                            {/if}
+                        </div>
+
+                    </div><!-- .product-pictures.hidden-xs -->
+                </div><!-- #product-informations-affix-container -->
+            </div>
+
+            {* <!-- Product images; only mobile --> *}
+            {if $products_image && $products_image != 'product:noimage.gif'}
+                <div class="product-images visible-xs img-thumbnail">
+                    {if $more_images && $more_images|@count != 0}
+                        <div id="product-images-slider" class="carousel slide" data-ride="carousel">
+
+                            <div class="carousel-inner" role="listbox">
+                                {foreach name=bigpics key=key item=img_data from=$more_images}
+                                    <div class="item{if $smarty.foreach.bigpics.first} active{/if}">
+                                        <div class="image product-image center">
+                                            <span class="vertical-helper image-link no-ripple">{img img=$img_data.file type=m_ew-viabiona-info class="productImageBorder img-responsive" alt=$products_name|escape:"html" width=auto height=auto}</span>
+                                        </div>
+                                    </div>
+                                {/foreach}
+                            </div>
+
+                            <!-- Control indicators -->
+                            <ul class="carousel-indicators listing equalize-nothing">
+                                {foreach name=smallpics key=key item=img_data from=$more_images}
+                                    <li data-target="#product-images-slider" data-slide-to="{$key}" class="{if $smarty.foreach.smallpics.first} active{/if} equalize-nothing">
+                                        <p class="vertical-helper img-thumbnail no-ripple">{img img=$img_data.file type=m_ew-viabiona-icon class="productImageBorder img-responsive" alt=$products_name|escape:"html" width=auto height=auto}</p>
+                                    </li>
+                                {/foreach}
+                            </ul>
+
+                        </div><!-- #product-images-slider -->
+                    {else}
+                        <div class="image product-image center">
+                            <span class="vertical-helper image-link no-ripple">{img img=$products_image type=m_ew-viabiona-info class="productImageBorder img-responsive" alt=$products_name|escape:"html" width=auto height=auto}</span>
+                        </div>
+                    {/if}
+                </div>
+            {/if}
+        </div>
+        <div class="col col-xs-12 col-sm-7 col-md-8">
+            <div class="row">
+
+                <div class="visible-sm clearfix"></div>
+
+                <div id="product-intro" class="col col-md-7">
+                    <h1 id="product-name" class="text-uppercase headline-special-big">{$products_name}</h1>
+                    {if $products_short_description && $products_short_description|strip_tags|trim != ''}
+                    <div class="short-description textstyles text-word-wrap">
+                        {$products_short_description}
+                        <div class="clearfix"></div>
+                    </div>
+                    {/if}
+                    {if $review_stars_rating}
+                    <div class="left">
+                        <div class="product-reviews cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_XT_REVIEWS_INFO}" data-content="{if $products_rating_count}{$products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO} {txt key=TEXT_EW_VIABIONA_POPOVER_RATING_AVERAGE} {$products_average_rating|string_format:'%.1f'} {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_VIABIONA_POPOVER_RATING_STAR}.{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}.{/if}" onclick="document.location.href='{$link_reviews_list}'">
+                            <div class="reviews_rating_light">
+                                <div class="reviews_rating_dark" style="width:{$review_stars_rating}%"></div>
+                            </div>
+                        </div><br />
+                        <span class="products_rating_count text-muted"><small>{$products_average_rating|string_format:"%.1f"} {txt key=TEXT_PAGINATION_FROM} 5 {txt key=TEXT_EW_VIABIONA_POPOVER_RATING_STAR}</small></span>
+                    </div>
+                    {/if}
+                    <div class="clearfix"></div>
+                    <div class="hook_products_images_tpl">
+                        {hook key=products_images_tpl}
+                    </div>
+                    {price_table}
+
+                    {if $product_description3_html|trim !=''}
+                    <p class="vorteile-box hidden-xs">
+                        {$product_description3_html}
+                    </p>
+                    <div class="clearfix"></div>
+                    {/if}
+
+                    {if ($products_description && $products_description|strip_tags|trim != '') ||
+                    ($media_files != '') ||
+                    ($product_description2_html && $product_description2_html|strip_tags|trim !='')}
+                    <p class="hidden-xs">
+                            {if $products_description && $products_description|strip_tags|trim != ''}
+                                <a href="{$products_link}#pcontent-part-description" class="move btn btn-default"><i class="fa fa-info-circle"></i>&nbsp;&nbsp;{txt key=TEXT_MORE_DETAILS}</a>
+                            {/if}
+                            {if $product_description2_html && $product_description2_html|strip_tags|trim !=''}
+                                <a href="{$products_link}#pcontent-part-contains" class="move btn btn-default"><i class="fa fa-pie-chart"></i>&nbsp;&nbsp;{txt key=TEXT_PRODUCTS_DESCRIPTION3}</a>
+                            {/if}
+                            {if $media_files != ''}
+                                <a href="{$products_link}#pcontent-part-files" class="move btn btn-default"><i class="fa fa-download"></i>&nbsp;&nbsp;{txt key=TEXT_DOWNLOADS}</a>
+                            {/if}
+                        </p>
+                    {/if}
+                </div><!-- #product-intro -->
+
+                <div id="product-infos" class="col col-md-5"
+                    data-orientation-nav-url="{$products_link}#product-infos"
+                    data-orientation-nav-classes="move"
+                    data-orientation-nav-icon="<i class='fa fa-shopping-cart'></i>"
+                    data-orientation-nav-label="{txt key=TEXT_CART}"
+                >
+                    <div class="well">
+                        {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}
+                            <div class="product-price-meta pull-right text-right">
+                                {if $base_price && !$group_price}
+                                    <p class="product-base-price">{$base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$base_price.vpe.name}</p>
+                                {/if}
+                                {if $products_shipping_link}
+                                    <p class="product-tax-shipping">{$products_tax_info.tax_desc}<br /><a href="{$products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+                                {else}
+                                <p class="product-tax-shipping">{$products_tax_info.tax_desc}<br /><a href="{$products_link}#versand-info" title="Versicherter Versand (DHL) nach Deutschland, Österreich, Schweiz, Frankreich, Großbritannien: 4,95 EUR">
+                                    <i class="fa fa-truck" aria-hidden="true"> </i>{txt key=TEXT_EXCL_SHIPPING}</a></p>
+                                {/if}
+                            </div>
+                            <p class="product-price this">{$products_price.formated}</p>
+                        {/if}
+
+                        <hr class="clearfix" />
+
+                        <div class="hidden-xs">
+                            {if $products_weight > 0}
+                                <p class="product-weight">{txt key=TEXT_PRODUCTS_WEIGHT} {$products_weight|number_format:2:",":"."} KG</p>
+                            {/if}
+                            {if $products_discount!=''}
+                                <p class="product-discount">{$products_discount}</p>
+                            {/if}
+                            {if $product_itemcount|trim != ''}
+                                <p class="product-itemcount text-small">{$product_itemcount}</p>
+                            {/if}
+                            {if $products_supply_period|trim != ''}
+                                <p class="product-supply_period text-small">{$products_supply_period}</p>
+                            {/if}
+                            {if $products_model!=''}
+                                <p class="product-model text-small">{txt key=TEXT_PRODUCTS_MODEL} {$products_model}</p>
+                            {/if}
+                        </div>
+
+                        <br class="hidden-xs" />
+
+                        <div class="hidden-xs">
+                            {if $shipping_status}
+                                <p class="product-shipping-status">{txt key=TEXT_SHIPPING_STATUS} {$shipping_status}</p>
+                            {/if}
+                            {if $stock_image}
+                                <p class="product-stock-image">{img img=$stock_image.image type=t_img_stockrules}</p>
+                                <p class="product-stock-name"><i class="fa fa-truck"></i> {$stock_image.name}</p>
+                            {/if}
+                        </div>
+
+                        <p class="prodinfo-labels visible-xs">
+                            {if $stock_image.name}
+                                <span class="label label-success">{$stock_image.name}</span>
+                            {/if}
+                            {if $products_weight > 0}
+                                <span class="label label-default">{txt key=TEXT_PRODUCTS_WEIGHT} {$products_weight|number_format:2:",":"."} KG</span>
+                            {/if}
+                            {if $products_discount!=''}
+                                <span class="label label-default">{$products_discount}</span>
+                            {/if}
+                            {if $product_itemcount|trim != ''}
+                                <span class="label label-default">{$product_itemcount}</span>
+                            {/if}
+                            {if $products_supply_period|trim != ''}
+                                <span class="label label-default">{$products_supply_period}</span>
+                            {/if}
+                            {if $products_model!=''}
+                                <span class="label label-default">{txt key=TEXT_PRODUCTS_MODEL} {$products_model}</span>
+                            {/if}
+                            {if $shipping_status}
+                                <span class="label label-default">{txt key=TEXT_SHIPPING_STATUS} {$shipping_status}</span>
+                            {/if}
+                        </p>
+
+                        {if $products_master_flag == 1 OR  $products_master_model != ''}
+                            {if $smarty.const._PLUGIN_MASTER_SLAVE_SHOW_OPTIONS == 'true'}
+                                <div id="ms-options" class="clearfix">
+                                    {hook key=product_info_tpl_options}
+                                </div><!-- #ms-options -->
+                            {/if}
+                            {if $allow_add_cart eq 'false'}
+                                <div class="add-to-cart dummy">
+                                    <a href="{$products_link}#ms-options" class="btn btn-default move" title="{txt key=TEXT_EW_VIABIONA_BUTTON_ADD_CART_MASTER_DUMMY}">
+                                        <i class="fa fa-cart-arrow-down"></i>&nbsp;&nbsp;{txt key=BUTTON_ADD_CART}
+                                    </a>
+                                </div>
+                            {/if}
+                        {/if}
+
+                        {hook key=product_info_tpl_before_cart}
+                        {hook key=product_info_bundle}
+
+                        {hook key=product_info_tpl_cart}
+
+                        {if $allow_add_cart eq 'true'}
+                            {form type=form name=product action='dynamic' link_params=getParams method=post class="form-inline add2cart" role="form"}
+                                {form type=hidden name=action value=add_product}
+                                {form type=hidden name=product value=$products_id}
+                                {$products_information}
+                                <div class="add-to-cart form-inline">
+                                    <div class="form-group">
+                                        <div class="input-group spinner jq-spinner" data-trigger="spinner">
+                                            <input type="text" name="qty" value="1" data-rule="quantity" class="form-control input-number" placeholder="{txt key=TEXT_QTY}" data-min="1">
+                                            <span class="input-group-addon">
+                                                <a href="#" class="spin-up" data-spin="up"><i class="fa fa-sort-asc"></i></a>
+                                                <a href="#" class="spin-down" data-spin="down"><i class="fa fa-sort-desc"></i></a>
+                                            </span>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary submit">
+                                            <i class="fa fa-cart-arrow-down"></i>&nbsp;&nbsp;{txt key=BUTTON_ADD_CART}
+                                        </button>
+                                    </div>
+                                </div>
+                            {form type=formend}
+                        {/if}
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div><!-- #product-infos -->
+
+            </div>
+            <div id="pcontent">
+
+                {if $products_description && $products_description|strip_tags|trim != ''}
+                <div id="pcontent-part-description" class="pcontent-part hidden-xs"
+                     data-orientation-nav-url="{$products_link}#pcontent-part-description"
+                     data-orientation-nav-classes="move"
+                     data-orientation-nav-icon="<i class='fa fa-info-circle'></i>"
+                     data-orientation-nav-label="{txt key=TEXT_PRODUCTS_DESCRIPTION}"
+                >
+                    <p class="breaking-headline">{txt key=TEXT_PRODUCTS_DESCRIPTION}</p>
+                    <div id="description" class="textstyles text-word-wrap">
+                         <h4 class="headline">{$products_name}</h4>
+                        {$products_description}
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                {/if}
+
+                {if $product_description2_html && $product_description2_html|strip_tags|trim != ''}
+                <div id="pcontent-part-contains" class="pcontent-part hidden-xs"
+                     data-orientation-nav-url="{$products_link}#pcontent-part-contains"
+                     data-orientation-nav-classes="move"
+                     data-orientation-nav-icon="<i class='fa fa-pie-chart'></i>"
+                     data-orientation-nav-label="{$smarty.const.TEXT_PRODUCTS_DESCRIPTION3|replace:' ':''}"
+                >
+                    <p class="breaking-headline">{txt key=TEXT_PRODUCTS_DESCRIPTION3}</p>
+                    <div id="contains" class="textstyles text-word-wrap">
+                        {$product_description2_html}
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                {/if}
+
+                {if $products_master_flag == 1 && $smarty.const._PLUGIN_MASTER_SLAVE_SHOW_SLAVE_LIST == 'true'}
+                    <div id="pcontent-part-productlist" class="pcontent-part"
+                        data-orientation-nav-url="{$products_link}#pcontent-part-productlist"
+                        data-orientation-nav-classes="move"
+                        data-orientation-nav-icon="<i class='fa fa-wrench'></i>"
+                        data-orientation-nav-label="{txt key=TEXT_PRODUCT_OPTIONS}"
+                    >
+                        <p class="breaking-headline">{txt key=TEXT_PRODUCT_OPTIONS}</p>
+                        <div id="productlist" class="textstyles">
+                            {hook key=product_info_tpl_productlist}
+                        </div>
+                    </div>
+                {/if}
+                <div class="hidden-xs">
+                {hook key=product_info_tpl_tab_headline_versand}
+                {hook key=product_info_tpl_tab_box_versand}
+                </div>
+
+                <div class="hidden-xs">
+                    {hook key=product_info_tpl}
+                </div>
+
+                {if $review_stars_rating}
+                    <div id="pcontent-part-reviews" class="pcontent-part"
+                        data-orientation-nav-url="{$products_link}#pcontent-part-reviews"
+                        data-orientation-nav-classes="move"
+                        data-orientation-nav-icon="<i class='fa fa-star'></i>"
+                        data-orientation-nav-label="{txt key=TEXT_XT_REVIEWS_INFO}"
+                    >
+                        <p class="breaking-headline"><span style="display:none;">{$products_average_rating}</span><span>{if $products_rating_count}{$products_rating_count}{else}0{/if}</span> {txt key=TEXT_XT_REVIEWS_INFO}</p>
+                        <div id="reviews" class="textstyles">
+                            {hook key=product_info_tpl_reviews}
+                        </div>
+                    </div>
+                {/if}
+
+                {if $media_files !=''}
+                    <div id="pcontent-part-files" class="pcontent-part"
+                        data-orientation-nav-url="{$products_link}#pcontent-part-files"
+                        data-orientation-nav-classes="move"
+                        data-orientation-nav-icon="<i class='fa fa-download'></i>"
+                        data-orientation-nav-label="{txt key=TEXT_DOWNLOADS}"
+                    >
+                    	<p class="breaking-headline">{txt key=TEXT_DOWNLOADS}</p>
+                        <div id="files" >
+                            {include file="$selected_template/xtCore/pages/files/product_public_files.html"}
+                        </div>
+                    </div>
+                {/if}
+
+                {hook key=product_info_tpl_tab_headline}
+                {hook key=product_info_tpl_tab_box}
+
+            </div><!-- #pcontent -->
+
+            <div class="visible-xs">
+                <div class="mobile-info-panel panel-group" id="mobileDesc" role="tablist" aria-multiselectable="true">
+
+                    {if $products_description && $products_description|strip_tags|trim != ''}
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="mobileDescHeadingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#mobileDesc" href="#mobileDescOne" aria-expanded="false" aria-controls="mobileDescOne">
+                                        <span class="fa fa-chevron-circle-right text-primary"></span>
+                                        <span class="text-uppercase">{txt key=TEXT_PRODUCTS_DESCRIPTION}</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="mobileDescOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="mobileDescHeadingOne">
+                                <div class="panel-body textstyles text-word-wrap">
+                                    {$products_description}
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
+
+                    {if $product_description2_html && $product_description2_html|strip_tags|trim != ''}
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="mobileDescHeadingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#mobileDesc" href="#mobileDescTwo" aria-expanded="false" aria-controls="mobileDescTwo">
+                                        <span class="fa fa-chevron-circle-right text-primary"></span>
+                                        <span class="text-uppercase">{txt key=TEXT_PRODUCTS_DESCRIPTION3}</span>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="mobileDescTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="mobileDescHeadingTwo">
+                                <div class="panel-body textstyles text-word-wrap">
+                                    {$product_description2_html}
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Rich Snippet Product Data -->
+    <script type="application/ld+json">
+    /* <![CDATA[ {literal} */
+    {
+        "@context": "http://schema.org",
+        "@type": "Product",
+        "name": "{/literal}{$products_name}{literal}","description": "{/literal}{if $products_description && $products_description|trim != ''}{$products_description|strip_tags|strip|truncate:150:".."}{/if}{literal}",
+        "image": "{/literal}{if !$products_image || $products_image == 'product:noimage.gif'}{img img='no_image.png' type=m_org path_only=true}{else}{img img=$products_image type=m_org path_only=true}{/if}{literal}"
+        {/literal}{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}{literal}
+        ,"offers": {
+            "@type": "Offer",
+            "price": "{/literal}{$products_price.plain}{literal}",
+            "priceCurrency": "{/literal}{$smarty.const._STORE_CURRENCY}{literal}"
+        }
+        {/literal}{/if}
+        {if $review_stars_rating && $products_rating_count && $products_rating_count!=0}{literal}
+        ,"aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "{/literal}{$products_average_rating}{literal}",
+            "reviewCount": "{/literal}{if $products_rating_count}{$products_rating_count}{else}0{/if}{literal}"
+        }{/literal}{/if}{literal}
+    }
+    /* {/literal} ]]> */
+    </script>
+
+</div><!-- #product -->

@@ -1,0 +1,15 @@
+######################################################
+# BuI Plugin for xt:Commerce VEYTON 4.0 Enterprise
+#
+# Copyright 2007-2009 BuI Hinsche GmbH. All Rights Reserved.
+# This file may not be redistributed in whole or significant part.
+# Content of this file is Protected By International Copyright Laws.
+#
+# BuI Plugin for xt:Commerce VEYTON 4.0  IS NOT FREE SOFTWARE
+#
+# http://www.bui-hinsche.de
+#
+# BuI Hinsche GmbH, Donaliesstrasse 45 / 46 , 06712 Zeitz (Germany)
+# office@bui-hinsche.de
+#
+######################################################

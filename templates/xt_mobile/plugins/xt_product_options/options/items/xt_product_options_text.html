@@ -1,0 +1,11 @@
+{if $options!=''}
+
+    {foreach name=outer item=item_data from=$options}
+        <label>
+            {$item_data.text}: 
+            {$item_data.field} 
+        </label>
+
+    {/foreach}
+
+{/if}

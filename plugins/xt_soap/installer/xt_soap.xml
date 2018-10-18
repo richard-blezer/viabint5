@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>xt:Commerce SOAP Server</title>
+    <version>2.2.0.7</version>
+    <code>xt_soap</code>
+    <url>http://www.xt-commerce.com</url>
+    <description>xt:Commerce SOAP SERVER</description>
+    <icon>soap.jpg</icon>
+    <type>ERP</type>
+
+    <db_install>
+        <![CDATA[
+        if (!$this->_FieldExists('orders_exported',TABLE_ORDERS)) 
+        $db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD `orders_exported` INT( 1 ) NOT NULL DEFAULT '0';");
+
+        if (!$this->_FieldExists('bw_id',DB_PREFIX.'_plg_products_attributes')) 
+        $db->Execute("ALTER TABLE ".DB_PREFIX."_plg_products_attributes ADD `bw_id` INT( 11 ) NOT NULL DEFAULT '0';");
+
+        if (!$this->_FieldExists('external_id',DB_PREFIX.'_media')) 
+        $db->Execute("ALTER TABLE ".DB_PREFIX."_media ADD `external_id` VARCHAR( 255 ) NOT NULL DEFAULT '';");
+
+        ]]>
+    </db_install>
+    
+    
+    <db_uninstall>
+        <![CDATA[
+        // some code or file include here
+        ]]>
+    </db_uninstall>
+    
+    
+    <require_license_file>true</require_license_file>
+    <marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=573]]></marketplace_link>
+    <license_file>xt_soap.txt</license_file>
+    <developer>xt:Commerce</developer>
+    <documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/display/XT41DUE/xt%3ASOAP+2.0]]></documentation_link>     
+    
+    <minimumupdateversion>2.1.0</minimumupdateversion>
+    <db_update>
+        <update>
+            <version>2.1.0</version>
+            <to_version>2.1.0.2</to_version>
+            <code>
+            </code>
+        </update>
+        <update>
+            <version>2.1.0.2</version>
+            <to_version>2.1.0.3</to_version>
+            <code>
+                <![CDATA[
+                // some code or file include here
+                ]]>
+            </code>
+        </update>
+        <update>
+            <version>2.1.0.2</version>
+            <to_version>2.1.0.4</to_version>
+            <code>
+                <![CDATA[
+                // some code or file include here
+                ]]>
+            </code>
+        </update>
+        <update>
+            <version>2.1.0.4</version>
+            <to_version>2.1.0.5</to_version>
+            <code>
+                <![CDATA[
+                // some code or file include here
+                ]]>
+            </code>
+        </update>
+        <update>
+            <version>2.1.0.5</version>
+            <to_version>2.1.0.6</to_version>
+            <code>
+                <![CDATA[
+                // some code or file include here
+                ]]>
+            </code>
+        </update>
+        <update>
+            <version>2.1.0.6</version>
+            <to_version>2.1.0.7</to_version>
+            <code>
+                <![CDATA[
+                // some code or file include here
+                ]]>
+            </code>
+        </update>
+        <update>
+            <version>2.1.0.7</version>
+            <to_version>2.2.0.2</to_version>
+            <code>
+                <![CDATA[
+                // some code or file include here
+                ]]>
+            </code>
+        </update>
+        <update>
+            <version>2.2.0.2</version>
+            <to_version>2.2.0.3</to_version>
+            <code>
+                <![CDATA[
+                // some code or file include here
+                ]]>
+            </code>
+        </update>
+        <update>
+            <version>2.2.0.3</version>
+            <to_version>2.2.0.4</to_version>
+            <code>
+                <![CDATA[
+                // some code or file include here
+                ]]>
+            </code>
+        </update>
+        <update>
+            <version>2.2.0.4</version>
+            <to_version>2.2.0.5</to_version>
+            <code>
+                <![CDATA[
+                // some code or file include here
+                ]]>
+            </code>
+        </update>
+        <update>
+            <version>2.2.0.5</version>
+            <to_version>2.2.0.6</to_version>
+            <code>
+                <![CDATA[
+                // some code or file include here
+                ]]>
+            </code>
+        </update>
+        <update>
+            <version>2.2.0.6</version>
+            <to_version>2.2.0.7</to_version>
+            <code>
+                <![CDATA[
+                // some code or file include here
+                ]]>
+            </code>
+        </update>
+    </db_update>
+
+
+    <plugin_code>
+        <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode>
+                <![CDATA[
+                define('PAGE_XT_SOAP', _SRV_WEB_PLUGINS.'xt_soap/pages/xt_soap.php');
+                ]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.language.php:_getLanguagelist_qry</hook>
+            <phpcode>
+                <![CDATA[
+                if( $_GET['page'] == xt_soap ){   
+                $qry_where = " where l.languages_id != '' ";
+                if ($list_type!='all')
+                    $qry_where .= " and l.language_status = '1'"; 
+                }
+                ]]>
+            </phpcode>
+            <order>2</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+    <configuration>
+        <config>
+            <key>XT_SOAP_RESTRICT_TO_IP</key>
+            <type>textfield</type>
+            <value></value>
+            <de>
+                <title>Erlaubte IP (kommagetrennt)</title>
+            </de>
+            <en>
+                <title>Allowed IP (comma seperated)</title>
+            </en>
+            <es>
+                <title>IP admitida (separadas por comas)</title>
+            </es>
+        </config> 
+        <config>
+            <key>XT_SOAP_DEBUG</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>false</value>
+            <de>
+                <title>Debugmodus (Standard: false)</title>
+            </de>
+            <en>
+                <title>Debugmode (Standard: false)</title>
+            </en>
+            <es>
+                <title>Modo de depuración (estándar: false)</title>
+            </es>
+        </config>
+        <config>
+            <key>XT_SOAP_PRODUCT_TRANSFER_NET</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Übertragung der Artikelpreise Netto (Standard: true)</title>
+            </de>
+            <en>
+                <title>Transfer prices of products net (Standard: true)</title>
+            </en>
+            <es>
+                <title>Los precios de transferencia de artículos net (estándar: true)</title>
+            </es>
+        </config>
+        <config>
+            <key>XT_SOAP_DEL_GRP_PRC</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Kundengruppenpreise vor Import löschen (Standard: true)</title>
+            </de>
+            <en>
+                <title>Delete customer group prices befor import (Standard: true)</title>
+            </en>
+            <es>
+                <title>Eliminar precios para grupos de clientes antes de la importación (estándar: true)</title>
+            </es>
+        </config>
+        <config>
+            <key>XT_SOAP_CUSTOMER_WRITE_BACK_EXT_ID</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Berechnete Kundennummer/Externe ID für Kunden in Datenbank schreiben (Standard: true)</title>
+            </de>
+            <en>
+                <title>Write calculated customer number/external id for customers in database (Standard: true)</title>
+            </en>
+            <es>
+                <title>Escribe el número de cliente computarizada para los clientes en la base de datos (estándar: true)</title>
+            </es>
+        </config>
+        <config>
+            <key>XT_SOAP_USE_JSON</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>false</value>
+            <de>
+                <title>JSON anstatt SOAP XML verwenden (Standard: false)</title>
+            </de>
+            <en>
+                <title>Use JSON instead of XML SOAP (Standard: false)</title>
+            </en>
+            <es>
+                <title>Utilice JSON en lugar de XML SOAP (estándar: false)</title>
+            </es>
+        </config>
+        <config>
+            <key>XT_SOAP_REBUILD_SEO_URLS</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>false</value>
+            <de>
+                <title>SEO URLs beim Artikel/Hersteller/Kategorie upload aktualisieren (Standard: false)</title>
+            </de>
+            <en>
+                <title>Update SEO URLs when products/manufacturers/category uploaded (Standard: false)</title>
+            </en>
+            <es>
+                <title>Actualización de las direcciones URL de SEO cuando los productos/fabricantes /categoría (estándar: false)</title>
+            </es>
+        </config>
+        <config>
+            <key>XT_SOAP_CHARSET</key>
+            <type>textfield</type>
+            <value>UTF-8</value>
+            <de>
+                <title>Verwende Zeichensatz UTF-8 oder ISO-8859-1 (Standard: UTF-8)</title>
+            </de>
+            <en>
+                <title>Use charset UTF-8 or ISO-8859-1 (Standard: UTF-8)</title>
+            </en>
+            <es>
+                <title>Utilice el conjunto de caracteres UTF-8 o ISO-8859-1 (estándar: UTF-8)</title>
+            </es>
+        </config>
+    </configuration>  
+</xtcommerceplugin>

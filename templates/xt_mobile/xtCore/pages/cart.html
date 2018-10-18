@@ -1,0 +1,139 @@
+<div data-role="header"> 
+    <h1>{txt key=TEXT_CART}</h1>
+</div>
+
+{if $show_cart_content == true}
+    {$message}
+    
+    {form type=form name=cart action='dynamic' link_params=getParams method=post conn=SSL}
+    {form type=hidden name=action value=update_product}
+        <ul data-role="listview" data-inset="false" data-theme="c">
+
+            {foreach name=aussen item=data from=$cart_data}
+
+                <li class="xtm-cart-item cart-item" data-icon="false">
+                    {if $data.products_image != 'product:noimage.gif'}
+                        {img img=$data.products_image type=m_mobile_thumb class='' alt=$data.products_name|escape:"html"}
+                    {else}
+                        <img src="{$tpl_url_path}/img/no_image.png" alt="{txt key=TEXT_NO_IMAGE}">
+                    {/if}
+                  
+                    <div class="ui-li-aside">
+                        {form type=hidden name=products_key[] value=$data.products_key}
+                        {form type=hidden name='qty[]' value=$data.products_quantity}
+                        {form type=checkbox name=cart_delete[] value=$data.products_key style="visibility:hidden;"}
+                        <div data-role="controlgroup" data-mini="true">
+                            <div class="xtm-cart-qty-plus" data-role="button" data-iconpos="notext" data-icon="plus" >+</div>    
+                            <div class="xtm-cart-qty-minus" data-role="button" data-iconpos="notext" data-icon="minus" >-</div>    
+                            <div class="xtm-cart-delete" data-role="button" data-iconpos="notext" data-icon="delete" >x</div>    
+                        </div>
+
+                    </div>
+                    <span class="desc">
+                        <span class="ui-li-heading">{$data.products_name}</span>
+                        <p class="ui-li-desc">
+                            {if $data.shipping_status}<br /><p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$data.shipping_status}</p>{/if}
+                        </p>
+
+                        <span class="ui-li-desc">
+
+
+                            {txt key=TEXT_QTY}: {$data.products_quantity} <br>
+                            {txt key=TEXT_SINGLE_PRICE}: {$data.products_price.formated}<br>
+                            {txt key=TEXT_TOTAL_PRICE}: {$data.products_final_price.formated}<br />
+                            <br />
+                            {if $data.products_information || $data.products_description}
+                            <a href="#xtm-products-info-{$smarty.foreach.aussen.index}" data-rel="popup" data-position-to="window" data-inline="true">
+                                {txt key=TEXT_MORE_DETAILS}
+                            </a>
+                            {/if}
+                            
+                        </span>
+
+                    </span>
+                    
+  
+                    <div id="xtm-products-info-{$smarty.foreach.aussen.index}" data-role="popup" data-overlay-theme="a">
+                        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+                        <div data-role="header"><h3>{$data.products_name}</h3></div>
+                        <div data-role="content">
+                            <span class="floatLeft">
+                                {if $data.products_image != 'product:noimage.gif'}
+                                    {img img=$data.products_image type=m_mobile_thumb class='' alt=$data.products_name|escape:"html"}
+                                {else}
+                                    <img src="{$tpl_url_path}/img/no_image.png" alt="{txt key=TEXT_NO_IMAGE}">
+                                {/if}
+                            </span>
+                            <span class="summary">
+                                <span>
+                                {txt key=TEXT_QTY}: {$data.products_quantity} <br>
+                                {txt key=TEXT_SINGLE_PRICE}: {$data.products_price.formated}<br>
+                                {txt key=TEXT_TOTAL_PRICE}: {$data.products_final_price.formated}<br />
+                                </span>
+                            </span>
+
+                            <span class="desc">
+
+                                {if $data.products_description}
+                                    {$data.products_description}
+                                    <br />
+                                    <br />
+                                {/if}
+
+                                
+                                {if $data.products_information}
+                                    {$data.products_information}
+                                    <br />
+                                    <br />
+                                {/if}
+                                
+                            </span>
+                            {literal}
+                            <script>
+                                $('#xtm-products-info-{/literal}{$smarty.foreach.aussen.index}{literal}-popup').addClass('xtm-cart-item-popup');
+                            </script>                    
+                            {/literal}
+                        </div>
+                    </div>                    
+                </li>
+
+            {/foreach}
+            <li class="xtm-cart-total" data-icon="false">
+                <div class="right">
+                    <table>
+                    {hook key=cart_total_tpl}
+
+                    
+                    {foreach name=aussen item=tax_data from=$cart_tax}
+                    <tr><td>{txt key=TEXT_TAX} {$tax_data.tax_key}%:</td><td> {$tax_data.tax_value.formated}</td></tr>
+                    {/foreach}
+                        <tr><td><strong>{txt key=TEXT_SUB_TOTAL}:</td><td>{$cart_total}</strong></td></tr>
+                        {if $discount}
+                            <tr><td>{txt key=TEXT_DISCOUNT_MADE} :</td><td>{$discount.formated}<br /></td></tr>
+                        {/if}
+
+                        {if $cart_total_weight > 0}<tr><td>{txt key=TEXT_PRODUCTS_WEIGHT}:</td><td>{$cart_total_weight|number_format:2:",":"."} KG{/if}</td></tr>
+                    {hook key=cart_total_bottom}
+                    </table>
+                </div>
+
+            </li>        
+        </ul>
+        <br />
+        
+        {*<button type="submit">{$smarty.const.BUTTON_UPDATE}</button>*}
+        <a data-role="button" href="{link page='checkout' paction='shipping' conn=SSL}">{$smarty.const.BUTTON_CHECKOUT}</a>
+
+        
+        <div data-role="content" class="cart_tpl_form">
+            {hook key=cart_tpl_form}
+        </div>
+    {form type=formend}
+{hook key=cart_tpl_form_paypal}
+    
+{else}
+    {$message}
+{/if}
+
+{hook key=cart_bottom}
+{box name=shipping_cost}

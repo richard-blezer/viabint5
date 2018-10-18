@@ -1,0 +1,234 @@
+{*php}__debug($_POST);{/php*}
+
+<div class="first subarea">
+	<h1>{txt key=TEXT_CHECKOUT_CONFIRMATION}:</h1>
+</div>
+<div id="cart">
+    <div class="headline clearfix">
+      <div class="article"><span>{txt key=TEXT_ARTICLE}</span></div>
+      <div class="piece"><span>{txt key=TEXT_PIECE_SHORT}</span></div>
+      {if !$isMobile}
+      <div class="price"><span>{txt key=TEXT_SINGLE_PRICE}</span></div>
+      {/if}
+      <div class="total-price"><span>{txt key=TEXT_TOTAL_WORD}</span></div>
+    </div>
+    {foreach name=aussen item=cdata from=$data}
+    {if $cdata._cart_discount != ''}
+      {assign var="discount_percent" value=$cdata._cart_discount}
+    {/if}
+    {*php}print_r ($this->get_template_vars('cdata'));{/php*}
+    <div class="article-line clearfix">
+      <div class="image-text">
+        <div class="inner-image-text clearfix">
+          <div class="image">
+          {if $cdata.products_image!=''}<a href="{$cdata.products_link}">{img img=$cdata.products_image type=m_wishlist class=productImageBorder alt=$cdata.products_name}</a>{/if}
+          </div>
+          <div class="text">
+            {if $isMobile}
+            <div class="piece" style="position:relative">
+              {$cdata.products_quantity}
+            </div>
+            {/if}
+            <h2><a href="{$cdata.products_link}">{$cdata.products_name}</a></h2>
+            <div class="package">{$cdata.product_itemcount}</div>
+            {if $cdata.shipping_status}<div class="delivery">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$cdata.shipping_status}</div>{/if}
+            <a href="{link page='cart' conn=SSL}" class="delete underline">{txt key=TEXT_EDIT_2}</a>
+            {form class="delete-box" type=checkbox name=cart_delete[] value=$cdata.products_key}
+          </div>
+          {if !$isMobile}
+          <div class="piece" style="position:relative">
+            {$cdata.products_quantity}
+          </div>
+          {/if}
+        </div>
+      </div>
+      <div class="price-box">
+        {if !$isMobile}
+      	<div class="price">
+      	{if $cdata.products_price.old_plain}
+          <span class="productOldPrice">
+            <span>
+              {if $CURRENCY == 'EUR'}
+              <span class="eur">€</span>
+              {elseif $CURRENCY == 'CHF'}
+              <span class="chf">CHF</span>
+              {/if}
+              {$cdata.products_price.old_plain|string_format:"%.2f"|replace:".":","}
+            </span>
+          </span>
+          {/if}
+          {$cdata._original_products_price.formated}
+        </div>
+        {/if}
+        {math equation="a * b" a=$cdata._original_products_price.plain b=$cdata.products_quantity assign=total_price}
+        <div class="total-price">
+          <div class="total-price-inner price">
+            <span class="productNewPrice">
+              {if $CURRENCY == 'EUR'}
+              <span class="eur">&euro;</span>
+              {elseif $CURRENCY == 'CHF'}
+              <span class="chf">CHF</span>
+              {/if}
+              {$total_price|string_format:"%.2f"|replace:".":","}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    {/foreach}
+    <div class="coupon hookpoint">
+		{ hook key=checkout_tpl_info}
+	</div>
+    {hook key=cart_total_tpl}
+    <div class="subtotal clearfix">
+      <div class="left">
+      	<p>{txt key=TEXT_HEALTHY_DISCOUNT}</p>
+      </div>
+      <div class="middle">
+        {if $discount}
+          <div>{txt key=TEXT_SUB_TOTAL}:</div>
+          <div class="discount-text">{txt key=TEXT_DISCOUNT_SCALE}: {$discount_percent|round}% {txt key=TEXT_SAVED}</div>
+        {/if}
+        <div>{txt key=TEXT_TOTAL_WITHOUT_TAX}:</div>
+
+        {foreach name=aussen item=csub_data from=$sub_data}
+    		<div>
+				{$csub_data.products_name}
+			</div>
+		{/foreach}
+
+        {foreach name=aussen item=tax_data from=$tax}
+        	<div>
+				{$tax_data.tax_key}% {txt key=TEXT_TAX}:
+			</div>
+		{/foreach}
+      </div>
+      <div class="right">
+        {if $discount}
+          {math equation="a + b" a=$discount.plain b=$content_total.plain assign=discount_total}
+          <div class="price">
+            <span class="productNewPrice">
+              {if $CURRENCY == 'EUR'}
+              <span class="eur">&euro;</span>
+              {elseif $CURRENCY == 'CHF'}
+              <span class="chf">CHF</span>
+              {/if}
+              {$discount_total|string_format:"%.2f"|replace:".":","}
+            </span>
+          </div>
+          
+          <div class="price discount-price">
+            <p class="minus">-</p>
+            <span class="productNewPrice">
+              {if $CURRENCY == 'EUR'}
+              <span class="eur">&euro;</span>
+              {elseif $CURRENCY == 'CHF'}
+              <span class="chf">CHF</span>
+              {/if}
+              {$discount.plain|string_format:"%.2f"|replace:".":","}
+            </span>
+          </div>
+        {/if}
+        <div class="price">
+          <span class="productNewPrice">
+            {if $CURRENCY == 'EUR'}
+            <span class="eur">€</span>
+            {elseif $CURRENCY == 'CHF'}
+            <span class="chf">CHF</span>
+            {/if}
+            {$content_total.plain_otax|string_format:"%.2f"|replace:".":","}
+          </span>
+        </div>
+
+    	{foreach name=aussen item=csub_data from=$sub_data}
+    		<div class="price">
+				{$csub_data.products_price.formated}
+			</div>
+		{/foreach}
+
+        {foreach name=aussen item=tax_data from=$tax}
+        	<div class="price">
+				{$tax_data.tax_value.formated}
+			</div>
+		{/foreach}
+      </div>
+    </div>
+    <div class="sub-total-price clearfix">
+      <div class="text">
+        {txt key=TEXT_TOTAL}:
+      </div>
+      <div class="price">
+       {$total}
+      </div>
+    </div>
+    {hook key=cart_total_bottom}
+
+    <p>{hook key=cart_tpl_form}</p>
+</div>    
+
+{hook key=checkout_tpl_confiramtion}
+
+{form type=form name=process action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=process}
+
+
+{hook key=checkout_tpl_payment_comment}
+
+
+
+{if $smarty.const._STORE_TERMSCOND_CHECK eq 'true'}
+<div class="second subarea">
+	<h1>{txt key=TEXT_CONDITIONS}:</h1>
+	{content cont_id=3 is_id='false'}
+	<div id="checkout_termscond_frame">
+		<div id="checkout_termscond" class="textarea-div">
+			<div class="inner">{$_content_3.content_body}</div>
+		</div>
+		<p class="check-payment"><label>{form type=checkbox name=conditions_accepted} <span class="agb">{txt key=TEXT_ACCEPT_CONDITIONS}</span></label>{*$_content_3.content_popup_link*}</p>
+	</div>
+</div>
+{/if}
+
+{if $rescission == 'true'}
+<div class="third subarea">
+	<h1>{txt key=XT_RESCISSION_HEADING}:</h1>
+	{content cont_id=8 is_id='false'}
+	<div id="checkout_rescission_block" class="textarea-div">
+		<div class="inner">{$_content_8.content_body}</div>
+		<p class="check-payment"><label>{form type=checkbox name=rescission_accepted} {txt key=XT_RESCISSION_ACCEPT}&nbsp;&nbsp;|&nbsp;&nbsp;{*$_content_8.content_popup_link*}</label></p>
+	</div>
+</div>
+{/if}
+
+{if $show_digital_checkbox eq 'true'}
+    <p>{form type=checkbox name=withdrawal_reject_accepted} {txt key=TEXT_DIGITALCOND_CHECK}</p>
+{/if}
+
+{hook key=checkout_tpl_payment}
+
+
+{if $smarty.const._STORE_TERMSCOND_CHECK eq 'false'}
+{content cont_id=3 is_id='false'}
+<p class="termscond-check"><a href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION}</a> | {$_content_3.content_popup_link}</p>
+{/if}
+
+{hook key=checkout_tpl_form}
+
+<div id="checkout-buttons" class="clearfix">
+	<div class="left">
+		<p class="prev"><a class="return-button" href="{link page='checkout' paction='payment' conn=SSL}"><span>{txt key=BUTTON_BACK}</span></a></p>
+	</div>
+	<div class="right">
+		{if $post_form eq '1'}
+			<p class="text"><strong>{txt key=TEXT_INFO_PAY_NEXT_STEP}</strong></p>
+			<p class="next">{button_text value=BUTTON_CONFIRM_ORDER_PAY file='confirm_order_pay.gif' type='form' onclick='this.disabled=true; submit();'}</p>
+		{else}
+			<p class="next">{button_text value=BUTTON_CONFIRM_ORDER type='form' params='class="buy-now check-require"' onclick='this.disabled=true; submit();'}</p>
+		{/if}
+	</div>
+</div>
+
+{form type=formend}
+
+{hook key=checkout_tpl_bottom}

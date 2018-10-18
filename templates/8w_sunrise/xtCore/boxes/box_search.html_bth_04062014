@@ -1,0 +1,8 @@
+{php}if($_GET && $_GET['keywords']){$txt = $_GET['keywords'];}else{$txt = TEXT_8WORKS_SUNRISE_SEARCH_TXT;}$onfocus = "if(this.value == '".$txt."') this.value='';";$onblur = "if (this.value=='') this.value='".$txt."';";$this->assign('value', $txt);$this->assign('onfocus', $onfocus);$this->assign('onblur', $onblur);{/php}
+{form type=form name=search_box action='search' link_params=getParams method=get}
+{form type=hidden name=page value=search}
+{form type=hidden name=page_action value=query}
+{form type=hidden name=desc value="on"}
+{form type=hidden name=sdesc value="on"}
+<div class="searchfield">{form class="search-text" type=text name=keywords value=$value onfocus=$onfocus onblur=$onblur}<input class="search-submit" type="submit" onclick="this.blur();" value="Go" /></div>
+{form type=formend}

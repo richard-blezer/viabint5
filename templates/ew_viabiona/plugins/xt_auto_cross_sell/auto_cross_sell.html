@@ -1,0 +1,80 @@
+{if $_auto_cross_sell|@count >= 4}
+    <div class="hidden-sm hidden-md hidden-lg">
+        {if $smarty.get.page == 'cart'}
+            {include file="$selected_template/xtCore/pages/product_listing/product_listing_slider_xs.html"
+                code="xt_auto_cross_sell"
+                headline=$smarty.const.TEXT_HEADING_AUTO_CROSS_SELL
+                product_listing=$_auto_cross_sell
+                page="cart"
+            }
+        {else}
+            {include file="$selected_template/xtCore/pages/product_listing/product_listing_slider_xs.html"
+                code="xt_auto_cross_sell"
+                headline=$smarty.const.TEXT_HEADING_AUTO_CROSS_SELL
+                product_listing=$_auto_cross_sell
+                classes=""
+                active=""
+                extended="1"
+                _show_more_link=false
+                _show_page_link=false
+            }
+        {/if}
+    </div>
+    
+    <div class="hidden-xs hidden-md hidden-lg">
+        {if $smarty.get.page == 'cart'}
+            {include file="$selected_template/xtCore/pages/product_listing/product_listing_slider_sm.html"
+                code="xt_auto_cross_sell"
+                headline=$smarty.const.TEXT_HEADING_AUTO_CROSS_SELL
+                product_listing=$_auto_cross_sell
+                page="cart"
+            }
+        {else}
+            {include file="$selected_template/xtCore/pages/product_listing/product_listing_slider_sm.html"
+                code="xt_auto_cross_sell"
+                headline=$smarty.const.TEXT_HEADING_AUTO_CROSS_SELL
+                product_listing=$_auto_cross_sell
+                classes=""
+                active=""
+                extended="1"
+                _show_more_link=false
+                _show_page_link=false
+            }
+        {/if}
+    </div>
+
+    <div class="hidden-xs hidden-sm">
+        {if $smarty.get.page == 'cart'}
+            
+            {include file="$selected_template/xtCore/pages/product_listing/product_listing_slider.html"
+                code="xt_auto_cross_sell"
+                headline=$smarty.const.TEXT_HEADING_AUTO_CROSS_SELL
+                product_listing=$_auto_cross_sell
+                page="cart"
+            }
+        {else}
+            {include file="$selected_template/xtCore/pages/product_listing/product_listing_slider.html"
+                code="xt_auto_cross_sell"
+                headline=$smarty.const.TEXT_HEADING_AUTO_CROSS_SELL
+                product_listing=$_auto_cross_sell
+                classes=""
+                active=""
+                extended="1"
+                _show_more_link=false
+                _show_page_link=false
+            }
+        {/if}
+    </div>
+{else}
+    {include file="$selected_template/xtCore/pages/product_listing/product_listing_v2.html"
+        code="xt_auto_cross_sell"
+        headline=$smarty.const.TEXT_HEADING_AUTO_CROSS_SELL
+        product_listing=$_auto_cross_sell
+        classes=""
+        active=""
+        extended="1"
+        included="1"
+        _show_more_link=false
+        _show_page_link=false
+    }
+{/if}

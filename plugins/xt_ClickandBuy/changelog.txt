@@ -1,0 +1,7 @@
+1.0.0: initial release
+
+1.0.1: 
+* anderes logo im admin und shop
+* kosequent überall ClickandBuy schreibweise
+* XT_CLICKANDBUY_WSDL kein configwert mehr, sondern feste konstante in callback.php
+* emsclient umgesetzt

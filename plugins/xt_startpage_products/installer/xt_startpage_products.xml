@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+		<title>Startpage Products</title>
+		<version>1.0.6</version>
+		<code>xt_startpage_products</code>
+		<url>http://www.xt-commerce.com</url>
+		<description>Products displayed on Startpage</description>
+		<developer>xt:Commerce</developer>
+		<type>core</type>
+		<icon>xt-commerce_logo.jpg</icon>
+		<db_install><![CDATA[
+        	include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_startpage_products/hooks/db_install.php';
+		]]></db_install>
+    	<db_uninstall>
+		<![CDATA[
+        	include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_startpage_products/hooks/db_uninstall.php';
+		]]>
+		</db_uninstall>
+		<minimumupdateversion>1.0.0</minimumupdateversion>
+		<db_update>
+			<update>
+				<version>1.0.0</version>
+				<to_version>1.0.1</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>		
+			<update>
+				<version>1.0.1</version>
+				<to_version>1.0.2</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+			<update>
+				<version>1.0.2</version>
+				<to_version>1.0.3</to_version>
+				<code><![CDATA[
+					global $store_handler;
+					
+					$plugin = new plugin();
+					$stores = $store_handler->getStores();
+					if ($plugin->_FieldExists('products_startpage', DB_PREFIX . '_products'))
+						$db->Execute("ALTER TABLE " . DB_PREFIX . "_products DROP `products_startpage`");
+					if ($plugin->_FieldExists('products_startpage_sort', DB_PREFIX . '_products'))
+						$db->Execute("ALTER TABLE " . DB_PREFIX . "_products DROP `products_startpage_sort`");
+						
+					
+					$db->Execute("
+							INSERT INTO
+							".DB_PREFIX."_acl_nav (`text`, `icon`, `url_i`, `url_d`, `sortorder`, `parent`, `type`, `navtype`, `cls`, `handler`, `iconCls`)
+							VALUES ('xt_startpage_products', 'images/icons/database_gear.png', '&plugin=xt_startpage_products', 'adminHandler.php', '5002', 'shop', 'I', 'W', NULL, NULL, NULL)");
+					
+					$create = "CREATE TABLE IF NOT EXISTS  `" . DB_PREFIX . "_startpage_products` (
+						 `startpage_products_id` int(11) NOT NULL AUTO_INCREMENT,
+						 `shop_id` int(11) NOT NULL,
+						 `products_id` int(11) NOT NULL,
+						 `startpage_products_sort` int(11) NOT NULL DEFAULT 0,
+						 PRIMARY KEY (`startpage_products_id`),
+						 UNIQUE KEY `shop_id_products_id_unique` (`shop_id`,`products_id`)
+						) ENGINE=MyISAM DEFAULT CHARSET=utf8";
+					
+					$db->Execute($create);
+					]]>
+				</code>
+			</update>
+			<update>
+				<version>1.0.3</version>
+				<to_version>1.0.4</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+			<update>
+				<version>1.0.4</version>
+				<to_version>1.0.5</to_version>
+				<code><![CDATA[
+					global $store_handler;
+					
+					$plugin = new plugin();
+					$stores = $store_handler->getStores();
+					foreach ($stores as $store) {
+						if ($plugin->_FieldExists('products_startpage_' . $store['id'], DB_PREFIX . '_products'))
+							$db->Execute("ALTER TABLE " . DB_PREFIX . "_products DROP `products_startpage_" . $store['id'] . "`");
+
+						if ($plugin->_FieldExists('products_startpage_sort_' . $store['id'], DB_PREFIX . '_products'))
+							$db->Execute("ALTER TABLE " . DB_PREFIX . "_products DROP `products_startpage_sort_" . $store['id'] . "`");
+					}
+					]]>
+				</code>
+			</update>				
+			<update>
+				<version>1.0.5</version>
+				<to_version>1.0.6</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>			
+		</db_update>			
+		<plugin_code>
+			<code>
+				<hook>page_registry.php:bottom</hook>
+				<phpcode><![CDATA[
+					define('PAGE_XT_STARTPAGE_PRODUCTS', _SRV_WEB_PLUGINS.'xt_startpage_products/pages/xt_startpage_products.php');
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			
+			<code>
+				<hook>class.productsPost.php:bottom</hook>
+				<phpcode><![CDATA[
+					include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_startpage_products/hooks/class.productsPost.php_bottom.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+		</plugin_code>
+		<language_content>
+			<phrase>
+				<key>TEXT_XT_STARTPAGE_PRODUCTS</key>
+				<class>admin</class>
+				<de>
+					<value>Startseiten Produkte</value>
+				</de>
+				<en>
+					<value>Startpage products</value>
+				</en>			
+			</phrase>
+			<phrase>
+				<key>TEXT_ATTACHED_PRODUCTS</key>
+				<class>admin</class>
+				<de>
+					<value>Zugeordnete Produkte</value>
+				</de>
+				<en>
+					<value>Attached products</value>
+				</en>			
+			</phrase>
+			<phrase>
+				<key>TEXT_ATTACH_PRODUCTS</key>
+				<class>admin</class>
+				<de>
+					<value>Produkte hinzufügen</value>
+				</de>
+				<en>
+					<value>Attach products</value>
+				</en>			
+			</phrase>
+			<phrase>
+				<key>TEXT_STARTPAGE_PRODUCTS_SORT</key>
+				<class>admin</class>
+				<de>
+					<value>Reihenfolge</value>
+				</de>
+				<en>
+					<value>Sort order</value>
+				</en>			
+			</phrase>
+			<phrase>
+				<key>TEXT_ADD_STARTPAGE_PRODUCT</key>
+				<class>admin</class>
+				<de>
+					<value>Produkte zur Startseite hinzufügen</value>
+				</de>
+				<en>
+					<value>Attach products to Startpage</value>
+				</en>			
+			</phrase>
+		</language_content>
+		<configuration>
+		<config>
+			<key>ACTIVATE_XT_STARTPAGE_PRODUCTS_PAGE</key>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<value>true</value>
+			<de>
+				<title>Aktivieren</title>
+				<description>Produkte auf Startseite anzeigen</description>
+			</de>
+			<en>
+				<title>Aktivate</title>
+				<description>Display Products on Startpage</description>
+			</en>
+			<bp> 
+        		<title>Ativar</title>
+				<description>Visualizar produto na pagina principal</description>
+    		</bp>
+		</config>
+		<config>
+		<key>XT_STARTPAGE_PRODUCTS_PAGE_LIMIT</key>
+			<value>12</value>
+			<de>
+				<title>Anzahl Artikel auf Seite</title>
+				<description></description>
+			</de>
+			<en>
+				<title>Max. products</title>
+				<description>Max. count of articles displayed on page</description>
+			</en>
+			<bp> 
+        		<title>maximo produtos</title>
+				<description>Maximo  de produtos pode ser visualizados na pagina</description>
+    		</bp>
+		</config>
+		<config>
+			<key>XT_STARTPAGE_PRODUCTS_PAGE_TPL</key>
+			<value>product_listing_v1.html</value>
+			<de>
+				<title>Template</title>
+				<description>Template für Artikel Seite</description>
+			</de>
+			<en>
+				<title>Template</title>
+				<description>Template for products page</description>
+			</en>
+			<bp> 
+        		<title>Template</title>
+				<description>Template para pagina de produtos</description>
+    		</bp>
+		</config>
+	</configuration>
+</xtcommerceplugin>

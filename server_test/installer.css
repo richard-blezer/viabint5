@@ -1,0 +1,171 @@
+/* -----------------------------------------------------------------------------------------
+  Project:   	xt:Commerce (R) - eCommerce Engine
+  @version $Id$
+
+  xt:Commerce (R) - Shopsoftware
+  (c) 2003-2007 xt:Commerce (Winger/Zanier), http://www.xt-commerce.com
+
+ xt:Commerce (R) ist eine geschuetzte Handelsmarke und wird vertreten durch die xt:Commerce GmbH (Austria)
+  xt:Commerce (R) is a protected trademark and represented by the xt:Commerce GmbH (Austria)
+
+  @copyright Copyright 2003-2007 xt:Commerce (Winger/Zanier), www.xt-commerce.com
+
+   XTC5 Template & Stylesheets
+   -----------------------------------------------------------------------------------------
+   (c) 2007 Ing. Michael Frst
+       bluegate communications
+	   http://www.bluegate.at
+   ---------------------------------------------------------------------------------------
+*/
+
+/* THE BIG GUYS */
+* {margin:0;padding:0}
+body {font-family:"Trebuchet MS",Verdana,Arial,Sans-serif; font-size:13px; margin:0; padding:0; background-image:url(../img/bg.gif); background-color:#FFFFFF;}
+
+/* HEADINGS */
+h1 {color:#000000;font-weight:bold;font-size:22px;margin:20px 0px 15px 0px;padding:0px;width:auto;border-style:solid;border-width:0px 0px 1px 0px;border-color:#000000;}
+h2 {color:#000000; font-weight:bold;font-size:16px;margin:15px 0px 8px 0px;padding:0px;}
+
+/* LINKS GLOBAL */
+a,a:link,a:hover {text-decoration:underline;cursor:pointer}
+a,a:link {background:transparent;}
+a:link {color:#c64934}
+a:visited {color:#c64934}
+a:hover,a:active {color:#c64934}
+a img {border:none}
+
+/* INPUT ELEMENTS GLOBAL (CSS 1 compatible) */
+input {font-family:"Trebuchet MS",Verdana,Arial,Sans-serif; font-size:15px; height:20px;}
+textarea {font-family:"Trebuchet MS",Verdana,Arial,Sans-serif; font-size:12px; border-width:1px; border-style:solid; border-top-color:#4E4E4F; border-left-color:#4E4E4F; border-bottom-color:#AEAEAE; border-right-color:#AEAEAE}
+select {font-family:"Trebuchet MS",Verdana,Arial,Sans-serif; font-size:12px; border-width:1px; border-style:solid; border-top-color:#4E4E4F; border-left-color:#4E4E4F; border-bottom-color:#AEAEAE; border-right-color:#AEAEAE}
+
+/* INPUT ELEMENTS DETAILED (CSS 2 compatible - works only in new browsers (FF 2.0, IE 7...) */
+input[type=text], input[type=password] {border-width:1px; border-style:solid; border-top-color:#4E4E4F; border-left-color:#4E4E4F; border-bottom-color:#AEAEAE; border-right-color:#AEAEAE}
+
+/* PARAGRAPH GLOBAL */
+p {margin:8px 0px 8px 0px}
+
+.float_left { float:left;}
+
+.float_right { float:right;}
+
+.box_small_img {margin:0pt 2px 3px 0pt;}
+
+/* FAKE HR DIV CAUSE OF IE TROUBLES */
+div.hr {padding-top:1px; height:0; overflow:hidden; margin:0; line-height:0px; background-color:#4E4E4F}
+div.hrlightgrey {padding-top:1px; height:0; overflow:hidden; margin:0; line-height:0px; background-color:#999999}
+div.hrproductpreview {padding-top:1px; height:0; overflow:hidden; margin:12px 0px 12px 0px; display:inline; height:0px; line-height:0px; display:block; background-image:url(../img/hr_productpreview.gif)}
+
+/* TABLE GLOBAL */
+table td {padding:2px;}
+
+/* WHOLE SITE WRAPPER */
+#wrap {	margin: 0 auto; width:950px; background-color:#fff; border-style:solid; border-color:#fff; border-width:0px 10px 0px 10px; min-height:900px;}
+
+/* HEADER WITH LOGO, SEARCH BOX AND LANGUAGE SELECTION */
+#header {height:115px;background: #666 url("../img/bg_header.gif") repeat-x; border-bottom: 1px solid #fff; border-top: 10px solid #fff;}
+#header	#logo {padding-left:27px; float:left}
+#header #search {width: 260px; height:75px; float:right; background: url("../img/bg_search_breakline.gif") no-repeat; color:#fff; padding:20px 0px 0px 20px}
+#header #search a {color:#fff; font-size:11px;}
+#header td {padding-top:1px; padding-right:4px;}
+
+/* CONTENT WRAPPER */
+#contentwrap {clear:both;width:950px;padding:0; min-height:500px;}
+
+/* LEFT COLUMN */
+#leftcol {float:left; width:200px; padding:0px 0px 15px 0px;}
+
+/* RIGHT COLUMN */
+#rightcol {float:right; width:200px; padding:0px 0px 15px 0px;}
+
+/* MAIN CONTENT */
+#content {float:left; width:495px; padding:0px 25px 0px 25px; margin-bottom:15px;}
+#contentfull {width:890px; padding:0px 30px 0px 30px; margin-bottom:15px;}
+
+
+h2.boxheader {
+display:block;
+font-size:1.4em;
+margin:16px 0 6px;
+padding:0 0 0 3px;
+}
+
+ul#categorymenu {
+background-color:#EDEDED;
+border:1px solid #DB9502;
+margin-bottom:15px;
+}
+
+ul#categorymenu li.level1 {
+background-color:#DA9401;
+border-color:#FFFFFF;
+border-style:solid;
+border-width:1px 0 0;
+list-style-type:none;
+padding:4px 0 4px 6px;
+color:#FFFFFF;
+font-weight:bold;
+text-decoration:none;
+}
+
+/* INFO BOX */
+.infoboxbody ul.contentlist {background-color:#FFF2CC; margin-bottom:15px; border: solid #E9D28F; border-width:0px 1px 1px 1px; }
+
+.infoboxbody ul.contentlist li { list-style-type:none; border: solid #fff; border-width:1px 0px 0px 0px; color:#000;}
+.infoboxbody ul.contentlist li a{ text-decoration:none; color:#000;}
+
+/* 1st TIER */ .infoboxbody ul.contentlist li.level1 { background-color:#FFF2CC; padding:4px 0px 4px 6px; font-size: 1.0em; color:#000;}
+/* 2nd TIER */ .infoboxbody ul.contentlist li.level2 { background-color:#FFF2CC; padding:4px 0px 4px 24px; font-size: 0.9em; color:#000;}
+/* 3rd TIER */ .infoboxbody ul.contentlist li.level3 { background-color:#FFF2CC; padding:4px 0px 4px 40px; font-size: 0.8em; color:#000;}
+
+
+/* ORDER DETAILS */
+table.tabledetails {font-size:11px; background-color:#FFF2CC; border-style: solid; border-width:0px 1px 1px 1px; border-color:#DA9401;}
+table.tabledetails tr td {padding:4px}
+table.tabledetails tr.headerrow td {background-color:#DA9401; color:#FFFFFF; font-weight:bold}
+table.tabledetails tr.headerrow td.left {text-align:left}
+table.tabledetails tr.headerrow td.center {text-align:center}
+table.tabledetails tr.headerrow td.right {text-align:right}
+
+/* ORDER DETAILS CONTENT ROW 1 */
+table.tabledetails tr.contentrow1 td {background-color:#FFF2CC;vertical-align:top}
+table.tabledetails tr.contentrow1 td.left {text-align:left}
+table.tabledetails tr.contentrow1 td.center {text-align:center}
+table.tabledetails tr.contentrow1 td.right {text-align:right}
+
+/* ORDER DETAILS CONTENT ROW 2 */
+table.tabledetails tr.contentrow2 td {background-color:#FFEAAB;vertical-align:top}
+table.tabledetails tr.contentrow2 td.left {text-align:left}
+table.tabledetails tr.contentrow2 td.center {text-align:center}
+table.tabledetails tr.contentrow2 td.right {text-align:right}
+
+
+ul.stack {padding:5px}
+ul.stack li {}
+ul.stack li.success {list-style:none; padding:5px 0px 2px 20px; background-image:url(../img/icons/icon_accept.gif); background-repeat:no-repeat; background-position:0px 4px;}
+ul.stack li.error {list-style:none; padding:5px 0px 2px 20px; background-image:url(../img/icons/icon_error.png); background-repeat:no-repeat; background-position:0px 4px;}
+
+ul.info_error {border:solid 2px #B22020; background-color:#FFD6D6; padding:8px}
+ul.info_error li {}
+ul.info_error li.infoError {list-style:none; padding:5px 0px 2px 20px; background-image:url(../img/icons/icon_error.png); background-repeat:no-repeat; background-position:0px 4px}
+
+ul.info_success {border:solid 2px #4DAA30; background-color:#BDFFA9; padding:8px}
+ul.info_success li {}
+ul.info_success li.infoSuccess {list-style:none; padding:5px 0px 2px 20px; background-image:url(../img/icons/icon_accept.gif); background-repeat:no-repeat; background-position:0px 4px; background-color:#BDFFA9}
+
+
+/* FOOTER */
+.footer {clear:both; text-align:center; font-size:11px; color:#666666; background-color:#E2E2E2; padding: 8px; margin-bottom:5px;}
+.footer a {color:#666666; text-decoration:underline}
+
+
+/* xt:Commerce COPYRIGHT */
+.copyright {margin: 0 auto; background-color:#FFFFFF; text-align:center; color:#666666; font-size:11px;}
+/* xt:Commerce ParseTime */
+.parseTime {margin: 0 auto; background-color:#FFFFFF; text-align:center; color:#666666; font-size:11px;}
+
+/* HIGHLIGHTBOX (BACKGROUND) */
+div.highlightbox {padding: 15px; background-color:#FFF2CC; border: solid #E9D28F 1px}
+div.highlightbox ul {margin-left:15px; padding:0; display:block; list-style-type:square; line-height:20px}
+div.highlightbox h1 {color:#BE8100; padding:0px 0px 10px 0px; margin:0; border:none; font-size:16px}
+div.highlightbox div.hr {height:1px; line-height:1px; margin:0; padding:0; display:block; border-bottom: solid 1px #E9D28F;}

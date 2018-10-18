@@ -1,0 +1,36 @@
+.vt_info_textAddCarthead {
+	color: #B1B1B1;
+	font-size: 16px;
+	margin-bottom: 14px;
+	width: 300px;
+}
+.vt_cart_popupContent {
+	width: 300px;
+}
+.vt_cart_popup {
+	width: 300px;
+}
+#vt_info_productinfoimages {
+	float: left;
+	width: 120px;
+}
+.vt_info_textAddCart {
+	color: #56585C;
+	font-size: 17px;
+	min-height: 107px;
+	width: 300px;
+}
+.vt_info_bottom {
+	float: left;
+	padding-top: 0;
+	width: 300px;
+}
+body {
+	background: none repeat scroll 0 0 transparent;
+	font-family: "Trebuchet MS",Verdana,Arial,Sans-serif;
+}
+.vt_button_back {
+}
+.vt_button_cart {
+	float: right;
+}

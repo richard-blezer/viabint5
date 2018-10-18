@@ -1,0 +1,63 @@
+{*php}__debug ($this->get_template_vars());{/php*}
+{php}
+$this->assign('selected_currency', 'EUR');
+if (isset($_SESSION['selected_currency'])) {
+    $this->assign('selected_currency', $_SESSION['selected_currency']);
+}
+{/php}
+{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+	<div class="cart-inner clearfix">
+		<div class="cart-img">
+			<a href="{link page='cart' conn=SSL}" title="{txt key=TEXT_CART}"><img src="{$tpl_url_path}img/box_shopping_basket.png" alt="{txt key=TEXT_CART}" /></a>
+		</div>
+		<div class="cart-content">
+		{if $show_cart_content == true}
+			<div class="full-cart">
+				<h4 class="clearfix"><span><span>{*$cart_data|@count*}{$smarty.session.cart->content_count}</span>&nbsp;{txt key=TEXT_ARTICLE}</span><a href="{link page='cart' conn=SSL}">{txt key=TEXT_TO_CART}</a></h4>
+				<p><span class="total">{txt key=TEXT_SUB_TOTAL}</span>: {$cart_total}</p>
+			</div>
+		{else}
+			<div class="empty-cart">
+				<p>{txt key=TEXT_EMPTY_CART}</p>
+			</div>
+		{/if}
+		</div>
+	</div>
+	{if $show_cart_content == true}
+	<div class="cart-layer-frame">
+		<div class="cart-layer layer clearfix" style="display:none">
+			<span class="arrow"></span>
+			<div class="headline clearfix">
+				<div class="left">{txt key=TEXT_ARTICLE}</div>
+				<div class="middle">{txt key=TEXT_PIECE_SHORT}</div>
+				<div class="right">{txt key=TEXT_PRICE}</div>
+			</div>
+			<div class="article clearfix">
+				{assign var="total" value="0"}
+				{foreach name=aussen item=data from=$cart_data}
+				<div class="left">{$data.products_name}</div>
+				<div class="middle">{$data.products_quantity}</div>
+				<div class="right">{$data.products_price.formated}</div>
+				{math equation="a + (x * y)" a=$total x=$data.products_quantity y=$data.products_price.plain assign=total}	
+				{/foreach}
+				{math equation="a - b" a="125" b=$total assign=missingtotal}
+			</div>
+			<a href="{link page='checkout' paction='shipping' conn=SSL}" id="show-login-box">{txt key=TEXT_COMPLETE_ORDER}</a>
+			{if $missingtotal > 0}
+			<p class="clearfix missing-total">{txt key=TEXT_MISSING_PRICE_1} {if $selected_currency == 'EUR'}€{elseif $selected_currency == 'CHF'}CHF{/if} {$missingtotal|string_format:"%.2f"|replace:".":","} {txt key=TEXT_MISSING_PRICE_2}</p>
+			{/if}
+		</div>
+		<div class="cart-layer-info layer" style="display:block">
+			Ihr Warenkorb wurde aktualisiert
+			<script>
+			{literal}
+			setTimeout(function() {
+				$('.cart-layer-info').hide();
+			},1500);
+			
+			{/literal}
+			</script>
+		</div>
+	</div>
+	{/if}
+{/if}

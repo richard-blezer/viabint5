@@ -1,0 +1,28 @@
+<div id="categorie-listing">
+	{if $categories_heading_title}
+	<h1>{$categories_heading_title}</h1>
+	{else}
+	<h1>{$categories_name}</h1>
+	{/if}
+	{if $categories_description}
+	<div id="categorie-description" class="textstyles">{$categories_description}</div>
+	{/if}
+
+	{if $categorie_listing !=''}
+	<p class="headline">{txt key=TEXT_HEADING_MORE_CATEGORIES}</p>
+	<div class="row">
+		{foreach item=module_data from=$categorie_listing}
+		<div class="column four">
+			<div class="box categorie box-hover">
+				{if $module_data.categories_image}
+				<span class="image"><a href="{$module_data.categories_link}">{img img=$module_data.categories_image type=m_category_thumb class=productImageBorder alt=$module_data.categories_name|escape:"html"}</a></span>
+				{else}
+				<a href="{$module_data.categories_link}"><span class="no-image"></span></a>
+				{/if}
+				<span class="name bold"><a href="{$module_data.categories_link}">{$module_data.categories_name}</a></span>
+			</div><!-- .categorie -->
+		</div><!-- .column .four -->
+		{/foreach}
+	</div><!-- .row -->	
+	{/if}
+</div><!-- #categorie-listing -->

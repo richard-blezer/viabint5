@@ -1,0 +1,63 @@
+<div data-role="header" data-theme="c">
+    <h2>{txt key=TEXT_SELECT_PAYMENT}:</h2>
+</div>
+<p>
+    {txt key=TEXT_SELECT_PAYMENT_DESC}
+</p>
+<br />
+{form type=form name=payment action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=payment}
+
+<ul data-role="listview" data-inset="true">
+    {foreach name=aussen item=pdata from=$payment_data}
+    {$pdata.payment}
+    {/foreach}
+</ul>
+
+
+<br />
+<div data-role="header" data-theme="c">
+    <h2>{txt key=TEXT_COMMENTS}:</h2>
+</div>
+<p>
+    {txt key=TEXT_COMMENTS_DESC}
+    {form type=textarea name=comments cols=130 rows=10}
+</p>
+
+
+
+{hook key=checkout_tpl_payment}
+
+<p><button type="submit">{$smarty.const.BUTTON_NEXT}</button></p>
+{form type=formend}
+        <br>
+<div data-role="header" data-theme="c">
+    <h2>{txt key=TEXT_PAYMENT_ADDRESS}:</h2>
+</div>
+
+<p>
+    {if $payment_address.customers_company} {$payment_address.customers_company}<br />{/if}
+    {$payment_address.customers_firstname} {$payment_address.customers_lastname}<br />
+    {$payment_address.customers_street_address}<br />
+    {if $payment_address.customers_suburb} {$payment_address.customers_suburb}<br />{/if}
+    {$payment_address.customers_postcode} {$payment_address.customers_city}<br />
+    {$payment_address.customers_country}<br />
+</p>
+
+{if $payment_address.allow_change == true}
+    <a data-role="button" href="{link page='customer' paction=edit_address params='adType=payment&abID' params_value=$payment_address.address_book_id conn=SSL}">{txt key=TEXT_EDIT}</a>
+{/if}
+
+{if $payment_address.allow_change == true}
+    <p>{txt key=TEXT_SELECT_PAYMENT_ADDRESS}:</p>
+    {form type=form name=payment_address action='dynamic' link_params='page_action=payment' method=post conn=SSL}
+        {form type=select name=adID value=$address_data default=$smarty.session.customer->customer_payment_address.address_book_id params='onchange="this.form.submit();"'}
+	{form type=hidden name=adType value=payment}
+	{form type=hidden name=action value=select_address}
+    {form type=formend}
+    
+    {if $add_new_address eq 1}
+        <p>{txt key=TEXT_NEW_PAYMENT_ADDRESS}:</p>
+	<a data-role="button" href="{link page='customer' paction='edit_address' params='adType=payment' conn=SSL}">{$smarty.const.BUTTON_ADD_ADDRESS}</a>
+    {/if}
+{/if}

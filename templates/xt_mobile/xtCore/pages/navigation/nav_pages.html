@@ -1,0 +1,55 @@
+{if $pages|@count gt 1}
+<div data-role="content" class="xtm-nav-page" data-theme="e" data-content-theme="e">
+    <table><tr><td><div>
+{foreach from=$pages item=page_link key=pager_number}
+{if $actual_page>=4 and $pager_number eq '1'}
+<a href="{$page_link}" data-role="button" class="xtm-nav-page-prev-first" {if $actual_page > $pager_number}rel="prev"{/if}{if $actual_page < $pager_number}rel="next"{/if}>{$pager_number}</a>&nbsp;
+{/if}
+
+
+{if $actual_page eq $pager_number}
+<a href="{$page_link}" data-role="button" class="xtm-nav-page-prev" {if $actual_page > $pager_number}rel="prev"{/if}{if $actual_page < $pager_number}rel="next"{/if}><b>{$pager_number}</b></a>&nbsp;
+{else}
+
+{if $actual_page<=($pager_number+2) && $pager_number<=$actual_page}
+<a href="{$page_link}" data-role="button" class="xtm-nav-page-next"{if $actual_page > $pager_number}rel="prev"{/if}{if $actual_page < $pager_number}rel="next"{/if}>{$pager_number}</a>&nbsp;
+{/if}
+
+{if $pager_number>=$actual_page && $pager_number<=($actual_page+2)}
+<a href="{$page_link}" data-role="button" class="xtm-nav-page-next" {if $actual_page > $pager_number}rel="prev"{/if}{if $actual_page < $pager_number}rel="next"{/if}>{$pager_number}</a>&nbsp;
+{/if}
+{/if}
+{if $actual_page<($last_page-2) and $pager_number eq $last_page}
+<a href="{$page_link}" data-role="button" class="xtm-nav-page-next-last" {if $actual_page > $pager_number}rel="prev"{/if}{if $actual_page < $pager_number}rel="next"{/if}>{$pager_number}</a>&nbsp;
+{/if}
+{/foreach}
+    </div></td></tr></table>
+</div>
+{/if}
+
+
+{if $last_page > 1}
+
+    {literal}
+    <script>
+
+        $(document).ready(function(){
+
+           // $('.navigation_selected').replaceWith($('<a data-role="button">').addClass('navigation_selected').html());
+
+            $('.navigation_link').attr('data-role', "button");
+            setTimeout(function(){
+                $('.navigation_link').button();
+                $('.navigation_selected').addClass('ui-btn ui-btn-corner-all ui-btn-hover-e').html(
+                    $('<span class="ui-btn-inner"></span>').html(
+                        $('.navigation_selected').html()
+                    )
+                );
+                $('.xtm-nav-page').show();
+            }, 200);
+
+        });
+
+    </script>
+    {/literal}
+{/if}

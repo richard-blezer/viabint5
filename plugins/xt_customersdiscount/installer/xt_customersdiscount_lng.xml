@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_CUSTOMERS_DISCOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Discountlevels]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[折扣层级]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Rabattstaffeln]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Discountlevels]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Niveaux de promotion]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Livello di sconto]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引レベル]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Kortingsstaffel]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Poziomy obniżki]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Уровень скидки]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_CUSTOMERS_DISCOUNT_FLAG</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Discount on products]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[商品折扣]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Rabatt auf Produkte]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Discount on products]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Promotions sur les articles]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Sconto sui prodotti]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引商品]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Korting op producten]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Obniżka na produkty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Скидка на продукцию]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_CUSTOMERS_STATUS_DISCOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Discountlevels]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[折扣层级]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Rabattstaffeln]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Discountlevels]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Niveaux de promotion]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Livelli di sconto]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引レベル]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Kortingsstaffel]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Poziomy obniżki]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Уровень скидки]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_CUSTOMERS_STATUS_DISCOUNT_FLAG</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Discount on products]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[商品折扣]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Rabatt auf Produkte]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Discount on products]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Promotions sur les articles]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Sconti sui prodotti]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引商品]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Korting op producten]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Obniżka na produkty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Скидка на продукты]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_GROUP_DISCOUNT_ALLOWED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Customersstatus discount]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kundengruppenrabatt]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

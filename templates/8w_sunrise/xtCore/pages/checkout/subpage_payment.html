@@ -1,0 +1,126 @@
+{*php}__debug ($this->get_template_vars());{/php*}
+<h1>{txt key=TEXT_PAYMENT_ADDRESS_SELECT}:</h1>
+{if $payment_address.allow_change == true}
+	{assign var=k value=1}
+	<div class="address-block-frame clearfix">
+	{*php}print_r ($this->get_template_vars('payment_address'));{/php*}
+	{form id="change_billing_address" type=form name=payment_address action='dynamic' link_params='page_action=payment' method=post conn=SSL}
+		{foreach key=kid name=aussen item=sdata from=$address_data}
+			{if $sdata.address_book_id != ''}
+			{assign var="ki" value=$ki+$k}
+			<div class="address-block {if $ki%3 == 0} no-margin{/if}">
+				<div class="address">
+					{if $sdata.customers_company}
+						{assign var="customer_value" value=$sdata.customers_company}
+					{else}
+						{assign var="customer_value" value=$sdata.customers_firstname}
+					{/if}
+					{if $payment_address.address_book_id == $sdata.address_book_id}
+						{assign var="selected" value=$sdata.address_book_id}
+					{/if}
+					
+					
+					{html_radios name=adID values=$sdata.address_book_id selected=$selected}
+					
+					<span>{$sdata.customers_firstname} {$sdata.customers_lastname}</span>
+					{$sdata.customers_street_address}<br />
+					{if $sdata.customers_suburb} {$sdata.customers_suburb}<br />{/if}
+					{$sdata.customers_postcode} {$sdata.customers_city}<br />
+					{$sdata.customers_country}<br />
+
+					{*form type=form name=shipping_address action='dynamic' link_params='page_action=shipping' method=post conn=SSL}
+					{form type=hidden name=adID value=$sdata.address_book_id}
+					{form type=hidden name=adType value=shipping}
+					{form type=hidden name=action value=select_address}
+
+					{form type=hidden name=action value=shipping}
+
+					{foreach name=aussen item=sdata from=$shipping_data}
+					{$sdata.shipping}
+					{/foreach}
+
+					{button text=$smarty.const.BUTTON_NEXT alt=$smarty.const.BUTTON_NEXT file='next.gif' type='form' }
+					{form type=formend*}
+
+					<a class="first btn" href="{link page='customer' paction=edit_address params='adType=payment&abID' params_value=$sdata.address_book_id conn=SSL}">Bearbeiten</a>
+					{*<a class="last btn" href="{link page='customer' paction=delete_address params='adType=payment&abID' params_value=$sdata.address_book_id conn=SSL}">löschen</a> *}
+				</div>
+			</div>
+			{/if}
+		{/foreach}
+		{form type=hidden name=adType value=payment}
+		{form type=hidden name=action value=select_address}
+	{form type=formend}
+	</div>
+{else}
+	<div class="address-block">
+		<div class="address">
+			{if $payment_address.customers_company} {$payment_address.customers_company}<br />{/if}
+			<span>{$payment_address.customers_firstname} {$payment_address.customers_lastname}</span>
+			{$payment_address.customers_street_address}<br />
+			{if $payment_address.customers_suburb} {$payment_address.customers_suburb}<br />{/if}
+			{$payment_address.customers_postcode} {$payment_address.customers_city}<br />
+			{$payment_address.customers_country}<br />
+		</div>
+	</div>
+{/if}
+
+{if $payment_address.allow_change == true && $add_new_address eq 1}
+	<a class="arrow-link" href="{link page='customer' paction='edit_address' params='adType=payment' conn=SSL}"><span>{txt key=BUTTON_ADD_ADDRESS}</span></a>
+{/if}
+
+<hr />
+
+<h1>{txt key=TEXT_SELECT_PAYMENT}:</h1>
+{form id="payment-data" type=form name=payment action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=payment}
+<br />
+{foreach name=aussen item=pdata from=$payment_data}
+{$pdata.payment}
+{/foreach}
+
+{*}
+<div class="first subarea">
+	<h1><!--{txt key=TEXT_COMMENTS}: -->{txt key=TEXT_COMMENTS_DESC}</h1>
+	{form type=textarea name=comments cols=100 rows=3}
+</div>
+{*}
+{*if $smarty.const._STORE_TERMSCOND_CHECK eq 'true'}
+<div class="second subarea">
+	<h1>{txt key=TEXT_CONDITIONS}:</h1>
+	{content cont_id=3 is_id='false'}
+	<div id="checkout_termscond" class="textarea-div">
+		<div class="inner">{$_content_3.content_body}</div>
+		<p class="check-payment"><label>{form type=checkbox name=conditions_accepted} <span class="agb">{txt key=TEXT_ACCEPT_CONDITIONS}</span></label>&nbsp;&nbsp;|&nbsp;&nbsp;{$_content_3.content_popup_link}</p>
+	</div>
+</div>
+{/if}
+
+{if $rescission == 'true'}
+<div class="third subarea">
+	<h1>{txt key=XT_RESCISSION_HEADING}:</h1>
+	{content cont_id=8 is_id='false'}
+	<div id="checkout_rescission_block" class="textarea-div">
+		<div class="inner">{$_content_8.content_body}</div>
+		<p class="check-payment"><label>{form type=checkbox name=rescission_accepted} {txt key=XT_RESCISSION_ACCEPT}&nbsp;&nbsp;|&nbsp;&nbsp;{$_content_8.content_popup_link}</label></p>
+	</div>
+</div>
+{/if}
+
+{hook key=checkout_tpl_payment*}
+
+<div class="text-comment clearfix">
+    <h3><!--{txt key=TEXT_COMMENTS}: -->{txt key=TEXT_COMMENTS_DESC} {txt key=TEXT_MAX_CHARACTERS}</h3>
+    {form type=textarea name=comments id=comments value=$smarty.session.order_comments params='maxlength="255"' cols=130 rows=10}
+</div>
+
+<div id="checkout-buttons" class="clearfix">
+	<div class="left">
+		<p class="prev"><a class="return-button" href="{link page='checkout' paction='shipping' conn=SSL}"><span>{txt key=BUTTON_BACK}</span></a></p>
+	</div>
+	<div class="right">
+		<p class="next">{button_text class="login-button" value=BUTTON_NEXT type='form'}</p>
+	</div>
+</div>
+
+{form type=formend}

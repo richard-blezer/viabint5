@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_FLEXIBLE_TAX_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Flex tax calculation]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Flexible Steuerberechnung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_SHIPPING_FLEXTAX_GROSS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipping costs defined as gross]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versandkosten als Brutto definiert]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

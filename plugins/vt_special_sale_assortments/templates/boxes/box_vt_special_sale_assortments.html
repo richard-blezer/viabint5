@@ -1,0 +1,11 @@
+<h2 class="boxmanufacturerheader"><a href="{link page=$smarty.const.VT_SPECIAL_SALE_ASSORTMENTS_PAGE_SEO}">{txt key=TEXT_VT_SSA_GROUPS_TITLE}</a></h2>
+<div class="boxbody">
+    <ul id="manufacturerslist">
+    {foreach name=aussen item=module_data from=$ssa_groups}
+        <li>
+            {if $module_data.ssag_image}<span style="vertical-align: middle;">{img img=$module_data.ssag_image type=m_icon}</span> {/if}
+            <span style="vertical-align: middle;"><a href="{$module_data.ssag_link}">{$module_data.ssag_name}</a></span>
+        </li>
+    {/foreach}
+    </ul>
+</div>

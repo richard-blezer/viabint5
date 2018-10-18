@@ -1,0 +1,8 @@
+{foreach name=outer item=options_data from=$options}    
+    <input type="checkbox" name="products_info[{$options_data.option_group_id}]" id="products_info_[{$options_data.id}]" class="custom" />
+    <label for="products_info_[{$options_data.id}]">{$options_data.text}<br/>
+        {if $options_data.option_value_image!=''}
+            {img img=$options_data.option_value_image url=`$smarty.const._SRV_WEB`media/org/ alt=$options_data.option_value_name}
+        {/if}
+    </label>
+{/foreach} 

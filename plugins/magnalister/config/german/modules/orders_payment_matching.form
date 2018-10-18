@@ -1,0 +1,11 @@
+{
+    "orders": {
+        "fields": {
+            "defaultpayment": {
+                "values": {
+                    "matching": "Zahlart von _#_platformName_#_ &uuml;bernehmen"
+                }
+            }
+        }
+    }
+}

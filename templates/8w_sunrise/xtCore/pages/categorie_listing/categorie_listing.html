@@ -1,0 +1,64 @@
+<div id="cat-header">
+	<div class="cat-header-inner">
+		<div class="this-cat">
+			<div class="this-cat-inner clearfix">
+				{if $categories_image}
+					<div class="cat-image">
+						{img img=$categories_image type=m_org alt=$categories_name|escape:"html" title=$categories_name|escape:"html"}
+					</div>
+				{/if}
+				<h1>{if $categories_heading_title|strip_tags|trim}{$categories_heading_title}{else}{$categories_name}{/if}</h1>
+				{if $categories_description}
+					<div class="cat-description">
+						<p>{$categories_description}</p>
+					</div>
+				{/if}
+			</div>
+		</div>
+		{if $categorie_listing}
+			<div class="more-cats">
+				<div class="more-cats-inner">
+					<h3>{txt key=TEXT_HEADING_MORE_CATEGORIES}</h3>
+					<div id="sub-listing">
+						<div class="panel panel-1 clearfix firstpanel">
+							{php}$i=0;$p=1;$s=4;{/php}
+							{foreach item=module_data from=$categorie_listing}
+							
+								{php}
+									$box_nr = $i+1;
+									$box_pos = '';
+									if ($box_nr == $s) {
+										$box_pos = ' lastbox';
+									} elseif ($box_nr == 1) {
+										$box_pos = ' firstbox';
+									}
+								{/php}
+								
+								<div class="prod_box_wrap box box-{php}echo $box_nr.$box_pos;{/php}">
+									<div class="prod_box_img">
+										<a href="{$module_data.categories_link}" alt="{$module_data.categories_name|escape:"html"}">{img img=$module_data.categories_image type=m_sunrise-sub-listing class=productImageBorder alt=$module_data.categories_name|escape:"html"}</a>
+									</div>
+                                    
+                                   
+									<div class="prod_box_c">
+										<h2><a href="{$module_data.categories_link}" alt="{$module_data.categories_name|escape:"html"}" title="{$module_data.categories_name|escape:"html"}">{$module_data.categories_name alt=$module_data.categories_name}</a></h2>
+									</div>
+								</div>
+								
+								{php}
+									$i++;
+									if ($i == $s) {
+										$p++;
+										echo '</div><div class="panel panel-'.$p.' clearfix">';
+										$i = 0;
+									}
+								{/php}
+							
+							{/foreach}
+						</div>
+					</div>
+				</div>
+			</div>
+		{/if}
+	</div>
+</div>

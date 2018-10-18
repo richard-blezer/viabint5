@@ -1,0 +1,42 @@
+{
+    "inventorysync": {
+        "headline": "Synchronisation of Inventory",
+        "desc": "Defines the product properties, that will be updated automatically on _#_platformName_#_.",
+        "fields": {
+            "stock_shop": {
+                "label": "Stock Changes in the Shop",
+                "desc": "<dl>\n\t\t\t\t\t\t\t\t<dt>Automatic synchronisation by CronJob (recommended)<\/dt>\n\t\t\t\t\t\t\t\t\t<dd>The function \"AutoSync\" equalizes the current shop-stock with the _#_platformName_#_-stock every 4 hour (start at 0 pm).<br \/><br \/>\n\t\t\t\t\t\t\t\t\t    By this procedure, the database values are checked, whether changes were made. The new data will be submitted, also when the changes had been set\n\t\t\t\t\t\t\t\t\t    by an inventory management system.<br><br>\n\t\t\t\t\t\t\t\t<dt>Order \/ item editing sets _#_platformName_#_-stock identical to shop-stock.<\/dt>\n\t\t\t\t\t\t\t\t\t<dd>If the stock will be changed by an order or editing the item in the shop-admin-panel, the new stock will be submitted to _#_platformName_#_ automatically.\n\t\t\t\t\t\t\t\t\t<br>Changes, that will be set in the database only (e.g. by an inventory management system), will <b> not <\/b>be captured and submitted!<\/dd>\n\t\t\t\t\t\t\t\t<dt>Order \/ item editing changes _#_platformName_#_-stock (difference)<\/dt>\n\t\t\t\t\t\t\t\t\t<dd>For example: If 2 items are sold in the shop, the _#_platformName_#_-stock will be reduced by 2 items.<br \/>\n\t\t\t\t\t\t\t\t\t\tIf the stock is changed by editing the item in shop, the difference will be added or substracted in the _#_platformName_#_-stock.\n\t\t\t\t\t\t\t\t\t\t<br>Changes, that will be set in the database only (e.g. by an inventory management system), will <b> not <\/b>be captured and submitted!<\/dd>\n\t\t\t\t\t\t\t<\/dl><br>\n\t\t\t\t\t\t\t<b>Notice:<\/b> Settings in \"Configuration\" &rarr; \"Listing Process\" &rarr; \"Stock of Inventory\" will be provided.",
+                "key": "_#_platform_#_.stocksync.tomarketplace",
+                "type": "selection",
+                "values": {
+                    "auto": "Automatic synchronisation by CronJob (recommended)",
+                    "no": "No synchronization"
+                },
+                "default": "auto"
+            },
+            "stock_mp": {
+                "label": "Stock Changes in _#_platformName_#_",
+                "desc": "For example: If 3 items are sold on _#_platformName_#_, the shop-stock will be reduced by 3 items, too.",
+                "key": "_#_platform_#_.stocksync.frommarketplace",
+                "type": "selection",
+                "values": {
+                    "rel": "Order reduces shop-stock (recommended)",
+                    "no": "No synchronization"
+                },
+                "default": "rel"
+            },
+            "price": {
+                "label": "Product Price",
+                "desc": "<dl>\n\t\t\t\t\t\t\t\t<dt>Automatic Synchronisation by CronJob (recommended)<\/dt>\n\t\t\t\t\t\t\t\t\t<dd>The function \"Automatic Synchronisation by CronJob\" equalizes the current shop-price with the Yatego-price every 4 hours (starts at 0 pm).<br \/><br \/>\n\t\t\t\t\t\t\t\t\t    By this procedure, the database values are checked for changes. The new data will be submitted, also when the changes had been set\n\t\t\t\t\t\t\t\t\t    by an inventory management system.<br><br>\n\t\t\t\t\t\t\t\t\t    You can manually synchronize price changes, by clicking the assigned button in the magnalister-header, next left to the ant-logo.<br><br>\n\t\t\t\t\t\t\t\t\t    Additionally, you can synchronize price changes, by setting a own cronjob to your following shop-link:<br>\n\t\t\t\t\t\t\t\t\t    <i>http:\/\/www.YourShop.com\/magnaCallback.php?do=SyncInventory<\/i><br><br>\n\t\t\t\t\t\t\t\t\t    Setting an own cronjob is permitted for customers within the service plan \"Premium\", only.<br><br>\n\t\t\t\t\t\t\t\t\t    Own cronjob-calls, exceeding a quarter of an hour, or calls from customers, who are not within the service plan \"Premium\", will be blocked.\t\t\t\t\t\t\t\t\t    \t\t    \n\t\t\t\t\t\t\t\t<dt>Item editing sets Yatego-price identical to shop-price.<\/dt>\n\t\t\t\t\t\t\t\t\t<dd>If the price will be changed by editing the item in the shop-admin-panel, the new price will be submitted to Yatego automatically.\n\t\t\t\t\t\t\t\t\t<br>Changes, that will be set in the database only (e.g. by an inventory management system), will <b>not<\/b> be captured and submitted!<\/dd>\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t<\/dl><br>\n\t\t\t\t\t\t\t<b>Notice:<\/b> Settings in \"Configuration\" &rarr; \"Price Calculation\" will be provided.\n\t\t\t\t",
+                "key": "_#_platform_#_.inventorysync.price",
+                "type": "selection",
+                "values": {
+                    "auto": "Automatic synchronisation by CronJob (recommended)",
+                    "edit": "Item editing changes _#_platformName_#_-price.",
+                    "no": "No synchronization"
+                },
+                "default": "auto"
+            }
+        }
+    }
+}

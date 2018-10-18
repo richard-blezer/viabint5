@@ -1,0 +1,15 @@
+############################################################################################################
+# Shop-Support24 Frank Schneider Plugin for xt:Commerce 4
+#
+# Copyright 2015 Shop-Support24 All Rights Reserved.
+# This file may not be redistributed in whole or significant part.
+# Content of this file is Protected By International Copyright Laws.
+#
+# Shop-Support24 Plugin for xt:Commerce 4 IS NOT FREE SOFTWARE
+#
+# http://www.shop-support24.de
+#
+# Shop-Support24 Frank Schneider, Alte Dorfstrasse-Str. 23, 06712 Kretzschau OT Salsitz (Germany)
+# dev@shop-support24.de
+#
+############################################################################################################

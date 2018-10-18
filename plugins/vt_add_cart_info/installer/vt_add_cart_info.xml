@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Warenkorb-Popup</title>
+    <version>4.01.05</version>
+    <code>vt_add_cart_info</code>
+    <url>http://www.bui-hinsche.de</url>
+    <description>Warenkorb-Tooltip-Info</description>
+    <icon>bui.png</icon>
+    <type>extension</type>
+
+
+
+    <db_install><![CDATA[
+    ]]></db_install>
+
+
+
+    <db_uninstall><![CDATA[
+    ]]></db_uninstall>
+
+
+
+    <plugin_code>
+        <code>
+            <hook>xt_product_options:validateParams_Errors</hook>
+            <phpcode><![CDATA[
+                    if(VT_ADD_CART_INFO_ACTIVE =='true' && $_GET['page'] == "product"){
+                            $plugin_return_value = "false";
+                    }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>form_handler.php:data_array_bottom</hook>
+            <phpcode><![CDATA[
+                    if(VT_ADD_CART_INFO_ACTIVE =='true' && $_GET['action'] == "getCart") {
+                                    require_once _SRV_WEBROOT.'plugins/vt_add_cart_info/classes/class.vt_addproduct_nocart.php';
+                                    $anp = new vt_addproduct_nocart();
+                    }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>javascript.php:bottom</hook>
+            <phpcode><![CDATA[
+                    if(VT_ADD_CART_INFO_ACTIVE =='true') {
+                            include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_add_cart_info/hooks/javascript_bottom.php';
+                    }
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>styles.php:bottom</hook>
+            <phpcode><![CDATA[
+                    if(VT_ADD_CART_INFO_ACTIVE =='true') {
+                            include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_add_cart_info/hooks/styles_bottom.php';
+                    }
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.price.php:_AddTax_top</hook>
+            <phpcode><![CDATA[
+                    if(VT_ADD_CART_INFO_ACTIVE =='true') {
+                            include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_add_cart_info/hooks/price.php';
+                    }
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>form_handler.php:add_product_bottom</hook>
+            <phpcode><![CDATA[
+                    if(VT_ADD_CART_INFO_ACTIVE =='true') {
+                            include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_add_cart_info/hooks/form_handler.php';
+                    }
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode><![CDATA[
+                    if(VT_ADD_CART_INFO_ACTIVE =='true') {
+                            define('PAGE_VT_ADD_CART_INFO', _SRV_WEB_PLUGINS.'vt_add_cart_info/pages/vt_add_cart_info.php');
+                    }
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+
+
+
+    <configuration>
+        <config>
+            <key>VT_ADD_CART_INFO_ACTIVE</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Status</title>
+                <description>Modul an und abschalten.</description>
+            </de>
+            <en>
+                <title>State</title>
+                <description>Activate Plugin</description>
+            </en>
+        </config>
+    </configuration>
+
+
+
+    <language_content>
+        <phrase>
+            <key>VT_INFO_CART_ADD</key>
+            <class>store</class>
+            <de><value>Produkt wurde zum Warenkorb hinzugefügt</value></de>
+            <en><value>Product was successfully added to the cart</value></en>
+        </phrase>
+        <phrase>
+            <key>TXT_ATTENTION</key>
+            <class>store</class>
+            <de><value>Achtung</value></de>
+            <en><value>Attention</value></en>
+        </phrase>
+    </language_content>
+</xtcommerceplugin>

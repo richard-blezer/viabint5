@@ -1,0 +1,114 @@
+{*php}__debug ($this->get_template_vars());{/php*}
+<div class="success-step">
+	{if $show_next_button eq 'true'}
+	<h1>{txt key=TEXT_THANK_YOU}</h1>
+	<h2>{txt key=TEXT_THANK_YOU_BUY}</h2>
+	<h3>{txt key=TEXT_YOUR_ORDERNUMBER} {$success_order->oID}</h3>
+
+
+	<div id="cart">
+		<div class="headline clearfix">
+		  <div class="article"><span>{txt key=TEXT_ARTICLE}</span></div>
+		  <div class="piece"><span>{txt key=TEXT_PIECE_SHORT}</span></div>
+		  {if !$isMobile}
+		  <div class="price"><span>{txt key=TEXT_SINGLE_PRICE}</span></div>
+		  {/if}
+		  <div class="total-price"><span>{txt key=TEXT_TOTAL_WORD}</span></div>
+		</div>
+		{foreach name=aussen item=cdata from=$success_order->order_products}
+		<div class="article-line clearfix">
+		  <div class="image-text">
+		    <div class="inner-image-text clearfix">
+		      <div class="image">
+		      {if $cdata.products_image!=''}<span>{img img=$cdata.products_image type=m_wishlist class=productImageBorder alt=$cdata.products_name}</span>{/if}
+		      </div>
+		      <div class="text">
+		      	{if $isMobile}
+				<div class="piece" style="position:relative">
+				{$cdata.products_quantity|string_format:"%.0f"|replace:".":" "}
+				</div>
+				{/if}
+		        <h2>{$cdata.products_name}</h2>
+		        <div class="package">{$cdata.product_itemcount}</div>
+		        {if $cdata.shipping_status}<div class="delivery">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$cdata.shipping_status}</div>{/if}
+		      </div>
+		      {if !$isMobile}
+		      <div class="piece" style="position:relative">
+		        {$cdata.products_quantity|string_format:"%.0f"|replace:".":" "}
+		      </div>
+		      {/if}
+		    </div>
+		  </div>
+		  <div class="price-box">
+		  	{if !$isMobile}
+		  	<div class="price">
+	          {if $cdata.products_price.old_plain}
+	          <span class="productOldPrice">
+	            <span>
+	            	{if $success_order->order_data.currency_code == 'EUR'}
+		            <span class="eur">€</span>
+		            {elseif $success_order->order_data.currency_code == 'CHF'}
+		            <span class="chf">CHF</span>
+		            {/if}
+	              {$cdata.products_price.old_plain|string_format:"%.2f"|replace:".":","}
+	            </span>
+	          </span>
+	          {/if}
+	          {$cdata.products_price.formated}
+	        </div>
+	        {/if}
+		    <div class="total-price">
+		      <div class="total-price-inner price">
+		        {$cdata.products_final_price.formated}
+		      </div>
+		    </div>
+		  </div>
+		  <div class="clearfix"></div>
+		</div>
+		{/foreach}
+		{hook key=cart_total_tpl}
+		<div class="subtotal clearfix">
+		  <div class="left">
+		  	<p>{txt key=TEXT_HEALTHY_DISCOUNT}</p>
+		  </div>
+		  <div class="middle">
+		    <div>{txt key=TEXT_TOTAL_WITH_TAX}:</div>
+
+		    {foreach name=aussen item=tax_data from=$success_order->order_total_data}
+		    	<div>
+					{$tax_data.orders_total_name}
+				</div>
+			{/foreach}
+		  </div>
+		  <div class="right">
+		    <div class="price">
+		    	{$success_order->order_total.product_total.formated}
+		    </div>
+
+			{foreach name=aussen item=tax_data from=$success_order->order_total_data}
+		    	<div class="price">
+					{$tax_data.orders_total_price.formated}
+				</div>
+			{/foreach}
+		  </div>
+		</div>
+		<div class="sub-total-price clearfix">
+		  <div class="text">
+		    {txt key=TEXT_TOTAL}:
+		  </div>
+		  <div class="price">
+		   {$success_order->order_total.total.formated}
+		  </div>
+		</div>
+		{hook key=cart_total_bottom}
+
+		<p>{hook key=cart_tpl_form}</p>
+	</div>
+
+
+
+	<!--<p><a href="{link page='index' conn=NOSSL}">{button text=$smarty.const.BUTTON_NEXT file='next.gif'}</a></p>-->
+	{/if}
+</div>
+
+{hook key=checkout_success_tpl}

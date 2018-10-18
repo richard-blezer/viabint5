@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Sprache nach Browsereinstellungen</title>
+    <version>4.2.05</version>
+    <code>vt_browser_language</code>
+    <url>http://www.bui-hinsche.de</url>
+    <description></description>
+    <icon>bui.png</icon>
+    <type>extension</type>
+
+
+    
+    <plugin_code>
+ 		<code>
+            <hook>store_main_handler.php:bottom</hook>
+            <phpcode><![CDATA[
+            	include (_SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_browser_language/hooks/store_main_handler_bottom.php');
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+
+
+    
+    <configuration>
+        <config>
+            <key>VT_BROWSER_LANGUAGE_ACTIVE</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Browsersprache verwenden</title>
+                <description></description>
+            </de>
+            <en>
+                <title>Use Browser Language</title>
+                <description></description>
+            </en>
+        </config>
+    </configuration>
+</xtcommerceplugin>

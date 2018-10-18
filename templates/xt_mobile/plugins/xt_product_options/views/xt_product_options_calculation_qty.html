@@ -1,0 +1,43 @@
+<br />
+<table>
+    <tr>
+        <th></th>
+        <th></th>
+        <th>Menge</th>
+        <th>Einzelpreis</th>
+        <th>Gesamtpreis</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td align="left">{txt key=TEXT_XT_PRODUCT_OPTIONS_SINGLE_PRICE_CLEAN}</td>
+        <td>{if $smarty.request.qty}{$smarty.request.qty}{else}1{/if}</td>
+        <td>{$calculation.products_price.single.formated}</td>
+        <td>{$calculation.products_price.total.formated}</td>
+    </tr>
+    <tr>
+        <td>+</td>
+        <td align="left">{txt key=TEXT_XT_PRODUCT_OPTIONS_PRICE_OPTIONS}</td>
+        <td>{if $smarty.request.qty}{$smarty.request.qty}{else}1{/if}</td>
+        <td>{$calculation.options_multi_addprice.single.formated}</td>
+        <td>{$calculation.options_multi_addprice.total.formated}</td>
+    </tr>
+    {if $calculation.options_single_addprice.single.plain > 0}
+    <tr>
+        <td>+</td>
+        <td align="left">{txt key=TEXT_XT_PRODUCT_OPTIONS_ONE_TIME_PRICE_OPTIONS}</td>
+        <td>1</td>
+        <td>{$calculation.options_single_addprice.single.formated}</td>
+        <td>{$calculation.options_single_addprice.total.formated}</td>
+    </tr>
+    {/if}
+    <tr>
+        <td></td>
+        <th align="left">{txt key=TEXT_TOTAL}</th>
+        <td></td>
+        <td></td>
+        <td>{$calculation.products_price_total.total.formated}</td>
+    </tr>    
+    
+</table>
+<hr><hr>
+<br />

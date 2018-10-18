@@ -1,0 +1,86 @@
+<h1>{txt key=TEXT_XT_PRICEINQUIRY}</h1>
+<div id="productinfowrap">
+	{if $product_data.products_image!=''}
+	<div id="productinfoimages">
+		<ul>
+			<li>{img img=$product_data.products_image type=m_thumb}</li>
+		</ul>
+	</div>
+	{/if}
+  	{if $product_data.products_image!=''}<div id="productinfopricewithimages">{else}<div id="productinfopricewithoutimages">{/if}
+		<div id="productinfoprice">
+			<p class="productprice">{$product_data.products_price.formated}</p>
+			<p class="taxandshippinginfo">{$product_data.products_tax_info.tax_desc}{if $product_data.products_shipping_link}<a href="{$product_data.products_shipping_link}" target="_blank">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}</p>
+			{if $product_data.shipping_status}<p class="shippingtime">{#text_shippingtime#}&nbsp;{$product_data.shipping_status}</p>{/if}
+			{if $product_data.stock_image}
+            <p class="stockimage">{img img=$product_data.stock_image.image type=t_img_stockrules}</p>
+			<p class="stockimagetext">{$product_data.stock_image.name}</p>
+			{/if}
+			{if $product_data.review_stars_rating}
+			<div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$review_stars_rating}%"></div></div>
+			{/if}
+			{if $product_data.base_price}<div class="hrlightgrey"></div>{$product_data.base_price.price} {#text_per#} {$product_data.base_price.vpe.name}{/if}
+			{if $product_data.products_discount!=''}<div class="hrlightgrey"></div>{$product_data.products_discount}{/if}
+			{if $product_data.products_fsk18=='true'}<div class="hrlightgrey"></div><img src="{$tpl_path}img/fsk18.gif" alt="" style="cursor:default" />{/if}
+			{if $product_data.products_model!=''}<div class="hrlightgrey"></div>{txt key=TEXT_PRODUCTS_MODEL}: {$product_data.products_model}{/if}
+			{if $product_data.products_url != ''}<div class="hrlightgrey"></div><div style="padding-top:5px;">{$product_data.products_url}</div>{/if}
+			<div class="hrlightgrey"></div>
+			<a href="{$product_data.products_link}">{button text=$smarty.const.BUTTON_TO_ARTICLE file='to_article.gif'}</a>
+		</div>
+	</div>
+	<div style="clear:both;"></div>
+
+
+</div>
+<div style="clear:both;"></div>
+{$message}
+<div class="highlightbox">
+{form type=form name=write_review action='dynamic' link_params=getParams method=post}
+{form type=hidden name=action value=send}
+{form type=hidden name=products_id value=$products_id}
+<p>{txt key=TEXT_XT_PRICEINQUIRY_INTRO}</p>
+<table width="100" border="0" cellspacing="4" cellpadding="0">
+         <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_EMAIL}</strong> </td>
+           <td>{form type=text name=email_address params='maxlength="40" size="40"' value=$email_address note=*}</td>
+         </tr>
+          <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_FIRSTNAME}</strong> </td>
+           <td>{form type=text name=firstname params='maxlength="40" size="40"' value=$firstname note=*}</td>
+         </tr>
+          <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_LASTNAME}</strong> </td>
+           <td>{form type=text name=lastname params='maxlength="40" size="40"' value=$lastname note=*}</td>
+         </tr>
+          <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_COMPETITOR_PRICE}</strong> </td>
+           <td>{form type=text name=competitor_price params='maxlength="40" size="40"' value=$competitor_price note=*}</td>
+         </tr>
+         <tr>
+           <td style="white-space:nowrap;" colspan="2"><strong>{txt key=TEXT_COMPETITOR_URL}</strong> </td>
+         </tr>
+         <tr>
+           <td colspan="2">{form type=text name=competitor_url params='maxlength="120" size="60"' value=$competitor_url note=*}</td>
+         </tr>
+         <tr>
+           <td style="white-space:nowrap; vertical-align:top;"><strong>{txt key=TEXT_MESSAGE}</strong></td>
+           <td>{form type=textarea name=customer_message params='cols="50" rows="15"' text=$customer_message}</td>
+         </tr>
+         {if $logged_in eq 'false'}
+         <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_CAPTCHA}:</strong> </td>
+           <td><img src="{$captcha_link}" /></td>
+         </tr>
+          <tr>
+           <td style="white-space:nowrap;"><strong>{txt key=TEXT_CAPTCHA}:</strong> </td>
+           <td>{form type=text name=captcha params='maxlength="30"'}</td>
+         </tr>
+         {/if}
+         <tr>
+           <td style="white-space:nowrap;">&nbsp;</td>
+           <td>{button text=$smarty.const.BUTTON_SUBMIT file='submit.gif' type='form'}</td>
+         </tr>
+       </table>
+	{form type=formend}
+</div>
+<p>{txt key=TEXT_MUST}</p>

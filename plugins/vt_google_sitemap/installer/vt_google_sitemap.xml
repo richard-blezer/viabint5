@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+	<title>Google Sitemap</title>
+	<version>2.0.7</version>
+	<code>vt_google_sitemap</code>
+	<url>http://www.bui-hinsche.de</url>
+	<description>Google Sitemap</description>
+	<icon>bui.png</icon>
+	<type>marketing</type>
+	<db_install><![CDATA[
+		require_once (_SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_google_sitemap/classes/class.plugin_install.php');
+
+		$vtgm = new plugin_install();
+		$vtgm->installPlugin();
+	]]></db_install>
+	<db_uninstall><![CDATA[
+		require_once (_SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_google_sitemap/classes/class.plugin_install.php');
+
+		$vtgm = new plugin_install();
+		$vtgm->uninstallPlugin();
+	]]></db_uninstall>
+	<plugin_code>
+		<code>
+			<hook>admin_main.php:bottom</hook>
+			<phpcode><![CDATA[
+				include_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_google_sitemap/hooks/admin_main.php_bottom.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>cronjob.php:main</hook>
+			<phpcode><![CDATA[
+				include_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_google_sitemap/hooks/cronjob.php_main.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>row_actions.php:actions</hook>
+			<phpcode><![CDATA[
+				include_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_google_sitemap/hooks/row_actions.php_actions.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code>
+	<configuration>
+		<config>
+			<key>VT_GOOGLE_SITEMAP_ACTIVE</key>
+			<value>false</value>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<de>
+				<title>Status</title>
+				<description></description>
+			</de>
+			<en>
+				<title>State</title>
+				<description></description>
+			</en>
+		</config>
+		<config>
+			<key>VT_GOOGLE_SITEMAP_GOOGLE_URL</key>
+			<value>http://www.google.com/webmasters/sitemaps/ping?sitemap=</value>
+			<type></type>
+			<url></url>
+			<de>
+				<title>Url</title>
+				<description></description>
+			</de>
+			<en>
+				<title>Url</title>
+				<description></description>
+			</en>
+		</config>
+		<config>
+			<key>VT_GOOGLE_SITEMAP_MAX_ENTRYS</key>
+			<value>10000</value>
+			<type></type>
+			<url></url>
+			<de>
+				<title>Max Entrys</title>
+				<description></description>
+			</de>
+			<en>
+				<title>Max Entrys</title>
+				<description></description>
+			</en>
+		</config>
+	</configuration>
+	<language_content>
+		<phrase>
+			<key>TEXT_VT_GOOGLE_SITEMAP_EDITOR</key>
+			<class>admin</class>
+			<de>
+				<value>Google Sitemap</value>
+			</de>
+			<en>
+				<value>Google Sitemap</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>HEADING_VT_GOOGLE_SITEMAP_EDITOR</key>
+			<class>admin</class>
+			<de>
+				<value>Google Sitemap</value>
+			</de>
+			<en>
+				<value>Google Sitemap</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_ID</key>
+			<class>admin</class>
+			<de>
+				<value>ID</value>
+			</de>
+			<en>
+				<value>ID</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_LANG_CODE</key>
+			<class>admin</class>
+			<de>
+				<value>Sprache</value>
+			</de>
+			<en>
+				<value>Language</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_FILE</key>
+			<class>admin</class>
+			<de>
+				<value>Dateiname</value>
+			</de>
+			<en>
+				<value>Filename</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_FRQ_CAT</key>
+			<class>admin</class>
+			<de>
+				<value>Häufigkeit Kategorien</value>
+			</de>
+			<en>
+				<value>Frequency Categories</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_PRIO_CAT</key>
+			<class>admin</class>
+			<de>
+				<value>Priorität Kategorien</value>
+			</de>
+			<en>
+				<value>Priority Categories</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_FRQ_PRD</key>
+			<class>admin</class>
+			<de>
+				<value>Häufigkeit Artikel</value>
+			</de>
+			<en>
+				<value>Frequency Products</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_PRIO_PRD</key>
+			<class>admin</class>
+			<de>
+				<value>Priorität Artikel</value>
+			</de>
+			<en>
+				<value>Priority Products</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_FRQ_CNT</key>
+			<class>admin</class>
+			<de>
+				<value>Häufigkeit Content</value>
+			</de>
+			<en>
+				<value>Frequency Content</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_PRIO_CNT</key>
+			<class>admin</class>
+			<de>
+				<value>Priorität Content</value>
+			</de>
+			<en>
+				<value>Priority Content</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_CUSTOMERS_STATUS</key>
+			<class>admin</class>
+			<de>
+				<value>Kundengruppe</value>
+			</de>
+			<en>
+				<value>Customers Status</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_STORE_ID</key>
+			<class>admin</class>
+			<de>
+				<value>Shop</value>
+			</de>
+			<en>
+				<value>Store</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_SUBMIT</key>
+			<class>admin</class>
+			<de>
+				<value>Google informieren</value>
+			</de>
+			<en>
+				<value>Notify Google</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_DO_GS_EXPORT</key>
+			<class>admin</class>
+			<de>
+				<value>Google Sitemap Export</value>
+			</de>
+			<en>
+				<value>Google Sitemap Export</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_GS_EXPORT_LIMIT</key>
+			<class>admin</class>
+			<de>
+				<value>Artikelanzahl pro Exportschritt</value>
+			</de>
+			<en>
+				<value>Number of articles per export step</value>
+			</en>
+		</phrase>
+	</language_content>
+</xtcommerceplugin>

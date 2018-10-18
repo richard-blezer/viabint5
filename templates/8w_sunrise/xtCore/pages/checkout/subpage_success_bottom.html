@@ -1,0 +1,97 @@
+<div class="success-step bottom">
+	<h2>{txt key=TEXT_NEXT_STEP}</h2>
+	<div class="box">
+		{if !$isMobile}
+		<img class="next-steps" src="{$tpl_url_path}img/last-steps.png" />
+		{/if}
+		<ul class="text">
+			{if !$isMobile}
+			<li>{txt key=TEXT_NEXT_STEP_1}</li>
+			<li>{txt key=TEXT_NEXT_STEP_2}</li>
+			<li>{txt key=TEXT_NEXT_STEP_3}</li>
+			<li>{txt key=TEXT_NEXT_STEP_4}</li>
+			<li>{txt key=TEXT_NEXT_STEP_5}</li>
+			{else}
+			<li>{txt key=TEXT_NEXT_STEP_1_MOBILE}</li>
+			<li>{txt key=TEXT_NEXT_STEP_2_MOBILE}</li>
+			<li>{txt key=TEXT_NEXT_STEP_3_MOBILE}</li>
+			<li>{txt key=TEXT_NEXT_STEP_4_MOBILE}</li>
+			<li>{txt key=TEXT_NEXT_STEP_5_MOBILE}</li>
+			{/if}
+		</ul>
+	</div>
+	<div class="box rating clearfix">
+		{txt key=TEXT_BEWERTUNG_AU}
+	</div>
+	{if !$isMobile}
+	<div class="newsletter">
+		<div class="left">
+			<h1>{txt key=MY_NEWSLETTER}</h1>
+			<h2>{txt key=REGISTER_NOW}</h2>
+			<img src="{$tpl_url_path}img/newsletter.png" />
+		</div>
+		<div class="middle"></div>
+		<div class="right">
+			<p>{txt key=TEXT_NEWSLETTER_INFO}</p>
+
+			<FORM onsubmit="return checkContactValues(this);" method="post" action="http://ebm.cheetahmail.com/r/regf2">
+				<input type="hidden" name="aid" value="239379149" /> 
+				<input type="hidden" name="sub" value="239932612" /> 
+				<input type="hidden" name="n" value="1" />
+				<div>
+					<div class="title">{txt key=TEXT_GENDER}*:</div>
+					<div class="relative input normal">
+						<select name="TITLE"> 
+							<option value="Bitte waehlen">{txt key=TEXT_SELECT}...</option> 
+							<option value="Frau">{txt key=TEXT_FEMALE}</option>
+							<option value="Frau Dr.">{txt key=TEXT_FEMALE_DOCTOR}</option>
+							<option value="Herr">{txt key=TEXT_MALE}</option>
+							<option value="Herr Dr.">{txt key=TEXT_MALE_DOCTOR}</option>
+						</select>
+					</div>
+				</div>
+				<div>
+					<div class="title">{txt key=TEXT_FIRSTNAME}*:</div>
+					<div class="input">
+						{form type=text name=FNAME}
+					</div>
+				</div>
+				<div>
+					<div class="title">{txt key=TEXT_LASTNAME}*:</div>
+					<div class="input">
+						{form type=text name=LNAME}
+					</div>
+				</div>
+				<div>
+					<div class="title">{txt key=TEXT_EMAIL}*:</div>
+					<div class="input">
+						{form type=text name=EMAIL}
+					</div>
+				</div>
+				<div>
+					<input type="checkbox" name="CHECK">
+					<p class="copy">{txt key=TEXT_NEWSLETTER_COPY}</p>
+				</div>
+				<p class="required clearfix">* {txt key=NEWSLETTER_REQUIRE} </p>
+				<input class="btn-submit" type="submit" value="{txt key=BUTTON_LOGIN}" />
+			</form>
+
+
+			{*form type=form action='http://ebm.cheetahmail.com/r/regf2' method=post params='onsubmit="alert(1);" '}
+
+				{form type=select name=adID value=$address_data params='onChange="this.form.submit();"'}
+
+			{form type=formend*}
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	{/if}
+</div>
+
+{literal} 
+
+<script>
+// alert("test");
+</script>
+
+{/literal} 

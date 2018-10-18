@@ -1,0 +1,38 @@
+<div data-role="header">
+    <h2>
+        {if $_show_more_link == true}
+            <a href="{link page='xt_special_products' conn=SSL}">{txt key=TEXT_HEADING_SPECIAL_PRODUCTS}</a>
+        {else}
+            {txt key=TEXT_HEADING_SPECIAL_PRODUCTS}
+        {/if}
+    </h2>
+</div>   
+
+<!-- Place somewhere in the <body> of your page -->
+<div class="xtm-special-products flexslider">
+    <ul class="slides">
+
+        {foreach name=aussen item=special_products_data from=$_special_products}
+            <li>
+                <table><tr><td>
+                    <a href="{$special_products_data.products_link}">
+                        <span class="item">
+                            <table><tr><td>
+                                {if $special_products_data.products_image != 'product:noimage.gif'}                            
+                                    {img img=$special_products_data.products_image type=m_thumb class=productImageBorder alt=$special_products_data.products_name}
+                                {else}
+                                    <img src="{$tpl_url_path}img/no-image_2.png" alt="{txt key=TEXT_NO_IMAGE}">
+                                {/if}
+                            </td></tr></table>
+                            <span class="subline">                            
+                                <span class="headline">{$special_products_data.products_name}</span>
+                                <span class="price">{$special_products_data.products_price.formated}</span>
+                            </span>
+                        </span>
+                    </a>
+                </td></tr></table>
+            </li>
+        {/foreach}
+        
+    </ul>
+</div>

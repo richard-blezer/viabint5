@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Bundle Artikel</title>
+    <version>1.2.3</version>
+    <code>vt_special_sale_assortments</code>
+    <url>http://www.bui-hinsche.de</url>
+    <description>Mehrere Artikel zu einem Bundle zusammenfassen und zu einem Bundle Preis anbieten </description>
+    <icon>bui.png</icon>
+    <type>marketing</type>
+
+
+
+    <db_install><![CDATA[
+        require_once (_SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/classes/class.plugin_install.php');
+        $vtssa = new plugin_install();
+        $vtssa->installPlugin();    
+    ]]></db_install>
+
+
+
+    <db_uninstall><![CDATA[
+        require_once (_SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/classes/class.plugin_install.php');
+        $vtssa = new plugin_install();
+        $vtssa->uninstallPlugin();
+    ]]></db_uninstall>   
+
+
+
+    <plugin_code>
+        <code>
+            <hook>_pre_include</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/hooks/_pre_include.php';
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>		
+     	
+        <code>
+            <hook>class.product.php:BuildData_bottom</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/hooks/class.product.phpBuildData_bottom.php';
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>	                
+        <code>
+            <hook>class.cart.php:_getContent_data</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/hooks/class.cart.php_getContent_data.php';
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>	
+        <code>
+            <hook>class.cart.php:_getContent_top</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/hooks/class.cart.php_getContent_top.php';
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>	
+        <code>
+            <hook>class.cart.php:_products_info_options</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/hooks/class.cart.php_products_info_options.php';
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>	
+        <code>
+            <hook>class.cart.php:_refresh_top</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/hooks/class.cart.php_refresh_top.php';
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>	        
+        <code>
+            <hook>class.order.php:_buildData_bottom</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/hooks/class.order.php_buildData_bottom.php';
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>		        
+        <code>
+            <hook>class.order.php:_order_products_info_options</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/hooks/class.order.php_order_products_info_options.php';
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>		
+        <code>
+            <hook>class.product.php:BuildData_bottom</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/hooks/class.product.phpBuildData_bottom.php';
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ejsadmin.php:css_styles</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/hooks/ejsadmin.phpcss_styles.php';
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>        
+        <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_special_sale_assortments/hooks/page_registry.phpbottom.php';
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>              
+    </plugin_code>  
+
+
+
+    <configuration>
+        <config>
+            <key>VT_SPECIAL_SALE_ASSORTMENTS_ACTIVE</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Status</title>
+                <description>Modul an und abschalten.</description>
+            </de>
+            <en>
+                <title>State</title>
+                <description>Activate Plugin</description>
+            </en>
+        </config>
+        <config>
+            <key>VT_SPECIAL_SALE_ASSORTMENTS_CART_PRODUCTS_SORT_DIR</key>
+            <value>desc</value>
+            <type>dropdown</type>
+            <url>status_ascdesc</url>
+            <de>
+                <title>Sortierreihenfolge der Produkte</title>
+                <description></description>
+            </de>
+            <en>
+                <title>Sort Order of Products</title>
+                <description></description>
+            </en>
+        </config>            
+        <config>
+            <key>VT_SPECIAL_SALE_ASSORTMENTS_BOX_STATUS</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Status der Bundle Box</title>
+                <description></description>
+            </de>
+            <en>
+                <title>State of Bundle Box</title>
+                <description></description>
+            </en>
+        </config>          
+        <config>
+            <key>VT_SPECIAL_SALE_ASSORTMENTS_PAGE_SEO</key>
+            <value>vt_special_sale_assortments</value>
+            <type></type>
+            <url></url>
+            <de>
+                <title>SEO Link - Bundle Seite</title>
+                <description></description>
+            </de>
+            <en>
+                <title>SEO Link - Bundle Page</title>
+                <description></description>
+            </en>
+        </config>             
+    </configuration>
+
+
+
+    <language_content>
+        <phrase>
+            <key>TEXT_VT_SPECIAL_SALE_ASSORTMENTS_GROUPS</key>
+            <class>admin</class>
+            <de>
+                <value>Special Sale Assortments</value>
+            </de>
+            <en>
+                <value>Special Sale Assortments</value>
+            </en>
+        </phrase>        
+        <phrase>
+            <key>TEXT_SSAG_ID</key>
+            <class>admin</class>
+            <de>
+                <value>SSAG_ID</value>
+            </de>
+            <en>
+                <value>SSAG_ID</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_SSAG_IMAGE</key>
+            <class>admin</class>
+            <de>
+                <value>Gruppen Bild</value>
+            </de>
+            <en>
+                <value>Group Image</value>
+            </en>
+        </phrase>        
+        <phrase>
+            <key>TEXT_SSAG_QUANTITY</key>
+            <class>admin</class>
+            <de>
+                <value>Gruppen Größe</value>
+            </de>
+            <en>
+                <value>Group Size</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_SSAG_TAX_CLASS</key>
+            <class>admin</class>
+            <de>
+                <value>Steuerklasse</value>
+            </de>
+            <en>
+                <value>Tax Class</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_SSAG_DIFFRENT_ITEMS_STATUS</key>
+            <class>admin</class>
+            <de>
+                <value>Nur verschiedene Produkte</value>
+            </de>
+            <en>
+                <value>Only Diffrent Products</value>
+            </en>
+        </phrase> 
+        <phrase>
+            <key>TEXT_SSAG_STATUS</key>
+            <class>admin</class>
+            <de>
+                <value>Status</value>
+            </de>
+            <en>
+                <value>Status</value>
+            </en>
+        </phrase>        
+        
+        <phrase>
+            <key>TEXT_SSAG_NAME</key>
+            <class>admin</class>
+            <de>
+                <value>Gruppen Name</value>
+            </de>
+            <en>
+                <value>Group Name</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_SSAG_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Gruppen Beschreibung</value>
+            </de>
+            <en>
+                <value>Group Description</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_SSAG_SHORT_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Gruppen Kurzbeschreibung</value>
+            </de>
+            <en>
+                <value>Group Short Description</value>
+            </en>
+        </phrase>  
+        
+        <phrase>
+            <key>TEXT_VT_SPECIAL_SALE_ASSORTMENTS_PRODUCTS</key>
+            <class>admin</class>
+            <de>
+                <value>Special Sale Assortments Produkte</value>
+            </de>
+            <en>
+                <value>Special Sale Assortments Products</value>
+            </en>
+        </phrase>         
+        <phrase>
+            <key>TEXT_VT_SPECIAL_SALE_ASSORTMENTS_PRODUCTS_ADD</key>
+            <class>admin</class>
+            <de>
+                <value>Produkte Zuweisen</value>
+            </de>
+            <en>
+                <value>Products Assign</value>
+            </en>
+        </phrase>          
+        
+        <phrase>
+            <key>TEXT_VT_SPECIAL_SALE_ASSORTMENTS_PRICES</key>
+            <class>admin</class>
+            <de>
+                <value>Special Sale Assortments Preise</value>
+            </de>
+            <en>
+                <value>Special Sale Assortments Prices</value>
+            </en>
+        </phrase>            
+        <phrase>
+            <key>TEXT_SSAP_PRICE</key>
+            <class>admin</class>
+            <de>
+                <value>Preis</value>
+            </de>
+            <en>
+                <value>Price</value>
+            </en>
+        </phrase>            
+        <phrase>
+            <key>TEXT_SSAP_STATUS</key>
+            <class>admin</class>
+            <de>
+                <value>Status</value>
+            </de>
+            <en>
+                <value>State</value>
+            </en>
+        </phrase>            
+        <phrase>
+            <key>TEXT_CUSTOMERS_STATUS_TEXT</key>
+            <class>admin</class>
+            <de>
+                <value>Kundengruppe</value>
+            </de>
+            <en>
+                <value>Customers Status</value>
+            </en>
+        </phrase>            
+        
+        <phrase>
+            <key>TEXT_SPECIAL_SALE_ASSORTMENTS_BUNDLE</key>
+            <class>both</class>
+            <de>
+                <value>Bundle Artikel</value>
+            </de>
+            <en>
+                <value>Bundle Product</value>
+            </en>
+        </phrase>
+        
+        <phrase>
+            <key>TEXT_VT_SSA_GROUPS_TITLE</key>
+            <class>both</class>
+            <de>
+                <value>Bundle Gruppen</value>
+            </de>
+            <en>
+                <value>Bundle Groups</value>
+            </en>
+        </phrase>    
+        <phrase>
+            <key>TEXT_VT_SSA_GROUPS_PAGE_DESC</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[ Hier sehen Sie alle Bundles aufgelistet, die derzeit angeboten werden. ]]></value>
+            </de>
+            <en>
+                <value><![CDATA[ Here is a list of all bundles that are currently available.  ]]></value>
+            </en>
+        </phrase>            
+        <phrase>
+            <key>TEXT_VT_SSA_BUNDLES_EMPTY</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[ Derzeit sind keine Bundles verfügbar. ]]></value>
+            </de>
+            <en>
+                <value><![CDATA[ Currently no bundles are available. ]]></value>
+            </en>
+        </phrase>                    
+        <phrase>
+            <key>TEXT_VT_SSA_BUNDLE_EMPTY</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[ Dieses Bundles enthält derzeit keine Produkte. ]]></value>
+            </de>
+            <en>
+                <value><![CDATA[ This bundle currently contains no products. ]]></value>
+            </en>
+        </phrase>                  
+        <phrase>
+            <key>TEXT_VT_SSA_SHOW_GROUPS</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[ Bundle Gruppen anzeigen ]]></value>
+            </de>
+            <en>
+                <value><![CDATA[ Show Bundle Groups ]]></value>
+            </en>
+        </phrase>        
+        <phrase>
+            <key>TEXT_VT_SSA_SHOW_PRODUCTS</key>
+            <class>both</class>
+            <de>
+                <value><![CDATA[ Bundle Artikel anzeigen ]]></value>
+            </de>
+            <en>
+                <value><![CDATA[ Show Bundle Products ]]></value>
+            </en>
+        </phrase>                
+    </language_content>
+</xtcommerceplugin> 

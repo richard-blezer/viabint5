@@ -1,0 +1,27 @@
+{if $GRADUATED_PRICES}
+<p class="headline">{txt key=TEXT_GRADUATED_PRICES}</p>
+<table id="product-graduated-price-table">
+	<thead>
+		<tr>
+			<th>{txt key=TEXT_QTY}</th>
+			<th class="right">{txt key=TEXT_SINGLE_PRICE}</th>
+			<th class="right">{txt key=TEXT_GRADUATED_SAVING}</th>
+			{if $GRADUATED_PRICES.0.perUnitHeader}
+			<th class="right">{$GRADUATED_PRICES.0.perUnitHeader}</th>
+			{/if}
+		</tr>
+	</thead>
+	<tbody>
+	{foreach name=aussen item=prices from=$GRADUATED_PRICES}
+		<tr class="{cycle values="odd,even"}">
+			<td>{$prices.QTY}</td>
+			<td class="right">{$prices.PRICE.formated}</td>
+			<td class="right">{if $prices.saving gt 0}-{$prices.saving} %{/if}</td> 
+			{if $prices.pricePerUnit}
+			<td class="right">{$prices.pricePerUnit}</td>
+			{/if}
+		</tr>
+	{/foreach}
+	</tbody>
+</table>
+{/if}

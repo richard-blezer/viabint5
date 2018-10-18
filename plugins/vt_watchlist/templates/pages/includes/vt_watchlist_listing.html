@@ -1,0 +1,58 @@
+<div class="clearBoth"></div>
+
+    {if $show_vt_watchlist_content == true}
+
+            <h2 class="watchlist-head">{$vt_watchlist_group.text}</h2>
+
+            <table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="6">
+              <tr class="headerrow">   
+                <td class="left" width="14px"></td>
+                <td class="left">{txt key=TEXT_ARTICLE}</td>
+                <td class="right" width="90px">{txt key=TEXT_SINGLE_PRICE}</td>
+                <td class="left" width="25px">{txt key=TEXT_VT_WATCHLIST_QTY}</td>
+                <td class="right" width="20px"></td>
+              </tr>
+              {foreach name=aussen item=data from=$vt_watchlist_data}
+              {cycle assign=crow values="odd,even"}
+              <tr class="{$crow}"> 
+              	<td class="left" rowspan="2">{if $data.allow_add_cart == 'true'}{form type=checkbox name=$data.checkbox_name value=1}{form type=hidden name=$data.key_name value=$data.products_key}{/if}</td>
+                <td class="left">
+                    {if $data.products_image!='' && $data.products_image!='product:noimage.gif' && $data.products_image!='noimage.gif'}
+                        <a class="watchlist-image" href="{$data.products_link}">{img img=$data.products_image type=m_thumb class=productImageBorder alt=$data.products_name}</a>
+                    {/if}
+                    <h3 class="watchlist-title"><a href="{$data.products_link}">{$data.products_name}</a></h3>
+                    <br />
+                    {if $data.date_available!=''}
+                        <ul class="info_info">
+                                <li class="infoInfo">{txt key=TEXT_PRODUCT_AVAILABLE} {$data.date_available|date_format:"%A, %B %e, %Y"}</li>
+                        </ul>
+                    {/if}
+                    {if $data.review_stars_rating}
+                        <div class="reviews_rating_light"><div class="reviews_rating_dark" style="width:{$data.review_stars_rating}%"></div></div>
+                    {/if}
+                    {if $data.products_short_description}
+                        <p>{$data.products_short_description}</p>
+                    {/if}
+                    {if $data.stock_image}
+                        <p class="stockimage">{img img=$data.stock_image.image type=t_img_stockrules alt=$data.stock_image.name}</p>
+                        <p class="stockimagetext">{$data.stock_image.name}</p>
+                    {/if}
+                </td>
+                <td class="right">{$data.products_price.formated}</td>
+                 <td class="left" rowspan="2">{if $data.allow_add_cart == 'true'}{form type=text name=$data.qty_name value=$data.products_quantity style='width:20px;'}{/if}</td>
+                <td class="right">
+                    <a href="{link page='vt_watchlist' params='action=delete_vt_watchlist' conn='SSL'}&vt_pID={$data.products_key}&vt_gID={$active_group_id}">{img img=delete.png type=mi class=productImageBorder}</a><br />
+                </td>
+              </tr>
+              <tr class="{$crow}">
+                  <td colspan="5">{$data.products_information}</td>
+              </tr>
+              {/foreach}
+            </table>
+
+        <div class="float_right">{$content_popup_link}</div>
+        <div class="clearBoth"></div>
+    {else}
+        {$message}
+    {/if}
+<div class="clearBoth"></div>

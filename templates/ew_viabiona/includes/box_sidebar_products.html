@@ -1,0 +1,87 @@
+<div id="box_{$code}" class="products-box listing no-image-height-helper equalize-nothing panel panel-{if $code == 'xt_special_products'}danger{else}default{/if} switch-area{if $classes} {$classes}{/if}">
+
+    <div class="panel-heading">
+        <p class="panel-title">
+            {if $_show_more_link == 'true' && $_show_page_link == 'true'}
+                <a href="{link page=$code conn=SSL}">
+            {/if}
+            {if $code == 'xt_special_products'}
+                <span class="glyphicon glyphicon-fire"></span>
+            {/if}
+            {$headline}
+            {if $_show_more_link == 'true' && $_show_page_link == 'true'}
+                </a>
+            {/if}
+        </p>
+    </div>
+
+    <div class="panel-body switch-items">
+        {foreach name=aussen key=nr item=module_data from=$product_listing}
+            <div class="product item section product-{$nr}{if $smarty.foreach.aussen.first} first-product{/if}{if $smarty.foreach.aussen.last} last-product{/if}">
+                <div class="row">
+                    <div class="col col-lg-5 product-image text-center">
+                        <div class="image">
+                            {if !$module_data.products_image || $module_data.products_image == 'product:noimage.gif'}
+                                <a href="{$module_data.products_link}" class="vertical-helper image-link no-image img-thumbnail">{img img='no_image.png' type=t_img class="productImageBorder img-responsive" alt=$module_data.products_name|escape:"html"}</a>
+                            {else}
+                                <a href="{$module_data.products_link}" class="vertical-helper image-link img-thumbnail">{img img=$module_data.products_image type=m_ew-viabiona-sidebar class="productImageBorder img-responsive" alt=$module_data.products_name|escape:"html"}</a>
+                            {/if}
+                        </div>
+                    </div>
+                    <div class="col col-lg-7 product-info">
+                        <p class="product-name title"><a href="{$module_data.products_link}">{$module_data.products_name}</a></p>
+                        {if defined('CONFIG_EW_VIABIONA_PLUGIN_LISTING_NORATING') && $smarty.const.CONFIG_EW_VIABIONA_PLUGIN_LISTING_NORATING|trim == '1'}
+                        {else}
+                            {if $module_data.review_stars_rating}
+                                <div class="product-reviews cursor-pointer" title="{if $module_data.review_stars_rating > 1}{$module_data.products_average_rating|round:2}{else}0{/if} / 5" onclick="document.location.href='{$module_data.link_reviews_list}'">
+                                    <div class="reviews_rating_light">
+                                        <div class="reviews_rating_dark" style="width:{$module_data.review_stars_rating}%"></div>
+                                    </div>
+                                    {if $module_data.products_rating_count}<span class="products_rating_count">({$module_data.products_rating_count})</span>{/if}
+                                </div>
+                            {/if}
+                        {/if}
+                        
+                        {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+                            {if defined('CONFIG_EW_VIABIONA_PLUGIN_LISTING_FOOTERTAX') && $smarty.const.CONFIG_EW_VIABIONA_PLUGIN_LISTING_FOOTERTAX|trim == '1'}
+                                <p class="product-price">{$module_data.products_price.formated}*</p>
+                                {if $module_data.base_price}
+                                    <p class="vpe">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</p>
+                                {/if}
+                            {else}
+                                <p class="product-price">{$module_data.products_price.formated}</p>
+                                {if $module_data.base_price}
+                                    <p class="vpe">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</p>
+                                {/if}
+                                {if $module_data.products_shipping_link}
+                                    <p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} <a href="{$module_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+                                {else}
+                                    <p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} {txt key=TEXT_EXCL_SHIPPING}</p>
+                                {/if}
+                            {/if}
+                        {/if}
+                    </div>
+                </div>
+                {if !$smarty.foreach.aussen.last}
+                    <hr class="seperator" />
+                {/if}
+            </div>
+        {/foreach}
+    </div>
+
+    {if $product_listing|@count >= 2}
+        <div class="panel-footer text-center">
+            <button class="btn btn-block btn-default switch-button">
+                <span class="more">
+
+                    {txt key=TEXT_EW_VIABIONA_SHOW_MORE}
+                </span>
+                <span class="less">
+
+                    {txt key=TEXT_EW_VIABIONA_SHOW_LESS}
+                </span>
+            </button>
+        </div>
+    {/if}
+
+</div><!-- .products-box -->

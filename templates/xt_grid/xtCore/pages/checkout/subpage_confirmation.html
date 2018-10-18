@@ -1,0 +1,141 @@
+<div id="checkout-confirmation" class="row">
+	<div class="column xt-grid-4">
+		<div class="box">
+		    <p class="headline-underline">{txt key=TEXT_SHIPPING_ADDRESS}</p>
+		    <p class="right"><a class="highlight" href="{link page='checkout' paction='shipping' conn=SSL}">{txt key=TEXT_EDIT}</a></p>
+			{if $shipping_address.customers_company}<p>{$shipping_address.customers_company}</p>{/if}
+			<p>{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}</p>
+			<p>{$shipping_address.customers_street_address}</p>
+			{if $shipping_address.customers_suburb}<p>{$shipping_address.customers_suburb}</p>{/if}
+			<p>{$shipping_address.customers_postcode} {$shipping_address.customers_city}</p>
+			<p>{$shipping_address.customers_country}</p>
+		</div><!-- .box -->
+		<div class="box">
+			<p class="headline-underline">{txt key=TEXT_SHIPPING_METHOD}</p>
+			<p class="right"><a class="highlight" href="{link page='checkout' paction='shipping' conn=SSL}">{txt key=TEXT_EDIT}</a></p>
+			{if $shipping_info.shipping_name}<p class="bold">{$shipping_info.shipping_name}</p>{/if}
+			{if $shipping_info.shipping_desc}<p>{$shipping_info.shipping_desc}</p>{/if}
+			{if $shipping_info.shipping_info}<p>{$shipping_info.shipping_info}</p>{/if}
+		</div><!-- .box -->
+		<div class="box">
+			<p class="headline-underline">{txt key=TEXT_PAYMENT_ADDRESS}<p>
+			<p class="right"><a class="highlight" href="{link page='checkout' paction='payment' conn=SSL}">{txt key=TEXT_EDIT}</a></p>
+			{if $payment_address.customers_company}<p>{$payment_address.customers_company}</p>{/if}
+			<p>{$payment_address.customers_firstname} {$payment_address.customers_lastname}</p>
+			<p>{$payment_address.customers_street_address}</p>
+			{if $payment_address.customers_suburb}<p>{$payment_address.customers_suburb}</p>{/if}
+			<p>{$payment_address.customers_postcode} {$payment_address.customers_city}</p>
+			<p>{$payment_address.customers_country}</p>
+		</div><!-- .box -->
+		<div class="box">
+			<p class="headline-underline">{txt key=TEXT_PAYMENT_METHOD}</p>
+			<p class="right"><a class="highlight" href="{link page='checkout' paction='payment' conn=SSL}">{txt key=TEXT_EDIT}</a></p>
+			{if $payment_info.payment_name}<p class="bold">{$payment_info.payment_name}</p>{/if}
+			{if $payment_info.payment_desc}<p>{$payment_info.payment_desc}</p>{/if}
+    		{if $payment_info.payment_info}<p>{$payment_info.payment_info}</p>{/if}
+		</div><!-- .box -->
+		<div class="box">
+			<p class="headline-underline">{txt key=TEXT_COMMENTS}</p>
+			<p class="right"><a class="highlight" href="{link page='checkout' paction='payment' conn=SSL}">{txt key=TEXT_EDIT}</a></p>
+			{if $smarty.session.order_comments == ''}
+			<p>{txt key=TEXT_NO_REMARK}</p>
+			{else}
+			<p>{$smarty.session.order_comments}</p>
+			{/if}
+		</div><!-- .box -->
+	</div><!-- .column .xt-grid-4 -->	
+	<div class="column xt-grid-12">
+		{hook key=checkout_tpl_info}
+		<div class="box">
+		{form type=form name=process action='checkout' method=post conn=SSL id='checkout-form'}
+			{form type=hidden name=action value=process}
+			{if $smarty.const._STORE_TERMSCOND_CHECK eq 'true'}
+				{content cont_id=3 is_id='false'}
+				<p>{form type=checkbox name=conditions_accepted} {txt key=TEXT_TERMSANDCOND_CONFIRMATION_1} <a class="bold" href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION_2}</a> {txt key=TEXT_TERMSANDCOND_CONFIRMATION_3}</p>
+			{else}
+				{content cont_id=3 is_id='false'}
+				<p>{txt key=TEXT_TERMSANDCOND_CONFIRMATION_1} <a class="bold" href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION_2}</a> {txt key=TEXT_TERMSANDCOND_CONFIRMATION_3}</p>
+			{/if}
+            {if $show_digital_checkbox eq 'true'}
+                <p>{form type=checkbox name=withdrawal_reject_accepted} {txt key=TEXT_DIGITALCOND_CHECK}</p>
+            {/if}
+
+			{hook key=checkout_tpl_form}
+		</div><!-- .box -->
+		<div class="box box-grey">
+			<table>
+				<thead>
+					<tr>
+						<th>{txt key=TEXT_ARTICLE}</th>
+						<th></th>
+						<th width="100" class="right">{txt key=TEXT_SINGLE_PRICE}</th>
+						<th width="100" class="right">{txt key=TEXT_QTY}</th>
+						<th width="100" class="right">{txt key=TEXT_TOTAL_PRICE}</th>
+					</tr>
+				</thead>
+				<tfoot>
+					{hook key=checkout_tpl_form_total_lines}
+					<tr>
+						<td></td>
+						<td colspan="4">
+							<p class="sub-total">{txt key=TEXT_SUB_TOTAL}<span class="float-right">{$sub_total}</span></p>
+        					{foreach name=aussen item=sub_data from=$sub_data}
+    						<p>{$sub_data.products_name}<span class="float-right">{$sub_data.products_price.formated}</span></p>
+    						{/foreach}
+							<p id="donation"><span id="lfnds-row-label"></span><span id="lfnds-row-value" class="float-right"></span></p>
+   							<p class="total">{txt key=TEXT_TOTAL}<span id="grand-total-value" class="float-right">{$total}</span></p>
+   							{foreach name=aussen item=tax_data from=$tax}
+	    					<p>{txt key=TEXT_TAX} {$tax_data.tax_key}%<span class="float-right">{$tax_data.tax_value.formated|replace:"*":""}</span></p>
+	    					{/foreach}
+    						{if $discount}<p>{txt key=TEXT_DISCOUNT_MADE}<span class="float-right">{$discount.formated}</span></p>{/if}
+						</td>
+					</tr>
+				</tfoot>
+				<tbody>
+					{foreach name=aussen item=data from=$data}
+					<tr>
+						<td class="center">
+							{if $data.products_image == 'product:noimage.gif'}
+							<p class="box box-white box-hover"><a href="{$data.products_link}" target="_blank"><img src="{$tpl_url_path}img/no_image.png" alt="{$new_products_data.products_name}" /></a></p>
+							{else}
+							<p class="box box-white box-hover"><a href="{$data.products_link}" target="_blank">{img img=$data.products_image type=m_thumb class=productImageBorder alt=$data.products_name|escape:"html"}</a></p>
+							{/if}
+						</td>
+						<td>
+							<p class="product-name"><a href="{$data.products_link}" target="_blank">{$data.products_name}</a></p>
+							{if $data.products_information}<p>{$data.products_information|replace:'<tr class="contentrow1">':''|replace:'<tr class="contentrow2">':''|replace:'<td>':''|replace:'<td class="left" colspan="4">':''|replace:'</td>':''|replace:'</tr>':''}</p>{/if}
+							{if $data.products_model!=''}<p>{txt key=TEXT_PRODUCTS_MODEL}: {$data.products_model}</p>{/if}
+							{if $data.products_weight > 0}<p>{txt key=TEXT_PRODUCTS_WEIGHT}: {$data.products_weight|number_format:2:",":"."} kg</p>{/if}
+							{if $data.shipping_status}<p>{txt key=TEXT_SHIPPING_STATUS}: {$data.shipping_status}</p>{/if}
+							{if $data.products_short_description}
+							<p class="product-description">{$data.products_short_description|strip_tags|truncate:100:'...'} [<a href="{$data.products_link}" target="_blank">{txt key=TEXT_MORE}</a>]</p>
+							{elseif $data.products_description}
+							<p class="product-description">{$data.products_description|strip_tags|truncate:100:'...'} [<a href="{$data.products_link}" target="_blank">{txt key=TEXT_MORE}</a>]</p>
+							{/if}
+						</td>
+						<td class="right">
+							{if $data._cart_discount}
+							<p>{$data.products_price.formated}</p>
+    						<p class="price-old">{$data._original_products_price.formated}</p>
+    						<p>(-{$data._cart_discount} %)</p>
+    						{else}
+    						<p>{$data.products_price.formated}</p>
+    						{/if}
+						</td>
+						<td class="right">{$data.products_quantity}</td>
+						<td class="bold right">{$data.products_final_price.formated}</td>
+					</tr>
+					{/foreach}
+				</tbody>
+			</table>
+			{if $payment_info.payment_cost_info eq '1' and $language eq 'de'}<p class="right">{txt key=TEXT_ORDER_CONFIRMATION_BUTTON_LAW}</p>{/if}	
+			{if $post_form eq '1'}
+			<p class="right">{txt key=TEXT_INFO_PAY_NEXT_STEP}</p>
+			{/if}
+			<p class="right">{css_button class=button-next text=$smarty.const.BUTTON_CONFIRM_ORDER type='form'}</p>
+		</div><!-- .box -->
+	</div><!-- .column .xt-grid-12 -->
+</div><!-- #checkout-confirmation .row -->
+{hook key=checkout_tpl_confiramtion}
+{form type=formend}
+{hook key=checkout_tpl_bottom}

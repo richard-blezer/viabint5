@@ -1,0 +1,14 @@
+{if $options!=''}
+	
+	{foreach name=outer item=item_data from=$options}
+            <label>
+                {$item_data.field}
+                {$item_data.text}
+            </label>
+            {if $item_data.option_value_image!=''}
+                {img img=$item_data.option_value_image type=m_thumb alt=$item_data.option_value_name}
+            {/if}			
+	
+	{/foreach}
+
+{/if}

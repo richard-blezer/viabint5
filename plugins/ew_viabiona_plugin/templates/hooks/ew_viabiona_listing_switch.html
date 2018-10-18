@@ -1,0 +1,14 @@
+<div class="btn-group listing-switch hidden-xs">
+    {foreach key=key item=item from=$buttons_data}
+        <a href="{$item.link}" class="btn btn-default item-{$key}{if $item.active} active{/if} preloader" title="{$item.title}" rel="nofollow">
+            {if $key == 1}
+                <span class="glyphicon glyphicon glyphicon-th-large"></span>
+            {elseif $key == 2}
+                <i class="fa fa-lg fa-bars"></i>
+            {else}
+                <span class="glyphicon glyphicon-eye-open"></span>
+            {/if}
+            <span class="sr-only">{$item.title}</span>
+        </a>
+    {/foreach}
+</div>

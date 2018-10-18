@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>Cliplister</title>
+<version>1.0.0</version>
+<code>xt_cliplister</code>
+<url>http://www.cliplister.com</url>
+<description>Cliplister</description>
+<type>marketing</type>
+<icon>logo_cliplister.png</icon>
+<configuration>
+<config>
+<key>XT_CLIPLISTER_FSK</key>
+<type>textfield</type>
+<value>16</value>
+<de>
+<title>Zeige Clips bis Altersfreigabe</title>
+</de>
+<en>
+<title>Zeige Clips bis Altersfreigabe (en)</title>
+</en>
+<es>
+<title>Ver los clips hasta clasificación por edades</title>
+</es>
+</config>
+<config>
+<key>XT_CLIPLISTER_EMBED</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>eingebetteter Player</title>
+</de>
+<en>
+<title>embeded Player</title>
+</en>
+<es>
+<title>Reproductor integrado</title>
+</es>
+</config>
+<config>
+<key>ACTIVATE_XT_CLIPLISTER_BOX</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Cliplister aktivieren</title>
+</de>
+<en>
+<title>Activate Cliplister</title>
+</en>
+<es>
+<title>Activar listador de clips</title>
+</es>
+</config>
+<config>
+<key>XT_CLIPLISTER_KEY</key>
+<type>textfield</type>
+<value></value>
+<de>
+<title>Cliplister Key</title>
+</de>
+<en>
+<title>Cliplister Key</title>
+</en>
+<es>
+<title>Cliplister Clave</title>
+</es>
+</config>
+<config>
+<key>XT_CLIPLISTER_ID</key>
+<type>textfield</type>
+<value></value>
+<de>
+<title>Cliplister ID</title>
+</de>
+<en>
+<title>Cliplister ID</title>
+</en>
+<es>
+<title>Cliplister ID</title>
+</es>
+</config>
+<config>
+<key>XT_CLIPLISTER_INDIRECT</key>
+<type>textfield</type>
+<value>0</value>
+<de>
+<title>Clip automatisch starten</title>
+</de>
+<en>
+<title>Clip automatisch starten (en)</title>
+</en>
+<es>
+<title>Iniciar clip automáticamente</title>
+</es>
+</config>
+</configuration>
+<language_content>
+<phrase>
+<key>TEXT_CLIPLISTER</key>
+<class>store</class>
+<de>
+<value>One Service all Clips</value>
+</de>
+<en>
+<value>One Service all Clips</value>
+</en>
+<es>
+<value>Un servicio de todos los clips</value>
+</es>
+</phrase>
+<phrase>
+<key>TEXT_HEADING_CLIPLISTER</key>
+<class>store</class>
+<de>
+<value>Produktvideo</value>
+</de>
+<en>
+<value>Productvideo</value>
+</en>
+<es>
+<value>Video de producto</value>
+</es>
+</phrase>
+</language_content>
+</xtcommerceplugin> 

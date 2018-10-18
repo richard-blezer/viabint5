@@ -1,0 +1,11 @@
+<li class="themenheader"><a href="#" class="maincat"><strong>{txt key=TEXT_CAT_BOX_THEMEN}</strong></a>
+
+<ul id="categorymenu">
+{foreach name=aussen item=module_data from=$catthemen}
+	<li class="level{$module_data.level}{if $module_data.active} active{/if}">
+	<a href="{$module_data.categories_link}" title="{$module_data.categories_heading_title}">
+		<span>{$module_data.categories_name}</span>
+	</a></li>
+{/foreach}
+</ul>
+</li>

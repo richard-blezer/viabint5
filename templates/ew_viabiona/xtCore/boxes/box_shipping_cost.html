@@ -1,0 +1,17 @@
+{content cont_id=1 is_id=true}
+
+{if $_content_1|@count != 0 &&
+    $_content_1.content_status == 1 &&
+    $_content_1.content_body_short|strip_tags|trim != ''}
+
+    <div id="shipping-preview">
+        <p class="breaking-headline">{$_content_1.title}</p>
+        <div class="alert alert-info">
+            <i class="fa fa-2x fa-truck" aria-hidden="true" style="vertical-align:middle;"></i>
+            &nbsp;
+            <span style="vertical-align:middle;">{$_content_1.content_body_short}</span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+{/if}

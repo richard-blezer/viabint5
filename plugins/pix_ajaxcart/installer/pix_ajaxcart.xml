@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<version>1.0.0</version>
+<code>pix_ajaxcart</code>
+<url>http://www.pixeleyes.de</url>
+<title>Ajax Basket</title>
+<description>Bestellung komfortabel in den Warenkorb legen</description>
+<icon>pixeleyes.jpg</icon>
+<type>core</type>
+ 
+
+ <plugin_code>
+
+
+<code>
+<hook>class.link.php:_redirect_bottom</hook>
+<phpcode><![CDATA[
+ 
+
+ 
+require_once  _SRV_WEBROOT.'plugins/pix_ajaxcart/classes/redirect_bottom.php';
+ 
+
+ 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+
+<code>
+<hook>form_handler.php:add_product_top</hook>
+<phpcode><![CDATA[
+ 
+
+ 
+require_once  _SRV_WEBROOT.'plugins/pix_ajaxcart/classes/add_product_top.php';
+ 
+
+ 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+
+<code>
+<hook>javascript.php:bottom</hook>
+<phpcode><![CDATA[
+ 
+
+ if(ACTIVATE_PIXAJAXCART == 'true'){
+			// AJAX CART
+require_once  _SRV_WEBROOT.'plugins/pix_ajaxcart/classes/javascript.php';
+			// AJAX CART
+ 
+ }
+
+ 
+ 
+]]></phpcode>
+<order>99</order>
+<active>1</active>
+</code>
+
+
+<code>
+<hook>javascript.php:inner</hook>
+<phpcode><![CDATA[
+ 
+
+ if(ACTIVATE_PIXAJAXCART == 'true'){
+			 
+echo '$(".BoxCartInnerInfo").html(json.cart_count + "Artikel, "+ json.cart_total );';
+			 
+ 
+ }
+
+ 
+ 
+]]></phpcode>
+<order>99</order>
+<active>1</active>
+</code>
+
+
+<code>
+<hook>form_handler.php:add_product_bottom</hook>
+<phpcode><![CDATA[
+
+
+
+require_once  _SRV_WEBROOT.'plugins/pix_ajaxcart/classes/add_product_bottom.php';
+ 
+ 
+
+ 
+ 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+
+<code>
+<hook>styles.php:bottom</hook>
+<phpcode><![CDATA[
+ 
+
+
+ if(ACTIVATE_PIXAJAXCART == 'true'){
+
+			// AJAX CART
+echo '<link rel="stylesheet" type="text/css" href="'. _SYSTEM_BASE_URL._SRV_WEB .'plugins/pix_ajaxcart/css/css.css'.'" />';
+			// AJAX CART
+ 
+}
+ 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>page_registry.php:bottom</hook>
+<phpcode><![CDATA[
+ 
+
+ 
+
+			// AJAX CART
+define('PAGE_AJAXCART', _SRV_WEBROOT.'plugins/pix_ajaxcart/pages/ajaxcart.php');
+define('PAGE_AJAXGOCART', _SRV_WEBROOT.'plugins/pix_ajaxcart/pages/ajaxgocart.php');
+			// AJAX CART
+ 
+
+ 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+
+
+ 
+
+
+<code>
+<hook>javascript.php:set_data</hook>
+<phpcode><![CDATA[
+ 
+
+echo " $('#xt_pc_fid').val( ts );";
+ 
+  
+ 
+]]></phpcode>
+<order>99</order>
+<active>1</active>
+</code>
+
+
+
+<code>
+<hook>index.php:display_output</hook>
+<phpcode><![CDATA[
+ 
+
+if(ACTIVATE_PIXAJAXCART == 'true'){
+include _SRV_WEBROOT.'plugins/pix_ajaxcart/classes/display_output.php';
+}
+ 
+ 
+  
+ 
+]]></phpcode>
+<order>99</order>
+<active>1</active>
+</code>
+
+
+
+<code>
+<hook>store_main.php:bottom</hook>
+<phpcode><![CDATA[
+ 
+
+if(ACTIVATE_PIXAJAXCART == 'true'){
+include _SRV_WEBROOT.'plugins/pix_ajaxcart/classes/store_bottom.php';
+}
+ 
+ 
+  
+ 
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+
+
+
+<code>
+<hook>class.cart.php:_addToCart_top</hook>
+<phpcode><![CDATA[
+ 
+
+ if(ACTIVATE_PIXAJAXCART == 'true'){
+ 
+if( isset($_GET['pixajaxcart'])){
+			 
+			 $_SESSION['pixajaxcart'] = $_GET['pixajaxcart'];
+			 
+		 }
+			 
+ 
+ }
+
+ 
+ 
+]]></phpcode>
+<order>0</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>module_product.php:default_tpl_data</hook>
+<phpcode><![CDATA[
+ 
+
+ if(ACTIVATE_PIXAJAXCART == 'true'){
+ 
+ global $info;
+			 
+if( isset($_SESSION['pixajaxcart'])){
+
+if($info->info_content != ""){
+ 
+ 
+		$display_output = false;
+		$no_index_tag = true;
+		$index_tpl = 'ajaxpopup.html'; 		  
+		$_errors = $info->info_content;
+	 	unset($_SESSION['pixajaxcart']);
+}
+			} 
+			 
+ 
+ }
+
+ 
+ 
+]]></phpcode>
+<order>0</order>
+<active>1</active>
+</code>
+
+ <code>
+	<hook>admin_dropdown.php:dropdown</hook>
+	<phpcode><![CDATA[
+	
+	if(ACTIVATE_PIXAJAXCART == 'true'){
+	
+	include _SRV_WEBROOT.'plugins/pix_ajaxcart/classes/dropdown.php';
+	
+	}
+	 
+	]]></phpcode>
+	<order>1</order>
+	<active>1</active>
+	</code>
+
+
+ </plugin_code>
+
+<configuration>
+<config>
+	<key>ACTIVATE_PIXAJAXCART</key>
+	<type>dropdown</type>
+	<url>conf_truefalse</url>
+	<value>true</value>
+	<sort_order>1</sort_order>
+	<de>
+		<title>Aktivieren</title>
+		<description>Aktivieren</description>
+	</de>
+	<en>
+		<title>Aktivieren</title>
+		<description>Aktivieren</description>
+	</en>
+	 
+</config>
+
+<config>
+	<key>PIXAJAXCART_EFFECT</key>
+	<type>dropdown</type>
+	<url>geteffect</url>
+	<value>Center</value>
+	<sort_order>1</sort_order>
+	<de>
+		<title>Effekt</title>
+		<description>Effekt</description>
+	</de>
+	<en>
+		<title>Effect</title>
+		<description>Effect</description>
+	</en>
+	 
+</config>
+
+ <config>
+<key>AJAXCART_DOMAIN</key>
+<type>textfield</type>
+      <required>true</required>
+      <value><![CDATA[http://www.ihredomain.de/unterverzeichnis/]]></value>
+<de>
+<title>Domain des Shops</title>
+</de>
+<en>
+<title>Domain des Shops</title>
+</en>
+</config> 
+
+ <config>
+<key>AJAXCART_PAGEFUNCTION</key>
+<type>textfield</type>
+      <required>true</required>
+      <value><![CDATA[ajaxcart]]></value>
+<de>
+<title>Normal (ajaxcart), Extended (product)</title>
+</de>
+<en>
+<title>Normal (ajaxcart), Extended (product)</title>
+</en>
+</config> 
+  
+  <config>
+<key>AJAXCART_STYLENAME</key>
+<type>textfield</type>
+      <required>true</required>
+      <value><![CDATA[#rightcol .boxcartbody]]></value>
+<de>
+<title>Style Name oder ID der Warenkorb Box</title>
+</de>
+<en>
+<title>Style Name oder ID der Warenkorb Box</title>
+</en>
+</config> 
+</configuration>
+
+
+	 
+ 
+ <language_content>
+  
+
+ <phrase>
+<key>TEXT_PRODUKT_AJAXCART_ADDED</key>
+<class>both</class>
+<de>
+<value>Das Produkt wurde in den Warenkorb gelegt</value>
+</de>
+<en>
+<value>Product added to basket</value>
+</en>
+</phrase>
+
+ <phrase>
+<key>TEXT_PRODUKT_AJAXCART_ADD</key>
+<class>both</class>
+<de>
+<value>Bitte warten, Das Produkt wird in den Warenkorb gelegt</value>
+</de>
+<en>
+<value>Please wait, add product to basket</value>
+</en>
+</phrase>
+
+
+ <phrase>
+<key>TEXT_AJAXCART_WAIT</key>
+<class>both</class>
+<de>
+<value>Bitte warten</value>
+</de>
+<en>
+<value>Please wait</value>
+</en>
+</phrase>
+
+
+</language_content>
+
+	
+</xtcommerceplugin>

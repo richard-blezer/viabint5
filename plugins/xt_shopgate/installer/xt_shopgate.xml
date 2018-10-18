@@ -1,0 +1,471 @@
+<!--
+ #########################################################################
+ #                       Shogate GmbH
+ # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ #
+ # http://www.shopgate.com
+ #
+ # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ #
+ # @version $Rev: 78 $
+ #
+ # @author Martin Weber, Shopgate GmbH	weber@shopgate.com
+ #
+ # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ #########################################################################
+-->
+
+<xtcommerceplugin>
+	<title>Shopgate Mobile Shopping (empfohlen)</title>
+	<version>2.3.0</version>
+	<code>xt_shopgate</code>
+	<url>http://www.shopgate.com</url>
+	<description>
+		Dieses Plugin ermöglicht eine einfache Integration ihres Shops für
+		Shopgate. Es untersützt Sie bei dem Export Ihrer Produkte für Shopgate.
+	</description>
+	<icon>shopgate_logo.png</icon>
+	<type>mobile</type>
+
+	<db_install><![CDATA[
+	$shopgateInstall = true;
+	include_once _SRV_WEBROOT.'plugins/xt_shopgate/installer/db_install.php';
+	]]></db_install>
+	<db_uninstall><![CDATA[
+	$shopgateInstall = false;
+	include_once _SRV_WEBROOT.'plugins/xt_shopgate/installer/db_uninstall.php';
+	]]></db_uninstall>
+
+	<language_content>
+		<phrase>
+			<key>TEXT_XT_SHOPGATE</key>
+			<class>admin</class>
+			<en>
+				<value>Shopgate</value>
+			</en>
+			<de>
+				<value>Shopgate</value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_SHOPGATE_CONFIG</key>
+			<class>admin</class>
+			<en>
+				<value>2. Basic settings</value>
+			</en>
+			<de>
+				<value>2. Grundeinstellungen</value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_SHOPGATE_ORDER_NUMBER</key>
+			<class>admin</class>
+			<en>
+				<value>Shopgate-Ordernumber</value>
+			</en>
+			<de>
+				<value>Shopgate Bestellnummer</value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_SHOPGATE_PURPOSE</key>
+			<class>admin</class>
+			<en>
+				<value>Purpose</value>
+			</en>
+			<de>
+				<value>Verwendungszweck</value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_SHOPGATE_SHOPGATE</key>
+			<class>admin</class>
+			<en>
+				<value>Shopgate (Mobile Shopping)</value>
+			</en>
+			<de>
+				<value>Shopgate (Mobile Shopping)</value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>text_xt_shopgate_install_manual</key>
+			<class>admin</class>
+			<en>
+				<value>Installation Help</value>
+			</en>
+			<de>
+				<value>Installationshilfe</value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>text_xt_shopgate_merchant_area</key>
+			<class>admin</class>
+			<en>
+				<value>Shopgate-Login</value>
+			</en>
+			<de>
+				<value>Shopgate-Login</value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>text_xt_shopgate_register</key>
+			<class>admin</class>
+			<en>
+				<value>1. Register</value>
+			</en>
+			<de>
+				<value>1. Registrierung</value>
+			</de>
+		</phrase>
+
+		<phrase>
+			<key>text_xt_shopgate_info</key>
+			<class>admin</class>
+			<en>
+				<value>What is Shopgate</value>
+			</en>
+			<de>
+				<value>Was ist Shopgate</value>
+			</de>
+		</phrase>
+		
+		<phrase>
+			<key>TEXT_XT_SHOPGATE_EXPORT_DESCRIPTION_DESC_ONLY</key>
+			<class>admin</class>
+			<en>
+				<value>Description only</value>
+			</en>
+			<de>
+				<value>Nur Beschreibung</value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_SHOPGATE_EXPORT_DESCRIPTION_SHORTDESC_ONLY</key>
+			<class>admin</class>
+			<en>
+				<value>Short description only</value>
+			</en>
+			<de>
+				<value>Nur Kurzbeschreibung</value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_SHOPGATE_EXPORT_DESCRIPTION_DESC_SHORTDESC</key>
+			<class>admin</class>
+			<en>
+				<value>Description and short description</value>
+			</en>
+			<de>
+				<value>Beschreibung + Kurzbeschreibung</value>
+			</de>
+		</phrase>
+		<phrase>
+			<key>TEXT_XT_SHOPGATE_EXPORT_DESCRIPTION_SHORTDESC_DESC</key>
+			<class>admin</class>
+			<en>
+				<value>Short description and description</value>
+			</en>
+			<de>
+				<value>Kurzbeschreibung + Beschreibung</value>
+			</de>
+		</phrase>
+	</language_content>
+
+	<configuration>
+
+		<config>
+			<key>XT_SHOPGATE_ENABLE</key>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<value>false</value>
+			<de>
+				<title>Aktivieren</title>
+			</de>
+			<en>
+				<title>Enabled</title>
+			</en>
+		</config>
+
+		<config>
+			<key>XT_SHOPGATE_CUSTOMERNUMBER</key>
+			<de>
+				<title>* Kundennummer</title>
+			</de>
+			<en>
+				<title>* Customer number</title>
+			</en>
+		</config>
+
+		<config>
+			<key>XT_SHOPGATE_SHOPNUMBER</key>
+			<de>
+				<title>* Shopnummer</title>
+			</de>
+			<en>
+				<title>* Shop number</title>
+			</en>
+		</config>
+
+		<config>
+			<key>XT_SHOPGATE_APIKEY</key>
+			<de>
+				<title>* API-Key</title>
+			</de>
+			<en>
+				<title>* API key</title>
+			</en>
+		</config>
+
+		<config>
+			<key>XT_SHOPGATE_ALIAS</key>
+			<de>
+				<title>* Alias</title>
+			</de>
+			<en>
+				<title>* Alias</title>
+			</en>
+		</config>
+
+		<config>
+			<key>XT_SHOPGATE_CNAME</key>
+			<type>text</type>
+			<de>
+				<title>Eigene URL zur mobilen Webseite (CNAME) mit http(s)://</title>
+			</de>
+			<en>
+				<title>Custom URL to mobile webpage (CNAME) incl. http(s)://</title>
+			</en>
+		</config>
+
+		<config>
+			<key>XT_SHOPGATE_SERVER</key>
+			<value>live</value>
+			<type>dropdown</type>
+			<url>conf_xt_shopgate_server</url>
+			<de>
+				<title>Shopgate Server</title>
+			</de>
+			<en>
+				<title>Shopgate Server</title>
+			</en>
+		</config>
+
+		<config>
+			<key>XT_SHOPGATE_SERVER_URL</key>
+			<value></value>
+			<type>text</type>
+			<de>
+				<title>Shopgate Server (Custom)</title>
+			</de>
+			<en>
+				<title>Shopgate Server (Custom)</title>
+			</en>
+		</config>
+
+		<config>
+			<key>XT_SHOPGATE_EXPORT_DESCRIPTION_TYPE</key>
+			<value>0</value>
+			<type>dropdown</type>
+			<url>conf_xt_shopgate_export_description_type</url>
+			<de>
+				<title>Produktbeschreibung</title>
+			</de>
+			<en>
+				<title>Products description</title>
+			</en>
+		</config>
+
+		<config>
+			<key>XT_SHOPGATE_ORDER_STATUS_OPEN</key>
+			<type>dropdown</type>
+			<url>conf_xt_shopgate_order_status</url>
+			<value>16</value>
+			<de>
+				<title>Bestellstatus - Versand ist freigegeben</title>
+			</de>
+			<en>
+				<title>Ordersstatus - ready for delivery</title>
+			</en>
+		</config>
+
+		<config>
+			<key>XT_SHOPGATE_ORDER_STATUS_SHIPPING_BLOCKED</key>
+			<type>dropdown</type>
+			<url>conf_xt_shopgate_order_status</url>
+			<value>16</value>
+			<de>
+				<title>Bestellstatus - Versand ist blockiert</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Shipping blocked</title>
+			</en>
+		</config>
+
+		<config>
+			<key>XT_SHOPGATE_ORDER_STATUS_CANCLED</key>
+			<type>dropdown</type>
+			<url>conf_xt_shopgate_order_status</url>
+			<value>34</value>
+			<de>
+				<title>Bestellstatus - Storniert</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Reversed</title>
+			</en>
+		</config>
+
+		<config>
+			<key>XT_SHOPGATE_ORDER_STATUS_SHIPPED</key>
+			<type>dropdown</type>
+			<url>conf_xt_shopgate_order_status</url>
+			<value>33</value>
+			<de>
+				<title>Bestellstatus - Versandt</title>
+			</de>
+			<en>
+				<title>Ordersstatus - Shipped</title>
+			</en>
+		</config>
+	</configuration>
+	
+	<plugin_code>
+		<code>
+			<hook>class.order.php:_updateOrderStatus_bottom</hook>
+			<phpcode><![CDATA[
+if(XT_SHOPGATE_ENABLE == "true" && !isset($_SESSION['klarna_order_status'])) {
+	// $data_array is given in File class.order.php
+	$shopgatePluginDir = _SRV_WEBROOT.'plugins/xt_shopgate';
+	require_once($shopgatePluginDir.'/classes/class.shopgate_plugin_veyton.php');
+	$plugin = new ShopgatePluginVeyton();
+	$plugin->updateOrderStatus($data_array);
+}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+
+		<code>
+			<hook>cronjob.php:main</hook>
+			<phpcode><![CDATA[
+if(XT_SHOPGATE_ENABLE == "true") {
+	$data = array();
+
+	if(count($argv) <= 1 && !empty($_REQUEST)) {
+		$data = $_REQUEST;
+	}
+	else
+	{
+		for($i=1; $i < count($argv); $i += 2) {
+			$data[trim($argv[$i], "--")] = $argv[$i+1];
+		}
+	}
+
+	if(isset($data["shopgate"]) && $data["shopgate"] === "shopgate") {
+		// fix for bot-trap. Sometimes they block requests by mistake.
+		define("PRES_CLIENT_IP", @$_SERVER["SERVER_ADDR"]);
+		
+		$shopgatePluginDir = _SRV_WEBROOT.'plugins/xt_shopgate';
+		require_once($shopgatePluginDir.'/classes/class.shopgate_plugin_veyton.php');
+		$plugin = new ShopgatePluginVeyton();
+		$plugin->handleRequest($data);
+
+		exit;
+	}
+}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+
+		<code>
+			<hook>class.order.php:_deleteOrder_bottom</hook>
+			<phpcode><![CDATA[
+if(XT_SHOPGATE_ENABLE == "true") {
+	include_once _SRV_WEBROOT.'plugins/xt_shopgate/classes/constants.php';
+	$existingId = $db->GetOne("SELECT shopgate_orders_id FROM `".TABLE_SHOPGATE_ORDERS."` WHERE `orders_id` = '$orders_id'");
+	if(!empty($existingId))
+		$db->Execute("DELETE FROM `".TABLE_SHOPGATE_ORDERS."` WHERE `orders_id` = '$orders_id'");
+}
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+
+		<code>
+			<hook>admin_dropdown.php:dropdown</hook>
+			<order>1</order>
+			<active>1</active>
+			<phpcode><![CDATA[
+if($request["get"] == "conf_xt_shopgate_items_create") {
+	$result = array(
+		array('id' => 'live', name => 'Live bei jedem Abrufen von Shopgate', 'desc' => '' ),
+		array('id' => 'cron', name => 'Zeitversetzt per Cronjob', 'desc' => '' ),
+	);
+}
+
+if($request["get"] == "conf_xt_shopgate_server") {
+	$result = array(
+		array('id' => 'live', name => 'Live', 'desc' => '' ),
+		array('id' => 'pg', name => 'Playground', 'desc' => '' ),
+		array('id' => 'custom', name => 'Custom', 'desc' => '' ),
+	);
+}
+
+$shopgatePluginDir = _SRV_WEBROOT.'plugins/xt_shopgate';
+require_once($shopgatePluginDir.'/classes/class.shopgate_config_veyton.php');
+if($request["get"] == "conf_xt_shopgate_export_description_type") {
+	$result = array(
+		array('id' => ShopgateConfigVeyton::EXPORT_DESCRIPTION, name => TEXT_XT_SHOPGATE_EXPORT_DESCRIPTION_DESC_ONLY, 'desc' => '' ),
+		array('id' => ShopgateConfigVeyton::EXPORT_SHORTDESCRIPTION, name => TEXT_XT_SHOPGATE_EXPORT_DESCRIPTION_SHORTDESC_ONLY, 'desc' => '' ),
+		array('id' => ShopgateConfigVeyton::EXPORT_DESCRIPTION_SHORTDESCRIPTION, name => TEXT_XT_SHOPGATE_EXPORT_DESCRIPTION_DESC_SHORTDESC, 'desc' => '' ),
+		array('id' => ShopgateConfigVeyton::EXPORT_SHORTDESCRIPTION_DESCRIPTION, name => TEXT_XT_SHOPGATE_EXPORT_DESCRIPTION_SHORTDESC_DESC, 'desc' => '' ),
+	);
+}
+
+if($request["get"] == "conf_xt_shopgate_order_status") {
+	global $db;
+	$_dbResult = $db->Execute("
+SELECT s.status_id, sd.status_name
+FROM ".TABLE_SYSTEM_STATUS." s
+JOIN ".TABLE_SYSTEM_STATUS_DESCRIPTION." sd ON sd.status_id = s.status_id
+WHERE s.status_class = 'order_status' AND sd.language_code = 'de' AND sd.status_name IS NOT NULL
+");
+
+	$result = array();
+	while(!$_dbResult->EOF) {
+		$row = $_dbResult->fields;
+
+		$result[] = array('id' => $row["status_id"], name => $row["status_name"], 'desc' => '' );
+
+		$_dbResult->MoveNext();
+	}
+}
+				]]>
+			</phpcode>
+		</code>
+
+		<code>
+			<hook>display.php:doctype</hook>
+			<order>1</order>
+			<active>1</active>
+			<phpcode><![CDATA[
+if (defined("XT_SHOPGATE_ENABLE") && (XT_SHOPGATE_ENABLE == "true")) {
+	include_once(_SRV_WEBROOT.'plugins/xt_shopgate/classes/redirect.php');
+}
+				]]>
+			</phpcode>
+		</code>
+
+		<code>
+			<hook>display.php:content_head</hook>
+			<order>1</order>
+			<active>1</active>
+			<phpcode><![CDATA[
+if (defined("XT_SHOPGATE_ENABLE") && (XT_SHOPGATE_ENABLE == "true") && !empty($shopgateJsHeader)) {
+	echo $shopgateJsHeader;
+}
+				]]>
+			</phpcode>
+		</code>
+	</plugin_code>
+</xtcommerceplugin>

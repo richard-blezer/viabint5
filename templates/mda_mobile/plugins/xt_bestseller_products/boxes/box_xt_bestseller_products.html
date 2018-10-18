@@ -1,0 +1,20 @@
+<div data-role="collapsible" data-collapsed="true" id="bsestsellers" data-content-theme="d">
+	<h3 class="boxheader">{txt key=TEXT_HEADING_BESTSELLER_PRODUCTS}</h3>
+	{if $_show_more_link == true}
+		<p><a href="{link page='bestseller_products' conn=SSL}">{txt key=TEXT_SHOW_ALL}</a></p>
+	{/if}
+	
+	<ul data-role="listview" data-inset="true">
+		{foreach name=aussen item=bestseller_products_data from=$_bestseller_products}
+		<li>
+			<a href="{$bestseller_products_data.products_link}">
+				{if $bestseller_products_data.products_image!=''}
+					{img img=$bestseller_products_data.products_image type=m_thumb alt=$bestseller_products_data.products_name}
+				{/if}
+				<h3>{$bestseller_products_data.products_name}</h3>
+				<p>{$bestseller_products_data.products_price.formated}</p>
+			</a>
+		</li>
+		{/foreach}
+	</ul>
+</div>

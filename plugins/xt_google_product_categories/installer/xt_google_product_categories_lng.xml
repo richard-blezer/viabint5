@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_GOOGLE_PRODUCT_CAT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Google-Productcategorie]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Google-Produktkategorie]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_GOOGLE_PRODUCT_CATEGERIES_TAB</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Google-Productcategorie]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Google-Produktkategorie]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_GOOGLE_PRODUCT_CATEGORIES_CAT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Default-Catageory]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Standard-Kategorie]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_GOOGLE_PRODUCT_CATEGORIES_LANG_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Language]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sprache]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_GOOGLE_PRODUCT_CATEGORIES_LENGTH_DROPDOWN_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Length of Dropdown]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Länge von Dropdown]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

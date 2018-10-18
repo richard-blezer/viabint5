@@ -1,0 +1,78 @@
+
+<div data-role="header">
+    <h2>
+    {if $_show_more_link == true}
+        {if $smarty.const.ACTIVATE_XT_NEW_PRODUCTS_PAGE eq 'true'}
+            <a href="{link page='xt_new_products' conn=SSL}">{txt key=TEXT_HEADING_NEW_PRODUCTS}</a>
+        {else}
+            {txt key=TEXT_HEADING_NEW_PRODUCTS}
+        {/if}
+    {else}
+        {txt key=TEXT_HEADING_NEW_PRODUCTS}
+    {/if}
+    </h2>
+</div>
+
+
+
+{*
+<!-- Place somewhere in the <body> of your page -->
+<div class="xtm-new-products flexslider">
+    <ul class="slides">
+        {foreach name=aussen item=new_products_data from=$_new_products}        
+        <li>
+            <table width="100%"><tr><td>
+                <a href="{$new_products_data.products_link}">
+                    <span class="item">
+                        <table width="100px" height="100px"><tr><td>
+                        {if $new_products_data.products_image != 'product:noimage.gif'}                            
+                            {img img=$new_products_data.products_image type=m_mobile_thumb class=productImageBorder alt=$new_products_data.products_name}
+                        {else}
+                            <img src="{$tpl_url_path}img/no-image_2.png" alt="{txt key=TEXT_NO_IMAGE}">
+                        {/if}
+                        </td></tr></table>
+                        <br />
+                        <strong>{$new_products_data.products_name}</strong>
+                        <br />
+                        {$new_products_data.products_price.formated}
+                    </span>
+                </a>
+            </td></tr></table>
+        </li>
+        {/foreach}
+    </ul>
+</div>
+*}
+
+
+<!-- Place somewhere in the <body> of your page -->
+<div class="xtm-new-products flexslider">
+    <ul class="slides">
+        {foreach name=aussen item=new_products_data from=$_new_products}        
+        <li>
+            <table width="100%"><tr><td>
+                <a href="{$new_products_data.products_link}">
+                    <span class="item">
+                        <table><tr><td>
+                                    
+                            <span style="display:inline-block; position:relative;">
+                                {if $new_products_data.products_image != 'product:noimage.gif'}                            
+                                    {img img=$new_products_data.products_image type=m_xt-mobile_islider class='productImageBorder islider' alt=$new_products_data.products_name}
+                                {else}
+                                    <img class="islider" src="{$tpl_url_path}img/no-image_2.png" alt="{txt key=TEXT_NO_IMAGE}">
+                                {/if}
+                                <span class="subline">
+                                    <span class="headline">{$new_products_data.products_name}</span>
+                                    <span class="price">{$new_products_data.products_price.formated}</span>
+
+                                </span>
+                            </span>                        
+                        </td></tr></table>
+
+                    </span>
+                </a>
+            </td></tr></table>
+        </li>
+        {/foreach}
+    </ul>
+</div>

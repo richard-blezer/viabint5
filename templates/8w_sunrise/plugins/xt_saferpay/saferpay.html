@@ -1,0 +1,21 @@
+<table class="paymentblock" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr class="top">
+  	<td class="header" width="10px">{form type=radio name=selected_payment value=$payment_code}</td>
+  	<td class="header">
+      <span class="title">{$payment_name}</span>
+      <img src="media/payment/visa_small.jpg" border="0"/>      
+      <img src="media/payment/mastercard_small.jpg" border="0"/>
+      <img src="media/payment/jcb_small.jpg" border="0"/>
+    </td>
+    <td class="header" align="right">{$payment_price.formated}</td>
+  </tr>
+  <tr>
+  <td colspan="3">
+    {if $payment_desc}
+      </td></tr><tr class="border">
+        <td colspan="3" class="main desc">{$payment_desc}</td>
+      </tr>
+    {/if}
+  
+  
+</table>

@@ -1,0 +1,26 @@
+<table class="shippingblock" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr>
+  	<td class="header" width="10">
+  	{if $shipping_hidden == true}
+  		{form type=hidden name=selected_shipping value=$shipping_code}
+  	{else}
+  		{if $shipping_code==$shipping_selected}
+  			{form type=radio name=selected_shipping value=$shipping_code checked=true}
+  		{else}
+  			{form type=radio name=selected_shipping value=$shipping_code}
+  		{/if}
+  	{/if}
+  	</td>
+  	<td class="header"><strong>{$shipping_name}</strong></td>
+  	{if $shipping_icon}
+    <td class="header">{img img=$shipping_icon type=w_media_shipping}</td>
+    {/if}
+    <td class="header" align="right">{$shipping_price.formated}</td>
+  </tr>
+  {if $shipping_desc}
+  <tr>
+  	<td colspan="3" class="main">{$shipping_desc}</td>
+  </tr>
+  {/if}
+</table>
+<br />

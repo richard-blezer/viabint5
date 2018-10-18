@@ -1,0 +1,63 @@
+{$message}
+
+{form type=form name=affiliate_sales action='dynamic' link_params=getParams method=post}
+
+<h2>{txt key=AFFILIATE_SALES}</h2>
+
+<div class="aff-links">
+<a href="http://www.viabiona.com/de/affiliate_summary.html">Affiliate-Konto übersicht</a>
+<a href="http://www.viabiona.com/de/affiliate_account.html">Affiliate-Konto bearbeiten</a>
+<a href="http://www.viabiona.com/de/affiliate_payment.html">Affiliate-Auszahlungen</a>
+<a href="http://www.viabiona.com/de/affiliate_clicks.html">Affiliate-Кlicks</a>
+<a href="http://www.viabiona.com/de/affiliate_sales.html">Affiliate-Verkäufe</a>
+<a href="http://www.viabiona.com/de/affiliate_inventory.html?type=i">Werbemittel</a>
+<a href="http://www.viabiona.com/de/affiliate_account/logout.html">Logout</a>
+</div>
+
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">
+  <tr>
+    <td>
+      {txt key=AFFILIATE_TEXT_PERIOD}:{form type=select name=a_period value=$periods.data default=$periods.default onchange=submit()}
+      {txt key=AFFILIATE_TEXT_LEVEL}:{form type=select name=a_level value=$levels.data default=$levels.default onchange=submit()}
+      {txt key=AFFILIATE_TEXT_STATUS}:{form type=select name=a_status value=$status.data default=$status.default onchange=submit()}
+    </td>
+  </tr>
+  <tr>
+    <td><table width="90%" cellpadding="2" cellspacing="2">
+      <tr >
+        <th align="center">{txt key=AFFILIATE_TEXT_DATE}</th>
+        <th align="center">{txt key=AFFILIATE_TEXT_VALUE}</th>
+        <th align="center">{txt key=AFFILIATE_TEXT_PAYMENT}</th>
+        <th align="center">{txt key=AFFILIATE_TEXT_PERCENT}</th>
+        <th align="center">{txt key=AFFILIATE_TEXT_LEVEL}</th>
+        <th align="center">{txt key=AFFILIATE_TEXT_STATUS}</th>
+      </tr>
+      <tr>
+        <td colspan="6"><hr /></td>
+      </tr>
+      {foreach name=sales item=sale from=$affiliate_sales.data}
+      <tr bgcolor="{cycle values="#eeeeee,#d0d0d0"}">
+        <td>{$sale.a_date}</td>
+        <td>{$sale.affiliate_value}</td>
+        <td>{$sale.affiliate_payment}</td>
+        <td>{$sale.affiliate_percent}</td>
+        <td>{$sale.level}</td>
+        <td>{$sale.orders_status}</td>
+      </tr>
+      {/foreach}
+      <tr>
+        <td colspan="6"><hr /></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td>{$affiliate_sales.count}&nbsp;{$affiliate_sales.pages}</td>
+  </tr>
+  <tr>
+    <td>{$total}</td>
+  </tr>
+</table>
+</div>
+
+{form type=formend}

@@ -1,0 +1,28 @@
+DE:
+
+{if $trusted_shops_data}
+Jetzt bewerten:<br />
+Waren Sie mit Ihrem Einkauf und unserem Service zufrieden? <a class="trustedShopsRateNow" href="{$trusted_shops_data.urlNow}" target="_blank" title="{txt key=TEXT_TS_RATE_NOW}" >Hier können Sie uns bewerten</a>, wir freuen uns auf Ihr Feedback.<br />
+<a class="trustedShopsRateNow"   href="{$trusted_shops_data.urlNow}"   target="_blank" title="{txt key=TEXT_TS_RATE_NOW}" ><img alt="{txt key=TEXT_TS_RATE_NOW}" src="{$_system_base_url}{$trusted_shops_data.tsImgPathRate}rate_now_{$trusted_shops_data.tsImgLngRate}_180.png"></a>
+
+<br />
+
+Später bewerten<br />
+{txt key=TEXT_TS_RATE_LATER_INFO} (<a class="trustedShopsRateLater" href="{content cont_id=2}{$_content_2.content_link}" target="_blank" title="{txt key=TEXT_PRIVACY_TEXT}" >Details</a>).<br />
+<a class="trustedShopsRateLater" href="{$trusted_shops_data.urlLater}" target="_blank" title="{txt key=TEXT_TS_RATE_NOW}" ><img alt="{txt key=TEXT_TS_RATE_NOW}" src="{$_system_base_url}{$trusted_shops_data.tsImgPathRate}rate_later_{$trusted_shops_data.tsImgLngRate}_180.png"></a>
+{/if}
+
+
+EN:
+
+{if $trusted_shops_data}
+Rate now:<br />
+Were you satisfied with our service? <a class="trustedShopsRateNow" href="{$trusted_shops_data.urlNow}" target="_blank" title="{txt key=TEXT_TS_RATE_NOW}" >Please write a review and rate us.</a><br />
+<a class="trustedShopsRateNow"   href="{$trusted_shops_data.urlNow}"   target="_blank" title="{txt key=TEXT_TS_RATE_NOW}" ><img alt="{txt key=TEXT_TS_RATE_NOW}" src="{$_system_base_url}{$trusted_shops_data.tsImgPathRate}rate_now_{$trusted_shops_data.tsImgLngRate}_180.png"></a>
+
+<br />
+
+Rate later:<br />
+{txt key=TEXT_TS_RATE_LATER_INFO} (<a class="trustedShopsRateNow" href="{content cont_id=2}{$_content_2.content_link}" target="_blank" title="{txt key=TEXT_PRIVACY_TEXT}" >Details</a>).<br />
+<a class="trustedShopsRateLater" href="{$trusted_shops_data.urlLater}" target="_blank" title="{txt key=TEXT_TS_RATE_NOW}" ><img alt="{txt key=TEXT_TS_RATE_NOW}" src="{$_system_base_url}{$trusted_shops_data.tsImgPathRate}rate_later_{$trusted_shops_data.tsImgLngRate}_180.png"></a>
+{/if}

@@ -1,0 +1,22 @@
+
+
+{box name=categories}  
+
+
+<h1>{$title}</h1>    
+<p>
+    {$text}
+</p>
+
+
+
+
+{page name=xt_startpage_products type=user tpl_type='product_listing'}
+
+{box name=xt_upcoming_products type=user order_by='p.date_available'}
+
+{box name=xt_special_products type=user order_by='rand()'}
+
+{box name=xt_new_products type=user order_by='rand()'}
+
+{box name=xt_bestseller_products type=user}

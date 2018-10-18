@@ -1,0 +1,31 @@
+<h2 class="boxheader">{txt key=TEXT_BOX_TITLE_LOGIN}</h2>
+<div class="boxbody">
+{form type=form name=create_account action='customer' paction='login' link_params=getParams method=post conn=SSL}
+{form type=hidden name=action value=login}
+{form type=hidden name=link_target value=index}
+<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td>{txt key=text_email}:</td>
+	</tr>
+	<tr>
+		<td>{form type=text name=email maxlength='50' style='width:170px;'}</td>
+	</tr>
+	<tr>
+		<td>{txt key=text_password}:</td>
+	</tr>
+	<tr>
+		<td><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td>{form type=password name=password maxlength='30' style='width:80px;'}</td>
+            <td>{button text=$smarty.const.BUTTON_LOGIN file='login.gif' type='form'}</td>
+          </tr>
+        </table></td>
+	</tr>
+	<tr>
+	  <td ><div class="hr"></div><a href="{link page='customer' paction='password_reset' conn=SSL}">{txt key=text_link_lostpassword}</a></td>
+    </tr>
+  </table>
+{form type=formend}
+</div>
+
+

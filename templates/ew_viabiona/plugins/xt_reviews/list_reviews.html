@@ -1,0 +1,58 @@
+<div id="product" class="detail">
+    <h1>{$products_name} <small>{txt key=TEXT_XT_REVIEWS_HEADING_REVIEWS}</small></h1>
+    
+
+    {$message}
+
+    <div id="pinfo" class="row">
+        <div id="product-images" class="col col-sm-4">      
+            <a href="{$products_link}">
+                <div class="image product-image img-thumbnail center">
+                    {if !$products_image || $products_image == 'product:noimage.gif'}
+                        <span class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="productImageBorder img-responsive" alt=$products_name|escape:"html"}</span>
+                    {else}
+                        <span class="vertical-helper image-link">{img img=$products_image type=m_ew-viabiona-info class="productImageBorder img-responsive" alt=$products_name|escape:"html" width=auto height=auto}</span>
+                    {/if}
+                </div>
+            </a>
+            {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_price.formated neq ''}
+                <p class="product-price">{$products_price.formated}</p>
+            {/if}
+            {if $review_stars_rating}
+                <div class="left">
+                    <div class="product-reviews cursor-pointer popover-trigger" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="{txt key=TEXT_XT_REVIEWS_INFO}" data-content="{if $products_rating_count}{$products_rating_count} {txt key=TEXT_XT_REVIEWS_INFO} {txt key=TEXT_EW_VIABIONA_POPOVER_RATING_AVERAGE} {$products_average_rating|round:2} / 5 {txt key=TEXT_EW_VIABIONA_POPOVER_RATING_STAR}.{else}{txt key=TEXT_XT_REVIEWS_NO_REVIEWS}.{/if}" onclick="document.location.href='{$link_reviews_list}'">
+                        <div class="reviews_rating_light">
+                            <div class="reviews_rating_dark" style="width:{$review_stars_rating}%"></div>
+                        </div>
+                    </div>
+                </div>
+            {/if}
+            {if $products_model!=''}
+                <p class="product-model">{txt key=TEXT_PRODUCTS_MODEL} <span class="bold">{$products_model}</span></p>
+            {/if}
+        </div>
+        <div id="reviews" class="col col-sm-8">  
+            {if !$reviews_data}
+                <p class="text-right review-btns">
+                    <span class="btn-group">
+                        {if $show_reviews_button eq 'true'}
+                            <a href="{$link_reviews_list}" class="btn btn-default" rel="nofollow">{txt key=TEXT_XT_REVIEWS_SHOW}</a>
+                        {/if}
+                        <a href="{$link_reviews_write}" class="btn btn-primary" rel="nofollow">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                            {txt key=TEXT_XT_REVIEWS_WRITE}
+                        </a> 
+                    </span>
+                </p>
+            {/if}
+            {if $reviews_data}
+                {include file="$selected_template/plugins/xt_reviews/products_reviews_list.html"}
+                <div class="row products-sort-pages bottom">
+                    <div class="col-sm-12 navigation-pages text-right">
+                        {$NAVIGATION_PAGES}
+                    </div><!-- .navigation-pages -->
+                </div><!-- .products-sort-pages -->
+            {/if}
+        </div>
+    </div>
+</div>

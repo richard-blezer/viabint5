@@ -1,0 +1,4 @@
+<Files ekomi_login.php>
+    Order Deny,Allow
+    Allow from all
+</Files>

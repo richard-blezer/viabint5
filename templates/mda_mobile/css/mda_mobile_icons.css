@@ -1,0 +1,38 @@
+.ui-icon-mda_mobile_first, .ui-icon-mda_mobile_last, .ui-icon-mda_mobile_cart, .ui-icon-mda_mobile_edit, .ui-icon-mda_mobile_contact {
+    background-image: url(images/mda_mobile_iconset-18.png);
+}
+
+.ui-icon-mda_mobile_first { 
+    background-position: 	-0 50%; }
+.ui-icon-mda_mobile_last { 
+    background-position: 	-18px 50%; }
+.ui-icon-mda_mobile_cart { 
+    background-position: 	-36px 50%; }
+.ui-icon-mda_mobile_edit { 
+    background-position: 	-54px 50%; }
+.ui-icon-mda_mobile_contact { 
+    background-position: 	-72px 50%; }
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min--moz-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 240dpi) {
+
+.ui-icon-mda_mobile_first, .ui-icon-mda_mobile_last, .ui-icon-mda_mobile_cart, .ui-icon-mda_mobile_edit, .ui-icon-mda_mobile_contact {
+    background-image: url(images/mda_mobile_iconset-36.png);
+    -moz-background-size: 90px 18px;
+		-o-background-size: 90px 18px;
+		-webkit-background-size: 90px 18px;
+		background-size: 90px 18px;
+}
+
+.ui-icon-mda_mobile_first { 
+    background-position: 	-0 50%; }
+.ui-icon-mda_mobile_last { 
+    background-position: 	-18px 50%; }
+.ui-icon-mda_mobile_cart { 
+    background-position: 	-36px 50%; }
+.ui-icon-mda_mobile_edit { 
+    background-position: 	-54px 50%; }
+.ui-icon-mda_mobile_contact { 
+    background-position: 	-72px 50%; }
+}

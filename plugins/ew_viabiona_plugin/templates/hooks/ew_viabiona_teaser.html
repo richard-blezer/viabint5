@@ -1,0 +1,70 @@
+{if $data}
+    <div id="ew_viabiona_teaser" class="carousel slide carousel-fade hidden-xs" data-ride="carousel">
+            <div class="carousel-inner">
+                {foreach name=carousel key=key item=item from=$data}
+                    {if $item.image}
+                        <div class="item item-{$key} id-{$item.id}{if $smarty.foreach.carousel.first} active{/if}" data-current-item="{$key}">
+
+                            <div class="hidden-xs">
+                                {if $item.link}<a href="{$item.link}">{/if}
+                                    {img img=$item.image type=m_org alt=$item.heading|escape:'html' title=$item.heading|escape:'html' class=teaser-picture}
+                                {if $item.link}</a>{/if}
+                            </div>
+                            <div class="visible-xs">
+                                {if $item.link}<a href="{$item.link}">{/if}
+                                    {img img=$item.image type=m_ew-viabiona-teaser-thumb alt=$item.heading|escape:'html' title=$item.heading|escape:'html' class=teaser-picture}
+                                {if $item.link}</a>{/if}
+                            </div>
+                            
+                            {if $item.show_text}
+                                <div class="carousel-caption hidden-sm hidden-xs">
+                                    <p class="h3 text-uppercase">
+                                        {if $item.link}
+                                            <a href="{$item.link}">{$item.heading}</a>
+                                        {else}
+                                            {$item.heading}
+                                        {/if}
+                                    </p>
+                                    {if $item.short_content}
+                                        <div class="desc">{$item.short_content}</div>
+                                    {/if}
+                                    {if $item.link}
+                                        <a class="btn btn-sm btn-primary" href="{$item.link}">{txt key=TEXT_EW_VIABIONA_SHOW_MORE}</a>
+                                    {/if}
+                                </div>
+                            {/if}
+                            
+                        </div>
+                    {/if}
+                {/foreach}
+            </div><!-- .carousel-inner -->
+        	<div class="carousel-inner-wrap control-button-dark">
+            
+            <!-- Control indicators -->
+            {if $data|@count > 1}
+                <ul class="carousel-indicators nav nav-pills nav-justified">
+                    {assign var="animationDelay" value="1250"}
+                    {foreach name=carousel key=key item=item from=$data}
+                        {if $item.image}
+                            {math assign="animationDelay" equation='x+y' x=$animationDelay y=400}
+                            <li data-target="#ew_viabiona_teaser" data-slide-to="{$key}" class="nav-item nav-item-{$key} id-{$item.id}{if $smarty.foreach.carousel.first} active{/if} wow fadeInUp" data-wow-delay="{$animationDelay}ms" data-wow-duration="500ms"></li>
+                        {/if}
+                    {/foreach}
+                </ul>
+                <!-- Control arrows -->
+                <!--<a class="left carousel-control wow slideInLeft" href="#ew_viabiona_teaser" role="button" data-slide="prev" data-wow-delay="1s">-->
+                    <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
+                    <!--<span class="sr-only">Previous</span>-->
+                <!--</a>-->
+                <!--<a class="right carousel-control wow slideInRight" href="#ew_viabiona_teaser" role="button" data-slide="next" data-wow-delay="1s">-->
+                    <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
+                    <!--<span class="sr-only">Next</span>-->
+                <!--</a>-->
+            {/if}
+        </div><!-- .carousel-inner-wrap -->
+        
+        <!-- Loader -->
+        <div class="loader"><div class="bar" style="width:0%;"></div></div>
+        
+    </div><!-- #ew_viabiona_teaser -->
+{/if}

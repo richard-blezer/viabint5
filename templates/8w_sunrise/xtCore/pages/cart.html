@@ -1,0 +1,99 @@
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+<div class="left-side {if $isMobile}no-right{/if}">
+  
+  {if !$isMobile}
+    <h1>{txt key=TEXT_CART}</h1>
+  {else}
+    <h1>{txt key=TEXT_CART_SHORT}</h1>
+  {/if}
+
+  {if $show_cart_content == true}
+  {$message}
+  {form type=form name=cart action='dynamic' link_params=getParams method=post conn=SSL class="warenkorb-formular"}
+  {form type=hidden name=action value=update_product}
+  <table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="6">
+    <tr class="headerrow">
+      <td class="left">{txt key=TEXT_QTY}</td>
+      <td class="left">{txt key=TEXT_ARTICLE}</td>
+      <td class="right">{txt key=TEXT_SINGLE_PRICE}</td>
+      <td class="right">{txt key=TEXT_TOTAL_PRICE}</td>
+      <td class="right">{txt key=TEXT_REMOVE}</td>
+    </tr>
+    {foreach name=aussen item=data from=$cart_data}
+    <tr class="{cycle values="contentrow1,contentrow2"}">
+      <td class="left">{form type=text name=qty[] value=$data.products_quantity style='width:30px;'}</td>
+      <td class="left">
+  		<strong><a href="{$data.products_link}">{$data.products_name}</a></strong>
+  		{if $data.shipping_status}<br /><p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$data.shipping_status}</p>{/if}
+  	</td>
+  	<td class="right">
+    {if $data._cart_discount}
+        <p>{$data.products_price.formated}</p>
+        <p class="price-old">{$data._original_products_price.formated}</p>
+        <p>(-{$data._cart_discount} %)</p>
+        {else}
+        {$data.products_price.formated}
+    {/if}
+    </td>
+      <td class="right">{$data.products_final_price.formated}</td>
+      <td class="right">
+  		{form type=hidden name=products_key[] value=$data.products_key}
+  		<div class="remove">
+  			{form class="i" type=checkbox name=cart_delete[] value=$data.products_key}
+  			<span class="b" title="{txt key=TEXT_REMOVE}">{txt key=TEXT_REMOVE}</span>
+  		</div>
+  	</td>
+    </tr>
+    {$data.products_information}
+    {/foreach}
+    <tr>
+      <td colspan="5" class="subtotal">
+      	{hook key=cart_total_tpl}
+  	    {foreach name=aussen item=tax_data from=$cart_tax}
+  	    {txt key=TEXT_INCL_TAX} {$tax_data.tax_key}%: {$tax_data.tax_value.formated}<br />
+  	    {/foreach}
+        {hook key=cart_total_top}
+  	    <strong>{txt key=TEXT_SUB_TOTAL}:{$cart_total}</strong>
+  	    {if $discount}
+      	<br />{txt key=TEXT_DISCOUNT_MADE} : {$discount.formated}<br />
+      	{/if}
+      	{if $shipping_link}<br /><!--<a href="{$shipping_link}" target="_blank" rel="nofollow">-->{txt key=WARENKORB_TEXT_EXCL_SHIPPING}<!--</a>-->{/if}
+      	{if $cart_total_weight > 0}<br />({txt key=TEXT_PRODUCTS_WEIGHT}: {$cart_total_weight|number_format:2:",":"."} KG){/if}		
+      	{hook key=cart_total_bottom}
+      </td>
+    </tr>
+  </table>
+
+  <div id="cart-buttons" class="clearfix">
+  	<div class="left-buttons">
+  		<a class="b-back" href="javascript:history.back();" title="{txt key=BUTTON_8WORKS_CONTINUE_SHOPPING}">{button text=$smarty.const.BUTTON_8WORKS_CONTINUE_SHOPPING file='continue_shopping.gif' alt=$smarty.const.BUTTON_8WORKS_CONTINUE_SHOPPING}</a>
+  		&nbsp;a
+  	</div>
+  	<div class="right-buttons">
+  		{button class="b-update" text=$smarty.const.BUTTON_UPDATE file='update.gif' type='form'}
+  		<a href="{link page='checkout' paction='shipping' conn=SSL}">{button text=$smarty.const.BUTTON_CHECKOUT alt=$smarty.const.BUTTON_CHECKOUT file='checkout.gif'}</a>
+  	</div>
+  </div>
+  
+  {hook key=cart_tpl_form}
+  {hook key=cart_tpl_form_paypal}
+
+  {form type=formend}
+  {else}
+  {$message}
+  {/if}
+  
+  {box name=shipping_cost}
+  
+  <div id="productsdetail-page">{hook key=cart_bottom}</div>
+</div>
+{if !$isMobile}
+<div class="right-side boxes">
+  {box name=xt_viabiona_cms type=user tpl=box_our_service.html}
+  {box name=xt_viabiona_cms type=user tpl=box_payment_methods.html}
+</div>
+{/if}
+<div class="clearfix"></div>

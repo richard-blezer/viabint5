@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<title>New Products</title>
+	<version>1.0.4</version>
+	<code>xt_new_products</code>
+	<url>http://www.xt-commerce.com</url>
+	<description>Neue Artikel</description>
+	<type>core</type>
+<developer>xt:Commerce</developer>
+	<icon>xt-commerce_logo.jpg</icon>
+	<db_install><![CDATA[
+			include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_new_products/hooks/db_install.php';
+	]]></db_install>
+	<db_uninstall>
+	<![CDATA[
+			include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_new_products/hooks/db_uninstall.php';
+	]]>
+	</db_uninstall>
+	<minimumupdateversion>1.0.0</minimumupdateversion>
+	<db_update>
+		<update>
+			<version>1.0.0</version>
+			<to_version>1.0.1</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.0.1</version>
+			<to_version>1.0.2</to_version>
+			<code><![CDATA[
+				$seo_plugin_file = _SRV_WEBROOT.'/xtFramework/classes/class.seo_plugins.php';
+				if (file_exists($seo_plugin_file))
+				{
+					require_once $seo_plugin_file;
+					
+					 $seo_plugin = new seo_plugins();
+					 $seo_plugin->setPluginSEO('xt_new_products');
+				}
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.0.2</version>
+			<to_version>1.0.3</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+	</db_update>
+	<plugin_code>
+		<code>
+			<hook>page_registry.php:bottom</hook>
+			<phpcode><![CDATA[
+				define('PAGE_XT_NEW_PRODUCTS', _SRV_WEB_PLUGINS.'xt_new_products/pages/xt_new_products.php');
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code>
+	<configuration>
+		<config>
+			<key>ACTIVATE_XT_NEW_PRODUCTS_PAGE</key>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<value>true</value>
+			<de>
+				<title>Seite aktivieren</title>
+				<description>Neue Artikel Seite an / au</description>
+			</de>
+			<en>
+				<title>Activate page</title>
+				<description>Display new article page</description>
+			</en>
+			<es>
+				<title>Activar página</title>
+				<description>Página nuevos productos on / off</description>
+			</es>
+    		<bp>
+        		<title>Ativar página</title>
+				<description>Página novos produtos on / off</description>
+    		</bp>
+		</config>
+		<config>
+			<key>ACTIVATE_XT_NEW_PRODUCTS_BOX</key>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<value>true</value>
+			<de>
+				<title>Box aktivieren</title>
+				<description>Neue Artikel Box an / aus</description>
+			</de>
+			<en>
+				<title>Activate box</title>
+				<description>Display new article box</description>
+			</en>
+			<es>
+				<title>Activar recuadro</title>
+				<description>Recuadro nuevos productos encendido / apagado</description>
+			</es>
+    		<bp>
+        		<title>Ativar box</title>
+				<description>Caixa de dialogos on/off</description>
+    		</bp>
+		</config>
+		<config>
+			<key>XT_NEW_PRODUCTS_BOX_LIMIT</key>
+			<value>1</value>
+			<de>
+				<title>Anzahl Artikel in Box</title>
+				<description>Anzahl der Artikel die in der Box angezeigt werden</description>
+			</de>
+			<en>
+				<title>Box Limit</title>
+				<description>Max. count for articles displayed in box</description>
+			</en>
+			<es>
+				<title>Cantidad de artículos en el recuadro</title>
+				<description>Número de artículos que aparecen en el recuadro</description>
+			</es>
+    		<bp>
+        		<title>Limite do Box</title>
+				<description>Número de artígos aparecem na caixa</description>
+    		</bp>
+		</config>
+		<config>
+			<key>XT_NEW_PRODUCTS_PAGE_LIMIT</key>
+			<value>25</value>
+			<de>
+				<title>Anzahl Artikel</title>
+				<description>Anzahl der Artikel die auf der Seite angezeigt werden</description>
+			</de>
+			<en>
+				<title>Max. article</title>
+				<description>Max. count for articles displayed</description>
+			</en>
+			<es>
+				<title>Cantidad de artículos</title>
+				<description>Número de artículos que aparecen en la página</description>
+			</es>
+    		<bp>
+        		<title>Artigo máximo</title>
+				<description>Número de artígos aparecem na pagina</description>
+    		</bp>
+		</config>
+		<config>
+			<key>XT_NEW_PRODUCTS_BOX_DAYS</key>
+			<value>30</value>
+			<de>
+				<title>Anzahl Tage Box</title>
+				<description>Anzahl der Tage für neue Artikel Box</description>
+			</de>
+			<en>
+				<title>Days count box</title>
+				<description>Days count for new articles in box</description>
+			</en>
+			<es>
+				<title>Recuadro número de días</title>
+				<description>Recuadro de número de días para los nuevos artículos</description>
+			</es>
+    		<bp>
+        		<title>Box de contagem dos dias</title>
+				<description>Número de contagem de novos artigos</description>
+    		</bp>
+		</config>
+		<config>
+			<key>XT_NEW_PRODUCTS_PAGE_DAYS</key>
+			<value>30</value>
+			<de>
+				<title>Anzahl Tage</title>
+				<description>Anzahl der Tage für neue Artikel</description>
+			</de>
+			<en>
+				<title>Days count</title>
+				<description>Days count for new articles</description>
+			</en>
+			<es>
+				<title>Número de días</title>
+				<description>Número de días para los nuevos artículos</description>
+			</es>
+    		<bp>
+        		<title>Contagem dos dias</title>
+				<description>contagem dias</description>
+    		</bp>
+		</config>
+		<config>
+				<key>XT_NEW_PRODUCTS_PAGE_TPL</key>
+				<value>product_listing_v1.html</value>
+				<de>
+					<title>Template</title>
+					<description>Template für neue Artikel Seite</description>
+				</de>
+				<en>
+					<title>Template</title>
+					<description>Template for new article page</description>
+				</en>
+				<es>
+					<title>Plantilla</title>
+					<description>Plantilla para la página de nuevos artículos</description>
+				</es>
+    			<bp>
+        			<title>Modelo</title>
+					<description>template para pagina produtos</description>
+    			</bp>
+		</config>
+		<config>
+			<key>INSTALLED_XT_NEW_PRODUCTS</key>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<value>true</value>
+			<de>
+				<title>Status</title>
+				<description></description>
+			</de>
+			<en>
+				<title>Status</title>
+				<description></description>
+			</en>
+			<es>
+				<title>Estado</title>
+				<description></description>
+			</es>
+    		<bp>
+        		<title>Status</title>
+				<description></description>
+    		</bp>
+		</config>
+	</configuration>
+</xtcommerceplugin>

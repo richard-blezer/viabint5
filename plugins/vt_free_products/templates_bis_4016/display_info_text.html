@@ -1,0 +1,14 @@
+<h2>{txt key=TEXT_VT_FREE_PRODUCTS_CONDITIONS_INFO_TEXT}</h2>
+
+<table>
+    {foreach name=aussen item=d from=$_data}
+        <tr>
+            <td width="10px" bgcolor="{if $d.fpCheckStatus == true}#04B404{else}#B40404{/if}">
+                &nbsp;
+            </td>
+            <td>
+                {$d.fpCondDesc}
+            </td>
+        </tr>
+    {/foreach}
+</table>

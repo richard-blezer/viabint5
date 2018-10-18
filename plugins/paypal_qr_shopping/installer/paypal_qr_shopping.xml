@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>PayPal QRShopping</title>
+    <version>1.0.1</version>
+    <code>paypal_qr_shopping</code>
+    <url>http://www.xt-commerce.com</url>
+    <icon>qr_paypal_logo.png</icon>
+    <type>payment</type>
+
+    <db_install><![CDATA[
+
+
+    $db->Execute("CREATE TABLE IF NOT EXISTS `".DB_PREFIX."_plg_paypal_qr_basket` (
+  `basket_id` int(11) NOT NULL AUTO_INCREMENT,
+  `purchaseOrderIdentifier` varchar(32) NOT NULL DEFAULT '0',
+  `customers_id` int(11) NOT NULL,
+  `positionNo` int(11) NOT NULL,
+  `products_key` varchar(255) DEFAULT NULL,
+  `products_id` int(11) DEFAULT NULL,
+  `products_quantity` decimal(15,2) DEFAULT NULL,
+  `products_info` longtext,
+  `date_added` datetime DEFAULT NULL,
+  `type` varchar(32) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '0',
+  `sort_order` int(11) DEFAULT '0',
+  PRIMARY KEY (`basket_id`)
+   )ENGINE=MyISAM DEFAULT CHARSET=utf8");
+
+
+
+if (!$this->_FieldExists('purchaseOrderIdentifier',TABLE_ORDERS))
+$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD `purchaseOrderIdentifier` varchar( 32 ) NOT NULL DEFAULT '0';");
+
+if (!$this->_FieldExists('paymentReference',TABLE_ORDERS))
+$db->Execute("ALTER TABLE ".TABLE_ORDERS." ADD `paymentReference` varchar( 32 ) NOT NULL DEFAULT '0';");
+
+if (!$this->_FieldExists('paypal_qr_status',TABLE_PRODUCTS))
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD `paypal_qr_status` INT( 1 ) NOT NULL DEFAULT '0';");
+
+if (!$this->_FieldExists('paypal_qr_price',TABLE_PRODUCTS))
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD `paypal_qr_price` decimal( 15,4 ) NOT NULL DEFAULT '0';");
+
+if (!$this->_FieldExists('paypal_qr_shipping_price',TABLE_PRODUCTS))
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD `paypal_qr_shipping_price` decimal( 15,4 ) NOT NULL DEFAULT '0';");
+
+if (!$this->_FieldExists('paypal_qr_url',TABLE_PRODUCTS))
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD `paypal_qr_url` varchar( 64 ) DEFAULT '';");
+
+if (!$this->_FieldExists('paypal_qr_type',TABLE_PRODUCTS))
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD `paypal_qr_type` INT( 1 ) NOT NULL DEFAULT '3';");
+
+if (!$this->_FieldExists('paypal_qr_generate',TABLE_FEED))
+$db->Execute("ALTER TABLE ".TABLE_FEED." ADD `paypal_qr_generate` INT( 1 ) NOT NULL DEFAULT '0';");
+
+if (!$this->_FieldExists('paypal_qr_type',TABLE_FEED))
+$db->Execute("ALTER TABLE ".TABLE_FEED." ADD `paypal_qr_type` INT( 1 ) NOT NULL DEFAULT '3';");
+
+// todo master slave feld anlegen
+if (!$this->_FieldExists('paypal_qr_variant',TABLE_PRODUCTS_ATTRIBUTES))
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS_ATTRIBUTES." ADD `paypal_qr_variant` varchar( 32 ) DEFAULT 'color';");
+
+]]></db_install>
+    <db_uninstall><![CDATA[
+
+ $db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_plg_paypal_qr_basket");
+
+if ($this->_FieldExists('purchaseOrderIdentifier',TABLE_ORDERS))
+$db->Execute("ALTER TABLE ".TABLE_ORDERS." DROP `purchaseOrderIdentifier`");
+
+if ($this->_FieldExists('paymentReference',TABLE_ORDERS))
+$db->Execute("ALTER TABLE ".TABLE_ORDERS." DROP `paymentReference`");
+
+if ($this->_FieldExists('paypal_qr_type',TABLE_PRODUCTS))
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." DROP `paypal_qr_type`");
+
+if ($this->_FieldExists('paypal_qr_status',TABLE_PRODUCTS))
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." DROP `paypal_qr_status`");
+
+if ($this->_FieldExists('paypal_qr_price',TABLE_PRODUCTS))
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." DROP `paypal_qr_price`");
+
+if ($this->_FieldExists('paypal_qr_shipping_price',TABLE_PRODUCTS))
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." DROP `paypal_qr_shipping_price`");
+
+if ($this->_FieldExists('paypal_qr_url',TABLE_PRODUCTS))
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." DROP `paypal_qr_url`");
+
+if ($this->_FieldExists('paypal_qr_generate',TABLE_FEED))
+$db->Execute("ALTER TABLE ".TABLE_FEED." DROP `paypal_qr_generate`");
+
+if ($this->_FieldExists('paypal_qr_type',TABLE_FEED))
+$db->Execute("ALTER TABLE ".TABLE_FEED." DROP `paypal_qr_type`");
+
+if ($this->_FieldExists('paypal_qr_variant',TABLE_PRODUCTS_ATTRIBUTES))
+$db->Execute("ALTER TABLE ".TABLE_PRODUCTS_ATTRIBUTES." DROP `paypal_qr_variant`");
+
+// remove account on itellum server
+require_once _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'paypal_qr_shopping/classes/class.paypal_qr.php';
+
+$pp_qr = new paypal_qr();
+$resp = $pp_qr->delete_merchant_account();
+
+]]></db_uninstall>
+
+    <plugin_code>
+        <code>
+            <hook>css_admin.php:css</hook>
+            <phpcode>
+                <![CDATA[
+                    echo '.paypal_qr {background-image: url(../plugins/paypal_qr_shopping/images/icon_qr.png) !important;}';
+                ]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    <code>
+        <hook>class.product.php:_getParams_panelSettings</hook>
+        <phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'paypal_qr_shopping/hooks/class.product.php_getParams_panelSettings.php';
+]]></phpcode>
+        <order>1</order>
+        <active>1</active>
+    </code>
+        <code>
+            <hook>class.product.php:_getParams_row_actions</hook>
+            <phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'paypal_qr_shopping/hooks/class.product.php_getParams_row_actions.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.export.php:_getParams_top</hook>
+            <phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'paypal_qr_shopping/hooks/class.export.php_getParams_top.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.export.php:_extractData_data</hook>
+            <phpcode><![CDATA[
+include _SRV_WEBROOT._SRV_WEB_PLUGINS.'paypal_qr_shopping/hooks/class.export.php_extractData_data.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>product_info_tpl_cart</hook>
+            <phpcode><![CDATA[
+            /*
+global $p_info;
+require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'/paypal_qr_shopping/classes/class.paypal_qr.php';
+
+$qr = new paypal_qr();
+echo $qr->generateQRcode($p_info->data);
+*/
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>admin_dropdown.php:dropdown</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT._SRV_WEB_PLUGINS.'paypal_qr_shopping/hooks/admin_dropdown.phpdropdown.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.xt_master_slave.php:_getParams_bottom</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT._SRV_WEB_PLUGINS.'paypal_qr_shopping/hooks/class.xt_master_slave.php_getParams_bottom.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.plugin.php:setPluginConfig</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT._SRV_WEB_PLUGINS.'paypal_qr_shopping/hooks/class.plugin.phpsetPluginConfig.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+    </plugin_code>
+    <configuration>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_SHIPPING_TAX_CLASS_ID</key>
+            <value>1</value>
+            <type>dropdown</type>
+            <url>tax_class</url>
+            <de>
+                <title>Steuerklasse für Versandkosten</title>
+            </de>
+            <en>
+                <title>Shipping Tax Class</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_SHIPPING_COSTS</key>
+            <value>5</value>
+            <type>textfield</type>
+            <de>
+                <title>Versandkosten</title>
+            </de>
+            <en>
+                <title>Shipping Costs</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_NEW_ORDER_STATUS</key>
+            <value>16</value>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <de>
+                <title>Bestellstatus - Neue Bestellung</title>
+            </de>
+            <en>
+                <title>Orderstatus - new order</title>
+            </en>
+        </config>
+
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_ORDER_STATUS_COMPLETED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>23</value>
+            <de>
+                <title>Bestellstatus  - Zahlung abgeschlossen</title>
+            </de>
+            <en>
+                <title>Ordersstatus - Completed</title>
+            </en>
+            <es>
+                <title>Estado del pedido - Finalizado</title>
+            </es>
+            <bp>
+                <title>Status dos pedidos - Completo</title>
+            </bp>
+        </config>
+        <config>
+            <key>PAYPAL_QR_SHOPPING_ORDER_STATUS_DENIED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>32</value>
+            <de>
+                <title>Bestellstatus  - Abgelehnt</title>
+            </de>
+            <en>
+                <title>Ordersstatus - Denied</title>
+            </en>
+            <es>
+                <title>Estado del pedido - cancelar</title>
+            </es>
+            <bp>
+                <title>Status dos pedidos - Negado</title>
+            </bp>
+        </config>
+        <config>
+            <key>PAYPAL_QR_SHOPPING_ORDER_STATUS_FAILED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>32</value>
+            <de>
+                <title>Bestellstatus  - Fehler</title>
+            </de>
+            <en>
+                <title>Ordersstatus - Failed</title>
+            </en>
+            <es>
+                <title>Estado del pedido - rechazado</title>
+            </es>
+            <bp>
+                <title>Status dos pedidos - Falha</title>
+            </bp>
+        </config>
+        <config>
+            <key>PAYPAL_QR_SHOPPING_ORDER_STATUS_REFUNDED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>32</value>
+            <de>
+                <title>Bestellstatus  - Zurückgezahlt</title>
+            </de>
+            <en>
+                <title>Ordersstatus - Refunded</title>
+            </en>
+            <es>
+                <title>Estado del pedido - Pago devuelto</title>
+            </es>
+            <bp>
+                <title>Status dos pedidos - Reembolsado</title>
+            </bp>
+        </config>
+        <config>
+            <key>PAYPAL_QR_SHOPPING_ORDER_STATUS_REVERSED</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <de>
+                <title>Bestellstatus  - Storniert</title>
+            </de>
+            <en>
+                <title>Ordersstatus - Reversed</title>
+            </en>
+            <es>
+                <title>Estado del pedido - cancelar</title>
+            </es>
+            <bp>
+                <title>Status dos pedidos - Revertido</title>
+            </bp>
+        </config>
+        <config>
+            <key>PAYPAL_QR_SHOPPING_ORDER_STATUS_PENDING</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <de>
+                <title>Bestellstatus  - In Bearbeitung</title>
+            </de>
+            <en>
+                <title>Ordersstatus - Pending</title>
+            </en>
+            <es>
+                <title>Estado del pedido - En progreso</title>
+            </es>
+            <bp>
+                <title>Status dos pedidos - Pendente</title>
+            </bp>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_ORDER_STATUS_AUTHORIZATION</key>
+            <type>dropdown</type>
+            <url>status:order_status</url>
+            <value>17</value>
+            <de>
+                <title>Bestellstatus  - Authorisiert</title>
+            </de>
+            <en>
+                <title>Ordersstatus - Authorized</title>
+            </en>
+            <es>
+                <title>Estado del pedido - Authorized</title>
+            </es>
+            <bp>
+                <title>Status dos pedidos - Authorized</title>
+            </bp>
+        </config>
+
+
+
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_CUSTOMER_STATUS_NEW</key>
+            <type>dropdown</type>
+            <url>customers_status</url>
+            <value>2</value>
+            <de>
+                <title>Kundengruppe für neue Kunden</title>
+            </de>
+            <en>
+                <title>Customers Group for new Customers</title>
+            </en>
+            <es>
+                <title>Customers Group for new Customers</title>
+            </es>
+            <bp>
+                <title>Customers Group for new Customers</title>
+            </bp>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_SALE</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Zahlung sofort einziehen</title>
+            </de>
+            <en>
+                <title>Capture payment</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_AGB_CONTENT</key>
+            <type>dropdown</type>
+            <url>content_list</url>
+            <value>3</value>
+            <de>
+                <title>AGB Text</title>
+            </de>
+            <en>
+                <title>Terms and Conditions</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_SHOW_SHOP</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>false</value>
+            <de>
+                <title>Shop in der Shop-Suche anzeigen</title>
+            </de>
+            <en>
+                <title>Display your shop in QR Code shopping APP</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_SHOP_NAME</key>
+            <type>textfield</type>
+            <value></value>
+            <de>
+                <title>Shopname *</title>
+            </de>
+            <en>
+                <title>Shopname *</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_FIRSTNAME</key>
+            <type>textfield</type>
+            <value></value>
+            <de>
+                <title>Vorname *</title>
+            </de>
+            <en>
+                <title>Firstname *</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_LASTNAME</key>
+            <type>textfield</type>
+            <value></value>
+            <de>
+                <title>Nachname *</title>
+            </de>
+            <en>
+                <title>Lastname *</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_STREET</key>
+            <type>textfield</type>
+            <value></value>
+            <de>
+                <title>Strasse *</title>
+            </de>
+            <en>
+                <title>Street Address *</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_PLZ</key>
+            <type>textfield</type>
+            <value></value>
+            <de>
+                <title>PLZ *</title>
+            </de>
+            <en>
+                <title>Zip *</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_CITY</key>
+            <type>textfield</type>
+            <value></value>
+            <de>
+                <title>Stadt *</title>
+            </de>
+            <en>
+                <title>City *</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_COUNTRY</key>
+            <type>dropdown</type>
+            <url>countries</url>
+            <value>DE</value>
+            <de>
+                <title>Land *</title>
+            </de>
+            <en>
+                <title>Country *</title>
+            </en>
+        </config>
+
+
+
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_EMAIL</key>
+            <type>textfield</type>
+            <value></value>
+            <de>
+                <title>E-Mail Adresse *</title>
+            </de>
+            <en>
+                <title>E-Mail Address *</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_LOGO_URL</key>
+            <type>dropdown</type>
+            <url>conf_storelogo</url>
+            <de>
+                <title>Icon Logo (150x150 pixel) *</title>
+            </de>
+            <en>
+                <title>Icon Logo (150x150 pixel) *</title>
+            </en>
+        </config>
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_BANNER_LOGO_URL</key>
+            <type>dropdown</type>
+            <url>conf_storelogo</url>
+            <de>
+                <title>Banner Logo (2048x100 pixel) *</title>
+            </de>
+            <en>
+                <title>Banner Logo (2048x100 pixel) *</title>
+            </en>
+        </config>
+
+
+        <config>
+            <key>PAYPAL_QR_SHOPPING_X_API_USER</key>
+            <value></value>
+            <type>textfield</type>
+            <de>
+                <title>X-QRShopping API Username</title>
+            </de>
+            <en>
+                <title>X-QRShopping API Username</title>
+            </en>
+        </config>
+        <config>
+            <key>PAYPAL_QR_SHOPPING_X_API_KEY</key>
+            <value></value>
+            <type>textfield</type>
+            <de>
+                <title>X-QRShopping API-Passwort</title>
+            </de>
+            <en>
+                <title>X-QRShopping API-Password</title>
+            </en>
+        </config>
+        <config>
+            <key>PAYPAL_QR_SHOPPING_X_API_SIGNATURE</key>
+            <value></value>
+            <type>textfield</type>
+            <de>
+                <title>X-QRShopping API-Signatur</title>
+            </de>
+            <en>
+                <title>X-QRShopping API-Signature</title>
+            </en>
+        </config>
+
+
+    </configuration>
+
+</xtcommerceplugin> 

@@ -1,0 +1,18 @@
+﻿Sehr geehrte/r {$order_data.billing_firstname} {$order_data.billing_lastname},
+
+Vielen Dank für Ihren Einkauf in unserem Shop. 
+
+Da wir stehts um einen besseren Service und die Zufriedenheit unserer Kunden bemüht sind, bitten wir Sie - Ihren gekauften Produkte bei uns zu bewerten. 
+
+{if isset($coupon)}{if $coupon.type eq 'freeshipping'}
+Als Dankeschön für eine abgegebene Bewertung erhalten Sie von uns einen Versandkostenfrei Gutschein für Ihre nächste Bestellung.{else}
+Als Dankeschön für eine abgegebene Bewertung erhalten Sie von uns einen Gutschein in Höhe von {$coupon.amount|round:"2"} {if $coupon.type eq 'fix'}EUR{else}%{/if} für Ihre nächste Bestellung.
+{/if}
+{/if}
+Bewertungslink: {$feedback_url}
+
+Vielen Dank,
+
+{$shop_name}
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

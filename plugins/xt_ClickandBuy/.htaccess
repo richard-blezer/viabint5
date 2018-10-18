@@ -1,0 +1,9 @@
+#
+# vt_paymorrow
+#
+# allow php files in this directory
+#
+<Files *.php>
+Order Allow,Deny
+Allow from all
+</Files>

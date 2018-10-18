@@ -1,0 +1,230 @@
+{$message}
+
+{if $show_register_form == 'true'}
+{form type=form name=affiliate_account action='dynamic' link_params=getParams method=post}
+{form type=hidden name=page_action value=register}
+
+<h2>{txt key=AFFILIATE_ACCOUNT}</h2>
+
+<div class="aff-links">
+<a href="http://www.viabiona.com/de/affiliate_summary.html">Affiliate-Konto übersicht</a>
+<a href="http://www.viabiona.com/de/affiliate_account.html">Affiliate-Konto bearbeiten</a>
+<a href="http://www.viabiona.com/de/affiliate_payment.html">Affiliate-Auszahlungen</a>
+<a href="http://www.viabiona.com/de/affiliate_clicks.html">Affiliate-Кlicks</a>
+<a href="http://www.viabiona.com/de/affiliate_sales.html">Affiliate-Verkäufe</a>
+<a href="http://www.viabiona.com/de/affiliate_inventory.html?type=i">Werbemittel</a>
+<a href="http://www.viabiona.com/de/affiliate_account/logout.html">Logout</a>
+</div>
+
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">
+  {if $show_gender == 'true'}
+  <tr>
+    <td>{txt key=TEXT_GENDER}:</td>
+    <td>{form type=select name=affiliate_gender value=$gender_data default=$affiliateData.affiliate_gender note=*}</td>
+  </tr>
+  {/if}
+  <tr>
+    <td>{txt key=TEXT_FIRSTNAME}:</td>
+    <td>{form type=text name=affiliate_firstname value=$affiliateData.affiliate_firstname note=*}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_LASTNAME}:</td>
+    <td>{form type=text name=affiliate_lastname value=$affiliateData.affiliate_lastname note=*}</td>
+  </tr>
+  {if $show_birthdate == 'true'}
+  <tr>
+    <td>{txt key=TEXT_BIRTHDATE}:</td>
+    <td>{form type=text name=affiliate_dob value=$affiliateData.affiliate_dob note=*} {txt key=TEXT_BIRTHDATE_INFO}</td>
+  </tr>
+  {/if}
+  <tr>
+    <td>{txt key=TEXT_EMAIL}:</td>
+    <td>{form type=text name=affiliate_email_address value=$affiliateData.affiliate_email_address note=*}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_EMAIL_CONFIRM}:</td>
+    <td>{form type=text name=affiliate_email_address_confirm value=$affiliateData.affiliate_email_address_confirm note=*}</td>
+  </tr>
+</table>
+</div>
+
+{if $show_company == 'true'}
+<h2>{txt key=AFFILIATE_COMPANY}</h2>
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="120">{txt key=TEXT_COMPANY_NAME}:</td>
+    <td>{form type=text name=affiliate_company value=$affiliateData.affiliate_company}</td>
+  </tr>
+  <tr>
+     <td>{txt key=TEXT_VAT_ID}:</td>
+     <td>{form type=text name=affiliate_vat_id value=$affiliateData.affiliate_vat_id} {txt key=TEXT_VAT_INFO}</td>
+  </tr>
+</table>
+</div>
+{/if}
+
+<h2>{txt key=AFFILIATE_PAYOUT}</h2>
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">
+  {if $show_scheck == 'true'}
+  <tr>
+    <td width="120">{txt key=AFFILIATE_FORM_CHECK}:</td>
+    <td>{form type=text name=affiliate_payment_check value=$affiliateData.affiliate_payment_check}</td>
+  </tr>
+  {/if}
+  {if $show_paypal == 'true'}
+  <tr>
+    <td width="120">{txt key=AFFILIATE_FORM_PAYPAL}:</td>
+    <td>{form type=text name=affiliate_payment_paypal value=$affiliateData.affiliate_payment_paypal}</td>
+  </tr>
+  {/if}
+  {if $show_bank == 'true'}
+  <tr>
+    <td width="120">{txt key=AFFILIATE_FORM_BANKNAME}:</td>
+    <td>{form type=text name=affiliate_payment_bank_name value=$affiliateData.affiliate_payment_bank_name}</td>
+  </tr>
+  <tr>
+    <td width="120">{txt key=AFFILIATE_FORM_BRANCHNUMBER}:</td>
+    <td>{form type=text name=affiliate_payment_bank_branch_number value=$affiliateData.affiliate_payment_bank_branch_number}</td>
+  </tr>
+  <tr>
+    <td width="120">{txt key=AFFILIATE_FORM_ACCOUNTNAME}:</td>
+    <td>{form type=text name=affiliate_payment_bank_account_name value=$affiliateData.affiliate_payment_bank_account_name}</td>
+  </tr>
+  <tr>
+    <td width="120">{txt key=AFFILIATE_FORM_ACCOUNTNUMBER}:</td>
+    <td>{form type=text name=affiliate_payment_bank_account_number value=$affiliateData.affiliate_payment_bank_account_number}</td>
+  </tr>
+  <tr>
+    <td width="120">{txt key=AFFILIATE_FORM_SWIFTCODE}:</td>
+    <td>{form type=text name=affiliate_payment_bank_swift_code value=$affiliateData.affiliate_payment_bank_swift_code}</td>
+  </tr>
+  <tr>
+    <td width="120">{txt key=AFFILIATE_FORM_IBAN}:</td>
+    <td>{form type=text name=affiliate_payment_bank_iban value=$affiliateData.affiliate_payment_bank_iban}</td>
+  </tr>
+  {/if}
+</table>
+</div>
+
+<h2>{txt key=AFFILIATE_ADDRESS}:</h2>
+<div class="highlightbox">
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="120">{txt key=TEXT_STREET}:</td>
+    <td>{form type=text name=affiliate_street_address value=$affiliateData.affiliate_street_address note=*}</td>
+  </tr>
+  {if $show_suburb eq 1}
+  <tr>
+    <td>{txt key=TEXT_SUBURB}:</td>
+    <td>{form type=text name=affiliate_suburb value=$affiliateData.affiliate_suburb}</td>
+  </tr>
+  {/if}
+  <tr>
+    <td>{txt key=TEXT_CODE}:</td>
+    <td>{form type=text name=affiliate_postcode value=$affiliateData.affiliate_postcode note=*}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_CITY}:</td>
+    <td>{form type=text name=affiliate_city value=$affiliateData.affiliate_city note=*}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_COUNTRY}:</td>
+    <td>{form type=select name=affiliate_country_code value=$country_data default=$affiliateData.affiliate_country_code note=*}</td>
+  </tr>
+</table>
+</div>
+
+<h2>{txt key=TEXT_CONTACT}:</h2>
+<div class="highlightbox">
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="120">{txt key=TEXT_PHONE}:</td>
+    <td>{form type=text name=affiliate_telephone value=$affiliateData.affiliate_telephone}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_FAX}:</td>
+    <td>{form type=text name=affiliate_fax value=$affiliateData.affiliate_fax}</td>
+  </tr>
+  <tr>
+    <td>{txt key=AFFILIATE_FORM_HOMEPAGE}:</td>
+    <td>{form type=text name=affiliate_homepage value=$affiliateData.affiliate_homepage}</td>
+  </tr>
+</table>
+</div>
+
+<h2>{txt key=TEXT_PASSWORD}</h2>
+<div class="highlightbox">
+<table width="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td width="120">{txt key=TEXT_PASSWORD_ENTRY}:</td>
+    <td>{form type=password name=affiliate_password value=$affiliateData.affiliate_password note=*}<br /> {if $affiliate_id > 0}<small>{txt key=TEXT_PASSWORD_INFO}</small>{/if}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_PASSWORD_ENTRY_CONFIRM}:</td>
+    <td>{form type=password name=affiliate_password_confirm value=$affiliateData.affiliate_password_confirm note=*}<br /> {if $affiliate_id > 0}<small>{txt key=TEXT_PASSWORD_INFO}</small>{/if}</td>
+  </tr>
+  {if $affiliate_toc_accept != ''}
+  <tr>
+    <td colspan="2">{form type=checkbox name=affiliate_agb note=*}&nbsp;{$affiliate_toc_accept}</td>
+  </tr>
+  {/if}
+</table>
+</div>
+
+<p>{button text=$smarty.const.BUTTON_NEXT file='next.gif' type='form'}</p>
+<p>{txt key=TEXT_MUST}</p>
+{form type=formend}
+{/if}
+
+{if $show_password_form == 'true'}
+{form type=form name=affiliate_passwors_reset action='dynamic' link_params=getParams method=post}
+{form type=hidden name=page_action value=password_reset_action}
+<h2>{txt key=AFFILIATE_PASSWORD_RESET}</h2>
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">
+  <tr>
+    <td colspan="2">{txt key=AFFILIATE_TEXT_PASSWORD_RESET}</td>
+  </tr>
+  <tr>
+    <td>{txt key=TEXT_EMAIL}:</td>
+    <td>{form type=text name=email value=$affiliateData.affiliate_email_address note=*}</td>
+  </tr>
+</table>
+</div>
+
+<p>{button text=$smarty.const.BUTTON_NEXT file='next.gif' type='form'}</p>
+<p>{txt key=TEXT_MUST}</p>
+{form type=formend}
+{/if}
+
+{if $show_login_failed == 'true'}
+<h2>{txt key=AFFILIATE_LOGIN_FAILED}</h2>
+<div class="highlightbox">
+  {form type=form name=affiliate_login_page action='affiliate_account' link_params=getParams method=post}
+  {form type=hidden name=page_action value=login}
+  {form type=hidden name=link_target value=affiliate_summary}
+  <table width="100%"  border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>{txt key=text_email}:</td>
+    </tr>
+	<tr>
+	  <td>{form type=text name=email maxlength='50' style='width:170px;'}</td>
+	</tr>
+	<tr>
+	  <td>{txt key=text_password}:</td>
+	</tr>
+	<tr>
+	  <td><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+	    <tr>
+	      <td>{form type=password name=password maxlength='30' style='width:80px;'}</td>
+	      <td>{button text=$smarty.const.BUTTON_LOGIN file='login.gif' type='form'}</td>
+	    </tr>
+	  </table></td>
+	</tr>
+  </table>
+  {form type=formend}
+</div>
+{/if}

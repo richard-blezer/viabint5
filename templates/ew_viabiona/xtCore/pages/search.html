@@ -1,0 +1,77 @@
+<div id="search">
+    {if isset($smarty.get.keywords)}
+        <h1>{txt key=text_search} <small>{$smarty.get.keywords|strip_tags|truncate:140:'...'}</small></h1>
+        {$message}
+    {else}
+        <h1>{txt key=text_search}</h1>
+    {/if}
+    {form type=form name=search action='dynamic' link_params=getParams method=get role="form"}
+    {form type=hidden name=page value=search}
+    {hook key=search_tpl}
+
+    <div class="form-group">
+        <div class="input-group input-group-lg">
+            <input class="form-control" type="text" id="keywords" name="keywords" placeholder="{txt key=TEXT_ENTER_SEARCH_TERM}" value="{$smarty.get.keywords}" />
+            <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary preloader">
+                    <span class="glyphicon glyphicon-search"></span>
+                    <span class="sr-only">{txt key=BUTTON_SEARCH}</span>
+                </button>
+            </span>
+        </div>
+    </div>
+    {if !$included}
+        <div class="form-group">
+            {if $checked_desc eq 'checked'}
+            {form id=desc type=checkbox name=desc checked=$checked_desc}
+            {else}
+            {form id=desc type=checkbox name=desc}
+            {/if}
+            <label for="desc">{txt key=text_search_desc}</label>
+        </div>
+        <div class="form-group">
+            {if $checked_sdesc eq 'checked'}
+            {form id=sdesc type=checkbox name=sdesc checked=$checked_sdesc}
+            {else}
+            {form id=sdesc type=checkbox name=sdesc}
+            {/if}
+            <label for="sdesc">{txt key=text_search_sdesc}</label>
+        </div>
+
+        {if $cat_data}
+            <div class="well">
+                <div class="form-group">
+                    <label for="cat">{txt key=text_search_categories}</label>
+                    {form class="form-control" params='id="cat"' type=select name=cat default=$default_cat value=$cat_data}
+                </div>
+                <div class="form-group">
+                    <label>
+                        {if $checked_subcat eq 'checked'}
+                        {form id=subkat type=checkbox name=subkat checked=$checked_subcat} {txt key=text_search_subcategories}
+                        {else}
+                        {form id=subkat type=checkbox name=subkat} {txt key=text_search_subcategories}
+                        {/if}
+                    </label>
+                </div>
+            </div>
+        {/if}
+        {if $mnf_data|@count gt 1}
+            <div class="well">
+                <div class="form-group">
+                    <label for="mnf">{txt key=text_search_mnf}</label>
+                    {form class="form-control" params='id="mnf"' type=select name=mnf default=$default_mnf value=$mnf_data}
+                </div>
+            </div>
+        {/if}
+
+        <div class="form-submit text-right">
+            <a href="javascript:history.back();" class="button">{txt key=BUTTON_BACK}</a>
+            <button type="submit" class="btn btn-primary preloader">
+                <span class="glyphicon glyphicon-search"></span>
+                {txt key=BUTTON_SEARCH}
+            </button>
+        </div>
+    {/if}
+    {form type=formend}
+</div>
+

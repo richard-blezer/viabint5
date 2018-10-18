@@ -1,0 +1,15 @@
+Quick and dirty: Falls jemand im Bestellungstemplate den Status Manipulieren möchte
+*von trusted Shops sicher so nicht gewollt*
+
+        {form type=form name=product action='dynamic' link_params=getParams method=post}
+	{form type=hidden name=action value=update_order_mail}
+	{form type=hidden name=order value=$order_data.orders_id}
+        <b>{txt key=TEXT_VORBIDDEN}:</b> 
+        {if $order_data.rating_mail_sended_status==1}
+            {form type=checkbox name=mail_status checked=checked}
+        {/if}
+        {if $order_data.rating_mail_sended_status!=1}
+            {form type=checkbox name=mail_status default=off}
+        {/if}
+            <u>{button text=speichern type='form' btn_template='tpl_button_2.gif' space_left='25'}</u>
+        {form type=formend}

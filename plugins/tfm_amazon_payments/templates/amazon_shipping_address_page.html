@@ -1,0 +1,59 @@
+
+{form type=form name=fill_shipping_address action='dynamic' link_params='' method=post conn=SSL}
+{form type=hidden name=action value=save_address}
+{form type=hidden name=page value='amazon_fill_address'}
+{form type=hidden name=address_book_id value=$address_book_id}
+
+
+
+
+<div id="registerbox">
+    
+<div class="amazon_address_heading">
+	<div class="amazon_address_text">
+		<h1>{txt key=TEXT_PAGE_TITLE_FILL_ADDRESS}</h1>
+		{$error_mess}
+	</div><!-- .column .xt-grid-16 -->
+</div><!-- .row -->
+
+<p class="headline">{txt key=TEXT_PERSONAL}</p>
+			
+  			
+   			<label for="shipping_address_customers_firstname">{txt key=TEXT_FIRSTNAME}*</label>
+    		{form id=shipping_address_customers_firstname type=text name=shipping_address[customers_firstname] value=$shipping_address.customers_firstname}
+   	 		<br>
+   	 		<label for="shipping_address_customers_lastname">{txt key=TEXT_LASTNAME}*</label>
+    		{form id=shipping_address_customers_lastname type=text name=shipping_address[customers_lastname] value=$shipping_address.customers_lastname}
+  			
+<p class="headline">{txt key=TEXT_ADDRESS}</p>
+   			
+   			<label for="shipping_address_customers_street_address">{txt key=TEXT_STREET}*</label>
+    		{form id=shipping_address_customers_street_address type=text name=shipping_address[customers_street_address] value=$shipping_address.customers_street_address}
+  			<br>
+  			{if $show_suburb eq 1}
+   			<label for="shipping_address_customers_suburb">{txt key=TEXT_SUBURB}</label>
+    		{form id=shipping_address_customers_suburb type=text name=shipping_address[customers_suburb] value=$shipping_address.customers_suburb}
+  			<br>
+                        {/if}
+			
+			<label for="shipping_address_customers_postcode">{txt key=TEXT_CODE}*</label>
+   			{form id=shipping_address_customers_postcode type=text name=shipping_address[customers_postcode] value=$shipping_address.customers_postcode}
+    		<br>
+    		<label for="shipping_address_customers_city">{txt key=TEXT_CITY}*</label>
+    		{form id=shipping_address_customers_city type=text name=shipping_address[customers_city] value=$shipping_address.customers_city}
+    		<br>
+    		<p id="countries">
+    		
+    		<label for="shipping_address_customers_country_code">{txt key=TEXT_COUNTRY}*</label>
+    		{if isset($shipping_address.customers_country_code)}
+            {form params='id="shipping_address_customers_country_code"' type=select name=shipping_address[customers_country_code] value=$country_data default=$shipping_address.customers_country_code}
+        	{else}
+            {form params='id="shipping_address_customers_country_code"' type=select name=shipping_address[customers_country_code] value=$country_data default=$smarty.const._STORE_COUNTRY}
+       		{/if}
+                <br>
+    		</p>
+                </div>
+  	
+<p class="right">{css_button text=$smarty.const.TEXT_BUTTON_FILL_ADDRESS type='form'}</p>
+           
+	{form type=formend}		

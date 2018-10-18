@@ -1,0 +1,20 @@
+<div data-role="collapsible" data-collapsed="true" id="specialProducts" data-content-theme="d">
+	<h3>{txt key=TEXT_HEADING_SPECIAL_PRODUCTS}</h3>
+	
+	{if $_show_more_link == true}
+		<p><a href="{link page='xt_special_products' conn=SSL}">{txt key=TEXT_SHOW_ALL}</a></p>
+	{/if}
+	
+	<ul data-role="listview" data-inset="true">
+	{foreach name=aussen item=special_products_data from=$_special_products}
+		<li>
+			<a href="{$special_products_data.products_link}">
+				{if $special_products_data.products_image!=''}{img img=$special_products_data.products_image type=m_thumb alt=$special_products_data.products_name|escape:"html"}{/if}
+	
+				<h3>{$special_products_data.products_name}</h3>
+				<p>{$special_products_data.products_price.formated}</p>
+			</a>
+		</li>
+	{/foreach}
+	</ul>
+</div>

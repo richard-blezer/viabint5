@@ -1,0 +1,14 @@
+
+{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+    <ul data-role="listview"  data-inset="true">
+        <li data-role="divider" data-theme="c">{txt key=TEXT_CURRENCY}</li>
+        {foreach name=aussen item=box_data from=$currency_data}       
+            <li>
+                <a href="{link page='dynamic' params='action=change_currency&new_currency' params_value=$box_data.code}">
+                    {$box_data.title}
+                </a>
+            </li>
+        {/foreach}
+    </ul> 
+{/if}
+

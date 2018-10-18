@@ -1,0 +1,2459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_CODES_ASSIGNED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Redeemed]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[兑换]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Eingelöst]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Redeemed]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Racheté]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[assegnato]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[換金]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Inleveren]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Umorzone]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Использованные]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_CODES_UNASIGNED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[not used]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[不使用]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Unverbraucht]]></value>
+	</de>
+	<es>
+		<value><![CDATA[not used]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Non utilisé]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[non assegnato]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[使用されていない]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Ongebruikt]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[nie użyty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Неиспользованные]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COMPAIGN_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Campaign ID]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[活动 ID]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kampagne]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Campaign ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID campagne]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Identidicativo (ID) della campagna]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[キャンペーン ID]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Campagne]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kampania ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Кампания]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPONS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupons/Vouchers]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupons/Gutscheine]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupons/Vouchers]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Bons de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Coupons/Vouchers]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon/tegoedbonnen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kupony/Vouchery]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Талоны/Товарные купоны]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPONS_GENERATOR_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[ID]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[ID]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[ID]]></value>
+	</de>
+	<es>
+		<value><![CDATA[TEXT_COUPONS_GENERATOR_ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[ID]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ID]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[ID]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[ИД]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPONS_REDEEM_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[ID]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[ID]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[ID]]></value>
+	</de>
+	<es>
+		<value><![CDATA[ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[ID]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ID]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[ID]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[ИД]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPONS_TOKEN_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Voucher ID]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券编号]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Gutschein ID]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Voucher ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Identificativo (ID) del Voucher]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券番号]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Tegoedbon ID]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Voucher ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[ИД товарного купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_AMOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon value]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[合计]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon Wert]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon value]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Valeur bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Valore del Coupon]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[合計]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon waarde]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Wartość Kuponu]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Стоимость товарного купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_APPROVED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[approved]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[已核准]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[freigegeben]]></value>
+	</de>
+	<es>
+		<value><![CDATA[approved]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[approuvé]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[approvato]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[承認される]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Vrijgegeven]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[zatwierdzone]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Утверждён]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_CAMPAIGNS_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Campaign ID]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[活动编号]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kampagnen ID]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Campaign ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID campagne]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Identificativo (ID) della campagna]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[キャンペーン番号]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Campagnen ID]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Akcja ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[ИД кампании]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_CAN_DECREASE_SHIPPING</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Can decrease shipping]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Darf Versandkosten verringern]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_CATEGORIES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon - Categories]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券分类]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon - Kategorien]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon - Categories]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Bons de réduction - Catégories]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Coupon - Categorie]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券カテゴリー]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon-ategorie&euml;n]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kupon - Kategorie]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Категории товарных купонов]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_CODE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon code]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[代码]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon Code]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon code]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Code de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Codice del Coupon]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[コード]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon code]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kod Kuponu]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Код товарного купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_CREATED_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Creation date]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[記錄日期]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Erstellung Datum]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Creation date]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Date de création]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Data di creazione]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[作成日]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Datum creatie]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Data Stworzona]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Дата выписки товарного купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_CUSTOMER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon - Customers]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券顾客]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon - Kunden]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon - Customers]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Bons de réduction - Clients]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Coupon - Clienti]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券顧客]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon-klanten]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kupon - Klienci]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Клиентский купон]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_CUSTOMER_CREATED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Customer Created]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[已建立客户]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Angelegte Benutzer]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Customer Created]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Client créé]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Creazione Cliente]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[お客様が作成]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aangelegde gebruiker]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Utworzony Klient]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Зарегистрированные пользователи]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_DATE_CREATED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Date Created]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[已建立日期]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Angelegt Datum]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Date Created]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Date de création]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Data della creazione]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[作成日]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aangelegde registratiedatum]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Data Utworzenia]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Дата регистрации]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_DESCRIPTION</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon Description]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券內容]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon Beschreibung]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon Description\:]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Description bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Descrizione del Coupon]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券説明]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon beschrijving]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Opis Kuponu]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Описание товарного купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_EXPIRE_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[date expire]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[到期日]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Gültig bis]]></value>
+	</de>
+	<es>
+		<value><![CDATA[date expire]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Date d'expiration]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[data di scadenza]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[有効期限]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Geldig tot]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[wygaśnięcia data]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Годен до]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_FREE_ON_100_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[free shipping with 100% coupon]]></value>
+	</en>
+	<de>
+		<value><![CDATA[freier Versand bei 100%-Gutschein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_FREE_SHIPPING</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[free shipping?]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[免运费？]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[kostenloser Versand ?]]></value>
+	</de>
+	<es>
+		<value><![CDATA[free shipping?]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Livraison gratuite ?]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[spedizione gratuita?]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[送料無料？]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[gratis levering?]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Darmowa przesyłka?]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Бесплатная доставка?]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_FS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Free Shipping]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[免运费]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[keine Lieferkosten]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Free Shipping]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Livraison gratuite]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Spedizione Gratuita]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[送料無料]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Geen leveringskosten]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Darmowa Przesyłka]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Бесплатная доставка]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon ID]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券编号]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon ID]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Identificativo (ID) del Coupon]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券番号]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon ID]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kupon ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[ИД товарного купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_IP_CREATED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[IP Created]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[IP已建立]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Angelegt IP]]></value>
+	</de>
+	<es>
+		<value><![CDATA[IP Created]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[IP de création]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[IP della creazione]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[IPの作成]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aangelegde registratie IP]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[IP Utworzone]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Создан IP товарного купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_LAST_MODIFIED_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Last Modified]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[最近修改]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[letzte Aenderung]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Last Modified]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Dernière modification]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Ultima modifica]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[最終更新日]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[laatste verandering]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Ostatnio modifikowane]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Последнее изменение]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_MAX_PER_CUSTOMER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Max Per Customer]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[每位客户最大额度]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Max. pro Kunde]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Max Per Customer]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Maximum par client]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Massimo per Cliente]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[各顧客の最も大きい額]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Max. per klant]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Max Na Klienta]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Макс. на клиента]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_MAX_TOTAL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Max Total]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[最大额度]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Max. insgesamt]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Max Total]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Montant maximum]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Massimo Totale]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[最も大きい額]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Max. totaal]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Max Suma]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Итоговый максимум]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_MINIMUM_ORDER_VALUE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Minimum Order Value]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[最少订单金额]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Min. Bestellwert]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Minimum Order Value]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Montant minimum de commande]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Valore minimo dell\'ordine]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[最低注文額]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Min. bestellwaarde]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Minimalna wartość zamówienia]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Минимальная сумма заказа]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_NAME</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon Name]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券名称]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon Name]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon Name]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nom bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Nome del Coupon]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券名]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon naam]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Nazwa Kuponu]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Название купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_ORDER_ORDERED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Order Ordered]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[已订购订单]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Einlösungen]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Order Ordered]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Commande effectuée]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Ordinamento ordine]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[注文作成]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal inzendingen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Zamówienie Zamówione]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Количество использований]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_PERCENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Percent]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[折扣率]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Prozent]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Percent]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Pourcentage]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Percentuale]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引率]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Procent]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Procent]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Процент]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_PRODUCTS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon - Products]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券商品]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon - Produkte]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon - Products]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Bon de réduction - Articles]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Coupon - Prodotti]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券商品]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon-produkten]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kupon - Produkty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Продукция товарного купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_START_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[date start]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[起始日]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Gültig von]]></value>
+	</de>
+	<es>
+		<value><![CDATA[date start]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[date de début]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[data di inizio]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[開始日]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Geldig vanaf]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[rozpoczęcia data]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Годен с]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_STATUS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[状态]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Status]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[État]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Stato]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[状態]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Status]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Status]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Статус]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TAX_CLASS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[tax class]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Steuerklasse]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TOKEN_AMOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[leftover value]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Restwert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TOKEN_CODE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Voucher Code]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券代码]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Gutschein Code]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Voucher Code]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Code de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Codice del Voucher]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券コード]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Tegoedbon code]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kod Voucheru]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Код купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TOKEN_GENERATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Code Generator]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券发生器]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Code Generator]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Code Generator]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Générateur de code]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Generatore del codice]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券ジェネレータ]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Code Generator]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Generator Kodu]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Генератор кода]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TOKEN_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Voucher ID]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券 ID]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Gutschein ID]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Voucher ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Identificativo (ID) del Voucher]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券 ID]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Tegoedbon ID]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Voucher ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[ИД товарного купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TOKEN_IM_EXPORT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Voucher import/export]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[汇入/出优惠券]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Gutschein Im-/Export]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Voucher import/export]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Importer/exporter bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[importa/esporta Voucher]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[インポート/エクスポート割引券]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Tegoedbon im-/export]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Voucher import/eksport]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Им-/Экспорт купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TOKEN_ORDER_ID</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Order ID]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[订单 ID]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bestellnummer]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Order ID]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID commande]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[ID dell\'ordine]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[注文 ID]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Bestelnummer]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Zamówienia ID]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Номер заказа]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon type]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券类型]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon/Gutschein Typ]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon type]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Type bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Tipo di Coupon]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券種類]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon/tegoedbon type]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[typ kupona]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Тип купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TYPE_FIX</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Discount (Value)]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[折扣 (价值)]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Festwert]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Discount (Value)]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Promotion (Valeur)]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Sconto (Valore)]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引 (値)]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Vaste waarde]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Obniżka (Wartość)]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Постоянная величина]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TYPE_PERCENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Discount (Percent)]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[折扣 (百分比)]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Prozent-Wert]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Discount (Percent)]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Promotion (Pourcentage)]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Sconto (Percentuale)]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引 (%)]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Procent-waarde]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Obniżka (Procent)]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Величина в процентах]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TYPE_VALUE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon value]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券价值]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon/Gutschein Wert]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon value]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Valeur bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Valore del Coupon]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券の価値]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon/tegoedbon waarde]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[wartość kuponu]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Стоимость купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_EI_COUPON</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupon ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kupon ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ITEMS_LIMIT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[per run]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[每次可兑换]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl pro Durchlauf]]></value>
+	</de>
+	<es>
+		<value><![CDATA[TEXT_ITEMS_LIMIT]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[par commande]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[per avvii]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[各々換金]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal per keer]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[przez przebieg]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число за ход]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_MASK</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Mask]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[浮水印]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Maske]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Mask\:]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Masque]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Maschera]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[透かし]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Mask]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Maskuj]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Маска]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_PLUGIN_COUPON_MASK</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Voucher code syntax]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[券代码浮水印]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Gutscheincode Syntax]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Voucher code syntax]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Syntaxe de code bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Sintassi del codice del Voucher]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[無料券コード透かし]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Tegoedbon code syntax]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[kod Voucher syntax]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Syntax кода товарного купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_REDEEM_AMOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Redeemed Amount]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[兑换额度]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Eingelöster Wert]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Redeemed Amount]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Montant racheté]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Ammontare del cambio]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[交換額]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Ingeleverde waarde]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Umorzona Suma]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Выкуплено]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_REDEEM_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Redeem Date]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[兑换日期]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Eingelöst am]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Redeem Date]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Date de rachat]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Data del cambio]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[交换日付]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Ingeleverd op]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Data Umorzenia]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Выкуплено]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_REDEEM_IP</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Redeem IP]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[兑换 IP]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Einlösung IP]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Redeem IP]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[IP rachat]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[IP del cambio]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[交换 IP]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Inleverings IP]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[IP Umorzenia]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[IP выкупленного]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_COUPONS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Coupons]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Vorlagen]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupons]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Bons de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Coupons]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Sjablonen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kupony]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Шаблон]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_COUPONS_EMPTY_VAUCHER_CODE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Empty Vaucher code field]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte tragen Sie einen Gutscheincode ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_COUPONS_REDEEM</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Redeemed Codes]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[兑换码]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Eingelöste Codes]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Redeemed Koupons / Coupons]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Codes rachetés]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Codice riscattati]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[換金コード]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Ingeleverde codes]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Umorzone Kody]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Использованные коды]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_COUPONS_TOKEN</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Codes]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[代码]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Codes]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Codes]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Codes]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Codici]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[コード]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Codes]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kody]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Коды]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_COUPONS_TOKEN_GENERATOR</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Code Generator]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券发生器]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Code Generator]]></value>
+	</de>
+	<es>
+		<value><![CDATA[TEXT_XT_COUPONS_TOKEN_GENERATOR]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Générateur de code]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Generatore di codice]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[クーポンジェネレータ]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Code Generator]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Generator Kodu]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Код-генератор]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_COUPONS_TOKEN_IM_EXPORT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Voucher Im-/Export edit]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gutschein Im-/Export Bearbeiten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_COUPONS_CART_BOX_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[cart box]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Warenkorb-Box]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_COUPONS_CART_PAGE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[cart page]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Warenkorb-Seite]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_COUPONS_CHECKOUT_PAGE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[checkout page]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Checkout-Seite]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_COUPONS_LOGIN_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[with customer login only]]></value>
+	</en>
+	<de>
+		<value><![CDATA[nur mit Kunden-Login]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_COUPONS_USE_LEFTOVER_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[allow leftover value (only without tax class)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Restwert zulassen (nur ohne Steuerklasse)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_PRICE_BEFORE_DISCOUNT</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Subtotal before coupon]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zw.Summe vor Gutschein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TYPE_FREESHIPPING</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[free shipping]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[免费送货]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[kostenloser Versand]]></value>
+	</de>
+	<es>
+		<value><![CDATA[free shipping]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Livraison gratuite]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[spedizione gratuita]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[送料無料]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[gratis levering]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[darmowa przesyłka]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Бесплатная доставка]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_COUPON_TITLE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Coupon/Voucher]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券/折价券]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon/Gutschein]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon/Voucher]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Coupon/Voucher]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券/引換券]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon/tegoedbon]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kupon/Bon]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Товарный купон/талон]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_ADDED</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Coupon / Coucher has been added to cart]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[优惠券已新增]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon/Gutschrift aktiviert]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon / Coucher has been added to cart]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Bon de réduction ajouté au panier]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Coupon / Coucher e\' stato aggiunto al carrello]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券が追加されました]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon/tegoedbon activeert]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kupon / Bon został dodany do koszyka]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Товарный купон активирован]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_ADDED_LEFTOVER</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[It remains a leftover value:]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Es verbleibt ein Restwert:]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_AKTIV</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Active Coupon/Voucher]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[启用优惠券/折价券]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Aktiver Kupon/Gutschein]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Active Coupon/Voucher]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Activer bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Coupon/Voucher Attivo]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券/引換券を有効にする]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Actieve coupon/Tegoedbon]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Uaktywnij Kupon/Bon]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Активный товарный купон]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_BUTTON</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Redeem]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Einlösen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_ERROR_CODE_NOT_FOUND</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Coupon code not found]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[没有找到此优惠券代码]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon/Gutschein Code nicht gefunden]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon code not found]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Code réduction introuvable]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Il codice del Coupon non e\' stato trovato]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[この割引券のコードを探し当てていません]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon/tegoedbon-code niet gevonden]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[kod kuponu nie znaleziono]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Товарный купон не найден]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_ERROR_CUSTOMER_GROUP_NOT_ALLOWED</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Coupon is not allowed for your customer group]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[您目前的客户群组身份不能使用此张优惠券]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon/Gutschein für Ihre Kundengruppe nicht erlaubt]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon is not allowed for your customer group]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Bon de réduction inutilisable]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Questo Coupon non e\' disponibile per il gruppo di clienti a cui appartieni]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[あなたの現在のユーザーグループの身分はこの割引券を使うことができないのです]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon/tegoedbon voor uw klantengroep niet toegestaan]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kupon nie jest zezwolony dla Twojej grupy klientowej ]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Товарный купон не доступен для Вашей клиентской группы]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_ERROR_CUSTOMER_NOT_ALLOWED</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[You are not allowed to use this Coupon / Voucher]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[你所使用的优惠券无效]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon/Gutschein ist für Sie nicht gültig]]></value>
+	</de>
+	<es>
+		<value><![CDATA[You are not allwed to use this Coupon / Voucher]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Vous ne pouvez pas utiliser ce bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Non puoi utilizzare questo Coupon / Voucher]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[あなたの使った割引券は無効です]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon/tegoedbon is voor u niet geldig]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Nie jesteś dopuszczony do użycia tego Kuponu / Bonu]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Этот товарный купон для Вас не действителен]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_ERROR_MAX_CUSTOMER_REEDEM</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Coupon / voucher has been used too many times]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[你已超过优惠券使用次数限制]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon/Gutschein wurde schon zu oft von Ihnen eingelöst]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon / voucher has been used too many times]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Bon de réduction utilisé trop de fois]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Il Coupon / Voucher e\' stato utilizzato troppe volte]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[割引券を使用する場合の制限数を超えています]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon/tegoedbon is door u al te vaak ingediend]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kupon / Bon został użyty zbyt wiele razy]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Этот товарный купон был слишком часто использован]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_ERROR_MAX_REDEEM</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Coupon / voucher has been too often used]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[此优惠券已超过使用次数限制]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kupon/Gutschein wurde schon zu oft eingelöst]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Coupon / voucher has been too often used]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Bon de réduction utilisé trop souvent]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Coupon / Voucher e\' stato utilizzato troppo spesso]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[この割引券はすでに使用の制限数を超えています]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Coupon/tegoedbon is al te vaak ingediend]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kupon / Bon był używany zbyt często]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Этот товарный купон был слишком часто использован]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_ERROR_MIN_ORDER_VALUE_FAILED</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Minimum order value has not been reached]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[你的订购未达此优惠券最低额度]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Mindestbestellwert zum Einlösen dieses Kupons/Gutscheines noch nicht erreicht]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Minimum order value has not been reached]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Le montant minimum de la commande n'a pas été atteint]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Non e\' stato raggiunto il valore minimo dell\'ordine]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[あなたのはご予約購入してこの割引券の最低額に達していません]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Mindest bestelwaarde voor het verrekenen van de coupons/tegoedbonnen nog niet berreikt]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Minimalna wartość zamówienia nie została przekroczona]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Минимальная сумма заказа для использования товарного купона не достигнута]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_ERROR_NO_MATCHED_PRODUCT</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[No suitable product on the Voucher in cart]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[你的购物车上目前没有可以适用此优惠券的商品]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Kein passendes Produkt zu dem Kupon/Gutschein in Ihrem Warenkorb]]></value>
+	</de>
+	<es>
+		<value><![CDATA[No suitable product on the Voucher in cart]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Pas d'articles correspondant au bon de réduction dans votre panier]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Non c\'e\' nessun prodotto adatto al Voucher nel carrello]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[あなたのショッピングカートに、この商品の割引券を適用できることができていません]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Geen passend product voor de coupon/tegoedbon in uw winkelmandje]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Nie odpowiedni produkt na kuponie w Koszyku]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[В Вашей корзине нет подходящего товара для этого товарного купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_ERROR_TOKEN_USED</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Gift Voucher code has already been used]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[你所使用的优惠券代码已使用过]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Gutschein Code wurde schon benutzt]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Gift Voucher code has allready been used]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Code de réduction déjà utilisé]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Hai gia\' utilizzato il codice del Gift Voucher]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[あなたの割引券コードを使用されています]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Tegoedbon code is al gebruikt]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kod Bonu / Kuponu został już użyty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Код товарного купона уже использован]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_HEADLINE</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Coupon]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gutschein/Kupon]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_INVALID_TOTAL</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[It occurred an invalid special case. Please repeat the process.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Es ist ein ungültiger Sonderfall aufgetreten. Bitte wiederholen Sie den Vorgang.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_LABEL</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Coupon Code]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ihr Kupon/Gutschein Code]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_MISSING</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Gift voucher code missing]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[礼品券代码遗失]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Bitte geben Sie einen Gutscheincode ein]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Gift voucher code missing]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Code réduction manquant]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Codice del Voucher mancante]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ギフト券コードを紛失]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Geef hier uw tegoedbon-code in]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Kod bonu na zakupy brakuje]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Пожалуйста, введите код товарного купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_REDEEMED</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[redeemed Code]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Eingelöster Code]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_REMOVE</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[remove coupon]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gutschein entfernen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_REMOVE_SUCCESS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Coupon removed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Coupon entfernt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUPON_TOKEN_IM_EXPORT</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Im- Export gift vouchers]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[汇入/出优惠券]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Gutschein Im-/Export]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Voucher import/export]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Importer/exporter bon de réduction]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[importa/esporta Voucher]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[インポート/エクスポート割引券]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Tegoedbon im-/export]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Voucher import/eksport]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Им-/Экспорт купона]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_XT_COUPON_FREE_SHIPPING</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Freeshipping voucher]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[免费送货券]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Versandkosten Gutschrift]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Freeshipping voucher]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Livraison gratuite]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Voucher di spedizione gratuita]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[送料無料券]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Leveringskosten tegoed]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Bon na darmową przesyłkę]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Бесплатная доставка]]></value>
+	</ru>
+</phrase>
+</language_content>
+</xtcommerceplugin>

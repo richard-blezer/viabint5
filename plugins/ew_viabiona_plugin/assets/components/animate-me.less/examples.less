@@ -1,0 +1,38 @@
+@lesscompiler: 'js';
+
+// USAGE examples
+// --------------------------------------------------
+.animate-me(SimpleAnimation; false; '.simple-animation';
+	0%; '%stransform: translateZ(0%) rotateY(0deg)';
+	100%; '%stransform: translateZ(100%) rotateY(360deg)'
+);
+
+.animate-me(ComplexAnimation; 0.4s ease; '.complex-animation';
+	'50%, 100%'; '%stransform: translateZ(-250px) rotateY(30deg)';
+	70%; '%stransform: translateZ(-250px) rotateY(30deg); opacity: .5';
+	80%; '%stransform: translateZ(-250px) rotateY(30deg); opacity: 1'
+);
+
+.animate-me(SuperComplexAnimation; 1s infinite ease-in-out; '.super-complex-animation';
+	'0%, 100%'; '%stransform: translateZ(-250px) rotateY(30deg)';
+	10%; '%stransform: translateZ(-250px) rotateY(30deg); opacity: .5';
+	15%; '%stransform: translateZ(-250px) rotateY(30deg); opacity: .5';
+	'30%, 60%'; '%stransform: translateZ(-250px) rotateY(30deg); opacity: .5';
+	40%; '%stransform: translateZ(-250px) rotateY(30deg); opacity: .5';
+	50%; '%stransform: translateZ(-250px) rotateY(30deg); opacity: 1';
+	70%; '%stransform: translateZ(-250px) rotateY(30deg); opacity: 1';
+	90%; '%stransform: translateZ(-250px) rotateY(30deg); opacity: 1'
+);
+
+.animate-me(CrossFade; false; false;
+	'0%, 100%'; 'opacity: .4'
+);
+.animate-me(TrafficLight; false; false;
+	0%; 'background: red';
+	50%; 'background: yellow'
+);
+.animate-me(FadeSnake; false; false;
+	'0%, 100%'; 'opacity: .4';
+  33%; 'opacity: .6';
+  66%; 'opacity: .2'
+);

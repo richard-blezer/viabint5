@@ -1,0 +1,45 @@
+<h1>{txt key=TEXT_XT_BANKTRANSFER_ACCOUNTS}</h1>
+
+{$message}
+
+{if $account_count > 0}
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+            <tr>
+                <th>{txt key=TEXT_BANKTRANSFER_OWNER}</th>
+                <th>{txt key=TEXT_BANKTRANSFER_BANK_NAME}</th>
+                <th>{txt key=TEXT_BANKTRANSFER_IBAN}</th>
+                <th>{txt key=TEXT_BANKTRANSFER_BIC}</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+        {foreach name=aussen item=account from=$account_data.data}
+            <tr>
+                <td>{$account.banktransfer_owner}</td>
+                <td>{$account.banktransfer_bank_name}</td>
+                <td>{$account.banktransfer_iban}</td>
+                <td>{$account.banktransfer_bic}</td>
+                <td>
+                    <a class="btn btn-sm btn-info preloader" title="{txt key=BUTTON_EDIT}" href="{link page='bank_account' paction=edit_account params=acID params_value=$account.account_id conn=SSL}">
+                        <span class="sr-only">{txt key=BUTTON_EDIT}</span>
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a class="btn btn-sm btn-danger preloader" title="{txt key=BUTTON_DELETE}" href="{link page='bank_account' paction=delete_account params=acID params_value=$account.account_id conn=SSL}">
+                        <span class="sr-only">{txt key=BUTTON_DELETE}</span>
+                        <i class="fa fa-times"></i>
+                    </a>
+                </td>
+            </tr>
+        {/foreach}
+        </tbody>
+    </table>
+
+    <div id="NAVIGATION">
+        <div class="COUNT">{$count}</div>
+        <div class="PAGES">{$pages}</div>
+    </div>
+{/if}
+
+<a class="btn btn-primary pull-right" href="{link page='bank_account' paction=edit_account conn=SSL}">{txt key=BUTTON_ADD_ACCOUNT}</a>
+<div class="clearfix"></div>

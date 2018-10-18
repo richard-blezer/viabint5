@@ -1,0 +1,10 @@
+<Files magnalister.php>
+    Order Deny,Allow
+    Allow from all
+</Files>
+
+<Files magnaCallback.php>
+    Order Deny,Allow
+    Allow from all
+</Files>
+

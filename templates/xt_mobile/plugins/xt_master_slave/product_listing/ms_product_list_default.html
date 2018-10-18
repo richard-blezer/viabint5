@@ -1,0 +1,38 @@
+{if $product_listing|@count > 1}
+    <div data-role="collapsible" data-inset="false" data-theme="c">
+        <h2>{txt key=TEXT_PRODUCT_OPTIONS}</h2>
+        <ul data-role="listview" class="xtm-product-list"> 
+        {foreach name=aussen item=module_data from=$product_listing}
+            {if $module_data.products_id != $smarty.get.info}
+                <li class="xtm-product-list-element">
+                    <a href="{$module_data.products_link}">
+                        {if $module_data.products_image != 'product:noimage.gif'}
+                            {img img=$module_data.products_image type=m_mobile_thumb class='' alt=$module_data.products_name|escape:"html"}
+                        {else}
+                            <img src="{$tpl_url_path}/img/no_image.png" alt="{txt key=TEXT_NO_IMAGE}">
+                        {/if}
+                        <h2 class="ui-li-heading Name">{$module_data.products_name}</h2>
+                        <p class="ui-li-desc">    
+                            <span class="Price">
+                                {if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+                                    {$module_data.products_price.formated} 
+                                    {if $module_data.base_price}<br /><span class="xtm-base-price">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</span>{/if}
+                                    <br /><span class="taxInfo">{$module_data.products_tax_info.tax_desc}</span>
+                                    {if $module_data.products_shipping_link}<br /><span class="shippingInfo">{txt key=TEXT_EXCL_SHIPPING}</span>{/if}                                    
+                                {/if}
+                                {if $module_data.shipping_status}<br />{#text_shippingtime#}&nbsp;{$module_data.shipping_status}{/if}
+                            </span>
+                            <span class="Stock">        
+                                {if $module_data.stock_image}
+                                    {img img=$module_data.stock_image.image type=t_img_stockrules alt=$module_data.stock_image.name}
+                                    {*$module_data.stock_image.name*}
+                                {/if}
+                            </span> 
+                        </p>                        
+                    </a>
+                </li>
+            {/if}
+        {/foreach}
+        </ul>
+    </div>
+{/if}

@@ -1,0 +1,31 @@
+{if $options!=''}
+<ul>
+	{foreach name=outer item=options_data from=$options}
+	<li>
+	<span class="bold">{$options_data.text}</span>
+	{form type=form name=product action='dynamic' link_params=getParams method=post}
+	{form type=hidden name=action value=select_ms}
+	<span>
+		<select name="id[{$options_data.id}]"  onchange="this.form.submit();">
+		{foreach key=key_data item=item_data from=$options_data.data}
+		<option value="{$item_data.id}" {if $item_data.selected} selected="selected" {/if} {if $item_data.disabled} disabled="disabled" {/if}>{$item_data.text}</option>
+		{/foreach}
+		</select>
+	</span>
+	{form type=formend}
+	</li>
+	{/foreach}
+</ul>
+
+{if XT_MASTER_SLAVE_CONF_SHOW_RESET eq "true" && $masterLink}
+<form action="{$masterLink}" method="post">
+	<p class="right">{css_button text=$smarty.const.XT_MASTER_SLAVE_TEXT_RESET_OPTIONS type='form'}</p>
+</form>
+{/if}
+{if XT_MASTER_SLAVE_CONF_SHOW_LINK eq "true" && $masterLink}
+	<p><a href="{$masterLink}">{txt key=XT_MASTER_SLAVE_TEXT_LINK_TO_MASTER}</a></p>
+{/if}
+{if $link_reset}
+	<p><a href="{$link_reset}">{$image_reset}</a></p>
+{/if}
+{/if}

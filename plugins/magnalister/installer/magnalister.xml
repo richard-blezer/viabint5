@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>xt:MultiConnect</title>
+<version>2.7.0</version>
+<code>magnalister</code>
+<url>https://www.xtmulticonnect.com/frontend/?partner=xtcommerce4</url>
+<description>Multi-Channel Marketing</description>
+<type>marketing</type>
+<icon>magnalister_logo_installer.png</icon>
+<db_install><![CDATA[
+
+$db->Execute("
+	INSERT INTO ".TABLE_ADMIN_NAVIGATION." (`pid`, `text`, `icon`, `url_i`, `url_d`, `sortorder`, `parent`, `type`, `navtype`, `cls`, `handler`, `iconCls`) 
+	VALUES (NULL, 'magnalister','../plugins/magnalister/images/magnalister_icon_veyton_menue.png','../plugins/magnalister/magnalister.php',
+	        'NULL','5000','shop','I','W',NULL,'clickHandler2',NULL); 
+");
+
+$db->Execute("UPDATE ".TABLE_PLUGIN_PRODUCTS ." SET `plugin_status` = '1' WHERE `code` ='magnalister' LIMIT 1 ;");
+
+]]></db_install>
+<db_uninstall><![CDATA[
+function dropMagnaTables() {
+	global $db;
+	$tables = $db->MetaTables();
+	if (empty($tables)) {
+		return;
+	}
+	foreach ($tables as $table) {
+		if (strpos($table, 'magnalister') !== 0) continue;
+		$db->Execute('DROP TABLE '.$table);
+	}
+}
+
+$db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text = 'magnalister'");
+dropMagnaTables();
+]]></db_uninstall>
+
+<!--<plugin_code>
+<code>
+<hook>page_registry.php:bottom</hook>
+<phpcode><![CDATA[
+define('PAGE_MAGNALISTER', _SRV_WEB_PLUGINS.'magnalister/pages/magnalister.php');
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+-->
+<language_content>
+<phrase>
+<key>TEXT_MAGNALISTER</key>
+<class>admin</class>
+<de>
+<value>xt:MultiConnect</value>
+</de>
+<en>
+<value>xt:MultiConnect</value>
+</en>
+</phrase>
+</language_content>
+</xtcommerceplugin>

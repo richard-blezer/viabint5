@@ -1,0 +1,6 @@
+<ul>
+	<li>< <a href="?page=categories"><font color="#00b3ec">{txt key=TEXT_BACK_TO_CATEGORIES}</font></a>&nbsp;&nbsp; |</li>
+{foreach key=key name=aussen item=breadcrumb from=$top_navigation}
+	<li class="item-{$key}{if $top_navigation|@count == $key+1} last{/if}"><a class="pathway" href="{$breadcrumb.url}">{if $top_navigation|@count != $key+1}<font color="#00b3ec">{/if}{$breadcrumb.name|escape:"html"}{if $top_navigation|@count != $key+1}</font> >{/if}</a></li>
+{/foreach}
+</ul>

@@ -1,0 +1,319 @@
+<div id="cart">
+
+    {if $show_cart_content == true}
+
+        {form type=form name=cart action='dynamic' link_params=getParams method=post conn=SSL}
+        {form type=hidden name=action value=update_product}
+
+        {php}
+            $qtyOptions = array();
+            $qtyMax = 50;
+            for ($i = 1; $i <= $qtyMax; $i++) {
+                $qtyOptions[] = array(
+                    'id' => $i,
+                    'text' => (($i == 0) ? TEXT_QTY : $i),
+                );
+            }
+            $qtyOptions[] = array(
+                'id' => ($qtyMax + 1),
+                'text' => TEXT_MORE,
+            );
+            $this->assign('qtyMax', $qtyMax);
+            $this->assign('qtyOptions', $qtyOptions);
+        {/php}
+
+        <div class="row">
+            <div class="col col-md-12">
+                <h1>{txt key=TEXT_CART}</h1>
+                {$message}
+            </div>
+            <div class="col col-md-12 text-right">
+                <div class="hidden-xs">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-default preloader cart-btn-update">
+                            <span class="glyphicon glyphicon glyphicon-refresh"></span>
+                            <span>{txt key=BUTTON_UPDATE}</span>
+                        </button>
+                        <a class="btn btn-success preloader trigger_ew_2to1_coupon_modal" href="{link page='checkout' paction='shipping' conn=SSL}">
+                            {txt key=BUTTON_CHECKOUT}
+                        </a>
+                    </div>
+                    <a href="javascript:history.back();" class="btn btn-default pull-left">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="hidden-xs">{txt key=BUTTON_BACK}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="div-table table-bordered cart-listing">
+            <div class="row th">
+                <div class="col col-lg-8 col-sm-6 text-small">
+                    {txt key=TEXT_ARTICLE}
+                </div>
+                <div class="col col-lg-2 col-sm-2 hidden-xs text-small">
+                    {txt key=TEXT_QTY}
+                </div>
+                <div class="col col-lg-1 col-sm-2 hidden-xs text-small text-right">
+                    {txt key=TEXT_SINGLE_PRICE}
+                </div>
+                <div class="col col-lg-1 col-sm-2 hidden-xs text-small text-right active">
+                    {txt key=TEXT_TOTAL_PRICE}
+                </div>
+            </div>
+            {foreach name=aussen key=key item=data from=$cart_data}
+                {form type=hidden name=products_key[] value=$data.products_key}
+                <div class="row tr{if $data.ew_2to1_coupon_product || $data.ew_coupon_giveaway} info{/if}">
+                    <div class="col col-sm-2">
+
+                        <p class="image text-center">
+                            {if $data.ew_coupon_giveaway}
+                                {if !$data.products_image || $data.products_image == 'product:noimage.gif'}
+                                    <span class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="productImageBorder img-responsive" alt=$data.products_name|escape:"html"}</span>
+                                {else}
+                                    <span class="vertical-helper image-link">{img img=$data.products_image type=m_ew-viabiona-icon class="productImageBorder img-responsive" alt=$data.products_name|escape:"html"}</span>
+                                {/if}
+                            {else}
+                                {if !$data.products_image || $data.products_image == 'product:noimage.gif'}
+                                    <a href="{$data.products_link}" class="vertical-helper image-link no-image" target="_blank">{img img='no_image.png' type=t_img class="productImageBorder img-responsive" alt=$data.products_name|escape:"html"}</a>
+                                {else}
+                                    <a href="{$data.products_link}" class="vertical-helper image-link" target="_blank">{img img=$data.products_image type=m_ew-viabiona-icon class="productImageBorder img-responsive" alt=$data.products_name|escape:"html"}</a>
+                                {/if}
+                            {/if}
+                        </p>
+
+                    </div><!-- end image col -->
+
+                    <div class="col col-sm-4 col-lg-6"><!-- start content col -->
+
+                        <p class="product-name break-word">
+                            {if $data.ew_coupon_giveaway}
+                                {$data.products_name}
+                            {else}
+                                <a href="{$data.products_link}" target="_blank">{$data.products_name}</a>
+                            {/if}
+                        </p>
+
+                       {hook key=cart_bundle}
+
+                       {if $data.products_page_short_description_html}<span class="text-muted"><small>{$data.products_page_short_description_html|strip_tags}</small></span><br />{/if}
+                       {if $data.product_itemcount}<span class="text-muted"><small>{$data.product_itemcount|strip_tags}</small></span><br />{/if}
+                       {if $data.products_supply_period}<span class="text-muted"><small>{$data.products_supply_period|strip_tags}</small></span><br />{/if}
+                       {if $data.products_information}<span class="text-muted"><small>{$data.products_information|replace:'<tr class="contentrow1">':''|replace:'<tr class="contentrow2">':''|replace:'<td>':''|replace:'<td class="left" colspan="4">':''|replace:'</td>':''|replace:'</tr>':''}</small></span><br />{/if}
+                       {if $data.products_model!=''}<br /><span class="text-muted"><small>{txt key=TEXT_PRODUCTS_MODEL} {$data.products_model}</small></span><br />{/if}
+                       {if $data.products_weight > 0}<span class="text-muted"><small>{txt key=TEXT_PRODUCTS_WEIGHT} {$data.products_weight|number_format:2:",":"."} kg</small></span><br />{/if}
+                       {if $data.shipping_status}<span class="text-muted"><small>{txt key=TEXT_SHIPPING_STATUS} {$data.shipping_status}</small></span><br />{/if}
+
+
+                       {*<!-- visible-xs part start -->*}
+                        <br class="visible-xs">
+                        <div class="hidden-sm hidden-md hidden-lg well well-sm">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <small class="text-muted">{txt key=TEXT_SINGLE_PRICE}</small><br />
+                                    <div class="product-price">
+                                        {if $data._cart_discount}
+                                        <p>{$data.products_price.formated}</p>
+                                        <p class="price-old">{$data._original_products_price.formated}</p>
+                                        <p>(-{$data._cart_discount} %)</p>
+                                        {else}
+                                        {$data.products_price.formated}
+                                        {/if}
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <small class="text-muted">{txt key=TEXT_TOTAL_PRICE}</small><br />
+                                    <p class="final-price">{$data.products_final_price.formated}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {*<!-- visible-xs part end -->*}
+
+                    </div><!-- end content col -->
+
+                    <div class="col col-sm-2"><!-- start qty col -->
+                        <span class="text-muted visible-xs">
+                            <small>{txt key=TEXT_QTY}</small>
+                        </span>
+                        <div class="clearfix">
+                            <div class="pull-left">
+                                <div class="input-group form-qty-cart">
+                                    {if !$data.ew_2to1_coupon_product && !$data.ew_coupon_giveaway}
+                                        {if $qtyMax >= $data.products_quantity}
+                                            {form params="id='form-qty-`$data.products_id`' data-size='3' onchange='this.form.submit()'" type=select name=qty[] value=$qtyOptions default=$data.products_quantity class="form-control"}
+                                        {else}
+                                            <input type="text" name="qty[]" onblur='this.form.submit()' id="form-qty-{$data.products_id}" class="form-control" value="{$data.products_quantity}" placeholder="{txt key=TEXT_QTY}" />
+                                        {/if}
+                                    {else}
+                                        <input type="hidden" name="qty[]" value="{$data.products_quantity}" />
+                                        <input type="text" class="form-control" value="{$data.products_quantity}" placeholder="{txt key=TEXT_QTY}" disabled />
+                                    {/if}
+                                </div>
+                            </div>
+                            {if !$data.ew_coupon_giveaway}
+                                <div class="pull-left">
+                                    <div class="form-group">
+                                        <span class="hidden-sm">&nbsp;</span>
+                                        <button type="submit" name="cart_delete[]" value="{$data.products_key}" class="btn btn-link">
+                                            <span class="glyphicon glyphicon-trash text-danger"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                    </div><!-- end qty col -->
+
+                    <div class="col col-sm-2 col-lg-1 hidden-xs text-right"><!-- start single price col -->
+                        {if $data._cart_discount}
+                            <p class="text-nowrap">{$data.products_price.formated}</p>
+                            <p class="price-old text-nowrap">{$data._original_products_price.formated}</p>
+                            <p class="text-nowrap">(-{$data._cart_discount|string_format:"%.0f"} %)</p>
+                        {else}
+                            <p class="text-nowrap">{$data.products_price.formated}</p>
+                        {/if}
+                    </div><!-- end single price col -->
+
+                    <div class="col col-sm-2 col-lg-1 hidden-xs text-right active"><!-- start final price col -->
+                        <p class="final-price text-nowrap">{$data.products_final_price.formated}</p>
+                    </div><!-- end final price col -->
+
+                </div>
+            {/foreach}
+
+            {hook key=cart_total_top}
+            {hook key=cart_total_tpl}
+
+            {foreach name=aussen item=tax_data from=$cart_tax}
+                <div class="row tfoot">
+                    <div class="col col-sm-offset-8 col-lg-offset-9 col-sm-2 col-xs-6 text-right">
+                        <small>
+                            {txt key=TEXT_TAX} {$tax_data.tax_key}%<br />
+                            {if $shipping_link}
+                                <span class="shipping-link text-nowrap"><a href="{$shipping_link}" target="_blank" rel="nofollow" class="text-muted"><small>{txt key=TEXT_EXCL_SHIPPING}</small></a></span>
+                            {else}
+                                <span class="shipping-link text-nowrap text-muted"><small>{txt key=TEXT_EXCL_SHIPPING}</small></span>
+                            {/if}
+                        </small>
+                    </div>
+                    <div class="col col-sm-2 col-lg-1 col-xs-6 text-right active">
+                        <span class="text-nowrap tax-value">{$tax_data.tax_value.formated|replace:"*":""}</span>
+                    </div>
+                </div>
+            {/foreach}
+
+            {if $discount}
+                <div class="row tfoot">
+                    <div class="col col-sm-offset-8 col-lg-offset-9 col-sm-2 col-xs-6 text-right">
+                        <small><strong>{txt key=TEXT_DISCOUNT_MADE}</strong></small>
+                    </div>
+                    <div class="col col-sm-2 col-lg-1 col-xs-6 text-right warning">
+                        <span class="text-nowrap">{$discount.formated}</span>
+                    </div>
+                </div>
+            {/if}
+
+            {if $cart_total_weight > 0}
+                <div class="row tfoot">
+                    <div class="col col-sm-offset-8 col-lg-offset-9 col-sm-2 col-xs-6 text-right">
+                        <span class="text-muted"><small>{txt key=TEXT_PRODUCTS_WEIGHT}</small></span>
+                    </div>
+                    <div class="col col-sm-2 col-lg-1 col-xs-6 text-right active">
+                        <span class="text-muted text-nowrap">{$cart_total_weight|number_format:2:",":"."} kg</span>
+                    </div>
+                </div>
+            {/if}
+
+            <div class="row tfoot">
+                <div class="col col-sm-offset-8 col-lg-offset-9 col-sm-2 col-xs-6 border-top text-right">
+                    <small><strong>{txt key=TEXT_SUB_TOTAL}</strong></small>
+                </div>
+                <div class="col col-sm-2 col-lg-1 col-xs-6 text-right success border-top">
+                    <span class="text-nowrap">{$cart_total}</span>
+                </div>
+            </div>
+
+            {hook key=cart_total_bottom}
+
+        </div><!-- .div-table -->
+
+        <br />
+
+        <div class="visible-xs">
+            <div class="checkout-bottom-bar">
+                <a href="javascript:history.back();" class="btn-back btn btn-link pull-left">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    {txt key=BUTTON_BACK}
+                </a>
+                <a class="btn-next btn btn-success preloader trigger_ew_2to1_coupon_modal pull-right" href="{link page='checkout' paction='shipping' conn=SSL}">
+                    {txt key=BUTTON_CHECKOUT}
+                    ({$cart_total})
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
+                <div class="clearfix"></div>
+            </div>
+            {hook key=cart_tpl_form_paypal}
+            {hook key=cart_tpl_form}
+            <div class="clearfix"></div>
+            <button type="submit" class="btn btn-default preloader cart-btn-update">
+                <span class="glyphicon glyphicon glyphicon-refresh"></span>
+                <span>{txt key=BUTTON_UPDATE}</span>
+            </button>
+        </div>
+
+        <div class="hidden-xs">
+            <div class="row">
+                <div class="col col-md-12 text-right">
+                    <div class="btn-group">
+                        {hook key=cart_tpl_form_paypal}
+                        {hook key=cart_tpl_form}
+                        <button type="submit" class="btn btn-default preloader cart-btn-update">
+                            <span class="glyphicon glyphicon glyphicon-refresh"></span>
+                            <span>{txt key=BUTTON_UPDATE}</span>
+                        </button>
+                        <a class="btn btn-success preloader trigger_ew_2to1_coupon_modal" href="{link page='checkout' paction='shipping' conn=SSL}">
+                            {txt key=BUTTON_CHECKOUT}
+                        </a>
+                    </div>
+                    <a href="javascript:history.back();" class="btn btn-default pull-left">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="hidden-xs">{txt key=BUTTON_BACK}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        {form type=formend}
+
+        {hook key=ew_2to1_coupon}
+
+        {if $smarty.session.customer->customers_id == 0 &&
+            defined('TEXT_COUPON_LOGIN_INFO') && $smarty.const.TEXT_COUPON_LOGIN_INFO|trim != '' &&
+            defined('XT_COUPONS_CART_PAGE') && $smarty.const.XT_COUPONS_CART_PAGE == 'true' &&
+            defined('XT_COUPONS_LOGIN') && $smarty.const.XT_COUPONS_LOGIN == 'true'}
+            <p class="breaking-headline">
+                {txt key=TEXT_COUPON_HEADLINE}
+            </p>
+            <div class="alert alert-success">
+                <i class="fa fa-info-circle"></i>
+                {txt key=TEXT_COUPON_LOGIN_INFO}
+            </div>
+            <br />
+        {/if}
+
+        {hook key=cart_bottom}
+
+    {else}
+        <h1>{txt key=TEXT_CART}</h1>
+        {$message}
+        <a href="javascript:history.back();" class="btn btn-default">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            {txt key=BUTTON_BACK}
+        </a>
+    {/if}
+
+    {box name=shipping_cost}
+
+</div><!-- #cart -->

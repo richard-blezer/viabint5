@@ -1,0 +1,20 @@
+{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1'}
+
+    {if $show_cart_content == true}
+        <div class="container">
+            <a href="{link page='cart' conn=SSL}" class="cart" data-role="button" data-inline="true">
+                <div class="xtm-icon-32 xtm-icon-cart"></div>
+            </a>
+            <div class="badge">
+                <span>{$content_count}</span>
+            </div>
+        </div>
+    {else}
+        <div class="container">
+            <a href="{link page='cart' conn=SSL}" class="cart" data-role="button" data-inline="true">
+                <div class="xtm-icon-32 xtm-icon-cart"></div>
+            </a>
+        </div>
+    {/if}
+    
+{/if}

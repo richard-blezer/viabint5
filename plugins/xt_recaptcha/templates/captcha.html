@@ -1,0 +1,21 @@
+
+
+    {if $smarty.const._STORE_CAPTCHA == 'ReCaptcha'}
+    <div class="row">
+        <div class="form-group pull-right">
+            <div class="col-sm-9 recaptcha-wrapper"></div>
+        </div>
+    </div>
+    {else}
+    <div class="form-group">
+        <label class="col-sm-3" for="captcha_code">{txt key=TEXT_CAPTCHA}*</label>
+        <div class="col-sm-9">
+            <p id="captcha-img">
+                <img src="{$captcha_link}" alt="{txt key=TEXT_CAPTCHA}"
+                     class="img-responsive img-thumbnail" />
+            </p>
+            {form id=captcha_code type=text name=captcha params='maxlength="30"'}
+        </div>
+    </div>
+    {/if}
+

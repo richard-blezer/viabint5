@@ -1,0 +1,9 @@
+{if $plugin_status.xt_startpage_products == 'true' && $smarty.const.ACTIVATE_XT_STARTPAGE_PRODUCTS_PAGE == 'true'}
+    <div class="startpage-products-container">
+        <div class="product-listing product-listing-parallax wow fadeInRight" data-wow-delay="400ms" data-wow-duration="900ms">
+            <p class="breaking-headline">{txt key=TEXT_EW_VIABIONA_STARTPAGE_RECOMMENDATION}</p>
+            <div class="clearfix"></div>
+            {page name=xt_startpage_products type=user tpl_type='product_listing' tpl='product_listing_startpage.html'}
+        </div>
+    </div>
+{/if}

@@ -1,0 +1,6 @@
+<a href="javascript:void(0);"><span>{txt key=TEXT_BOX_TITLE_MANUFACTURERS}</span></a>
+<ul id="manufacturers-list">
+	{foreach name=aussen item=module_data from=$_manufacturers}
+		<li class="level2"><a href="{$module_data.link}">{$module_data.manufacturers_name|escape:"html"}</a></li>
+	{/foreach}
+</ul>

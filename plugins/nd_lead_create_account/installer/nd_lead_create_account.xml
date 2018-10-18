@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+	<title>Affiliate Plugin - Extension PPL create_account</title>
+	<version>1.0.0</version>
+	<code>nd_lead_create_account</code>
+	<url>http://www.netz-designer.de</url>
+	<description>Partnerprogrammerweiterung PPL create_account</description>
+	<type>marketing</type>
+	<icon>logo_nd.gif</icon>
+	<db_install><![CDATA[
+	]]></db_install>
+	<db_uninstall><![CDATA[
+	]]></db_uninstall>
+	<plugin_code>
+	  <code>
+	    <hook>class.customer.php:_registerCustomer_bottom</hook>
+	    <phpcode><![CDATA[
+	    if(ND_LEAD_CREATE_ACCOUNT_ACTIVATE_PLUGIN == 'true') {
+		    require_once(_SRV_WEBROOT._SRV_WEB_PLUGINS.'nd_lead_create_account/classes/class.nd_lead_create_account.php'); 
+	    	$nd_lead_create_account = new nd_lead_create_account();
+	    	$nd_lead_create_account->newLead();
+	    }
+	    ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	  </code>
+	  <code>
+	    <hook>store_main.php:bottom</hook>
+	    <phpcode><![CDATA[
+	    if(ND_LEAD_CREATE_ACCOUNT_ACTIVATE_PLUGIN == 'true') {
+		    if(!defined(AFFILIATE_LEAD_EXIST)) {
+		    	define('AFFILIATE_LEAD_EXIST', 'true');
+		    }
+	    }
+	    ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	  </code>
+	  <code>
+	    <hook>admin_main.php:bottom</hook>
+	    <phpcode><![CDATA[
+	    if(ND_LEAD_CREATE_ACCOUNT_ACTIVATE_PLUGIN == 'true') {
+		    if(!defined(AFFILIATE_LEAD_EXIST)) {
+		    	define('AFFILIATE_LEAD_EXIST', 'true');
+		    }
+	    }
+	    ]]></phpcode>
+	    <order>1</order>
+	    <active>1</active>
+	  </code>
+	</plugin_code>
+	<configuration>
+	  <config>
+	    <key>ND_LEAD_CREATE_ACCOUNT_ACTIVATE_PLUGIN</key>
+	    <value>true</value>
+	    <type>dropdown</type>
+	    <url>conf_truefalse</url>
+	    <de>
+	      <title>PPL aktivieren</title>
+	      <description>PPL für create_account aktivieren</description>
+	    </de>
+	    <en>
+	      <title>Activate PPL</title>
+	      <description>Activate PPL for create_account</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>ND_LEAD_CREATE_ACCOUNT_PPL_VALUE</key>
+	    <value>1.00</value>
+	    <de>
+	      <title>Pay per Lead Betrag</title>
+	      <description>Betrag für einen Lead create_account.</description>
+	    </de>
+	    <en>
+	      <title>Pay per Lead Value</title>
+	      <description>Value for a lead create_account</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>ND_LEAD_CREATE_ACCOUNT_TIER_VALUE</key>
+	    <value>0.80;0.50;0.30</value>
+	    <de>
+	      <title>PPL Beträge Klassensystem</title>
+	      <description>Individuelle Beträge für die Unterklassen. Zum Beispiel 0.80;0.50;0.30</description>
+	    </de>
+	    <en>
+	      <title>PPL Values Tierlevels</title>
+	      <description>Values for the tierlevels, e.g. 0.80;0.50;0.30</description>
+	    </en>
+	  </config>
+	  <config>
+	    <key>ND_LEAD_CREATE_ACCOUNT_VALID_TIME</key>
+	    <value>14</value>
+	    <de>
+	      <title>Aktivierungszeit</title>
+	      <description>Zeit bis zur automatischen Freigabe des Leads</description>
+	    </de>
+	    <en>
+	      <title>Time to activate</title>
+	      <description>Time until the lead will be automatically activated</description>
+	    </en>
+	  </config>
+	</configuration>
+</xtcommerceplugin>

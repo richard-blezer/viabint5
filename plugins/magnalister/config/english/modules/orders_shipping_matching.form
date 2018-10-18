@@ -1,0 +1,11 @@
+{
+    "orders": {
+        "fields": {
+            "defaultshipping": {
+                "values": {
+                    "matching": "Carry over shipping method from _#_platformName_#_"
+                }
+            }
+        }
+    }
+}

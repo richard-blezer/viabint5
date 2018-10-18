@@ -1,0 +1,19 @@
+{if $categorie_product_description_top_left_html|strip_tags|trim != '' &&
+    $categorie_product_description_top_right_html|strip_tags|trim != ''}
+<div id="categorie-listing" class="hero text-center-xs">
+    <div class="category-top-info row listing">
+        <div class="left-info col-sm-6 col-md-8">
+            <div class="well section">
+                {$categorie_product_description_top_left_html}
+            </div>
+        </div>
+        <div class="right-info col-sm-6 col-md-4 hidden-xs">
+            <div class="panel panel-shadow panel-default section">
+                <div class="panel-body">
+                    {$categorie_product_description_top_right_html}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/if}

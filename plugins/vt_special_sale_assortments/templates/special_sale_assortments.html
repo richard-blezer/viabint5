@@ -1,0 +1,85 @@
+
+<tr>
+    {if $page == 'cart'}    
+        <td></td>
+        <td>
+
+            {if $ssa_group}    
+                {txt key=TEXT_SPECIAL_SALE_ASSORTMENTS_BUNDLE} {$ssag_bundle}<br />
+                {$ssa_group.ssag_name}<br />
+                {*$ssa_group.ssag_short_desc*}<br />
+                {*if $ssa_group.ssag_image != ''}
+                    {img img=$ssa_group.ssag_image type=m_thumb alt=$ssa_group.ssag_name}
+                {/if*}
+            {/if}        
+
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+    {elseif $page == 'checkout'}    
+        <td></td>
+        <td>
+
+            {if $ssa_group}    
+                {txt key=TEXT_SPECIAL_SALE_ASSORTMENTS_BUNDLE} {$ssag_bundle}<br />
+                {$ssa_group.ssag_name}<br />
+                {*$ssa_group.ssag_short_desc*}<br />
+                {*if $ssa_group.ssag_image != ''}
+                    {img img=$ssa_group.ssag_image type=m_thumb alt=$ssa_group.ssag_name}
+                {/if*}
+            {/if}        
+
+        </td>
+        <td></td>
+        <td></td>
+    {elseif $page == 'admin'}
+        <td></td>
+        <td>
+            {if $ssa_group}    
+                {txt key=TEXT_SPECIAL_SALE_ASSORTMENTS_BUNDLE} {$ssag_bundle}<br />
+                {$ssa_group.ssag_name}<br />
+                {*$ssa_group.ssag_short_desc*}<br />
+                {*if $ssa_group.ssag_image != ''}
+                    {img img=$ssa_group.ssag_image type=m_thumb alt=$ssa_group.ssag_name}
+                {/if*}
+            {/if}        
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    {elseif $page == 'orderview'}
+        <td></td>
+        <td>
+            {if $ssa_group}    
+                {txt key=TEXT_SPECIAL_SALE_ASSORTMENTS_BUNDLE} {$ssag_bundle}<br />
+                {$ssa_group.ssag_name}<br />
+                {*$ssa_group.ssag_short_desc*}<br />
+                {*if $ssa_group.ssag_image != ''}
+                    {img img=$ssa_group.ssag_image type=m_thumb alt=$ssa_group.ssag_name}
+                {/if*}
+            {/if}        
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+    {else}
+        <td></td>
+        <td>
+            {if $ssa_group}    
+                {txt key=TEXT_SPECIAL_SALE_ASSORTMENTS_BUNDLE} {$ssag_bundle}<br />
+                {$ssa_group.ssag_name}<br />
+                {*$ssa_group.ssag_short_desc*}<br />
+                {*if $ssa_group.ssag_image != ''}
+                    {img img=$ssa_group.ssag_image type=m_thumb alt=$ssa_group.ssag_name}
+                {/if*}
+            {/if}        
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>    
+    {/if}
+
+
+</tr>

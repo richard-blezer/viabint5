@@ -1,0 +1,12 @@
+
+<ul data-role="listview" data-inset="true">
+    <li data-role="divider" data-theme="c">{txt key=TEXT_LANGUAGE}</li>
+    {foreach name=aussen item=box_data from=$lang_data}       
+        <li>
+            <a href="{link page='dynamic' params='action=change_lang&new_lang' params_value=$box_data.code}">
+                {img img=$box_data.image type=w_media_flags alt=$box_data.name}
+                {$box_data.text}
+            </a>
+        </li>
+    {/foreach}
+</ul> 

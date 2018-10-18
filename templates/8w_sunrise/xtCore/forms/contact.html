@@ -1,0 +1,89 @@
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+
+<div class="left-side {if $isMobile}no-right{/if}" id="contact">
+	<h1>{txt key=TEXT_CONTACT_PAGE}</h1>
+	{$message}
+	<h2>{txt key=TEXT_CONTACT_HEADER}</h2>
+    
+    {if $show_form eq 'true'}
+	<div class="highlightbox">
+		{form type=form name=login action='dynamic' link_params=getParams method=post conn=SSL}
+		{form type=hidden name=action value=send}	
+		<p>{txt key=TEXT_CONTACT_INTRO}</p>	
+		<table width="100%" border="0" cellspacing="4" cellpadding="0" class="form-box">
+			 <tr>
+			   <td style="white-space:nowrap;">{txt key=TEXT_EMAIL}</td>
+			   <td>{form type=text name=email_address params='maxlength="40" size="40"' value=$email_address note=*}</td>
+			 </tr>
+			  <tr>
+			   <td style="white-space:nowrap;">{txt key=TEXT_FIRSTNAME} </td>
+			   <td>{form type=text name=firstname params='maxlength="40" size="40"' value=$firstname note=*}</td>
+			 </tr>
+			  <tr>
+			   <td style="white-space:nowrap;">{txt key=TEXT_LASTNAME}</td>
+			   <td>{form type=text name=lastname params='maxlength="40" size="40"' value=$lastname note=*}</td>
+			 </tr>
+			  <!--<tr>
+			   <td style="white-space:nowrap;"><strong>{txt key=TEXT_COMPANY}</strong> </td>
+			   <td>{form type=text name=company params='maxlength="40" size="40"' value=$company}</td>
+			 </tr>
+			 <tr>
+			  <td style="white-space:nowrap;"><strong>{txt key=TEXT_PHONE}</strong> </td>
+			  <td>{form id=telefone type=text name=telefone params='maxlength="32"' value=$telefone}</td>
+			</tr>
+            <tr>
+			  <td style="white-space:nowrap;"><strong>{txt key=TEXT_MOBILE_PHONE}</strong> </td>
+			  <td>{form id=mobile_phone type=text name=mobile_phone params='maxlength="32"' value=$mobile_phone}</td>
+			</tr>
+			 <tr>
+			   <td style="white-space:nowrap;"><strong>{txt key=TEXT_ORDER_NUMBER}</strong> </td>
+			   <td>{form type=text name=order_id params='maxlength="40" size="40"' value=$order_id}</td>
+			 </tr>-->
+			 <tr>
+			   <td style="white-space:nowrap; vertical-align:top;">{txt key=TEXT_MESSAGE}</td>
+			   <td>{form type=textarea name=customer_message params='cols="34" rows="8"' value=$customer_message}</td>
+			 </tr>
+			 {if $logged_in eq 'false'}
+                {if $recaptcha eq 'true'}
+                    <tr>
+                        <td style="white-space:nowrap;"><strong>{txt key=TEXT_CAPTCHA}:</strong> </td>
+                        <td>{$captcha_link}</td>
+                    </tr>
+                {else}
+                    <tr>
+                        <td style="white-space:nowrap;"><strong>{txt key=TEXT_CAPTCHA}:</strong> </td>
+                        <td><img src="{$captcha_link}" alt="" /></td>
+                    </tr>
+                    <tr>
+                        <td style="white-space:nowrap;"><strong>{txt key=TEXT_CAPTCHA}:</strong> </td>
+                        <td>{form type=text name=captcha params='maxlength="30"'}</td>
+                    </tr>
+                {/if}
+			 {/if}
+			 <tr>
+			   <td style="white-space:nowrap;">&nbsp;</td>
+			   <td>{button_text value=BUTTON_SUBMIT class="btn-submit" type='form'}</td>
+			 </tr>
+		</table>
+
+				
+		{form type=formend}
+		<p>{txt key=TEXT_MUST}</p>
+	</div>
+    {/if}
+
+	<h2>{txt key=TEXT_ORDER_ONLINE}</h2>
+	<div class="highlightbox">
+		{txt key=TEXT_ORDER_ONLNE_INFO}
+	</div>			
+</div>
+{if !$isMobile}
+<div class="right-side boxes">
+  {box name=xt_viabiona_cms type=user tpl=box_our_service.html}
+  {box name=xt_viabiona_cms type=user tpl=box_payment_methods.html}
+</div>
+{/if}
+<div class="clearfix"></div>

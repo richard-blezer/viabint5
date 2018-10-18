@@ -1,0 +1,14 @@
+Hello, {if $customer->customers_id}{$customer->customer_default_address.customers_firstname} {$customer->customer_default_address.customers_lastname},{/if}<br />
+<br />
+Below you find links to track your order.<br />
+<br />
+{foreach item=tracking_info from=$tracking_infos}
+{$tracking_info.shipper_name} <a href="{$tracking_info.shipper_tracking_url}">{$tracking_info.tracking_code}</a><br />
+{/foreach}
+<br />
+
+The tracking links you also find in your customer account {$_system_base_url}{$lang}/customer<br />
+<br />
+
+------------------------------------------------------------------------------------------------------------<br />
+{$_system_footer_html}

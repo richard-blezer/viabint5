@@ -1,0 +1,76 @@
+<div data-role="header">
+    <h1>{txt key=TEXT_CONTACT_PAGE}</h1>
+</div>
+
+
+{$message}
+
+<p>
+    {if $file}
+        {$file}
+    {else}
+        {$data.content_body}
+    {/if}
+</p>
+
+<div>
+    {form novalidate=true type=form name=login action='dynamic' link_params=getParams method=post}
+	{form type=hidden name=action value=send}
+	<p>{txt key=TEXT_CONTACT_INTRO}</p>
+        <table>
+            <tr>
+                <td style="white-space:nowrap;"><strong>{txt key=TEXT_EMAIL} *</strong> </td>
+                <td>{form type=email name=email_address params='maxlength="40" size="40"' value=$email_address}</td>
+            </tr>
+            <tr>
+                <td style="white-space:nowrap;"><strong>{txt key=TEXT_FIRSTNAME} *</strong> </td>
+                <td>{form type=text name=firstname params='maxlength="40" size="40"' value=$firstname}</td>
+            </tr>
+            <tr>
+                <td style="white-space:nowrap;"><strong>{txt key=TEXT_LASTNAME} *</strong> </td>
+                <td>{form type=text name=lastname params='maxlength="40" size="40"' value=$lastname}</td>
+            </tr>
+            <tr>
+                <td style="white-space:nowrap;"><strong>{txt key=TEXT_COMPANY}</strong> </td>
+                <td>{form type=text name=company params='maxlength="40" size="40"' value=$company}</td>
+            </tr>
+            <tr>
+                <td style="white-space:nowrap;"><strong>{txt key=TEXT_ORDER_NUMBER}</strong> </td>
+                <td>{form type=number name=order_id params='maxlength="40" size="40"' value=$order_id}</td>
+            </tr>
+            <tr>
+                <td style="white-space:nowrap;"><strong>{txt key=TEXT_PHONE}</strong></td>
+                <td>{form id=telefone type=text name=telefone params='maxlength="32"' value=$telefone}</td>
+            </tr>
+			<tr>
+			<td style="white-space:nowrap;"><strong>{txt key=TEXT_MOBILE_PHONE}</strong></td>
+                <td>{form id=mobile_phone type=text name=mobile_phone params='maxlength="32"' value=$mobile_phone}</td>
+            </tr>			
+            <tr>
+                <td style="white-space:nowrap; vertical-align:top;"><strong>{txt key=TEXT_MESSAGE}</strong></td>
+                <td>{form type=textarea name=customer_message params='cols="50" rows="15"' value=$customer_message}</td>
+            </tr>
+            {if $logged_in eq 'false'}
+                {if $recaptcha eq 'true'}
+                    <tr>
+                        <td style="white-space:nowrap;"><strong>{txt key=TEXT_CAPTCHA} *:</strong> </td>
+                        <td>{$captcha_link}</td>
+                    </tr>
+
+                {else}
+                    <tr>
+                        <td style="white-space:nowrap;"><strong>{txt key=TEXT_CAPTCHA} *:</strong> </td>
+                        <td><img src="{$captcha_link}" class="captcha" /></td>
+                    </tr>
+                    <tr>
+                        <td style="white-space:nowrap;"><strong>{txt key=TEXT_CAPTCHA} *:</strong> </td>
+                        <td>{form type=text name=captcha params='maxlength="30"'}</td>
+                    </tr>
+                {/if}     
+            {/if}
+            
+        </table>
+        <p>{txt key=TEXT_MUST}</p>
+        <button type="submit">{txt key=BUTTON_SUBMIT}</button>
+    {form type=formend}
+</div>

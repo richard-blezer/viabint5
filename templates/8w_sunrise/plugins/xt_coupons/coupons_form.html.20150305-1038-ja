@@ -1,0 +1,44 @@
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+
+
+{if $arr_coupon == ''}
+<br />
+<h1>{txt key=TEXT_HAS_COUPON_HEADLINE}</h1>
+{*form type=form name=process action='checkout' method=post conn=SSL*}
+{form type=form name=process action='checkout/payment' method=post conn=SSL}
+{form type=hidden name=page_action value=confirmation}
+{form type=hidden name=special value=coupon}
+{form type=text value=$smarty.const.TEXT_COUPON_LABEL onfocus="this.value=''" name=coupon_code params='maxlength="20" size="20"'}
+{button_text params="class='btn-coupon'" value=TEXT_COUPON_BUTTON type='form'}
+{form type=formend}
+{else}
+    {if $arr_coupon.coupon_token_code != ''}
+    <p>{txt key=TEXT_COUPON_REDEEMED} = {$arr_coupon.coupon_token_code}</p>
+
+    {else}
+    <p>{txt key=TEXT_COUPON_REDEEMED} = {$arr_coupon.coupon_code}</p>
+    {/if}
+{/if}
+
+
+
+{*if $arr_coupon == ''}
+<br />
+<h3>{txt key=TEXT_HAS_COUPON_HEADLINE}</h3>
+{form type=form name=process action='cart' method=post conn=SSL}
+{form type=hidden name=special value=coupon*}
+{*txt key=TEXT_COUPON_LABEL*}{*form type=text value=$smarty.const.TEXT_COUPON_LABEL onfocus="this.value=''" name=coupon_code params='maxlength="20" size="20"'}<br />
+{button_text params="class='btn-coupon'" value=TEXT_COUPON_BUTTON type='form'}</p>
+{form type=formend}
+
+{else}
+    {if $arr_coupon.coupon_token_code != ''}
+    {txt key=TEXT_COUPON_REDEEMED} = <b>{$arr_coupon.coupon_token_code}</b>
+
+    {else}
+    {txt key=TEXT_COUPON_REDEEMED} = <b>{$arr_coupon.coupon_code}</b>
+    {/if}
+{/if*}

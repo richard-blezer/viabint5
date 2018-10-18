@@ -1,0 +1,107 @@
+{if !$included}
+    {hook key=ew_viabiona_listing_switch}
+{/if}
+
+{if $ew_viabiona_listing_switch_status && !$included}
+    {include file=$ew_viabiona_listing_switch_status included=true}
+{else}
+    <!--<div class="hidden-xs">-->
+        <!--{$categories}-->
+    <!--</div>-->
+    <div class="product-listing product-listing-v2 product-listing-nospace">
+        {if $product_listing}
+
+            {if $manufacturer.MANUFACTURER.manufacturers_image}<div class="manufacturers-image">{img img=$manufacturer.MANUFACTURER.manufacturers_image type=m_org class="img-responsive img-thumbnail"}</div>{/if}
+
+            {if $heading_text}
+                {if !$smarty.get.page || $smarty.get.page == 'index'}
+                    <p class="h2 index-heading">{$heading_text}</p>
+                {else}
+                    <p class="h2 {$smarty.get.page}-heading">{$heading_text}</p>
+                {/if}
+            {/if}
+            {if $smarty.get.page == 'search'}
+                {include file="/xtCore/pages/search.html" included=true type="tpl_include"}
+            {/if}
+
+            {if $PRODUCTS_DROPDOWN}{$PRODUCTS_DROPDOWN}{/if}
+            {if $manufacturer && $manufacturer.MANUFACTURER.manufacturers_description|trim != ''}<div class="manufacturers-description text-word-wrap">{$manufacturer.MANUFACTURER.manufacturers_description}</div>{/if}
+            {if $MANUFACTURER_DROPDOWN}{if $MANUFACTURER_DROPDOWN}{$MANUFACTURER_DROPDOWN}{/if}{/if}
+
+            {if $extended && $extended == '1' || $page == 'cart'}
+	            <div class="pcontent-part">
+	            	<p class="breaking-headline">{$headline}</p>
+	            </div>
+            {else}
+            	<hr class="listing-split"/>
+            {/if}
+            {if $NAVIGATION_PAGES|strip_tags|trim != '' || $sort_dropdown.options || $ew_viabiona_listing_switch_buttons}
+                <div class="row products-sort-pages top{if !$smarty.get.page || $smarty.get.page == 'index'} pull-right{/if} hidden-xs">
+                    {if $sort_dropdown.options}
+                        <div class="col col-md-4 products-sort">
+                            {php}
+                                $sortDropdown = $this->get_template_vars('sort_dropdown');
+                                $sortDropdown['options'][0]['text'] = trim(str_replace(':', '', TEXT_SORT_BY));
+                                $this->assign('sort_dropdown', $sortDropdown);
+                            {/php}
+                            {form type=form name=sort_dropdown action='dynamic' method=get}
+                                {if isset($current_manufacturer_id)}{form type=hidden name=page value='manufacturers'} {else} {form type=hidden name=page value='categorie'} {/if}
+                                {if isset($current_category_id)}{form type=hidden name=cat value=$current_category_id}{/if}
+                                {if isset($current_manufacturer_id)}{form type=hidden name=mnf value=$current_manufacturer_id}{/if}
+                                {form class="form-control" type=select name=sorting value=$sort_dropdown.options default=$sort_default onchange='this.form.submit();'}
+                            {form type=formend}
+                        </div><!-- .products-sort -->
+                        <div class="col col-md-8 navigation-pages">
+                            <div class="btn-toolbar pull-right" role="toolbar">
+                                {$ew_viabiona_listing_switch_buttons}
+                                {$NAVIGATION_PAGES}
+                            </div>
+                        </div><!-- .navigation-pages -->
+                    {else}
+                        <div class="col col-md-12 navigation-pages">
+                            <div class="btn-toolbar pull-right" role="toolbar">
+                                {$ew_viabiona_listing_switch_buttons}
+                                {$NAVIGATION_PAGES}
+                            </div>
+                        </div><!-- .navigation-pages -->
+                    {/if}
+                </div><!-- .products-sort-pages -->
+                <div class="clearfix"></div>
+            {/if}
+            {if $extended && $extended == '1' || $page == 'cart'}
+
+            {else}
+                <br />
+            {/if}
+
+            <div class="listing equalize-nothing no-image-height-helper">
+	            <div class="row ew_row">
+	                {foreach name=listing item=module_data from=$product_listing}
+	                    <div class="product-listing-v2-row col col-xs-12{if $smarty.foreach.listing.first} col-first{elseif $smarty.foreach.listing.last} col-last{/if}">
+	                        {include file="$selected_template/includes/panel_product_listing.html" listing_version="v2"}
+	                    </div><!-- .col -->
+	                {/foreach}
+	            </div><!-- .row -->
+            </div><!-- .listing -->
+
+            {if $NAVIGATION_PAGES}
+                <div class="row products-sort-pages bottom">
+                    <div class="col-md-12 navigation-pages text-right">
+                        {$NAVIGATION_PAGES}
+                    </div><!-- .navigation-pages -->
+                </div><!-- .products-sort-pages -->
+            {/if}
+        {/if}
+
+        {$error_listing}
+
+        {if $category_data.categories_description_bottom}
+            <hr />
+            <div id="categorie-description-bottom" class="textstyles text-word-wrap text-muted">{$category_data.categories_description_bottom}</div>
+        {/if}
+    </div>
+<!-- SEO TEXT von oben nach unten -->
+<div class="hidden-xs">
+    {$categories}
+</div>
+{/if}

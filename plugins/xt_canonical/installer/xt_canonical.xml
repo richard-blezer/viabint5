@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+		<title>Canonical Tags</title>
+		<version>1.1.1</version>
+		<code>xt_canonical</code>
+		<url>http://www.xt-commerce.com</url>
+		<type>seo</type>
+		<icon>xt-commerce_logo.jpg</icon>
+		<developer>xt:Commerce</developer>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=22]]></marketplace_link>
+		<db_install><![CDATA[
+			if (!$this->_FieldExists('products_canonical_master',TABLE_PRODUCTS)) 
+				$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD `products_canonical_master` INT( 1 ) NOT NULL DEFAULT '0';");
+		]]></db_install>
+		<db_uninstall><![CDATA[
+			if ($this->_FieldExists('products_canonical_master',TABLE_PRODUCTS)) 
+				$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." DROP `products_canonical_master`");
+		]]></db_uninstall>
+		<minimumupdateversion>1.0.6</minimumupdateversion>
+		<db_update>
+			<update>
+				<version>1.0.6</version>
+				<to_version>1.0.7</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+			<update>
+				<version>1.0.7</version>
+				<to_version>1.0.8</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+			<update>
+				<version>1.0.8</version>
+				<to_version>1.0.9</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+			<update>
+				<version>1.0.9</version>
+				<to_version>1.1.0</to_version>
+				<code><![CDATA[
+					]]>
+				</code>
+			</update>
+            <update>
+                <version>1.1.0</version>
+                <to_version>1.1.1</to_version>
+                <code><![CDATA[
+					]]>
+                </code>
+            </update>
+        </db_update>
+		<plugin_code>
+			<code>
+				<hook>class.meta_tags.php:icra</hook>
+				<phpcode><![CDATA[
+					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_canonical/hooks/class_meta_tags_php_icra.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.product.php:_get_data</hook>
+				<phpcode><![CDATA[
+					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_canonical/hooks/class_product_php__get_data.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+		</plugin_code>
+		<configuration>
+			<config>
+				<key>XT_CANONICAL_APPLY_TO_ALL_SLAVES</key>
+				<type>dropdown</type>
+				<url>conf_truefalse</url>
+				<value>false</value>
+					<de>
+						<title>Master Url bei allen Slaves?</title>
+					</de>
+					<en>
+						<title>Use Master Url for all Slaves?</title>
+					</en>
+					<es>
+						<title>¿Url Maestro de todos los esclavos?</title>
+					</es>
+					<bp>
+						<title>Usar Master URL para todos escravos?</title>
+					</bp>
+			</config>
+		</configuration>
+</xtcommerceplugin>

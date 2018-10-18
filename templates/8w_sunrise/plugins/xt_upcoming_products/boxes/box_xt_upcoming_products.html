@@ -1,0 +1,62 @@
+<div id="box-xt-upcoming-products" class="box">
+
+	<div class="headline">
+		{if $_show_more_link == true}
+			<h2><a href="{link page='xt_upcoming_products' conn=SSL}" title="{txt key=TEXT_HEADING_UPCOMING_PRODUCTS}">{txt key=TEXT_HEADING_UPCOMING_PRODUCTS}</a></h2>
+		{else}
+			<h2>{txt key=TEXT_HEADING_UPCOMING_PRODUCTS}</h2>
+		{/if}
+	</div>
+	
+	<div class="txt">
+		<div class="txt-inner">
+			<table border="0" width="100%" >
+			<tr>
+			{foreach key=key name=aussen item=products_data from=$_upcoming_products}
+				<td width="33%">
+				{*
+				{if $key == 0}
+					<div class="first-product">
+				{elseif $key == 1}
+					</div><!-- .first-product -->
+					<div class="more-products">
+				{/if}
+				*}
+				<div class="product p-{$key} clearfix">
+			
+					<div class="product-image">
+						<a href="{$products_data.products_link}">{img img=$products_data.products_image type=m_sunrise-thumb alt=$products_data.products_name|escape:"html"}</a>
+					</div>
+					<div class="product-content">
+						<a class="name" href="{$products_data.products_link}">{$products_data.products_name|escape:"html"}</a>
+						{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $products_data.products_price.formated neq ''}
+							<p class="price">{$products_data.products_price.formated}</p>
+							{form type=form name=product action='dynamic' link_params=getParams method=post}
+							{form type=hidden name=action value=add_product}
+							{form type=hidden name=product value=$products_data.products_id}
+							{form type=hidden name=qty value=1}
+								{button text=$smarty.const.BUTTON_ADD_CART file='button_in_cart_2.gif' type='form' btn_template='tpl_button_3.gif' space_right='40'}
+							{form type=formend}
+						{/if}
+					</div>
+				</div>
+				
+				{*
+				{if $key+1 == $_special_products|@count}
+					</div><!-- .more-products -->
+					{if $_special_products|@count > 1}
+						<div class="show-more">
+							<a href="javascript:void(0);">{txt key=TEXT_8WORKS_SUNRISE_READ_MORE} {txt key=TEXT_HEADING_SPECIAL_PRODUCTS}</a>
+						</div>
+					{/if}
+				{/if}
+				*}
+				</td>	
+			{/foreach}
+		</tr>
+		</table>
+		</div>
+	</div>
+	<div class="box-bottom"></div>
+	
+</div>

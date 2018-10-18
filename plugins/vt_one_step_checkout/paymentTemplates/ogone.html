@@ -1,0 +1,19 @@
+<table class="paymentblock" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr>
+  	<td class="header" width="10px">{if $payment_selected == "pay_ogone"}
+  		{form type=radio name=selected_payment value=$payment_code checked=true}
+  	{else}
+  		{form type=radio name=selected_payment value=$payment_code}
+  		{/if}
+  	</td>
+  	<td class="header"><strong>{txt key=TEXT_PAYMENT_CC}</strong></td>
+    <td class="header" align="right">{$payment_price.formated}</td>
+  </tr>
+  <tr>
+  <td colspan="3">
+  	<img src="media/payment/mastercard_small.jpg" border="0"/>
+  	<img src="media/payment/visa_small.jpg" border="0"/>
+  	<img src="media/payment/amex_small.jpg" border="0"/>
+  </td>
+  </tr>
+</table>

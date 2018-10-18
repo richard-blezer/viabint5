@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Master Slave</title>
+    <version>1.2.9</version>
+    <code>xt_master_slave</code>
+    <url>http://www.xt-commerce.com</url>
+    <description>Master Slave Products</description>
+    <type>core</type>
+    <icon>xt-commerce_logo.jpg</icon>
+	<developer>xt:Commerce</developer>
+<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=917527]]></documentation_link>
+<marketplace_link></marketplace_link>
+    <db_install><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/db_install.php';
+]]></db_install>
+    <db_uninstall>
+<![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/db_uninstall.php';
+]]>
+</db_uninstall>
+	
+	<minimumupdateversion>1.0.1</minimumupdateversion>
+	<db_update>
+		<update>
+			<version>1.0.1</version>
+			<to_version>1.0.3</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.0.3</version>
+			<to_version>1.1.0</to_version>
+			<code><![CDATA[
+				$db->Execute("
+				CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_plg_products_attributes_templates (
+				attributes_templates_id int(11) NOT NULL auto_increment,
+				  attributes_templates_name varchar(255) default NULL,
+				  PRIMARY KEY  (attributes_templates_id)
+				) DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+				");
+
+				$db->Execute("
+				INSERT INTO ".DB_PREFIX."_plg_products_attributes_templates (`attributes_templates_id`, `attributes_templates_name`) VALUES
+				(1, 'select'),
+				(2, 'images');
+				");
+
+
+				$db->Execute("
+				CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_tmp_products (
+				  `products_id` int(11) NOT NULL AUTO_INCREMENT,
+				  `external_id` varchar(255) DEFAULT NULL,
+				  `permission_id` int(11) DEFAULT NULL,
+				  `products_owner` int(11) NOT NULL DEFAULT '1',
+				  `products_ean` varchar(128) DEFAULT NULL,
+				  `products_quantity` decimal(15,2) DEFAULT NULL,
+				  `products_average_quantity` int(11) DEFAULT '0',
+				  `products_shippingtime` int(4) DEFAULT NULL,
+				  `products_model` varchar(255) DEFAULT NULL,
+				  `products_master_model` varchar(255) DEFAULT NULL,
+				  `products_master_flag` tinyint(1) DEFAULT NULL,
+				  `products_option_template` varchar(255) DEFAULT NULL,
+				  `products_option_list_template` varchar(255) DEFAULT NULL,
+				  `products_option_master_price` varchar(3) DEFAULT NULL,
+				  `price_flag_graduated_all` int(1) DEFAULT '0',
+				  `price_flag_graduated_1` int(1) DEFAULT '0',
+				  `price_flag_graduated_2` int(1) DEFAULT '0',
+				  `price_flag_graduated_3` int(1) DEFAULT '0',
+				  `products_sort` int(4) DEFAULT '0',
+				  `products_image` varchar(64) DEFAULT NULL,
+				  `products_price` decimal(15,4) DEFAULT NULL,
+				  `date_added` datetime DEFAULT NULL,
+				  `last_modified` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+				  `date_available` datetime DEFAULT NULL,
+				  `products_weight` decimal(15,4) DEFAULT NULL,
+				  `products_status` tinyint(1) DEFAULT NULL,
+				  `products_tax_class_id` int(11) DEFAULT NULL,
+				  `product_template` varchar(64) DEFAULT NULL,
+				  `product_list_template` varchar(64) DEFAULT NULL,
+				  `manufacturers_id` int(11) DEFAULT NULL,
+				  `products_ordered` int(11) DEFAULT '0',
+				  `products_transactions` int(11) DEFAULT '0',
+				  `products_fsk18` int(1) DEFAULT '0',
+				  `products_vpe` int(11) DEFAULT NULL,
+				  `products_vpe_status` int(1) DEFAULT '0',
+				  `products_vpe_value` decimal(15,4) DEFAULT '0.0000',
+				  `products_startpage` int(1) DEFAULT '0',
+				  `products_startpage_sort` int(4) DEFAULT '0',
+				  `products_average_rating` decimal(14,4) DEFAULT '0.0000',
+				  `products_rating_count` int(11) DEFAULT '0',
+				  `products_digital` int(1) DEFAULT '0',
+				  `flag_has_specials` int(1) NOT NULL DEFAULT '0',
+				  `products_serials` int(1) DEFAULT '0',
+				  `total_downloads` int(11) DEFAULT '0',
+				  `google_product_cat` varchar(255) NOT NULL,
+				  `ekomi_allow` int(1) NOT NULL DEFAULT '1',
+				  `products_name` varchar(255) NOT NULL,
+				  `main_products_id` int(11) NOT NULL,
+				  `attributes` varchar(255) NOT NULL,
+				  `saved` int(1) NOT NULL,
+				  PRIMARY KEY (`products_id`),
+				  KEY `idx_products_date_added` (`date_added`),
+				  KEY `products_status` (`products_status`,`products_startpage`),
+				  KEY `products_ordered` (`products_ordered`),
+				  KEY `manufacturers_id` (`manufacturers_id`)
+				) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+				");
+
+				$db->Execute("
+				CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_tmp_plg_products_to_attributes (
+				  `products_id` int(11) NOT NULL,
+				  `attributes_id` int(11) NOT NULL,
+				  `attributes_parent_id` int(11) NOT NULL,
+				  `main` tinyint(4) NOT NULL,
+				  PRIMARY KEY (`products_id`,`attributes_id`),
+				  KEY `attributes_id` (`attributes_id`)
+				) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+				");
+				
+				$db->Execute("ALTER TABLE ".DB_PREFIX."_plg_products_attributes ADD attributes_templates_id int(11) NOT NULL;");
+				$db->Execute("ALTER TABLE ".TABLE_PRODUCTS." ADD products_image_from_master TINYINT( 1 ) NULL ;");
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.0</version>
+			<to_version>1.1.1</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.1</version>
+			<to_version>1.1.2</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.2</version>
+			<to_version>1.1.3</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.3</version>
+			<to_version>1.1.4</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.4</version>
+			<to_version>1.1.5</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.5</version>
+			<to_version>1.1.6</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.6</version>
+			<to_version>1.1.7</to_version>
+			<code><![CDATA[
+					$db->Execute("ALTER TABLE ".DB_PREFIX."_tmp_products ADD `name_changed` TINYINT NOT NULL ;");
+					$db->Execute("ALTER TABLE ".DB_PREFIX."_products ADD `products_master_slave_order` INT NOT NULL AFTER `products_image_from_master` ;");
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.1.7</version>
+			<to_version>1.1.8</to_version>
+			<code><![CDATA[
+				]]>
+			</code>	
+		</update>
+		<update>
+			<version>1.1.8</version>
+			<to_version>1.1.9</to_version>
+			<code><![CDATA[
+				]]>
+			</code>	
+		</update>
+        <update>
+            <version>1.1.9</version>
+            <to_version>1.2.0</to_version>
+            <code><![CDATA[
+                $db->Execute("ALTER TABLE " . TABLE_ORDERS_PRODUCTS . " ADD (`product_options` blob)");
+				]]>
+            </code>
+        </update>
+        <update>
+            <version>1.2.0</version>
+            <to_version>1.2.1</to_version>
+            <code><![CDATA[
+				]]>
+            </code>
+        </update>
+        <update>
+            <version>1.2.1</version>
+            <to_version>1.2.2</to_version>
+            <code><![CDATA[
+				]]>
+            </code>
+        </update>
+        <update>
+            <version>1.2.2</version>
+            <to_version>1.2.3</to_version>
+            <code><![CDATA[
+				]]>
+            </code>
+        </update>
+		        <update>
+            <version>1.2.3</version>
+            <to_version>1.2.4</to_version>
+            <code><![CDATA[
+				]]>
+            </code>
+        </update>
+        <update>
+            <version>1.2.4</version>
+            <to_version>1.2.5</to_version>
+            <code><![CDATA[
+				]]>
+            </code>
+        </update>
+		<update>
+            <version>1.2.5</version>
+            <to_version>1.2.6</to_version>
+            <code><![CDATA[
+				]]>
+            </code>
+        </update>
+		<update>
+            <version>1.2.6</version>
+            <to_version>1.2.7</to_version>
+            <code><![CDATA[
+				]]>
+            </code>
+        </update>
+        <update>
+            <version>1.2.7</version>
+            <to_version>1.2.8</to_version>
+            <code><![CDATA[]]></code>
+        </update>
+        <update>
+            <version>1.2.8</version>
+            <to_version>1.2.9</to_version>
+            <code><![CDATA[]]></code>
+        </update>
+    </db_update>
+    <plugin_code>
+        <code>
+            <hook>class.filter_controller.php:__construct</hook>
+            <phpcode>
+                <![CDATA[
+                include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.filter_controller.php.__construct.php';
+                ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    	 <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode>
+                <![CDATA[define('PAGE_XT_MASTER_SLAVE', _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/pages/xt_master_slave.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+        <code>
+            <hook>store_main.php:bottom</hook>
+            <phpcode><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/store_main.php_bottom.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>product_info_tpl_options</hook>
+            <phpcode><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/product_info_tpl_options.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>product_info_tpl_productlist</hook>
+            <phpcode><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/product_info_tpl_list.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.order.php:_buildProductData_data</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.order._buildProductData_data.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>cart_xt_options</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/cart_xt_options.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>xt_orders_invoices:_buildData_bottom</hook>
+            <phpcode><![CDATA[
+                include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/xt_orders_invoices._buildData_bottom.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:BuildData_bottom</hook>
+            <phpcode><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product.php_BuildData_bottom.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.getProductSQL_query.php:F_Listing</hook>
+            <phpcode><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.getProductSQL_query.php_F_Listing.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:_get_data</hook>
+            <phpcode><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product.php__get_data.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.product.php:_get_bottom</hook>
+            <phpcode><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product.php__get_bottom.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.product.php:_delete_bottom</hook>
+            <phpcode><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product.php__delete_bottom.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.product.php:_set_perm</hook>
+            <phpcode><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product.php__set_perm.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <code>
+            <hook>class.product.php:_getParams_row_actions</hook>
+            <phpcode><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product.php__getParams_row_actions.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>admin_main.php:bottom</hook>
+            <phpcode><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/admin_main.php_bottom.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>admin_dropdown.php:dropdown</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/admin_dropdown.php_dropdown.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		<code>
+			<hook>styles.php:bottom</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT.'plugins/xt_master_slave/hooks/styles.phpbottom.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		
+		<code>
+			<hook>ejsadmin.php:css_styles</hook>
+			<phpcode><![CDATA[
+			include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/css/ejsadmin.phpcss_styles.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+            <hook>class.cart.php:_updateCart_data</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.cart.php_updateCart_data.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.search.php:_search_filter</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.search.php_search_filter.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product_sql_query.php:F_Sorting_price</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product_sql_query.phpF_Sorting_price.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product_sql_query.php:F_Sorting_price_desc</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product_sql_query.phpF_Sorting_price_desc.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		 <code>
+            <hook>class.generated_slaves.php:_getParams_row_actions</hook>
+            <phpcode><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.generated_slaves.php__getParams_row_actions.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		<code>
+            <hook>class.product_sql_query.php:F_Sorting_order</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product_sql_query.phpF_Sorting_order.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product_sql_query.php:F_Sorting_order_desc</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product_sql_query.phpF_Sorting_order_desc.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_product.php:top</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/module_product.phptop.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		<code>
+            <hook>class.xt_cart_popup.php:add_product_bottom</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.xt_cart_popup.phpadd_product_bottom.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		<code>
+            <hook>class.product.php:getGroupPrice_top</hook>
+            <phpcode><![CDATA[
+            include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/class.product.phpgetGroupPrice_top.php';
+]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		 <code>
+			<hook>form_handler.php:add_product_top</hook>
+			<phpcode>
+				<![CDATA[
+				include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_master_slave/hooks/form_handler.phpadd_product_top.php';
+				]]>
+			</phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+    </plugin_code>
+    <configuration>
+        <config>
+            <key>XT_MASTER_SLAVE_ACTIVE</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Status</title>
+                <description>an / aus</description>
+            </de>
+            <en>
+                <title>Status</title>
+                <description>on / off</description>
+            </en>
+            <es>
+                <title>Estado</title>
+                <description>encendido / apagado</description>
+            </es>
+            <bp>
+                <title>Status</title>
+                <description>on / off</description>
+            </bp>			
+        </config>
+        <config>
+            <key>XT_MASTER_SLAVE_FILTER_ACTIVE</key>
+            <type>hidden</type>
+            <value>0</value>
+            <!--value>true</value-->
+            <!--type>dropdown</type-->
+            <!--url>conf_truefalse</url-->
+            <de>
+                <title>Filter status</title>
+            </de>
+            <en>
+                <title>Filter status</title>
+            </en>
+            <es>
+                <title>Filter status</title>
+            </es>
+            <bp>
+                <title>Filter status</title>
+            </bp>
+        </config>
+        <config>
+            <key>XT_MASTER_SLAVE_FILTER_SORT</key>
+            <type>hidden</type>
+            <value>0</value>
+            <!--type>textfield</type-->
+            <!--value>0</value-->
+            <de>
+                <title>Filter Sort Order</title>
+            </de>
+            <en>
+                <title>Filter Sort Order</title>
+            </en>
+            <es>
+                <title>Filter Sort Order</title>
+            </es>
+        </config>
+        <config>
+            <key>_PLUGIN_MASTER_SLAVE_REDIRECT_TO_SLAVE</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>plg_xt_master_slave_redirect_to_slaves</url>
+            <de>
+                <title>Weiterleitung auf Slaveartikel</title>
+                <description>Zeige Slaveartikel wenn nur noch eine Auswahl bleibt</description>
+            </de>
+            <en>
+                <title>Master to slave redirect</title>
+                <description>Master to slave redirect</description>
+            </en>
+            <es>
+                <title>Transferencia a artículos esclavos</title>
+                <description>Ver artículos esclavos, si sólo queda una opción</description>
+            </es>
+            <bp>
+                <title>Transferência de artigo</title>
+                <description>Transferência de artigo</description>
+            </bp>				
+        </config>
+        <config>
+            <key>_PLUGIN_MASTER_SLAVE_SHOW_OPTIONS</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Anzeige Optionsauswahl</title>
+            </de>
+            <en>
+                <title>Show Option Selection</title>
+            </en>
+            <es>
+                <title>Ver selección de opciones</title>
+            </es>
+            <bp>
+                <title>Mostrar Opção Selecionada</title>
+            </bp>			
+        </config>
+        <config>
+            <key>_PLUGIN_MASTER_SLAVE_SHOW_SLAVE_LIST</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Anzeige Slaveartikel Liste</title>
+            </de>
+            <en>
+                <title>Show List with Slaveproducts</title>
+            </en>
+            <es>
+                <title>Ver lista de productos esclavos</title>
+            </es>
+            <bp>
+                <title>Mostrar lista de produtos</title>
+            </bp>				
+        </config>
+        <config>
+            <key>_PLUGIN_MASTER_SLAVE_SHOW_MAX_PRODUCTS</key>
+			<type>hidden</type>
+            <value>10</value>
+            <de>
+                <title>Slaveartikel Liste</title>
+            </de>
+            <en>
+                <title>Slaveproducts List</title>
+            </en>
+            <es>
+                <title>Lista de productos esclavos</title>
+            </es>
+            <bp>
+                <title>Lista de produtos</title>
+            </bp>
+        </config>
+        <config>
+            <key>XT_MASTER_SLAVE_LOAD_MASTER_IMAGE_IN_SLAVE</key>
+            <type>dropdown</type>
+            <value>false</value>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Lade Master Bild in Slaves</title>
+            </de>
+            <en>
+                <title>Load Master Image in Slave</title>
+            </en>
+            <es>
+                <title>Load Master Image in Slave</title>
+            </es>
+            <bp>
+                <title>Carregar imagem master</title>
+            </bp>
+        </config>
+        <config>
+            <key>XT_MASTER_SLAVE_SHOP_SEARCH</key>
+            <type>dropdown</type>
+            <value>master</value>
+            <url>plg_xt_master_slave_shop_search</url>
+            <de>
+                <title>Produkte in der Shop Suche</title>
+            </de>
+            <en>
+                <title>Products in Shop Search</title>
+            </en>
+            <es>
+                <title>Products in Shop Search</title>
+            </es>
+            <bp>
+                <title>Pesquisar na Loja</title>
+            </bp>
+        </config>
+		<config>
+            <key>XT_MASTER_SLAVE_FILTERLIST_ON_SELECTION</key>
+            <type>dropdown</type>
+            <value>false</value>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Slave-Liste Filtern nach auswahl</title>
+            </de>
+            <en>
+                <title>Update Slavelist on selection</title>
+            </en>
+            <es>
+                <title>Update Slavelist on selection</title>
+            </es>
+            <bp>
+                <title>Update Slavelist on selection</title>
+            </bp>
+        </config>
+		<config>
+            <key>XT_MASTER_SLAVE_CONF_SHOW_RESET</key>
+            <type>dropdown</type>
+            <value>false</value>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Zeige Aufheben-Knopf</title>
+            </de>
+            <en>
+                <title>Show Cancel button</title>
+            </en>
+            <es>
+                <title>Vere botón de cancelación</title>
+            </es>
+        </config>
+		<config>
+            <key>XT_MASTER_SLAVE_INHERIT_ASSIGNED_MASTER_IMAGES</key>
+            <type>dropdown</type>
+            <value>true</value>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Inherit assigned master images</title>
+            </de>
+            <en>
+                <title>Inherit assigned master images</title>
+            </en>
+            <es>
+                <title>Inherit assigned master images</title>
+            </es>
+        </config>
+        <config>
+            <key>XT_MASTER_SLAVE_SLAVE_ORDER</key>
+            <type>dropdown</type>
+            <value>ASC</value>
+            <url>status_ascdesc</url>
+            <de>
+                <title>Slave Reihenfolge in Listen</title>
+            </de>
+            <en>
+                <title>Slave sorting in list</title>
+            </en>
+            <es>
+                <title>Slave sorting in list</title>
+            </es>
+        </config>
+		<config>
+            <key>XT_MASTER_SLAVE_SUM_SLAVE_QUANTITY_FOR_GRADUATED_PRICE</key>
+            <type>dropdown</type>
+            <value>false</value>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Sum slaves quantity for graduated price</title>
+            </de>
+            <en>
+                <title>Sum slaves quantity for graduated price</title>
+            </en>
+            <es>
+                <title>Sum slaves quantity for graduated price</title>
+            </es>
+        </config>
+    </configuration>
+</xtcommerceplugin>

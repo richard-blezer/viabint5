@@ -1,0 +1,44 @@
+{if $language eq 'de'}
+<!-- Trusted Shops Siegel -->
+<div id="tsBox" style="margin-bottom:20px;">
+	<div style="background:url(plugins/xt_trusted_shops/images/bg_yellow.jpg) repeat left top;border:1px solid #c0c0c0;text-align:center;padding:5px" id="tsInnerBox">
+		<div id="tsSeal">
+			<a target="_blank" href="https://www.trustedshops.de/shop/certificate.php?shop_id={$shop_id}" title="Klicken Sie auf das G&uuml;tesiegel, um die G&uuml;ltigkeit zu pr&uuml;fen!"><img src="plugins/xt_trusted_shops/images/trustedshops_m.png" alt="Klicken Sie auf das G&uuml;tesiegel, um die G&uuml;ltigkeit zu pr&uuml;fen!" /></a>
+		</div>
+		<div id="tsText" style="padding-top:5px">
+			<a style="text-decoration:underline;color:#000;" title="Mehr Informationen zu {$shop_name}" href="http://www.trustedshops.de/profil/{$shop_name}_{$shop_id}.html" target="_blank">{$shop_name}</a> <span style="text-decoration:none;color:#000;">wurde von Trusted Shops erfolgreich gepr&uuml;ft: Sicher einkaufen mit</span> <a style="text-decoration:underline;color:#000;" href="http://www.trustedshops.de/info/garantiebedingungen/" target="_blank">K&auml;uferschutz.</a> <a style="text-decoration:none;color:#000;" title="Mehr Informationen zu {$shop_name}" href="http://www.trustedshops.de/profil/{$shop_name}_{$shop_id}.html" target="_blank">Mehr...</a>
+		</div>
+	</div>
+</div>
+<!-- / Trusted Shops Siegel -->
+{/if}
+
+{if $language eq 'en'}
+<!-- Trusted Shops Siegel -->
+<div id="tsBox" style="margin-bottom:20px;">
+	<div style="background: url(plugins/xt_trusted_shops/images/bg_yellow.jpg) repeat left top;border:1px solid #c0c0c0;text-align:center;padding:5px" id="tsInnerBox">
+		<div id="tsSeal">
+			<a target="_blank" href="https://www.trustedshops.com/shop/certificate.php?shop_id={$shop_id}" title="Click on the seal to check validity!"><img src="plugins/xt_trusted_shops/images/trustedshops_m.png" alt="Click on the seal to check validity!" /></a>
+		</div>
+		<div id="tsText" style="padding-top:5px">
+			<a style="text-decoration:underline;color:#000;" title="Information about {$shop_name}" href="http://www.trustedshops.com/profile/{$shop_name}_{$shop_id}.html" target="_blank">{$shop_name}</a> <span style="text-decoration:none;color:#000;"> is a certified online shop with</span> <a style="text-decoration:underline;color:#000;" href="http://www.trustedshops.com/shop/protection_conditions.php?shop_id={$shop_id}" target="_blank">Trusted Shops Buyer Protection.</a> <a style="text-decoration:none;color:#000;" title="Mehr Informationen zu {$shop_name}" href="http://www.trustedshops.com/profile/{$shop_name}_{$shop_id}.html" target="_blank">More...</a>
+		</div>
+	</div>
+</div>
+<!-- / Trusted Shops Siegel -->
+{/if}
+
+{if $language eq 'fr'}
+<!-- Trusted Shops Seal -->
+<div id="tsBox" style="margin-bottom:20px;">
+	<div style="background: url(plugins/xt_trusted_shops/images/bg_yellow.jpg) repeat left top; border:1px solid #c0c0c0; text-align:center; padding: 5px" id="tsInnerBox">
+		<div id="tsSeal">
+			<a target="_blank" href="https://www.trustedshops.fr/shop/certificate.php?shop_id={$shop_id}" title="Cliquez sur le label de qualit&eacute; pour en contr&ocirc;ler la validit&eacute;!"><img src="plugins/xt_trusted_shops/images/trustedshops_m.png" alt="Cliquez sur le label de qualit&eacute; pour en contr&ocirc;ler la validit&eacute;!" /></a>
+		</div>
+		<div id="tsText" style="padding-top: 5px">
+			<a style="text-decoration:underline;color:#000;" title="Pour plus d'informations sur {$shop_name}" href="http://www.trustedshops.fr/boutique_en_ligne/profil/{$shop_name}_{$shop_id}.html" target="_blank">{$shop_name}</a> <span style="text-decoration:none;color:#000;">est un site marchand en ligne agr&eacute;&eacute; Trusted Shops avec label de qualit&eacute; et</span> <a style="text-decoration:underline;color:#000;" href="http://www.trustedshops.fr/actualites/conditions-de-la-garantie-trusted-shops/" target="_blank">la Protection Acheteur.</a> <a style="text-decoration:none;color:#000;" title="Pour plus d'informations sur test-classic-secure.de" href="http://www.trustedshops.fr/boutique_en_ligne/profil/{$shop_name}_{$shop_id}.html" target="_blank">Plus d’informations...</a>
+		</div>
+	</div>
+</div>
+<!-- / Trusted Shops Seal -->
+{/if}

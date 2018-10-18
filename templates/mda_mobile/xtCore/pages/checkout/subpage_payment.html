@@ -1,0 +1,77 @@
+<h2>{txt key=TEXT_PAYMENT_ADDRESS}:</h2>
+	<p>
+		{if $payment_address.customers_company} {$payment_address.customers_company}<br />{/if}
+		{$payment_address.customers_firstname} {$payment_address.customers_lastname}<br />
+		{$payment_address.customers_street_address}<br />
+		{if $payment_address.customers_suburb} {$payment_address.customers_suburb}<br />{/if}
+		{$payment_address.customers_postcode} {$payment_address.customers_city}<br />
+		{$payment_address.customers_country}<br />
+	</p>
+	{if $payment_address.allow_change == true}
+		<p><a href="{link page='customer' paction=edit_address params='adType=payment&abID' params_value=$payment_address.address_book_id conn=SSL}" data-role="button" data-inline="true" data-icon="mda_mobile_edit">{txt key=TEXT_EDIT}</a></p>
+	{/if}
+	
+	{if $payment_address.allow_change == true}
+		<label for="payment_address">{txt key=TEXT_SELECT_PAYMENT_ADDRESS}:</label>
+		{form type=form id=payment_address name=payment_address action='dynamic' link_params='page_action=payment' method=post conn=SSL}
+		<div data-role="fieldcontain">
+			{form type=select name=adID value=$address_data params='onChange="this.form.submit();"'}
+			{form type=hidden name=adType value=payment}
+			{form type=hidden name=action value=select_address}
+		</div>
+		{form type=formend}
+		
+		{if $add_new_address eq 1}
+			<p>{txt key=TEXT_NEW_PAYMENT_ADDRESS}:</p>
+			<p><a href="{link page='customer' paction='edit_address' params='adType=payment' conn=SSL}" data-role="button">{txt key=BUTTON_ADD_ADDRESS}</a></p>
+		{/if}
+	{/if}
+	
+<h2>{txt key=TEXT_SELECT_PAYMENT}:</h2>
+
+{form type=form name=payment action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=payment}
+<div data-role="fieldcontain">
+	<fieldset data-role="controlgroup">
+		{foreach name=aussen item=pdata from=$payment_data}
+			{$pdata.payment}
+		{/foreach}
+	</fieldset
+</div>
+
+<h2>{txt key=TEXT_COMMENTS}:</h2>
+<div data-role="fieldcontain">
+	<label for="comments">{txt key=TEXT_COMMENTS_DESC}</label>
+	{form type=textarea id=comments name=comments cols=40 rows=8}
+</div>
+
+<h2>{txt key=TEXT_CONDITIONS}:</h2>
+{content cont_id=3 is_id='false'}
+
+<div id="checkout_agb">{$_content_3.content_body}</div>
+
+<div data-role="fieldcontain">
+	<fieldset data-role="controlgroup">
+		{form type=checkbox id=conditions_accepted name=conditions_accepted}
+		<label for="conditions_accepted">{txt key=TEXT_ACCEPT_CONDITIONS}</label>
+	</fieldset>
+</div>
+
+
+{if $rescission == 'true'}
+	<h2>{txt key=XT_RESCISSION_HEADING}:</h2>
+	{content cont_id=8 is_id='false'}
+
+	<div id="checkout_rescission">{$_content_8.content_body}</div>
+	
+	<div data-role="fieldcontain">
+		<fieldset data-role="controlgroup">
+			{form type=checkbox id=rescission_accepted name=rescission_accepted}
+			<label for="rescission_accepted">{txt key=XT_RESCISSION_ACCEPT}</label>
+		</fieldset>
+	</div>
+{/if}
+
+{hook key=checkout_tpl_payment}
+<input type="submit" value="{txt key=BUTTON_NEXT}" />
+{form type=formend}

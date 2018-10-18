@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+	<title>Trusted Shops</title>
+	<version>2.0.3</version>
+<code>xt_trusted_shops</code>
+    <icon>trustedshops_140.png</icon>
+	<url>http://www.xt-commerce.com</url>
+	<description>Trusted Shops Integration</description>
+<type>marketing</type>
+
+<configuration>
+</configuration>
+
+    <db_install><![CDATA[
+        include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. '/xt_trusted_shops/installer/install.php';
+       ]]>
+    </db_install>
+
+    <db_uninstall><![CDATA[
+        include_once _SRV_WEBROOT . _SRV_WEB_PLUGINS. '/xt_trusted_shops/installer/uninstall.php';
+       ]]>
+    </db_uninstall>
+
+    <minimumupdateversion>2.0.0</minimumupdateversion>
+    <db_update>
+        <update>
+            <version>2.0.0</version>
+            <to_version>2.0.1</to_version>
+            <code><![CDATA[
+                    ]]>
+            </code>
+        </update>
+        <update>
+            <version>2.0.1</version>
+            <to_version>2.0.2</to_version>
+            <code><![CDATA[
+                    ]]>
+            </code>
+        </update>
+        <update>
+            <version>2.0.2</version>
+            <to_version>2.0.3</to_version>
+            <code><![CDATA[
+                    ]]>
+            </code>
+        </update>
+    </db_update>
+
+<plugin_code>
+
+        <!-- #####################################  TEMPLATE HOOKS  -->
+
+        <!-- badge -->
+<code>
+            <hook>index_footer_tpl</hook>
+<phpcode><![CDATA[
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_trusted_shops/hooks/index_footer_tpl.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+        <!-- protection -->
+<code>
+<hook>checkout_success_tpl</hook>
+<phpcode><![CDATA[
+				require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_trusted_shops/hooks/checkout_success_tpl.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- #####################################  FRONTEND HOOKS  -->
+
+        <!-- mehrere boxen pro plg ohne tpl-param -->
+        <code>
+            <hook>smarty_function_box.php:top</hook>
+            <phpcode><![CDATA[
+            require _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_trusted_shops/hooks/smarty_function_box.php_top.php';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- #####################################  BACKEND HOOKS  -->
+
+        <!-- west navi -->
+        <code>
+            <hook>get_nodes.php:node</hook>
+            <phpcode>
+                <![CDATA[
+                    include_once(_SRV_WEBROOT.'plugins/xt_trusted_shops/hooks/get_nodes.php_node.php');
+                ]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- dropdownData der benachrichtigungsstatus uns store names -->
+        <code>
+            <hook>admin_dropdown.php:dropdown</hook>
+            <phpcode><![CDATA[
+			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_trusted_shops/hooks/admin_dropdown.php_dropdown.php';
+			]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- load additional admin styles -->
+        <code>
+            <hook>ejsadmin.php:css_styles</hook>
+            <phpcode>
+                <![CDATA[
+                    include_once(_SRV_WEBROOT.'plugins/xt_trusted_shops/hooks/ejsadmin.php__css_styles.php');
+                ]]>
+            </phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+        <!-- add some more data to send order template -->
+        <code>
+            <hook>class.orders.php:_sendOrderMail_bottom</hook>
+            <phpcode><![CDATA[
+                    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_trusted_shops/hooks/class.orders.php__sendOrderMail_bottom.php';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+        <!-- ui settings init (store) -->
+        <code>
+            <hook>store_main.php:bottom</hook>
+            <phpcode><![CDATA[
+                    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_trusted_shops/hooks/store_main.php_bottom.php';
+                ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+
+</plugin_code>
+
+</xtcommerceplugin>
+
+

@@ -1,0 +1,75 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="55%">
+    	{if $shipping_info.shipping_name}
+    	<h2>{txt key=TEXT_SHIPPING_METHOD}:</h2>
+		<p>{$shipping_info.shipping_name}</p>
+		{/if}
+		{if $shipping_info.shipping_desc}
+		<p>{$shipping_info.shipping_desc}</p>
+		{/if}
+    	{if $shipping_info.shipping_info}
+		<p>{$shipping_info.shipping_info}</p>
+		{/if}
+		{*<p><a href="{link page='checkout' paction=shipping conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>*}
+	</td>
+    <td width="55%">
+    	{if $payment_info.payment_name}
+		<h2>{txt key=TEXT_PAYMENT_METHOD}:</h2>
+		<p>{$payment_info.payment_name}</p>
+		{if $payment_info.payment_desc}
+		<p>{$payment_info.payment_desc}</p>
+		{/if}
+		{/if}
+    	{if $payment_info.payment_info}
+		<p>{$payment_info.payment_info}</p>
+		{/if}
+		{*<p><a href="{link page='checkout' paction=payment conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>*}
+    </td>
+  </tr>
+</table>
+{hook key=checkout_tpl_info}
+<h1>{txt key=TEXT_ARTICLE}:</h1>
+<table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr class="headerrow">
+    <td class="left">{txt key=TEXT_QTY}</td>
+    <td class="left">{txt key=TEXT_ARTICLE}</td>
+    <td class="left">{txt key=TEXT_SINGLE_PRICE}</td>
+    <td class="right">{txt key=TEXT_TOTAL_PRICE}</td>
+  </tr>
+  {foreach name=aussen item=data from=$data}
+  <tr class="{cycle values="contentrow1,contentrow2"}">
+    <td class="left">{$data.products_quantity}</td>
+    <td class="left">
+		<strong><a href="{$data.products_link}">{$data.products_name}</a></strong>
+		{if $data.shipping_status}<br /><p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$data.shipping_status}</p>{/if}
+    <td class="left">
+    {if $data._cart_discount}
+    <span class="old-price">{$data._original_products_price.formated}</span>
+    {$data.products_price.formated} (-{$data._cart_discount} %)
+    {else}
+    {$data.products_price.formated}
+    {/if}
+    </td>
+    <td class="right">{$data.products_final_price.formated}</td>
+  </tr>
+  {$data.products_information} 
+  {/foreach}
+  <tr>
+    <td colspan="5" class="subtotal">
+    {txt key=TEXT_SUB_TOTAL}: {$sub_total}<br />
+        {foreach name=aussen item=sub_data from=$sub_data}
+        {if $sub_data.products_name !='' || $sub_data.products_price.plain!=0}
+    	{$sub_data.products_name}: {$sub_data.products_price.formated}<br />
+    	{/if}
+    	{/foreach}
+    	{foreach name=aussen item=tax_data from=$tax}
+	    {txt key=TEXT_TAX} {$tax_data.tax_key}%: {$tax_data.tax_value.formated}<br />
+	    {/foreach}
+    <strong>{txt key=TEXT_TOTAL}: {$total}</strong>
+    {if $discount}
+    <br />{txt key=TEXT_DISCOUNT_MADE} : {$discount.formated}<br />
+    {/if}
+    </td>
+  </tr>
+</table>

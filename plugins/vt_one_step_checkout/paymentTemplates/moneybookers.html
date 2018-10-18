@@ -1,0 +1,181 @@
+<table class="paymentblock" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr>
+  	<td class="header" width="10px"></td>
+  	<td class="header"><strong>{$payment_name}</strong></td>
+    <td class="header" align="right">{$payment_price.formated}</td>
+  </tr>
+  <tr>
+  <td colspan="3">
+  
+  <table width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr>
+  <td>
+
+  <table width="100%" border="0" cellspacing="0" cellpadding="6">
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_MSC eq 'true'}
+  <tr>
+   <td class="main" width="10px">
+   
+   	{if $selected_payment_sub=='MSC'}
+   	{form type=radio name=selected_payment value=$payment_code:MSC checked=true}
+   	{else}
+   	{form type=radio name=selected_payment value=$payment_code:MSC}
+   	{/if}
+   	</td>
+   <td class="main" width="50px"><img src="media/payment/mastercard_small.jpg" border="0"/></td>
+   <td class="main"><strong>{txt key=TEXT_PAYMENT_MSC}</strong></td>
+   </tr>
+  {/if}
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_VSA eq 'true'}
+  <tr>
+   <td class="main" width="10px">
+   
+   	{if $selected_payment_sub=='VSA'}
+    {form type=radio name=selected_payment value=$payment_code:VSA checked=true}
+   	{else}
+   	{form type=radio name=selected_payment value=$payment_code:VSA}
+   	{/if}
+   
+   </td>
+   <td class="main"><img src="media/payment/visa_small.jpg" border="0"/> </td>
+   <td class="main"><strong>{txt key=TEXT_PAYMENT_VSA}</strong></td>
+   </tr>
+  {/if}
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_AMX eq 'true'}
+  <tr>
+   <td class="main" width="10px">
+   
+   	{if $selected_payment_sub=='AMX'}
+    {form type=radio name=selected_payment value=$payment_code:AMX checked=true}
+   	{else}
+    {form type=radio name=selected_payment value=$payment_code:AMX}
+   	{/if}
+   
+   </td>
+   <td class="main"><img src="media/payment/amex_small.jpg" border="0"/></td>
+   <td class="main"><strong>{txt key=TEXT_PAYMENT_AMX}</strong></td>
+   </tr>
+  {/if}
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_IDL eq 'true'}
+  {if $payment_country_code eq 'NL'}
+  <tr>
+   <td class="main" width="10px">
+    {if $selected_payment_sub=='IDL'}
+    {form type=radio name=selected_payment value=$payment_code:IDL checked=true}
+   	{else}
+    {form type=radio name=selected_payment value=$payment_code:IDL}
+   	{/if}
+   
+   </td>
+    <td class="main"><img src="media/payment/ideal_small.jpg" border="0"/></td>
+   <td class="main"><strong>{txt key=TEXT_PAYMENT_IDL}</strong></td>
+  </tr>
+  {/if}
+  {/if}
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_DID eq 'true'}
+  <tr>
+   <td class="main" width="10px">
+
+    {if $selected_payment_sub=='DID'}
+    {form type=radio name=selected_payment value=$payment_code:DID checked=true}
+   	{else}
+    {form type=radio name=selected_payment value=$payment_code:DID}
+   	{/if}   
+	
+   	</td>
+   <td class="main"><img src="media/payment/elv_small.jpg" border="0"/></td>
+   <td class="main"><strong>{txt key=TEXT_PAYMENT_DID}</strong></td>
+  </tr>
+  {/if}
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_GIR eq 'true'}
+  {if $payment_country_code eq 'DE'}
+  <tr>
+   <td class="main" width="10px">
+
+    {if $selected_payment_sub=='GIR'}
+    {form type=radio name=selected_payment value=$payment_code:GIR checked=true}
+   	{else}
+    {form type=radio name=selected_payment value=$payment_code:GIR}
+   	{/if}      
+   
+   </td>
+   <td class="main"><img src="media/payment/giropay_small.jpg" border="0"/></td>
+   <td class="main"><strong>{txt key=TEXT_PAYMENT_GIR}</strong></td>
+  </tr>
+  {/if}
+  {/if}
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_NPY eq 'true'}
+  {if $payment_country_code eq 'AT'}
+  <tr>
+   <td class="main" width="10px">
+   
+    {if $selected_payment_sub=='NPY'}
+    {form type=radio name=selected_payment value=$payment_code:NPY checked=true}
+   	{else}
+    {form type=radio name=selected_payment value=$payment_code:NPY}
+   	{/if}    
+   	
+   </td>
+   <td class="main"><img src="media/payment/eps_small.gif" border="0"/></td>
+   <td class="main"><strong>{txt key=TEXT_PAYMENT_NPY}</strong></td>
+  </tr>
+  {/if}
+  {/if}
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_SFT eq 'true'}
+   <tr>
+   <td class="main" width="10px">
+   
+    {if $selected_payment_sub=='SFT'}
+    {form type=radio name=selected_payment value=$payment_code:SFT checked=true}
+   	{else}
+    {form type=radio name=selected_payment value=$payment_code:SFT}
+   	{/if}       
+   
+   </td>
+   <td class="main"><img src="media/payment/sofortueberweisung_small.gif" border="0"/></td>
+   <td class="main"><strong>{txt key=TEXT_PAYMENT_SFT}</strong></td>
+  </tr>
+  {/if}
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_GCB eq 'true'}
+   <tr>
+   <td class="main" width="10px">
+   
+    {if $selected_payment_sub=='GCB'}
+    {form type=radio name=selected_payment value=$payment_code:GCB checked=true}
+   	{else}
+    {form type=radio name=selected_payment value=$payment_code:GCB}
+   	{/if}     
+   
+   </td>
+   <td class="main"><img src="media/payment/carte_bleue_small.png" border="0"/></td>
+   <td class="main"><strong>{txt key=TEXT_PAYMENT_GCB}</strong></td>
+  </tr>
+  {/if}
+  {if $smarty.const.XT_MONEYBOOKERS_ACTIVATE_MAE eq 'true'}
+  <tr>
+   <td class="main" width="10px">
+   
+    {if $selected_payment_sub=='MAE'}
+    {form type=radio name=selected_payment value=$payment_code:MAE checked=true}
+   	{else}
+    {form type=radio name=selected_payment value=$payment_code:MAE}
+   	{/if}        
+   
+   </td>
+   <td class="main"><img src="media/payment/maestro_small.jpg" border="0"/></td>
+   <td class="main"><strong>{txt key=TEXT_PAYMENT_MAE}</strong></td>
+  </tr>
+  {/if}
+  </table>
+  
+  </td>
+  <td align="right">
+  <img src="plugins/xt_moneybookers/images/moneybookers_checkout.png" border="0"/>
+  </td>
+  </tr>
+  </table>
+  
+  </td>
+  </tr>
+</table>
+<br />

@@ -1,0 +1,29 @@
+Modifications in Librarys:
+
+ADODB:
+
+- add own function for pagesplitting (file: adodb-pager.inc.php)
+- own error handler (xtcommerce-error-handler.php)
+
+SMARTY:
+
+- add plugin for boxes (file: function.box.php)
+- add plugin for modules (file: function.module.php)
+- add plugin for pages (file: function.page.php)
+- add plugin for buttons (file: function.button.php)
+- add plugin for hookpoints (file: function.hook.php)
+- add plugin for content (file: function.content.php)
+- add plugin for banner (file: function.banner.php)
+- add plugin for forms (file: function.form.php)
+- add plugin for text (file: function.txt.php)
+- add plugin for link (file: function.link.php)
+- add plugin for social bookmarks (file: function.socialbookmark.php)
+- add plugin for adminlink (file: function.adminlink.php)
+- add plugin for images (file: function.img.php)
+
+- add Template Check (file: Smarty.class.php function _smarty_include )
+
+
+- XML
+
+- fixed Call-time pass-by-reference errors

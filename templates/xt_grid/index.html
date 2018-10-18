@@ -1,0 +1,116 @@
+{if $page == 'customer' && $smarty.get.page_action == 'login' OR $page == 'cart' OR $smarty.get.page_action == 'order_info'}{assign var="show_index_boxes" value="false"}{/if}
+<div id="background-topmenu"></div><!-- .background-topmenu -->
+<div id="background-top"></div><!-- .background-top -->
+<div id="page">
+	<div id="header" class="row">
+		<div class="column xt-grid-16">
+			<div id="topmenu">
+        <ul>                                                        
+					{if $account == true}
+					{if $registered_customer}
+					<li><a href="{link page='customer' conn=SSL}">{txt key=TEXT_ACCOUNT_TITLE_WELCOME} <span class="highlight bold">{$smarty.session.customer->customer_default_address.customers_firstname} {$smarty.session.customer->customer_default_address.customers_lastname}</span></a> |</li>
+					{/if}
+					{/if}
+					{if $account == true}
+					<li><a href="{link page='customer' conn=SSL}">{txt key=TEXT_ACCOUNT}</a> |</li>
+					{/if}
+					<li><a href="{link page='checkout' paction='shipping' conn=SSL}">{txt key=TEXT_CHECKOUT}</a> |</li>
+					{if $account == true}
+					{if $registered_customer}
+					<li><a href="{link page='customer' paction='logoff' conn=SSL}">{txt key=TEXT_LOGOFF}</a></li>
+					{else}
+					<li><a href="{link page='customer' paction='login' conn=SSL}">{txt key=TEXT_LOGIN}</a></li>
+					{/if}
+					{/if}
+				</ul>
+			</div><!-- #topmenu -->
+		</div><!-- .column .xt-grid-16 -->
+		<div class="column xt-grid-6">
+			<div id="branding">                                               
+				<p id="logo"><a href="{link page='index'}"><img src="media/logo/{$smarty.const._STORE_LOGO}" alt="{$smarty.const._STORE_NAME}" /></a></p><!-- #logo -->
+				<p id="slogan">{$smarty.const._STORE_STORE_CLAIM}</p><!-- #slogan -->
+			</div><!-- #branding -->
+		</div><!-- .column .xt-grid-6 -->
+		<div class="column xt-grid-1">
+			<p>&nbsp;</p>
+		</div><!-- .column .xt-grid-1 -->
+		<div class="column xt-grid-6">
+			{box name=search htmlonly=1}
+		</div><!-- .column .xt-grid-6 -->
+		<div class="column xt-grid-3">
+			{box name=cart}
+		</div><!-- .column .xt-grid-3 -->
+	</div><!-- .row .header -->
+	<div class="row">
+		<div class="column xt-grid-16">
+			{box name=topcategories}
+		</div><!-- .column xt-grid-16  -->
+	</div><!-- .row  -->
+	<div id="content-wrap" class="row">
+		{if $show_index_boxes == 'true'}
+		<div id="sidebar" class="column xt-grid-3">
+			{box name=categories}
+			{box name=loginbox}
+			{*box name=xt_blog_latest_comments limit=5*}
+			{box name=xt_blog box_type=featured_messages limit=5}
+            {box name=information htmlonly=1}
+			{*box name=xt_special_products type=user order_by='p.products_id'*}
+			{box name=xt_new_products type=user order_by='p.products_id'}
+			{box name=xt_bestseller_products type=user}
+		</div><!-- #sidebar .column .xt-grid-3 -->
+		{/if}
+		{if $show_index_boxes == 'true'}
+		<div class="column xt-grid-13">
+		{else}
+		<div class="column xt-grid-16">
+		{/if}
+			{if $page != 'index'}
+			<div id="breadcrumb">
+				{include file="/xtCore/pages/navigation/breadcrumb.html" type="tpl_include"}
+			</div><!-- #breadcrumb -->
+			{/if}
+			<div id="content">
+				{$content}
+			</div><!-- #content -->
+		</div><!-- .column .xt-grid-13 or xt-grid-16 -->
+	</div><!-- #content-wrap .row -->
+	<div id="footer" class="row">
+		<div class="column xt-grid-3">
+			{box name=footer_left htmlonly=1}
+		</div><!-- .column .xt-grid-3 -->
+		<div class="column xt-grid-3">
+            {box name=footer_right htmlonly=1}
+		</div><!-- .column .xt-grid-3 -->
+		<div class="column xt-grid-3">
+			{box name=manufacturers order_by='m.manufacturers_name'}
+		</div><!-- .column .xt-grid-3 -->
+		<div class="column xt-grid-2">
+			{box name=language}
+			{box name=currency}
+		</div><!-- .column .xt-grid-2 -->
+		<div class="column xt-grid-5">
+			{box name=payment_logos}
+            {box name=trusted_shops_ratings}
+            {box name=trusted_shops_seal}
+            {box name=trusted_shops_video}
+		</div><!-- .column .xt-grid-5 -->
+	</div><!-- #footer .row -->
+        <div id="mobile_link" class="row">
+            <div class="column xt-grid-16">
+                {box name=mobile}
+            </div>
+        </div>
+        <div id="ts-rich-snippet" class="row center">
+            <div class="column xt-grid-16">
+                {box name=trusted_shops_rich_snippet}
+            </div>
+        </div>
+	<div id="copyright" class="row">	
+		<div class="column xt-grid-16">
+			[<copyright>]<!-- #copyright -->
+		</div><!-- .column .xt-grid-16 -->
+	</div><!-- #copyright .row -->
+</div><!-- #page -->
+<div id="background-bottom"></div><!-- #background-bottom -->
+{hook key=index_footer_tpl}
+<img src="cronjob.php" width="1" height="1" />

@@ -1,0 +1,433 @@
+{
+    "name": "ew_viabiona_plugin",
+    "description": "ew_viabiona_plugin",
+    "homepage": "http://www.8works.de/",
+    "type": "xtc4-plugin",
+    "minimum-stability": "stable",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "afarkas/html5shiv",
+                "type": "component",
+                "version": "3.7.2",
+                "dist": {
+                    "url": "https://github.com/aFarkas/html5shiv/archive/3.7.2.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/aFarkas/html5shiv.git",
+                    "type": "git",
+                    "reference": "3.7.2"
+                },
+                "extra": {
+                    "component": {
+                        "scripts": [
+                            "dist/html5shiv.js"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "scottjehl/Respond",
+                "type": "component",
+                "version": "1.4.2",
+                "dist": {
+                    "url": "https://github.com/scottjehl/Respond/archive/1.4.2.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/scottjehl/Respond.git",
+                    "type": "git",
+                    "reference": "1.4.2"
+                },
+                "extra": {
+                    "component": {
+                        "scripts": [
+                            "dest/respond.min.js",
+                            "dest/respond.src.js"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "cakebake/jquery-match-height",
+                "type": "component",
+                "version": "0.6.0",
+                "dist": {
+                    "url": "https://github.com/cakebake/jquery-match-height/archive/master.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/cakebake/jquery-match-height.git",
+                    "type": "git",
+                    "reference": "dev-master"
+                },
+                "extra": {
+                    "component": {
+                        "scripts": [
+                            "jquery.matchHeight.js",
+                            "jquery.matchHeight-min.js"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "msurguy/ladda-bootstrap",
+                "type": "component",
+                "version": "1.0.0",
+                "dist": {
+                    "url": "https://github.com/msurguy/ladda-bootstrap/archive/master.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/msurguy/ladda-bootstrap.git",
+                    "type": "git",
+                    "reference": "dev-master"
+                },
+                "extra": {
+                    "component": {
+                        "scripts": [
+                            "dist/ladda-themeless.min.css",
+                            "dist/spin.min.js",
+                            "dist/ladda.min.js"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "daneden/animate.css",
+                "type": "component",
+                "version": "3.2.5",
+                "dist": {
+                    "url": "https://github.com/daneden/animate.css/archive/3.2.5.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/daneden/animate.css.git",
+                    "type": "git",
+                    "reference": "3.2.5"
+                },
+                "extra": {
+                    "component": {
+                        "scripts": [
+                            "animate.min.css"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "matthieua/WOW",
+                "type": "component",
+                "version": "1.1.2",
+                "dist": {
+                    "url": "https://github.com/matthieua/WOW/archive/1.1.2.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/matthieua/WOW.git",
+                    "type": "git",
+                    "reference": "1.1.2"
+                },
+                "extra": {
+                    "component": {
+                        "scripts": [
+                            "dist/wow.min.js"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "IanLunn/Hover",
+                "type": "component",
+                "version": "2.0.2",
+                "dist": {
+                    "url": "https://github.com/IanLunn/Hover/archive/2.0.2.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/IanLunn/Hover.git",
+                    "type": "git",
+                    "reference": "2.0.2"
+                },
+                "extra": {
+                    "component": {
+                        "scripts": [
+                            "css/hover-min.css"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "xixilive/jquery-spinner",
+                "type": "component",
+                "version": "v0.1.6",
+                "dist": {
+                    "url": "https://github.com/xixilive/jquery-spinner/archive/v0.1.6.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/xixilive/jquery-spinner.git",
+                    "type": "git",
+                    "reference": "v0.1.6"
+                },
+                "extra": {
+                    "component": {
+                        "scripts": [
+                            "dist/jquery.spinner.min.js",
+                            "dist/bootstrap-spinner.css"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "panzi/SocialSharePrivacy",
+                "type": "component",
+                "version": "1.0.0",
+                "dist": {
+                    "url": "https://github.com/panzi/SocialSharePrivacy/archive/master.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/panzi/SocialSharePrivacy.git",
+                    "type": "git",
+                    "reference": "dev-master"
+                },
+                "extra": {
+                    "component": {
+                        "scripts": [
+                            "javascripts/*",
+                            "javascripts/modules/*",
+                            "javascripts/locale/*"
+                        ],
+                        "files": [
+                            "images/*"
+                        ],
+                        "styles": [
+                            "stylesheets/*",
+                            "stylesheets/modules/*"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "twbs/bootlint",
+                "type": "component",
+                "version": "1.0.0",
+                "dist": {
+                    "url": "https://github.com/twbs/bootlint/archive/master.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/twbs/bootlint.git",
+                    "type": "git",
+                    "reference": "dev-master"
+                },
+                "extra": {
+                    "component": {
+                        "scripts": [
+                            "dist/browser/bootlint.js"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "silviomoreto/bootstrap-select",
+                "type": "component",
+                "version": "1.7.2",
+                "dist": {
+                    "url": "https://github.com/silviomoreto/bootstrap-select/archive/v1.7.2.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/silviomoreto/bootstrap-select.git",
+                    "type": "git",
+                    "reference": "1.7.2"
+                },
+                "extra": {
+                    "component": {
+                        "scripts": [
+                            "dist/css/bootstrap-select.min.css"
+                        ],
+                        "styles": [
+                            "dist/js/bootstrap-select.min.js",
+                            "dist/js/i18n/*"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "kuus/animate-me.less",
+                "type": "component",
+                "version": "1.0.0",
+                "dist": {
+                    "url": "https://github.com/kuus/animate-me.less/archive/master.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/kuus/animate-me.less.git",
+                    "type": "git",
+                    "reference": "dev-master"
+                },
+                "extra": {
+                    "component": {
+                        "files": [
+                            "*"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "sciactive/pnotify",
+                "type": "component",
+                "version": "3.0.0",
+                "dist": {
+                    "url": "https://github.com/sciactive/pnotify/archive/3.0.0.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/sciactive/pnotify.git",
+                    "type": "git",
+                    "reference": "3.0.0"
+                },
+                "extra": {
+                    "component": {
+                        "files": [
+                            "dist/*"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "wenzhixin/bootstrap-show-password",
+                "type": "component",
+                "version": "1.0.3",
+                "dist": {
+                    "url": "https://github.com/wenzhixin/bootstrap-show-password/archive/1.0.3.zip",
+                    "type": "zip"
+                },
+                "source": {
+                    "url": "https://github.com/wenzhixin/bootstrap-show-password.git",
+                    "type": "git",
+                    "reference": "1.0.3"
+                },
+                "extra": {
+                    "component": {
+                        "files": [
+                            "bootstrap-show-password.min.js"
+                        ]
+                    }
+                },
+                "require": {
+                    "robloach/component-installer": "*"
+                }
+            }
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "components/jquery": "1.*",
+        "components/bootstrap": "3.*",
+        "twbs/bootlint": "*",
+        "afarkas/html5shiv": "*",
+        "scottjehl/Respond": "*",
+        "silviomoreto/bootstrap-select": "*",
+        "cakebake/jquery-match-height": "*",
+        "cakebake/php-session-storage": "*",
+        "cakebake/php-lesscss-compiler": "*",
+        "msurguy/ladda-bootstrap": "*",
+        "daneden/animate.css": "*",
+        "components/font-awesome": "*",
+        "matthieua/WOW": "*",
+        "IanLunn/Hover": "*",
+        "xixilive/jquery-spinner": "*",
+        "kuus/animate-me.less": "*",
+        "panzi/SocialSharePrivacy": "*",
+        "sciactive/pnotify": "*",
+        "wenzhixin/bootstrap-show-password": "*"
+    },
+    "config": {
+        "vendor-dir": "lib",
+        "component-dir": "assets/components",
+        "process-timeout": 1800,
+        "preferred-install": "dist"
+    }
+}

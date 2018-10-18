@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{txt key=TEXT_XT_ORDERS_INVOICES}</title>
+    <style type="text/css">
+        {literal}
+        @page { margin: 0px; padding: 0;}
+        body { margin:0; font-family: Helvetica; font-size: 10px; color: #000000; padding: 15mm 10mm 20mm 25mm;}
+
+        .heading, .dates, .bankdetails, .total_table{ clear: both; display: block; height: auto; min-height: 10px; padding: 0em 0.5em 0.5em 0.5em; width: auto; }
+        .table-item { clear: both; display: block; height: auto; width: auto; }
+        .total{width:70px;text-align:right;}
+        div.data { display: block; margin: 0.5em; }
+        ul { list-style: none inside none; margin: 0; padding: 0;}
+        li { margin: 0; padding: 0; line-height: 1.4em; font-size: 1.1em; }
+        li .name{width:100px;text-align: left;}
+        li .value{width:70px;text-align: right;}
+        li strong{ font-size: 1.3em; line-height: 2em;}
+        .left { float: left; }
+        .right { float: right;}
+        .alignr {text-align: right;}
+        table{ width:100%;  padding: 0.5em; border-collapse: collapse;}
+
+        thead, tfoot { font-weight: bold; font-size: 1.3em; line-height: 1.5em; border-bottom: 2px solid #000000; color: #000000; }
+        tr td { border-bottom: 1px solid #434343; line-height: 2em; padding-bottom: 0.5em; vertical-align:top}
+        tr.item td { line-height: 2em; padding: 0.5em; border: none; }
+        tr.item td.name { padding-left: 1em;font-family: times; }
+        tr.last td { border-bottom: 1px solid #434343; }
+        #footer { width:100%; padding: 0 10mm 0 25mm; position: fixed; bottom: 0; height: 25mm; }
+        #footer tr td { padding: 0; line-height: 1.5em;}
+        #footer tr.last td { border-bottom: none; }
+        table.addresses {width:14cm; margin:0; padding:0;  border-bottom-width: 0px}
+        table.addresses td {vertical-align: top;}
+        table.addresses  tr  thead, table.addresses td { border-bottom-width: 0px}
+        .clear{clear:both;}
+        {/literal}
+    </style>
+</head>
+<body>
+<!------------------------------------------------- START FOOTER ------------------------------------------------->
+<div id="footer">
+    <table>
+        <tbody>
+        <tr>
+            <td>{$data.shopUrl}</td>
+            <td class="alignr">{txt key=TEXT_XT_ORDERS_INVOICES_ISSUED_WITH} <a href="http://www.xt-commerce.com">xt:Commerce</a></td>
+        </tr>
+        <tr class="last">
+            <td><span style="font-weight:bold">{$data.config._STORE_SHOPOWNER_COMPANY}</span>&nbsp; - &nbsp;{$data.config._STORE_COUNTRY}-{$data.config._STORE_SHOPOWNER_ZIP} {$data.config._STORE_SHOPOWNER_CITY}&nbsp; - &nbsp;{$data.config._STORE_SHOPOWNER_STREETADDRESS}&nbsp; - &nbsp;{txt key=TEXT_XT_ORDERS_INVOICES_VAT_ID}: {$data.config._STORE_SHOPOWNER_VATID}</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!------------------------------------------------- END FOOTER ------------------------------------------------->
+<div id="wrapper">
+    <!------------------------------------------------- START HEAD ------------------------------------------------->
+    <div id="logo" style="height:20mm;overflow:hidden; " >
+        <img src="{$data.logopath}{$data.config._STORE_LOGO}" />
+    </div>
+    <!------------------------------------------------- END HEAD ------------------------------------------------->
+    <!------------------------------------------------- START HEADING ------------------------------------------------->
+
+    <h2>{txt key=TEXT_DELIVERY_NOTE}</h2>
+    <table class="addresses" style="margin-top: 5mm; width:100%"><tr>
+        <td style="width:75mm;padding-right:10mm">
+            <ul>
+                <li>
+                    <div style="font-size:1.6mm;margin-bottom:2mm;"><span style="font-weight:bold">{$data.config._STORE_SHOPOWNER_COMPANY}</span>&nbsp; - &nbsp;{$data.config._STORE_COUNTRY}-{$data.config._STORE_SHOPOWNER_ZIP} {$data.config._STORE_SHOPOWNER_CITY}&nbsp; - &nbsp;{$data.config._STORE_SHOPOWNER_STREETADDRESS}</div></li>
+                {if !empty($data.order.order_data.billing_company)}
+                <li>{$data.order.order_data.billing_company}</li>
+                {/if}
+                <li>{$data.invoice.invoice_firstname} {$data.invoice.invoice_lastname}</li>
+                <li>{$data.order.order_data.billing_street_address}</li>
+                <li>{$data.order.order_data.billing_postcode} - {$data.order.order_data.billing_city}</li>
+                <li>{$data.order.order_data.billing_country}</li>
+            </ul>
+        </td>
+        <td style="style:width:35mm;">
+            <ul>
+                <li><span style="font-weight: bold">{txt key=TEXT_DELIVERY_ADDRESS}:</span></li>
+                {if !empty($data.order.order_data.delivery_company)}
+                <li>{$data.order.order_data.delivery_company}</li>
+                {/if}
+                <li>{$data.order.order_data.delivery_firstname} {$data.order.order_data.delivery_lastname}</li>
+                <li>{$data.order.order_data.delivery_street_address}</li>
+                <li>{$data.order.order_data.delivery_postcode} - {$data.order.order_data.delivery_city}</li>
+                <li>{$data.order.order_data.delivery_country}</li>
+
+            </ul>
+        </td>
+        <td class="data right alignr" >
+            <!------------------------------------------------- START DATES ------------------------------------------------->
+            <ul>
+                <li>{txt key=TEXT_XT_ORDERS_INVOICES_ORDERED_DATE}: {$data.order.order_data.date_purchased|date_format:"%d/%m/%Y"}</li>
+                <li><br />{txt key=TEXT_XT_ORDERS_INVOICES_CUSTOMERS_ID}: {$data.invoice.customers_id}</li>
+                <li><span style="font-weight: bold">{txt key=TEXT_XT_ORDERS_INVOICES_ORDER_ID}: {$data.invoice.orders_id}</span></li>
+            </ul>
+            <!------------------------------------------------ END HEADING ------------------------------------------------->
+        </td>
+    </tr>
+    </table>
+
+    <!------------------------------------------------- START ITEM LIST ------------------------------------------------->
+    {if $data.invoice.invoice_subtotal_discount>0}
+    {assign var="showDiscount" value=true}
+    {else}
+    {assign var="showDiscount" value=false}
+    {/if}
+    {if count($data.taxes)}
+    {assign var="showVat" value=true}
+    {else}
+    {assign var="showVat" value=false}
+    {/if}
+
+    <div class="table-item">
+        <table>
+            <thead>
+            <tr>
+                <td>{txt key=TEXT_XT_ORDERS_INVOICES_PRODUCTS_MODEL}</td>
+                <td>{txt key=TEXT_XT_ORDERS_INVOICES_PRODUCTS_NAME}</td>
+                <td>{txt key=TEXT_XT_ORDERS_INVOICES_PRODUCTS_QUANTITY}</td>
+                <td>{txt key=TEXT_XT_ORDERS_INVOICES_PRODUCTS_PRICE}</td>
+
+                {if $showDiscount}
+                <td>{txt key=TEXT_XT_ORDERS_INVOICES_PRODUCTS_DISCOUNT}</td>
+                {/if}
+                {if $showVat}
+                <td>{txt key=TEXT_XT_ORDERS_INVOICES_VAT}</td>
+                {/if}
+                <td class="total">{txt key=TEXT_XT_ORDERS_INVOICES_PRODUCTS_TOTAL_PRICE}</td>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach from=$data.products item=product name=products}
+            <tr class="{if $smarty.foreach.products.last}last {/if} item">
+                <td>{$product.products_model}</td>
+                <td class="name">{$product.products_name}</td>
+
+                <td>{$product.products_quantity}</td>
+                <td>{$product.products_price_formatted}&nbsp;{$data.invoice.invoice_currency}</td>
+
+                {if $showDiscount}
+                <td>{$product.products_total_discount_formatted}&nbsp;{$data.invoice.invoice_currency}</td>
+                {/if}
+                {if $showVat}
+                <td>{$product.products_tax_rate_formatted}%</td>
+                {/if}
+                <td class="total">{$product.products_final_total_price_formatted}&nbsp;{$data.invoice.invoice_currency}</td>
+            </tr>
+            {/foreach}
+
+        </table>
+    </div>
+    <div class="clear"></div>
+    <div class="total_table data right alignr">
+        <ul>
+            <li>{txt key=TEXT_XT_ORDERS_INVOICES_SUBTOTAL}: {$data.invoice.invoice_subtotal_price_formatted}&nbsp;{$data.invoice.invoice_currency}</li>
+            {if $data.invoice.invoice_payment_cost > 0}<li>{txt key=TEXT_XT_ORDERS_INVOICES_PAYMENT_COST}&nbsp;({$data.invoice.invoice_payment_name}): {$data.invoice.invoice_payment_cost_formatted}&nbsp;{$data.invoice.invoice_currency}</li>{/if}
+            <li>{txt key=TEXT_XT_ORDERS_INVOICES_SHIPPING_COST}: {$data.invoice.invoice_shipping_total_formatted}&nbsp;{$data.invoice.invoice_currency}</li>
+            {foreach from=$data.invoice.totalLines item="totalLine" name="totalLines"}
+            <li>{$totalLine.invoice_payment_name} {$totalLine.invoice_payment_tax_rate}% :  {$totalLine.invoice_payment_cost_formatted}&nbsp;{$data.invoice.invoice_currency}</li>
+            {/foreach}
+            {if count($data.taxes)}
+            {foreach from=$data.taxes item="tax" name="taxes"}
+            <li>{txt key=TEXT_XT_ORDERS_INVOICES_VAT} {$tax.rate_formatted}% :  {$tax.amount_formatted}&nbsp;{$data.invoice.invoice_currency}</li>
+            {/foreach}
+            {/if}
+            {if $data.invoice.invoice_coupon_redeem}<li>{txt key=TEXT_XT_ORDERS_INVOICES_COUPON}:  {$data.invoice.invoice_coupon_price_formatted}&nbsp;{$data.invoice.invoice_currency}</li>
+            {/if}
+            <li><strong>{txt key=TEXT_XT_ORDERS_INVOICES_TOTAL}:  {$data.invoice.invoice_total_formatted}&nbsp;{$data.invoice.invoice_currency}</strong></li>
+            <li>{txt key=TEXT_XT_ORDERS_INVOICES_TOTAL_NET}:  {$data.invoice.invoice_total_formatted_net}&nbsp;{$data.invoice.invoice_currency}</li>
+            <li>{txt key=TEXT_TOTAL_WEIGHT_NET_INVOICE}:  {$data.order.total_weight.formated}</li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+    <!------------------------------------------------- END ITEM LIST ------------------------------------------------->
+
+    <!------------------------------------------------- START COMMENTS ------------------------------------------------->
+    <div class="comments data right alignr">
+
+        <ul>
+            <li><strong>{txt key=TEXT_XT_ORDERS_INVOICES_CUSTOMER_COMMENTS}:</strong></li>
+            <li>{$data.order.order_data.comments|nl2br}<br /></li>
+        </ul>
+        {literal}
+        <script type="text/php">
+            $w = $pdf->get_width();
+            $h = $pdf->get_height();
+            $font = Font_Metrics::get_font("helvetica", "normal");
+            $pdf->page_text($w-50, $h-25,"{/literal}{txt key=TEXT_XT_ORDERS_INVOICES_PAGE}{literal} {PAGE_NUM}/{PAGE_COUNT}", $font, 6, array(0,0,0));
+       </script>
+        {/literal}
+    </div>
+    <!------------------------------------------------- END COMMENTS ------------------------------------------------->
+    <div style="clear: both;"></div>
+</div>
+</body>
+</html>

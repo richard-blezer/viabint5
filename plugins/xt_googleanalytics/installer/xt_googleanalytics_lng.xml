@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_GOOGLE_ANALYTICS_ANON_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Remove last IP octed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Letzte Stelle in IP entfernen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_GOOGLE_ANALYTICS_ECOM_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Google eCommerce Tracking]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[Google 电子商务追踪分析]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Google eCommerce Tracking]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Google eCommerce Tracking]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Google eCommerce Tracking]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Google eCommerce Tracking]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[Google 電子商取引の追跡分析]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Google eCommerce Tracking]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Google eCommerce namierzanie ]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Google eCommerce Tracking]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>XT_GOOGLE_ANALYTICS_UA_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Google UA ID (UA-XXXXXX-XX)]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[Google UA ID (UA-XXXXXX-XX)]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Google UA ID (UA-XXXXXX-XX)]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Google UA ID (UA-XXXXXX-XX)]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[ID Google UA (UA-XXXXXX-XX)]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Google UA ID (UA-XXXXXX-XX)]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[Google UA ID (UA-XXXXXX-XX)]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Google UA ID (UA-XXXXXX-XX)]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Google UA ID (UA-XXXXXX-XX)]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Google UA ID (UA-XXXXXX-XX)]]></value>
+	</ru>
+</phrase>
+</language_content>
+</xtcommerceplugin>

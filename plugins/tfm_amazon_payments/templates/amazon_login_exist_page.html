@@ -1,0 +1,27 @@
+
+<p class="headline">{txt key=TFM_AMAZON_ACC_INFO_HEADLINE}</p>
+{$error_mess}
+
+<p>{txt key=TFM_AMAZON_ACC_INFO1}</p>
+<div id="loginbox">
+	{form type=form name=continue action='cart' method=post conn=SSL}
+	<p>{txt key=TFM_AMAZON_GUEST_ACCOUNTS}</p>
+	<p>{css_button text=$login_btn type='form'}</p>
+	{form type=formend} 
+</div>
+
+
+<div id="loginbox">
+	{form type=form name=login action='customer' link_params='page_action=login' method=post conn=SSL}
+	{form type=hidden name=action value=login}
+	{form type=hidden name=action_type value=account_map}
+	{form type=hidden name=link_target value=index}
+	<p class="info-text">{txt key=TFM_AMAZON_MATCH_ACCOUNTS}</p>
+	{form id=email type=hidden name=email value=$email maxlength='50'}
+	<p style="margin-bottom:15px"><strong>{txt key=text_email}:</strong> {$email}</p>
+	<p><strong>{txt key=text_password}:</strong> {form id=password type=password name=password maxlength='30'}</p>
+
+	<p>{css_button text=$match_btn type='form'}</p>
+	{form type=formend}
+</div>
+

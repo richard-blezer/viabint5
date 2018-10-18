@@ -1,0 +1,22 @@
+############################################################################################################
+# Shop-Support24 Frank Schneider Plugin for xt:Commerce 4
+#
+# Copyright 2016 Shop-Support24 All Rights Reserved.
+# This file may not be redistributed in whole or significant part.
+# Content of this file is Protected By International Copyright Laws.
+#
+# Shop-Support24 Plugin for xt:Commerce 4 IS NOT FREE SOFTWARE
+#
+# http://www.shop-support24.de
+#
+# Shop-Support24 Frank Schneider, Alte Dorfstrasse-Str. 23, 06712 Kretzschau OT Salsitz (Germany)
+# dev@shop-support24.de
+#
+############################################################################################################
+
+company: Viabiona Ltd.
+created: 2016-10-21 12:15:42
+key: f1a4371a5a768dd975ca76416997d878
+url: www.viabiona.com
+mailaddress: i.philips@bataviabv.com
+project: shs_products_new_flag

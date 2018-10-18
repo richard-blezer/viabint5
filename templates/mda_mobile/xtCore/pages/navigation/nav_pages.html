@@ -1,0 +1,14 @@
+<div>
+{if $actual_page neq 1}<a href="{$first}" data-role="button" data-icon="mda_mobile_first" data-iconpos="notext">{txt key=TEXT_FIRST}</a> {/if}
+{if $actual_page neq 1}<a href="{$prev}" data-role="button" data-icon="arrow-l" data-iconpos="notext">{txt key=TEXT_PREV}</a>{/if}
+
+<!-- This is awfully programmed by XT-Commerce.
+Paging functionality with styles is coded in xtFramework/library/adodb/adodb-pager.inc.php
+which cannot be changed unless doing a core change.
+Therefor we leave them out here.
+-->
+<!--{$pages}-->
+
+{if $actual_page neq $last_page}<a href="{$next}" data-role="button" data-icon="arrow-r" data-iconpos="notext">{txt key=TEXT_NEXT}</a> {/if}
+{if $actual_page neq $last_page}<a href="{$last}" data-role="button" data-icon="mda_mobile_last" data-iconpos="notext">{txt key=TEXT_LAST}</a>{/if}
+</div>

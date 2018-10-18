@@ -1,0 +1,233 @@
+{form type=form name=process action='checkout' method=post conn=SSL id='checkout-form'}
+    {form type=hidden name=action value=process}
+
+    <br />
+    
+    <div data-role="header">
+        <h1>{txt key=TEXT_CHECKOUT_CONFIRMATION}:</h1>
+    </div> 
+    
+    <p>
+        {txt key=TEXT_CHECKOUT_CONFIRMATION_DESC}
+    </p>
+        
+    <p>
+        {if $smarty.const._STORE_TERMSCOND_CHECK eq 'false'}
+            {content cont_id=3 is_id='false'}
+            <a href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION}</a> |  {$_content_3.content_popup_link}
+        {/if}
+        {if $smarty.const._STORE_TERMSCOND_CHECK eq 'true'}
+            <label>
+                {content cont_id=3 is_id='false'}
+                {form type=checkbox name=conditions_accepted} <strong>{txt key=TEXT_ACCEPT_CONDITIONS}</strong>
+            </label>
+            {$_content_3.content_popup_link}
+        {/if}
+        {if $show_digital_checkbox eq 'true'}
+            <label>{form type=checkbox name=withdrawal_reject_accepted} {txt key=TEXT_DIGITALCOND_CHECK}</label>
+        {/if}
+    </p>
+    {hook key=checkout_tpl_form}
+
+    <div class="ui-grid-a">
+        <div class="ui-block-a">
+            <div data-role="header">
+                <h1>{txt key=TEXT_SHIPPING_ADDRESS}:</h1>
+            </div>
+            <p>
+                {if $shipping_address.customers_company} {$shipping_address.customers_company}<br />{/if}
+                {$shipping_address.customers_firstname} {$shipping_address.customers_lastname}<br />
+                {$shipping_address.customers_street_address}<br />
+                {if $shipping_address.customers_suburb} {$shipping_address.customers_suburb}<br />{/if}
+                {$shipping_address.customers_postcode} {$shipping_address.customers_city}<br />
+                {$shipping_address.customers_country}<br />
+            </p>
+            <a data-role="button" href="{link page='customer' paction=edit_address params='adType=shipping&abID' params_value=$shipping_address.address_book_id conn=SSL}">{txt key=TEXT_EDIT}</a>
+        </div>
+        <div class="ui-block-b">
+            <div data-role="header">
+                <h1>{txt key=TEXT_PAYMENT_ADDRESS}:</h1>
+            </div>
+            <p>
+                {if $payment_address.customers_company} {$payment_address.customers_company}<br />{/if}
+                {$payment_address.customers_firstname} {$payment_address.customers_lastname}<br />
+                {$payment_address.customers_street_address}<br />
+                {if $payment_address.customers_suburb} {$payment_address.customers_suburb}<br />{/if}
+                {$payment_address.customers_postcode} {$payment_address.customers_city}<br />
+                {$payment_address.customers_country}<br />
+            </p>
+            <a data-role="button" href="{link page='customer' paction=edit_address params='adType=payment&abID' params_value=$payment_address.address_book_id conn=SSL}">{txt key=TEXT_EDIT}</a>
+        </div>
+    </div>
+    
+    <br />
+    
+    <div class="ui-grid-a">
+        <div class="ui-block-a">
+            {if $shipping_info.shipping_name}
+                <div data-role="header">
+                    <h2>{txt key=TEXT_SHIPPING_METHOD}:</h2>
+                </div>
+                <p>{$shipping_info.shipping_name}</p>
+            
+                {*if $shipping_info.shipping_desc}
+                    <p>{$shipping_info.shipping_desc}</p>
+                {/if*}
+            {/if}
+            {if $shipping_info.shipping_info}
+                <p>{$shipping_info.shipping_info}</p>
+            {/if}
+            {if $shipping_info.shipping_name}
+                <a data-role="button" href="{link page='checkout' paction=shipping conn=SSL}">{txt key=TEXT_EDIT}</a>
+            {/if}
+        </div>
+        <div class="ui-block-b">
+             {if $payment_info.payment_name}
+                <div data-role="header">
+                    <h2>{txt key=TEXT_PAYMENT_METHOD}:</h2>
+                </div>
+                <p>{$payment_info.payment_name}</p>
+                
+                {*if $payment_info.payment_desc}
+                    <p>{$payment_info.payment_desc}</p>
+                {/if*}
+            {/if}
+            {if $payment_info.payment_info}
+                <p>{$payment_info.payment_info}</p>
+            {/if}
+            {if $payment_info.payment_name}
+                <a data-role="button" href="{link page='checkout' paction=payment conn=SSL}">{txt key=TEXT_EDIT}</a>
+            {/if}
+        </div>
+    </div>
+
+    {hook key=checkout_tpl_info}
+
+    <br />
+    
+    <div data-role="header">
+        <h1>{txt key=TEXT_ARTICLE}:</h1>
+        <a href="{link page='cart' conn=SSL}" data-role="button" data-inline="true">
+            <div class="xtm-icon-16 xtm-icon-edit"></div>
+        </a>                      
+    </div>
+
+    <ul data-role="listview" data-inset="false" data-theme="c">
+
+        {foreach name=aussen item=item_data from=$data}
+
+            <li class="xtm-checkout-cart-item" data-icon="false">
+                
+                {if $item_data.products_image != 'product:noimage.gif'}
+                    {img img=$item_data.products_image type=m_mobile_thumb class='' alt=$item_data.products_name|escape:"html"}
+                {else}
+                    <img src="{$tpl_url_path}/img/no_image.png" alt="{txt key=TEXT_NO_IMAGE}">
+                {/if}
+
+                <div class="ui-li-aside"></div>
+                
+                <span class="ui-li-heading">{$item_data.products_name}</span>
+                
+                <span class="ui-li-desc">
+                    {if $item_data.shipping_status}<span class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$item_data.shipping_status}</span>{/if}
+                </span>
+
+                <span class="ui-li-desc">
+                    {txt key=TEXT_QTY}: {$item_data.products_quantity} <br>
+                    {txt key=TEXT_SINGLE_PRICE}: {$item_data.products_price.formated}<br>
+                    {txt key=TEXT_TOTAL_PRICE}: {$item_data.products_final_price.formated}<br />
+                    <br />
+                    {if $item_data.products_information || $item_data.products_description}
+                        <a href="#xtm-products-info-{$smarty.foreach.aussen.index}" data-rel="popup" data-position-to="window" data-inline="true">
+                            {txt key=TEXT_MORE_DETAILS}
+                        </a>
+                    {/if}
+                </span>
+                
+                <div id="xtm-products-info-{$smarty.foreach.aussen.index}" data-role="popup" data-overlay-theme="a">
+                    <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+                    <div data-role="header"><h3>{$item_data.products_name}</h3></div>
+                    <div data-role="content">
+                        <span class="floatLeft">
+                            {if $item_data.products_image != 'product:noimage.gif'}
+                                {img img=$item_data.products_image type=m_mobile_thumb class='' alt=$item_data.products_name|escape:"html"}
+                            {else}
+                                <img src="{$tpl_url_path}/img/no_image.png" alt="{txt key=TEXT_NO_IMAGE}">
+                            {/if}
+                        </span>
+                        <span class="summary">
+                            <span>
+                            {txt key=TEXT_QTY}: {$item_data.products_quantity} <br>
+                            {txt key=TEXT_SINGLE_PRICE}: {$item_data.products_price.formated}<br>
+                            {txt key=TEXT_TOTAL_PRICE}: {$item_data.products_final_price.formated}<br />
+                            </span>
+                        </span>
+
+                        <span class="desc">
+
+                            {if $item_data.products_description}
+                                {$item_data.products_description}
+                                <br />
+                                <br />
+                            {/if}
+
+
+                            {if $item_data.products_information}
+                                {$item_data.products_information}
+                                <br />
+                                <br />
+                            {/if}
+
+                        </span>
+                        {literal}
+                        <script>
+                            $('#xtm-products-info-{/literal}{$smarty.foreach.aussen.index}{literal}-popup').addClass('xtm-checkout-cart-item-popup');
+                        </script>                    
+                        {/literal}
+                    </div>
+                </div>
+
+            </li>
+
+        {/foreach}
+        <li class="xtm-checkout-total" data-icon="false">
+            <div class="right">
+                <table> 
+                    <tr><td>{txt key=TEXT_SUB_TOTAL}:</td><td>{$sub_total}</td></tr>
+                    
+                    {foreach name=aussen item=sub_data from=$sub_data}
+                    <tr><td>{$sub_data.products_name}:</td><td>{$sub_data.products_price.formated}</td></tr>
+                    {/foreach}
+                    
+                    {foreach name=aussen item=tax_data from=$tax}
+                    <tr><td>{txt key=TEXT_TAX} {$tax_data.tax_key}%:</td><td>{$tax_data.tax_value.formated}</td></tr>
+                    {/foreach}
+                    
+                    <tr><td><strong>{txt key=TEXT_TOTAL}:</td><td><strong id="grand-total-value">{$total}</strong></td></tr>
+                
+                    {if $discount}
+                    <tr><td>{txt key=TEXT_DISCOUNT_MADE}:</td><td>{$discount.formated}</td></tr>
+                    {/if}
+                    
+                    {if $payment_info.payment_cost_info eq '1'}
+                    <tr><td colspan="2">{txt key=TEXT_ORDER_CONFIRMATION_BUTTON_LAW}</td></tr>
+                    {/if}
+                </table>
+            </span>
+        </li>        
+    </ul>
+
+    <br />
+
+    {hook key=checkout_tpl_confiramtion}
+
+    {if $post_form eq '1'}
+        <p>{txt key=TEXT_INFO_PAY_NEXT_STEP}</p>
+        <button type="submit" onClick='this.disabled=true; submit();'>{$smarty.const.BUTTON_CONFIRM_ORDER_PAY}</button>
+    {else}
+        <button type="submit" onClick='this.disabled=true; submit();'>{$smarty.const.BUTTON_CONFIRM_ORDER}</button>
+    {/if}
+    
+{form type=formend}
+
+{hook key=checkout_tpl_bottom}

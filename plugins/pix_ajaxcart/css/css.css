@@ -1,0 +1,126 @@
+ 
+
+#popupWarenkorb .artikelbox {   
+	height: 100px;
+    margin: 0 0 15px;
+    padding: 10px;
+    position: relative;}
+
+#popupWarenkorb .bild {  display: block;
+    height: 100px;
+    width: 100px;
+}
+
+#popupWarenkorb .produktname { 
+	font-size: 16px;
+    font-weight: 700;
+    left: 120px;
+    position: absolute;
+    top: 35px;
+}
+
+#popupWarenkorb .artikelnummer { 
+	left: 120px;
+    position: absolute;
+    top: 60px;
+	display: none;
+
+}
+
+#popupWarenkorb .artikelpreis { 
+	font-size: 16px;
+    font-weight: 700;
+    left: 120px;
+    position: absolute;
+    top: 60px;
+}
+
+#popupWarenkorb .artikelmenge { 
+	left: 120px;
+    position: absolute;
+    top: 80px;
+
+}
+
+
+ .vorschauloader {   background: url("../images/ajax-loader.gif") no-repeat scroll 0 0 transparent;
+    height: 15px;
+    left: 0;
+    line-height: 15px;
+    padding-left: 139px;
+    position: relative;
+    text-align: left;
+    top: 0; display: none;
+    width: 100%;}
+
+
+
+#popupWarenkorb {
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 0 15px #FFFFFF;
+    display: none;
+    padding: 3px; 
+    position: fixed; _position:absolute;   
+    width: 550px !important;
+    z-index: 6001;
+}
+
+#popupWarenkorbBackground {
+    background: none repeat scroll 0 0 #333333;
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 6000; opacity:.90;
+-moz-opacity:.9;
+filter:alpha(opacity=70);
+}
+
+#popupWarenkorb h3 {   
+	background: none repeat scroll 0 0 #00B1EA;
+    color: #FFFFFF;
+    padding: 5px; 
+}
+
+#popupWarenkorb .clickdiv { float: left; text-align: center; width: 33%; }
+#popupWarenkorb .clickdiv a {  background: none repeat scroll 0 0 #333;
+    border: 0px solid #000000;
+    border-radius: 3px 3px 3px 3px;
+	text-transform: uppercase;
+    color: #FFFFFF;
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    text-decoration: none;}
+
+#popupWarenkorb .clickdiv a:hover {  background: none repeat scroll 0 0 #E7246F;
+    border: 0px solid #333;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    text-decoration: none;}
+	
+	#popupWarenkorb .clickdiv2 { float: right; text-align: center; width: 33%; }
+#popupWarenkorb .clickdiv2 a {  
+	background: none repeat scroll 0 0 #333;
+    border: 0px solid #000000;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    display: block;
+    margin: 5px;
+    padding: 5px;
+	text-transform: uppercase;
+    text-decoration: none;}
+
+#popupWarenkorb .clickdiv2 a:hover {  background: none repeat scroll 0 0 #E7246F;
+    border: 0px solid #333;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    text-decoration: none;}

@@ -1,0 +1,6 @@
+<h2 class="boxheader">{txt key=TEXT_BOX_TITLE_CATEGORIES}</h2>
+<ul class="categorymenu">
+{foreach name=aussen item=module_data from=$_categories}
+	<li class="level{$module_data.level}{if $module_data.active} active{/if}"><a href="{$module_data.categories_link}" alt="{$module_data.categories_name}">{$module_data.categories_name}</a></li>
+{/foreach}
+</ul>

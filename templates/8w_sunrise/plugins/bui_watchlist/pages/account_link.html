@@ -1,0 +1,8 @@
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+
+{if !$isMobile}
+<li><a href="{link page='bui_watchlist' paction=overview conn=SSL}"><span></span>{txt key=TEXT_BUI_WATCHLIST_ACCOUNTS}</a></li>
+{/if}

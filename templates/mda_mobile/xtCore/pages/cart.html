@@ -1,0 +1,117 @@
+<h2>{txt key=TEXT_CART}</h2>
+{if $show_cart_content == true}
+
+{$message}
+
+{form type=form name=cart action='dynamic' link_params=getParams method=post conn=SSL}
+{form type=hidden name=action value=update_product}
+<!--<table class="tabledetails" border="0" cellspacing="0">
+	<thead>
+	</thead>
+  <tbody>
+  {foreach name=aussen item=data from=$cart_data}
+	<tr style="padding-bottom:10px;">	
+		<td class="left" colspan="4" style="">
+			<strong><a href="{$data.products_link}">{$data.products_name}</a></strong>
+			{if $data.shipping_status}<br /><p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$data.shipping_status}</p>{/if}
+		</td>
+	</tr>
+
+	<tr valign="top">
+    
+		<td class="left borderbottom">
+			<label for="qty[{$data.products_key}]">{txt key=TEXT_QTY}</label>
+			{form type=text id=qty[] name=qty[] value=$data.products_quantity style='width:30px;'}
+			</div>
+		</td>
+		<td class="right borderbottom">{txt key=TEXT_SINGLE_PRICE}<br/>{$data.products_price.formated}</td>
+		<td class="right borderbottom">{txt key=TEXT_TOTAL_PRICE}<br/>{$data.products_final_price.formated}</td>
+		<td class="right borderbottom">
+			<label for="cart_delete[{$data.products_key}]">{txt key=TEXT_REMOVE}</label>
+			{form type=hidden name=products_key[] value=$data.products_key}
+			<input type="checkbox" value="{$data.products_key}" name="cart_delete[]" id="cart_delete[{$data.products_key}]" />
+			<!--{form type=checkbox name=cart_delete[] id=cart_delete[] value=$data.products_key}-->
+		<!--</td>
+	</tr>
+  {$data.products_information}
+  {/foreach}
+  </tbody>
+  </tfoot>
+  <tr>
+    <td colspan="5" class="subtotal">
+    	{hook key=cart_total_tpl}
+	    {foreach name=aussen item=tax_data from=$cart_tax}
+	    {txt key=TEXT_TAX} {$tax_data.tax_key}%: {$tax_data.tax_value.formated}<br />
+	    {/foreach}
+	    <strong>{txt key=TEXT_SUB_TOTAL}:{$cart_total}</strong>
+	    {if $discount}
+    	<br />{txt key=TEXT_DISCOUNT_MADE} : {$discount.formated}<br />
+    	{/if}
+    	{if $shipping_link}<br /><a href="{$shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}
+    	{if $cart_total_weight > 0}<br />({txt key=TEXT_PRODUCTS_WEIGHT}: {$cart_total_weight|number_format:2:",":"."} KG){/if}
+    	{hook key=cart_total_bottom}
+    </td>
+  </tr>
+  </tfoot>
+</table>-->
+
+{foreach name=aussen item=data from=$cart_data}
+<div data-role="collapsible" data-collapsed="true" data-content-theme="d">
+	<h4>{$data.products_name}</h4>
+	<p><strong><a href="{$data.products_link}">{$data.products_name}</a></strong></p>
+	{if $data.shipping_status}
+	<p><div class="ui-grid-a">
+		<div class="ui-block-a"><strong>{txt key=TEXT_SHIPPING_STATUS}</strong></div>
+		<div class="ui-block-b">{$data.shipping_status}</div>
+	</div></p>
+	{/if}
+	
+	<p><div class="ui-grid-a">
+		<div class="ui-block-a"><strong><label for="qty[{$data.products_key}]">{txt key=TEXT_QTY}</label></strong></div>
+		<div class="ui-block-b">{form type=text id=qty[] name=qty[] value=$data.products_quantity style='width:30px;'}</div>
+	</div></p>
+	
+	<p><div class="ui-grid-a">
+		<div class="ui-block-a"><strong>{txt key=TEXT_SINGLE_PRICE}</strong></div>
+		<div class="ui-block-b">{$data.products_price.formated}</div>
+	</div></p>
+	
+	<p><div class="ui-grid-a">
+		<div class="ui-block-a"><strong>{txt key=TEXT_TOTAL_PRICE}</strong></div>
+		<div class="ui-block-b">{$data.products_final_price.formated}</div>
+	</div></p>
+	
+	<p><label for="cart_delete[{$data.products_key}]">{txt key=TEXT_REMOVE}</label>
+	{form type=hidden name=products_key[] value=$data.products_key}
+	<input type="checkbox" value="{$data.products_key}" name="cart_delete[]" id="cart_delete[{$data.products_key}]" />
+	</p>
+	{$data.products_information}
+</div>
+{/foreach}
+<p>
+{hook key=cart_total_tpl}
+{foreach name=aussen item=tax_data from=$cart_tax}
+	{txt key=TEXT_TAX} {$tax_data.tax_key}%: {$tax_data.tax_value.formated}<br />
+{/foreach}
+
+
+<strong>{txt key=TEXT_SUB_TOTAL}:{$cart_total}</strong>
+
+{if $discount}<br />{txt key=TEXT_DISCOUNT_MADE} : {$discount.formated}<br />{/if}
+{if $shipping_link}<br /><a href="{$shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a>{/if}
+{if $cart_total_weight > 0}<br />({txt key=TEXT_PRODUCTS_WEIGHT}: {$cart_total_weight|number_format:2:",":"."} KG){/if}
+{hook key=cart_total_bottom}
+</p>
+
+<fieldset class="ui-grid-a">
+	<div class="ui-block-a"><input type="submit" value="{txt key=BUTTON_UPDATE}" /></div>
+	<div class="ui-block-b"><a href="{link page='checkout' paction='shipping' conn=SSL}" data-role="button">{txt key=BUTTON_CHECKOUT}</a></div>	   
+</fieldset>
+
+	{hook key=cart_tpl_form}
+
+{form type=formend}
+{else}
+{$message}
+{/if}
+{hook key=cart_bottom}

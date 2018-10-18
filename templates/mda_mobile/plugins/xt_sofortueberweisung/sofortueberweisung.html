@@ -1,0 +1,37 @@
+{if $payment_hidden == true}
+	{form type=hidden name=selected_payment value=$payment_code}
+{else}
+	{if $payment_code==$payment_selected}
+		<label for="{$payment_code}">
+			<strong>{$payment_name}</strong>
+			{if $payment_desc}
+				<p>{$payment_desc}></p>
+			{/if}
+			
+			{if $payment_icon}
+				{img img=$payment_icon url=`$smarty.const._SRV_WEB`media/payment/}
+			{else}
+        {img img=logo_payment.gif url=`$smarty.const._SRV_WEB`plugins/xt_sofortueberweisung/images/}
+			{/if}
+			
+			{$payment_price.formated}
+		</label>
+	  	{form type=radio id=$payment_code name=selected_payment value=$payment_code checked=true}
+	{else}
+		<label for="{$payment_code}">
+			<strong>{$payment_name}</strong>
+			{if $payment_desc}
+				<p>{$payment_desc}></p>
+			{/if}
+			
+			{if $payment_icon}
+				{img img=$payment_icon url=`$smarty.const._SRV_WEB`media/payment/}
+			{else}
+				{img img=logo_payment.gif url=`$smarty.const._SRV_WEB`plugins/xt_sofortueberweisung/images/}
+			{/if}
+			
+			{$payment_price.formated}
+		</label>
+	  	{form type=radio id=$payment_code name=selected_payment value=$payment_code}
+	{/if}
+{/if}

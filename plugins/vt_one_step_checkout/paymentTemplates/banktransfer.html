@@ -1,0 +1,68 @@
+<table class="paymentblock" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr>
+		  	{if $payment_hidden == true}
+		  		{form type=hidden name=selected_payment value=$payment_code}
+		  	{else}			
+			  	{if $payment_code==$payment_selected}
+			  	<td class="header" width="10px">{form type=radio id="banktransfer" name=selected_payment value=$payment_code checked=true}</td>
+			  	{else}
+			  	<td class="header" width="10px">{form type=radio id="banktransfer" name=selected_payment value=$payment_code}</td>
+			  	{/if}
+			{/if}  
+    
+    <td class="header"><strong>{$payment_name}</strong></td>
+    {if $payment_icon}
+    <td class="header"><strong>{$payment_icon}</strong></td>
+    {/if}
+    <td class="header" align="right">{$payment_price.formated}</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="main">{$payment_desc}</td>
+  </tr>
+  {if $account_list !=''}
+  <tr>
+    <td colspan="3" class="main">{txt key=TEXT_BANKTRANSFER_ACCOUNT_SELECT}:</td>
+  </tr>
+  <tr>
+    <td colspan="3" class="main">{form type=select name=acID value=$account_list}</td>
+  </tr>
+      <tr>
+    <td colspan="3" class="main"><br />{txt key=TEXT_BANK_ACCOUNTS_NEW}<br></td>
+  </tr>
+  {/if}
+
+
+  <tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_OWNER}</td>
+    <td colspan="2" class="main">{form type=text name=banktransfer_owner value=$banktransfer_owner}</td>
+  </tr>
+
+  <tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BANK_NAME}</td>
+    <td colspan="2" class="main">{form type=text name=banktransfer_bank_name value=$banktransfer_bank_name}</td>
+  </tr>
+
+  <tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BLZ}</td>
+    <td colspan="2" class="main">{form type=text name=banktransfer_blz value=$banktransfer_blz}</td>
+  </tr>
+
+  <tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_NUMBER}</td>
+    <td colspan="2" class="main">{form type=text name=banktransfer_number value=$banktransfer_number}</td>
+  </tr>
+
+  <tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_IBAN}</td>
+    <td colspan="2" class="main">{form type=text name=banktransfer_iban value=$banktransfer_iban}</td>
+  </tr>
+  <tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BIC}</td>
+    <td colspan="2" class="main">{form type=text name=banktransfer_bic value=$banktransfer_bic}</td>
+  </tr>
+  <tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_SAVE_ACCOUNT}</td>
+    <td colspan="2" class="main">{form type=checkbox name=banktransfer_save} {txt key=TEXT_BANKTRANSFER_SAVE_ACCOUNT_DESC}</td>
+  </tr>
+</table>
+<br />

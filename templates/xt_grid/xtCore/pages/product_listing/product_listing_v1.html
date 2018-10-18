@@ -1,0 +1,104 @@
+<div class="product-listing">
+	{$categories}
+	{if $product_listing}
+	{if $heading_text}
+    {if $page neq 'index'}
+    <h1>{$heading_text}</h1>
+    {else}
+    <h2>{$heading_text}</h2>
+    {/if}
+	{/if}
+
+	{if $PRODUCTS_DROPDOWN}
+		{$PRODUCTS_DROPDOWN}
+	{/if}
+	
+	{if $manufacturer.MANUFACTURER.manufacturers_image}
+		<p>{img img=$manufacturer.MANUFACTURER.manufacturers_image type=m_info}</p>
+	{/if}
+
+	{if $manufacturer}
+		<p class="manufacturers-description">{$manufacturer.MANUFACTURER.manufacturers_description}</p>
+	{/if}
+    {if $NAVIGATION_PAGES || $sort_dropdown.options}
+        <div class="products-sort-pages">
+            {if $sort_dropdown.options}
+                <div class="products-sort">
+                    <label for="sort_dropdown_top">{txt key=TEXT_SORT_BY}</label>
+                    {form type=form name=sort_dropdown action='dynamic' method=get}
+                    {if isset($current_manufacturer_id)}{form type=hidden name=page value='manufacturers'} {else} {form type=hidden name=page value='categorie'} {/if}
+                    {if isset($current_category_id)}{form type=hidden name=cat value=$current_category_id}{/if}
+                    {if isset($current_manufacturer_id)}{form type=hidden name=mnf value=$current_manufacturer_id}{/if}
+                    {form params='id="sort_dropdown_top"' type=select name=sorting value=$sort_dropdown.options default=$sort_default onchange='this.form.submit();'}
+                    {form type=formend}
+                </div><!-- .products-sort -->
+            {/if}
+            <div class="navigation-pages">
+                {$NAVIGATION_PAGES}
+            </div><!-- .navigation-pages -->
+        </div><!-- .products-sort-pages -->
+    {/if}
+	{if $MANUFACTURER_DROPDOWN}
+		{if $MANUFACTURER_DROPDOWN}{$MANUFACTURER_DROPDOWN}{/if}
+	{/if}
+
+	<div class="row">
+		{foreach name=aussen item=module_data from=$product_listing}
+		<div class="column {$smarty.const._STORE_TPL_LISTING_COLUMNS}">
+			<div class="box product box-hover">
+			{if $module_data.products_image == 'product:noimage.gif'}
+			<p class="product-image"><a href="{$module_data.products_link}"><img src="{$tpl_url_path}img/no_image.png" alt="{$module_data.products_name|escape:"html"}" /></a></p>
+			{else}
+			<p class="product-image"><a href="{$module_data.products_link}">{img img=$module_data.products_image type=m_thumb class=productImageBorder alt=$module_data.products_name|escape:"html"}</a></p>
+    		{/if}
+			<p class="product-name"><a href="{$module_data.products_link}">{$module_data.products_name}</a></p>
+			{if $module_data.base_price}<p class="vpe">{$module_data.base_price.price} {txt key=TEXT_SHIPPING_BASE_PER} {$module_data.base_price.vpe.name}</p>{/if}
+			{if $module_data.review_stars_rating}
+			<div class="product-reviews">
+				<div class="reviews_rating_light">
+					<div class="reviews_rating_dark" style="width:{$module_data.review_stars_rating}%"></div>
+				</div>
+			</div>
+			{/if}
+			{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+			<p class="product-price">{$module_data.products_price.formated}</p>
+			{if $module_data.products_shipping_link}
+			<p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} <a href="{$module_data.products_shipping_link}" target="_blank" rel="nofollow">{txt key=TEXT_EXCL_SHIPPING}</a></p>
+			{else}
+			<p class="product-tax-shipping">{$module_data.products_tax_info.tax_desc} {txt key=TEXT_EXCL_SHIPPING}</p>
+			{/if}
+			{/if}
+			{if $module_data.date_available!=''}
+            <p class="box info">{txt key=TEXT_PRODUCT_AVAILABLE} {$module_data.date_available|date_format:"%A, %B %e, %Y"}</p>
+            {/if}
+			</div><!-- .box .product -->
+		</div><!-- .column .four -->
+	{/foreach}
+	</div><!-- .row -->
+    {if $NAVIGATION_PAGES || $sort_dropdown.options}
+        <div class="products-sort-pages">
+            {if $sort_dropdown.options}
+                <div class="products-sort">
+                    <label for="sort_dropdown_bottom">{txt key=TEXT_SORT_BY}</label>
+                    {form type=form name=sort_dropdown action='dynamic' method=get}
+                    {if isset($current_manufacturer_id)}{form type=hidden name=page value='manufacturers'} {else} {form type=hidden name=page value='categorie'} {/if}
+                    {if isset($current_category_id)}{form type=hidden name=cat value=$current_category_id}{/if}
+                    {if isset($current_manufacturer_id)}{form type=hidden name=mnf value=$current_manufacturer_id}{/if}
+                    {form params='id="sort_dropdown_bottom"' type=select name=sorting value=$sort_dropdown.options default=$sort_default onchange='this.form.submit();'}
+                    {form type=formend}
+                </div><!-- .products-sort -->
+            {/if}
+            <div class="navigation-pages">
+                {$NAVIGATION_PAGES}
+            </div><!-- .navigation-pages -->
+        </div><!-- .products-sort-pages -->
+    {/if}
+	<div class="navigation-count">
+			{$NAVIGATION_COUNT}
+    </div><!-- .navigation-count -->
+	{/if}
+	{$error_listing}
+    {if $category_data.categories_description_bottom}
+    <div id="categorie-description-bottom" class="textstyles">{$category_data.categories_description_bottom}</div>
+    {/if}
+</div><!-- .product-listing -->

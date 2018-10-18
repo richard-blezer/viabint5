@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>HEADING_XT_COUNTRYPRICES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Countryprices]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Länderpreise]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUNTRY_CODE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Country]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Land]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_COUNTRY_PRICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Price]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Preis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PRODUCTS_COUNTRY_PRICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Countryprices]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Länderpreise]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_COUNTRYPRICES</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Countryprices]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Länderpreise]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

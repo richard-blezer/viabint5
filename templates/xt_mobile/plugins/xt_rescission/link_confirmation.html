@@ -1,0 +1,19 @@
+{if $smarty.const.XT_RESCISSION_SHOW_CONFIRMATION eq 'true'}
+    <p>
+        {content cont_id=8 is_id='false'}
+        {assign var="params" value=""}
+        {if $rescission_accepted==1}
+            {assign var="params" value="checked=\"checked\""}
+        {/if}
+        <label>
+            {form type=checkbox name=rescission_accepted params=$params}
+            {txt key=XT_RESCISSION_ACCEPT}
+        </label>
+        {$_content_8.content_popup_link}
+    </p>
+{else}
+    {content cont_id=8 is_id='false'}
+    <p>
+        <a href="{$_content_8.content_link}" target="_blank">{txt key=XT_RESCISSION_CONFIRMATION}</a> | {$_content_8.content_popup_link}
+    </p>
+{/if}

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+		<title>Elefunds</title>
+		<version>1.0.4</version>
+		<code>xt_elefunds</code>
+		<url>http://www.xt-commerce.com</url>
+		<description>Elefunds donations plugins</description>
+		<developer>xt:Commerce</developer>
+<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/display/MANUAL/xt_elefunds+-+Spenden+in+xt:Commerce+Shops]]></documentation_link>
+<marketplace_link></marketplace_link>
+		<type>extension</type><icon>xt-commerce_logo.jpg</icon>
+		<db_install><![CDATA[
+			require_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/db_install.php';
+		]]></db_install>
+		<db_uninstall><![CDATA[
+			require_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/db_uninstall.php';
+		]]></db_uninstall>
+		<plugin_code>
+			<code>
+            	<hook>display.php:content_bottom</hook>
+            		<phpcode><![CDATA[
+                		require_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/javascript.phpbottom.php';
+            		]]></phpcode>
+            		<order>1</order>
+            		<active>1</active>
+        	</code>
+        	<code>
+            	<hook>admin_dropdown.php:dropdown</hook>
+            		<phpcode><![CDATA[
+                		require_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/admin_dropdown.php.dropdown.php';
+            		]]></phpcode>
+            		<order>1</order>
+            		<active>1</active>
+        	</code>
+        	<code>
+            	<hook>xt_orders_invoices:_buildData_bottom</hook>
+            		<phpcode><![CDATA[
+                		require_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/xt_orders_invoices._buildData_bottom.php';
+            		]]></phpcode>
+            		<order>1</order>
+            		<active>1</active>
+        	</code>
+			<code>
+            	<hook>class.order.php:_updateOrderStatus_bottom</hook>
+            		<phpcode><![CDATA[
+                		require_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/class.order.php._updateOrderStatus_bottom.php';
+            		]]></phpcode>
+            		<order>1</order>
+            		<active>1</active>
+        	</code>
+        	<code>
+            	<hook>class.order.php:_buildTotalData_bottom</hook>
+            		<phpcode><![CDATA[
+                		require_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/class.order.php._buildTotalData_bottom.php';
+            		]]></phpcode>
+            		<order>1</order>
+            		<active>1</active>
+        	</code>
+        	<code>
+            	<hook>checkout_tpl_form_total_lines</hook>
+            		<phpcode><![CDATA[
+                		require_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/checkout_tpl_form_total_lines.php';
+            		]]></phpcode>
+            		<order>1</order>
+            		<active>1</active>
+        	</code>
+        	<code>
+            	<hook>styles.php:bottom</hook>
+            	<phpcode><![CDATA[
+             		require_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/styles.phpbottom.php';
+            	]]></phpcode>
+            	<order>1</order>
+            	<active>1</active>
+        	</code>
+        	<code>
+            	<hook>class.order.php:_setOrder_product_bottom</hook>
+            	<phpcode><![CDATA[
+             		require_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/class.order.php._setOrder_product_bottom.php';
+            	]]></phpcode>
+            	<order>1</order>
+            	<active>1</active>
+        	</code>
+        	<code>
+            	<hook>checkout_success_tpl</hook>
+            	<phpcode><![CDATA[
+             		require_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/checkout_success_tpl.php';
+            	]]></phpcode>
+            	<order>1</order>
+            	<active>1</active>
+        	</code>
+			<code>
+            	<hook>row_actions.php:actions</hook>
+            	<phpcode><![CDATA[ 
+				 	include_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/row_actions.phpactions.php'; 
+				 	]]>
+				 </phpcode>
+            	<order>1</order>
+            	<active>1</active>
+        	</code>
+        	<code>
+            	<hook>cronjob.php:main</hook>
+            	<phpcode><![CDATA[ 
+				 	include_once _SRV_WEBROOT.'plugins/xt_elefunds/hooks/cronjob.phpmain.php'; 
+				 	]]>
+				 </phpcode>
+            	<order>1</order>
+            	<active>1</active>
+        	</code>
+		</plugin_code>
+		<configuration>
+			<config>
+				<key>XT_ELEFUNDS_CLIENT_ID</key>
+				<value></value>
+					<de>
+						<title>Kunden ID</title>
+					</de>
+					<en>
+						<title>Client ID</title>
+					</en>
+			</config>
+			<config>
+				<key>XT_ELEFUNDS_API_KEY</key>
+				<value></value>
+				<de>
+					<title>API Key</title></de>
+				<en>
+					<title>API Key</title></en>
+			</config>
+			<config>
+				<key>XT_ELEFUNDS_FORM_SELECTOR</key>
+				<value>#checkout-form</value>
+				<de>
+					<title>Form Selektor</title></de>
+				<en>
+					<title>Form selector</title></en>
+			</config>
+			<config>
+				<key>XT_ELEFUNDS_TOTAL_SELECTOR</key>
+				<value>#grand-total-value</value>
+				<de>
+					<title>Preis Selektor</title></de>
+				<en>
+					<title>Total selector</title></en>
+			</config>
+			<config>
+				<key>XT_ELEFUNDS_STATUS_COMPLETED_MAPPING</key>
+				<value>33,23</value>
+				<de>
+					<title>Bestellstatus "Abgeschlossen"</title>
+				</de>
+				<en>
+					<title>Order status "completed"</title>
+				</en>
+			</config>
+			<config>
+				<key>XT_ELEFUNDS_STATUS_PENDING_MAPPING</key>
+				<value>16,17</value>
+				<de>
+					<title>Bestellstatus "offen"</title>
+				</de>
+				<en>
+					<title>Order status pending</title>
+				</en>
+			</config>
+			<config>
+				<key>XT_ELEFUNDS_STATUS_CANCELLED_MAPPING</key>
+				<value>32,34</value>
+				<de>
+					<title>Bestellstatus "cancelled"</title>
+				</de>
+				<en>
+					<title>Order status cancelled</title>
+				</en>
+			</config>
+			<config>
+				<key>XT_ELEFUNDS_THEME</key>
+				<type>dropdown</type>
+				<url>elefunds_themes</url>
+				<value>light</value>
+				<de>
+					<title>Theme</title>
+				</de>
+				<en>
+					<title>Theme</title>
+				</en>
+			</config>
+			<config>
+				<key>XT_ELEFUNDS_COLOR</key>
+				<value>#00efa2</value>
+				<de>
+					<title>Farbe</title>
+				</de>
+				<en>
+					<title>Color</title>
+				</en>
+			</config>
+		</configuration>
+		<language_content>
+			<phrase>
+	            <key>TEXT_ELEFUNDS_ACCOUNT</key>
+	            <class>admin</class>
+	            <en>
+	                <value>Elefunds Account</value>
+	            </en>
+	            <de>
+	                <value>Elefunds Account</value>
+	            </de>
+	            <es>
+	                <value>Elefunds Account</value>
+	            </es>
+	            <bp>
+	                <value>Elefunds Account</value>
+	            </bp>
+	        </phrase>
+	        <phrase>
+	            <key>TEXT_CREATE_ELEFUNDS_ACCOUNT</key>
+	            <class>both</class>
+	            <en>
+	                <value>Create Elefuds account!</value>
+	            </en>
+	            <de>
+	                <value>Create Elefuds account!</value>
+	            </de>
+	            <es>
+	                <value>Create Elefuds account!</value>
+	            </es>
+	            <bp>
+	                <value>Create Elefuds account!</value>
+	            </bp>
+	        </phrase>
+	        <phrase>
+	            <key>TEXT_ELEFUNDS_ACCOUNT_REGED</key>
+	            <class>both</class>
+	            <en>
+	                <value>Elefunds account was successfully created. You will receive an email upon registraion verification.</value>
+	            </en>
+	            <de>
+	                <value>Elefunds account was successfully created. You will receive an email upon registraion verification.</value>
+	            </de>
+	            <es>
+	                <value>Elefunds account was successfully created. You will receive an email upon registraion verification.</value>
+	            </es>
+	            <bp>
+	                <value>Elefunds account was successfully created. You will receive an email upon registraion verification.</value>
+	            </bp>
+	        </phrase>
+	        <phrase>
+	            <key>TEXT_ELEFUNDS_ACCOUNT_ERROR</key>
+	            <class>both</class>
+	            <en>
+	                <value>Account failed to register.</value>
+	            </en>
+	            <de>
+	                <value>Account failed to register.</value>
+	            </de>
+	            <es>
+	                <value>Account failed to register.</value>
+	            </es>
+	            <bp>
+	                <value>Account failed to register.</value>
+	            </bp>
+	        </phrase>
+	         <phrase>
+	            <key>TEXT_CREATE_ELEFUNDS_ACCOUNT</key>
+	            <class>both</class>
+	            <en>
+	                <value>Regiser Elefunds account</value>
+	            </en>
+	            <de>
+	                <value>Regiser Elefunds account</value>
+	            </de>
+	            <es>
+	                <value>Regiser Elefunds account</value>
+	            </es>
+	            <bp>
+	                <value>Regiser Elefunds account</value>
+	            </bp>
+	        </phrase>
+	        <phrase>
+	            <key>TEXT_ELEFUNDS_EMAIL</key>
+	            <class>both</class>
+	            <en>
+	                <value>Email</value>
+	            </en>
+	            <de>
+	                <value>Email</value>
+	            </de>
+	            <es>
+	                <value>Email</value>
+	            </es>
+	            <bp>
+	                <value>Email</value>
+	            </bp>
+	        </phrase>
+	        <phrase>
+	            <key>TEXT_SELECT_RECIEVER</key>
+	            <class>both</class>
+	            <en>
+	                <value>Select receiver</value>
+	            </en>
+	            <de>
+	                <value>Select receiver</value>
+	            </de>
+	            <es>
+	                <value>Select receiver</value>
+	            </es>
+	            <bp>
+	                <value>Select receiver</value>
+	            </bp>
+	        </phrase>
+	         <phrase>
+	            <key>_ERROR_ELEFUNDS_EMAIL</key>
+	            <class>both</class>
+	            <en>
+	                <value>Bitte geben Sie eine E-Mail Adresse an!</value>
+	            </en>
+	            <de>
+	                <value>Please enter an E-mail address</value>
+	            </de>
+	            <es>
+	                <value>Please enter an E-mail address</value>
+	            </es>
+	            <bp>
+	                <value>Please enter an E-mail address</value>
+	            </bp>
+	        </phrase>
+	        <phrase>
+	            <key>_ERROR_ELEFUNDS_NO_RECIEVERS</key>
+	            <class>both</class>
+	            <en>
+	                <value>Please select at least one receiver</value>
+	            </en>
+	            <de>
+	                <value>Please select at least one receiver</value>
+	            </de>
+	            <es>
+	                <value>Please select at least one receiver</value>
+	            </es>
+	            <bp>
+	                <value>Please select at least one receiver</value>
+	            </bp>
+	        </phrase>
+		</language_content>
+		</xtcommerceplugin>

@@ -1,0 +1,37 @@
+{if $payment_hidden == true}
+	{form type=hidden name=selected_payment value=$payment_code}
+{else}
+	{if $payment_code==$payment_selected}
+		<label for="{$payment_code}">
+			<strong>{$payment_name}</strong>
+			{if $payment_desc}
+				<p>{$payment_desc}></p>
+			{/if}
+			<a href="#" onclick="javascript:window.open('https://www.paypal.com/de/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside','olcwhatispaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=500');">
+			{if $payment_icon}
+				{img img=$payment_icon url=`$smarty.const._SRV_WEB`media/payment/}
+			{else}
+				<img  src="https://www.paypal.com/de_DE/DE/i/logo/lockbox_100x31.gif" border="0" alt="PayPal-Bezahlmethoden-Logo">
+			{/if}
+			</a>
+			{$payment_price.formated}
+		</label>
+	  	{form type=radio id=$payment_code name=selected_payment value=$payment_code checked=true}
+	{else}
+		<label for="{$payment_code}">
+			<strong>{$payment_name}</strong>
+			{if $payment_desc}
+				<p>{$payment_desc}></p>
+			{/if}
+			<a href="#" onclick="javascript:window.open('https://www.paypal.com/de/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside','olcwhatispaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=500');">
+			{if $payment_icon}
+				{img img=$payment_icon url=`$smarty.const._SRV_WEB`media/payment/}
+			{else}
+				<img  src="https://www.paypal.com/de_DE/DE/i/logo/lockbox_100x31.gif" border="0" alt="PayPal-Bezahlmethoden-Logo">
+			{/if}
+			</a>
+			{$payment_price.formated}
+		</label>
+	  	{form type=radio id=$payment_code name=selected_payment value=$payment_code}
+	{/if}
+{/if}

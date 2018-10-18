@@ -1,0 +1,185 @@
+<div class="row">
+	<div class="column xt-grid-16">
+	{$pp_message}
+	{$message}
+	</div><!-- .column .xt-grid-16 -->
+</div><!--  .row -->
+
+<div id="checkout-confirmation" class="row">
+	<div class="column xt-grid-4">
+		<div class="box">
+			<div data-role="header" class="ui-header ui-bar-a" role="banner"> 
+				<h1 class="ui-title" role="heading" aria-level="1">{txt key=TEXT_SHIPPING_ADDRESS}</h1>
+            </div>
+			{if $shipping_address.allow_change == true && $shipping_address.address_class=='shipping'}
+			<p class="right"><a class="highlight" href="{link page='customer' paction='edit_address' params='adType=shipping&abID' params_value=$shipping_address.address_book_id conn=SSL}">{txt key=TEXT_EDIT}</a></p>
+			{/if}
+			{if $shipping_address.customers_company}<p>{$shipping_address.customers_company}</p>{/if}
+			<p>{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}</p>
+			<p>{$shipping_address.customers_street_address}</p>
+			{if $shipping_address.customers_suburb}</p>{$shipping_address.customers_suburb}</p>{/if}
+			<p>{$shipping_address.customers_postcode} {$shipping_address.customers_city}</p>
+			<p>{$shipping_address.customers_country}</p>
+			<p><br /></p>
+			{if $shipping_address.allow_change == true}
+			{txt key=TEXT_SELECT_SHIPPING_ADDRESS}
+			{form type=form name=shipping_address action='dynamic' link_params='page_action=shipping' method=post conn=SSL}
+			{form type=select name=adID value=$address_data params='onchange="this.form.submit();"'}
+			{form type=hidden name=adType value=shipping}
+			{form type=hidden name=action value=select_address}
+			{form type=formend}
+			{if $add_new_address eq 1}
+			<p>{txt key=TEXT_NEW_SHIPPING_ADDRESS}</p>
+			<p class="right"><a class="highlight" href="{link page='customer' paction='edit_address' params='adType=shipping' conn=SSL}">{txt key=BUTTON_ADD_ADDRESS}</a></p>
+			{/if}
+			{/if}
+		</div><!-- .box -->
+		<div class="box">
+			<div data-role="header" class="ui-header ui-bar-a" role="banner"> 
+				<h1 class="ui-title" role="heading" aria-level="1">{txt key=TEXT_PAYMENT_ADDRESS}</h1>
+            </div>
+			{if $payment_address.allow_change == true && $payment_address.address_class=='payment'}
+			<p class="right"><a class="highlight" href="{link page='customer' paction='edit_address' params='adType=payment&abID' params_value=$payment_address.address_book_id conn=SSL}">{txt key=TEXT_EDIT}</a></p>
+			{/if}
+			{if $payment_address.customers_company}<p>{$payment_address.customers_company}</p>{/if}
+			<p>{$payment_address.customers_firstname} {$payment_address.customers_lastname}</p>
+			<p>{$payment_address.customers_street_address}</p>
+			{if $payment_address.customers_suburb}<p>{$payment_address.customers_suburb}</p>{/if}
+			<p>{$payment_address.customers_postcode} {$payment_address.customers_city}</p>
+			<p>{$payment_address.customers_country}</p>
+			<p><br /></p>
+			{if $shipping_address.allow_change == true}
+			{txt key=TEXT_SELECT_PAYMENT_ADDRESS}
+			{form type=form name=payment_address action='dynamic' link_params='page_action=payment' method=post conn=SSL}
+			{form type=select name=adID value=$address_data params='onchange="this.form.submit();"'}
+			{form type=hidden name=adType value=payment}
+			{form type=hidden name=action value=select_address}
+			{form type=formend}
+			{if $add_new_address eq 1}
+			<p>{txt key=TEXT_NEW_PAYMENT_ADDRESS}</p>
+			<p class="right"><a class="highlight" href="{link page='customer' paction='edit_address' params='adType=payment' conn=SSL}">{txt key=BUTTON_ADD_ADDRESS}</a></p>
+			{/if}
+			{/if}
+		</div><!-- .box -->
+		<div class="box">
+			<div data-role="header" class="ui-header ui-bar-a" role="banner"> 
+				<h1 class="ui-title" role="heading" aria-level="1">{txt key=TEXT_PAYMENT_METHOD}</h1>
+            </div>
+			{if $payment_info.payment_name}<p class="bold">{$payment_info.payment_name}</p>{/if}
+			{if $payment_info.payment_desc}<p>{$payment_info.payment_desc}</p>{/if}
+    		{if $payment_info.payment_info}<p>{$payment_info.payment_info}</p>{/if}
+		</div><!-- .box -->
+	</div><!-- .column .xt-grid-4 -->	
+	<div class="column xt-grid-12">
+		{hook key=checkout_tpl_info}
+		
+		<div class="box">
+		    {if $smarty.session.cart->type != 'virtual'}
+			<div data-role="header" class="ui-header ui-bar-a" role="banner"> 
+				<h1 class="ui-title" role="heading" aria-level="1">{txt key=TEXT_SELECT_SHIPPING}</h1>
+            </div>
+            {form type=form name=shipping action='checkout' method=post conn=SSL}
+            {form type=hidden name=action value=shipping}
+			<ul data-role="listview" data-theme="c">
+				{foreach name=aussen item=sdata from=$shipping_data}
+					<li>
+						<div data-role="controlgroup">
+							<label>{$sdata.shipping}</label>
+						</div>
+					</li>
+				{/foreach}
+			</ul>
+            {form type=formend}
+            {/if}
+        </div><!-- .box -->
+		
+		
+		<div class="box">
+			{form type=form name=process action='checkout' method=post conn=SSL}
+			{form type=hidden name=action value=process}
+			<br />
+			<div data-role="header" class="ui-header ui-bar-a" role="banner"> 
+				<h1 class="ui-title" role="heading" aria-level="1">{txt key=TEXT_COMMENTS} {txt key=TEXT_MAX_CHARACTERS}<br />{txt key=TEXT_COMMENTS_DESC}</h1>
+            </div>
+			{form type=textarea name=comments id=comments value=$smarty.session.order_comments params='maxlength="255" class="autosizejs"'}
+			
+			{if $smarty.const._STORE_TERMSCOND_CHECK eq 'true'}
+				{content cont_id=3 is_id='false'}
+				<p>{form type=checkbox name=conditions_accepted} {txt key=TEXT_TERMSANDCOND_CONFIRMATION_1} <a class="bold" href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION_2}</a> {txt key=TEXT_TERMSANDCOND_CONFIRMATION_3}</p>
+			{else}
+				{content cont_id=3 is_id='false'}
+				<p>{txt key=TEXT_TERMSANDCOND_CONFIRMATION_1} <a class="bold" href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION_2}</a> {txt key=TEXT_TERMSANDCOND_CONFIRMATION_3}</p>
+			{/if}
+			
+			{hook key=checkout_tpl_form}
+		<!-- .box -->
+		<div class="box box-grey">
+			<table>
+				<thead>
+					<tr>
+						<th>{txt key=TEXT_ARTICLE}</th>
+						<th></th>
+						<th width="100" class="right">{txt key=TEXT_SINGLE_PRICE}</th>
+						<th width="100" class="right">{txt key=TEXT_QTY}</th>
+						<th width="100" class="right">{txt key=TEXT_TOTAL_PRICE}</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td colspan="4">
+							<p class="sub-total">{txt key=TEXT_SUB_TOTAL}<span class="float-right">{$sub_total}</span></p>
+        					{foreach name=aussen item=sub_data from=$sub_data}
+    						<p>{$sub_data.products_name}<span class="float-right">{$sub_data.products_price.formated}</span></p>
+    						{/foreach}
+   							<p class="total">{txt key=TEXT_TOTAL}<span class="float-right">{$total}</span></p>
+   							{foreach name=aussen item=tax_data from=$tax}
+	    					<p>{txt key=TEXT_TAX} {$tax_data.tax_key}%<span class="float-right">{$tax_data.tax_value.formated|replace:"*":""}</span></p>
+	    					{/foreach}
+    						{if $discount}<p>{txt key=TEXT_DISCOUNT_MADE}<span class="float-right">{$discount.formated}</span></p>{/if}
+						</td>
+					</tr>
+				</tfoot>
+				<tbody>
+					{foreach name=aussen item=data from=$data}
+					<tr>
+						<td class="center">
+							{if $data.products_image == 'product:noimage.gif'}
+							<p class="box box-white"><a href="{$data.products_link}" target="_blank"><img src="{$tpl_url_path}img/no_image.png" alt="{$new_products_data.products_name}" /></a></p>
+							{else}
+							<p class="box box-white"><a href="{$data.products_link}" target="_blank">{img img=$data.products_image type=m_thumb class=productImageBorder alt=$data.products_name|escape:"html"}</a></p>
+							{/if}
+						</td>
+						<td>
+							<p class="product-name"><a href="{$data.products_link}" target="_blank">{$data.products_name}</a></p>
+							{if $data.products_information}<p>{$data.products_information|replace:'<tr class="contentrow1">':''|replace:'<tr class="contentrow2">':''|replace:'<td>':''|replace:'<td class="left" colspan="4">':''|replace:'</td>':''|replace:'</tr>':''}</p>{/if}
+							{if $data.products_model!=''}<p>{txt key=TEXT_PRODUCTS_MODEL}: {$data.products_model}</p>{/if}
+							{if $data.products_weight > 0}<p>{txt key=TEXT_PRODUCTS_WEIGHT}: {$data.products_weight|number_format:2:",":"."} kg</p>{/if}
+							{if $data.shipping_status}<p>{txt key=TEXT_SHIPPING_STATUS}: {$data.shipping_status}</p>{/if}
+							{if $data.products_short_description}
+							<p class="product-description">{$data.products_short_description|strip_tags|truncate:100:'…'} [<a href="{$data.products_link}" target="_blank">{txt key=TEXT_MORE}</a>]</p>
+							{elseif $data.products_description}
+							<p class="product-description">{$data.products_description|strip_tags|truncate:100:'…'} [<a href="{$data.products_link}" target="_blank">{txt key=TEXT_MORE}</a>]</p>
+							{/if}
+						</td>
+						<td class="right">
+							{if $data._cart_discount}
+							<p>{$data.products_price.formated}</p>
+    						<p class="price-old">{$data._original_products_price.formated}</p>
+    						<p>(-{$data._cart_discount} %)</p>
+    						{else}
+    						<p>{$data.products_price.formated}</p>
+    						{/if}
+						</td>
+						<td class="right">{$data.products_quantity}</td>
+						<td class="bold right">{$data.products_final_price.formated}</td>
+					</tr>
+					{/foreach}
+				</tbody>
+			</table>
+			{if $payment_info.payment_cost_info eq '1' and $language eq 'de'}<p class="right">{txt key=TEXT_ORDER_CONFIRMATION_BUTTON_LAW}</p>{/if}	
+			<p class="right">{css_button class=button-next text=$smarty.const.BUTTON_CONFIRM_ORDER type='form'}</p>
+		</div></div>{form type=formend}{form type=formend}<!-- .box -->
+	</div><!-- .column .xt-grid-12 -->
+</div><!-- #checkout-confirmation .row -->
+{hook key=checkout_tpl_confiramtion}

@@ -1,0 +1,124 @@
+<h1>{txt key=TEXT_CHECKOUT_CONFIRMATION}:</h1>
+{txt key=TEXT_CHECKOUT_CONFIRMATION_DESC}
+<br />
+<br />
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="55%">
+    <h1>{txt key=TEXT_SHIPPING_ADDRESS}:</h1>
+    <p>
+	{if $shipping_address.customers_company} {$shipping_address.customers_company}<br />{/if}
+	{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}<br />
+	{$shipping_address.customers_street_address}<br />
+	{if $shipping_address.customers_suburb} {$shipping_address.customers_suburb}<br />{/if}
+	{$shipping_address.customers_postcode} {$shipping_address.customers_city}<br />
+	{$shipping_address.customers_country}<br />
+	</p>
+	<p><a href="{link page=checkout paction=shipping conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>
+	</td>
+    <td width="55%">
+    <h1>{txt key=TEXT_PAYMENT_ADDRESS}:</h1>
+    <p>
+	{if $payment_address.customers_company} {$payment_address.customers_company}<br />{/if}
+	{$payment_address.customers_firstname} {$payment_address.customers_lastname}<br />
+	{$payment_address.customers_street_address}<br />
+	{if $payment_address.customers_suburb} {$payment_address.customers_suburb}<br />{/if}
+	{$payment_address.customers_postcode} {$payment_address.customers_city}<br />
+	{$payment_address.customers_country}<br />
+	</p>
+	<p><a href="{link page=checkout paction=payment conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>
+    </td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="55%">
+    	{if $shipping_info.shipping_name}
+    	<h2>{txt key=TEXT_SHIPPING_METHOD}:</h2>
+		<p>{$shipping_info.shipping_name}</p>
+		{/if}
+		{if $shipping_info.shipping_desc}
+		<p>{$shipping_info.shipping_desc}</p>
+		{/if}
+    	{if $shipping_info.shipping_info}
+		<p>{$shipping_info.shipping_info}</p>
+		{/if}
+		<p><a href="{link page='checkout' paction=shipping conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>
+	</td>
+    <td width="55%">
+    	{if $payment_info.payment_name}
+		<h2>{txt key=TEXT_PAYMENT_METHOD}:</h2>
+		<p>{$payment_info.payment_name}</p>
+		{if $payment_info.payment_desc}
+		<p>{$payment_info.payment_desc}</p>
+		{/if}
+		{/if}
+    	{if $payment_info.payment_info}
+		<p>{$payment_info.payment_info}</p>
+		{/if}
+		<p><a href="{link page='checkout' paction=payment conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>
+    </td>
+  </tr>
+</table>
+
+{hook key=checkout_tpl_info}
+
+<h1>{txt key=TEXT_ARTICLE}:</h1>
+<table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr class="headerrow">
+    <td class="left">{txt key=TEXT_QTY}</td>
+    <td class="left">{txt key=TEXT_ARTICLE}</td>
+    <td class="left">{txt key=TEXT_SINGLE_PRICE}</td>
+    <td class="right">{txt key=TEXT_TOTAL_PRICE}</td>
+  </tr>
+  {foreach name=aussen item=data from=$data}
+  <tr class="{cycle values="contentrow1,contentrow2"}">
+    <td class="left">{$data.products_quantity}</td>
+    <td class="left">
+		<strong><a href="{$data.products_link}">{$data.products_name}</a></strong>
+		{if $data.shipping_status}<br /><p class="shippingtime">{txt key=TEXT_SHIPPING_STATUS}&nbsp;{$data.shipping_status}</p>{/if}
+    <td class="left">
+    {if $data._cart_discount}
+    <span class="old-price">{$data._original_products_price.formated}</span>
+    {$data.products_price.formated} (-{$data._cart_discount} %)
+    {else}
+    {$data.products_price.formated}
+    {/if}
+    </td>
+    <td class="right">{$data.products_final_price.formated}</td>
+  </tr>
+  {$data.products_information} 
+  {/foreach}
+  <tr>
+    <td colspan="5" class="subtotal">
+    {txt key=TEXT_SUB_TOTAL}: {$sub_total}<br />
+        {foreach name=aussen item=sub_data from=$sub_data}
+    	{$sub_data.products_name}: {$sub_data.products_price.formated}<br />
+    	{/foreach}
+    	{foreach name=aussen item=tax_data from=$tax}
+	    {txt key=TEXT_TAX} {$tax_data.tax_key}%: {$tax_data.tax_value.formated}<br />
+	    {/foreach}
+    <strong>{txt key=TEXT_TOTAL}: {$total}</strong>
+    {if $discount}
+    <br />{txt key=TEXT_DISCOUNT_MADE} : {$discount.formated}<br />
+    {/if}
+    </td>
+  </tr>
+</table>
+<br />
+{hook key=checkout_tpl_confiramtion}
+{form type=form name=process action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=process}
+{if $smarty.const._STORE_TERMSCOND_CHECK eq 'false'}
+{content cont_id=3 is_id='false'}
+<p><a href="{$_content_3.content_link}" target="_blank">{txt key=TEXT_TERMSANDCOND_CONFIRMATION}</a> | {$_content_3.content_popup_link}</p>
+{/if}
+{hook key=checkout_tpl_form}
+{if $post_form eq '1'}
+<p>{txt key=TEXT_INFO_PAY_NEXT_STEP}</p>
+<p>{button text=$smarty.const.BUTTON_CONFIRM_ORDER_PAY file='confirm_order_pay.gif' type='form'}</p>
+{else}
+<p>{button text=$smarty.const.BUTTON_CONFIRM_ORDER file='confirm_order.gif' type='form'}</p>
+{/if}
+{form type=formend}

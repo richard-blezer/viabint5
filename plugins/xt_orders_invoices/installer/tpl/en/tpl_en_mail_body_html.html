@@ -1,0 +1,17 @@
+{include file="file:$_system_root_templates/email/email_top.html"}
+<!-- // Begin Content \\ -->
+<table class="email-content" cellpadding="0" cellspacing="0" width="660" style="font: 12px Arial, Helvetica, sans-serif;color: #484848;">
+	<tr>
+		<td>
+			<h1 style="font-size:14px;">Dear  {$data.invoice.invoice_fullname},</h1>
+			<p>Thank you for you order. 
+                        <br />
+                        <br />
+                       Attached is your invoice for order #{$data.invoice.orders_id}.<br />
+                         <br />
+                       </p>
+		</td>
+	</tr>
+</table>
+<!-- // End Content \\ -->
+{include file="file:$_system_root_templates/email/email_bottom.html"}

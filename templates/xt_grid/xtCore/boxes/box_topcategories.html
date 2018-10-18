@@ -1,0 +1,11 @@
+<div id="box-topcategories">
+	{if $_categories}
+	<ul>     
+		{foreach name=aussen item=module_data from=$_categories}
+		{if $module_data.top_category == 1}
+		<li id="top-categories-categorie-{$module_data.categories_id}"><a href="{$module_data.categories_link}">{$module_data.categories_name}</a></li>
+		{/if}
+		{/foreach}
+	</ul>
+	{/if}
+</div><!-- #box-topcategories -->

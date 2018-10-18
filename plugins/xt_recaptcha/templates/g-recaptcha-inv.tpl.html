@@ -1,0 +1,38 @@
+{literal}
+<script>
+    var recaptchaSubmit = function(token) {
+        //console.log(token);
+        return true;
+    };
+    var recaptchaExpired = function(data) {
+        //console.log(data);
+        return true;
+    };
+    var recaptchaError = function(data) {
+        //console.log(data);
+        return true;
+    };
+
+
+    function recaptchaOnload()
+    {
+        //console.log("recaptcha api loaded");
+        $.each($(".recaptcha-wrapper"), function(key, value ) {
+            //console.log( key , value );
+            grecaptcha.render(
+                value,
+                {
+                    "sitekey": "{/literal}{$public_key}{literal}",
+                    "callback":  recaptchaSubmit,
+                    "expired-callback": recaptchaExpired,
+                    "error-callback": recaptchaError,
+                    "size": "invisible",
+                    "badge": "bottomleft"
+                }
+            );
+            grecaptcha.execute();
+        });
+    }
+</script>
+{/literal}
+<script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit&hl={$language}" async defer></script>

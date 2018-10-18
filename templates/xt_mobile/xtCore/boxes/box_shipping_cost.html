@@ -1,0 +1,47 @@
+<div class="box xt-grid-6" id="shipping-preview">
+	<b>{txt key=TEXT_SHIPPING_COST_PREVIEW}:</b><br/><br/>
+	
+	{form type=form name=coupons_calc action='dynamic' link_params=getParams method=post}
+	{form type=hidden name=action value=select_shipping_cost}
+	<table>
+	<tr> <td class="border-L" width="50%">{txt key=TEXT_SHIPPING_COST_PREVIEW_COUNTRY}:</td>
+		 <td class="border-L" align="left"> 
+			{if $count_countries==1}
+				{foreach key=key_data item=item_data from=$coupons_country}
+					<input type="hidden" value="{$item_data.countries_iso_code_2}">{$item_data.countries_name}
+				{/foreach}
+			{else}
+			<select name="coupons_country"  onchange="this.form.submit();">
+				<option value="">{txt key=TEXT_SHIPPING_COST_SELECT_COUNTRY}</option>
+				{foreach key=key_data item=item_data from=$coupons_country}
+				<option value="{$item_data.countries_iso_code_2}" {if $item_data.countries_iso_code_2==$selected_country} selected="selected" {/if} >{$item_data.countries_name}</option>
+				{/foreach}
+			</select>
+			{/if}
+		 </td>
+	</tr>
+	{if $count_shipping!=0}
+	<tr> 
+		<td class="border-L">{txt key=TEXT_SHIPPING_COST_PREVIEW_SHIPPING}:</td>
+		<td align="left" class="border-L"> 
+			{if $count_shipping==1}
+				{foreach key=key_data item=item_data from=$coupons_shipping}
+					<input type="hidden" value="{$item_data.shipping_name}">{$item_data.shipping_name}
+				{/foreach}
+			{else}
+			<select name="coupons_shipping"  onchange="this.form.submit();" style="width:200px;">
+				<option value="">{txt key=TEXT_SHIPPING_COST_SELECT_SHIPPING}</option>
+				{foreach key=key_data item=item_data from=$coupons_shipping}
+				<option value="{$item_data.shipping_name}" {if $item_data.shipping_name==$selected_coupons_shipping} selected="selected" {/if} >{$item_data.shipping_name}</option>
+				{/foreach}
+			</select>
+			{/if}
+		</td>
+	</tr>
+	{/if}
+	<tr> 
+	<td><b>{txt key=TEXT_SHIPPING_COST_PREVIEW_SHIPPINGPRICE}:</b></td>
+	<td align="right"><b>{$cost}</b></td>
+	</table>
+	{form type=formend}
+</div>

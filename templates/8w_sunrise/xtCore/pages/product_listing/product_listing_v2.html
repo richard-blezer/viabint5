@@ -1,0 +1,49 @@
+{*php}print_r ($this->get_template_vars());{/php*}
+
+<div class="{if $smarty.get.page == 'index' || !$smarty.get.page}index-listing{else}product-listing-v1{/if} clearfix">
+	{if $product_listing}
+		
+
+		
+		<div class="slider-vertikal clearfix">
+			{if $heading_text}
+				<h1>{$heading_text}</h1>
+			{/if}
+			<div class="panel panel-1 clearfix">
+				{foreach name=aussen item=module_data from=$product_listing}
+					
+					<div class="item">
+						<div class="product-box-inner clearfix">
+							{if $module_data.products_image!=''}
+								<div class="product-image">
+									<div class="product-image-inner">
+										<a href="{$module_data.products_link}">
+											{if $smarty.get.page == 'index' || !$smarty.get.page}
+												{img img=$module_data.products_image type=m_sunrise-startpage class=productImageBorder alt=$module_data.products_name|escape:"html"}
+											{else}
+												{img img=$module_data.products_image type=m_sunrise-thumb class=productImageBorder alt=$module_data.products_name|escape:"html"}
+											{/if}
+										</a>
+									</div>
+								</div>
+							{/if}
+							
+							<div class="product-content">
+								<div class="product-content-inner clearfix">
+									<h5><a href="{$module_data.products_link}">{$module_data.products_name|escape:"html"}</a></h5>	
+									<div class="product-page-short-description">
+										{$module_data.products_page_short_description_html|truncate:60}
+									</div>
+										
+									{if $smarty.const._CUST_STATUS_SHOW_PRICE eq '1' and $module_data.products_price.formated neq ''}
+										<p class="price">{$module_data.products_price.formated}</p>
+									{/if}
+								</div><!-- .product-content-inner -->
+							</div><!-- .product-content -->
+						</div><!-- .product-box-inner -->						
+					</div><!-- .product-box -->							
+				{/foreach}
+			</div>
+		</div><!-- .products-listing -->
+	{/if}
+</div>

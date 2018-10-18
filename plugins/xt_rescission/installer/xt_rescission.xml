@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+		<title>Widerrufsbelehrung</title>
+		<version>1.1.2</version>
+		<code>xt_rescission</code>
+		<url>http://www.xt-commerce.com</url>
+		<description></description>
+		<type>law</type>
+		<developer>xt:Commerce</developer>
+		<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=917633]]></documentation_link>
+		<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=528]]></marketplace_link>
+		<icon>xt-commerce_logo.jpg</icon>
+		<plugin_code>
+			<code>
+				<hook>checkout_tpl_form</hook>
+				<phpcode><![CDATA[
+					if (XT_RESCISSION_SHOW=='true') {
+					        $tmp_data = '';
+					        $tpl = 'link_confirmation.html';
+					        $template = new Template();
+					        $template->getTemplatePath($tpl, 'xt_rescission', '', 'plugin');
+					        if (array_key_exists('XT_RECISSION__rescission_accepted', $_SESSION) && $_SESSION['XT_RECISSION__rescission_accepted']==1) {
+					        $tpl_data['rescission_accepted'] = 1;
+					        unset($_SESSION['XT_RECISSION__rescission_accepted']);
+					        } else {
+					        $tpl_data['rescission_accepted'] = 0;
+					        }
+					        $tmp_data = $template->getTemplate('xt_rescission_smarty', $tpl, $tpl_data);
+					        echo $tmp_data;
+					}
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>module_checkout.php:checkout_process_check</hook>
+				<phpcode><![CDATA[
+					if (XT_RESCISSION_SHOW == 'true' && XT_RESCISSION_SHOW_CONFIRMATION == 'true') {
+					    if ($_POST['rescission_accepted'] != 'on') {
+					        $info->_addInfoSession(ERROR_RESCISSION_ACCEPTED);
+					        $_check_error = true;
+					    } else {
+					        $_SESSION['XT_RECISSION__rescission_accepted'] = 1;
+					    }
+					}
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+		</plugin_code>
+		<configuration>
+			<config>
+				<key>XT_RESCISSION_SHOW</key>
+				<value>true</value>
+				<type>dropdown</type>
+				<url>conf_truefalse</url>
+				<de>
+					<title>Aktivieren</title>
+				</de>
+				<en>
+					<title>Activate</title>
+				</en>
+				<bp>
+					<title>Ativado</title>
+				</bp>
+			</config>
+			<config>
+				<key>XT_RESCISSION_SHOW_CONFIRMATION</key>
+				<value>true</value>
+				<type>dropdown</type>
+				<url>conf_truefalse</url>
+				<de>
+					<title>Muss bestätigt werden</title>
+				</de>
+				<en>
+					<title>Needs to be confirmed</title>
+				</en>
+				<bp>
+					<title>Necessario confirmar</title>
+				</bp>
+			</config>
+		</configuration>
+</xtcommerceplugin> 

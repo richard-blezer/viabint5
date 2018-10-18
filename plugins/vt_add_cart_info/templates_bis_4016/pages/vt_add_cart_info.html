@@ -1,0 +1,114 @@
+{literal}
+	<style>
+		/* 
+		Document   : vt_add_cart_info
+		Created on : 14.06.2011, 11:29:28
+		Author     : JS
+		*/
+		.vt_info_textAddCarthead {
+			color: #FFFFFF;
+			background-color: #990000;
+			font-size: 14px;
+			padding: 10px;
+			margin-bottom: 14px;
+			width: 100%;
+		}
+		.vt_cart_popupContent {
+			width: 300px;
+		}
+		.vt_cart_popup {
+			width: 300px;
+		}
+		#vt_info_productinfoimages {
+			float: left;
+			width: 120px;
+		}
+		.vt_info_bottom {
+			float: left;
+			padding-top: 0;
+			width: 300px;
+		}
+		body {
+			background: none repeat scroll 0 0 transparent;
+			font-family: "Trebuchet MS",Verdana,Arial,Sans-serif;
+		}
+		.vt_button_back {
+		}
+		.vt_button_cart {
+			float: center;
+		}
+		.vt_button_checkout {
+			float: right;
+		}
+		#errorMsg {
+			width: 300px;
+			float: left;
+		}
+		#vt_info_errro{
+		}
+		.mainDiv{
+			color: red;
+			font-size: 10px;
+			margin-bottom: 5px;
+			width: 100px;
+		}
+	</style>
+
+	<script type="text/javascript">
+		$('#errorMsg').css('display', 'none');   
+		$('.mainDiv').mouseenter(
+
+		function(){
+			$('#errorMsg').css('visibility', 'visible');   
+			$('#errorMsg').fadeIn('slow');
+		})
+		.mouseleave(
+			function(){
+				$('#errorMsg').css('visibility', 'hidden');
+				$('#errorMsg').fadeOut('slow');
+			}
+		);
+	</script>
+{/literal}
+
+{if $error eq 0}
+	<div class="vt_info_textAddCarthead">
+		{$smarty.const.VT_INFO_CART_ADD}
+	</div>
+	<div style="clear:both;"></div>
+	<div id="vt_info_productinfoimages">
+		{img img=$products_image|replace:':product':'' type=m_thumb alt=$products_name|escape:"html"}
+	</div>
+	<div style="float:left;">
+		{$products_name}
+	</div>
+	<div style="float:right;">
+			{$products_price.formated}<br />
+			Anzahl: {$products_cart_qty}
+	</div>
+{else}
+	<div id="vt_info_errro">
+		{foreach name=paula from=$infos item=erros}
+			{$infos}<br />
+		{/foreach}
+	</div>  
+{/if}
+
+{if $info && $error eq 0}
+	<div class="mainDiv">{txt key=TXT_ATTENTION}</div>
+	<div id="errorMsg">
+		{foreach name=karl from=$infos item=erros}
+			{$erros}
+		{/foreach}
+	</div>
+{/if}
+<div class="clearBoth"></div>
+<div class="vt_info_bottom">
+	<table width="100%">
+		<tr>
+			<td align="center"><a class="vt_button_back" href="javascript:parent.$.fancybox.close();">{button text=$smarty.const.BUTTON_BACK file='back.gif' type='img'}</a></td>
+			<td align="center"><a class="vt_button_cart" href="{link page='cart' conn=SSL}">{button text=$smarty.const.TEXT_CART file='cart.gif' type='img'}</a></td>
+			<td align="center"><a class="vt_button_checkout" href="{link page='checkout' paction='shipping' conn=SSL}">{button text=$smarty.const.BUTTON_CHECKOUT file='checkout.gif' type='img'}</a></td>
+		</tr>
+	</table>
+</div>

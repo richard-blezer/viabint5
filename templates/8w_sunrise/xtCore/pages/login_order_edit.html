@@ -1,0 +1,21 @@
+
+<div class="row">
+	<div class="column xt-grid-8">
+		<div id="loginbox">
+			{form type=form name=login action='dynamic' link_params='page_action=login' method=post conn=SSL}
+			{form type=hidden name=action value=login}
+			{form type=hidden name=link_target value=index}
+			
+			<label for="email">{txt key=text_email}</label>
+            {assign var="fe" value="Bob"}
+			{form id=email type=text name=email maxlength='50' readonly=true value=$asUser}
+			
+			<label for="password">{txt key=text_password_admin}</label>
+			{form id=password type=password name=password maxlength='30'}
+			
+   			<p class="right"><a href="{link page='customer' paction='password_reset' conn=SSL}">{txt key=text_link_lostpassword}</a></p>
+    		<p class="right">{css_button text=$smarty.const.BUTTON_LOGIN type='form'}</p>
+			{form type=formend}
+		</div><!-- #loginbox -->
+	</div><!-- .column .xt-grid-8 -->
+</div><!-- .row -->

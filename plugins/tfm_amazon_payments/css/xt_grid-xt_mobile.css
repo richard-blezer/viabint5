@@ -1,0 +1,71 @@
+.AmazonPaymentBox
+{
+    margin-top: 10px;
+}
+
+.AmazonPaymentBox_leftbox
+{
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+#CheckoutModeNormal .AmazonPaymentBox
+{
+    text-align: left;
+}   
+
+#AmazonShippingAddress
+{
+    width: 250px;
+    height: 400px;
+
+}
+
+#addressBookWidgetDiv   
+{
+    min-width: 200px;
+    min-height: 200px;
+
+}
+
+#walletWidgetDiv
+{
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+
+.amazon_address_heading
+{
+    margin-bottom: 15px;
+}
+
+#amazon_xt_connect #loginbox
+{
+    height: 180px;
+    overflow: hidden;
+}
+
+.amazon_orange
+{
+    color: #ff6600;
+}
+
+#amazon_loginbox {
+	margin: 10px 0 0 0;
+	border: 1px solid #cdcdcd; 
+	padding: 10px; 
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+/* fix for 8w_squiggle */
+body .w50p{
+	width:50%;float:left;
+}
+
+#cart-buttons {display: inline-block;}
+#xtm-content form[name^="cart"]{margin-bottom:60px}
+#xtm-content .AmazonPaymentBox{margin:0;display:block;margin-top:-60px;text-align:left;float:right}
+#xtm-content #addressBookWidgetDiv {height: 250px;}

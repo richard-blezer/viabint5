@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf8"?>
+<assets>
+    <file>assets/components/jquery/jquery.min.js</file>
+    <file>assets/components/jquery/jquery-migrate.min.js</file>
+</assets>

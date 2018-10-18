@@ -1,0 +1,33 @@
+<div class="navbar-form navbar-right hidden-xs hidden-sm">
+    {form id="search-box-form_desktop" type=form name=search_box action='search' link_params=getParams method=get conn=SSL role="form"}
+    {form type=hidden name=page value=search}
+    {form type=hidden name=page_action value=query}
+    {*form type=hidden name=desc value="on"*}
+    {*form type=hidden name=sdesc value="on"*}
+    <div class="input-group">
+        <input type="text" name="keywords" class="form-control keywords" value="{$smarty.get.keywords}" placeholder="{$smarty.const.TEXT_ENTER_SEARCH_TERM}" />
+        <span class="input-group-btn">
+            <button type="submit" class="submit-button btn btn-default preloader">
+                <i class="glyphicon glyphicon-search"></i>
+                <span class="sr-only">{txt key=BUTTON_SEARCH}</span>
+            </button>
+        </span>
+    </div>
+    {form type=formend}
+</div>
+
+<!-- Rich Snippet Search Data -->
+<script type="application/ld+json">
+/* <![CDATA[ {literal} */
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "{/literal}http://{$smarty.server.SERVER_NAME}{literal}",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{/literal}http://{$smarty.server.SERVER_NAME}{literal}/search?page=search&page_action=query&desc=on&sdesc=on&keywords={search_term}",
+        "query-input": "required name=search_term"
+    }
+}
+/* {/literal} ]]> */
+</script>

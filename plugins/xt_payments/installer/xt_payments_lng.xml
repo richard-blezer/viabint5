@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_CALLBACK_DATA</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Callback Data]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Callback Data]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_APPROVED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Approved status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - Bestätigt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_BUTTON_CAPTURE_PAYPAL_FUNDS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[xt: Capture amount from PayPal]]></value>
+	</en>
+	<de>
+		<value><![CDATA[xt: Betrag von PayPal einziehen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_CC_CARD_LOGO_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Credit Card Logo]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Credit Card Logo]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_COMMERCIAL_PAGE_URL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Commercial Page Url]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Commercial Page Url]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_DECLINED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Declined status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - Abgelehnt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_ERROR_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Error status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - Fehler]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_HOLD_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Hold status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - Hold]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_LIVE_PPPWEBSITEID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Merchant Site Id LIVE]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Merchant Site Id LIVE]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_ORDER_STATUS_NEW_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[New Order Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[New Order Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PAYPAL_BORDER_COLOR_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Color for PayPal Page (Format: FF0000)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Farbe für PayPal Seite (Format: FF0000)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PAYPAL_EXPRESS_ENABLED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal Express enabled]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal Express aktiviert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PAYPAL_LOGO_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Logo URL for PayPal Page (Size: 190x60px only https request!!!)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Logo URL für PayPal Zahlungsseite (Größe: 190x60px Nur über https aufrufbar!!!)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PAYPAL_MODE_SANDBOX_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal sandbox mode enabled (CPanel Value)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal Sandbox-Modus aktiviert (CPanel Wert)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PAYPAL_ORDER_STATUS_COMPLETED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal Express Ordersstatus - Completed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal Express Bestellstatus  - Zahlung abgeschlossen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PAYPAL_ORDER_STATUS_DENIED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal Express Ordersstatus - Denied]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal Express Bestellstatus  - Abgelehnt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PAYPAL_ORDER_STATUS_FAILED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal Express Ordersstatus - Failed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal Express Bestellstatus - Fehler]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PAYPAL_ORDER_STATUS_PENDING_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal Express Ordersstatus - Pending]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal Express Bestellstatus - In Bearbeitung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PAYPAL_ORDER_STATUS_REFUNDED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal Express Ordersstatus - Refunded]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal Express Bestellstatus - Zurückgezahlt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PAYPAL_ORDER_STATUS_REVERSED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[PayPal Express Ordersstatus - Reversed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal Express Bestellstatus  - Storniert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PAYPAL_PAYMENT_TYPE_ORDER_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Capture money immediately]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kundenkonto sofort belasten]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PENDING_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Pending status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - In Bearbeitung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTERED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Register]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Register]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_SERVICE_URL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Registration Service Url]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Registration Service Url]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_SUCCESS_PAGE_URL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Registration Success Page Url]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Registration Success Page Url]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_TEST_MODE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Check to use test mode]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Testmodus]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_TEST_PPPWEBSITEID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Merchant Site Id TEST]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Merchant Site Id TEST]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_TEXT_PAYPAL_CAPTURE_ERROR</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Error:]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Fehler:]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_TEXT_PAYPAL_CAPTURE_SUCCESS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Capture of amount was successfull]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Betrag erfolgreich eingezogen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_TEXT_PAYPAL_GET_FUNDS_ASK</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Capture order amount from PayPal Account?]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellsumme vom PayPal Konto einziehen?]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_LOADING_PAYMENTS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Loading payment methods...]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlungsarten werden geladen...]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_TEXT_EXPRESS_CART</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[<small>If you push the button <b>Express-Buy with PayPal</b> you will be automatically forwarded to PayPal. Login with your PayPal account and authorise your payment. After authorizing your payment you come back to the shop and finalize your purchase.</small>]]></value>
+	</en>
+	<de>
+		<value><![CDATA[<small>Wenn Sie auf <b>Express-Kauf mit PayPal</b> klicken, werden Sie automatisch zu PayPal weitergeleitet. Dort können Sie sich mit Ihrer PayPal-Email anmelden und die Zahlung freigeben. Sie kommen danach zurück in den Shop, wo Sie den Kauf dann endgültig abschließen können.</small>]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYMENT_CARDS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Credit / Debit Card ]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kredit / Debitkarte]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYMENT_CC_CARD</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Creditcard]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kreditkarte]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_PAYMENT_DC_CARD</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Debitcard]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Debitkarte]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRANSACTION_TYPE_AUTH</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Authorization of a certain amount to a credit card]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Authorization of a certain amount to a credit card]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRANSACTION_TYPE_CHARGEBACK</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Indicates that the credit card holder \"charges back\" a given charge]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Indicates that the credit card holder \"charges back\" a given charge]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRANSACTION_TYPE_CREDIT</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Refund of a charge]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Refund of a charge]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRANSACTION_TYPE_MODIFICATION</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Indicates a change of transaction status after the original transaction is processed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Indicates a change of transaction status after the original transaction is processed]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRANSACTION_TYPE_RETRIEVAL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Request for information]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Request for information]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRANSACTION_TYPE_SALE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Charge]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Charge]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_TRANSACTION_TYPE_VOID</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Cancelation of a charge]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Cancelation of a charge]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PAYMENTS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[xt:Commerce Payments]]></value>
+	</en>
+	<de>
+		<value><![CDATA[xt:Commerce Payments]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_PAYMENTS_CONFIGURATION_LEFT</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[xt:Commerce Payments Configuration]]></value>
+	</en>
+	<de>
+		<value><![CDATA[xt:Commerce Payments Konfiguration]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_PAYPAL_ERROR</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[PayPal Express has returned unexpected result, please try again later or contact our customer support.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[PayPal Express hat einen Fehler gemeldet, bitte versuchen Sie es später noch einmal oder kontaktieren Sie unsere Kundenbetreuung.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REACTIVATION_THANKYOU_TEXT</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Thank you for using to xt:Commerce Payments. Your license was already registered, it was just activated. ]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vielen Dank für ihre Registrierung bei xt:Commerce Payments. Ihr Shop ist nun automatisch mit unserem Zahlungsgateway verbunden.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_EMPTY_CITY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please enter your City]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geben Sie bitte die Stadt ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_EMPTY_COMPANY</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please enter your Company]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geben Sie bitte den Namen der Firma ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_EMPTY_EMAIL_ADDRESS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please enter your E-Mail Address]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geben Sie bitte Ihre E-Mail-Adresse ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_EMPTY_FIRST_NAME</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please enter your First Name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geben Sie bitte Ihren Vornamen ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_EMPTY_LAST_NAME</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please enter your Last Name]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geben Sie bitte Ihren Nachnamen ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_EMPTY_REGISTER_FIELD</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please enter your]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte geben Sie Ihren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_EMPTY_STREET_ADDRESS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please enter your Street Address]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geben Sie bitte die Straße ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_EMPTY_TELEPHONE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please enter your Telephone]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geben Sie bitte Ihre Telefonnummer ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_EMPTY_ZIP</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please enter your ZIP]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geben Sie bitte die PLZ ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_INVALID_EMAIL_ADDRESS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please enter valid E-Mail Address]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Geben Sie bitte Ihre gültige E-Mail-Adresse ein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_INVALID_REGISTER_FIELD</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please enter valid]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte geben Sie eine gültige]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_ORDER_STATUSES_NOT_CONFIGURED</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Your order statuses are not fully configured. Please follow the link above to configure them.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ihre Bestellung Zustände werden nicht vollständig konfiguriert. Bitte folgen Sie dem obigen Link, um sie zu konfigurieren.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_PAYMENT_METHODS_CONFIGURATION_LINK</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Payment methods Configuration]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlungsmethoden Konfiguration]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_SHOP_CONFIGURATION_LINK</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Plugin Configuration]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Plugin-Konfiguration]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_THANKYOU_TEXT</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Thank you for registering to xt:Commerce Payments. Your Shop is now connected to our Payment Gateway ]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vielen Dank für ihre Registrierung bei xt:Commerce Payments. Ihr Shop ist nun automatisch mit unserem Zahlungsgateway verbunden.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_PAYMENTS_REGISTRATION_THANKYOU_TITLE</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Successfull registration]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Registrierung Erfolgreich]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

@@ -1,0 +1,6 @@
+<h1>{txt key=TEXT_PAGE_TITLE_ACCOUNT_HISTORY}</h1>
+<div class="navigation-pages">{$pages}</div><!-- .navigation-pages -->
+{include file="$selected_template/xtCore/pages/order_history_block.html"}
+<div class="navigation-pages">{$pages}</div><!-- .navigation-pages -->
+<div class="clear"></div><!-- .clear -->
+<p><a href="{link page='customer' conn=SSL}">{css_button text=$smarty.const.BUTTON_BACK}</a></p>

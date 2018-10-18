@@ -1,0 +1,135 @@
+<h2>{txt key=TEXT_PAGE_TITLE_LOGIN}</h2>
+{$message}
+<div data-role="collapsible-set">
+	<div data-role="collapsible" data-collapsed="true" data-content-theme="d">
+		<h3>{txt key=TEXT_RETURNING}</h3>
+		{form type=form name=login action='dynamic' link_params='page_action=login' method=post conn=SSL}
+		{form type=hidden name=action value=login}
+		{form type=hidden name=link_target value=index}
+		<p>{txt key=TEXT_TXT_RETURNING}</p>
+			
+		<div data-role="fieldcontain">
+		    <label for="email">{txt key=text_email}</label>
+		    {form type=text id=email name=email maxlength='50'}
+		    
+		    <label for="password">{txt key=text_password}</label>
+		    {form type=password id=password name=password maxlength='30'}
+		</div>
+		
+		<div data-role="fieldcontain">
+		    <input type="submit" value="{txt key=BUTTON_LOGIN}" />
+		</div>	
+		
+		<div data-role="fieldcontain">
+			<a href="{link page='customer' paction='password_reset' conn=SSL}" data-role="button">{txt key=text_link_lostpassword}</a>
+		</div>
+		{form type=formend}
+	</div>
+
+	<div data-role="collapsible" data-collapsed="true" data-content-theme="d">
+		<h3>{txt key=TEXT_NEW_CUSTOMER}</h3>
+		{form type=form name=create_account action='dynamic' link_params='page_action=login' method=post conn=SSL}
+		{form type=hidden name=action value=add_customer}
+		{form type=hidden name=page value='customer'}
+		{form type=hidden name=default_address[address_class] value=default}
+		
+		<div data-role="fieldcontain">
+			<p><strong>{txt key=TEXT_PERSONAL}</strong></p>
+			{if $show_gender eq 1}
+			<label for="default_address[customers_gender]">{txt key=TEXT_GENDER} *</label>
+			{form type=select id=default_address[customers_gender] name=default_address[customers_gender] value=$gender_data default=$default_address.customers_gender}<br/>
+			{/if}
+			
+			<label for="default_address[customers_firstname]">{txt key=TEXT_FIRSTNAME} *</label>
+			{form type=text id=default_address[customers_firstname]  name=default_address[customers_firstname] value=$default_address.customers_firstname}<br/>
+			
+			<label for="default_address[customers_lastname]">{txt key=TEXT_LASTNAME} *</label>
+			{form type=text id=default_address[customers_lastname] name=default_address[customers_lastname] value=$default_address.customers_lastname}<br/>
+			
+			{if $show_birthdate eq 1}
+			<label for="default_address[customers_dob]">{txt key=TEXT_BIRTHDATE} *</label>
+			{form type=text id=default_address[customers_dob] name=default_address[customers_dob] value=$default_address.customers_dob}
+			<p><small>{txt key=TEXT_BIRTHDATE_INFO}</small></p>
+			{/if}
+			
+			<label for="cust_info[customers_email_address]">{txt key=TEXT_EMAIL} *</label>
+			{form type=text id=cust_info[customers_email_address] name=cust_info[customers_email_address] value=$cust_info.customers_email_address}<br/>
+			
+			<label for="cust_info[customers_email_address_confirm]">{txt key=TEXT_EMAIL_CONFIRM} *</label>
+			{form type=text id=cust_info[customers_email_address_confirm] name=cust_info[customers_email_address_confirm] value=$cust_info.customers_email_address_confirm}
+		</div>
+		
+		{if $show_company eq 1}
+		<div data-role="fieldcontain">
+			<p><strong>{txt key=TEXT_COMPANY}</strong></p>
+			<label for="default_address[customers_company]">{txt key=TEXT_COMPANY_NAME}</label>
+			{form type=text id=default_address[customers_company] name=default_address[customers_company] value=$default_address.customers_company}<br/>
+			
+			<label for="default_address[customers_company_2]">{txt key=TEXT_COMPANY_NAME_2}</label>
+			{form type=text id=default_address[customers_company_2] name=default_address[customers_company_2] value=$default_address.customers_company_2}<br/>
+			
+			<label for="default_address[customers_company_3]">{txt key=TEXT_COMPANY_NAME_3}</label>
+			{form type=text id=default_address[customers_company_3] name=default_address[customers_company_3] value=$default_address.customers_company_3}<br/>
+			
+			<label for="default_address[customers_vat_id]">{txt key=TEXT_VAT_ID}</label><br/>
+			{form type=text id=cust_info[customers_vat_id] name=cust_info[customers_vat_id] value=$cust_info.customers_vat_id}
+			<p><small>{txt key=TEXT_VAT_INFO}</small></p>
+		</div>
+		{/if}
+		
+		<div data-role="fieldcontain">
+			<p><strong>{txt key=TEXT_ADDRESS}</strong></p>
+			<label for="default_address[customers_street_address]">{txt key=TEXT_STREET} *</label>
+			{form type=text id=default_address[customers_street_address] name=default_address[customers_street_address] value=$default_address.customers_street_address}<br/>
+			
+			{if $show_suburb eq 1}
+			<label for="default_address[customers_suburb]">{txt key=TEXT_SUBURB}</label>
+			{form type=text id=default_address[customers_suburb] name=default_address[customers_suburb] value=$default_address.customers_suburb}<br/>
+			{/if}
+			
+			<label for="default_address[customers_postcode]">{txt key=TEXT_CODE} *</label>
+			{form type=text id=default_address[customers_postcode] name=default_address[customers_postcode] value=$default_address.customers_postcode}<br/>
+			
+			<label for="default_address[customers_city]">{txt key=TEXT_CITY} *</label>
+			{form type=text id=default_address[customers_city] name=default_address[customers_city] value=$default_address.customers_city}<br/>
+			
+			<label for="default_address[customers_country_code]">{txt key=TEXT_COUNTRY} *</label>
+			{form type=select id=default_address[customers_country_code] name=default_address[customers_country_code] value=$country_data default=$smarty.const._STORE_COUNTRY}
+		</div>
+		
+		<div data-role="fieldcontain">
+			<p><strong>{txt key=TEXT_CONTACT}</strong></p>
+			<label for="default_address[customers_phone]">{txt key=TEXT_PHONE} </label>
+			{form type=text id=default_address[customers_phone] name=default_address[customers_phone] value=$default_address.customers_phone}<br/>
+			
+			<label for="default_address[customers_fax]">{txt key=TEXT_FAX} </label>
+			{form type=text id=default_address[customers_fax] name=default_address[customers_fax] value=$default_address.customers_fax}
+		</div>
+			
+		<div data-role="fieldcontain">
+			<p><strong>{txt key=TEXT_PASSWORD}</strong></p>
+			<p>{txt key=TEXT_TXT_NEW_CUSTOMER} {if $smarty.const._STORE_ALLOW_GUEST_ORDERS == 'true'}{txt key=TEXT_TXT_NEW_CUSTOMER_GUEST}{/if}</p>
+			<label for="cust_info[customers_password]">{txt key=TEXT_PASSWORD_ENTRY} </label>
+			{form type=password id=cust_info[customers_password] name=cust_info[customers_password] value=$cust_info.customers_password}<br/>
+			
+			<label for="cust_info[customers_password_confirm]">{txt key=TEXT_PASSWORD_ENTRY_CONFIRM} </label>
+			{form type=password id=cust_info[customers_password_confirm] name=cust_info[customers_password_confirm] value=$cust_info.customers_password_confirm}
+		</div>
+		{if $show_privacy eq 1}
+			{content cont_id=2 is_id='false'}
+			{if $show_privacy eq 1}
+				<label for="privacy">{txt key=TEXT_PRIVACY_ACCEPT} </label>
+				{form type=checkbox id=privacy name=privacy value=1}
+				<a href="{$privacy_link}" data-rel="dialog" >{txt key=TEXT_PRIVACY_TEXT}</a> 
+			{else}
+				<a href="{$privacy_link}" data-rel="dialog">{txt key=TEXT_PRIVACY_TEXT_INFO}</a>
+			{/if}
+		{/if}
+		
+		{hook key=login_create_account_tpl}
+		<input type="submit" value="{txt key=BUTTON_NEXT}" />
+		<p>{txt key=TEXT_MUST}</p>
+		
+	</div>
+</div>
+{form type=formend}

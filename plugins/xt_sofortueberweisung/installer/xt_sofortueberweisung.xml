@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>Sofortueberweisung.de</title>
+<type>payment</type>
+<version>1.0.2</version>
+<code>xt_sofortueberweisung</code>
+<url>http://www.xt-commerce.com</url>
+<description>Zahlungsmodul Sofortueberweisung.de</description>
+<icon>logo_admin.gif</icon>
+<developer>xt:Commerce</developer>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=314]]></marketplace_link>
+<payment>
+<payment_code>xt_sofortueberweisung</payment_code>
+<payment_dir>xt_sofortueberweisung</payment_dir>
+<payment_icon></payment_icon>
+<payment_tpl>sofortueberweisung.html</payment_tpl>
+<de>
+<title>Sofortüberweisung.de</title>
+<description></description>
+</de>
+<en>
+<title>Sofortüberweisung.de</title>
+<description></description>
+</en>
+<es>
+<title>Sofortüberweisung.de</title>
+<description></description>
+</es>
+</payment>
+<db_install><![CDATA[
+
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 24, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 25, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 26, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 27, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 28, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 29, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 30, '', 0, 10000.00, 0, 1);");
+$db->Execute("INSERT INTO ".TABLE_PAYMENT_COST." (`payment_id`, `payment_geo_zone`, `payment_country_code`, `payment_type_value_from`, `payment_type_value_to`, `payment_price`,`payment_allowed`) VALUES(".$payment_id.", 31, '', 0, 10000.00, 0, 1);");
+
+]]></db_install>
+<configuration_payment>
+<config>
+<key>USER_ID</key>
+<type>textfield</type>
+<value></value>
+<de>
+<title>Kunden-Nr.</title>
+</de>
+<en>
+<title>Customers-ID</title>
+</en>
+<es>
+<title>ID de cliente</title>
+</es>
+</config>
+<config>
+<key>PROJECT_ID</key>
+<type>textfield</type>
+<value></value>
+<de>
+<title>Projekt Nr.</title>
+</de>
+<en>
+<title>Project ID</title>
+</en>
+<es>
+<title>Proyecto ID</title>
+</es>
+</config>
+<config>
+<key>PROJECT_PASSWORD</key>
+<type>textfield</type>
+<value></value>
+<de>
+<title>Projekt-Passwort</title>
+</de>
+<en>
+<title>Project-Password</title>
+</en>
+<es>
+<title>Contraseña de proyecto</title>
+</es>
+</config>
+<config>
+<key>STATUS_SUCCESS</key>
+<type>dropdown</type>
+<url>status:order_status</url>
+<de>
+<title>Bestellstatus - OK</title>
+</de>
+<en>
+<title>Orderstatus - OK</title>
+</en>
+<es>
+<title>Estado del pedido - OK</title>
+</es>
+</config>
+<config>
+<key>STATUS_NOTIFY</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Statusmail senden</title>
+</de>
+<en>
+<title>Send statusmail</title>
+</en>
+<es>
+<title>Enviar correo de estado</title>
+</es>
+</config>
+<config>
+<key>STATUS_ERROR</key>
+<type>dropdown</type>
+<url>status:order_status</url>
+<de>
+<title>Bestellstatus - Fehler</title>
+</de>
+<en>
+<title>Orderstatus - ERROR</title>
+</en>
+<es>
+<title>Estado del pedido - ERROR</title>
+</es>
+</config>
+</configuration_payment>
+</xtcommerceplugin> 

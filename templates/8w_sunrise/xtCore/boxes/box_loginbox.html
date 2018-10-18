@@ -1,0 +1,19 @@
+<div class="highlightbox returning-customer" id="layer-login">
+  {form type=form name=create_account action='customer' paction='login' link_params=getParams method=post conn=SSL}
+		{form type=hidden name=action value=login}
+		{form type=hidden name=link_target value=index}
+  <div class="left-line">
+    <div class="line">
+      <p>{txt key=TEXT_EMAIL}:</p>
+      <div>{form type=text name=email maxlength='50' class="required"}</div>
+    </div>
+    <div class="line">
+      <p>{txt key=TEXT_LOGIN_PASSWORD}:</p>
+      <div>{form type=password name=password maxlength='30' class="required"}</div>
+    </div>
+  </div>
+  {button_text class="btn-submit" value=BUTTON_LOGIN type='form'}
+  <a class="lost-password" href="{link page='customer' paction='password_reset' conn=SSL}">{txt key=text_link_lostpassword}</a>
+  <div class="clearfix"></div>
+  {form type=formend}
+</div>

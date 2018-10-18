@@ -1,0 +1,15 @@
+{if $smarty.const.CONFIG_EW_VIABIONA_PLUGIN_SIDEBUTTONS == 1 && $smarty.get.page != 'checkout'}
+    <div id="floating-box-container" class="hidden-xs">
+        {box name=language}
+        <div class="custom-floating-boxes"><!-- dynamic added by javascript --></div>
+    </div>
+{/if}
+
+{*<!-- 
+    Example:
+    <a href="#ID" data-original-title='TITLE' class="floating-box-tooltip move">
+        <span class="floating-box">
+           <i class="fa ICONCLASS"></i>
+        </span>
+    </a> 
+-->*}

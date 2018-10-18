@@ -1,0 +1,61 @@
+
+<div id="xtm-checkout-nav">
+    <table>
+        <tr>
+            <td class="{if $page_action == shipping}active{else} {if $smarty.session.selected_shipping != '' || $page_action == success}success{/if} {/if}">
+                {if $smarty.session.selected_shipping != '' && $page_action != shipping}
+                    <a href="{link page=checkout paction=shipping}"><div class="xtm-checkout-nav-item xtm-icon-32 xtm-icon-shipping"></div></a>
+                {else}
+                    <div class="xtm-checkout-nav-item xtm-icon-32 xtm-icon-shipping"></div>
+                {/if}
+            </td>
+            <td class="{if $page_action == payment}active{else} {if $smarty.session.selected_payment != '' || $page_action == success}success{/if} {/if}">
+                {if $smarty.session.selected_payment != '' && $page_action != payment}
+                    <a href="{link page=checkout paction=payment}"><div class="xtm-checkout-nav-item xtm-icon-32 xtm-icon-payment"></div></a>
+                {else}
+                    <div  class="xtm-checkout-nav-item xtm-icon-32 xtm-icon-payment"></div>
+                {/if}
+            </td>
+            <td class="{if $page_action == confirmation}active {else} {if $page_action == success}success{/if} {/if}">
+                <div  class="xtm-checkout-nav-item xtm-icon-32 xtm-icon-confirm"></div>
+            </td>
+            <td class="{if $page_action == success}success{/if}">
+                <div class="xtm-checkout-nav-item xtm-icon-32 xtm-icon-success"></div>
+            </td>
+        </tr>
+    </table>        
+</div><!-- /grid-a -->
+
+<div style="clear:both"></div>
+
+
+{if $message}
+    {$message}
+    <br />
+{else}
+    <br />
+{/if}
+
+{if $page_action == shipping}
+{include file="/xtCore/pages/checkout/subpage_shipping.html" type="tpl_include"}
+{/if}
+
+{if $page_action == payment}
+{include file="/xtCore/pages/checkout/subpage_payment.html" type="tpl_include"}
+{/if}
+
+{if $page_action == confirmation}
+{include file="/xtCore/pages/checkout/subpage_confirmation.html" type="tpl_include"}
+{/if}
+
+{if $page_action == pay}
+{include file="/xtCore/pages/checkout/subpage_pay.html" type="tpl_include"}
+{/if}
+
+{if $page_action == pay_frame}
+{include file="/xtCore/pages/checkout/subpage_pay_iframe.html" type="tpl_include"}
+{/if}
+
+{if $page_action == success}
+{include file="/xtCore/pages/checkout/subpage_success.html" type="tpl_include"}
+{/if}

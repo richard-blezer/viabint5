@@ -1,0 +1,23 @@
+{if $payment_hidden == true}
+	<div class="box box-white box-hover">
+		<p class="bold">{form type=hidden name=selected_payment value=$payment_code} {$payment_name} <span class="float-right">{$payment_price.formated}</span></p>
+	</div>
+{else}
+	{if $payment_code==$payment_selected}
+	<div class="box box-white box-hover">
+		<p class="bold">{form type=radio name=selected_payment value=$payment_code checked=true} {$payment_name} <span class="float-right">{$payment_price.formated}</span></p>
+	</div>
+	{else}
+	<div class="box box-white box-hover">
+		<p class="bold">{form type=radio name=selected_payment value=$payment_code} {$payment_name} <span class="float-right">{$payment_price.formated}</span></p>
+	</div>
+	{/if}
+{/if}
+
+{if $payment_icon}
+<p>{img img=$payment_icon type=w_media_payment alt=$payment_name}</p>
+{/if}
+
+{if $payment_desc}
+<p>{$payment_desc}</p>
+{/if}

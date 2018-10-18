@@ -1,0 +1,17 @@
+<h3>{txt key=TEXT_HEADING_AUTO_CROSS_SELL}</h3>
+
+<ul data-role="listview" data-inset="true">
+	{foreach name=aussen item=cross_sell_products_data from=$_auto_cross_sell}
+	<li>
+		<a href="{$cross_sell_products_data.products_link}">
+			{if $cross_sell_products_data.products_image!=''}
+				{img img=$cross_sell_products_data.products_image url=`$smarty.const._SRV_WEB`media/images/thumb/ alt=$cross_sell_products_data.products_name}
+			{/if}
+			
+			<h3>{$cross_sell_products_data.products_name}</h3>
+			<p>{$cross_sell_products_data.products_price.formated}</p>
+		</a>
+	</li>
+	{/foreach}
+</ul>
+

@@ -1,0 +1,19 @@
+1;unvollständig;unvollständig erfasster Auftrag
+2;vollständig;vollständig erfasster Auftrag
+4;Adr. prüfen;Adresse prüfen, da es zu Problemen bei der Zustellung kommen kann
+8;gedruckt;Auftrag wurde ausgedruckt
+16;storniert;storniert
+10010;abgeholt;Sendung wurde abgeholt und in das HLG-System eingeschleust.
+10020;unterwegs;Sendung ist auf dem Weg zum Empfänger.
+10030;auf Tour;Sendung ist auf dem Weg zum Empfänger.
+10040;zugestellt;Sendung wurde zugestellt.
+10050;N.A.;Empfänger nicht angetroffen. Neuer Zustellversuch wird durchgeführt.
+10060;3xN.A.;Empfänger zum 3.Mal nicht angetroffen. Bitte wenden Sie sich an den Kundenservice. Sollten Sie sich nicht bei uns melden und der 4.Zustellversuch erfolglos sein, geht die Sendung an Sie zurück.
+10070;Schaden;Sendung konnte wegen Beschädigung nicht zugestellt werden. Bitte wenden Sie sich an den Kundenservice.
+10080;Rückversand;Empfänger wurde nicht angetroffen. Sendung geht an Absender zurück.
+10090;verweigert;Empfänger verweigert Sendungsannahme. Sendung geht an Absender zurück.
+10100;F-Adresse;Zustelladresse ist falsch. Sendung konnte nicht zugestellt werden. Bitte wenden Sie sich an den Kundenservice.
+10110;R-erfolglos;Die Abholung der Retoure konnte nicht durchgeführt werden. Bitte wenden Sie sich an den Kundenservice.
+10120;Erhalt RV;Sendung war nicht zustellbar und ist wieder beim Absender eingetroffen.
+-2;Retoure;Auftrag ist ein Retourenauftrag
+-3;Etiketten;Auftrag beinhaltet eine Etikettenbestellung

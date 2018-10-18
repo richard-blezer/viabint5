@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xtcommerceplugin>
+	<title>netvise Autocomplete Search</title>
+	<version>2.0.0</version>
+	<code>nv_autocomplete</code>
+	<url>http://www.netvise.de</url>
+	<description>
+		Autovervollständigung der Suche per Dropdown
+	</description>
+	<type>search</type>
+	<icon>logo_admin.gif</icon>
+	<plugin_code>
+		<code>
+			<hook>page_registry.php:bottom</hook>
+			<phpcode><![CDATA[
+				define('PAGE_NV_AUTOCOMPLETE', _SRV_WEB_PLUGINS.'nv_autocomplete/pages/nv_ac_search.php');
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>javascript.php:bottom</hook>
+			<phpcode><![CDATA[
+				include_once _SRV_WEB_PLUGINS.'nv_autocomplete/hooks/javascript-bottom.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>styles.php:bottom</hook>
+			<phpcode><![CDATA[
+				include_once _SRV_WEB_PLUGINS.'nv_autocomplete/hooks/styles-bottom.php';
+			]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code>
+	<language_content>
+		<phrase>
+			<key>TEXT_NV_AUTOCOMPLETE_TYPE_PRODUCTS</key>
+			<class>store</class>
+			<de>
+				<value>Produkte</value>
+			</de>
+			<en>
+				<value>Products</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_NV_AUTOCOMPLETE_TYPE_CATEGORIES</key>
+			<class>store</class>
+			<de>
+				<value>Kategorien</value>
+			</de>
+			<en>
+				<value>Categories</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_NV_AUTOCOMPLETE_TYPE_MANUFACTURERS</key>
+			<class>store</class>
+			<de>
+				<value>Hersteller</value>
+			</de>
+			<en>
+				<value>Manufacturers</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_NV_AUTOCOMPLETE_TYPE_CONTENT</key>
+			<class>store</class>
+			<de>
+				<value>Seiten</value>
+			</de>
+			<en>
+				<value>Pages</value>
+			</en>
+		</phrase>
+	</language_content>
+	<configuration>
+		<config>
+			<key>NV_AUTOCOMPLETE_USE_OWN_CSS</key>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<value>true</value>
+			<de>
+				<title>CSS des Plugins nutzen</title>
+			</de>
+			<en>
+        <title>Use CSS plugin version</title>
+			</en>
+		</config>
+		<config>
+			<key>NV_AUTOCOMPLETE_USE_OWN_JQUERY_UI</key>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<value>true</value>
+			<de>
+				<title>jQuery UI Version des Plugins benutzen</title>
+			</de>
+			<en>
+        <title>Use plugin version of jQuery UI</title>
+			</en>
+		</config>
+		<config>
+			<key>NV_AUTOCOMPLETE_SEARCH_INPUT</key>
+			<value>input[name='keywords']</value>
+			<de>
+				<title>Identifizierer des Suchfeldes</title>
+			</de>
+			<en>
+        <title>Search Box Identifier</title>
+			</en>
+		</config>
+		<config>
+			<key>NV_AUTOCOMPLETE_DELAY</key>
+			<value>300</value>
+			<de>
+				<title>Verzögerung bis Dropdown erscheint (in ms)</title>
+			</de>
+			<en>
+        <title>Dropdown delay (in ms)</title>
+			</en>
+		</config>
+		<config>
+			<key>NV_AUTOCOMPLETE_MIN_LENGTH</key>
+			<value>1</value>
+			<de>
+				<title>Minimale Länge des Suchwortes, ab dem die Suche gestartet wird</title>
+			</de>
+			<en>
+        <title>Minimal number of characters to start search process</title>
+			</en>
+		</config>
+		<config>
+			<key>NV_AUTOCOMPLETE_MAX_PRODUCTS</key>
+			<value>10</value>
+			<de>
+				<title>Maximale Anzeige von Produkten</title>
+			</de>
+			<en>
+        <title>Maximum number of displayed product</title>
+			</en>
+		</config>
+		<config>
+			<key>NV_AUTOCOMPLETE_MAX_CATEGORIES</key>
+			<value>3</value>
+			<de>
+				<title>Maximale Anzahl an Kategorien</title>
+			</de>
+			<en>
+        <title>Maximum number of displayed categories</title>
+			</en>
+		</config>
+		<config>
+			<key>NV_AUTOCOMPLETE_MAX_MANUFACTURERS</key>
+			<value>3</value>
+			<de>
+				<title>Maximale Anzahl an Hersteller</title>
+			</de>
+			<en>
+        <title>Maximum number of displayed manufacturers</title>
+			</en>
+		</config>
+		<config>
+			<key>NV_AUTOCOMPLETE_MAX_CONTENT</key>
+			<value>3</value>
+			<de>
+				<title>Maximale Anzahl an Inhaltsseiten</title>
+			</de>
+			<en>
+        <title>Maximum number of displayed content pages</title>
+			</en>
+		</config>
+		<config>
+			<key>NV_AUTOCOMPLETE_PRODUCTS_ACTIVE</key>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<value>true</value>
+			<de>
+				<title>Produkte im Dropdown anzeigen</title>
+			</de>
+			<en>
+        <title>Show products in dropdown</title>
+			</en>
+		</config>
+		<config>
+			<key>NV_AUTOCOMPLETE_CATEGORIES_ACTIVE</key>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<value>true</value>
+			<de>
+				<title>Kategorien im Dropdown anzeigen</title>
+			</de>
+			<en>
+        <title>Show categories in dropdown</title>
+			</en>
+		</config>
+		<config>
+			<key>NV_AUTOCOMPLETE_MANUFACTURERS_ACTIVE</key>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<value>true</value>
+			<de>
+				<title>Hersteller im Dropdown anzeigen</title>
+			</de>
+			<en>
+        <title>Show manufacturers in dropdown</title>
+			</en>
+		</config>
+		<config>
+			<key>NV_AUTOCOMPLETE_CONTENT_ACTIVE</key>
+			<type>dropdown</type>
+			<url>conf_truefalse</url>
+			<value>true</value>
+			<de>
+				<title>Inhaltsseiten im Dropdown anzeigen</title>
+			</de>
+			<en>
+        <title>Show content pages in dropdown</title>
+			</en>
+		</config>
+	</configuration>
+</xtcommerceplugin>

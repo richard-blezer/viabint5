@@ -1,0 +1,121 @@
+<button id="ew_2to1_coupon_button" type="button" class="btn btn-success ew_2to1_coupon hidden" data-toggle="modal" data-target="#ew_2to1_coupon">
+    <i class="fa fa-mouse-pointer"></i>
+    {txt key=TEXT_EW_2TO1_COUPON_CHOOSE}
+</button>
+
+<div class="modal fade ew_2to1_coupon" id="ew_2to1_coupon" tabindex="-1" role="dialog" aria-labelledby="ew_2to1_coupon_label" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ew_2to1_coupon_label">{txt key=TEXT_EW_2TO1_COUPON}</h4>
+            </div>
+            <div class="modal-body">
+                {if $productsCount > 1}
+                    <p class="alert alert-info">{$smarty.const.TEXT_EW_2TO1_COUPON_DESCRIPTION_MORE|sprintf:$productsCount}</p>
+                {else}
+                    <p class="alert alert-info">{$smarty.const.TEXT_EW_2TO1_COUPON_DESCRIPTION_ONE}</p>
+                {/if}
+                <div class="product-listing product-listing-v1 product-listing-nospace">
+                    <div class="listing">
+                        <div class="row">
+                            {foreach name=aussen item=module_data from=$products}
+                            {if $module_data.allow_add_cart eq 'true'}
+                                {form type=form name=product action='dynamic' link_params=getParams method=post role="form"}
+                                {form type=hidden name=action value=add_product}
+                                {form type=hidden name=product value=$module_data.products_id}
+                                {form type=hidden name=$ew_2to1_coupon_product value=$module_data.products_id}
+                                {form type=hidden name=qty value=1}
+                                <div class="col col-xs-6 col-md-3 {if $smarty.foreach.listing.first} col-first{elseif $smarty.foreach.listing.last} col-last{/if}">
+                                    <div class="section panel panel-shadow panel-default">
+                                        <div class="section-body panel-body">
+                                            <p>
+                                                {if !$module_data.products_image || $module_data.products_image == 'product:noimage.gif'}
+                                                    <a href="{$module_data.products_link}" target="_blank" class="vertical-helper image-link no-image">{img img='no_image.png' type=t_img class="image center product-image productImageBorder img-responsive" alt=$module_data.products_name|escape:"html"}</a>
+                                                {else}
+                                                    <a href="{$module_data.products_link}" target="_blank" class="vertical-helper image-link">{img img=$module_data.products_image type=m_ew-viabiona-thumb class="image center product-image productImageBorder img-responsive" alt=$module_data.products_name|escape:"html"}</a>
+                                                {/if}
+                                            </p>
+                                            <div class="panel-body-info text-center">
+                                                <div class="desc">
+                                                    <p class="title"><a href="{$module_data.products_link}" target="_blank"><strong>{$module_data.products_name}</strong></a></p>
+                                                    {if $module_data.products_page_short_description_html}
+                                                        <div class="product-page-short-description text-word-wrap text-small text-muted">
+                                                            {$module_data.products_page_short_description_html}
+                                                        </div>
+                                                        <br />
+                                                    {/if}
+                                                    <p>
+                                                        <button type="submit" class="btn btn-sm btn-success preloader no-ajax">
+                                                            <i class="fa fa-check"></i>
+                                                            {txt key=BUTTON_ADD_CART}
+                                                        </button>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- .col -->
+                                {form type=formend}
+                            {/if}
+                            {/foreach}
+                        </div><!-- .row -->
+                    </div><!-- .listing -->
+                </div><!-- .product-listing .row -->
+            </div>
+            {if $smarty.get.page == 'cart'}
+                <div class="modal-footer">
+                    <a class="btn btn-warning preloader" href="{link page='checkout' paction='shipping' conn=SSL}">
+                        {txt key=TEXT_EW_2TO1_COUPON_CHOOSE_LATER}
+                    </a>
+                </div>
+            {/if}
+        </div>
+    </div>
+</div>
+
+<noscript>
+    <p class="breaking-headline">{txt key=TEXT_EW_2TO1_COUPON}</p>
+    {if $productsCount > 1}
+        <p class="alert alert-info">{$smarty.const.TEXT_EW_2TO1_COUPON_DESCRIPTION_MORE|sprintf:$productsCount}</p>
+    {else}
+        <p class="alert alert-info">{$smarty.const.TEXT_EW_2TO1_COUPON_DESCRIPTION_ONE}</p>
+    {/if}
+    <div class="ew_2to1_coupon">
+        <div class="product-listing row">
+            {foreach name=aussen item=module_data from=$products}
+            {if $module_data.allow_add_cart eq 'true'}
+            {form type=form name=product action='dynamic' link_params=getParams method=post role="form"}
+            {form type=hidden name=action value=add_product}
+            {form type=hidden name=product value=$module_data.products_id}
+            {form type=hidden name=$ew_2to1_coupon_product value=$module_data.products_id}
+            {form type=hidden name=qty value=1}
+            <div class="col-xs-6 col-sm-3 col-md-2">
+                <div class="product box well text-center">
+                    {if $module_data.products_image == 'product:noimage.gif'}
+                    <p class="product-image"><a href="{$module_data.products_link}" target="_blank"><img src="{$tpl_url_path}img/no_image.png" alt="{$module_data.products_name}" /></a></p>
+                    {else}
+                    <p class="product-image"><a href="{$module_data.products_link}" target="_blank">{img img=$module_data.products_image type=m_thumb class=productImageBorder alt=$module_data.products_name}</a></p>
+                    {/if}
+                    <p class="product-name">
+                        <a href="{$module_data.products_link}" target="_blank">{$module_data.products_name}</a>
+                    </p>
+                    {if $module_data.products_page_short_description_html}
+                        <div class="product-page-short-description text-word-wrap text-small text-muted">
+                            {$module_data.products_page_short_description_html}
+                        </div>
+                        <br />
+                    {/if}
+                    <p>
+                        <button type="submit" class="btn btn-sm btn-success preloader no-ajax">
+                            {txt key=BUTTON_ADD_CART}
+                        </button>
+                    </p>
+                </div><!-- .product .box -->
+            </div><!-- .column .four -->
+            {form type=formend}
+            {/if}
+            {/foreach}
+        </div><!-- .product-listing .row -->
+    </div>
+</noscript>

@@ -1,0 +1,97 @@
+{php}
+if (!isset($_SESSION['xt_banktransfer_data'])) {
+  $this->assign('style','style="display:none"');
+} else {
+  $this->assign('checked','1');
+  $this->assign('iban',$_SESSION["xt_banktransfer_data"]["banktransfer_iban"]);
+}
+{/php}
+{*php}__debug ($_SESSION['xt_banktransfer_data']);{/php*}
+<table class="paymentblock" width="100%" border="0" cellspacing="0" cellpadding="6">
+  <tr>
+    <td>
+      <table class="box-table">
+        <tr class="top">
+      		  	{if $payment_hidden == true}
+      		  		{form type=hidden name=selected_payment value=$payment_code}
+      		  	{else}			
+      			  	{if $payment_code==$payment_selected}
+      			  	<td class="header" style="width:10px">{form type=radio class="select-banktransfer" name=selected_payment value=$payment_code checked=true}</td>
+      			  	{else}
+      			  	<td class="header" style="width:10px">{form type=radio class="select-banktransfer" name=selected_payment value=$payment_code}</td>
+      			  	{/if}
+      			{/if}  
+          
+          <td class="header"><span class="title">{$payment_name}</span></td>
+          {if $payment_icon}
+          <td class="header"><strong>{$payment_icon}</strong></td>
+          {/if}
+          <td colspan="2" class="header" align="right">{$payment_price.formated}</td>
+        </tr>
+        {if $payment_desc}
+        <tr class="border">
+          <td colspan="4" class="main">{$payment_desc}</td>
+        </tr>
+        {/if}
+      </table>
+    </td>
+  </tr>
+  <tr class="banktransfer" {if $payment_code!=$payment_selected} style="display:none"{/if}>
+    <td>
+      <table class="border-table">
+        {if $account_list !=''}
+          {foreach key=kid name=aussen item=adata from=$account_list}
+            {if $adata.account_id != ''}
+            {assign var="count" value=$adata.banktransfer_number|count_characters}
+            <tr class="bank-line">
+              {if $iban == $adata.banktransfer_iban}
+                {assign var="isChecked" value='1'}
+                {assign var="style" value="style='display:none'"}
+                <td class="first">{html_radios class="dontshowBankData" name=acID values=$adata.account_id checked="476"} {$adata.banktransfer_owner}</td>
+              {else}
+                <td class="first">{html_radios class="dontshowBankData" name=acID values=$adata.account_id} {$adata.banktransfer_owner}</td>
+              {/if}
+              <td class="second">{$adata.banktransfer_bank_name}</td>
+              <td class="third">{txt key=TEXT_END_OF} {$adata.banktransfer_iban|substr:$count-4:4}</td>
+              <td class="last">{$adata.banktransfer_bic}</td>
+            </tr>
+            {/if}
+          {/foreach}
+        {/if}
+
+        <tr>
+        	<td colspan="4">
+          	<table border="0" cellspacing="0" cellpadding="6" class="sub-bank">
+              <tr class="top">
+                <td>{if $checked == '1' && $isChecked != '1'} {html_radios id="addBankData" name=acID values="0" checked="0"} {txt key=TEXT_ADD_BANKDATA} {else} {html_radios id="addBankData" name=acID values="0"} {txt key=TEXT_ADD_BANKDATA} {/if}</td>
+              </tr>
+          	<tr class="top titles showInput" {$style}>
+              <td class="main" id="banktransfer_owner">{txt key=TEXT_BANKTRANSFER_OWNER}</td> 
+              <td class="main" id="banktransfer_bank_name">{txt key=TEXT_BANKTRANSFER_BANK_NAME}</td>
+              <td class="main" id="banktransfer_iban">{txt key=TEXT_BANKTRANSFER_IBAN}</td>
+              <td class="main" id="banktransfer_bic">{txt key=TEXT_BANKTRANSFER_BIC}</td>
+            </tr>
+            <tr class="input-fields showInput" {$style}>
+              <td class="main">{form type=text name=banktransfer_owner value=$banktransfer_owner}</td> 
+              <td class="main">{form type=text name=banktransfer_bank_name value=$banktransfer_bank_name}</td>
+              <td class="main">{form type=text name=banktransfer_iban value=$banktransfer_iban}</td>  
+              <td class="main">{form type=text name=banktransfer_bic value=$banktransfer_bic}</td>
+            </tr>
+            <tr>
+          	<td colspan="4" class="main saveBankData showInput" {$style}>{form type=checkbox name=banktransfer_save} {txt key=TEXT_BANKTRANSFER_SAVE_ACCOUNT_DESC}</td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <!--<tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_IBAN}</td>
+    <td colspan="2" class="main">{form type=text name=banktransfer_iban value=$banktransfer_iban}</td>
+  </tr>
+  <tr>
+    <td colspan class="main">{txt key=TEXT_BANKTRANSFER_BIC}</td>
+    <td colspan="2" class="main">{form type=text name=banktransfer_bic value=$banktransfer_bic}</td>
+  </tr>-->
+</table>

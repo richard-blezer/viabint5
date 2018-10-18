@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+		<title>Payment Restrictions</title>
+		<version>1.0.2</version>
+		<code>xt_payment_restriction</code>
+		<url>http://www.xt-commerce.com</url>
+		<description></description>
+		<type>payment</type>
+		<developer>xt:Commerce</developer>
+		<icon>xt-commerce_logo.jpg</icon>
+		<db_install><![CDATA[
+			$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_payment_restriction;");
+			
+			$db->Execute("CREATE TABLE ".DB_PREFIX."_payment_restriction (
+			  id int(11) NOT NULL auto_increment,
+			  customers_status_id int(11) NOT NULL,
+			  payment_id int(11) NOT NULL default '0',
+			  restriction_class enum('order_count','order_amount') NOT NULL default 'order_count',
+			  restriction_value decimal(15,4) NOT NULL default '0.0000',
+			  order_status int(11) NOT NULL default '0',
+			  PRIMARY KEY  (`id`)
+			) ENGINE=MyISAM;");
+			]]></db_install>
+			<db_uninstall><![CDATA[
+				$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_payment_restriction;");
+			]]></db_uninstall>
+		<plugin_code>
+			<code>
+				<hook>class.customers_status.php:_getParams</hook>
+				<phpcode><![CDATA[
+					$rowActions[] = array('iconCls' => 'xt_payment_restriction', 'qtipIndex' => 'qtip1', 'tooltip' => TEXT_PAYMENT_RESTRICTION);
+        			if ($this->url_data['edit_id'])
+		  				$js = "var edit_id = ".$this->url_data['edit_id'].";";
+					else
+          				$js = "var edit_id = record.id;";
+          			$js .= "addTab('adminHandler.php?plugin=xt_payment_restriction&load_section=payment_restriction&pg=overview&customers_status_id='+edit_id,'".TEXT_PAYMENT_RESTRICTION."')";
+					$rowActionsFunctions['xt_payment_restriction'] = $js;
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>page_registry.php:bottom</hook>
+				<phpcode><![CDATA[
+					define('TABLE_PAYMENT_RESTRICTION',DB_PREFIX.'_payment_restriction');
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>admin_dropdown.php:dropdown</hook>
+				<phpcode><![CDATA[
+					if ($request['get']=='payment_restriction_class') {
+						$result = array();
+						$result[] =  array('id' => 'order_count',
+                             'name' => TEXT_PAYMENT_RESTRICTION_COUNT,
+                             'desc' => '');
+						$result[] =  array('id' => 'order_amount',
+                             'name' => TEXT_PAYMENT_RESTRICTION_AMOUNT,
+                             'desc' => '');
+					}
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.payment.php:_buildData_filter</hook>
+				<phpcode><![CDATA[
+					$rs = $db->Execute("SELECT * FROM ".TABLE_PAYMENT_RESTRICTION." WHERE payment_id=? and customers_status_id=?", array((int)$value['payment_id'], $customers_status->customers_status_id));
+					if ($rs->RecordCount()>0) {
+						$allow = true;
+						while (!$rs->EOF) {
+							if ($rs->fields['restriction_class']=='order_count') {
+								$_value = $_SESSION['customer']->_getTotalOrderCount($rs->fields['order_status']);
+								if ($_value<$rs->fields['restriction_value']) $allow=false;
+							} else { 
+								$_value = $_SESSION['customer']->_getTotalOrderAmount($rs->fields['order_status']);
+								if ($_value<$rs->fields['restriction_value']) $allow=false;
+							}
+							$rs->MoveNext();
+						}
+						if (!$allow) unset($value);
+					}
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.payment.php:_unset</hook>
+				<phpcode><![CDATA[
+					$db->Execute("DELETE FROM ". TABLE_PAYMENT_RESTRICTION ." WHERE payment_id = ?", array($id));
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>css_admin.php:css</hook>
+				<phpcode><![CDATA[
+					echo '.xt_payment_restriction {background-image: url(images/icons/money.png) !important;}';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+		</plugin_code>
+</xtcommerceplugin> 

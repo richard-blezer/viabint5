@@ -1,0 +1,69 @@
+{$categories}
+<div class="product-listing product-listing-slider product-listing-slider-xs {if $code} {$code}{/if} control-button-light">
+    {if $product_listing}
+
+        {if $manufacturer.MANUFACTURER.manufacturers_image}<div class="pull-right manufacturers-image">{img img=$manufacturer.MANUFACTURER.manufacturers_image type=m_org class="img-responsive img-thumbnail"}</div>{/if}
+
+        {if $PRODUCTS_DROPDOWN}{$PRODUCTS_DROPDOWN}{/if}
+        {if $manufacturer && $manufacturer.MANUFACTURER.manufacturers_description|trim != ''}<div class="manufacturers-description text-word-wrap">{$manufacturer.MANUFACTURER.manufacturers_description}</div>{/if}
+        {if $MANUFACTURER_DROPDOWN}{if $MANUFACTURER_DROPDOWN}{$MANUFACTURER_DROPDOWN}{/if}{/if}
+
+        {php}$this->assign('unique_carousel_id', uniqid('productCarousel-'));{/php}
+        {php}$s=1;$i=0;$p=1;$n=1;$c=count($this->get_template_vars('product_listing'));{/php}
+
+        {if $extended && $extended == '1' || $page == 'cart'}
+            <div class="pcontent-part">
+            	<p class="breaking-headline">{$headline}</p>
+            </div>
+        {/if}
+        <div class="listing-container">
+	        <div class="listing equalize-no-panels">
+	            <div id="{$unique_carousel_id}" class="carousel slide productCarousel" data-ride="carousel" data-min-items="{php}echo $s;{/php}">
+	                <div class="carousel-inner">
+	                    <div class="item active">
+	                        <div class="row-fluid row row-1">
+	                            {foreach name=aussen item=module_data from=$product_listing}
+	                                {php}$box_nr=$i+1;$box_pos='';if($box_nr == 1)$box_pos = ' first';{/php}
+	
+	                                <div class="col col-xs-12 col-{php}echo $box_nr.$box_pos;{/php} item-{php}echo $n;{/php}">
+	                                    {include file="$selected_template/includes/panel_product_listing.html" listing_version="v1"}
+	                                </div><!-- .col -->
+	
+	                                {php}
+	                                    $i++;
+	                                    $n++;
+	                                    if ($i == $s && $n-1 != $c) {
+	                                        $p++;
+	                                        echo '</div></div><div class="item"><div class="row row-'.$p.'"><!-- .row .row-'.$p.' -->';
+	                                        $i = 0;
+	                                    }
+	                                {/php}
+	                            {/foreach}
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div><!-- .listing -->
+	        
+	        {php} if ($c > $s) : {/php}
+	        
+	        <a class="left carousel-control text-center" href="#{$unique_carousel_id}" role="button" data-slide="prev">
+	            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	            <span class="sr-only">Previous</span>
+	        </a>
+	        <a class="right carousel-control text-center" href="#{$unique_carousel_id}" role="button" data-slide="next">
+	            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	            <span class="sr-only">Next</span>
+	        </a>
+	        {php} endif; {/php}
+    	</div>
+    {else}
+        <div class="alert alert-warning">{txt key=TEXT_EW_VIABIONA_STARTPAGE_TABS_WARNING}</div>
+    {/if}
+
+    {$error_listing}
+
+    {if $category_data.categories_description_bottom}
+        <div id="categorie-description-bottom" class="textstyles text-word-wrap">{$category_data.categories_description_bottom}</div>
+    {/if}
+</div>

@@ -1,0 +1,11 @@
+{if is_array($options)}
+
+{foreach name=aussen item=info from=$options}
+		{if $group_name != $info.option_group_name}
+				{$info.option_group_name}:
+		{/if}
+	{foreach name=aussen item=idata from=$info.txt_content}
+		{$idata}
+	{/foreach}
+{/foreach}
+{/if}

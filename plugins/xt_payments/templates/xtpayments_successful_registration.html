@@ -1,0 +1,26 @@
+<div class="registrationSuccessContainer">
+	{$successPageContent}
+	{*
+	<h1>{$XT_PAYMENTS_REGISTRATION_THANKYOU_TITLE}</h1>
+	
+	<div class="successBlock">
+		<div class="successText">
+			{$XT_PAYMENTS_REGISTRATION_THANKYOU_TEXT}
+		</div>
+	</div>
+	*}
+	<div class="successText">
+		{$XT_PAYMENTS_REGISTRATION_THANKYOU_TEXT2}
+	</div>
+	<div class="successLinks">
+		<a href="javascript: openConfigurationPage('{$payment_configuration_id}', '{$payment_configuration_text}');">{$XT_PAYMENTS_REGISTRATION_SHOP_CONFIGURATION_LINK}</a>
+		<br>
+		<a href="javascript: openCPanel('{$payment_cpanel_text}', '{$payment_cpanel_url}');">{$XT_PAYMENTS_REGISTRATION_PAYMENT_METHODS_CONFIGURATION_LINK}</a>
+		
+		{if !$detaultOrderStatusesOk}
+		<div class="paddingTop10"></div>
+		<div class="registrationError">{$XT_PAYMENTS_REGISTRATION_ORDER_STATUSES_NOT_CONFIGURED}</div>
+		{/if}
+	</div>
+</div>
+

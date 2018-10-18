@@ -1,0 +1,39 @@
+{if $options!=''}
+	
+	<!-- Info messages validation messages -->
+	{$message}		
+
+	<!-- Reedit Options -->
+	{if $reedit_options}
+		{$reedit_form}
+	{/if}
+    
+	<!-- Product Options Content -->
+	{foreach name=outer item=options_data from=$options}
+        <h3>{$options_data.option_group_name}:</h3>
+		{if $options_data.option_group_desc}
+                <p>{$options_data.option_group_desc}</p>
+		{/if}	
+                {if $options_data.option_group_field == "radio" || $options_data.option_group_field == "checkbox"}
+                <div data-role="fieldcontain">
+                <fieldset data-role="controlgroup">
+                    <legend> </legend>
+                {else}
+                <fieldset>  
+                {/if}
+		{foreach key=key_data item=item_data from=$options_data.option_group_values}
+			{$item_data.content}
+		{/foreach}
+                </fieldset>
+                {if $options_data.option_group_field == "radio" || $options_data.option_group_field == "checkbox"}
+                </div>
+                {/if}
+	{/foreach}
+	<!-- Reedit Options -->
+	{if $reedit_options}
+		{button text=$smarty.const.BUTTON_SAVE file='PO_save_.gif' type='form' onclick=$save_action btn_template='tpl_button_2.gif'}
+		{button text=$smarty.const.BUTTON_BACK file='PO_cancel_.gif' type='form' onclick=$stop_action btn_template='tpl_button_2.gif'}
+		</form>
+	{/if}
+{/if}
+

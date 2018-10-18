@@ -1,0 +1,6 @@
+<h1>{$data.content_heading}</h1>
+{if $data.subcontent}
+<h2>{txt key=HEADING_SUB_CONTENT}</h2>
+<p>{foreach name=aussen item=module_data from=$data.subcontent}<a href="{$module_data.link}">{$module_data.title}</a> |{/foreach}</p>
+{/if}
+{if $file}{$file}{else}<div class="textstyles">{$data.content_body}</div>{/if}

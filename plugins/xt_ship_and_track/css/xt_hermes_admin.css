@@ -1,0 +1,9 @@
+.PRINT_LABEL {
+    background-image: url("../../../xtAdmin/images/icons/printer.png") !important;
+}
+.DELETE_HERMES_ORDER {
+    background-image: url("../../../xtAdmin/images/icons/delete.png") !important;
+}
+.HERMES_COLLECT, .REQUEST_COLLECT {
+    background-image: url("../../../xtAdmin/images/icons/lorry.png") !important;
+}

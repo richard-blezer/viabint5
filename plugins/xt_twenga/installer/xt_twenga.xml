@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+<title>Twenga</title>
+<version>1.0.2</version>
+<code>xt_twenga</code>
+<url>http://www.xt-commerce.com</url>
+<description>Price Comparison - Cost Per Order</description>
+<icon>logo_big.jpg</icon>
+<type>marketing</type>
+
+
+<!-- install  -->
+<db_install><![CDATA[
+$db->Execute("INSERT IGNORE INTO ".TABLE_ADMIN_NAVIGATION." (`pid` ,`text` ,`icon` ,`url_i` ,`url_d` ,`sortorder` ,`parent` ,`type` ,`navtype`) VALUES (NULL , 'xt_twenga', '../plugins/xt_twenga/images/logo.gif', '&plugin=xt_twenga', 'adminHandler.php', '5555', 'shop', 'I', 'W');");
+$err_num = mysql_errno();
+if ($err_num != 0) {
+	$err_str = mysql_error();
+	$db->Execute("INSERT INTO ".TABLE_SYSTEM_LOG." (class, module, data, identification) VALUES ('mysql error IN', 'xt_twenga', '".$err_str."', '".$err_num."')");
+}
+
+$db->Execute("CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_twenga
+	(
+		tw_id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+		shop_id INT(11) UNSIGNED NOT NULL,
+		tw_hash_key VARCHAR(255) NOT NULL,
+		tw_login VARCHAR(255) NOT NULL,
+		tw_password VARCHAR(255) NOT NULL,
+		tw_site_url VARCHAR(255) NOT NULL,
+		tw_feed_url VARCHAR(255) NOT NULL,
+		tw_status INT(1) UNSIGNED NOT NULL DEFAULT 0,
+		PRIMARY KEY (tw_id)
+	) 
+	ENGINE = MyISAM CHARACTER SET utf8 COLLATE utf8_general_ci;"
+);
+$err_num = mysql_errno();
+if ($err_num != 0) {
+	$err_str = mysql_error();
+	$db->Execute("INSERT INTO ".TABLE_SYSTEM_LOG." (class, module, data, identification) VALUES ('mysql error IN', 'xt_twenga', '".$err_str."', '".$err_num."')");
+}
+
+$db->Execute("INSERT IGNORE INTO ".TABLE_FEED." (feed_language_code, feed_store_id, feed_title, feed_type, feed_header, feed_body, feed_footer, feed_filename, feed_filetype, feed_save)
+VALUES
+(
+'en', '0', 'Twenga XML Feed', '1', '<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n<catalog>',
+'  <product>\n    <product_url>\{\$data.products_link\}</product_url>\n    <designation>"."<"."![CDATA[\{\$data.products_name\}]]".">"."</designation>\n    <price>\{\$data.products_price.plain\}</price>\n    <category>\{\$data.category_tree\}</category>\n    <image_url>\{\$data.products_image_thumb\}</image_url>\n    <description>"."<"."![CDATA[\{\$data.products_description\}]]".">"."</description>\n    <shipping_cost>0</shipping_cost>\n    <brand>\{\$data.manufacturers_name\}</brand>\n  </product>\n',
+'</catalog>', 'twenga_feed', '.xml', '1'
+);
+");
+$err_num = mysql_errno();
+if ($err_num != 0) {
+	$err_str = mysql_error();
+	$db->Execute("INSERT INTO ".TABLE_SYSTEM_LOG." (class, module, data, identification) VALUES ('mysql error IN', 'xt_twenga', '".$err_str."', '".$err_num."')");
+}
+]]></db_install>
+
+
+<!-- uninstall  -->
+<db_uninstall><![CDATA[
+$db->Execute("DELETE FROM ".TABLE_ADMIN_NAVIGATION." WHERE text = 'xt_twenga'");
+$err_num = mysql_errno();
+if ($err_num != 0) {
+	$err_str = mysql_error();
+	$db->Execute("INSERT INTO ".TABLE_SYSTEM_LOG." (class, module, data, identification) VALUES ('mysql error uninstall', 'xt_twenga', 'DELETE navi: ".$err_str."', '".$err_num."')");
+}
+
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_twenga");
+$err_num = mysql_errno();
+if ($err_num != 0) {
+	$err_str = mysql_error();
+	$db->Execute("INSERT INTO ".TABLE_SYSTEM_LOG." (class, module, data, identification) VALUES ('mysql error uninstall', 'xt_twenga', 'DROP xt_twenga: ".$err_str."', '".$err_num."')");
+}
+
+$db->Execute("DELETE FROM ".TABLE_FEED." WHERE feed_title = 'Twenga XML Feed'");
+$err_num = mysql_errno();
+if ($err_num != 0) {
+	$err_str = mysql_error();
+	$db->Execute("INSERT INTO ".TABLE_SYSTEM_LOG." (class, module, data, identification) VALUES ('mysql error uninstall', 'xt_twenga', 'DELETE xt_feed: ".$err_str."', '".$err_num."')");
+}
+]]></db_uninstall>
+
+
+
+<!-- hooks  -->
+<plugin_code>
+<code>
+<hook>page_registry.php:bottom</hook>
+<phpcode><![CDATA[
+include(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_twenga/hooks/page_registry.php_bottom.php');
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>css_admin.php:css</hook>
+<phpcode><![CDATA[
+include(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_twenga/hooks/css_admin.php_css.php');
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+
+<code>
+<hook>javascript.php:bottom</hook>
+<phpcode><![CDATA[
+include(_SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_twenga/hooks/javascript.php_bottom.php');
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+
+
+
+<!-- config -->
+<configuration>
+<config>
+	<key>XT_TWENGA_PARTNER_AUTH_KEY</key>
+	<type>textfield</type>
+	<value>OGFmNTgwOGE4YmYwNjY1ZTY2YjYyYmYyZWQ4ZGNjY2M4MjhiZjllMA==</value>
+	<de>
+		<title>Partner-Schlüssel (PARTNER_AUTH_KEY)</title>
+	</de>
+	<en>
+		<title>Partner Key (PARTNER_AUTH_KEY)</title>
+	</en>
+</config>
+</configuration>
+
+
+
+<!-- phrases -->
+<language_content>
+	<phrase>
+		<key>TEXT_TW_ID</key>
+		<class>admin</class>
+		<de>
+			<value>Twenga ID</value>
+		</de>
+		<en>
+			<value>Twenga ID</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TW_HASH_KEY</key>
+		<class>admin</class>
+		<de>
+			<value>Twenga Hashkey</value>
+		</de>
+		<en>
+			<value>Twenga Hashkey</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TW_LOGIN</key>
+		<class>admin</class>
+		<de>
+			<value>Twenga Login Name</value>
+		</de>
+		<en>
+			<value>Twenga Login Name</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TW_PASSWORD</key>
+		<class>admin</class>
+		<de>
+			<value>Twenga Passwort</value>
+		</de>
+		<en>
+			<value>Twenga Password</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TW_SITE_URL</key>
+		<class>admin</class>
+		<de>
+			<value>URL des Shops</value>
+		</de>
+		<en>
+			<value>URL of the shop</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TW_FEED_URL</key>
+		<class>admin</class>
+		<de>
+			<value>URL des Feeds</value>
+		</de>
+		<en>
+			<value>URL of the feed</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TW_STATUS</key>
+		<class>admin</class>
+		<de>
+			<value>aktiviert</value>
+		</de>
+		<en>
+			<value>active</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_XT_TWENGA</key>
+		<class>admin</class>
+		<de>
+			<value>Twenga</value>
+		</de>
+		<en>
+			<value>Twenga</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TWENGA_SUBSCRIBE</key>
+		<class>admin</class>
+		<de>
+			<value>Twenga einrichten</value>
+		</de>
+		<en>
+			<value>Twenga Setup</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_PLG_XT_TWENGA_SUBSCRIBE</key>
+		<class>admin</class>
+		<de>
+			<value>Twenga einrichten</value>
+		</de>
+		<en>
+			<value>Twenga Setup</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TWENGA_SUBSCRIBE_INTRO</key>
+		<class>admin</class>
+		<de>
+			<value><![CDATA[Funktion des Moduls: Export der Artikel an Twenga und Installation des Trackings durch Twenga (erfordert die Registrierung bei Twenga).<br /><br /><b>1.) Export der Artikel an Twenga konfigurieren:</b><br /><br />Zunächst müssen Sie unter <i>Inhalte - Exporte - Export-Manager</i> den &quot;Twenga XML Feed&quot; anpassen.<br />Wählen Sie dort bitte die <i>Shop ID</i> und füllen Sie die Felder des Reiters <i>Artikel</i> aus.<br />Speichern Sie Ihre Eingaben und kehren Sie dann bitte zu dieser Seite zurück.<br /><br /><hr /><b>2.) Reiter <i>Twenga Bearbeiten</i></b><br /><br />Wählen Sie nun auch hier einen <i>Shop</i> aus und speichern Sie Ihre Eingabe.<br />Dadurch werden die beiden URL-Felder automatisch geladen.<br /><br /><hr /><b>3.) Twenga Registrierung</b><br /><br /><b>a) Sie haben sich schon für Twenga &quot;Ready To Sell&quot; angemeldet?</b><br /><br /><ul><li>Schritt 1: Besorgen Sie sich Ihren Twenga Hashkey aus Ihrem Twenga Account (tools - tracking - hashkey).</li><li>Schritt 2: Tragen Sie ihn in das entsprechende Feld im Reiter <i>Twenga Bearbeiten</i> ein.</li><li>Schritt 3: Füllen Sie auch die beiden Felder <i>Login Name</i> und <i>Passwort</i> aus. Klicken Sie auf Speichern und Aktivieren.</li></ul><br /><b>b) Sie wollen sich für Twenga &quot;Ready To Sell&quot; anmelden?</b><br /><br /><ul><li>Schritt 1: Folgen Sie dem unten stehenden Link zu Twenga.</li><li>Schritt 2: Füllen Sie dort das Anmeldeformular aus.</li><li>Schritt 3: Kehren Sie danach zum Reiter <i>Twenga Bearbeiten</i> zurück, sobald Ihnen die fehlenden Werte vorliegen. Klicken Sie auf Speichern und Aktivieren.</li></ul><br />]]></value>
+		</de>
+		<en>
+			<value><![CDATA[Module role: Export of your products on Twenga and installation of the sales tracking brought by Twenga (requires to sign up to Twenga).<br /><br /><b>1.) Configure the export of the products to Twenga:</b><br /><br />First you must adjust the &quot;Twenga XML Feed&quot; via <i>content - exporte - export-manager</i>.<br />There please choose the <i>shop ID</i> and fill in the fields of the tab <i>product</i>.<br />Save your changes and then please return to this page.<br /><br /><hr /><b>2.) Tab <i>Twenga edit</i></b><br /><br />Now also choose a <i>store</i> here and save your changes.<br />Thus both URL fields will be loaded automatically.<br /><br /><hr /><b>3.) Twenga Sign Up</b><br /><br /><b>a) You have already signed up to Twenga &quot;Ready To Sell&quot;?</b><br /><br /><ul><li>Step 1: Retrieve your Twenga Hashkey from your Twenga account (tools - tracking - hashkey).</li><li>Step 2: Paste it in the field <i>Twenga Hashkey</i> in the tab <i>Twenga edit</i>.</li><li>Step 3: Also fill in the two fields <i>Login Name</i> and <i>Password</i>. Click on Save and Activate.</li></ul><br /><b>b) You want to sign up to Twenga &quot;Ready To Sell&quot;?</b><br /><br /><ul><li>Step 1: Click on the link to Twenga you find below.</li><li>Step 2: Fill up Twenga sign up form.</li><li>Step 3: When you got the Twenga Hashkey, come back to the Tab <i>Twenga edit</i> and paste it in the field <i>Twenga Hashkey</i>. Click on Save and Activate.</li></ul><br />]]></value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TWENGA_SETUP_ACCOUNT</key>
+		<class>admin</class>
+		<de>
+			<value>Folgen Sie zur Anmeldung diesem Link</value>
+		</de>
+		<en>
+			<value>Please follow this link</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TWENGA_SUBSCRIPTION_LINK</key>
+		<class>admin</class>
+		<de>
+			<value>Twenga Registrierungsseite</value>
+		</de>
+		<en>
+			<value>Subscribe to Twenga</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TWENGA_PLUGIN_ERROR</key>
+		<class>admin</class>
+		<de>
+			<value>Es ist ein Fehler beim Aufruf des Plugins aufgetreten.</value>
+		</de>
+		<en>
+			<value>An error occured while calling the plug-in.</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TWENGA_FEEDBACK_ERROR</key>
+		<class>admin</class>
+		<de>
+			<value>Es ist folgender Fehler bei der Verbindung zu Twenga aufgetreten</value>
+		</de>
+		<en>
+			<value>The following error occured during the connection with Twenga</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TWENGA_EXIST_INTRO</key>
+		<class>admin</class>
+		<de>
+			<value>Der eingetragene Hashkey wird überprüft.</value>
+		</de>
+		<en>
+			<value>The entered hashkey is checked.</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TWENGA_EXIST_VALID</key>
+		<class>admin</class>
+		<de>
+			<value>Der Twenga Hashkey ist gültig.</value>
+		</de>
+		<en>
+			<value>The Twenga hashkey is valid.</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TWENGA_ADDFEED_OKAY</key>
+		<class>admin</class>
+		<de>
+			<value>Der Feed wurde erfolgreich übermittelt.</value>
+		</de>
+		<en>
+			<value>The feed was submitted successfully.</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_PLG_XT_TWENGA_ACTIVATE</key>
+		<class>admin</class>
+		<de>
+			<value>Twenga aktivieren</value>
+		</de>
+		<en>
+			<value>Activate Twenga</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TWENGA_ACTIVATE</key>
+		<class>admin</class>
+		<de>
+			<value>Twenga aktivieren</value>
+		</de>
+		<en>
+			<value>Activate Twenga</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TWENGA_ACTIVATE_INTRO</key>
+		<class>admin</class>
+		<de>
+			<value>Das Tracking wird nun aktiviert.</value>
+		</de>
+		<en>
+			<value>The tracking is going to be activated.</value>
+		</en>
+	</phrase>
+
+	<phrase>
+		<key>TEXT_TWENGA_ACTIVATE_OKAY</key>
+		<class>admin</class>
+		<de>
+			<value>Die Aktivierung war erfolgreich.</value>
+		</de>
+		<en>
+			<value>The activation was successful.</value>
+		</en>
+	</phrase>
+</language_content>
+
+
+</xtcommerceplugin>

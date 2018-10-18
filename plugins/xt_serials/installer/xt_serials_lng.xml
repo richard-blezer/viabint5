@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>XT_SERIALS_WARNING_MIN_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Stock warning trigger]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Mindestbestand Warnung]]></value>
+	</de>
+	<tw>
+		<value><![CDATA[當序號數量低於警示數量時即觸發提示]]></value>
+	</tw>
+</phrase>
+</language_content>
+</xtcommerceplugin>

@@ -1,0 +1,29 @@
+
+    <li data-role="divider" data-theme="c">  
+        {$payment_name}
+    </li>
+    
+
+    <li data-theme="c">
+        <div data-role="controlgroup">
+            <label>
+                {if $payment_hidden == true}
+                        {form type=radio name=selected_payment value=$payment_code checked=true}
+                {else}
+
+                    {if $payment_code==$payment_selected}
+                        {form type=radio name=selected_payment value=$payment_code checked=true}
+                    {else}
+                        {form type=radio name=selected_payment value=$payment_code}
+                    {/if}
+
+                {/if}
+
+                <span class="ui-li-heading">
+                    <span class="floatLeft">{if $payment_icon} {img img=$payment_icon type=w_media_payment}{else}<img  src="https://www.paypal.com/de_DE/DE/i/logo/lockbox_100x31.gif" border="0" alt="PayPal-Bezahlmethoden-Logo">{/if}</span>
+                </span>
+
+            </label>
+        </div>
+    </li>
+    

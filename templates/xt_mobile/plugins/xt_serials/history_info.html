@@ -1,0 +1,17 @@
+{if $serials}
+<h2>{txt key=TEXT_PRODUCTS_SERIALS}</h2>
+<table class="tabledetails" width="100%" border="0" cellspacing="0" cellpadding="4">
+	<tr class="headerrow">
+      <td class="left">{txt key=TEXT_ARTICLE}</td>
+      <td class="left">{txt key=TEXT_PRODUCTS_MODEL}</td>
+      <td class="right">{txt key=TEXT_SERIAL_NUMBER}</td>
+    </tr>
+ {foreach name=aussen item=order_serials from=$serials}
+    <tr class="{cycle values="contentrow1,contentrow2"}">
+    <td class="left"><strong>{$order_serials.products_name}</strong></td>
+    <td class="left">{$order_serials.products_model}</td>
+    <td class="right">{$order_serials.serial_number}</td>
+  </tr>
+  {/foreach}
+  </table>
+{/if}

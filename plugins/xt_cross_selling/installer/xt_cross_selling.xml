@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xtcommerceplugin>
+		<title>Cross Selling</title>
+		<version>1.0.5</version>
+		<code>xt_cross_selling</code>
+		<url>http://www.xt-commerce.com</url>
+		<description>Cross selling for products</description>
+		<type>core</type>
+		<icon>xt-commerce_logo.jpg</icon>
+		<developer>xt:Commerce</developer>
+		<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/display/MANUAL/Cross-Selling]]></documentation_link>
+		<minimumupdateversion>1.0.2</minimumupdateversion>
+		<db_update>
+			<update>
+				<version>1.0.2</version>
+				<to_version>1.0.3</to_version>
+				<code><![CDATA[
+						]]>
+				</code>
+			</update>
+			<update>
+				<version>1.0.3</version>
+				<to_version>1.0.4</to_version>
+				<code><![CDATA[
+						]]>
+				</code>
+			</update>
+			<update>
+				<version>1.0.4</version>
+				<to_version>1.0.5</to_version>
+				<code><![CDATA[
+						]]>
+				</code>
+			</update>			
+		</db_update>
+		<plugin_code>
+			<code>
+				<hook>store_main.php:bottom</hook>
+				<phpcode><![CDATA[
+					require _SRV_WEBROOT.'plugins/xt_cross_selling/classes/class.cross_selling.php';
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>product_info_tpl</hook>
+				<phpcode><![CDATA[
+					global $current_product_id;
+					$cross_selling = new cross_selling(0);
+					echo $cross_selling->_display($current_product_id);
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.product.php:_getParams_row_actions</hook>
+				<phpcode><![CDATA[					
+					$rowActions[] = array('iconCls' => 'products_cross_selling', 'qtipIndex' => 'qtip1', 'tooltip' => TEXT_PRODUCTS_CROSS_SELLING);
+			        if ($this->url_data['edit_id'])
+					  $js = "var edit_id = ".$this->url_data['edit_id'].";";
+					else
+			          $js = "var edit_id = record.id;";
+			          $extF = new ExtFunctions();
+					$js.= $extF->_RemoteWindow("TEXT_PRODUCTS_CROSS_SELLING","TEXT_PRODUCTS","adminHandler.php?plugin=xt_cross_selling&load_section=cross_selling_products&noFilter=true&pg=overview&products_id='+edit_id+'", "", array(), 800, 600).' new_window.show();';
+			
+					$rowActionsFunctions['products_cross_selling'] = $js;
+				]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+			<code>
+				<hook>class.generated_slaves.php:_getParams_row_actions</hook>
+				<phpcode><![CDATA[					
+					$rowActions[] = array('iconCls' => 'products_cross_selling', 'qtipIndex' => 'qtip1', 'tooltip' => TEXT_PRODUCTS_CROSS_SELLING);
+			        if ($this->url_data['edit_id'])
+					  $js = "var edit_id = ".$this->url_data['edit_id'].";";
+					else
+			          $js = "var edit_id = record.id;";
+			          $extF = new ExtFunctions();
+					$js.= $extF->_RemoteWindow("TEXT_PRODUCTS_CROSS_SELLING","TEXT_PRODUCTS","adminHandler.php?plugin=xt_cross_selling&load_section=cross_selling_products&noFilter=true&pg=overview&products_id='+edit_id+'", '', array(), 800, 600).' new_window.show();';
+			
+					$rowActionsFunctions['products_cross_selling'] = $js;
+					]]></phpcode>
+				<order>1</order>
+				<active>1</active>
+			</code>
+		</plugin_code>
+		<configuration>
+			<config>
+				<key>XT_CROSS_SELLING_MAX_DISPLAY</key>
+				<value>5</value>
+					<de>
+						<title>Anzahl Artikel</title>
+						<description>Maximale Anzahl angezeigter Artikel</description>
+					</de>
+					<en>
+						<title>Max. article</title>
+						<description>Max. count for articles displayed</description>
+					</en>
+					<es>
+						<title>Cantidad de artículos</title>
+						<description>El número máximo de artículos que se muestran</description>
+					</es>
+					<tw>
+						<title>商品數 - 最大值</title>
+						<description>顯示商品數量的最大值</description>
+					</tw>
+					<cn>
+						<title>商品数 - 最大值</title>
+						<description>显示商品数量的最大值</description>
+					</cn>
+					<jp>
+						<title>商品数 - 最大値</title>
+						<description>商品の数量の最大の値を表示すります</description>
+					</jp>
+    				<bp>
+        				<title>Artigo máximo</title>
+					</bp>
+				</config>
+		</configuration>
+</xtcommerceplugin>

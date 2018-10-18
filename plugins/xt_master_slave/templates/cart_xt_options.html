@@ -1,0 +1,7 @@
+{if !empty($xt_options)}
+
+	{foreach from =$xt_options item=xt_op key=keyid}
+		{$xt_op.group_name}: <b>{$xt_op.option_name}</b>
+		<br/>
+	{/foreach}
+{/if}

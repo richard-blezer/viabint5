@@ -1,0 +1,3 @@
+<span class="xtm-old-price">{*txt key=TEXT_SPECIAL_INSTEAD*} {$OLD_PRICE.formated}</span><br />
+<span class="xtm-new-price">{txt key=TEXT_SPECIAL_ONLY} {$SPECIAL_PRICE.formated}</span><br />
+<span class="xtm-save-price">{txt key=TEXT_SPECIAL_SAVE} {math equation="round(100-y/x*100,0)" x=$OLD_PRICE.plain y=$SPECIAL_PRICE.plain} %</span>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_EKOMI</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[eKomi Produktbewertungen]]></value>
+	</en>
+	<de>
+		<value><![CDATA[eKomi product reviews]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_EKOMI_ALLOW</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Bewertungs-E-Mails aktivieren]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Activate review reminder E-Mails]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_EKOMI</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[eKomi Portal]]></value>
+	</en>
+	<de>
+		<value><![CDATA[eKomi Portal]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_EKOMI_ACTIVATE_REVIEWS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Import reviews from eKomi (requires eKomi Pro Account)]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Produktbewertungen von eKomi importieren (Kostenpflichtig)]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_EKOMI_API_ID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Schnittstellen ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Schnittstellen ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_EKOMI_API_KEY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Schnittstellenpasswort]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Schnittstellenpasswort]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_EKOMI_DELAY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Days after Statuschange]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Tage nach Bestellstatusänderung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_EKOMI_ENABLED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Enabled]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Enabled]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_EKOMI_ID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Merchant ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Händler ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_EKOMI_LOGIN_MAIL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ekomi Login Username]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ekomi Login Benutzername]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_EKOMI_LOGIN_PASS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ekomi Login Password]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ekomi Login Passwort]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_EKOMI_MAILS_BATCH_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Mails per request]]></value>
+	</en>
+	<de>
+		<value><![CDATA[E-Mails pro Aufruf]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_EKOMI_ORDER_STATUS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Bestellstatus - Versand]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - Versand]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

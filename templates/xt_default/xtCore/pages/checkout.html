@@ -1,0 +1,34 @@
+<ul id="checkoutnavigation">
+	<li {if $page_action == shipping}class="active"{else}class="inactive"{/if} ><span class="title">{txt key=TEXT_SELECT_SHIPPING}</span><br /><span class="description">{txt key=TEXT_SELECT_SHIPPING_DESC}</span></li>
+	<li {if $page_action == payment}class="active"{else}class="inactive"{/if}><span class="title">{txt key=TEXT_SELECT_PAYMENT}</span><br /><span class="description">{txt key=TEXT_SELECT_PAYMENT_DESC}</span></li>
+	<li {if $page_action == confirmation}class="active"{else}class="inactive"{/if}><span class="title">{txt key=TEXT_CONFIRMATION}</span><br /><span class="description">{txt key=TEXT_CONFIRMATION_DESC}</span></li>
+	
+	<li {if $page_action == success}class="active"{else}class="inactive"{/if}><span class="title">{txt key=TEXT_SUCCESS}</span><br /><span class="description">{txt key=TEXT_SUCCESS_DESC}</span></li>
+</ul>
+<div style="clear:both"></div>
+{$message}
+<br />
+
+{if $page_action == shipping}
+{include file="/xtCore/pages/checkout/subpage_shipping.html" type="tpl_include"}
+{/if}
+
+{if $page_action == payment}
+{include file="/xtCore/pages/checkout/subpage_payment.html" type="tpl_include"}
+{/if}
+
+{if $page_action == confirmation}
+{include file="/xtCore/pages/checkout/subpage_confirmation.html" type="tpl_include"}
+{/if}
+
+{if $page_action == pay}
+{include file="/xtCore/pages/checkout/subpage_pay.html" type="tpl_include"}
+{/if}
+
+{if $page_action == pay_frame}
+{include file="/xtCore/pages/checkout/subpage_pay_iframe.html" type="tpl_include"}
+{/if}
+
+{if $page_action == success}
+{include file="/xtCore/pages/checkout/subpage_success.html" type="tpl_include"}
+{/if}

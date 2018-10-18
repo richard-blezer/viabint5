@@ -1,0 +1,39 @@
+<h2>{txt key=TEXT_PAGE_TITLE_ACCOUNT_DOWNLOADS}</h2>
+{$message}
+{foreach name=aussen item=dl_data from=$download_data}
+<p><strong>{txt key=TEXT_ORDER_NUMBER}: 
+	<a href="{link page='customer' paction=order_info params=oid params_value=$dl_data.order_data.orders_id conn=SSL}">{$dl_data.order_data.orders_id}</a> / 
+	{$dl_data.order_data.date_purchased}</strong><br />
+	{txt key=TEXT_ORDER_STATUS}: {$dl_data.order_data.orders_status}
+</p>
+<ul data-role="listview" data-inset="true">
+	{foreach name=aussen item=dl_item from=$dl_data.download_data}
+	{assign var='dp0' value='/'|cat:language}
+	{assign var='dp1' value=$dp0|cat:'/customer/download_overview?order='}
+	{assign var='dp2' value=$dp1|cat:$dl_item.orders_id}
+	{assign var='dp3' value=$dp2|cat:'&media='}
+	{assign var='dp4' value=$dp3|cat:$dl_item.media_id}
+	
+		<li>
+			{if $dl_item.download_allowed eq '1'}
+				<a href="{$dp4}" rel="external" target="_blank">
+					{img img=page_white_compressed.png url=`$smarty.const._SRV_WEB`media/icons/ class=ui-li-icon}
+					<p><strong>{$dl_item.media_name}</strong></p>
+					<p>
+						({$dl_item.media_size|fsize_format:"MB"})<br />
+						{if $dl_item.allowed_until}<br />{txt key=TEXT_ACCOUNT_DOWNLOADS_DATE}: <strong>{$dl_item.allowed_until}</strong>{/if}
+						{if $dl_item.allowed_count}<br />{txt key=TEXT_ACCOUNT_DOWNLOADS_COUNT}: <strong>{$dl_item.allowed_count}</strong>{/if}
+					</p>
+				</a>
+			{else}
+				{img img=lock_open.png url=`$smarty.const._SRV_WEB`media/icons/}
+		
+				<p><strong>{$dl_item.media_name}</strong></p>
+				<p>({$dl_item.media_size|fsize_format:"MB"})<br />
+				{txt key=TEXT_DOWNLOAD_NOT_ALLOWED}</p>
+			{/if}
+		</li>
+	{/foreach}
+</ul>
+{/foreach}
+<!--<a href="{link page='customer' conn=SSL}" data-role="button" data-icon="back">{txt key=BUTTON_BACK}</a>-->

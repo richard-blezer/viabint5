@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>HEADING_XT_SPERRGUT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[bulky goods fees]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sperrgutzuschläge]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SPERRGUT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[bulky goods fee]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sperrgutzuschlag]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SPERRGUT_CLASS</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[bulky goods class]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sperrgutklasse]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SPERRGUT_PRICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[bulky goods fee]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sperrgutpreis]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_SPERRGUT_CALCULATE_MODULE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Calculate]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Berechnen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_SPERRGUT_TAX_CLASS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Tax Class]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Steuerklasse]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_SPERRGUT_TAX_SORTING_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Sorting]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sortierung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SPERRGUT_INFO</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[For your chosen products an extra fee of %s for bulky goods will be added]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zusätzlich wird für die von Ihnen gewählten Produkte ein Sperrgutzuschlag von %s berechnet]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_SPERRGUT_TITLE</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[bulky goods fee]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sperrgutzuschlag]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

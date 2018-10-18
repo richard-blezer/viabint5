@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>TEXT_ELEFUNDS_ACCOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Elefunds Account]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Elefunds Account]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ELEFUNDS_ACCOUNT_ALREADY_CREATED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[<b>Elefunds Account is already registered!</b>]]></value>
+	</en>
+	<de>
+		<value><![CDATA[<b>Elefunds Konto wurde bereits erstellt</b>]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ELEFUNDS_API_KEY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[API Key]]></value>
+	</en>
+	<de>
+		<value><![CDATA[API Key]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ELEFUNDS_CLIENT_ID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Client ID]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kunden ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ELEFUNDS_COLOR_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Color]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Farbe]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ELEFUNDS_FORM_SELECTOR_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Form selector]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Form Selektor]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ELEFUNDS_REGISTERED_EMAIL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Elefunds Account-Mail]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Elefunds-Account-Mail]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ELEFUNDS_STATUS_CANCELLED_MAPPING_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Order status cancelled]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus \"cancelled\"]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ELEFUNDS_STATUS_COMPLETED_MAPPING_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Order status \"completed\"]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus \"Abgeschlossen\"]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ELEFUNDS_STATUS_PENDING_MAPPING_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Order status pending]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus \"offen\"]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ELEFUNDS_THEME_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Theme]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Theme]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>XT_ELEFUNDS_TOTAL_SELECTOR_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Total selector]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Preis Selektor]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_CREATE_ELEFUNDS_ACCOUNT</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Jetzt anmelden]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Jetzt anmelden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_CREATE_ELEFUNDS_ACCOUNT</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Jetzt anmelden]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Jetzt anmelden]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ELEFUNDS_ACCOUNT_ERROR</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Account failed to register.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Account failed to register.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ELEFUNDS_ACCOUNT_REGED</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Elefunds account was successfully created. You will receive an email upon registraion verification, click "next" to proceed.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ihr Konto bei Elefunds wurde erfolgreich erstellt, Sie erhalten in kürze eine E-Mail welche Ihnen die Zugangsdaten mitteilt. Klicken Sie auf "Weiter" um die Installation fortzusetzen.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_ELEFUNDS_EMAIL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Email]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Email]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SELECT_RECIEVER</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Bitte wählen Sie die Hilfsorganisationen aus, für die Ihre Kunden aufrunden und spenden können.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte wählen Sie die Hilfsorganisationen aus, für die Ihre Kunden aufrunden und spenden können.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SELECT_RECIEVER</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Bitte wählen Sie die Hilfsorganisationen aus, für die Ihre Kunden aufrunden und spenden können.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte wählen Sie die Hilfsorganisationen aus, für die Ihre Kunden aufrunden und spenden können.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SKIP</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Skip / Next]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Überspringen / Weiter]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_SKIP</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Skip / Next]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Überspringen / Weiter]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>TEXT_XT_ELEFUNDS_DONATION</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Elefunds donation]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Elefunds Spende]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>_ERROR_ELEFUNDS_EMAIL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Bitte geben Sie eine E-Mail Adresse an!]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Please enter an E-mail address]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>_ERROR_ELEFUNDS_EMAIL</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Bitte geben Sie eine E-Mail Adresse an!]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte geben Sie eine E-Mail Adresse an!]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>_ERROR_ELEFUNDS_NO_RECIEVERS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please select at least one Charity.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte wählen mindestens eine Hilfsorganisationen aus, für die Ihre Kunden aufrunden und spenden können.]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>_ERROR_ELEFUNDS_NO_RECIEVERS</key>
+	<class>both</class>
+	<en>
+		<value><![CDATA[Please select at least one Charity.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bitte wählen mindestens eine Hilfsorganisationen aus, für die Ihre Kunden aufrunden und spenden können.]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

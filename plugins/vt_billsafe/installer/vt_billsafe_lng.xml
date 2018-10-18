@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>VT_BILLSAFE_ACTION_COMPLETE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[action complete]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Vorgang erfolgreich abgeschlossen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_ACTIVATE_INSTALLMENTS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate rate payments]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ratenkauf aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_ACTIVATE_INVOICE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate invoice payments]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Rechnungskauf aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_CLIENTID_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Client iD]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Mandanten ID]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_CREATE_INVOICE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Create payment slip]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlschein erstellen]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_ERROR_AMOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[error by amount]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Ungültiger Betrag]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_ERROR_NO_COUPON_SELECTED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[no coupon selected]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Kein Gutschein ausgewählt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_ERROR_NO_PRODUCT_SELECTED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[no product selected]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Es wurde kein Produkt ausgewählt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_ERROR_QUANTITY</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[error by input quantity]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Fehler bei der Eingabe der Anzahl]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_ERROR_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[error by type]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Falscher Typ]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_LICENCEKEY_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Licencekey]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Lizenzschluessel]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_LOG_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Datum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_LOG_TYPE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Type]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Art]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_LOG_TYPE_DIRECTPAYMENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[direct payment report]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Direktzahlung übermittelt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_LOG_TYPE_PAYMENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Payment slip]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlschein]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_LOG_TYPE_RETOURE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[returned shipping]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Retoure]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_LOG_TYPE_REVERSAL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Reversal]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Stornierung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_LOG_TYPE_REVERSALVOUCHER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Reversal Voucher]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gutschrift Storniert]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_LOG_TYPE_SHIPPING</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Shipping]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Lieferung]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_LOG_TYPE_VOUCHER</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Voucher]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gutschrift]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_ORDER_STATUS_NEW_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[New Order Status]]></value>
+	</en>
+	<de>
+		<value><![CDATA[New Order Status]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_PASSCODE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Passcode]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Passcode]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_PAYED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Quantity for products invoice created]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Artikel in Rechnung gestellt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_PAYED_AMOUNT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Amount]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Betrag]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_PAYED_DATE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Date]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Datum]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_PAYED_TAX</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[tax]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Steuersatz]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_QUANTITY</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Quantity]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Anzahl]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_SANDBOX_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Sandbox Mode]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Sandbox-Modus]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_SELECTION</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Selection]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Auswahl]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_SHIPPED</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Product shipped]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Artikel versandt]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_SHOP_LOGO_URL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[URL to Shop-Logo]]></value>
+	</en>
+	<de>
+		<value><![CDATA[URL zum Shop-Logo]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_STATUS_FAILED_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Failed]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - Failed]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_STATUS_PAYMENT_LAYER_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate Payment-Layer]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Payment-Layer aktivieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_STATUS_SUCCESS_MAIL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus-Mail send - Success]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus-Mail senden - Success]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_STATUS_SUCCESS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Ordersstatus - Success]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Bestellstatus - Success]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_SUBMIT_COUPON</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[credit note]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gutschrift]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_SUBMIT_COUPON_REVERSAL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Reversal Coupon]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Gutschrift Stornieren]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_SUBMIT_DIRECTPAYMENT</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Report payment receipt]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Zahlungseingang übermitteln]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_SUBMIT_RETOURE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[shipping return]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Retoure]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_SUBMIT_REVERSAL</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Submit Reversal]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Stornierung übermitteln]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_SUBMIT_SHIPPING</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Report Shipment]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Versand übermitteln]]></value>
+	</de>
+</phrase>
+<phrase>
+	<key>VT_BILLSAFE_PAYMENT_DECLINED</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Unfortunately purchase on invoice is not available using BILLSAFE. Please choose another payment method.]]></value>
+	</en>
+	<de>
+		<value><![CDATA[Leider ist der Rechnungskauf mit BILLSAFE nicht möglich. Bitte wählen Sie eine andere Zahlungsart.]]></value>
+	</de>
+</phrase>
+</language_content>
+</xtcommerceplugin>

@@ -1,0 +1,9 @@
+{if $options!=''}
+	
+    {foreach name=outer item=item_data from=$options}
+
+        {$item_data.field}
+
+    {/foreach}
+
+{/if}

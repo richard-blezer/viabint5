@@ -1,0 +1,18 @@
+<div class="product-listing product-listing-v1 product-listing-startpage product-listing-nospace">
+    {if $product_listing}
+        {if $heading_text}
+            <p class="h2 index-heading">{$heading_text}</p>
+        {/if}
+        <div class="clearfix"></div>
+        <div class="listing">
+            <div class="row ew_row">
+                {foreach name=listing item=module_data from=$product_listing}
+                <div class="col col-xs-6 col-md-4 {if $smarty.foreach.listing.first} col-first{elseif $smarty.foreach.listing.last} col-last{/if}">
+                    {include file="$selected_template/includes/panel_product_listing.html" listing_version="v1"}
+                </div><!-- .col -->
+                {/foreach}
+            </div><!-- .row -->
+        </div><!-- .listing -->
+    {/if}
+    {$error_listing}
+</div>

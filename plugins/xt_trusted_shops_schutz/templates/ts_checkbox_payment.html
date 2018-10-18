@@ -1,0 +1,37 @@
+<h1>Trusted Shops protection acheteur</h1>   
+<br />
+{literal}
+<style type="text/css" id="ts_css">
+<!--
+.ts_box {
+    background: #fee68e;
+    padding: 6px;
+    border:1px solid;
+    border-color: #cccccc;
+    background-image:url('plugins/xt_trusted_shops_schutz/images/bg_yellow.jpg');
+    background-repeat:no-repeat;
+}
+-->
+</style>
+{/literal}
+<table width="100%" cellspacing="0" cellpadding="4" class="ts_box">
+  <tr>
+    <td width="200"><a href="https://www.trustedshops.com/shop/certificate.php?shop_id={$TS_ID}" target="_blank"><img src="plugins/xt_trusted_shops_schutz/images/trustedshops_m.gif" /></a></td>  
+    <td>
+      {if $smarty.session.ts_ks_checkbox  eq '1'}
+      {form type=checkbox name=ts_ks_checkbox value=1 checked=true}
+      {else}
+      {form type=checkbox name=ts_ks_checkbox value=1}
+      {/if}
+      <strong>Trusted Shops protection acheteur (recommand&eacute;e)</strong><br />
+
+      {if $smarty.session.ts_ks_type|strlen > 2}
+      {form type=select name=ts_ks_type value=$ts_types default=$smarty.session.ts_ks_type} 
+      {else}
+      {form type=select name=ts_ks_type value=$ts_types default=$smarty.const._XT_TS_SCHUTZ_SELECTED} 
+      {/if}    
+      <br />
+     La protection acheteur Trusted Shops s&eacute;curise votre achat en ligne. J'accepte le transfert et la <a href="https://www.trustedshops.com/shop/data_privacy.php?shop_id={$TS_ID}" target="_blank">sauvegarde</a> de mon adresse email pour le traitement de la protection acheteur par Trusted Shops. <a href="http://www.trustedshops.com/shop/protection_conditions.php?shop_id={$TS_ID}" target="_blank">Conditions</a> pour la protection acheteur.
+    </td>
+  </tr>
+</table>

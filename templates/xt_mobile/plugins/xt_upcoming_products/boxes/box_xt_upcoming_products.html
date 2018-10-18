@@ -1,0 +1,40 @@
+<div data-role="header"> 
+    {if $_show_more_link == true}
+        <h2 class="boxheader"><a href="{link page='xt_upcoming_products' conn=SSL}">{txt key=TEXT_HEADING_UPCOMING_PRODUCTS}</a></h2>
+    {else}
+        <h2 class="boxheader">{txt key=TEXT_HEADING_UPCOMING_PRODUCTS}</h2>
+    {/if}
+</div>
+
+<!-- Place somewhere in the <body> of your page -->
+<div class="xtm-upcoming-products flexslider">
+    <ul class="slides">
+        {foreach name=aussen item=upcoming_products_data from=$_upcoming_products}      
+        <li>
+            <table width="100%"><tr><td>
+                <a href="{$upcoming_products_data.products_link}">
+                    <span class="item">
+                        <table><tr><td>
+
+                            <span style="display:inline-block; position:relative;">
+                                {if $upcoming_products_data.products_image != 'product:noimage.gif'}                            
+                                    {img img=$upcoming_products_data.products_image type=m_mobile_islider class='productImageBorder islider' alt=$upcoming_products_data.products_name}
+                                {else}
+                                    <img class="islider" src="{$tpl_url_path}img/no-image_2.png" alt="{txt key=TEXT_NO_IMAGE}">
+                                {/if}
+                                <span class="subline">
+                                    <span class="headline">{$upcoming_products_data.products_name}</span>
+                                    <span class="price">{$upcoming_products_data.products_price.formated}</span>
+
+                                </span>
+                            </span>                        
+                        </td></tr></table>
+
+                    </span>
+                </a>
+            </td></tr></table>
+        </li>
+        {/foreach}
+    </ul>
+</div>
+

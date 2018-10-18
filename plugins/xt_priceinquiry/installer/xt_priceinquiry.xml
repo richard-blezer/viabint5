@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>Price Inquiry (cheaper seen)</title>
+<version>1.0.1</version>
+<code>xt_priceinquiry</code>
+<url>http://www.xt-commerce.com</url>
+<description>Price Inquiry Plugin</description>
+<type>extension</type>
+<icon>xt-commerce_logo.jpg</icon>
+<plugin_code>
+<code>
+<hook>page_registry.php:bottom</hook>
+<phpcode><![CDATA[
+define('PAGE_INQUIRY', _SRV_WEB_PLUGINS.'xt_priceinquiry/pages/inquiry.php');
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>class.product.php:buildData_top</hook>
+<phpcode><![CDATA[
+$this->data['link_priceinquiry'] = $xtLink->_link(array('page'=> 'inquiry','params'=>'info='.$this->data['products_id']));
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+<language_content>
+<phrase>
+<key>TEXT_XT_PRICEINQUIRY</key>
+<class>store</class>
+<de>
+<value>Preisanfrage</value>
+</de>
+<en>
+<value>Priceinquiry</value>
+</en>
+<es>
+<value>Consulta de precio</value>
+</es>
+  <bp>
+                <value>Consulta do preço</value>
+            </bp>
+</phrase>
+<phrase>
+<key>TEXT_XT_PRICEINQUIRY_INTRO</key>
+<class>store</class>
+<de>
+<value>Sie haben dieses Produkt wo anders zu einem besseren Preis gesehen? Dann füllen Sie bitte das Formular hier aus, und wir versuchen, diesen Preis zu halten.</value>
+</de>
+<en>
+<value>Sie haben dieses Produkt wo anders zu einem besseren Preis gesehen? Dann füllen Sie bitte das Formular hier aus, und wir versuchen, diesen Preis zu halten.</value>
+</en>
+<es>
+<value> ¿Ha visto este producto en otros lugares a un precio mejor?Por favor, rellene el formulario aquí y trataremos de mantener este precio.</value>
+</es>
+<bp>
+ <value>Você encontrou um preço melhor para este produto?, Então nos relata está oferta por favor no nosso formulário de contato e então vamos lhe oferecer um melhor preço</value>
+            </bp>
+</phrase>
+<phrase>
+<key>TEXT_COMPETITOR_PRICE</key>
+<class>store</class>
+<de>
+<value>Mitbewerberpreis</value>
+</de>
+<en>
+<value>Competitors price</value>
+</en>
+<es>
+<value>Precio de competidores</value>
+</es>
+<bp>
+<value>Preço dos competidores</value>
+            </bp>
+</phrase>
+<phrase>
+<key>TEXT_COMPETITOR_URL</key>
+<class>store</class>
+<de>
+<value>Mitbewerber-URL (zum Produkt)</value>
+</de>
+<en>
+<value>Competitor URL (link to product)</value>
+</en>
+<es>
+<value>URL de competidor (sobre el producto)</value>
+</es>
+<bp>
+<value>URL do competidor (sobre o produto)</value>
+  </bp>
+</phrase>
+<phrase>
+<key>TEXT_XT_PRICEINQUIRY_PRICE_ERROR</key>
+<class>store</class>
+<de>
+<value>Bitte geben Sie einen Preis an!</value>
+</de>
+<en>
+<value>Please insert competitor price</value>
+</en>
+<es>
+<value>¡Por favor especifique un precio!</value>
+</es>
+<bp>
+<value>Por favor especifique um preço </value>
+  </bp>
+</phrase>
+<phrase>
+<key>TEXT_XT_PRICEINQUIRY_URL_ERROR</key>
+<class>store</class>
+<de>
+<value>Bitte geben Sie eine URL an!</value>
+</de>
+<en>
+<value>Please insert competitor URL</value>
+</en>
+<es>
+<value>¡Por favor especifique una URL!</value>
+</es>
+<bp>
+<value>Por favor especifique uma URL! </value>
+  </bp>
+</phrase>
+<phrase>
+<key>TEXT_XT_PRICEINQUIRY_ASK</key>
+<class>store</class>
+<de>
+<value>Billiger gesehen ?</value>
+</de>
+<en>
+<value>Billiger gesehen ?</value>
+</en>
+<es>
+<value>¿Lo ha visto a menor precio?</value>
+</es>
+<bp>
+<value>Você encontrou mais barato?</value>
+  </bp>
+</phrase>
+</language_content>
+</xtcommerceplugin>

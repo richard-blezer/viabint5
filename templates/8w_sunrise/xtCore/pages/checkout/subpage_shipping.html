@@ -1,0 +1,131 @@
+{*php}__debug ($this->get_template_vars());{/php*}
+
+{php}
+$this->assign('selected_currency', 'EUR');
+if (isset($_SESSION['selected_currency'])) {
+    $this->assign('selected_currency', $_SESSION['selected_currency']);
+}
+{/php}
+
+{assign var=m value='125'}
+{assign var=shipping_diff value=$m-$content_total.plain}
+<div class="shipping-line">
+	<div class="shipping-top clearfix">
+	  <div class="left-shipping">
+	    {foreach name=aussen item=sdata from=$shipping_data}
+			{$sdata.shipping}
+		{/foreach}
+	  </div>
+	  <div class="right-shipping">
+	    {if $shipping_diff > 0 && ( $shipping_address.customers_country_code == 'DE' || $shipping_address.customers_country_code == 'CH' || $shipping_address.customers_country_code == 'AT' || $shipping_address.customers_country_code == 'FR')}<p>{txt key=TEXT_FREE_SHIPPING_TIP} {txt key=TEXT_FREE_SHIPPING_TIP_PRICE} {if $selected_currency == 'EUR'}€{else}CHF{/if} {txt key=TEXT_FREE_SHIPPING_TIP_2}<br>{txt key=TEXT_FREE_SHIPPING_LINE} {$shipping_diff|string_format:"%.2f"|replace:".":","} {if $selected_currency == 'EUR'}€{else}CHF{/if} {txt key=TEXT_FREE_SHIPPING_LINE_2}</p>{/if}
+	  </div>
+	</div>
+</div>
+<h1>{txt key=TEXT_SELECT_SHIPPINGADRESS}</h1>
+
+{if $shipping_address.allow_change == true}
+	{assign var=k value=1}
+	<div class="address-block-frame clearfix">
+	
+	{form id="change_billing_address" type=form name=shipping_address action='dynamic' link_params='page_action=shipping' method=post conn=SSL}
+		{foreach key=kid name=aussen item=sdata from=$address_data}
+			{if $sdata.address_book_id != ''}
+			{assign var="ki" value=$ki+$k}
+			<div class="address-block {if $ki%3 == 0} no-margin{/if}">
+				<p class="address">
+					{if $sdata.customers_company}
+						{assign var="customer_value" value=$sdata.customers_company}
+					{else}
+						{assign var="customer_value" value=$sdata.customers_firstname}
+					{/if}
+					{if $shipping_address.address_book_id == $sdata.address_book_id}
+						{assign var="selected" value=$sdata.address_book_id}
+					{/if}
+					
+					
+					{html_radios name=adID values=$sdata.address_book_id selected=$selected}
+					
+					<span>{$sdata.customers_firstname} {$sdata.customers_lastname}</span>
+					{$sdata.customers_street_address}<br />
+					{if $sdata.customers_suburb} {$sdata.customers_suburb}<br />{/if}
+					{$sdata.customers_postcode} {$sdata.customers_city}<br />
+					{$sdata.customers_country}<br />
+
+
+					{*<a class="arrow-link" href="#"><span>An diese Adresse senden</span></a>*}
+					<a class="first btn" href="{link page='customer' paction=edit_address params='adType=shipping&abID' params_value=$sdata.address_book_id conn=SSL}">{txt key=BUTTON_EDIT}</a>
+					<a class="last btn" href="{link page='customer' paction=delete_address params='adType=shipping&abID' params_value=$sdata.address_book_id conn=SSL}">{txt key=TEXT_DELETE}</a>
+				</p>
+			</div>
+			{/if}
+		{/foreach}
+		{form type=hidden name=adType value=shipping}
+		{form type=hidden name=action value=select_address}
+	{form type=formend}
+	</div>
+{else}
+	<div class="address-block">
+		<p class="address">
+			{if $shipping_address.customers_company} {$shipping_address.customers_company}<br />{/if}
+			<span>{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}</span><br />
+			{$shipping_address.customers_street_address}<br />
+			{if $shipping_address.customers_suburb} {$shipping_address.customers_suburb}<br />{/if}
+			{$shipping_address.customers_postcode} {$shipping_address.customers_city}<br />
+			{$shipping_address.customers_country}<br />
+		</p>
+	</div>
+{/if}
+
+<div class="clearfix"></div>
+
+<a class="arrow-link" href="{link page='customer' paction='edit_address' params='adType=shipping' conn=SSL}"><span>{txt key=BUTTON_ADD_ADDRESS}</span></a>
+
+{*}
+<table width="100%" class="shipping_address">
+  <tr>
+    <td width="40%" valign="top">
+	
+	{if $shipping_address.allow_change == true}
+	<p><a href="{link page='customer' paction=edit_address params='adType=shipping&abID' params_value=$shipping_address.address_book_id conn=SSL}">[{txt key=TEXT_EDIT}]</a></p>
+	{/if}
+	</td>
+	<td width="60%">
+	{if $shipping_address.allow_change == true}
+		<p><strong>{txt key=TEXT_SELECT_SHIPPING_ADDRESS}:</strong></p>
+		{form type=form name=shipping_address action='dynamic' link_params='page_action=shipping' method=post conn=SSL}
+		{form type=select name=adID value=$address_data params='onChange="this.form.submit();"'}
+		{form type=hidden name=adType value=shipping}
+		{form type=hidden name=action value=select_address}
+		{form type=formend}
+		{if $add_new_address eq 1}
+			<p>{txt key=TEXT_NEW_SHIPPING_ADDRESS}:</p>
+			<p><a href="{link page='customer' paction='edit_address' params='adType=shipping' conn=SSL}">{button text=$smarty.const.BUTTON_ADD_ADDRESS file='add_address.gif'}</a></p>
+		{/if}
+	{/if}
+	</td>
+	</tr>
+</table>
+<br />
+<br />
+{*}
+<div class="clearfix"></div>
+
+{form type=form name=shipping action='checkout' method=post conn=SSL}
+{form type=hidden name=action value=shipping}
+
+<div class="show-none">
+{foreach name=aussen item=sdata from=$shipping_data}
+	{$sdata.shipping}
+{/foreach}
+</div>
+{hook key=checkout_tpl_shipping}
+
+<div id="checkout-buttons" class="clearfix">
+	<div class="left">
+		<p class="prev"><a class="return-button" href="{link page='cart' conn=SSL}"><span>{txt key=BUTTON_BACK}</span></a></p>
+	</div>
+	<div class="right">
+		<p class="next">{button_text class="login-button" value=BUTTON_NEXT type='form'}</p>
+	</div>
+</div>
+{form type=formend}

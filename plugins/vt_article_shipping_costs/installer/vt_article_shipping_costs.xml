@@ -1,0 +1,1351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+    <title>Artikel-Versandkosten</title>
+    <version>4.03.11</version>
+    <code>vt_article_shipping_costs</code>
+    <url>http://www.bui-hinsche.de</url>
+    <description>Versandmodul für Artikelabhängige Versandkosten</description>
+    <icon>bui.png</icon>
+    <type>shipping</type>
+    <minimumupdateversion>4.03.10</minimumupdateversion>
+    <db_install><![CDATA[
+    	require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.plugin_install.php';
+        $vt_asc = new plugin_install();
+        $vt_asc->installPlugin();
+    ]]></db_install>	
+    <db_uninstall><![CDATA[
+	require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.plugin_install.php';
+        $vt_asc = new plugin_install();
+        $vt_asc->uninstallPlugin();
+    ]]></db_uninstall>
+    <db_update>
+        <update>
+            <version>4.03.10</version>
+            <to_version>4.03.11</to_version>
+            <code><![CDATA[
+            ]]></code>
+	</update>	
+    </db_update>
+    <plugin_code>
+        <code>
+            <hook>store_main_handler.php:seo</hook>
+            <phpcode><![CDATA[
+                if(VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    
+                    define('TABLE_VT_ARTICLE_SHIPPING_COSTS_CONFIG_SINGLE', DB_PREFIX.'_plg_vt_article_shipping_costs_config_single');
+                    define('TABLE_VT_ARTICLE_SHIPPING_COSTS_CONFIG_MODULE', DB_PREFIX.'_plg_vt_article_shipping_costs_config_module');
+                    define('TABLE_VT_ARTICLE_SHIPPING_COSTS', DB_PREFIX.'_vt_products_to_shipping');
+
+                    // Load Plugin-Configs
+                    global $store_handler;
+                    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs_config.php';
+                    $asc_config=new vt_article_shipping_costs_config();
+                    $asc_config->loadPluginConfigs($store_handler->shop_id);
+
+
+                    if(USER_POSITION == 'store') {
+                        require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs.php';
+                        require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs_export_shipping.php';
+                        require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs_display.php';
+
+                        if (VT_ARTICLE_SHIPPING_COSTS_TYPE == 'single') {
+                            require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs_single_shipping.php';
+                        } else {
+                            require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs_module_shipping.php';   
+                        }
+                    }
+
+                    
+                    require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs_hooks.php';
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ejsadmin.php:css_styles</hook>
+            <phpcode><![CDATA[
+                echo '<link rel="stylesheet" type="text/css" href="../plugins/vt_article_shipping_costs/vt_article_shipping_costs_icons.css" />';
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>styles.php:bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    echo '<link rel="stylesheet" type="text/css" href="'._SYSTEM_BASE_URL._SRV_WEB._SRV_WEB_PLUGINS.'vt_article_shipping_costs/vt_article_shipping_costs_shop.css'.'" />';
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>get_nodes.php:node</hook>
+            <phpcode><![CDATA[
+                if (strstr($pid,'vt_article_shipping_costs_config_single')) {
+                    global $store_handler;
+
+                    $stores = $store_handler->getStores();
+
+                    $arr = array();
+                    foreach ($stores as $sdata) {
+
+                        $url_d = 'adminHandler.php?load_section=vt_article_shipping_costs_config_single&plugin=vt_article_shipping_costs&shop_id='.$sdata['id'];
+                        $arrTMP = Array('text' => $sdata['text'].' - '.TEXT_VT_ARTICLE_SHIPPING_COSTS_CONFIG_SINGLE
+                        ,'url_i' => ''
+                        ,'url_d' => $url_d
+                        ,'tabtext' => $sdata['text'].' - '.TEXT_VT_ARTICLE_SHIPPING_COSTS_CONFIG_SINGLE
+                        ,'id' => 'vt_asc_config_single_'.$sdata['id']
+                        ,'type'=>'I'
+                        ,'leaf'=>'J'
+                        ,'icon'=>'images/icons/server.png'
+                                );
+                        $arr[]=$arrTMP;
+
+
+                    }
+                }
+
+                if (strstr($pid,'vt_article_shipping_costs_config_module')) {
+                    global $store_handler;
+
+                    $stores = $store_handler->getStores();
+
+                    $arr = array();
+                    foreach ($stores as $sdata) {
+
+                        $url_d = 'adminHandler.php?load_section=vt_article_shipping_costs_config_module&plugin=vt_article_shipping_costs&shop_id='.$sdata['id'];
+                        $arrTMP = Array('text' => $sdata['text'].' - '.TEXT_VT_ARTICLE_SHIPPING_COSTS_CONFIG_MODULE
+                        ,'url_i' => ''
+                        ,'url_d' => $url_d
+                        ,'tabtext' => $sdata['text'].' - '.TEXT_VT_ARTICLE_SHIPPING_COSTS_CONFIG_MODULE
+                        ,'id' => 'vt_asc_config_module_'.$sdata['id']
+                        ,'type'=>'I'
+                        ,'leaf'=>'J'
+                        ,'icon'=>'images/icons/server.png'
+                                );
+                        $arr[]=$arrTMP;
+
+
+                    }
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>admin_dropdown.php:dropdown</hook>
+            <phpcode><![CDATA[
+                switch ($request['get']) {
+                    case "conf_asctype":
+                        require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs_config.php';
+			$asc_config=new vt_article_shipping_costs_config();
+			$result = $asc_config->getConfAscType();
+			break;
+
+                    case "products_shipping_costs_module":
+                        require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs_config.php';
+			$asc_config=new vt_article_shipping_costs_config();
+			$result = $asc_config->getShippingModules();
+			break;
+					
+                    case "conf_asc_highest_costs_calc_type":
+                        require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs_config.php';
+			$asc_config=new vt_article_shipping_costs_config();
+			$result = $asc_config->getConfAscHighestCostsCalcType();
+			break;
+					
+                    case "conf_asc_export":
+                        require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs_config.php';
+			$asc_config=new vt_article_shipping_costs_config();
+			$result = $asc_config->getConfAscExport();
+			break;
+						
+                    case "conf_asc_module_preferred":
+                        require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs_config.php';
+			$asc_config=new vt_article_shipping_costs_config();
+			$result = $asc_config->getConfAscModulePreferred();
+			break;
+                
+                    case "conf_asc_shippingtype_ext":
+                        require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_article_shipping_costs/classes/class.vt_article_shipping_costs_config.php';
+			$asc_config=new vt_article_shipping_costs_config();
+			$result = $asc_config->_getShippingTypeExt();
+			break;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.multistore.php:_set</hook>			
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_multistore_php_set($objS);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.multistore.php:_unset</hook>			
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_multistore_php_unset($id);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:_getParams_row_actions</hook>			
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_product_php_getParams_row_actions($rowActions, $this, $rowActionsFunctions);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:_get_data</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_product_php_get_data($header);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:_set_top</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_product_php_set_top($set_type, $data, $this);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:_get_bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_product_php_get_bottom($data, $key, $this);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:_delete_bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_product_php_delete_bottom($id);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>		
+        <code>
+            <hook>class.product.php:_copy_bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_product_php_copy_bottom($ID, $obj);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.export.php:_extractData_dataArray_bottom</hook>
+            <phpcode><![CDATA[
+                // old hook: export:extractData_products_bottom
+            
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::export_extractData_products_bottom($data_array);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>permission:_getAutoData_shipping</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::permission_getAutoData_shipping($shippingMethods);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.shipping.php:_unset_bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_shipping_php_unset_bottom();
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.shipping.php:_set_bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_shipping_php_set_bottom($data);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>     
+        <code>
+            <hook>class.shipping.php:_get_bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_shipping_php_get_bottom($ID, $data);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>    
+        <code>
+            <hook>class.shipping.php:_getParams_bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_shipping_php_getParams_bottom($header);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>    
+        <code>
+            <hook>class.shipping.php:_calcPrice</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_shipping_php_calcPrice($data, $qty);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>   
+        <code>
+            <hook>class.shipping.php:_filterItem_top</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_shipping_php_filterItem_top($data, $this, $new_checkval, $old_checkval);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>        
+        <code>
+            <hook>class.shipping.php:_filterItem_bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_shipping_php_filterItem_bottom($data, $this, $new_checkval, $old_checkval);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>      
+        <code>
+            <hook>class.shipping.php:_filterPrice_top</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_shipping_php_filterPrice_top($data, $this, $new_checkval, $old_checkval);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>        
+        <code>
+            <hook>class.shipping.php:_filterPrice_bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_shipping_php_filterPrice_bottom($data, $this, $new_checkval, $old_checkval);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>   
+        <code>
+            <hook>class.shipping.php:_filterWeight_top</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_shipping_php_filterWeight_top($data, $this, $new_checkval, $old_checkval);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>        
+        <code>
+            <hook>class.shipping.php:_filterWeight_bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_shipping_php_filterWeight_bottom($data, $this, $new_checkval, $old_checkval);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>   
+        <code>
+            <hook>class.cart.php:_getContent_data_format</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_cart_php_getContent_data_format($tax, $value, $price, $customers_status);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.cart.php:_getSubContent_data</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_cart_php_getSubContent_data($value);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.cart.php:_getSubContent_price</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_cart_php_getSubContent_price($value);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.checkout.php:_getShipping</hook>
+            <phpcode><![CDATA[
+                // Standard - HookPoint
+                
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_checkout_php_getShipping($shipping_data);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:BuildData_bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])
+                && VT_ARTICLE_SHIPPING_COSTS_TYPE != 'module' && !isset($_GET['feed_id']) && !isset($_GET['feed_key'])) {
+                    vt_article_shipping_costs_hooks::class_product_php_BuildData_bottom($this);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>product_info_tpl_shipping_link</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::product_info_tpl_shipping_link();
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>vt_article_shipping_costs_listing</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::vt_article_shipping_costs_listing($params);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>checkout_tpl_shipping</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::checkout_tpl_shipping();
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>form_handler.php:data_array_bottom</hook>
+            <phpcode><![CDATA[
+                // needed for paypal-express
+                // in some cases use other sort-order for this hook, but must always be before the sort-order
+                // of the hookpoint with the same name from the xt_paypal
+            
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::form_handler_php_data_array_bottom($data_array);
+                }
+            ]]></phpcode>
+            <order>-42</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.box_handler.php:box_bottom</hook>
+            <phpcode><![CDATA[
+                // Standard - HookPoint
+                
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_box_handler_php_box_bottom($this, $data);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>module_checkout.php:checkout_pre_data</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::module_checkout_php_checkout_pre_data();
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.orders.php:_sendOrderMail_bottom</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_orders_php_sendOrderMail_bottom($ordermail, $this);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.order.php:_getOrderData</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_order_php_getOrderData($record);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.shipping.php:_buildData_filter</hook>
+            <phpcode><![CDATA[
+                if (VT_ARTICLE_SHIPPING_COSTS_ACTIVE == 'true' && isset($xtPlugin->active_modules['vt_article_shipping_costs'])) {
+                    vt_article_shipping_costs_hooks::class_shipping_php_buildData_filter($value, $this);
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>	
+    <configuration>
+        <config>
+            <key>VT_ARTICLE_SHIPPING_COSTS_ACTIVE</key>
+            <value>false</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Status</title>
+                <description>an / aus</description>
+            </de>
+            <en>
+                <title>Status</title>
+                <description>on / off</description>
+            </en>
+        </config>
+        <config>
+            <key>VT_ARTICLE_SHIPPING_COSTS_TYPE</key>
+            <value>single</value>
+            <type>dropdown</type>
+            <url>conf_asctype</url>
+            <de>
+                <title>Versandkosten-Typ</title>
+                <description>Versandkosten je Artikel / Versandmodule</description>
+            </de>
+            <en>
+                <title>shipping costs-type</title>
+                <description>shipping costs per article / shipping methods</description>
+            </en>
+        </config>
+        <config>
+            <key>VT_ARTICLE_SHIPPING_COSTS_IN_LISTING</key>
+            <value>false</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Versandkosten in Artikel-Listing</title>
+                <description>an / aus</description>
+            </de>
+            <en>
+                <title>Shipping costs in article listing</title>
+                <description>on / off</description>
+            </en>
+        </config>     
+    </configuration>	
+    <language_content>
+        <!--##################################################-->
+        <!-- START - ADMIN NAVS -->
+        <!--##################################################-->
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_CONFIG</key>
+            <class>admin</class>
+            <de>
+                <value>Artikel-Versandkosten-Einstellungen</value>
+            </de>
+            <en>
+                <value>article shipping costs configuration</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_CONFIG_SINGLE</key>
+            <class>admin</class>
+            <de>
+                <value>Versandkosten-Typ - Single</value>
+            </de>
+            <en>
+                <value>shipping costs-type - single</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_CONFIG_MODULE</key>
+            <class>admin</class>
+            <de>
+                <value>Versandkosten-Typ - Module</value>
+            </de>
+            <en>
+                <value>shipping costs-type - module</value>
+            </en>
+        </phrase>
+        <!--##################################################-->
+        <!-- END - ADMIN NAVS -->
+        <!--##################################################-->
+        
+        
+        <!--##################################################-->
+        <!-- START - CONFIGS SINGLE -->
+        <!--##################################################-->
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_INFO_TOP</key>
+            <class>admin</class>
+            <de>
+                <value>Info-Meldung ueber Zusatzversandkosten oben anzeigen</value>
+            </de>
+            <en>
+                <value>Show info-message over addition shipping costs above</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE</key>
+            <class>admin</class>
+            <de>
+                <value>Wie sollen hoechsten Artikel-Versandkosten im Checkout berechnet werden</value>
+            </de>
+            <en>
+                <value>How should calculate the highest article shipping costs in checkout</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_SINGLE_SHIPPING_CODE</key>
+            <class>admin</class>
+            <de>
+                <value>Versand-Code</value>
+            </de>
+            <en>
+                <value>Shipping-Code</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_CALC_ITEM</key>
+            <class>admin</class>
+            <de>
+                <value>Berechne Artikel-Versandkosten an Hand der Stueckzahl pro Artikel</value>
+            </de>
+            <en>
+                <value>Calculate article shipping costs on the basis of the number of items per article</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_TAX_CLASS</key>
+            <class>admin</class>
+            <de>
+                <value>Steuerklasse</value>
+            </de>
+            <en>
+                <value>Tax Class</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Versand Beschreibung</value>
+            </de>
+            <en>
+                <value>Shipping Description</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_NAME</key>
+            <class>admin</class>
+            <de>
+                <value>Versand Name</value>
+            </de>
+            <en>
+                <value>Shipping Name</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_HIGHEST</key>
+            <class>admin</class>
+            <de>
+                <value>Verwende die hoechsten Artikel-Versandkosten im Checkout</value>
+            </de>
+            <en>
+                <value>Use highest article shipping costs in checkout</value>
+            </en>
+        </phrase>
+        <!--##################################################-->
+        <!-- END - CONFIGS SINGLE -->
+        <!--##################################################-->
+        
+        
+        <!--##################################################-->
+        <!-- START - CONFIGS MODULE -->
+        <!--##################################################-->
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_MODULE_DEFAULT</key>
+            <class>admin</class>
+            <de>
+                <value>Standard-Versandart wenn keine Versandart zugewiesen</value>
+            </de>
+            <en>
+                <value>Default Shipping if no shipping assigned</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT</key>
+            <class>admin</class>
+            <de>
+                <value>Welche Versandart soll exportiert werden</value>
+            </de>
+            <en>
+                <value>Which shipping should be exported</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED</key>
+            <class>admin</class>
+            <de>
+                <value>Verwende Versandkosten-Modul bevorzugt</value>
+            </de>
+            <en>
+                <value>Use shipping modules preferred</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_MODULE_HIGHEST</key>
+            <class>admin</class>
+            <de>
+                <value>Verwende Versandkosten-Modul mit den hoechsten Kosten und Preis 0,- im Checkout</value>
+            </de>
+            <en>
+                <value>Use shipping modules with the highest costs and cost 0,- in checkout</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_MODULE_CHECK</key>
+            <class>admin</class>
+            <de>
+                <value>Zeige nur Versandkosten-Module im Checkout die allen Artikel zugewiesen sind</value>
+            </de>
+            <en>
+                <value>Use only shipping modules in Checkout which are asing to all articles</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_SHOW_DEFAULT_SHIPPING</key>
+            <class>admin</class>
+            <de>
+                <value>Standard-Versandart beim Artikel anzeigen</value>
+            </de>
+            <en>
+                <value>Show Default Shipping at the article</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_VT_ARTICLE_SHIPPING_COSTS_MODULE_INCLUDE_ALL_ARTICLE</key>
+            <class>admin</class>
+            <de>
+                <value>Berücksichtige alle Artikel im Warenkorb beim Ermitteln der Kosten für die einzelnen Versandkosten-Module</value>
+            </de>
+            <en>
+                <value>Consider all items in your cart when determining the cost for each shipping modules</value>
+            </en>
+        </phrase>
+        <!--##################################################-->
+        <!-- END - CONFIGS MODULE -->
+        <!--##################################################-->
+        
+        
+        <!--##################################################-->
+        <!-- START - CONFIG-DROPDOWNS -->
+        <!--##################################################-->
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_TYPE_SINGLE</key>
+            <class>admin</class>
+            <de>
+                <value>Pro Artikel</value>
+            </de>
+            <en>
+                <value>per article</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_TYPE_SINGLE_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Artikelversandkosten für jeden Artikel seperat einstellen.</value>
+            </de>
+            <en>
+                <value>Configure article shipping costs for each article separatley.</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_TYPE_MODULE</key>
+            <class>admin</class>
+            <de>
+                <value>Versandmodule</value>
+            </de>
+            <en>
+                <value>Shipping modules</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_TYPE_MODULE_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Artikelversandkosten über die Versandmodule einstellen.</value>
+            </de>
+            <en>
+                <value>Configure article shipping costs over the shipping modules.</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_SCALE</key>
+            <class>admin</class>
+            <de>
+                <value>Mengenstaffelung</value>
+            </de>
+            <en>
+                <value>graduated items</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_SCALE_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Verwenden Sie diese Berechnungsgrundlage wenn Sie Versandkosten gestaffelt nach Mengen berechnen wollen.</value>
+            </de>
+            <en>
+                <value>Use this calculation base if you want shipping costs graduated after quantities.</value>
+            </en>
+        </phrase>
+        <!--##################################################-->
+        <!-- END - CONFIG-DROPDOWNS -->
+        <!--##################################################-->
+        
+        
+        <!--##################################################-->
+        <!-- START - CONFIG-DROPDOWNS SINGLE -->
+        <!--##################################################-->
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE_UNIQUE</key>
+            <class>admin</class>
+            <de>
+                <value>einmalig</value>
+            </de>
+            <en>
+                <value>unique</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE_UNIQUE_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Höchsten Artikelversandkosten einmalig berechnen.</value>
+            </de>
+            <en>
+                <value>Highest article shipping costs uniquely calculate.</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE_CART_QTY</key>
+            <class>admin</class>
+            <de>
+                <value>mal der Anzahl der Artikel im Warenkorb</value>
+            </de>
+            <en>
+                <value>times the number of articles in the cart</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE_CART_QTY_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Höchsten Artikelversandkosten mal der Anzahl der Artikel im Warenkorb berechnen.</value>
+            </de>
+            <en>
+                <value>Highest article shipping costs calculate with the number of articles in the cart.</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE_CART_ART_QTY</key>
+            <class>admin</class>
+            <de>
+                <value>mal der Anzahl pro Artikel im Warenkorb</value>
+            </de>
+            <en>
+                <value>times the number per articles in the cart</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_HIGHEST_COSTS_CALC_TYPE_CART_ART_QTY_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Höchsten Artikelversandkosten mal der Anzahl pro Artikel im Warenkorb berechnen.</value>
+            </de>
+            <en>
+                <value>Highest article shipping costs calculate with the number per articles in the cart.</value>
+            </en>
+        </phrase>
+        <!--##################################################-->
+        <!-- END - CONFIG-DROPDOWNS SINGLE -->
+        <!--##################################################-->
+
+        
+        <!--##################################################-->
+        <!-- START - CONFIG-DROPDOWNS MODULE -->
+        <!--##################################################-->
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_HIGHEST</key>
+            <class>admin</class>
+            <de>
+                <value>höchste Kosten</value>
+            </de>
+            <en>
+                <value>highest costs</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_HIGHEST_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Exportiere die Versandart mit den höchsten Versandkosten</value>
+            </de>
+            <en>
+                <value>Export the shipping mehtod with the highest costs</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_LOWEST</key>
+            <class>admin</class>
+            <de>
+                <value>niedrigste Kosten</value>
+            </de>
+            <en>
+                <value>lowest costs</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_LOWEST_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Exportiere die Versandart mit den niedrigsten Versandkosten</value>
+            </de>
+            <en>
+                <value>Export the shipping method with the lowest costs</value>
+            </en>
+        </phrase>		
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_SORT_HIGHEST</key>
+            <class>admin</class>
+            <de>
+                <value>höchste Sortierung/Reihenfolge</value>
+            </de>
+            <en>
+                <value>highest sort order</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_SORT_HIGHEST_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Exportiere die Versandart mit der höchsten Sortierung/Reihenfolge</value>
+            </de>
+            <en>
+                <value>Export the shipping mehtod with the highest sort order</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_SORT_LOWEST</key>
+            <class>admin</class>
+            <de>
+                <value>niedrigste Sortierung/Reihenfolge</value>
+            </de>
+            <en>
+                <value>lowest sort order</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_EXPORT_SORT_LOWEST_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Exportiere die Versandart mit der niedrigsten Sortierung/Reihenfolge</value>
+            </de>
+            <en>
+                <value>Export the shipping method with the lowest sort order</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_NONE</key>
+            <class>admin</class>
+            <de>
+                <value>keine</value>
+            </de>
+            <en>
+                <value>none</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_NONE_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>Es wird keine Versandart bevorzugt verwendet</value>
+            </de>
+            <en>
+                <value>no shipping method is preferentially used</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_HIGHEST</key>
+            <class>admin</class>
+            <de>
+                <value>höchste Kosten</value>
+            </de>
+            <en>
+                <value>highest costs</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_HIGHEST_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>die Versandart mit den höchsten Versandkosten</value>
+            </de>
+            <en>
+                <value>the shipping mehtod with the highest costs</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_LOWEST</key>
+            <class>admin</class>
+            <de>
+                <value>niedrigste Kosten</value>
+            </de>
+            <en>
+                <value>lowest costs</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_LOWEST_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>die Versandart mit den niedrigsten Versandkosten</value>
+            </de>
+            <en>
+                <value>the shipping method with the lowest costs</value>
+            </en>
+        </phrase>		
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_SORT_HIGHEST</key>
+            <class>admin</class>
+            <de>
+                <value>höchste Sortierung/Reihenfolge</value>
+            </de>
+            <en>
+                <value>highest sort order</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_SORT_HIGHEST_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>die Versandart mit der höchsten Sortierung/Reihenfolge</value>
+            </de>
+            <en>
+                <value>the shipping mehtod with the highest sort order</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_SORT_LOWEST</key>
+            <class>admin</class>
+            <de>
+                <value>niedrigste Sortierung/Reihenfolge</value>
+            </de>
+            <en>
+                <value>lowest sort order</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_MODULE_PREFERRED_SORT_LOWEST_DESC</key>
+            <class>admin</class>
+            <de>
+                <value>die Versandart mit der niedrigsten Sortierung/Reihenfolge</value>
+            </de>
+            <en>
+                <value>the shipping method with the lowest sort order</value>
+            </en>
+        </phrase>
+        <!--##################################################-->
+        <!-- END - CONFIG-DROPDOWNS MODULE -->
+        <!--##################################################-->
+        
+        
+        <!--##################################################-->
+        <!-- START - ADMIN -->
+        <!--##################################################-->
+        <phrase>
+            <key>TEXT_CONFIG_NAME</key>
+            <class>admin</class>
+            <de>
+                <value>Einstellung</value>
+            </de>
+            <en>
+                <value>Configuration</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_CONFIG_KEY</key>
+            <class>admin</class>
+            <de>
+                <value>Einstellung - Key</value>
+            </de>
+            <en>
+                <value>Configuration - Key</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_CONFIG_VALUE</key>
+            <class>admin</class>
+            <de>
+                <value>Wert</value>
+            </de>
+            <en>
+                <value>Value</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_DROPDOWN_PRODUCTS_SHIPPING_COSTS_MODULE</key>
+            <class>admin</class>
+            <de>
+                <value>Bitte wählen</value>
+            </de>
+            <en>
+                <value>Please select</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>PRODUCTS_SHIPPING_COSTS_MODULE</key>
+            <class>admin</class>
+            <de>
+                <value>Versandkosten-Module</value>
+            </de>
+            <en>
+                <value>Shipping costs modules</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS</key>
+            <class>admin</class>
+            <de>
+                <value>Versandkosten</value>
+            </de>
+            <en>
+                <value>Shipping costs</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_FREE</key>
+            <class>admin</class>
+            <de>
+                <value>Versandkostenfrei (ja/nein)</value>
+            </de>
+            <en>
+                <value>Shipping costs free (yes/no)</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_MODULE</key>
+            <class>admin</class>
+            <de>
+                <value>Versandkosten-Module</value>
+            </de>
+            <en>
+                <value>Shipping costs modules</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_TO_SHIPPING</key>
+            <class>admin</class>
+            <de>
+                <value>Versandkosten-Module zuweisen</value>
+            </de>
+            <en>
+                <value>Assign shipping costs modules</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_NO_SHIPPING_IN_SHOP</key>
+            <class>admin</class>
+            <de>
+                <value>Sie haben noch keine Versandarten im Shop angelegt</value>
+            </de>
+            <en>
+                <value>You must create shipping costs in the shop</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_SHIPPING_INCLUDE_SINGLE_ASC_FLAG</key>
+            <class>admin</class>
+            <de>
+                <value>Artikel mit individuellen Versandkosten in Versandpreis-Staffel einberechnen</value>
+            </de>
+            <en>
+                <value>include articles with single shipping costs</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_SHIPPING_ADD_ASC_FLAG</key>
+            <class>admin</class>
+            <de>
+                <value>individuelle Versandkosten aufschlagen</value>
+            </de>
+            <en>
+                <value>add single shipping costs</value>
+            </en>
+        </phrase>   
+        <phrase>
+            <key>TEXT_SHIPPING_DISPLAY_ALWAYS_ASC_FLAG</key>
+            <class>admin</class>
+            <de>
+                <value>Versandart immer anzeigen</value>
+            </de>
+            <en>
+                <value>display shipping always</value>
+            </en>
+        </phrase>
+        <!--##################################################-->
+        <!-- END - ADMIN -->
+        <!--##################################################-->
+        
+        
+        <!--##################################################-->
+        <!-- START - FRONTEND -->
+        <!--##################################################-->
+        <phrase>
+            <key>TEXT_SHIPPING_COSTS_INFO_FLAG</key>
+            <class>both</class>
+            <de>
+                <value>(*)</value>
+            </de>
+            <en>
+                <value>(*)</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_SHIPPING_COSTS_INFO_TEXT</key>
+            <class>both</class>
+            <de>
+                <value>Es fallen Zusatz-Versandkosten durch bestimmte Artikel in Ihrem Warenkorb in Höhe von &amp;quot;%s&amp;quot; an. Diese sind bei den mit &amp;quot;%s&amp;quot; gekennzeichneten Versandarten bereits mit einberechnet.</value>
+            </de>
+            <en>
+                <value>Addition shipping costs fall on because of certain articles in your cart with a value of &amp;quot;%s&amp;quot;. These are already calculated in the with &amp;quot;%s&amp;quot; characterized shipping methods.</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS</key>
+            <class>store</class>
+            <de>
+                <value>Versandkosten</value>
+            </de>
+            <en>
+                <value>Shipping Costs</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_FREE</key>
+            <class>store</class>
+            <de>
+                <value>Versandkostenfrei</value>
+            </de>
+            <en>
+                <value>Shipping Costs free</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_EXCL</key>
+            <class>store</class>
+            <de>
+                <value>zzgl.</value>
+            </de>
+            <en>
+                <value>excl.</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_SINGLE_ARTICLE_SHIPPING_COSTS</key>
+            <class>store</class>
+            <de>
+                <value>Einzel-Versandkosten</value>
+            </de>
+            <en>
+                <value>Single-Shipping costs</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_TOTAL_ARTICLE_SHIPPING_COSTS</key>
+            <class>store</class>
+            <de>
+                <value>Gesamt-Versandkosten</value>
+            </de>
+            <en>
+                <value>Total-Shipping costs</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_ARTICLE_SHIPPING_COSTS_NAME</key>
+            <class>store</class>
+            <de>
+                <value>Artikel-Versandkosten</value>
+            </de>
+            <en>
+                <value>Article-Shipping costs</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCTS_SHIPPING_COSTS_POSSIBLE_MODULES</key>
+            <class>store</class>
+            <de>
+                <value>Versand ist möglich über:</value>
+            </de>
+            <en>
+                <value>Dispatch is possible over:</value>
+            </en>
+        </phrase>
+        <!--##################################################-->
+        <!-- END - FRONTEND -->
+        <!--##################################################-->
+    </language_content>
+</xtcommerceplugin>

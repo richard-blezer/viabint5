@@ -1,0 +1,30 @@
+{$message}
+
+{if $show_form == 'true'}
+{form type=form name=affiliate_account action='dynamic' link_params=getParams method=post}
+{form type=hidden name=page_action value=send}
+
+<h2>{txt key=AFFILIATE_CONTACT}</h2>
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">
+  <tr>
+    <td>{txt key=AFFILIATE_TEXT_MESSAGE}:<br />
+    {form type=textarea name=email_message cols=80 rows=5 note=*}</td>
+  </tr>
+</table>
+</div>
+<p>{button text=$smarty.const.BUTTON_NEXT file='next.gif' type='form'}</p>
+<p>{txt key=TEXT_MUST}</p>
+{form type=formend}
+{/if}
+
+{if $email_success == 'true'}
+<h2>{txt key=AFFILIATE_CONTACT}</h2>
+<div class="highlightbox">
+<table width="100%" cellspacing="0" cellpadding="4">
+  <tr>
+    <td>{txt key=AFFILIATE_TEXT_EMAIL_SUCCESS}</td>
+  </tr>
+</table>
+</div>
+{/if}

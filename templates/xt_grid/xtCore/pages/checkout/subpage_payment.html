@@ -1,0 +1,65 @@
+<div id="checkout-payment" class="row">
+	<div class="column xt-grid-4">
+		<div class="box">
+			<p class="headline-underline">{txt key=TEXT_SHIPPING_ADDRESS}</p>
+			{if $shipping_address.customers_company}<p>{$shipping_address.customers_company}</p>{/if}
+			<p>{$shipping_address.customers_firstname} {$shipping_address.customers_lastname}</p>
+			<p>{$shipping_address.customers_street_address}</p>
+			{if $shipping_address.customers_suburb}<p>{$shipping_address.customers_suburb}</p>{/if}
+			<p>{$shipping_address.customers_postcode} {$shipping_address.customers_city}</p>
+			<p>{$shipping_address.customers_country}</p>
+		</div><!-- .box -->
+		<div class="box">
+			<p class="headline-underline">{txt key=TEXT_PAYMENT_ADDRESS}</p>
+			{if $payment_address.allow_change == true && $payment_address.address_class=='payment'}
+			<p class="right"><a class="highlight" href="{link page='customer' paction='edit_address' params='adType=payment&abID' params_value=$payment_address.address_book_id conn=SSL}">{txt key=TEXT_EDIT}</a></p>
+			{/if}
+			{if $payment_address.customers_company}<p>{$payment_address.customers_company}</p>{/if}
+			<p>{$payment_address.customers_firstname} {$payment_address.customers_lastname}</p>
+			<p>{$payment_address.customers_street_address}</p>
+			{if $payment_address.customers_suburb}<p>{$payment_address.customers_suburb}</p>{/if}
+			<p>{$payment_address.customers_postcode} {$payment_address.customers_city}</p>
+			<p>{$payment_address.customers_country}</p>
+			<p><br /></p>
+			{if $shipping_address.allow_change == true}
+			{txt key=TEXT_SELECT_PAYMENT_ADDRESS}
+			{form type=form name=payment_address action='dynamic' link_params='page_action=payment' method=post conn=SSL}
+			{form type=select name=adID value=$address_data default=$smarty.session.customer->customer_payment_address.address_book_id params='onchange="this.form.submit();"'}
+			{form type=hidden name=adType value=payment}
+			{form type=hidden name=action value=select_address}
+			{form type=formend}
+			{if $add_new_address eq 1}
+			<p>{txt key=TEXT_NEW_PAYMENT_ADDRESS}</p>
+			<p class="right"><a class="highlight" href="{link page='customer' paction='edit_address' params='adType=payment' conn=SSL}">{txt key=BUTTON_ADD_ADDRESS}</a></p>
+			{/if}
+			{/if}
+		</div><!-- .box -->
+	</div><!-- .column .xt-grid-4 -->
+	<div class="column xt-grid-12">
+		<div class="box box-grey">
+			<p class="headline">{txt key=TEXT_SELECT_PAYMENT}</p>
+			{form type=form name=payment action='checkout' method=post conn=SSL}
+			{form type=hidden name=action value=payment}
+			{foreach name=aussen item=pdata from=$payment_data}
+				{$pdata.payment}
+				{if !$smarty.foreach.aussen.last}
+				<p><br /></p>
+				{/if}
+			{/foreach}
+		</div><!-- .box .box-grey-->
+        {hook key=checkout_tpl_payment_comment}
+		<div class="box">
+			<p class="headline">{txt key=TEXT_COMMENTS} <span class="normal">{txt key=TEXT_MAX_CHARACTERS}</span></p>
+			<p>{txt key=TEXT_COMMENTS_DESC}</p>
+			{form type=textarea name=comments id=comments value=$smarty.session.order_comments params='maxlength="255" class="autosizejs"'}
+		</div><!-- .box -->
+		<p class="float-left"><a href="javascript:history.back();" class="button" title="{txt key=BUTTON_BACK}">{txt key=BUTTON_BACK}</a></p>
+		<p class="float-right">{css_button class=button-next text=$smarty.const.BUTTON_NEXT type='form'}</p>
+	</div><!-- .column .xt-grid-12 -->
+</div><!-- #checkout-payment .row -->
+<div class="row">
+	<div class="column xt-grid-16">
+		{hook key=checkout_tpl_payment}
+	</div><!-- .column .xt-grid-16 -->
+</div><!-- .row -->
+{form type=formend}

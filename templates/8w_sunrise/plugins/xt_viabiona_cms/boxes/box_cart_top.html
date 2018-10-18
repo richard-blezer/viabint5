@@ -1,0 +1,11 @@
+{php}
+global $smarty;
+$this->assign('isMobile',$_SESSION['isMobile']);
+{/php}
+
+
+
+<li id="cart-top" style="display:none">
+	<a href="{link page='cart' conn=SSL}">{if !$isMobile}{txt key=TEXT_CART_ONLY}{/if}<span class="{if $smarty.session.cart->content_count == 0}null{/if}">{if $smarty.session.cart->content_count > 0}{$smarty.session.cart->content_count}{else}0{/if}</span></a>
+	<div id="ajax-cart-insert"></div>
+</li>

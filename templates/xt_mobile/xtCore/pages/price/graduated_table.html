@@ -1,0 +1,29 @@
+{if $GRADUATED_PRICES}
+    <div data-role="collapsible" data-inset="false" data-theme="c">
+        <h2>{txt key=TEXT_GRADUATED_PRICES}</h2>
+        <div class="xtm-graduated">
+            <table>
+                <tr>
+                    <th>{txt key=TEXT_QTY}</th>
+                    <th>{txt key=TEXT_SINGLE_PRICE}</th>
+                    <th>{txt key=TEXT_GRADUATED_SAVING}</th>
+                    {if $GRADUATED_PRICES.0.perUnitHeader}
+                    <th>{$GRADUATED_PRICES.0.perUnitHeader}</th>
+                    {/if}
+                </tr>
+                
+                {foreach name=aussen item=prices from=$GRADUATED_PRICES}
+                    <tr class="{cycle values="contentrow1,contentrow2"}">
+                        <td>{$prices.QTY}</td>
+                        <td>{$prices.PRICE.formated}</td>
+                        <td>{if $prices.saving gt 0}-{$prices.saving} %{/if}</td> 
+                        {if $prices.pricePerUnit}
+                        <td>{$prices.pricePerUnit}</td>
+                        {/if}
+                    </tr>
+                {/foreach}
+                
+            </table>
+        </div>
+    </div>
+{/if}

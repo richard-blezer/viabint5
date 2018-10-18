@@ -1,0 +1,20 @@
+<Files *.eot>
+Order Deny,Allow
+Allow from all
+</Files>
+<Files *.otf>
+Order Deny,Allow
+Allow from all
+</Files>
+<Files *.svg>
+Order Deny,Allow
+Allow from all
+</Files>
+<Files *.ttf>
+Order Deny,Allow
+Allow from all
+</Files>
+<Files *.woff>
+Order Deny,Allow
+Allow from all
+</Files>

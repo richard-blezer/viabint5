@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+    <title>One Step Checkout</title>
+    <version>1.0.8</version>
+    <code>vt_one_step_checkout</code>
+    <url>http://www.bui-hinsche.de</url>
+    <description></description>
+    <icon>logo.png</icon>
+    <type>extension</type>
+    <db_install>
+    <![CDATA[
+    ]]>
+    </db_install>
+    <db_uninstall>
+    <![CDATA[
+
+    ]]>
+    </db_uninstall>
+    <plugin_code>
+        <code>
+            <hook>index.php:display_output</hook>
+            <phpcode><![CDATA[
+            	if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true' && isAjax()){
+
+ 					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/hooks/display_output.php';      
+
+            	}
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>store_main.php:bottom</hook>
+            <phpcode><![CDATA[
+				$checkBN = explode('(',basename(__FILE__));
+				if ( $checkBN[0]!='main_slim.php') {
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/jsonOutput.php';
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/isAjax.php';
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/checkoutCalculate.php';
+					global $page;
+	            	if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true' && isAjax() && $page->page_name=='checkout'){
+	               		$display_output = false;
+	            	}
+				}
+
+            
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.link.php:_redirect_bottom</hook>
+            <phpcode><![CDATA[
+            	if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true'){
+
+					require_once _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/isAjax.php';
+
+ 					if(isAjax()) {
+						$url.='&ajax=true';
+					}
+            	}
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>        
+        <code>
+            <hook>module_checkout.php:checkout_payment_bottom</hook>
+            <phpcode><![CDATA[
+
+            	if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true'){
+ 					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/hooks/checkout_payment_bottom.php';      
+            	}
+            
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>        
+        <code>
+            <hook>module_checkout.php:checkout_shipping_bottom</hook>
+            <phpcode><![CDATA[
+            	if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true'){
+ 					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/hooks/checkout_shipping_bottom.php';     
+            	}
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>        
+        <code>
+            <hook>module_checkout.php:checkout_process_top</hook>
+            <phpcode><![CDATA[
+            	if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true'){
+ 					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/hooks/checkout_process_top.php';     
+            	}
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>        
+        <code>
+            <hook>login_create_account_tpl</hook>
+            <phpcode><![CDATA[
+            	if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true'){
+					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/hooks/login_create_account_tpl.php';           
+            	}
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>        
+        <code>
+            <hook>javascript.php:bottom</hook>
+            <phpcode><![CDATA[
+            	if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true'){
+ 					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/hooks/javascript_bottom.php';       
+            	}
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>        
+
+        <code>
+            <hook>module_checkout.php:checkout_bottom</hook>
+            <phpcode><![CDATA[
+           		if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true'){
+ 					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/hooks/checkout_bottom.php';      
+            	}
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>        
+        <code>
+            <hook>module_customer.php:edit_address_bottom</hook>
+            <phpcode><![CDATA[
+				if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true'){
+          			include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/hooks/edit_address_bottom.php';
+            	}
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>           
+        <code>
+            <hook>module_customer.php:edit_address_link_target</hook>
+            <phpcode><![CDATA[
+            	if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true'){
+					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/hooks/edit_address_link_target.php';
+            	}
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>           
+        <code>
+            <hook>module_customer.php:page</hook>
+            <phpcode><![CDATA[
+				if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true'){
+					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/hooks/page.php';
+				}            
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>           
+        <code>
+            <hook>styles.php:bottom</hook>
+            <phpcode><![CDATA[
+ 				if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE=='true'){
+            		echo '<link rel="stylesheet" type="text/css" href="'._SYSTEM_BASE_URL._SRV_WEB._SRV_WEB_PLUGINS.'/vt_one_step_checkout/one_step_checkout.css'.'" />';
+				}           
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.customer.php:_registerCustomer_top</hook>
+            <phpcode><![CDATA[
+ 				if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE=='true'){
+					if($data['alternate_shipping_adress']!=1)
+					unset($data['shipping_address']);
+					
+					if($data['alternate_payment_adress']!=1)
+					unset($data['payment_address']);
+				}           
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>  
+
+        <code>
+            <hook>class.checkout.php:_selectPayment_tpl_data</hook>
+            <phpcode><![CDATA[
+ 				if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE=='true'){
+					if($_SESSION['selected_payment'])
+					$tpl_data['selected_payment']=$_SESSION['selected_payment'];
+					
+					if($_SESSION['selected_payment_sub'])
+					$tpl_data['selected_payment_sub']=$_SESSION['selected_payment_sub'];
+				}           
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+        <code>
+            <hook>class.xt_banktransfer.php:_banktransferValidation_bottom</hook>
+            <phpcode><![CDATA[
+				if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true'){
+					include _SRV_WEBROOT._SRV_WEB_PLUGINS.'vt_one_step_checkout/hooks/class_xt_banktransfer_php_banktransferValidation_bottom.php';
+				}            
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        
+        <code>
+            <hook>class.xt_banktransfer.php:_banktransferValidation_top</hook>
+            <phpcode><![CDATA[
+				if(VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE == 'true'){
+					unset($_SESSION['xt_banktransfer_error']);
+				}            
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+               
+    </plugin_code>
+    <configuration>
+        <config>
+            <key>VT_AJAX_ONE_STEP_CHECKOUT_ACTIVE</key>
+            <value>true</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Status</title>
+                <description></description>
+            </de>
+            <en>
+                <title>State</title>
+                <description></description>
+            </en>
+        </config>
+        <config>
+            <key>VT_AJAX_ONE_STEP_CHECKOUT_SHIPPING_ADDRESS</key>
+            <value>false</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Zeige abweichende Lieferadresse</title>
+                <description></description>
+            </de>
+            <en>
+                <title>Show alternate Shipping Address</title>
+                <description></description>
+            </en>
+        </config>
+        <config>
+            <key>VT_AJAX_ONE_STEP_CHECKOUT_PAYMENT_ADDRESS</key>
+            <value>false</value>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <de>
+                <title>Zeige abweichende Rechnungsadresse</title>
+                <description></description>
+            </de>
+            <en>
+                <title>Show alternate Payment Address</title>
+                <description></description>
+            </en>
+        </config>        
+    </configuration>
+	<language_content>
+		<phrase>
+			<key>TEXT_ALTERNATE_PAYMENT_ADDRESS</key>
+			<class>store</class>
+			<de>
+				<value>Abweichende Rechnungsadresse angeben</value>
+			</de>
+			<en>
+				<value>Add alternate Payment Address</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_ALTERNATE_SHIPPING_ADDRESS</key>
+			<class>store</class>
+			<de>
+				<value>Abweichende Lieferadresse angeben</value>
+			</de>
+			<en>
+				<value>Add alternate Shipping Address</value>
+			</en>
+		</phrase>	
+		<phrase>
+			<key>TEXT_AGB</key>
+			<class>store</class>
+			<de>
+				<value>Allgemeine Geschäftsbedingungen</value>
+			</de>
+			<en>
+				<value>Conditions</value>
+			</en>
+		</phrase>		
+	</language_content>	
+</xtcommerceplugin>

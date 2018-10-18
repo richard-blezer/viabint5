@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+<title>Länderabhängige Preise</title>
+<version>1.0.3</version>
+<code>xt_countryprices</code>
+<url>http://www.xt-commerce.com</url>
+<description>Länderpreise für Produkte</description>
+<type>marketing</type>
+<icon>xt-commerce_logo.jpg</icon>
+<developer>xt:Commerce</developer>
+<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/display/MANUAL/xt_countryprices]]></documentation_link>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=23]]></marketplace_link>
+<db_install><![CDATA[
+$db->Execute("
+CREATE TABLE IF NOT EXISTS ".DB_PREFIX."_products_price_country (
+  id int(11) NOT NULL auto_increment,
+  products_id int(11) NOT NULL,
+  country_code char(2) NOT NULL default 'DE',
+  country_price decimal(15,4) NOT NULL,
+  status int(1) NOT NULL default '1',
+  PRIMARY KEY  (`id`),
+  KEY `products_id_country_code` (`products_id`,`country_code`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+");
+]]></db_install>
+<db_uninstall><![CDATA[
+$db->Execute("DROP TABLE IF EXISTS ".DB_PREFIX."_products_price_country");
+]]></db_uninstall>
+	<minimumupdateversion>1.0.0</minimumupdateversion>
+	<db_update>
+		<update>
+			<version>1.0.0</version>
+			<to_version>1.0.1</to_version>
+			<code><![CDATA[
+				$db->Execute("ALTER TABLE ".DB_PREFIX."_products_price_country ADD INDEX `products_id_country_code` (`products_id`,`country_code`)");
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.0.1</version>
+			<to_version>1.0.2</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>
+		<update>
+			<version>1.0.2</version>
+			<to_version>1.0.3</to_version>
+			<code><![CDATA[
+				]]>
+			</code>
+		</update>		
+	</db_update>
+	
+
+<plugin_code>
+<code>
+<hook>class.product.php:_get_data</hook>
+<phpcode><![CDATA[
+        $rowActions[] = array('iconCls' => 'products_country_price', 'qtipIndex' => 'qtip1', 'tooltip' => TEXT_PRODUCTS_COUNTRY_PRICE);
+        if ($this->url_data['edit_id'])
+          $js = "var edit_id = ".$this->url_data['edit_id']."; var edit_name = '".htmlentities($products_model)."';";
+        else
+          $js = "var edit_id = record.id; var edit_name=record.get('products_model');";
+          $js .= "addTab('adminHandler.php?load_section=xt_countryprices&plugin=xt_countryprices&pg=overview&products_id='+edit_id,'".TEXT_PRODUCTS_COUNTRY_PRICE."', 'products_country_price'+edit_id)";
+
+        $rowActionsFunctions['products_country_price'] = $js;    
+        
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>css_admin.php:css</hook>
+<phpcode><![CDATA[
+	echo '.products_country_price {background-image: url(images/icons/map_magnify.png) !important;}';
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>page_registry.php:bottom</hook>
+<phpcode><![CDATA[
+define('TABLE_PRODUCTS_PRICE_COUNTRY',$DB_PREFIX.'products_price_country');
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>class.product.php:_delete_bottom</hook>
+<phpcode><![CDATA[
+$db->Execute("DELETE FROM " . TABLE_PRODUCTS_PRICE_COUNTRY . " WHERE products_id = ? ",array((int)$id));
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+<code>
+<hook>class.product.php:_getPrice_center</hook>
+<phpcode><![CDATA[
+if (isset($_SESSION['customer']->customer_default_address['customers_country_code'])) {
+	global $db;
+	$record = $db->Execute("SELECT country_price 
+					FROM ".TABLE_PRODUCTS_PRICE_COUNTRY." 
+					WHERE products_id=? and 
+					status='1' and 
+					country_code=? 
+					LIMIT 0,1",
+					array((int)$this->data['products_id'],$_SESSION['customer']->customer_default_address['customers_country_code']));
+	if($record->RecordCount() == 1){
+		$products_price = $record->fields['country_price'];
+		return $true;
+	}
+}
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+<language_content>
+<phrase>
+<key>TEXT_PRODUCTS_COUNTRY_PRICE</key>
+<class>admin</class>
+<de>
+<value>Länderpreise</value>
+</de>
+<en>
+<value>Countryprices</value>
+</en>
+<es>
+<value>Preços para países</value>
+</es>
+<br>
+<value>Preços para países</value>
+</br>
+</phrase>
+<phrase>
+<key>TEXT_COUNTRY_CODE</key>
+<class>admin</class>
+<de>
+<value>Land</value>
+</de>
+<en>
+<value>Country</value>
+</en>
+<es>
+<value>País</value>
+</es>
+<br>
+<value>Pais</value>
+</br>
+</phrase>
+<phrase>
+<key>TEXT_COUNTRY_PRICE</key>
+<class>admin</class>
+<de>
+<value>Preis</value>
+</de>
+<en>
+<value>Price</value>
+</en>
+<es>
+<value>Precio</value>
+</es>
+<br>
+<value>Preços</value>
+</br>
+</phrase>
+<phrase>
+<key>HEADING_XT_COUNTRYPRICES</key>
+<class>admin</class>
+<de>
+<value>Länderpreise</value>
+</de>
+<en>
+<value>Countryprices</value>  
+</en>
+<es>
+<value>Premios de países</value>
+</es>
+<br>
+<value>Preços para paises</value>
+</br>
+</phrase>
+<phrase>
+<key>TEXT_XT_COUNTRYPRICES</key>
+<class>admin</class>
+<de>
+<value>Länderpreise</value>
+</de>
+<en>
+<value>Countryprices</value>  
+</en>
+<es>
+<value>Premios de países</value>
+</es>
+<br>
+<value>Preços para paises</value>
+</br>
+</phrase>
+</language_content>  
+
+</xtcommerceplugin>

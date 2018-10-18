@@ -1,0 +1,21 @@
+<p class="breaking-headline">{txt key=TEXT_COUPON_HEADLINE}</p>
+
+{if defined('TEXT_COUPON_ADDON_PRODUCT_INFO') &&
+    $smarty.const.TEXT_COUPON_ADDON_PRODUCT_INFO|trim != ''}
+    <div class="alert alert-danger">
+        {txt key=TEXT_COUPON_ADDON_PRODUCT_INFO}
+    </div>
+{/if}
+
+<div class="well">
+    {form type=form name=process action='cart' method=post conn=SSL}
+    {form type=hidden name=special value=coupon}
+    <div class="input-group">
+        <input type="text" class="form-control" name="coupon_code" id="coupon_code" maxlength="20" placeholder="{txt key=TEXT_COUPON_LABEL}">
+        <span class="input-group-btn">
+            <button class="btn btn-primary preloader" type="submit">{txt key=TEXT_COUPON_BUTTON}</button>
+        </span>
+    </div><!-- /input-group -->
+    {form type=formend}
+</div>
+<br />

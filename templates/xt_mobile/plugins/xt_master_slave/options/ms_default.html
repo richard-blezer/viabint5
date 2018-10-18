@@ -1,0 +1,38 @@
+{if $options!=''}
+    <div data-role="collapsible" data-inset="false" data-theme="c" data-collapsed="false">
+        <h2>{txt key=TEXT_MOB_OPTIONS}</h2>
+        <table width="100%"  border="0" cellpadding="2" cellspacing="2">
+            {foreach name=outer item=options_data from=$options}
+                <!-- SELECT !-->
+                <tr>
+                    <td width="200" align="right">
+                        <b>{$options_data.text}:</b>
+                    </td>
+                    <td>
+                        {form type=form name=product action='dynamic' link_params=getParams method=post}
+                            {form type=hidden name=action value=select_ms}
+                            <select name="id[{$options_data.id}]"  onchange="this.form.submit();">
+                                {foreach key=key_data item=item_data from=$options_data.data}
+                                    <option value="{$item_data.id}" {if $item_data.selected} selected="" {/if} >{$item_data.text}</option>
+                                {/foreach}
+                            </select>
+                        {form type=formend}
+                    </td>
+                </tr>
+            {/foreach}
+        </table>
+        {if XT_MASTER_SLAVE_CONF_SHOW_LINK eq "true" && $masterLink}
+            <a href="{$masterLink}">{txt key=XT_MASTER_SLAVE_TEXT_LINK_TO_MASTER}</a>            
+        {/if}    
+        {if XT_MASTER_SLAVE_CONF_SHOW_RESET eq "true"}
+            <form action="{$masterLink}" method="post">
+                <button type="submit">{txt key=XT_MASTER_SLAVE_TEXT_RESET_OPTIONS}</button>
+            </form>
+        {/if}    
+        {if $link_reset}
+            <a href="{$link_reset}" data-role="button">
+                {txt key=XT_MASTER_SLAVE_TEXT_RESET_OPTIONS}
+            </a>
+        {/if}
+    </div>
+{/if}

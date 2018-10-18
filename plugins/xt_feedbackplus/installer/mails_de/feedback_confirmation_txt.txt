@@ -1,0 +1,12 @@
+﻿Sehr geehrte/r {$order_data.billing_firstname} {$order_data.billing_lastname},
+
+Ihr Feedback zur Bestellung {$order_data.orders_id} wurde durch uns überprüft, freigegeben und
+auf unserer Website veröffentlicht. 
+
+Als Dankeschön für Ihr Engagement und Ihre Mühe, senden wir Ihnen einen Gutschein für Ihren nächsten Einkauf in unserem Shop.
+Wenn Sie den Gutschein einlösen wollen, geben Sie bitte die folgende Gutscheinnummer während des nächsten Bezahlvorgangs ein: {$coupon_code}
+
+Vielen Dank,
+{$shop_name}	
+------------------------------------------------------------------------------------------------------------
+{$_system_footer_txt}

@@ -1,0 +1,1032 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+
+    <title>Viabiona Plugin</title>
+    <version>1.4.0-custom</version>
+    <code>ew_viabiona_plugin</code>
+    <url>http://www.8works.de</url>
+    <developer>8works</developer>
+    <description>8works Template Plugin</description>
+    <type>frontend</type>
+    <icon>8works.png</icon>
+    <minimumupdateversion>1.0.0</minimumupdateversion>
+
+    <db_install><![CDATA[
+        $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_viabiona_plugin/functions/install.php';
+        if (file_exists($f)) {
+            require_once $f;
+        }
+    ]]></db_install>
+    <db_uninstall><![CDATA[
+        $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'ew_viabiona_plugin/functions/uninstall.php';
+        if (file_exists($f)) {
+            require_once $f;
+        }
+    ]]></db_uninstall>
+
+    <plugin_code>
+        <code>
+            <hook>page_registry.php:bottom</hook>
+            <phpcode><![CDATA[
+                $f = _SRV_WEBROOT . _SRV_WEB_PLUGINS . '/ew_viabiona_plugin/hooks/page_registry.php_bottom.php';
+                if (file_exists($f)) {
+                    require_once $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>javascript.php:bottom</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/javascript.php_bottom.php';
+                if (file_exists($f)) {
+                    require_once $f;
+                }
+            ]]></phpcode>
+            <order>0</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.xt_minify.php:serveCSS_top</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/class.xt_minify.php_serveCSS_top.php';
+                if (file_exists($f)) {
+                    require_once $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.xt_minify.php:serveJS_top</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/class.xt_minify.php_serveJS_top.php';
+                if (file_exists($f)) {
+                    require_once $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_navbar</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_navbar.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_nav</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_nav.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_teaser</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_teaser.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_usp</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_usp.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_seotext</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_seotext.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_startpage_top</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_startpage_top.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_startpage_bottom</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_startpage_bottom.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_navmeta</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_navmeta.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_topcategories</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_topcategories.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_sidebar_boxes</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_sidebar_boxes.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_footer_info</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_footer_info.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_footer_content</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_footer_content.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_footer_mobile</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_footer_mobile.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_footer_mobile_infocenter</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_footer_mobile_infocenter.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>ew_viabiona_listing_switch</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/ew_viabiona_listing_switch.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>display.php:content_bottom</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/display_php_content_bottom.php';
+                if (file_exists($f)) {
+                    require_once $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>store_main.php:bottom</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/store_main.php_bottom.php';
+                if (file_exists($f)) {
+                    require_once $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>display.php:content_head</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/display.php_content_head.php';
+                if (file_exists($f)) {
+                    require_once $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.product.php:BuildData_bottom</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/class.product.php.BuildData_bottom.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.content.php:_getParams_blocks</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/class.content.php_getParams_blocks.php';
+                if (file_exists($f)) {
+                    require_once $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>smarty_function_img:params_bottom</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/smarty_function_img_params_bottom.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+        <code>
+            <hook>class.customer.php:_registerCustomer_top</hook>
+            <phpcode><![CDATA[
+                $f = EW_VIABIONA_PLUGIN_HOOKS_DIR . '/class.customer.php_registerCustomer_top.php';
+                if (file_exists($f)) {
+                    require $f;
+                }
+            ]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+
+    <configuration>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_STATUS</key>
+            <sort_order>10</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Für diesen Mandanten aktivieren</title>
+            </de>
+            <en>
+                <title>Activate</title>
+            </en>
+            <bp>
+                <title>Activate</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_DEBUG_MODE</key>
+            <sort_order>20</sort_order>
+            <value>127.0.0.1, ::1</value>
+            <de>
+                <title>Debug Modus IP <![CDATA[ <br /><small>Info: Mehrere IP´s mit Komma trennen</small>]]></title>
+            </de>
+            <en>
+                <title>Debug mode IP</title>
+            </en>
+            <bp>
+                <title>Debug mode IP</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_DEBUG_MODE_REPORTING</key>
+            <sort_order>30</sort_order>
+            <type>status</type>
+            <value>1</value>
+            <de>
+                <title>PHP Error Reporting anzeigen <![CDATA[ <br /><small>Info: Zeigt PHP-Fehlermeldungen an, wenn der Debug Modus aktiv ist</small>]]></title>
+            </de>
+            <en>
+                <title>Display php errors</title>
+            </en>
+            <bp>
+                <title>Display php errors</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_DEBUG_MODE_CACHEREFRESH</key>
+            <sort_order>40</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Cache löschen beim Seitenaufruf <![CDATA[ <br /><small>Info: Löscht den Cache, wenn der Debug Modus aktiv ist</small>]]></title>
+            </de>
+            <en>
+                <title>Refresh cache in frontend</title>
+            </en>
+            <bp>
+                <title>Refresh cache in frontend</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_CAT_MAXLEVEL</key>
+            <sort_order>60</sort_order>
+            <value>5</value>
+            <de>
+                <title>Tiefe der Kategoriedarstellung <![CDATA[ <br /><small>Info: Empfohlener Wert "2"</small>]]></title>
+            </de>
+            <en>
+                <title>Depth of the category representation</title>
+            </en>
+            <bp>
+                <title>Depth of the category representation</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_LISTING_SWITCH_TEMPLATE1</key>
+            <sort_order>70</sort_order>
+            <value>product_listing_v1.html</value>
+            <de>
+                <title>Templatedatei für kompakte Produkt-Ansicht <![CDATA[ <br /><small>Info: Betrifft Produkt-Listing Switch</small>]]></title>
+            </de>
+            <en>
+                <title>Templatefile for grid view</title>
+            </en>
+            <bp>
+                <title>Templatefile for grid view</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_LISTING_SWITCH_TEMPLATE2</key>
+            <sort_order>80</sort_order>
+            <value>product_listing_v2.html</value>
+            <de>
+                <title>Templatedatei für Listen-Produkt-Ansicht <![CDATA[ <br /><small>Info: Betrifft Produkt-Listing Switch</small>]]></title>
+            </de>
+            <en>
+                <title>Templatefile for list view</title>
+            </en>
+            <bp>
+                <title>Templatefile for list view</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_LISTING_FOOTERTAX</key>
+            <sort_order>90</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Zeige MwSt- und Versandkosten-Hinweis im Footer, statt im Listing <![CDATA[ <br /><small>Info: Hierfür muss der Cache geleert werden</small>]]></title>
+            </de>
+            <en>
+                <title>Showing VAT and shipping notice in the footer instead of the listing</title>
+            </en>
+            <bp>
+                <title>Showing VAT and shipping notice in the footer instead of the listing</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_LISTING_NORATING</key>
+            <sort_order>100</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Zeige statt Bewertungssternen die Lagerampel im Produkt-Listing <![CDATA[ <br /><small>Info: Hierfür muss der Cache geleert werden</small>]]></title>
+            </de>
+            <en>
+                <title>Show rating stars instead the bearing lights in product-listing</title>
+            </en>
+            <bp>
+                <title>Show rating stars instead the bearing lights in product-listing</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_LISTING_CARTBUTTON</key>
+            <sort_order>110</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Zeige den Warenkorb Button im Detail-Listing (product_listing_v2.html) <![CDATA[ <br /><small>Info: Hierfür muss der Cache geleert werden</small>]]></title>
+            </de>
+            <en>
+                <title>Show cart button in Detail-Listing (product_listing_v2.html)</title>
+            </en>
+            <bp>
+                <title>Show cart button in Detail-Listing (product_listing_v2.html)</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_ALTERNATIVE_SHAREBUTTONS</key>
+            <sort_order>120</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Alternative Share Buttons auf der Produktseite <![CDATA[ <br /><small>Info: Hierfür sollten andere Plugins wie AddThis deaktiviert sein</small>]]></title>
+            </de>
+            <en>
+                <title>Alternative Share Buttons on the product site</title>
+            </en>
+            <bp>
+                <title>Alternative Share Buttons on the product site</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_ANIMATIONS</key>
+            <sort_order>140</sort_order>
+            <type>status</type>
+            <value>1</value>
+            <de>
+                <title>Scroll-Animationen aktivieren</title>
+            </de>
+            <en>
+                <title>Activate scroll animations</title>
+            </en>
+            <bp>
+                <title>Activate scroll animations</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_FLOATINGNAVIGATION</key>
+            <sort_order>150</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Hauptnavigation beim Scrollen im sichtbaren Bereich fixieren</title>
+            </de>
+            <en>
+                <title>Fix main navigation while scrolling in the visible range</title>
+            </en>
+            <bp>
+                <title>Fix main navigation while scrolling in the visible range</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_SIDEBUTTONS</key>
+            <sort_order>160</sort_order>
+            <type>status</type>
+            <value>1</value>
+            <de>
+                <title>Angedockte Hilfsnavigation am rechten Bildschirmrand anzeigen</title>
+            </de>
+            <en>
+                <title>Show docked helpful navigation on the right screen edge</title>
+            </en>
+            <bp>
+                <title>Show docked helpful navigation on the right screen edge</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_FLOATING</key>
+            <sort_order>170</sort_order>
+            <type>status</type>
+            <value>1</value>
+            <de>
+                <title>Schwebende Informationen auf der Produktseite aktivieren</title>
+            </de>
+            <en>
+                <title>Activate floating informations on the product site</title>
+            </en>
+            <bp>
+                <title>Activate floating informations on the product site</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_MEGANAV</key>
+            <sort_order>180</sort_order>
+            <type>status</type>
+            <value>1</value>
+            <de>
+                <title>Mega Menü aktivieren (Empfohlen)</title>
+            </de>
+            <en>
+                <title>Activate Mega Menu (Recommended)</title>
+            </en>
+            <bp>
+                <title>Activate Mega Menu (Recommended)</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_COOKIEALERT</key>
+            <sort_order>190</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Cookiehinweis aktivieren</title>
+            </de>
+            <en>
+                <title>Activate cookie notice</title>
+            </en>
+            <bp>
+                <title>Activate cookie notice</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_WEBAPPICON</key>
+            <sort_order>200</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Web App Support <![CDATA[ <br /><small>Info: Die Icons befinden sich im Template Ordner unter "img/webapp/".</small>]]></title>
+            </de>
+            <en>
+                <title>Web App Support</title>
+            </en>
+            <bp>
+                <title>Web App Support</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_CREATE_THUMBS_FRONTEND</key>
+            <sort_order>210</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Automatische Erstellung von Vorschaubildern im Frontend</title>
+            </de>
+            <en>
+                <title>Automatic creation of thumbnails in frontend</title>
+            </en>
+            <bp>
+                <title>Automatic creation of thumbnails in frontend</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_SESSION_CACHE</key>
+            <sort_order>220</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Benutzer Cache aktivieren (Session cache)</title>
+            </de>
+            <en>
+                <title>Activate user cache (Session cache)</title>
+            </en>
+            <bp>
+                <title>Activate user cache (Session cache)</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_LESS_SOURCE_MAP</key>
+            <sort_order>230</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Less source map <![CDATA[ <br /><small>Info: Zusätzliche CSS Informationen in der generierten CSS Datei für Entwickler</small>]]></title>
+            </de>
+            <en>
+                <title>Less source map</title>
+            </en>
+            <bp>
+                <title>Less source map</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_AJAX_CACHE_WATCHER</key>
+            <sort_order>240</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Überwache Cache Ordner <![CDATA[ <br /><small>Info: Löscht automatisch veraltete Cache Dateien</small>]]></title>
+            </de>
+            <en>
+                <title>Observe the cache folder</title>
+            </en>
+            <bp>
+                <title>Observe the cache folder</title>
+            </bp>
+        </config>
+        <config>
+            <key>CONFIG_EW_VIABIONA_PLUGIN_RANDOM_TEASER</key>
+            <sort_order>250</sort_order>
+            <type>status</type>
+            <value>0</value>
+            <de>
+                <title>Zufällige Reihenfolge für Startseiten-Teaser</title>
+            </de>
+            <en>
+                <title>Random order for startpage teaser</title>
+            </en>
+            <bp>
+                <title>Random order for startpage teaser</title>
+            </bp>
+        </config>
+    </configuration>
+
+    <language_content>
+        <!-- store -->
+        <phrase>
+            <key>TEXT_EW_VIABIONA_MAINCAT_TITLE</key>
+            <class>store</class>
+            <de>
+                <value>Springe zur Hauptkategorie</value>
+            </de>
+            <en>
+                <value>Jump to main category</value>
+            </en>
+            <bp>
+                <value>Jump to main category</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_STREET_NAME</key>
+            <class>store</class>
+            <de>
+                <value>Straße</value>
+            </de>
+            <en>
+                <value>Street</value>
+            </en>
+            <bp>
+                <value>Street</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_STREET_NUMBER</key>
+            <class>store</class>
+            <de>
+                <value>Nr.</value>
+            </de>
+            <en>
+                <value>No.</value>
+            </en>
+            <bp>
+                <value>No.</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_OR</key>
+            <class>store</class>
+            <de>
+                <value>oder</value>
+            </de>
+            <en>
+                <value>or</value>
+            </en>
+            <bp>
+                <value>or</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_CREATE_ACCOUNT</key>
+            <class>store</class>
+            <de>
+                <value>neues Konto erstellen</value>
+            </de>
+            <en>
+                <value>create new account</value>
+            </en>
+            <bp>
+                <value>create new account</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_LISTING_SWITCH_TITLE</key>
+            <class>store</class>
+            <de>
+                <value>Ansicht wechseln</value>
+            </de>
+            <en>
+                <value>Switch view</value>
+            </en>
+            <bp>
+                <value>Switch view</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_LISTING_SWITCH_TITLE_VIEW1</key>
+            <class>store</class>
+            <de>
+                <value>Kompakt-Ansicht</value>
+            </de>
+            <en>
+                <value>Compact view</value>
+            </en>
+            <bp>
+                <value>Compact view</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_LISTING_SWITCH_TITLE_VIEW2</key>
+            <class>store</class>
+            <de>
+                <value>Listen-Ansicht</value>
+            </de>
+            <en>
+                <value>List view</value>
+            </en>
+            <bp>
+                <value>List view</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_STILL</key>
+            <class>store</class>
+            <de>
+                <value>Noch</value>
+            </de>
+            <en>
+                <value>Still</value>
+            </en>
+            <bp>
+                <value>Still</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_CHARACTERS_AVAILABLE</key>
+            <class>store</class>
+            <de>
+                <value>Zeichen verfügbar.</value>
+            </de>
+            <en>
+                <value>characters available.</value>
+            </en>
+            <bp>
+                <value>characters available.</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_SHOW_MORE</key>
+            <class>store</class>
+            <de>
+                <value>Mehr anzeigen</value>
+            </de>
+            <en>
+                <value>Show more</value>
+            </en>
+            <bp>
+                <value>Show more</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_SHOW_LESS</key>
+            <class>store</class>
+            <de>
+                <value>Weniger anzeigen</value>
+            </de>
+            <en>
+                <value>Show less</value>
+            </en>
+            <bp>
+                <value>Show less</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_TOPCATEGORIES</key>
+            <class>store</class>
+            <de>
+                <value>Top Kategorien</value>
+            </de>
+            <en>
+                <value>Top categories</value>
+            </en>
+            <bp>
+                <value>Top categories</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_STARTPAGE_TABS_WARNING</key>
+            <class>store</class>
+            <de>
+                <value>Für diesen Filter gibt es momentan keine Ergebnisse.</value>
+            </de>
+            <en>
+                <value>There are no results with this filter</value>
+            </en>
+            <bp>
+                <value>There are no results with this filter</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_BUTTON_ADD_CART_MASTER_DUMMY</key>
+            <class>store</class>
+            <de>
+                <value>Bitte konfigurieren Sie Ihr Produkt</value>
+            </de>
+            <en>
+                <value>Please configure your product</value>
+            </en>
+            <bp>
+                <value>Please configure your product</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_STARTPAGE_RECOMMENDATION</key>
+            <class>store</class>
+            <de>
+                <value>Unsere Empfehlungen</value>
+            </de>
+            <en>
+                <value>Our recommendation</value>
+            </en>
+            <bp>
+                <value>Our recommendation</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_POPOVER_RATING_AVERAGE</key>
+            <class>store</class>
+            <de>
+                <value>mit einem Durchschnitt von</value>
+            </de>
+            <en>
+                <value>with an average of</value>
+            </en>
+            <bp>
+                <value>with an average of</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_POPOVER_RATING_STAR</key>
+            <class>store</class>
+            <de>
+                <value>Sternen</value>
+            </de>
+            <en>
+                <value>stars</value>
+            </en>
+            <bp>
+                <value>stars</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_TAX_FOOTER</key>
+            <class>store</class>
+            <de>
+                <value>Alle Preise inkl. gesetzl. Mehrwertsteuer zzgl. Versandkosten und ggf. Nachnahmegebühren, wenn nicht anders beschrieben</value>
+            </de>
+            <en>
+                <value>All prices incl. VAT excl. Shipping and handling fees, unless otherwise stated</value>
+            </en>
+            <bp>
+                <value>All prices incl. VAT excl. Shipping and handling fees, unless otherwise stated</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_ALL_CATEOGIRES</key>
+            <class>store</class>
+            <de>
+                <value>Alle Kategorien anzeigen</value>
+            </de>
+            <en>
+                <value>Show all categories</value>
+            </en>
+            <bp>
+                <value>Show all categories</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_COOKIE_ALERT</key>
+            <class>store</class>
+            <de>
+                <value>Wir verwenden Cookies, damit wir Ihnen die bestmögliche Bedienbarkeit in unserem Shop bieten können. Wenn Sie fortfahren, gehen wir davon aus, dass Sie alle Cookies in diesem Shop empfangen möchten.</value>
+            </de>
+            <en>
+                <value>We use cookies so that we can offer you the best possible usability in our shop. If you continue, we will assume that you want to receive all cookies on this website.</value>
+            </en>
+            <bp>
+                <value>We use cookies so that we can offer you the best possible usability in our shop. If you continue, we will assume that you want to receive all cookies on this website.</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_COOKIE_ALERT_TITLE</key>
+            <class>store</class>
+            <de>
+                <value>Dieser Shop verwendet Cookies!</value>
+            </de>
+            <en>
+                <value>This shop uses cookies!</value>
+            </en>
+            <bp>
+                <value>This shop uses cookies!</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_COOKIE_ALERT_ACCEPT</key>
+            <class>store</class>
+            <de>
+                <value>Akzeptieren und ausblenden</value>
+            </de>
+            <en>
+                <value>Accept and close</value>
+            </en>
+            <bp>
+                <value>Accept and close</value>
+            </bp>
+        </phrase>
+
+
+        <!-- admin -->
+        <phrase>
+            <key>TEXT_EW_VIABIONA_NAME</key>
+            <class>admin</class>
+            <de>
+                <value>ew_viabiona</value>
+            </de>
+            <en>
+                <value>ew_viabiona</value>
+            </en>
+            <bp>
+                <value>ew_viabiona</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_HYPERLINK</key>
+            <class>admin</class>
+            <de>
+                <value>Contentlink</value>
+            </de>
+            <en>
+                <value>Contentlink</value>
+            </en>
+            <bp>
+                <value>Contentlink</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_HYPERLINK_STATUS</key>
+            <class>admin</class>
+            <de>
+                <value>Contentlink aktivieren</value>
+            </de>
+            <en>
+                <value>Enable content link</value>
+            </en>
+            <bp>
+                <value>Enable content link</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_SHOW_TEXT_STATUS</key>
+            <class>admin</class>
+            <de>
+                <value>Zeige Textüberlagerung im Teaser</value>
+            </de>
+            <en>
+                <value>Show text overlay in teaser</value>
+            </en>
+            <bp>
+                <value>Show text overlay in teaser</value>
+            </bp>
+        </phrase>
+        <phrase>
+            <key>TEXT_EW_VIABIONA_SHOW_ICON_STATUS</key>
+            <class>admin</class>
+            <de>
+                <value>Icon (falls verfügbar)</value>
+            </de>
+            <en>
+                <value>Icon (if available)</value>
+            </en>
+            <bp>
+                <value>Icon (if available)</value>
+            </bp>
+        </phrase>
+
+    </language_content>
+
+</xtcommerceplugin>

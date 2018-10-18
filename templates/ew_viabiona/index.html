@@ -1,0 +1,337 @@
+{if
+    $page == 'product' OR
+    $page == 'cart' OR
+    $page == '404' OR
+    $page == 'customer' OR
+    $smarty.get.page_action == 'order_info'
+}
+    {assign var="show_index_boxes" value="false"}
+{/if}
+
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RZVHS3"
+                  height="0" width="0" style="display:none;visibility:hidden">
+
+    </iframe>
+</noscript>
+
+<!-- End Google Tag Manager (noscript) -->
+<div id="site-wrap" class="{$page}-wrap{if $page != 'index'} subpage-wrap{/if}{if $smarty.get.page_action} {$smarty.get.page_action}-action-wrap{/if} shop{$smarty.const.EW_VIABIONA_SHOP_ID}">
+    {if !isset($smarty.get.viewport) || $smarty.get.viewport != 'modal' || !$smarty.get.ew_more_article_loaded}
+
+        <div id="header">
+            <div class="header-bg">
+                {if $account == true && defined('CONFIG_EW_VIABIONA_PLUGIN_COOKIEALERT') && $smarty.const.CONFIG_EW_VIABIONA_PLUGIN_COOKIEALERT|trim == '1'}
+                    {if !$registered_customer}
+                        {box name=cookiealert htmlonly=1}
+                        <noscript>
+                            {box name=cookiealert htmlonly=1}
+                        </noscript>
+                    {/if}
+                {/if}
+                <div id="meta-navigation" class="hidden-xs">
+                    <div class="container">
+                        <ul class="hidden-xs hidden-sm list-inline pull-left user text-muted">
+                            {hook key=ew_viabiona_navmeta}
+                        </ul>
+                        <ul class="list-inline pull-right user text-muted">
+                            <li class="hidden-xs hidden-md hidden-lg"><i class="fa fa-search"></i> <a href="javascript:void(0);" class="open-mobile-search">{txt key=BUTTON_SEARCH}</a></li>
+                            {if $account == true}
+                                {if $registered_customer}
+                                    <li><i class="fa fa-user"></i> <a href="{link page='customer' conn=SSL}">{txt key=TEXT_ACCOUNT}</a></li>
+                                    <li><i class="fa fa-sign-out"></i> <a href="{link page='customer' paction='logoff' conn=SSL}">{txt key=TEXT_LOGOFF}</a></li>
+                                {else}
+                                    <li><i class="fa fa-sign-in"></i> <a href="{link page='customer' paction='login' params='showForm' params_value='register' conn=SSL}">{txt key=TEXT_NEW_CUSTOMER_REGISTER}</a></li>
+                                    <li><i class="fa fa-sign-in"></i> <a href="{link page='customer' paction='login' conn=SSL}" data-toggle="modal" data-target="#loginModal" data-remote="false">{txt key=TEXT_LOGIN}</a></li>
+                                {/if}
+                            {/if}
+                        </ul>
+                        <div style="clear:both;"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div id="header-top" class="row hidden-xs">
+                        <div class="col col-sm-4 col-md-5 branding">
+                            <div class="logo"><a href="{link page='index'}" class="text-muted"><img class="img-responsive" src="media/logo/{$smarty.const._STORE_LOGO}" alt="{$smarty.const._STORE_NAME}" /></a></div>
+                        </div>
+                        <div class="col col-sm-8 col-md-7">
+                            {box name=cart}
+                            {box name=header htmlonly=1}
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="main-navigation" class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="navbar-header mobile-header">
+                        {if $page != 'checkout'}
+                            <button type="button" class="navbar-toggle pull-left visible-xs" data-toggle="collapse" data-target="#main-navigation-top">
+                                <i class="fa fa-bars text-primary"></i>
+                                <span class="text-uppercase">Men&uuml;</span>
+                            </button>
+                        {/if}
+                        <div class="logo navbar-brand visible-xs">
+                            <a class="text-muted" href="{link page='index'}" title="{$smarty.const._STORE_NAME}">
+                                <img src="media/logo/{$smarty.const._STORE_LOGO}" alt="{$smarty.const._STORE_NAME}"/>
+                            </a>
+                        </div>
+                        <ul class="icons list-inline visible-xs pull-right">
+                            {if $page != 'checkout'}
+                                <li>
+                                    <a href="javascript:void(0);" class="open-mobile-search">
+                                        <i class="fa fa-search"></i>
+                                        <span class="sr-only">{txt key=BUTTON_SEARCH}</span>
+                                    </a>
+                                </li>
+                                {if $account == true}
+                                    {if $registered_customer}
+                                        <li>
+                                            <a href="{link page='customer' conn=SSL}">
+                                                <i class="fa fa-user"></i>
+                                                <span class="sr-only">{txt key=TEXT_ACCOUNT}</span>
+                                            </a>
+                                        </li>
+                                    {else}
+                                        <li>
+                                            <a href="{link page='customer' paction='login' conn=SSL}" data-toggle="modal" data-target="#loginModal" data-remote="false">
+                                                <i class="fa fa-user"></i>
+                                                <span class="sr-only">{txt key=TEXT_LOGIN}</span>
+                                            </a>
+                                        </li>
+                                    {/if}
+                                {/if}
+                            {/if}
+                            <li class="ajax-box-cart-mobile">
+                                <a href="{link page='cart' conn=SSL}">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <span class="sr-only">{txt key=TEXT_CART}</span>
+                                    {if $smarty.session.cart->content_count}
+                                        <sup class="ccount">{$smarty.session.cart->content_count}</sup>
+                                    {/if}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="main-navigation-top" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="level-1 first static{if $page == 'index'} active{/if}">
+                                <a href="{link page='index'}">{txt key=TEXT_HOME}</a>
+                            </li>
+                            {hook key=ew_viabiona_navbar}
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right nav-button-cart hidden-xs">
+                            <li>
+                                <a href="{link page='cart'}" class="btn btn-default button-cart text-default {if $smarty.get.page == 'cart'} active{/if}">
+                                    <span class="sr-only">{txt key=TEXT_CART}</span>
+                                    <i class="fa fa-2x fa-shopping-cart"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        {box name=search htmlonly=1}
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+            </div><!-- #main-navigation -->
+
+            {if defined('CONFIG_EW_VIABIONA_PLUGIN_MEGANAV') && $smarty.const.CONFIG_EW_VIABIONA_PLUGIN_MEGANAV|trim == '1'}
+                <div class="mega-menu-cover"> </div>
+	            <div id="mega-menu" class="mega-menu hidden hidden-xs"> </div>
+            {/if}
+
+        </div><!-- #header -->
+
+        <div id="container"{if $page == '404' || $page == 'checkout'} class="no-breadcrump-container"{/if}>
+
+            {if $page != 'index' && $page != '404' && $page != 'checkout'}
+                {include file="/xtCore/pages/navigation/breadcrumb.html" type="tpl_include"}
+            {/if}
+
+            <div id="content" class="container">
+                <div class="row">
+                    <div class="col{if $show_index_boxes == 'true'} col-sm-8 col-sm-push-4 col-md-9 col-md-push-3 {else} col-sm-12{/if} primary">
+                        {hook key=ew_viabiona_teaser}
+                        {if $page == 'index'}
+                            <div class="visible-xs">
+                                <div class="panel-group" id="mobile-sp-nav" role="tablist" aria-multiselectable="true">
+                                    {hook key=ew_viabiona_nav position=mobile}
+                                </div>
+                            </div>
+                        {/if}
+                        {hook key=ew_viabiona_usp position=top}
+                        {$content}
+                        {hook key=ew_viabiona_startpage_top}
+                        {*hook key=ew_viabiona_startpage_bottom*}
+                        {hook key=ew_viabiona_seotext}
+                        {if $page == 'index' }{hook key=ew_viabiona_topcategories}{/if}
+                        {hook key=ew_viabiona_usp position=default}
+                    </div>
+                    {if $show_index_boxes == 'true'}
+                        <div class="col col-sm-4 col-sm-pull-8 col-md-3 col-md-pull-9 secondary">
+                        	<hr class="hidden-sm hidden-md hidden-lg content-splitter"/>
+                            {hook key=ew_viabiona_sidebar_boxes show=$show_index_boxes}
+                            {box name=shop_auskunft htmlonly=1}
+                            {if $page == 'index' }
+                                {box name=sidebar_info htmlonly=1}
+                            {/if}
+                        </div>
+                    {/if}
+                </div>
+            </div><!-- #content -->
+        </div><!-- #container -->
+
+        {if $smarty.get.page_action == 'confirmation'}
+            <div class="visible-xs">
+                <br />
+                <br />
+            </div>
+        {/if}
+
+        <div id="footer" class="{if $smarty.get.page_action == 'confirmation'} hidden-xs{/if}">
+            {if $smarty.get.page_action != 'confirmation'}
+                <div class="visible-xs">
+                    <div class="container text-center">
+                        <div class="section info">
+                            <ul class="footer-list list-unstyled">
+                                <li>365 Tage Geld-zurück-Garantie!</li>
+                                <li>Lieferung von heute auf morgen!</li>
+                                <li>Kauf auf Rechnung!</li>
+                                <li><a href="tel:004980030030001">Tel: 00800 300 300 01 <small>geb&uuml;hrenfrei</small></a></li>
+                            </ul>
+                        </div>
+                        {if $page != 'checkout'}
+                            <div class="section payment">
+                                <br />
+                                {box name=footer_left htmlonly=1}
+                            </div>
+                            <div class="section ship">
+                                <br />
+                                {box name=footer_bottom htmlonly=1}
+                            </div>
+                            <div class="section info-content">
+                                <br />
+                                <br />
+                                {hook key=ew_viabiona_footer_mobile_infocenter}
+                                {hook key=ew_viabiona_footer_mobile}
+                            </div>
+                        {/if}
+                    </div>
+                </div>
+            {/if}
+            <div class="container hidden-xs">
+                <div class="footer-top panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col col-sm-6 col-md-3 c1">
+                                {hook key=ew_viabiona_footer_info}
+                            </div>
+                            <div class="col col-sm-6 col-md-3 c2">
+                                {hook key=ew_viabiona_footer_content}
+                            </div>
+                            <div class="col col-sm-6 col-md-3 c3">
+                                <div class="visible-xs">
+                                    <br class="clearfix"/>
+                                </div>
+                                {box name=footer_left htmlonly=1}
+                            </div>
+                            <div class="col col-sm-6 col-md-3 c4">
+                                {box name=footer_right htmlonly=1}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom panel panel-default">
+                    <div class="panel-body">
+                        {* <!--{box name=currency}
+                        {box name=language}
+                        {box name=trusted_shops_ratings}
+                        {box name=trusted_shops_seal}
+                        {box name=trusted_shops_video}
+                        {box name=mobile}--> *}
+                        {box name=footer_bottom htmlonly=1}
+                        {box name=trusted_shops_rich_snippet}
+                        [<copyright>]
+                        {hook key=index_footer_tpl}
+                    </div>
+                </div>
+                <div class="footer-bottom panel panel-default visible-xs-block visible-sm-block">
+                    <div class="panel-body">
+                        <ul class="navmeta list-unstyled list-inline" style="margin: 0;">
+                            {if $account == true}
+                            {if $registered_customer}
+                            <li><i class="fa fa-user"></i> <a href="{link page='customer' conn=SSL}">{txt key=TEXT_ACCOUNT}</a></li>
+                            <li><i class="fa fa-sign-out"></i> <a href="{link page='customer' paction='logoff' conn=SSL}">{txt key=TEXT_LOGOFF}</a></li>
+                            {else}
+                            <li><i class="fa fa-sign-in"></i> <a href="{link page='customer' paction='login' params='showForm' params_value='register' conn=SSL}">{txt key=TEXT_NEW_CUSTOMER_REGISTER}</a></li>
+                            <li><i class="fa fa-sign-in"></i> <a href="{link page='customer' paction='login' conn=SSL}" data-toggle="modal" data-target="#loginModal" data-remote="false">{txt key=TEXT_LOGIN}</a></li>
+                            {/if}
+                            {/if}
+                            {hook key=ew_viabiona_navmeta}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div><!-- #footer -->
+
+        <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <p class="h3 modal-title">{txt key=TEXT_LOGIN}</p>
+                    </div>
+                    <div class="modal-body">
+                        {box name=loginbox}
+                    </div>
+                </div>
+            </div>
+        </div><!-- #loginModal -->
+
+        {if $page != 'cart' && $page != 'checkout'}
+            <a id="back-to-top" class="affix-top backtotop btn btn-primary img-circle ripple" href="javascript:void(0)">
+                <i class="fa fa-chevron-up"></i>
+                <span class="sr-only">Back to Top</span>
+            </a>
+        {/if}
+
+        <div id="mobile-search" class="hidden-md hidden-lg">
+            {form id="search-box-form" type=form name=search_box action='search' link_params=getParams method=get conn=SSL role="form"}
+                {form type=hidden name=page value=search}
+                {form type=hidden name=page_action value=query}
+                {form type=hidden name=desc value="on"}
+                {form type=hidden name=sdesc value="on"}
+            <button type="button" class="close"><i class="fa fa-times-circle-o"></i></button>
+            <div class="form-group">
+                <div class="input-group input-group-lg panel-shadow">
+                    <input class="form-control" type="search" id="keywords" name="keywords" placeholder="{txt key=TEXT_ENTER_SEARCH_TERM}" value="{$smarty.get.keywords}" />
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search"></span>
+                            <span class="sr-only">{txt key=BUTTON_SEARCH}</span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            {form type=formend}
+        </div>
+
+        {* <!-- Docked Sidenavigation --> *}
+        {box name=floating_boxes htmlonly=1}
+
+        {* <!-- Slide to Element --> *}
+        {if $smarty.get.ew_viabiona_listing_switch || $smarty.get.next_page || $smarty.get.sorting}
+            {literal}<script>slideToElement('.product-listing .products-sort-pages');</script>{/literal}
+        {/if}
+
+
+
+    {else}
+        {$content}
+    {/if}
+</div>

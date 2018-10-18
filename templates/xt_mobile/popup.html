@@ -1,0 +1,12 @@
+{if $smarty.const._SHOW_POPUP_HEADER != '1'}
+    <div id="popupheaderwrap">
+        <ul id="popupmenu">
+            <li><a href="javascript: window.close ()">{txt key=TEXT_POPUP_CLOSE}</a></li>
+            <li><a href="javascript: print()">{txt key=TEXT_POPUP_PRINT}</a></li>
+        </ul>
+    </div>
+{/if}
+
+<div id="popupwrap">
+    {$content}
+</div>

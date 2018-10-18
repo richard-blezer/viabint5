@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+ 	<title>Rescission Form</title>
+    <version>1.0.1</version>
+    <code>xt_rescission_form</code>
+    <url>http://www.xt-commerce.com</url>
+    <description>Widerrufsformular</description>
+    <type>core</type>
+	<developer>xt:Commerce</developer>
+<documentation_link><![CDATA[https://xtcommerce.atlassian.net/wiki/pages/viewpage.action?pageId=31031309]]></documentation_link>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=4504]]></marketplace_link>
+    <icon>xt-commerce_logo.jpg</icon>
+	<db_install><![CDATA[
+        include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_rescission_form/hooks/db_install.php';
+	]]></db_install>
+	<db_uninstall>
+	<![CDATA[
+			include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_rescission_form/hooks/db_uninstall.php';
+	]]>
+	</db_uninstall>
+	<plugin_code>
+        <code>
+            <hook>class.page_handler.php:_getPage_top</hook>
+            <phpcode>
+                <![CDATA[define('PAGE_XT_RESCISSION_FORM',_SRV_WEB_PLUGINS.'xt_rescission_form/pages/xt_rescission_form.php');]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		<code>
+            <hook>admin_dropdown.php:dropdown</hook>
+            <phpcode>
+                <![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_rescission_form/hooks/admin_dropdown.php_dropdown.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		<code>
+            <hook>class.content:get_Content_Links_bottom</hook>
+            <phpcode>
+                <![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_rescission_form/hooks/class_content.get_Content_Links_bottom.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+		<code>
+			<hook>styles.php:bottom</hook>
+			<phpcode>
+				<![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_rescission_form/hooks/styles.phpbottom.php';]]></phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+        <code>
+            <hook>class.content:getContentLinksbyParent_bottom</hook>
+            <phpcode>
+                <![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_rescission_form/hooks/class_content.getContentLinksbyParent_bottom.php';]]></phpcode>
+            <order>1</order>
+            <active>1</active>
+        </code>
+    </plugin_code>
+    <configuration>
+        <config>
+            <key>ACTIVATE_XT_RESCISSION_FORM</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Status</title>
+            </de>
+            <en>
+                <title>Activate Form</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_RESCISSION_FORM_CLIENT_NO_REQUIRED</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Kundennummer erforderlich</title>
+            </de>
+            <en>
+                <title>Clinet No. Required</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_RESCISSION_FORM_INVOICE_NO_REQUIRED</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>true</value>
+            <de>
+                <title>Rechnungsnummer erforderlich</title>
+            </de>
+            <en>
+                <title>Invoice No. Required</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_RESCISSION_FORM_SHOW_IN_CONTENT_BLOCK</key>
+            <type>dropdown</type>
+            <url>not_protected_content_blocks</url>
+            <value></value>
+            <de>
+                <title>Anzeige in Menü</title>
+            </de>
+            <en>
+                <title>Show in menu</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_RESCISSION_FORM_USE_SSL</key>
+            <type>dropdown</type>
+            <url>conf_truefalse</url>
+            <value>false</value>
+            <de>
+                <title>SSL verwenden</title>
+            </de>
+            <en>
+                <title>Use SSL</title>
+            </en>
+        </config>
+        <config>
+            <key>XT_RESCISSION_FORM_LINK_SORT</key>
+            <type>textfield</type>
+            <value>0</value>
+            <de>
+                <title>Reihenfolge</title>
+            </de>
+            <en>
+                <title>Sorting</title>
+            </en>
+        </config>
+	</configuration>
+	<language_content>
+        <phrase>
+            <key>TEXT_RESCISSION_FORM</key>
+            <class>store</class>
+            <de>
+                <value>Widerrufsformular</value>
+            </de>
+            <en>
+                <value>Rescission Form</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_RESCISSION_FORM_INTRO</key>
+            <class>store</class>
+            <de>
+                <value>Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte das nachfolgende Formular aus und senden Sie es uns zu.</value>
+            </de>
+            <en>
+                <value>If you want to cancel the order, then please fill the form below and send it to us.</value>
+            </en>
+        </phrase>
+        
+        <phrase>
+            <key>TEXT_CLIENT_NUMBER</key>
+            <class>store</class>
+            <de>
+                <value>Kundennummer</value>
+            </de>
+            <en>
+                <value>Client-No.</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_INVOICE_NUMBER</key>
+            <class>store</class>
+            <de>
+                <value>Rechnungsnummer</value>
+            </de>
+            <en>
+                <value>Invoice No.</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_PRODUCT_NUMBERS</key>
+            <class>store</class>
+            <de>
+                <value>Artikelnummer(n)</value>
+            </de>
+            <en>
+                <value>Product nummber(s)</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>ERROR_CLIENT_NUMBER</key>
+            <class>store</class>
+            <de>
+                <value>Bitte geben Sie eine Kundennummer ein</value>
+            </de>
+            <en>
+                <value>Please enter valid Client No.</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>ERROR_INVOICE_NUMBER</key>
+            <class>store</class>
+            <de>
+                <value>Bitte geben Sie eine Rechnungsnummer ein</value>
+            </de>
+            <en>
+                <value>Please enter valid invoice number</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>ERROR_PRODUCT_NUMBERS</key>
+            <class>store</class>
+            <de>
+                <value>Bitte geben Sie Artikelnummer(n) ein</value>
+            </de>
+            <en>
+                <value>Please enter product nummber(s)</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>RESCISSION_FORM_EMAIL_SENT</key>
+            <class>store</class>
+            <de>
+                <value>Ihre Anfrage wurde erfolgreich übermittelt</value>
+            </de>
+            <en>
+                <value>Your request was successfully submitted</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>XT_RESCISSION_FORM_LINK_TITILE</key>
+            <class>store</class>
+            <de>
+                <value>Widerrufsformular</value>
+            </de>
+            <en>
+                <value>Rescission Form</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_RESCISSION_FORM_REVOCATION</key>
+            <class>store</class>
+            <de>
+                <value>Hiermit widerrufe(n) ich/wir den von mir/uns abgeschlossenen Vertrag über den Kauf der folgenden Waren / die Erbringung der folgenden Dienstleistung:</value>
+            </de>
+            <en>
+                <value>I/we hereby cancel the contract that I/we have concluded for the purchase of the following goods/services:</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_RECIEVED_DATE</key>
+            <class>store</class>
+            <de>
+                <value>Erhalten am</value>
+            </de>
+            <en>
+                <value>Recieved date</value>
+            </en>
+        </phrase>
+		<phrase>
+            <key>TEXT_REVOCATION_DATE</key>
+            <class>store</class>
+            <de>
+                <value>Widerrufsdatum</value>
+            </de>
+            <en>
+                <value>Revocation date</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_HEADING_CUSTOMER_NAME</key>
+            <class>store</class>
+            <de>
+                <value>Name des/der Verbraucher(s)</value>
+            </de>
+            <en>
+                <value>Name of person / consumer (s)</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>TEXT_HEADING_CUSTOMER_ADDRESS</key>
+            <class>store</class>
+            <de>
+                <value>Anschrift des/der Verbraucher(s)</value>
+            </de>
+            <en>
+                <value>Address of person / consumer (s)</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>ERROR_ORDER_DATE_EMPTY</key>
+            <class>store</class>
+            <de>
+                <value>Bitte geben Sie ein gültiges Bestelldatum an</value>
+            </de>
+            <en>
+                <value>Please enter valid order date</value>
+            </en>
+        </phrase>
+        <phrase>
+            <key>ERROR_GENDER_EMPTY</key>
+            <class>store</class>
+            <de>
+                <value>Please select gender</value>
+            </de>
+            <en>
+                <value>Please select gender</value>
+            </en>
+        </phrase>
+		<phrase>
+            <key>ERROR_STREET_EMPTY</key>
+            <class>store</class>
+            <de>
+                <value>Bitte geben Sie eine Straße an</value>
+            </de>
+            <en>
+                <value>Please enter valid street</value>
+            </en>
+        </phrase>
+		<phrase>
+            <key>ERROR_CITY_EMPTY</key>
+            <class>store</class>
+            <de>
+                <value>Bitte geben Sie ein Stadt an</value>
+            </de>
+            <en>
+                <value>Please enter valid City</value>
+            </en>
+        </phrase>
+		<phrase>
+            <key>ERROR_COUNTRY</key>
+            <class>store</class>
+            <de>
+                <value>Please enter valid Country</value>
+            </de>
+            <en>
+                <value>Please enter valid Country</value>
+            </en>
+        </phrase>
+		<phrase>
+            <key>ERROR_REVOCATION_DATE_EMPTY</key>
+            <class>store</class>
+            <de>
+                <value>Please enter valid revocation date</value>
+            </de>
+            <en>
+                <value>Please enter valid revocation date</value>
+            </en>
+        </phrase>
+	</language_content>
+</xtcommerceplugin>

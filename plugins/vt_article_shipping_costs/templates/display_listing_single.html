@@ -1,0 +1,7 @@
+{if $SHIPPING_FREE == 1}
+    {*{txt key=TEXT_PRODUCTS_SHIPPING_COSTS}:*}{txt key=TEXT_PRODUCTS_SHIPPING_COSTS_FREE}
+{else}
+    {if $PRICE.plain > 0}
+        {txt key=TEXT_PRODUCTS_SHIPPING_COSTS}: {$PRICE.formated}
+    {/if}
+{/if}

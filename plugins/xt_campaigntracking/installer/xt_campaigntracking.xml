@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>Campaign - Tracking</title>
+<version>1.1.1</version>
+<code>xt_campaigntracking</code>
+<url>http://www.xt-commerce.com</url>
+<type>marketing</type>
+<icon>xt-commerce_logo.jpg</icon>
+<developer>xt:Commerce</developer>
+<marketplace_link><![CDATA[http://addons.xt-commerce.com/index.php?page=product&info=547]]></marketplace_link>
+
+<db_install><![CDATA[
+    include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_campaigntracking/hooks/db_install.php';
+]]>
+</db_install>
+
+<db_uninstall><![CDATA[
+    include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_campaigntracking/hooks/db_uninstall.php';
+]]></db_uninstall>
+
+<plugin_code>
+	<code>
+		<hook>page_registry.php:bottom</hook>
+		<phpcode>
+			<![CDATA[
+				include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_campaigntracking/hooks/page_registry.phpbottom.php';
+			]]>
+		</phpcode>
+		<order>1</order>
+		<active>1</active>
+	</code>
+	<code>
+		<hook>store_main.php:bottom</hook>
+		<phpcode>
+			<![CDATA[
+				include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_campaigntracking/hooks/store_main.phpbottom.php';
+			]]>
+		</phpcode>
+		<order>1</order>
+		<active>1</active>
+	</code>
+	<code>
+		<hook>module_checkout.php:checkout_proccess_order_processed</hook>
+		<phpcode>
+			<![CDATA[
+				include _SRV_WEBROOT._SRV_WEB_PLUGINS.'xt_campaigntracking/hooks/module_checkout.phpcheckout_proccess_order_processed.php';
+			]]>
+		</phpcode>
+		<order>1</order>
+		<active>1</active>
+	</code>
+</plugin_code>
+<configuration>
+<config>
+<key>XT_CAMPAIGNTRACKING_STATUS</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Kampagnen-tracking aktivieren</title>
+</de>
+<en>
+<title>Activate tracking for campaigns</title>
+</en>
+<bp>
+<title>Ativar codigo para campanhas</title>
+</bp>
+</config>
+</configuration>
+<language_content>
+	<phrase>
+		<key>TEXT_CUSTOM_REFERENCE</key>
+		<class>admin</class>
+		<de>
+			<value>Custom reference for tracking</value>
+		</de>
+		<en>
+			<value>Custom reference for tracking</value>
+		</en>
+		<bp>
+<value>Custom referência para codigo</value>
+</bp>
+	</phrase>
+</language_content>
+</xtcommerceplugin>

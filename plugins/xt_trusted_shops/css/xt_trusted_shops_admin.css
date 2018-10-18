@@ -1,0 +1,12 @@
+.ts_certificate_show {
+    background-image: url("../../../xtAdmin/images/icons/world.png") !important;
+}
+
+.ts_certificate_refresh{
+    background-image: url("../../../xtAdmin/images/icons/key_go.png") !important;
+}
+
+.ts-error
+{
+    color: #990000;
+}

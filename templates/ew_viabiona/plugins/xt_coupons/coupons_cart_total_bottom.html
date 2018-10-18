@@ -1,0 +1,31 @@
+{if $coupon_percent eq ''}
+    <tr>
+        <td class="no-border hidden-xs">&nbsp;</td>
+        <td class="no-border hidden-xs">&nbsp;</td>
+        <td class="no-border hidden-xs">&nbsp;</td>
+        <td class="no-border hidden-xs">&nbsp;</td>
+        <td class="warning">
+            <small>
+                <strong>{txt key=TEXT_COUPON_AKTIV}:</strong>
+            </small>
+            <br />
+            <code>
+                {$arr_coupon.coupon_code}
+            </code>
+            <br />
+            <a class="btn btn-xs btn-danger" href="{$remove_coupon_link}">
+                <i class="fa fa-trash"></i>
+                {txt key=TEXT_COUPON_REMOVE}
+            </a>
+        </td>
+        <td class="text-right warning"><span class="text-nowrap"><span class="price">{$coupon_amount}</span></span></td>
+    </tr>
+{/if}
+<tr>
+    <td class="no-border hidden-xs">&nbsp;</td>
+    <td class="no-border hidden-xs">&nbsp;</td>
+    <td class="no-border hidden-xs">&nbsp;</td>
+    <td class="no-border hidden-xs">&nbsp;</td>
+    <td class="success"><small><strong>{txt key=TEXT_SUB_TOTAL}</strong></small></td>
+    <td class="text-right success"><span class="text-nowrap"><span class="price">{$new_total}</span></span></td>
+</tr>

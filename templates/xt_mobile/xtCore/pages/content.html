@@ -1,0 +1,28 @@
+<div data-role="header">
+    <h1>{$data.content_heading}</h1>
+</div>
+
+<div data-role="content">
+    {*
+    <p>
+        {$data.content_popup_link}
+    </p>
+    *}
+    {if $data.subcontent}
+        <h2>{txt key=HEADING_SUB_CONTENT}</h2>
+        <p>
+            {foreach name=aussen item=module_data from=$data.subcontent}
+                <a href="{$module_data.link}">{$module_data.title}</a> |
+            {/foreach}
+        </p>
+    {/if}
+
+    <p>
+        {if $file}
+            {$file}
+        {else}
+            {$data.content_body}
+        {/if}
+    </p>
+
+</div>

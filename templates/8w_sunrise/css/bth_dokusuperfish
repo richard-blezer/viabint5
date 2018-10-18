@@ -1,0 +1,34 @@
+#http://www.onlinecasinodemar.com/webdesign/tutorial-jquery-dropdown-menue-mit-superfish/
+# bth 2012-08-17 resolve catnav navigation display problem; dropdown not corrctly displayed
+
+cd /home/pmihova/public_html/plugins/xt_8works_sunrise/classes/
+
+vi class.sunrise.php
+
+
+#set all 
+'sf-vertical' => TRUE 
+
+#to
+
+'sf-vertical' => FALSE
+
+# pm 2012-08-17 resolve not to display some irrlevant categories in blue menue
+
+cd /home/pmihova/public_html/plugins/xt_8works_sunrise/classes/
+
+vi class.sunrise.php
+
+inserted:
+
+//if (1){
+                                if ($element['categories_id'] != 14 && $element['categories_id'] != 19 && $element['categories_id'] != 20 && $element['categories_id'] != 121 && $element['categories_id'] != 123){
+
+                                /*
+                                        categories_id != 14 => keine alpfhabetisch
+                                        categories_id != 19 => keine personengruppen
+                                        categories_id != 20 => keine produktgruppen
+                                */
+
+
+

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>Upcoming Products</title>
+<version>1.0.4</version>
+<code>xt_upcoming_products</code>
+<url>http://www.xt-commerce.com</url>
+<description>Vorbestellbare Artikel</description>
+<type>core</type>
+<icon>xt-commerce_logo.jpg</icon>
+<developer>xt:Commerce</developer>
+<plugin_code>
+<code>
+<hook>page_registry.php:bottom</hook>
+<phpcode><![CDATA[
+define('PAGE_XT_UPCOMING_PRODUCTS', _SRV_WEB_PLUGINS.'xt_upcoming_products/pages/xt_upcoming_products.php');
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+
+<configuration>
+<config>
+<key>ACTIVATE_XT_UPCOMING_PRODUCTS_PAGE</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Seite aktivieren</title>
+</de>
+<en>
+<title>Activate page</title>
+</en>
+<es>
+<title>Activar página</title>
+</es>
+<bp>
+<title>Ativar página</title>
+</bp>
+</config>
+<config>
+<key>ACTIVATE_XT_UPCOMING_PRODUCTS_BOX</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Box aktivieren</title>
+</de>
+<en>
+<title>Activate box</title>
+</en>
+<es>
+<title>Activar recuadro</title>
+</es>
+<bp>
+<title>Ativar caixa </title>
+</bp>
+</config>
+<config>
+<key>XT_UPCOMING_PRODUCTS_BOX_LIMIT</key>
+<value>1</value>
+<de>
+<title>Anzahl Artikel in Box</title>
+</de>
+<en>
+<title>Box Limit</title>
+</en>
+<es>
+<title>Cantidad de artículos en el recuadro</title>
+</es>
+<bp>
+<title>Quantidade de caixa</title>
+</bp>
+</config>
+<config>
+<key>XT_UPCOMING_PRODUCTS_PAGE_LIMIT</key>
+<value>25</value>
+<de>
+<title>Anzahl Artikel</title>
+</de>
+<en>
+<title>Max. article</title>
+</en>
+<es>
+<title>Cantidad de artículos</title>
+</es>
+<bp>
+<title>Quantidade de artigos</title>
+</bp>
+</config>
+<config>
+<key>XT_UPCOMING_PRODUCTS_PAGE_TPL</key>
+<value>product_listing_v1.html</value>
+<de>
+<title>Template</title>
+</de>
+<en>
+<title>Template</title>
+</en>
+<es>
+<title>Plantilla</title>
+</es>
+</config>
+</configuration>
+<language_content>
+<phrase>
+<key>TEXT_HEADING_UPCOMING_PRODUCTS</key>
+<class>store</class>
+<de>
+<value>Vorbestellungen</value>
+</de>
+<en>
+<value>Upcoming  Products</value>
+</en>
+<es>
+<value>Preordenes</value>
+</es>
+<bp>
+<value>Encomendados</value>
+</bp>
+</phrase>
+<phrase>
+<key>TEXT_UPCOMING_PRODUCTS</key>
+<class>store</class>
+<de>
+<value>Vorbestellungen</value>
+</de>
+<en>
+<value>Upcoming  Products</value>
+</en>
+<bp>
+<value>Encomendados</value>
+</bp>
+</phrase>
+</language_content>
+</xtcommerceplugin>

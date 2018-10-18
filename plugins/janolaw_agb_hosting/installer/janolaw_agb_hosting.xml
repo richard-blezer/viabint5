@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf8"?>
+<xtcommerceplugin>
+<title>Janolaw AGB Hosting</title>
+<version>1.0.3</version>
+<code>janolaw_agb_hosting</code>
+<url>http://www.xt-commerce.com</url>
+<description>Janolaw AGB Hosting</description>
+<type>law</type>
+<icon>janolaw.jpg</icon> 
+<db_install><![CDATA[
+
+]]></db_install>
+<db_uninstall><![CDATA[
+
+]]></db_uninstall>
+<plugin_code>
+<code>
+<hook>module_content.php:content_top</hook>
+<phpcode><![CDATA[
+    include 'plugins/janolaw_agb_hosting/classes/class.janolaw_agb_hosting.php';
+    $jl = new janolaw_agb_hosting();
+    $jl->runFetch();
+]]></phpcode>
+<order>1</order>
+<active>1</active>
+</code>
+</plugin_code>
+
+<configuration>
+
+  <config>
+<key>JANOLAW_AGB_ACTIVATE</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Für Mandant aktivieren</title>
+</de>
+<en>
+<title>Activate for this Shop</title>
+</en>
+<es>
+<title>Activar para el cliente</title>
+</es>
+</config>
+
+<config>
+<key>JANOLAW_AGB_SHOPID</key>
+<value></value>
+<de>
+<title>Shop ID</title>
+</de>
+<en>
+<title>Shop ID</title>
+</en>
+<es>
+<title>ID Cliente</title>
+</es>
+</config>
+<config>
+<key>JANOLAW_AGB_KUNDENNUMMER</key>
+<value></value>
+<de>
+<title>Kundennummer</title>
+</de>
+<en>
+<title>Customers ID</title>
+</en>
+<es>
+<title>Número de cliente</title>
+</es>
+</config>
+
+<config>
+<key>JANOLAW_AGB_CONTENT_AGB</key>
+<type>dropdown</type>
+<url>content_list</url>
+<value>3</value>
+<de>
+<title>Contentinhalt AGB</title>
+</de>
+<en>
+<title>Shopcontent Conditions</title>
+</en>
+<es>
+<title>Contenido de términos</title>
+</es>
+</config>
+
+<config>
+<key>JANOLAW_AGB_CONTENT_IMPRESSUM</key>
+<type>dropdown</type>
+<url>content_list</url>
+<value>4</value>
+<de>
+<title>Contentinhalt Impressum</title>
+</de>
+<en>
+<title>Shopcontent Imprint</title>
+</en>
+<es>
+<title>Contenido de pie de imprenta</title>
+</es>
+</config>
+
+<config>
+<key>JANOLAW_AGB_CONTENT_PRIVACY</key>
+<type>dropdown</type>
+<url>content_list</url>
+<value>2</value>
+<de>
+<title>Contentinhalt Datenschutz</title>
+</de>
+<en>
+<title>Shopcontent Privacy</title>
+</en>
+<es>
+<title>Contenido protección de datos</title>
+</es>
+</config>
+
+<config>
+<key>JANOLAW_AGB_CONTENT_WIDERRUF</key>
+<type>dropdown</type>
+<url>content_list</url>
+<value>7</value>
+<de>
+<title>Contentinhalt Widerrufsrecht</title>
+</de>
+<en>
+<title>Shopcontent rescission</title>
+</en>
+<es>
+<title>Contenido derecho de revocación</title>
+</es>
+</config>
+  
+  <config>
+<key>JANOLAW_AGB_IMPRESSUM_USE</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Impressum aktualisieren</title>
+</de>
+<en>
+<title>Update Imprint</title>
+</en>
+<es>
+<title>Actualizar pie de imprenta</title>
+</es>
+</config>
+
+  <config>
+<key>JANOLAW_AGB_PRIVACY_USE</key>
+<type>dropdown</type>
+<url>conf_truefalse</url>
+<value>true</value>
+<de>
+<title>Datenschutz aktualisieren</title>
+</de>
+<en>
+<title>Update Privacy</title>
+</en>
+<es>
+<title>Actualizar protección de datos</title>
+</es>
+</config>
+</configuration>
+</xtcommerceplugin>

@@ -1,0 +1,7 @@
+		{foreach name=aussen item=box_data from=$lang_data}
+			{if !$selected_lang}{* <!-- no cookie, $selected_lang != available --> *}
+				<li class="language"><a href="{link page='dynamic' params='action=change_lang&new_lang' params_value=$box_data.code}" {if $selected_lang == $box_data.code}class="active"{/if}>{$box_data.name|substr:0:2}</a></li>
+			{else}{* <!-- choose selected by option value, not by shown language (because of some crazy user configurations) --> *}
+				<li class="language"><a href="{link page='dynamic' params='action=change_lang&new_lang' params_value=$box_data.code}" {if $selected_lang == $box_data.code}class="active"{/if}>{$box_data.name|substr:0:2}</a></li>
+			{/if}
+		{/foreach}

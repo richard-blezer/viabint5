@@ -1,0 +1,32 @@
+<p class="breaking-headline">{txt key=TEXT_COUPON_HEADLINE}</p>
+{if $arr_coupon == ''}
+
+    {if defined('TEXT_COUPON_ADDON_PRODUCT_INFO') &&
+        $smarty.const.TEXT_COUPON_ADDON_PRODUCT_INFO|trim != ''}
+        <div class="alert alert-danger">
+            {txt key=TEXT_COUPON_ADDON_PRODUCT_INFO}
+        </div>
+    {/if}
+
+    {form type=form name=process action='checkout' method=post conn=SSL}
+    {form type=hidden name=page_action value=confirmation}
+    {form type=hidden name=special value=coupon}
+    <div class="well">
+    <div class="input-group">
+        <input type="text" class="form-control" name="coupon_code" id="coupon_code" maxlength="20" placeholder="{txt key=TEXT_COUPON_LABEL}">
+        <span class="input-group-btn">
+            <button class="btn btn-default preloader" type="submit">{txt key=TEXT_COUPON_BUTTON}</button>
+        </span>
+    </div><!-- /input-group -->
+    </div>
+    {form type=formend}
+    <br />
+{else}
+    <div class="alert alert-success">
+    {if $arr_coupon.coupon_token_code != ''}
+    {txt key=TEXT_COUPON_REDEEMED}: {$arr_coupon.coupon_token_code}
+    {else}
+    {txt key=TEXT_COUPON_REDEEMED}: {$arr_coupon.coupon_code}
+    {/if}
+    </div>
+{/if}

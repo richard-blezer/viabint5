@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtcommerceplugin>
+	<language_content>
+<phrase>
+	<key>ACTIVATE_XT_NEW_PRODUCTS_BOX_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate box]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[启用区块]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Box aktivieren]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Activate box]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Activer boîte]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Attiva cestino]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ブロックを有効にする]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Winkelmandje activeren]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Aktywuj pole]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Активировать бокс]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[啟用區塊]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>ACTIVATE_XT_NEW_PRODUCTS_PAGE_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Activate page]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[启用页面]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Seite aktivieren]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Activate page]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Activer page]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Attiva pagina]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ページを有効にする]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Pagina activeren]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Aktywuj stronę]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Активировать страницу]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[啟用頁面]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>INSTALLED_XT_NEW_PRODUCTS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Status]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[状态]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Status]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Status]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[État]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Stato]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[状態]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Status]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Status]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Статус]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[狀態]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_NEW_PRODUCTS_BOX_DAYS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Days count box]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[区块 - 天数]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Tage Box]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Days count box]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Boîte nombre de jours]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Contatore giorni del cestino]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ブロック - 日数]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal dagen in box]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Pole liczenia dni]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число дней в боксе]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[區塊 - 天數]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_NEW_PRODUCTS_BOX_LIMIT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Box Limit]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[区块内商品数 - 最大值]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Artikel in Box]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Box Limit]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Limite de la boîte]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Limite cestino]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[ブロック内の商品数 - 最大値]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal artikelen in winkelmandje]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Limit Pola]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число продуктов в боксе]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[區塊內商品數 - 最大值]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_NEW_PRODUCTS_PAGE_DAYS_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Days count]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[天数]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Tage]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Days count]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nombre de jour]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Contatore giorni]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[日数]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal dagen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Liczenie dni]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число дней]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[天數]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_NEW_PRODUCTS_PAGE_LIMIT_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Max. article]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[商品数量 - 最大值]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Anzahl Artikel]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Max. article]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Numéro d'article]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Articoli massimi]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[商品の数量 - 最大値]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Aantal artikelen]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Max. artykułów]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Число продуктов]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[商品數量 - 最大值]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>XT_NEW_PRODUCTS_PAGE_TPL_TITLE</key>
+	<class>admin</class>
+	<en>
+		<value><![CDATA[Template]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[样板]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Template]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Template]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Template]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Template]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[テンプレート]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Template]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Wzór]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Шаблон]]></value>
+	</ru>
+	<tw>
+		<value><![CDATA[樣板]]></value>
+	</tw>
+</phrase>
+<phrase>
+	<key>TEXT_HEADING_NEW_PRODUCTS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[New products]]></value>
+	</en>
+	<cn>
+		<value><![CDATA[最新商品]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Neue Artikel]]></value>
+	</de>
+	<es>
+		<value><![CDATA[New products]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nouveaux articles]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Nuovi prodotti]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[最新の商品]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Nieuwe artikel]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Nowe produkty]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Новая продукция]]></value>
+	</ru>
+</phrase>
+<phrase>
+	<key>TEXT_NEW_PRODUCTS</key>
+	<class>store</class>
+	<en>
+		<value><![CDATA[Brandnew]]></value>
+	</en>
+	<bp>
+		<value><![CDATA[Produtos em Destaque]]></value>
+	</bp>
+	<cn>
+		<value><![CDATA[全新]]></value>
+	</cn>
+	<de>
+		<value><![CDATA[Unsere Neuheiten]]></value>
+	</de>
+	<es>
+		<value><![CDATA[Brandnew]]></value>
+	</es>
+	<fr>
+		<value><![CDATA[Nouveautés]]></value>
+	</fr>
+	<it>
+		<value><![CDATA[Nuovissimi]]></value>
+	</it>
+	<jp>
+		<value><![CDATA[全く新しい]]></value>
+	</jp>
+	<nl>
+		<value><![CDATA[Nieuwe artikel]]></value>
+	</nl>
+	<pl>
+		<value><![CDATA[Zupełnie nowe]]></value>
+	</pl>
+	<ru>
+		<value><![CDATA[Наши новинки]]></value>
+	</ru>
+</phrase>
+</language_content>
+</xtcommerceplugin>

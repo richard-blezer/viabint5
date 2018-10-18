@@ -1,0 +1,9 @@
+<div id="box-manufacturers">
+	<p class="headline">{txt key=TEXT_BOX_TITLE_MANUFACTURERS}</p>
+	<select id="manufacturers" onchange="location.href=this.options[this.selectedIndex].value">
+		<option value="">{txt key=TEXT_SELECT_MANUFACTURERS}</option>
+		{foreach name=aussen item=module_data from=$_manufacturers}
+		<option value="{$module_data.link}">{$module_data.manufacturers_name}</option>
+		{/foreach}
+	</select>
+</div><!-- #box-manufacturers -->

@@ -1,0 +1,5 @@
+(2018-10-17 11:12:21) mysql error: [1045: Access denied for user 'viabint3_dbxtusr'@'localhost' (using password: YES)] in CONNECT(localhost, '****', '****', viabint3_xtcommerce)
+(2018-10-17 13:17:52) mysql error: [1045: Access denied for user 'viabint3_dbxtusr'@'localhost' (using password: YES)] in CONNECT(localhost, '****', '****', viabint3_xtcommerce)
+(2018-10-17 13:17:53) mysql error: [1045: Access denied for user 'viabint3_dbxtusr'@'localhost' (using password: YES)] in CONNECT(localhost, '****', '****', viabint3_xtcommerce)
+(2018-10-17 14:16:39) mysql error: [1045: Access denied for user 'viabint3_dbxtusr'@'localhost' (using password: YES)] in CONNECT(localhost, '****', '****', viabint3_xtcommerce)
+(2018-10-17 16:55:51) mysql error: [1044: Access denied for user 'viabint5_xtcommerce_user'@'localhost' to database 'viabint5_xtcommerce'] in CONNECT(localhost, '****', '****', viabint5_xtcommerce)

@@ -1,0 +1,48 @@
+<h1>{txt key=TEXT_PAGE_TITLE_ACCOUNT_DOWNLOADS}</h1>
+
+{$message}
+
+{foreach name=aussen item=dl_data from=$download_data}
+<div class="box clear">
+	<p><span class="bold">{txt key=TEXT_ORDER_NUMBER}:</span> {$dl_data.order_data.orders_id}</p>
+	<p><span class="bold">{txt key=TEXT_ORDER_STATUS}:</span> {$dl_data.order_data.orders_status}</p>
+		<table>
+  			<tbody>
+  				{foreach name=aussen item=dl_item from=$dl_data.download_data}
+  				<tr>
+    				{if $dl_item.download_allowed eq '1'}
+    				<td width="20">
+						<a href="{$dl_item.download_url}">{img img=page_white_compressed.png type=mi class=productImageBorder alt=''}</a>
+					</td>
+    				<td>
+						<p><a href="{$dl_item.download_url}"><span class="bold">{$dl_item.media_name}</span></a> ({$dl_item.media_size|fsize_format:"MB"})</p>
+						{if $dl_item.media_description}<p class="media-description">{$dl_item.media_description}</p>{/if}
+						{if $dl_item.allowed_until}<p>{txt key=TEXT_ACCOUNT_DOWNLOADS_DATE}: {$dl_item.allowed_until}</p>{/if}
+						{if $dl_item.allowed_count}<p>{txt key=TEXT_ACCOUNT_DOWNLOADS_COUNT}: {$dl_item.allowed_count}</p>{/if}
+					</td>	
+					{else}	
+					<td width="20">
+						{img img=lock_open.png type=mi class=productImageBorder alt=''}
+					</td>
+					<td>
+						<p><span class="bold">{$dl_item.media_name}</span> ({$dl_item.media_size|fsize_format:"MB"})</p>
+						{if $dl_item.media_description}<p class="media-description">{$dl_item.media_description}</p>{/if}
+						<p>{txt key=TEXT_DOWNLOAD_NOT_ALLOWED}</p>
+					</td>
+					{/if}
+  				</tr>
+				{if $dl_item.download_allowed eq '1'}
+					<tr>
+						<td colspan="4">
+							<p><a href="{$dl_item.download_url}">{css_button text=$smarty.const.BUTTON_DOWNLOAD}</a></p>
+						</td>
+					</tr>
+				{/if}
+  				{/foreach}
+  		</tbody>
+	</table>
+
+</div>
+{/foreach}
+
+<p><a href="{link page='customer' conn=SSL}">{css_button text=$smarty.const.BUTTON_BACK}</a></p>

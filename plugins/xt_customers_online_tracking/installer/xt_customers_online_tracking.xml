@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf8"?>
+	<xtcommerceplugin>
+		<title>Customers online tracking</title>
+		<version>1.0.1</version>
+		<code>xt_customers_online_tracking</code>
+		<url>http://www.xt-commerce.com</url>
+		<description>Provides a real time chart for online customers.</description>
+		<type>marketing</type>
+		<developer>xt:Commerce</developer>
+		<license_file>xt_customers_online_tracking.txt</license_file>
+		<require_license_file>true</require_license_file>
+		<icon>xt-commerce_logo.jpg</icon>
+	<db_install><![CDATA[
+
+	$db->Execute("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "_customers_online_stats` (" .
+			" `sess_id` varchar(255) NOT NULL, " . 
+			"`shop_id` int(11) NOT NULL, " . 
+			"`customers_id` int(11) default NULL, " . 
+			"`customers_status` int(5) default NULL, " . 
+			"`date_added` datetime NOT NULL, " . 
+			"PRIMARY KEY (`sess_id`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1");
+
+	]]>
+	</db_install>
+	<db_uninstall><![CDATA[
+	$db->Execute("DROP TABLE `" . DB_PREFIX . "_customers_online_stats`;");
+ 
+	]]>
+	</db_uninstall>
+	<configuration>
+		<config>
+			<key>CUSTOMERS_ONLINE_TIME_INTERVAL_HOURS</key>
+			<value>1</value>
+			<type></type>
+			<url></url>
+			<de>
+				<title>Track active customers for (hours)</title>
+				<description></description>
+			</de>
+			<en>
+				<title>Track active customers for (hours)</title>
+				<description></description>
+			</en>
+		</config>
+	</configuration>
+	<plugin_code>
+		<code>
+			<hook>dashboard.php:chart_panel_init</hook>
+			<phpcode>
+				<![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_customers_online_tracking/hooks/dashboard.php.chart_panel_init.php';]]>
+			</phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>chart.php:getJsonData</hook>
+			<phpcode>
+				<![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_customers_online_tracking/hooks/chart.php.getJsonData.php';]]>
+			</phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+		<code>
+			<hook>store_main_handler.php:seo</hook>
+			<phpcode>
+				<![CDATA[include _SRV_WEBROOT . _SRV_WEB_PLUGINS . 'xt_customers_online_tracking/hooks/store_main_handler.php.seo.php';]]>
+			</phpcode>
+			<order>1</order>
+			<active>1</active>
+		</code>
+	</plugin_code>
+	<language_content>
+		<phrase>
+			<key>TEXT_CUSTOMERS_ONLINE_REAL_TIME</key>
+			<class>admin</class>
+			<de>
+				<value>Customers online</value>
+			</de>
+			<en>
+				<value>Customers online</value>
+			</en>
+		</phrase>
+		<phrase>
+			<key>TEXT_CUSTOMERS_ONLINE_PREVIEW</key>
+			<class>admin</class>
+			<de>
+				<value>Customers online preview</value>
+			</de>
+			<en>
+				<value>Customers online preview</value>
+			</en>
+		</phrase>
+	</language_content>
+</xtcommerceplugin> 
