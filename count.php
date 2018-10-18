@@ -2,8 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: richardadmin
- * Date: 25-9-2018
- * Time: 08:17
+ * Date: 18-10-2018
+ * Time: 12:10
  */
-phpinfo();
-?>
+for ($i=1; $i<10; $i++ ){
+
+	echo "Variabele i = " . $i;
+}
